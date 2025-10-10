@@ -1,0 +1,24 @@
+.main {
+  margin: auto;
+  max-width: 1080px;
+  background-color: aliceblue;
+}
+
+.header {
+  height: 100px;
+  background-color:rgb(255, 223, 223);
+}
+
+.header .login {
+  margin-left: 920px;
+}
+
+.body {
+  height: 300px;
+  background-color: aqua;
+}
+
+.footer {
+  height: 200px;
+  background-color: lightcyan;
+}
