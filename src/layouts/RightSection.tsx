@@ -1,14 +1,10 @@
-import ChatWrapper from '../components/ChatWrapper';
-import Contents from '../components/Contents';
-import Header from './Header';
+import ChatPage from '../features/Chat/Pages/ChatPage';
 import './layouts.css'
 
 function RightSection() {
   return (
     <section className="rightsection">
-      <Header></Header>
-      <Contents></Contents>
-      <ChatWrapper></ChatWrapper>
+      <ChatPage></ChatPage>
     </section>
   )
 }

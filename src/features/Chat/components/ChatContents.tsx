@@ -1,6 +1,6 @@
 import './components.css'
 
-function Contents() {
+function ChatContents() {
   return (
     <div className="contents">
       메인 콘텐츠
@@ -8,4 +8,4 @@ function Contents() {
   )
 }
 
-export default Contents;
+export default ChatContents;
