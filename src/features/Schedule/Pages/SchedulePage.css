@@ -1,0 +1,7 @@
+.scheduleframe {
+  height: 100%;
+}
+
+.schedulebody {
+  height: calc(100% - 50px);
+}

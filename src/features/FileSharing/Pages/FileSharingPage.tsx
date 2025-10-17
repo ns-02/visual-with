@@ -1,6 +1,6 @@
 import Header from "../../../layouts/Header";
 import LeftFiles from "../layouts/LeftFiles";
-import RightFileContents from "../layouts/RightFileContents";
+import RightContents from "../layouts/RightContents";
 import './FileSharingPage.css'
 
 function FileSharingPage() {
@@ -9,7 +9,7 @@ function FileSharingPage() {
       <Header></Header>
       <div className="filesharingbody">
         <LeftFiles></LeftFiles>
-        <RightFileContents></RightFileContents>
+        <RightContents></RightContents>
       </div>
     </div>
   )
