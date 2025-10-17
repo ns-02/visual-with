@@ -1,0 +1,15 @@
+.leftfiles {
+  width: 120px;
+  height: 100%;
+  float: left;
+  padding: 10px;
+  border: 1px solid #000;
+}
+
+.rightfilecontents {
+  width: calc(100% - 120px);
+  height: 100%;
+  float: right;
+  padding: 10px;
+  border: 1px solid #000;
+}

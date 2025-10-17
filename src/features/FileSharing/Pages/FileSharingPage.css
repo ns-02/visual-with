@@ -1,0 +1,7 @@
+.filesharingframe {
+  height: 100%;
+}
+
+.filesharingbody {
+  height: calc(100% - 50px);
+}
