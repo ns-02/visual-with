@@ -1,0 +1,5 @@
+.rightcontents {
+  width: calc(100% - 80px);
+  height: 100%;
+  float: right;
+}
