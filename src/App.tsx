@@ -1,15 +1,16 @@
 import './App.css'
 import LoginPage from './pages/LoginPage'
 import SignupPage from './pages/SignupPage'
-import StartPage from './pages/StartPage'
 
-function App() {
+
+const App: React.FC = () => {
 
   return (
     <>
       {/* <StartPage></StartPage> */}
-      {/* <LoginPage></LoginPage> */}
-      <SignupPage></SignupPage>
+      <LoginPage></LoginPage>
+      {/* <SignupPage></SignupPage> */}
+      {/* <MainPage></MainPage> */}
     </>
   )
 }
