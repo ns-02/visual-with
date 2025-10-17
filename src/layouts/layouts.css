@@ -1,0 +1,19 @@
+.header {
+  border: 1px solid #000;
+  padding: 10px;
+}
+
+.leftmenu {
+  width: 80px;
+  height: 100%;
+  float: left;
+  padding: 10px;
+  border: 1px solid #000;
+  background-color: aquamarine;
+}
+
+.rightsection {
+  width: calc(100% - 80px);
+  height: 100%;
+  float: right;
+}

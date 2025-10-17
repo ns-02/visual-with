@@ -1,4 +1,4 @@
-import './ChatWrapper.css'
+import './components.css'
 
 function ChatWrapper() {
   return (

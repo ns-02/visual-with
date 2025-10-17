@@ -1,18 +1,11 @@
-import Header from "../components/Header";
-import ChatWrapper from "../components/ChatWrapper";
-import LeftMenu from "../components/LeftMenu";
-import './MainPage.css'
-import Contents from "../components/Contents";
+import LeftMenu from "../layouts/LeftMenu";
+import RightSection from "../layouts/RightSection";
 
 function MainPage() {
   return (
     <>
       <LeftMenu></LeftMenu>
-      <section className="rightcontents">
-        <Header></Header>
-        <Contents></Contents>
-        <ChatWrapper></ChatWrapper>
-      </section>
+      <RightSection></RightSection>
     </>
   )
 }
