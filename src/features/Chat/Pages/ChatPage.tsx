@@ -1,6 +1,6 @@
-import Header from "../../../layouts/Header";
-import ChatContents from "../components/ChatContents";
-import ChatWrapper from "../components/ChatWrapper";
+import Header from "../../../Layouts/Header";
+import ChatContents from "../Components/ChatContents";
+import ChatWrapper from "../Components/ChatWrapper";
 import './ChatPage.css'
 
 function ChatPage() {

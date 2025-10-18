@@ -1,6 +1,6 @@
-import Header from "../../../layouts/Header";
-import LeftCalendar from "../layouts/LeftCalendar";
-import RightContents from "../layouts/RightContents";
+import Header from "../../../Layouts/Header";
+import LeftCalendar from "../Layouts/LeftCalendar";
+import RightContents from "../Layouts/RightContents";
 import './SchedulePage.css'
 
 function SchedulePage() {

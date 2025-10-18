@@ -1,7 +1,7 @@
 import './App.css'
-import LoginPage from './pages/LoginPage'
-import MainPage from './pages/MainPage'
-import SignupPage from './pages/SignupPage'
+import LoginPage from './Pages/LoginPage'
+import MainPage from './Pages/MainPage'
+import SignupPage from './Pages/SignupPage'
 
 
 const App: React.FC = () => {
