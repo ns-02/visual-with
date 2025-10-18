@@ -5,9 +5,9 @@ import './TodoListPage.css'
 
 function TodoListPage() {
   return (
-    <div className="todolistframe">
+    <div className="todolist-frame">
       <Header></Header>
-      <div className="todolistbody">
+      <div className="todolist-body">
         <LeftSubject></LeftSubject>
         <RightContents></RightContents>
       </div>

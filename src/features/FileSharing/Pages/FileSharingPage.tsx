@@ -5,9 +5,9 @@ import './FileSharingPage.css'
 
 function FileSharingPage() {
   return (
-    <div className="filesharingframe">
+    <div className="file-sharing-frame">
       <Header></Header>
-      <div className="filesharingbody">
+      <div className="file-sharing-body">
         <LeftFiles></LeftFiles>
         <RightContents></RightContents>
       </div>

@@ -1,12 +1,14 @@
 import { useState } from "react";
+import './LoginPage.css';
+import Container from "../Components/Container";
 
 function LoginPage() {
   const [ id, setId ] = useState("");
   const [ password, setPassword ] = useState("");
 
   return (
-    <>
-      <div style={{border: "1px solid black"}}>
+    <Container>
+      <div className="login">
         <div>
           <h2>로그인</h2>
         </div>
@@ -51,7 +53,7 @@ function LoginPage() {
           
         </form>
       </div>
-    </>
+    </Container>
   )
 }
 

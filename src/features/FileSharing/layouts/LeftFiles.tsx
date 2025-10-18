@@ -2,7 +2,7 @@ import './layout.css'
 
 function LeftFiles() {
   return (
-    <div className="leftfiles">
+    <div className="left-files">
       <div>
         <button>이미지</button>
       </div>

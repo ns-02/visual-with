@@ -1,0 +1,11 @@
+.app-layout {
+  padding: 30px;
+  height: 100%;
+}
+
+.container {
+  width: 480px;
+  height: 90%;
+  margin: 0 auto;
+  border: 1px solid #000;
+}

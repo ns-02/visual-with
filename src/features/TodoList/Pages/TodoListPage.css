@@ -1,7 +1,7 @@
-.todolistframe {
+.todolist-frame {
   height: 100%;
 }
 
-.todolistbody {
+.todolist-body {
   height: calc(100% - 50px);
 }

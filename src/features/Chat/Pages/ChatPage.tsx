@@ -5,7 +5,7 @@ import './ChatPage.css'
 
 function ChatPage() {
   return (
-    <div className="chatframe">
+    <div className="chat-frame">
       <Header></Header>
       <ChatContents></ChatContents>
       <ChatWrapper></ChatWrapper>

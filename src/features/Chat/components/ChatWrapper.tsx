@@ -2,7 +2,7 @@ import './components.css'
 
 function ChatWrapper() {
   return (
-    <div className="chatwrapper">
+    <div className="chat-wrapper">
       <span>
         <button>+</button>
       </span>

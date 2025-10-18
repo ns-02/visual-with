@@ -2,7 +2,7 @@ import './layout.css'
 
 function RightContents() {
   return (
-    <div className="rightcontents">
+    <div className="right-contents">
       일정 데이터
     </div>
   )

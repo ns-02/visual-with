@@ -2,7 +2,7 @@ import './layout.css'
 
 function LeftCalendar() {
   return (
-    <div className="leftcalender">
+    <div className="left-calender">
       <div>
         <input type='date'></input>
       </div>

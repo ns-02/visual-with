@@ -5,9 +5,9 @@ import './SchedulePage.css'
 
 function SchedulePage() {
   return (
-    <div className="scheduleframe">
+    <div className="schedule-frame">
       <Header></Header>
-      <div className="schedulebody">
+      <div className="schedule-body">
         <LeftCalendar></LeftCalendar>
         <RightContents></RightContents>
       </div>

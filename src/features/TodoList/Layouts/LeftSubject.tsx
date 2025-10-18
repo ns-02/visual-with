@@ -2,7 +2,7 @@ import './layout.css'
 
 function LeftSubject() {
   return (
-    <div className="leftsubject">
+    <div className="left-subject">
       <div>
         <div>제목 1</div>
         <div>제목 2</div>

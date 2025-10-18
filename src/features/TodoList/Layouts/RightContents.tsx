@@ -2,7 +2,7 @@ import './layout.css'
 
 function RightContents() {
   return (
-    <div className="rightcontents">
+    <div className="right-contents">
       <h2>제목 1</h2>
       <div>
         <input type='checkbox'></input><span>내용 1</span>

@@ -1,4 +1,6 @@
 import { useState } from "react";
+import Container from "../Components/Container";
+import './SignupPage.css';
 
 function SignupPage() {
   const [ id, setId ] = useState("");
@@ -6,25 +8,35 @@ function SignupPage() {
   const [ checkPassword, setCheckPassword ] = useState("");
 
   return (
-    <>
-      <div style={{border: "1px solid black"}}>
+    <Container>
+      <div className="signup">
         <div>
           <h2>회원가입</h2>
+          <br></br>
         </div>
         <form>
           <div>
             <div>
               <p>아이디</p>
-              <input type="text" value={id} onChange={(e) => setId(e.target.value)}></input>
+              <input type="text" value={id} onChange={(e) => setId(e.target.value)}/>
             </div>
             <div>
               <p>비밀번호</p>
-              <input type="password" value={password} onChange={(e) => setPassword(e.target.value)}></input>
+              <input type="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
             </div>
             <div>
               <p>비밀번호 확인</p>
-              <input type="password" value={checkPassword} onChange={(e) => setCheckPassword(e.target.value)}></input>
+              <input type="password" value={checkPassword} onChange={(e) => setCheckPassword(e.target.value)}/>
             </div>
+            <div>
+              <p>이름</p>
+              <input type="text"></input>
+            </div>
+            <div>
+              <p>이메일</p>
+              <input type="email"></input>
+            </div>
+            <br></br>
             {/* type="button"으로 일부로 전송을 막아놓은 것! 필요시 해제 */}
             <div>
               <button type="button" onClick={() => {
@@ -49,10 +61,9 @@ function SignupPage() {
               }}>회원가입</button> 
             </div>
           </div>
-          
         </form>
       </div>
-    </>
+    </Container>
   )
 }
 

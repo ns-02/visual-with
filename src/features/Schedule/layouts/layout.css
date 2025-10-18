@@ -1,4 +1,4 @@
-.leftcalender {
+.left-calender {
   width: 160px;
   height: 100%;
   float: left;
@@ -6,7 +6,7 @@
   border: 1px solid #000;
 }
 
-.rightcontents {
+.right-contents {
   width: calc(100% - 160px);
   height: 100%;
   float: right;
