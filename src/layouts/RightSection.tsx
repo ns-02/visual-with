@@ -1,14 +1,13 @@
-import ChatPage from '../features/Chat/Pages/ChatPage';
-import FileSharingPage from '../features/FileSharing/Pages/FileSharingPage';
-import SchedulePage from '../features/Schedule/Pages/SchedulePage';
 import './layouts.css'
 
-function RightSection() {
+type Prop = {
+  children: React.ReactNode;
+}
+
+function RightSection({ children }: Prop) {
   return (
     <section className="rightsection">
-      {/* <ChatPage></ChatPage> */}
-      {/* <FileSharingPage></FileSharingPage> */}
-      <SchedulePage></SchedulePage>
+      {children}
     </section>
   )
 }
