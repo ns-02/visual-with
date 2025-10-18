@@ -1,5 +1,5 @@
 import Container from "../Components/Container";
-import './SignupResultPage.css';
+import './css/SignupResultPage.css';
 
 function SignupResultPage() {
   return (

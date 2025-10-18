@@ -4,10 +4,11 @@ import ChatPage from '../features/Chat/Pages/ChatPage';
 import FileSharingPage from '../features/FileSharing/Pages/FileSharingPage';
 import SchedulePage from '../features/Schedule/Pages/SchedulePage';
 import TodoListPage from '../features/TodoList/Pages/TodoListPage';
+import './css/MainPage.css';
 
 function MainPage() {
   return (
-    <>
+    <div className="main">
       <LeftMenu></LeftMenu>
       <RightSection>
         {/* <ChatPage></ChatPage> */}
@@ -15,7 +16,7 @@ function MainPage() {
         {/* <SchedulePage></SchedulePage> */}
         <TodoListPage></TodoListPage>
       </RightSection>
-    </>
+    </div>
   )
 }
 

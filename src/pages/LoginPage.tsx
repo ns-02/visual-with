@@ -1,6 +1,6 @@
 import { useState } from "react";
-import './LoginPage.css';
 import Container from "../Components/Container";
+import './css/LoginPage.css';
 
 function LoginPage() {
   const [ id, setId ] = useState("");

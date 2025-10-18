@@ -1,24 +1,25 @@
-.main {
+.start-layout {
   margin: auto;
+  padding-top: 20px;
   max-width: 1080px;
   background-color: aliceblue;
 }
 
-.header {
+.start-layout .header {
   height: 100px;
   background-color:rgb(255, 223, 223);
 }
 
-.header .login {
+.start-layout .header .login {
   margin-left: 920px;
 }
 
-.body {
+.start-layout .body {
   height: 300px;
   background-color: aqua;
 }
 
-.footer {
+.start-layout .footer {
   height: 200px;
   background-color: lightcyan;
 }

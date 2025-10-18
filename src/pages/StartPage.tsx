@@ -1,10 +1,10 @@
-import './StartPage.css'
+import './css/StartPage.css'
 
 function StartPage() {
 
   return (
     <>
-      <div className='main'>
+      <div className='start-layout'>
         <div className='header'>
           <span className='image-container'>
             <image>로고</image>

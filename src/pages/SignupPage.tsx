@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Container from "../Components/Container";
-import './SignupPage.css';
+import './css/SignupPage.css';
 
 function SignupPage() {
   const [ id, setId ] = useState("");
