@@ -11,11 +11,11 @@ const App: React.FC = () => {
 
   return (
     <div className='shell'>
-      <StartPage></StartPage>
+      {/* <StartPage></StartPage> */}
       {/* <LoginPage></LoginPage> */}
       {/* <SignupPage></SignupPage> */}
       {/* <SignupResultPage></SignupResultPage> */}
-      {/* <MainPage></MainPage> */}
+      <MainPage></MainPage>
     </div>
   )
 }
