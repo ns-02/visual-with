@@ -1,12 +1,15 @@
-import Header from "../../../Layouts/Header";
 import LeftFiles from "../Layouts/LeftFiles";
 import RightContents from "../Layouts/RightContents";
 import './FileSharingPage.css'
 
-function FileSharingPage() {
+type Prop = {
+  children: React.ReactNode;
+}
+
+function FileSharingPage({ children }: Prop) {
   return (
     <div className="file-sharing-frame">
-      <Header></Header>
+      {children}
       <div className="file-sharing-body">
         <LeftFiles></LeftFiles>
         <RightContents></RightContents>

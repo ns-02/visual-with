@@ -1,3 +1,5 @@
+import { useState } from "react";
+import Header from "../Layouts/Header";
 import LeftMenu from "../Layouts/LeftMenu";
 import RightSection from "../Layouts/RightSection";
 import ChatPage from '../features/Chat/Pages/ChatPage';
@@ -8,6 +10,8 @@ import TodoListPage from '../features/TodoList/Pages/TodoListPage';
 import './css/MainPage.css';
 
 function MainPage() {
+  const [ isViewInvite, setIsViewInvite ] = useState(false);
+
   return (
     <div className="main">
       <LeftMenu></LeftMenu>
@@ -15,9 +19,13 @@ function MainPage() {
         {/* <ChatPage></ChatPage> */}
         {/* <FileSharingPage></FileSharingPage> */}
         {/* <SchedulePage></SchedulePage> */}
-        <TodoListPage></TodoListPage>
+        <TodoListPage>
+          <Header onViewInvite={() => {
+            setIsViewInvite(!isViewInvite);
+          }}></Header>
+        </TodoListPage>
       </RightSection>
-      <InvitePage></InvitePage>
+      <InvitePage isViewInvite={isViewInvite} setIsViewInvite={setIsViewInvite}></InvitePage>
     </div>
   )
 }

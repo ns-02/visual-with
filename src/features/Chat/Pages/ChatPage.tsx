@@ -1,12 +1,15 @@
-import Header from "../../../Layouts/Header";
 import ChatContents from "../Components/ChatContents";
 import ChatWrapper from "../Components/ChatWrapper";
 import './ChatPage.css'
 
-function ChatPage() {
+type Prop = {
+  children: React.ReactNode;
+}
+
+function ChatPage({ children }: Prop) {
   return (
     <div className="chat-frame">
-      <Header></Header>
+      {children}
       <ChatContents></ChatContents>
       <ChatWrapper></ChatWrapper>
     </div>

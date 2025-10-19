@@ -1,12 +1,15 @@
-import Header from "../../../Layouts/Header";
 import LeftCalendar from "../Layouts/LeftCalendar";
 import RightContents from "../Layouts/RightContents";
 import './SchedulePage.css'
 
-function SchedulePage() {
+type Prop = {
+  children: React.ReactNode;
+}
+
+function SchedulePage({ children }: Prop) {
   return (
     <div className="schedule-frame">
-      <Header></Header>
+      {children}
       <div className="schedule-body">
         <LeftCalendar></LeftCalendar>
         <RightContents></RightContents>

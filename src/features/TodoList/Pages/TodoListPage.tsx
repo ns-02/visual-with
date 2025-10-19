@@ -1,12 +1,15 @@
-import Header from "../../../Layouts/Header";
 import LeftSubject from "../Layouts/LeftSubject";
 import RightContents from "../Layouts/RightContents";
 import './TodoListPage.css'
 
-function TodoListPage() {
+type Prop = {
+  children: React.ReactNode;
+}
+
+function TodoListPage({ children }: Prop) {
   return (
     <div className="todolist-frame">
-      <Header></Header>
+      {children}
       <div className="todolist-body">
         <LeftSubject></LeftSubject>
         <RightContents></RightContents>
