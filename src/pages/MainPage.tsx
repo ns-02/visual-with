@@ -15,7 +15,7 @@ import './css/MainPage.css';
 type Tool = 'team-chat' | 'files' | 'schedule' | 'todos' | 'friends' | 'direct-chat'
 
 function MainPage() {
-  const [ onInvite, setInvite ] = useState(false);
+  const [ on, setInvite ] = useState(false);
   const [ viewTool, setTool ] = useState<Tool>('team-chat');
 
   const renderTools = () => {
@@ -39,18 +39,15 @@ function MainPage() {
 
   return (
     <div className="main">
-      <LeftMenu setTool={setTool}></LeftMenu>
+      <LeftMenu setTool={setTool} onInvite={() => { setInvite(!on); }} ></LeftMenu>
       <RightSection>
-        <MainHeader
-          viewTool={viewTool}
-          onViewInvite={() => { setInvite(!onInvite); }}
-        />
+        <MainHeader viewTool={viewTool} />
         <MainBody>
           { renderTools() }
         </MainBody>
         
       </RightSection>
-      <InvitePage state={onInvite} setInvite={setInvite}></InvitePage>
+      <InvitePage state={on} setInvite={setInvite}></InvitePage>
     </div>
   )
 }

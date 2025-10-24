@@ -3,10 +3,9 @@ import './Layouts.css'
 
 type Prop = {
   viewTool: string;
-  onViewInvite: VoidFunction;
 }
 
-function MainHeader({ viewTool, onViewInvite }: Prop) {
+function MainHeader({ viewTool }: Prop) {
 
   const renderTitle = () => {
     switch (viewTool) {
@@ -33,11 +32,7 @@ function MainHeader({ viewTool, onViewInvite }: Prop) {
       <span>아이콘 </span>
       <span>{renderTitle()}</span>
       <input placeholder="검색"></input>
-      <span>
-        <button onClick={() => {
-          onViewInvite();
-        }}>링크 공유</button>
-      </span>
+      
     </div>
   )
 }

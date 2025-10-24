@@ -6,12 +6,18 @@ type Tool = 'team-chat' | 'files' | 'schedule' | 'todos' | 'friends' | 'direct-c
 type Prop = {
   // state: boolean;
   setTool: Dispatch<SetStateAction<Tool>>;
+  onInvite: VoidFunction;
 }
 
-function LeftMenu({ setTool }: Prop) {
+function LeftMenu({ setTool, onInvite }: Prop) {
   return (
     <>
-      <section className='leftmenu'> 
+      <section className='leftmenu'>
+        <div>
+          <button onClick={() => {
+            onInvite();
+          }}>링크 공유</button>
+        </div>
         <div>
           <div>
             <button onClick={() => setTool('team-chat')}>팀 채팅</button>
