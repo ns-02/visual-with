@@ -1,9 +1,7 @@
 import { Dispatch, SetStateAction } from 'react';
 import './Layouts.css'
 
-enum Tool {
-  TeamChat, Files, Schedule, Todos, Friends, DirectChat
-}
+type Tool = 'team-chat' | 'files' | 'schedule' | 'todos' | 'friends' | 'direct-chat'
 
 type Prop = {
   // state: boolean;
@@ -16,16 +14,22 @@ function LeftMenu({ setTool }: Prop) {
       <section className='leftmenu'> 
         <div>
           <div>
-            <button onClick={() => setTool(Tool.TeamChat)}>팀 채팅</button>
+            <button onClick={() => setTool('team-chat')}>팀 채팅</button>
           </div>
           <div>
-            <button onClick={() => setTool(Tool.Files)}>파일</button>
+            <button onClick={() => setTool('files')}>파일</button>
           </div>
           <div>
-            <button onClick={() => setTool(Tool.Schedule)}>일정</button>
+            <button onClick={() => setTool('schedule')}>일정</button>
           </div>
           <div>
-            <button onClick={() => setTool(Tool.Todos)}>할 일</button>
+            <button onClick={() => setTool('todos')}>할 일</button>
+          </div>
+          <div>
+            <button onClick={() => setTool('friends')}>친구 목록</button>
+          </div>
+          <div>
+            <button onClick={() => setTool('direct-chat')}>친구 채팅</button>
           </div>
         </div>
       </section>
