@@ -2,18 +2,11 @@ import LeftSubject from "../section/LeftSubject";
 import RightContents from "../section/RightContents";
 import './FriendListPage.css'
 
-type Prop = {
-  children: React.ReactNode;
-}
-
-function FriendListPage({ children }: Prop) {
+function FriendListPage() {
   return (
-    <div className="friendlist-frame">
-      {children}
-      <div className="friendlist-body">
-        <LeftSubject></LeftSubject>
-        <RightContents></RightContents>
-      </div>
+    <div className="friendlist">
+      <LeftSubject></LeftSubject>
+      <RightContents></RightContents>
     </div>
   )
 }

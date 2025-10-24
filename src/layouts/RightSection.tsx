@@ -1,4 +1,4 @@
-import './layouts.css'
+import './Layouts.css'
 
 type Prop = {
   children: React.ReactNode;

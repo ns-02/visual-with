@@ -1,9 +1,3 @@
-.main .header {
-  height: 50px;
-  border: 1px solid #000;
-  padding: 10px;
-}
-
 .leftmenu {
   width: 80px;
   height: 100%;
@@ -17,4 +11,14 @@
   width: calc(100% - 80px);
   height: 100%;
   float: right;
+}
+
+.main .header {
+  height: 50px;
+  border: 1px solid #000;
+  padding: 10px;
+}
+
+.main .body {
+  height: calc(100% - 50px);
 }

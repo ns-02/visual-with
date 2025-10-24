@@ -1,7 +1,3 @@
-.file-sharing-frame {
+.file-sharing {
   height: 100%;
-}
-
-.file-sharing-body {
-  height: calc(100% - 50px);
 }

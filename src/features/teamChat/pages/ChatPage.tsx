@@ -2,14 +2,9 @@ import ChatContents from "../section/ChatContents";
 import ChatWrapper from "../section/ChatWrapper";
 import './ChatPage.css'
 
-type Prop = {
-  children: React.ReactNode;
-}
-
-function ChatPage({ children }: Prop) {
+function ChatPage() {
   return (
     <div className="chat-frame">
-      {children}
       <ChatContents></ChatContents>
       <ChatWrapper></ChatWrapper>
     </div>

@@ -1,10 +1,10 @@
-import './layouts.css'
+import './Layouts.css'
 
 type Prop = {
   onViewInvite: VoidFunction;
 }
 
-function Header({ onViewInvite }: Prop) {
+function MainHeader({ onViewInvite }: Prop) {
   return (
     <div className="header">
       <span>아이콘</span>
@@ -19,4 +19,4 @@ function Header({ onViewInvite }: Prop) {
   )
 }
 
-export default Header;
+export default MainHeader;

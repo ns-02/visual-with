@@ -1,7 +1,3 @@
-.schedule-frame {
+.schedule {
   height: 100%;
-}
-
-.schedule-body {
-  height: calc(100% - 50px);
 }
