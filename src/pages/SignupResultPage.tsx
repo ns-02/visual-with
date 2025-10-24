@@ -1,4 +1,4 @@
-import Container from "../Components/Container";
+import Container from "../components/Container";
 import './css/SignupResultPage.css';
 
 function SignupResultPage() {

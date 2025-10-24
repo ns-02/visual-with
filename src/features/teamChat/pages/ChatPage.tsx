@@ -1,5 +1,5 @@
-import ChatContents from "../Components/ChatContents";
-import ChatWrapper from "../Components/ChatWrapper";
+import ChatContents from "../section/ChatContents";
+import ChatWrapper from "../section/ChatWrapper";
 import './ChatPage.css'
 
 type Prop = {

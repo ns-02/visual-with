@@ -1,9 +1,9 @@
 import './App.css'
-import StartPage from './Pages/StartPage'
-import LoginPage from './Pages/LoginPage'
-import MainPage from './Pages/MainPage'
-import SignupPage from './Pages/SignupPage'
-import SignupResultPage from './Pages/SignupResultPage'
+import StartPage from './pages/StartPage'
+import LoginPage from './pages/LoginPage'
+import MainPage from './pages/MainPage'
+import SignupPage from './pages/SignupPage'
+import SignupResultPage from './pages/SignupResultPage'
 
 
 

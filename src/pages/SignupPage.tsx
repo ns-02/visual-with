@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Container from "../Components/Container";
+import Container from "../components/Container";
 import './css/SignupPage.css';
 
 function SignupPage() {

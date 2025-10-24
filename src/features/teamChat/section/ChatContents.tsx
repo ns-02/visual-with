@@ -1,4 +1,4 @@
-import './components.css'
+import './Section.css'
 
 function ChatContents() {
   return (

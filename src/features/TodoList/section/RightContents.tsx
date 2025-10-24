@@ -1,4 +1,4 @@
-import './layout.css'
+import './Section.css'
 
 function RightContents() {
   return (

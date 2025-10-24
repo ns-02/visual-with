@@ -1,5 +1,5 @@
-import LeftSubject from "../Layouts/LeftSubject";
-import RightContents from "../Layouts/RightContents";
+import LeftSubject from "../section/LeftSubject";
+import RightContents from "../section/RightContents";
 import './TodoListPage.css'
 
 type Prop = {

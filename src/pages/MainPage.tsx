@@ -1,12 +1,12 @@
 import { useState } from "react";
-import Header from "../Layouts/Header";
-import LeftMenu from "../Layouts/LeftMenu";
-import RightSection from "../Layouts/RightSection";
-import ChatPage from '../features/Chat/Pages/ChatPage';
-import FileSharingPage from '../features/FileSharing/Pages/FileSharingPage';
-import InvitePage from "../features/Invite/Pages/InvitePage";
-import SchedulePage from '../features/Schedule/Pages/SchedulePage';
-import TodoListPage from '../features/TodoList/Pages/TodoListPage';
+import Header from "../layouts/Header";
+import LeftMenu from "../layouts/LeftMenu";
+import RightSection from "../layouts/RightSection";
+import ChatPage from '../features/teamChat/pages/ChatPage';
+import FileSharingPage from '../features/fileSharing/pages/FileSharingPage';
+import InvitePage from "../features/invite/pages/InvitePage";
+import SchedulePage from '../features/schedule/pages/SchedulePage';
+import TodoListPage from '../features/todoList/pages/TodoListPage';
 import './css/MainPage.css';
 
 function MainPage() {
@@ -16,9 +16,21 @@ function MainPage() {
     <div className="main">
       <LeftMenu></LeftMenu>
       <RightSection>
-        {/* <ChatPage></ChatPage> */}
-        {/* <FileSharingPage></FileSharingPage> */}
-        {/* <SchedulePage></SchedulePage> */}
+        {/* <ChatPage>
+          <Header onViewInvite={() => {
+            setIsViewInvite(!isViewInvite);
+          }}></Header>
+        </ChatPage> */}
+        {/* <FileSharingPage>
+          <Header onViewInvite={() => {
+            setIsViewInvite(!isViewInvite);
+          }}></Header>
+        </FileSharingPage> */}
+        {/* <SchedulePage>
+          <Header onViewInvite={() => {
+            setIsViewInvite(!isViewInvite);
+          }}></Header>
+        </SchedulePage> */}
         <TodoListPage>
           <Header onViewInvite={() => {
             setIsViewInvite(!isViewInvite);

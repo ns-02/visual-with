@@ -1,5 +1,5 @@
-import LeftFiles from "../Layouts/LeftFiles";
-import RightContents from "../Layouts/RightContents";
+import LeftFiles from "../section/LeftFiles";
+import RightContents from "../section/RightContents";
 import './FileSharingPage.css'
 
 type Prop = {

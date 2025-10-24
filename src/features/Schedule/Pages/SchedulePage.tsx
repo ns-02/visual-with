@@ -1,5 +1,5 @@
-import LeftCalendar from "../Layouts/LeftCalendar";
-import RightContents from "../Layouts/RightContents";
+import LeftCalendar from "../section/LeftCalendar";
+import RightContents from "../section/RightContents";
 import './SchedulePage.css'
 
 type Prop = {
