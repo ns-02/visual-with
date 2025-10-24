@@ -12,24 +12,42 @@ import FriendListPage from "../features/friendList/pages/FriendListPage";
 import DirectPage from "../features/directChat/pages/DirectPage";
 import './css/MainPage.css';
 
+enum Tool {
+    TeamChat, Files, Schedule, Todos, Friends, DirectChat
+  }
 
 function MainPage() {
   const [ onInvite, setInvite ] = useState(false);
+  const [ viewTool, setTool ] = useState<Tool>(Tool.TeamChat);
+
+  const renderTools = () => {
+    switch (viewTool) {
+      case Tool.TeamChat:
+        return <ChatPage />;
+      case Tool.Files:
+        return <FileSharingPage />;
+      case Tool.Schedule:
+        return <SchedulePage />;
+      case Tool.Todos:
+        return <TodoListPage />;
+      case Tool.Friends:
+        return <FriendListPage />;
+      case Tool.DirectChat:
+        return <DirectPage />;
+      default:
+        return <ChatPage />;
+    }
+  }
 
   return (
     <div className="main">
-      <LeftMenu></LeftMenu>
+      <LeftMenu setTool={setTool}></LeftMenu>
       <RightSection>
         <MainHeader onViewInvite={() => {
             setInvite(!onInvite);
           }}></MainHeader>
         <MainBody>
-          {/* <ChatPage /> */}
-          <FileSharingPage />
-          {/* <SchedulePage /> */}
-          {/* <TodoListPage /> */}
-          {/* <FriendListPage /> */}
-          {/* <DirectPage /> */}
+          { renderTools() }
         </MainBody>
         
       </RightSection>
