@@ -5,11 +5,11 @@ function ChatWrapper() {
     <div className="chat-footer">
       <span className="chat-wrapper">
         <span>
-          <button>+</button>
+          <button className="btn-01">+</button>
         </span>
-        <input placeholder="채팅 입력"></input>
+        <input className="input-01" placeholder="채팅 입력"></input>
         <span>
-          <button>전송</button>
+          <button className="btn-02">전송</button>
         </span>
       </span>
     </div>
