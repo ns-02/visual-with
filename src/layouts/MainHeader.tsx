@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import './Layouts.css'
 
 type Prop = {
@@ -29,10 +28,11 @@ function MainHeader({ viewTool }: Prop) {
 
   return (
     <div className="header">
-      <span>아이콘 </span>
-      <span>{renderTitle()}</span>
+      <span>
+        {/* <span>아이콘 </span> */}
+        <span>{renderTitle()}</span>
+      </span>
       <input placeholder="검색"></input>
-      
     </div>
   )
 }
