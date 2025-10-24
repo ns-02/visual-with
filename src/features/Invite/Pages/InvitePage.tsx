@@ -6,15 +6,15 @@ import './InvitePage.css'
 // }
 
 type Prop = {
-  isViewInvite: boolean;
-  setIsViewInvite: Dispatch<SetStateAction<boolean>>;
+  state: boolean;
+  setInvite: Dispatch<SetStateAction<boolean>>;
 }
 
-function InvitePage({ isViewInvite, setIsViewInvite }: Prop) {
+function InvitePage({ state, setInvite }: Prop) {
   return (
     <>
     {
-      isViewInvite &&
+      state &&
       <div className="invite-frame">
         <div className="invite-modal">
           <div className="invite-contents">
@@ -31,7 +31,7 @@ function InvitePage({ isViewInvite, setIsViewInvite }: Prop) {
               </span>
             </div>
             <div>
-              <button onClick={() => setIsViewInvite(!isViewInvite)}>확인</button>
+              <button onClick={() => setInvite(!state)}>확인</button>
             </div>
           </div>
         </div>

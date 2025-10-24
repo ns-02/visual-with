@@ -7,37 +7,49 @@ import FileSharingPage from '../features/fileSharing/pages/FileSharingPage';
 import InvitePage from "../features/invite/pages/InvitePage";
 import SchedulePage from '../features/schedule/pages/SchedulePage';
 import TodoListPage from '../features/todoList/pages/TodoListPage';
+import FriendListPage from "../features/friendList/pages/FriendListPage";
+import DirectPage from "../features/directChat/pages/DirectPage";
 import './css/MainPage.css';
 
 function MainPage() {
-  const [ isViewInvite, setIsViewInvite ] = useState(false);
+  const [ onInvite, setInvite ] = useState(false);
 
   return (
     <div className="main">
       <LeftMenu></LeftMenu>
       <RightSection>
-        {/* <ChatPage>
+        <ChatPage>
           <Header onViewInvite={() => {
-            setIsViewInvite(!isViewInvite);
+            setInvite(!onInvite);
           }}></Header>
-        </ChatPage> */}
+        </ChatPage>
         {/* <FileSharingPage>
           <Header onViewInvite={() => {
-            setIsViewInvite(!isViewInvite);
+            setInvite(!onInvite);
           }}></Header>
         </FileSharingPage> */}
         {/* <SchedulePage>
           <Header onViewInvite={() => {
-            setIsViewInvite(!isViewInvite);
+            setInvite(!onInvite);
           }}></Header>
         </SchedulePage> */}
-        <TodoListPage>
+        {/* <TodoListPage>
           <Header onViewInvite={() => {
-            setIsViewInvite(!isViewInvite);
+            setInvite(!onInvite);
           }}></Header>
-        </TodoListPage>
+        </TodoListPage> */}
+        {/* <FriendListPage>
+          <Header onViewInvite={() => {
+            setInvite(!onInvite);
+          }}></Header>
+        </FriendListPage> */}
+        {/* <DirectPage>
+          <Header onViewInvite={() => {
+            setInvite(!onInvite);
+          }}></Header>
+        </DirectPage> */}
       </RightSection>
-      <InvitePage isViewInvite={isViewInvite} setIsViewInvite={setIsViewInvite}></InvitePage>
+      <InvitePage state={onInvite} setInvite={setInvite}></InvitePage>
     </div>
   )
 }

@@ -1,0 +1,7 @@
+.friendlist-frame {
+  height: 100%;
+}
+
+.friendlist-body {
+  height: calc(100% - 50px);
+}
