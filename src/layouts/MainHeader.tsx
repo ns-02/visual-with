@@ -24,6 +24,25 @@ function MainHeader({ viewTool }: Prop) {
         return "팀 채팅";
     }
   };
+
+  const renderButton = () => {
+    switch (viewTool) {
+      case 'team-chat':
+        return null;
+      case 'files':
+        return "업로드";
+      case 'schedule':
+        return "일정 추가";
+      case 'todos':
+        return "할 일 추가";
+      case 'friends':
+        return "친구 추가";
+      case 'direct-chat':
+        return null;
+      default:
+        return null;
+    }
+  };
   
 
   return (
@@ -32,7 +51,10 @@ function MainHeader({ viewTool }: Prop) {
         {/* <span>아이콘 </span> */}
         <span>{renderTitle()}</span>
       </span>
-      <input placeholder="검색"></input>
+      <span>
+        <input placeholder="검색"></input>
+        <button>{renderButton()}</button>
+      </span>
     </div>
   )
 }
