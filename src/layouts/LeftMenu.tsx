@@ -44,11 +44,11 @@ function LeftMenu({ setTool, onInvite }: Prop) {
       <div>
         {
           navItems.map((item) => {
+            const Icon = item.icon;
+
             return (
               <>
-                <IconButton onClick={() => setTool(item.id)}>
-                  <item.icon />
-                </IconButton>
+                <IconButton onClick={() => setTool(item.id)}><Icon /></IconButton>
                 { item.underline && <Divider /> }
               </>
             )
