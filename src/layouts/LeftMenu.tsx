@@ -1,11 +1,17 @@
 import { Dispatch, SetStateAction } from 'react';
 import './Layouts.css'
 import { Calendar, FileText, Link2, ListTodo, MessageSquare, MessagesSquare, Users } from 'lucide-react';
+import IconButton from '../components/ui/IconButton';
 
 type Tool = 'team-chat' | 'files' | 'schedule' | 'todos' | 'friends' | 'direct-chat'
 
+interface NavItem {
+  id: Tool;
+  icon: typeof MessagesSquare;
+  underline: boolean;
+}
+
 type Prop = {
-  // state: boolean;
   setTool: Dispatch<SetStateAction<Tool>>;
   onInvite: VoidFunction;
 }
@@ -17,6 +23,15 @@ function Divider() {
 }
 
 function LeftMenu({ setTool, onInvite }: Prop) {
+  const navItems: NavItem[] = [
+    { id: 'team-chat', icon: MessagesSquare, underline: false },
+    { id: 'files', icon: FileText, underline: false },
+    { id: 'schedule', icon: Calendar, underline: false },
+    { id: 'todos', icon: ListTodo, underline: true },
+    { id: 'friends', icon: Users, underline: false },
+    { id: 'direct-chat', icon: MessageSquare, underline: false },
+  ];
+
   return (
     <>
       <section className='leftmenu'>
@@ -30,27 +45,18 @@ function LeftMenu({ setTool, onInvite }: Prop) {
         </div>
         <Divider />
         <div>
-          <div>
-            <button onClick={() => setTool('team-chat')}>
-              <MessagesSquare />
-            </button>
-          </div>
-          <div>
-            <button onClick={() => setTool('files')}><FileText /></button>
-          </div>
-          <div>
-            <button onClick={() => setTool('schedule')}><Calendar /></button>
-          </div>
-          <div>
-            <button onClick={() => setTool('todos')}><ListTodo /></button>
-          </div>
-          <Divider />
-          <div>
-            <button onClick={() => setTool('friends')}><Users /></button>
-          </div>
-          <div>
-            <button onClick={() => setTool('direct-chat')}><MessageSquare /></button>
-          </div>
+          {
+            navItems.map((item) => {
+              return (
+                <>
+                  <IconButton onClick={() => setTool(item.id)}>
+                    <item.icon />
+                  </IconButton>
+                  { item.underline && <Divider /> }
+                </>
+              )
+            })
+          }
         </div>
       </section>
     </>

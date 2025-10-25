@@ -1,9 +1,14 @@
 import "./IconButton.css"
 
-function IconButton() {
+type Prop = {
+  children: React.ReactNode;
+  onClick: VoidFunction;
+}
+
+function IconButton({ children, onClick }: Prop) {
   return (
-    <button className="icon-button">
-      <img src="src/assets/search.svg"></img>
+    <button className="icon-button" onClick={onClick}>
+      {children}
     </button>
   )
 }

@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import IconButton from "../components/ui/IconButton";
+import { fn } from 'storybook/internal/test';
 
 const meta = {
   title: 'Example/IconButton',
@@ -12,6 +13,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
   args: {
-    primary: true,
+    children: '🔍',
+    onClick: fn(),
   },
 };
