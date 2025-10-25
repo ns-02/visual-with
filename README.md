@@ -9,7 +9,7 @@
 - lucide-react 적용
 - radix-ui 적용
 - Storybook 적용
-- Tailwind CSS 적용
+- Tailwind CSS + clsx 적용
 - css module 적용
 - 모달 구현
 - 네비게이션의 css 구조 조정
@@ -34,5 +34,8 @@
 - src(루트)에 공용 hooks/, utils/, 각 features에 전용 hooks/, utils/를 두어 관리
 - store/도 루트에 필요하다면 두고 관리
 
+## 참고 링크
+
+- lucide-react: https://lucide.dev/icons/plus
 
 
