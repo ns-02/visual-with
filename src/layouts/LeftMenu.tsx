@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from 'react';
-import './Layouts.css'
 import { Calendar, FileText, Link2, ListTodo, MessageSquare, MessagesSquare, Users } from 'lucide-react';
 import IconButton from '../components/ui/IconButton';
+import './Layouts.css'
 
 type Tool = 'team-chat' | 'files' | 'schedule' | 'todos' | 'friends' | 'direct-chat'
 
@@ -33,33 +33,29 @@ function LeftMenu({ setTool, onInvite }: Prop) {
   ];
 
   return (
-    <>
-      <section className='leftmenu'>
-        <div>
-          <button>
-            개발팀
-          </button>
-          <button onClick={() => {
-            onInvite();
-          }}><Link2 /></button>
-        </div>
-        <Divider />
-        <div>
-          {
-            navItems.map((item) => {
-              return (
-                <>
-                  <IconButton onClick={() => setTool(item.id)}>
-                    <item.icon />
-                  </IconButton>
-                  { item.underline && <Divider /> }
-                </>
-              )
-            })
-          }
-        </div>
-      </section>
-    </>
+    <section className='leftmenu'>
+      <div>
+        <button>
+          개발팀
+        </button>
+        <button onClick={onInvite}><Link2 /></button>
+      </div>
+      <Divider />
+      <div>
+        {
+          navItems.map((item) => {
+            return (
+              <>
+                <IconButton onClick={() => setTool(item.id)}>
+                  <item.icon />
+                </IconButton>
+                { item.underline && <Divider /> }
+              </>
+            )
+          })
+        }
+      </div>
+    </section>
   )
 }
 
