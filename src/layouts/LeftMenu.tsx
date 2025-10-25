@@ -9,15 +9,25 @@ type Prop = {
   onInvite: VoidFunction;
 }
 
+function Divider() {
+  return (
+    <hr style={{ marginTop: 12, marginBottom: 12 }}></hr>
+  );
+}
+
 function LeftMenu({ setTool, onInvite }: Prop) {
   return (
     <>
       <section className='leftmenu'>
         <div>
+          <button>
+            개발팀
+          </button>
           <button onClick={() => {
             onInvite();
           }}>링크 공유</button>
         </div>
+        <Divider />
         <div>
           <div>
             <button onClick={() => setTool('team-chat')}>팀 채팅</button>
@@ -31,6 +41,7 @@ function LeftMenu({ setTool, onInvite }: Prop) {
           <div>
             <button onClick={() => setTool('todos')}>할 일</button>
           </div>
+          <Divider />
           <div>
             <button onClick={() => setTool('friends')}>친구 목록</button>
           </div>
