@@ -1,3 +1,17 @@
+.left-friends {
+  width: 160px;
+  height: 100%;
+  float: left;
+  padding: 10px;
+  border: 1px solid #000;
+}
+
+.right-chats {
+  width: calc(100% - 160px);
+  height: 100%;
+  float: right;
+}
+
 .direct-wrapper {
   border: 1px solid #000;
   padding: 10px;

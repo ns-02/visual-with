@@ -1,8 +1,8 @@
 import './Section.css'
 
-function LeftSubject() {
+function LeftFriends() {
   return (
-    <div className="left-subject">
+    <div className="left-friends">
       <div>
         <div>친구 1</div>
         <div>친구 2</div>
@@ -12,4 +12,4 @@ function LeftSubject() {
   )
 }
 
-export default LeftSubject;
+export default LeftFriends;
