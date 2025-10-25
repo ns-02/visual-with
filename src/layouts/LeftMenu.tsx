@@ -18,7 +18,7 @@ type Prop = {
 
 function Divider() {
   return (
-    <hr style={{ marginTop: 12, marginBottom: 12 }}></hr>
+    <hr style={{ marginTop: 12, marginBottom: 12, width: "100%" }}></hr>
   );
 }
 
@@ -35,26 +35,22 @@ function LeftMenu({ setTool, onInvite }: Prop) {
   return (
     <section className='leftmenu'>
       <div>
-        <button>
-          개발팀
-        </button>
-        <button onClick={onInvite}><Link2 /></button>
+        <IconButton onClick={() => {}}>개발</IconButton>
+        <IconButton onClick={onInvite}><Link2 /></IconButton>
       </div>
       <Divider />
-      <div>
-        {
-          navItems.map((item) => {
-            const Icon = item.icon;
+      {
+        navItems.map((item) => {
+          const Icon = item.icon;
 
-            return (
-              <>
-                <IconButton onClick={() => setTool(item.id)}><Icon /></IconButton>
-                { item.underline && <Divider /> }
-              </>
-            )
-          })
-        }
-      </div>
+          return (
+            <div key={item.id}>
+              <IconButton onClick={() => setTool(item.id)}><Icon /></IconButton>
+              { item.underline && <Divider /> }
+            </div>
+          )
+        })
+      }
     </section>
   )
 }
