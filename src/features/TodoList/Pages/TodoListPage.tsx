@@ -1,12 +1,10 @@
-import LeftSubject from "../section/LeftSubject";
-import RightContents from "../section/RightContents";
+import TodoContents from "../section/TodoContents";
 import './TodoListPage.css'
 
 function TodoListPage() {
   return (
     <div className="todolist">
-      <LeftSubject></LeftSubject>
-      <RightContents></RightContents>
+      <TodoContents></TodoContents>
     </div>
   )
 }
