@@ -1,3 +1,4 @@
+import { Plus } from 'lucide-react';
 import './Section.css'
 
 function ChatWrapper() {
@@ -5,7 +6,7 @@ function ChatWrapper() {
     <div className="chat-footer">
       <span className="chat-wrapper">
         <span>
-          <button className="btn-01">+</button>
+          <button className="btn-01"><Plus /></button>
         </span>
         <input className="input-01" placeholder="채팅 입력"></input>
         <span>

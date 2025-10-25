@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction } from 'react';
 import './Layouts.css'
+import { Calendar, FileText, Link2, ListTodo, MessageSquare, MessagesSquare, Users } from 'lucide-react';
 
 type Tool = 'team-chat' | 'files' | 'schedule' | 'todos' | 'friends' | 'direct-chat'
 
@@ -25,28 +26,30 @@ function LeftMenu({ setTool, onInvite }: Prop) {
           </button>
           <button onClick={() => {
             onInvite();
-          }}>링크 공유</button>
+          }}><Link2 /></button>
         </div>
         <Divider />
         <div>
           <div>
-            <button onClick={() => setTool('team-chat')}>팀 채팅</button>
+            <button onClick={() => setTool('team-chat')}>
+              <MessagesSquare />
+            </button>
           </div>
           <div>
-            <button onClick={() => setTool('files')}>파일</button>
+            <button onClick={() => setTool('files')}><FileText /></button>
           </div>
           <div>
-            <button onClick={() => setTool('schedule')}>일정</button>
+            <button onClick={() => setTool('schedule')}><Calendar /></button>
           </div>
           <div>
-            <button onClick={() => setTool('todos')}>할 일</button>
+            <button onClick={() => setTool('todos')}><ListTodo /></button>
           </div>
           <Divider />
           <div>
-            <button onClick={() => setTool('friends')}>친구 목록</button>
+            <button onClick={() => setTool('friends')}><Users /></button>
           </div>
           <div>
-            <button onClick={() => setTool('direct-chat')}>친구 채팅</button>
+            <button onClick={() => setTool('direct-chat')}><MessageSquare /></button>
           </div>
         </div>
       </section>
