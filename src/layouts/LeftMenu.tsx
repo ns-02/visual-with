@@ -8,7 +8,6 @@ type Tool = 'team-chat' | 'files' | 'schedule' | 'todos' | 'friends' | 'direct-c
 interface NavItem {
   id: Tool;
   icon: typeof MessagesSquare;
-  underline: boolean;
 }
 
 type Prop = {
@@ -18,35 +17,51 @@ type Prop = {
 
 function Divider() {
   return (
-    <hr style={{ marginTop: 12, marginBottom: 12, width: "100%" }}></hr>
+    <hr style={{ marginTop: 8, marginBottom: 8, width: "100%" }}></hr>
   );
 }
 
 function LeftMenu({ setTool, onInvite }: Prop) {
-  const navItems: NavItem[] = [
-    { id: 'team-chat', icon: MessagesSquare, underline: false },
-    { id: 'files', icon: FileText, underline: false },
-    { id: 'schedule', icon: Calendar, underline: false },
-    { id: 'todos', icon: ListTodo, underline: true },
-    { id: 'friends', icon: Users, underline: false },
-    { id: 'direct-chat', icon: MessageSquare, underline: false },
+  const topNavItems: NavItem[] = [
+    { id: 'team-chat', icon: MessagesSquare },
+    { id: 'files', icon: FileText },
+    { id: 'schedule', icon: Calendar },
+    { id: 'todos', icon: ListTodo },
+  ];
+
+  const bottomNavItems: NavItem[] = [
+    { id: 'friends', icon: Users },
+    { id: 'direct-chat', icon: MessageSquare },
   ];
 
   return (
     <section className='leftmenu'>
       <div>
         <IconButton onClick={() => {}}>개발</IconButton>
+      </div>
+      <div>
         <IconButton onClick={onInvite}><Link2 /></IconButton>
       </div>
       <Divider />
       {
-        navItems.map((item) => {
+        topNavItems.map((item) => {
           const Icon = item.icon;
 
           return (
             <div key={item.id}>
               <IconButton onClick={() => setTool(item.id)}><Icon /></IconButton>
-              { item.underline && <Divider /> }
+            </div>
+          )
+        })
+      }
+      <Divider />
+      {
+        bottomNavItems.map((item) => {
+          const Icon = item.icon;
+
+          return (
+            <div key={item.id}>
+              <IconButton onClick={() => setTool(item.id)}><Icon /></IconButton>
             </div>
           )
         })
