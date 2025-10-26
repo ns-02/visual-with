@@ -2,70 +2,46 @@ import { Plus, Upload } from 'lucide-react';
 import ToolHeader from '../components/ToolHeader';
 import './Layouts.css'
 
+type Tool = 'team-chat' | 'files' | 'schedule' | 'todos' | 'friends' | 'direct-chat'
+
 type Prop = {
-  viewTool: string;
+  viewTool: Tool;
+}
+
+interface HeaderItem {
+  id: Tool;
+  label: string;
+  button?: string;
+  onClick?: () => void | undefined;
+  icon?: typeof Plus;
 }
 
 function MainHeader({ viewTool }: Prop) {
+  const headerItems: HeaderItem[] = [
+    { id: 'team-chat', label: '팀 채팅' },
+    { id: 'files', label: '파일 공유', button: '업로드', icon: Upload, onClick: () => console.log("파일 업로드") },
+    { id: 'schedule', label: '일정 관리', button: '일정 추가', icon: Plus, onClick: () => console.log("일정 추가") },
+    { id: 'todos', label: '할 일 목록', button: '할 일 추가', icon: Plus, onClick: () => console.log("할 일 추가") },
+    { id: 'friends', label: '친구 목록', button: '친구 추가', icon: Plus, onClick: () => console.log("친구 추가") },
+    { id: 'direct-chat', label: '친구 채팅' }
+  ];
 
-  const renderTitle = () => {
-    switch (viewTool) {
-      case 'team-chat':
-        return "팀 채팅";
-      case 'files':
-        return "파일 공유";
-      case 'schedule':
-        return "일정 관리";
-      case 'todos':
-        return "할 일 목록";
-      case 'friends':
-        return "친구 목록";
-      case 'direct-chat':
-        return "친구 채팅";
-      default:
-        return "팀 채팅";
-    }
-  };
-
-  const renderButton = () => {
-    switch (viewTool) {
-      case 'team-chat':
-        return null;
-      case 'files':
-        return "업로드";
-      case 'schedule':
-        return "일정 추가";
-      case 'todos':
-        return "할 일 추가";
-      case 'friends':
-        return "친구 추가";
-      case 'direct-chat':
-        return null;
-      default:
-        return null;
-    }
-  };
-
-  const renderIcon = () => {
-    switch (viewTool) {
-      case 'files':
-        return Upload;
-      case 'schedule':
-      case 'todos':
-      case 'friends':
-        return Plus;
-    }
-  };
+  const headerItem = headerItems.filter(({ id }) => id === viewTool );
   
-
   return (
     <div className="header">
-      <ToolHeader
-        label={renderTitle()}
-        button={renderButton()}
-        onClick={() => {}}
-        icon={renderIcon()}
-      />
+      {
+        headerItem.map(({label, button, onClick, icon}) => {
+          return (
+            <ToolHeader 
+              label={label}
+              button={button}
+              onClick={onClick}
+              icon={icon}
+            />
+          )
+        })
+      }
     </div>
   )
 }
