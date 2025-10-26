@@ -1,3 +1,5 @@
+import { Plus, Upload } from 'lucide-react';
+import ToolHeader from '../components/ToolHeader';
 import './Layouts.css'
 
 type Prop = {
@@ -43,18 +45,27 @@ function MainHeader({ viewTool }: Prop) {
         return null;
     }
   };
+
+  const renderIcon = () => {
+    switch (viewTool) {
+      case 'files':
+        return Upload;
+      case 'schedule':
+      case 'todos':
+      case 'friends':
+        return Plus;
+    }
+  };
   
 
   return (
     <div className="header">
-      <span>
-        {/* <span>아이콘 </span> */}
-        <span>{renderTitle()}</span>
-      </span>
-      <span>
-        <input placeholder="검색"></input>
-        <button>{renderButton()}</button>
-      </span>
+      <ToolHeader
+        label={renderTitle()}
+        button={renderButton()}
+        onClick={() => {}}
+        icon={renderIcon()}
+      />
     </div>
   )
 }
