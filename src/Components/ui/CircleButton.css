@@ -1,4 +1,4 @@
-.icon-button {
+.circle-button {
   display: flex;
   width: 48px;
   height: 48px;
@@ -10,7 +10,7 @@
   cursor: pointer;
 }
 
-.icon-button > * {
+.circle-button > * {
   width: 24px;
   height: 24px;
 }

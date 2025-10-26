@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from 'react';
 import { Calendar, FileText, Link2, ListTodo, MessageSquare, MessagesSquare, Users } from 'lucide-react';
-import IconButton from '../components/ui/IconButton';
+import CircleButton from '../components/ui/CircleButton';
 import './Layouts.css'
 
 type Tool = 'team-chat' | 'files' | 'schedule' | 'todos' | 'friends' | 'direct-chat'
@@ -37,10 +37,10 @@ function LeftMenu({ setTool, onInvite }: Prop) {
   return (
     <section className='leftmenu'>
       <div>
-        <IconButton onClick={() => {}}>개발</IconButton>
+        <CircleButton onClick={() => {}}>개발</CircleButton>
       </div>
       <div>
-        <IconButton onClick={onInvite}><Link2 /></IconButton>
+        <CircleButton onClick={onInvite}><Link2 /></CircleButton>
       </div>
       <Divider />
       {
@@ -49,7 +49,7 @@ function LeftMenu({ setTool, onInvite }: Prop) {
 
           return (
             <div key={item.id}>
-              <IconButton onClick={() => setTool(item.id)}><Icon /></IconButton>
+              <CircleButton onClick={() => setTool(item.id)}><Icon /></CircleButton>
             </div>
           )
         })
@@ -61,7 +61,7 @@ function LeftMenu({ setTool, onInvite }: Prop) {
 
           return (
             <div key={item.id}>
-              <IconButton onClick={() => setTool(item.id)}><Icon /></IconButton>
+              <CircleButton onClick={() => setTool(item.id)}><Icon /></CircleButton>
             </div>
           )
         })
