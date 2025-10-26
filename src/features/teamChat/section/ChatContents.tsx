@@ -1,9 +1,18 @@
 import './Section.css'
 
-function ChatContents() {
+type Prop = {
+  allChat: string;
+}
+
+function ChatContents({ allChat }: Prop) {
+  const chats = allChat.split('\n');
   return (
     <div className="chat-contents">
-      메인 콘텐츠
+      {
+        chats.map((chat) => {
+          return <p>{chat}</p>
+        })
+      }
     </div>
   )
 }
