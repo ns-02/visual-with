@@ -7,7 +7,7 @@
   align-items: center;
   border: none;
   border-radius: 6px;
-  background-color: white;
+  background-color: #eee;
 }
 
 .input-content {
@@ -15,4 +15,5 @@
   font-size: 14px;
   border: none;
   outline: none;
+  background-color: #eee;
 }
