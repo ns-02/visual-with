@@ -1,15 +1,18 @@
+import { Plus, Send } from 'lucide-react';
+import ChatFooter from '../../../components/ChatFooter';
 import './Section.css'
 
 function DirectWrapper() {
   return (
     <div className="direct-wrapper">
-      <span>
-        <button>+</button>
-      </span>
-      <input placeholder="채팅 입력"></input>
-      <span>
-        <button>전송</button>
-      </span>
+      <ChatFooter 
+        button1=''
+        button2=''
+        icon1={Plus}
+        icon2={Send}
+        onClick1={() => {}}
+        onClick2={() => {}}
+      />
     </div>
   )
 }

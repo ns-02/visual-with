@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from 'react';
-import { Calendar, FileText, Link2, ListTodo, MessageSquare, MessagesSquare, Users } from 'lucide-react';
+import { Calendar1, FileText, Link2, ListTodo, MessageSquare, MessagesSquare, Users } from 'lucide-react';
 import CircleButton from '../components/ui/CircleButton';
 import './Layouts.css'
 
@@ -25,7 +25,7 @@ function LeftMenu({ setTool, onInvite }: Prop) {
   const topNavItems: NavItem[] = [
     { id: 'team-chat', icon: MessagesSquare },
     { id: 'files', icon: FileText },
-    { id: 'schedule', icon: Calendar },
+    { id: 'schedule', icon: Calendar1 },
     { id: 'todos', icon: ListTodo },
   ];
 
