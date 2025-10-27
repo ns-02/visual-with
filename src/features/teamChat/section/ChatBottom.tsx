@@ -10,9 +10,9 @@ type Prop = {
   onKeyDown: (e: KeyboardEvent<HTMLInputElement>) => void;
 }
 
-function ChatWrapper({ chat, setChat, onClick2, onKeyDown }: Prop) {
+function ChatBottom({ chat, setChat, onClick2, onKeyDown }: Prop) {
   return (
-    <div className="chat-wrapper">
+    <div className="chat-bottom">
       <ChatFooter 
         button1='' icon1={Plus} onClick1={() => {}}
         button2='' icon2={Send} onClick2={onClick2} chat={chat} setChat={setChat}
@@ -22,4 +22,4 @@ function ChatWrapper({ chat, setChat, onClick2, onKeyDown }: Prop) {
   )
 }
 
-export default ChatWrapper;
+export default ChatBottom;

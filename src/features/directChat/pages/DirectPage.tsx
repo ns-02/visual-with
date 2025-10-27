@@ -1,5 +1,5 @@
 import DirectContents from '../section/DirectContents';
-import DirectWrapper from '../section/DirectWrapper';
+import DirectBottom from '../section/DirectBottom';
 import LeftFriends from '../section/LeftFriends';
 import RightChats from '../section/RightChats';
 import './DirectPage.css'
@@ -10,7 +10,7 @@ function DirectPage() {
       <LeftFriends></LeftFriends>
       <RightChats>
         <DirectContents></DirectContents>
-        <DirectWrapper></DirectWrapper>
+        <DirectBottom></DirectBottom>
       </RightChats>
     </div>
   )

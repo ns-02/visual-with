@@ -1,6 +1,6 @@
 import { useState } from "react";
 import ChatContents from "../section/ChatContents";
-import ChatWrapper from "../section/ChatWrapper";
+import ChatBottom from "../section/ChatBottom";
 import './ChatPage.css'
 
 function ChatPage() {
@@ -15,7 +15,7 @@ function ChatPage() {
   return (
     <div className="chat-frame">
       <ChatContents allChat={allChat}></ChatContents>
-      <ChatWrapper
+      <ChatBottom
         chat={chat}
         setChat={setChat}
         onClick2={onSend}

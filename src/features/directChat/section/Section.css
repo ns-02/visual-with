@@ -12,7 +12,7 @@
   float: right;
 }
 
-.direct-wrapper {
+.direct-bottom {
   display: flex;
   height: 60px;
   border: 1px solid #000;
