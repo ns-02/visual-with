@@ -7,16 +7,19 @@ function ChatPage() {
   const [ allChat, setAllChat ] = useState("");
   const [ chat, setChat ] = useState("");
 
+  const onSend = () => {
+    setAllChat(`${allChat}${chat}\n`);
+    setChat("");
+  };
+
   return (
     <div className="chat-frame">
       <ChatContents allChat={allChat}></ChatContents>
       <ChatWrapper
         chat={chat}
         setChat={setChat}
-        onSend={() => {
-          setAllChat(`${allChat}${chat}\n`);
-          setChat("");
-        }}
+        onClick2={onSend}
+        onKeyDown={(e) => e.key === 'Enter' && onSend()}
       />
     </div>
   )

@@ -21,5 +21,8 @@ export const Default: Story = {
     button2: '',
     onClick2: fn(),
     icon2: Plus,
+    chat: "채팅",
+    setChat: fn(),
+    onKeyDown: fn(),
   },
 };

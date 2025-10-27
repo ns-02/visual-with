@@ -31,13 +31,14 @@ function MainHeader({ viewTool }: Prop) {
   return (
     <div className="header">
       {
-        headerItem.map(({label, button, onClick, icon}) => {
+        headerItem.map(({id, label, button, onClick, icon}) => {
           return (
             <ToolHeader 
               label={label}
               button={button}
               onClick={onClick}
               icon={icon}
+              key={id}
             />
           )
         })

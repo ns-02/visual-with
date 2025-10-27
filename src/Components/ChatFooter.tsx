@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch, KeyboardEvent, SetStateAction } from 'react';
 import { Plus } from 'lucide-react';
 import Button from "./ui/Button";
 import Input from "./ui/Input";
@@ -13,15 +13,19 @@ interface FooterProps {
   icon2?: typeof Plus;
   chat: string;
   setChat: Dispatch<SetStateAction<string>>;
+  onKeyDown: (e: KeyboardEvent<HTMLInputElement>) => void;
 }
 
-const ChatFooter: React.FC<FooterProps> = ({ button1, onClick1, icon1, button2, onClick2, icon2, chat, setChat }) => {
+const ChatFooter: React.FC<FooterProps> = ({ 
+  button1, onClick1, icon1, 
+  button2, onClick2, icon2, chat, setChat, onKeyDown 
+}) => {
   return (
     <div className="chat-footer">
       {
         onClick1 && <Button text={button1} onClick={onClick1} icon={icon1} />
       }
-      <Input chat={chat} setChat={setChat} />
+      <Input chat={chat} setChat={setChat} onKeyDown={(e) => onKeyDown(e)} />
       {
         onClick2 && <Button text={button2} onClick={onClick2} icon={icon2} />
       }
