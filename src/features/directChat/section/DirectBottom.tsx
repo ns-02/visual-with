@@ -1,5 +1,5 @@
 import { Plus, Send } from 'lucide-react';
-import ChatFooter from '../../../components/ChatFooter';
+import ChatFooter from '../../../components/ChatInput';
 import './Section.css'
 
 function DirectBottom() {
