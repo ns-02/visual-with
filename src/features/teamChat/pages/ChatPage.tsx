@@ -29,7 +29,7 @@ function ChatPage() {
       <ChatBottom
         chat={chat}
         setChat={setChat}
-        onClick2={onSend}
+        onClick={onSend}
         onKeyDown={(e) => e.key === 'Enter' && onSend()}
       />
     </div>
