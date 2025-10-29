@@ -1,16 +1,43 @@
 # Visual With
 
+다기능 협업 툴 Visual With의 프론트엔드 <br>
+React와 TypeScript로 개발 중 <br>
+사용자 친화적인 인터페이스 목표
+
+## 시작 방법
+```
+npm install
+npm run dev
+```
+http://localhost:5173
+
+## 폴더
+- `src/` : 앱의 실제 코드
+- `api/` : 서버와 통신하는 코드 (현재 더미 파일)
+- `assets/` : 이미지, 아이콘
+- `components/` : 그룹 단위의 공용 UI 컴포넌트
+- `components/ui` : 기본 단위의 공용 UI 컴포넌트
+- `features/` : 기능 단위 코드
+- `layouts/` : 화면 레이아웃
+- `pages/` : 페이지 단위 컴포넌트 (시작 및 로그인, 회원가입, 메인 화면)
+- `utils/` : 재사용 가능한 함수들
+- `styles/` : 전역 스타일, CSS 변수
+- `stories/` : Storybook 파일
+- `ref/` : 참고용 파일 (실제 프로젝트와 무관)
+
 ## 설계
 
 - 팀 초대받는 화면 설계
 
 ## 뭘 해야할까
 
-- radix-ui 적용
+- 채팅을 문자열이 아닌 객체 배열 형식으로 변경
+- 채팅 형식을 DB에 맞게 변경
+- 채팅의 하단부부터 출력되도록 변경(우선순위 낮음)
+- radix-ui 적용 (필요 시)
 - Tailwind CSS + clsx 적용 (안함)
 - css module 적용
 - 모달 구현
-- 네비게이션의 css 구조 조정
 - 화면 내 세부 요소 구현
 - 라우팅: 라우팅 배운 후 진행하면 됨
 - 전역 ui 폴더 만들기 (모달 구현 시 우선순위 조정 가능)
