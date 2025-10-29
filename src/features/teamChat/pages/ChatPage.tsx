@@ -5,7 +5,7 @@ import './ChatPage.css'
 import { getItem, setItem } from "../../../utils/sessionStorage";
 
 function ChatPage() {
-  const initialState = getItem('teamChats', "");
+  const initialState: string = getItem('teamChats', "");
 
   const [ allChat, setAllChat ] = useState(initialState);
   const [ chat, setChat ] = useState("");
