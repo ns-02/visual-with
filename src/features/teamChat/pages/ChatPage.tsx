@@ -1,25 +1,32 @@
 import { useState } from "react";
 import ChatContents from "../section/ChatContents";
 import ChatBottom from "../section/ChatBottom";
-import './ChatPage.css'
 import { getItem, setItem } from "../../../utils/sessionStorage";
+import './ChatPage.css'
+
+interface ChatItem {
+  chat: string,
+  time: string,
+}
 
 function ChatPage() {
-  const initialState: string = getItem('teamChats', "");
+  const initChats: ChatItem[] = getItem('teamChats', "") || [];
 
-  const [ allChat, setAllChat ] = useState(initialState);
+  const [ allChat, setAllChat ] = useState(initChats);
   const [ chat, setChat ] = useState("");
 
   // 채팅을 입력할 때마다 ChatPage()가 계속 재랜더링됨
 
   const onSend = () => {
     let today = new Date();
-    let time = (today.toLocaleTimeString() + "");
+    let time = (today.toLocaleTimeString().slice(0, -3));
 
-    let nextAllChat = `${allChat}${chat}\n [ ${time.slice(0, time.length - 3)} ]\n`;
+    const nextChat: ChatItem[] = [
+      ...allChat, { chat, time }
+    ];
 
-    setItem('teamChats', JSON.stringify(nextAllChat));
-    setAllChat(nextAllChat);
+    setItem('teamChats', JSON.stringify(nextChat));
+    setAllChat(nextChat);
     setChat("");    
   };
 
