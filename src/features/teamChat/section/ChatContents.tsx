@@ -1,3 +1,4 @@
+import React from 'react';
 import './Section.css'
 
 type ChatItem = {
@@ -9,7 +10,7 @@ type Props = {
   allChat: ChatItem[];
 };
 
-function ChatContents({ allChat }: Props) {
+const ChatContents = React.memo(({ allChat }: Props) => {
   return (
     <div className="chat-container">
       <div className="chat-contents">
@@ -26,6 +27,6 @@ function ChatContents({ allChat }: Props) {
       </div>
     </div>
   )
-}
+});
 
 export default ChatContents;
