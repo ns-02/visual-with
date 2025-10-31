@@ -12,20 +12,6 @@
   float: right;
 }
 
-.direct-container {
-  height: calc(100% - 60px);
-  border: 1px solid #000;
-  overflow: auto;
-}
-
-.direct-contents {
-  display: flex;
-  flex-direction: column;
-  height: min-content;
-  padding: 10px;
-  justify-content: flex-end;
-}
-
 .direct-bottom {
   display: flex;
   height: 60px;

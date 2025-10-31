@@ -1,5 +1,5 @@
-import React from 'react';
-import './Section.css'
+import React from "react";
+import './ChatView.css'
 
 type ChatItem = {
   chat: string;
@@ -10,9 +10,9 @@ type Props = {
   allChat: ChatItem[];
 };
 
-const ChatContents = React.memo(({ allChat }: Props) => {
+const ChatView = React.memo(({ allChat }: Props) => {
   return (
-    <div className="chat-container">
+    <div className="chat-view">
       <div className="chat-contents">
         {
           allChat.map((chatItem, index) => {
@@ -29,4 +29,4 @@ const ChatContents = React.memo(({ allChat }: Props) => {
   )
 });
 
-export default ChatContents;
+export default ChatView;
