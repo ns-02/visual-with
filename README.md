@@ -46,6 +46,7 @@ http://localhost:5173
 - 요소별 UI 반응 구현 (호버링 등)
 
 ## 사용 중인 라이브러리 또는 툴
+- Vite: 빌드 도구
 - lucide-react: 아이콘 불러오기
 - Storybook: 재사용되는 컴포넌트 관리 및 정리
 

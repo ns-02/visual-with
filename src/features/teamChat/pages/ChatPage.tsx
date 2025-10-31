@@ -18,6 +18,10 @@ function ChatPage() {
   // 채팅을 입력할 때마다 ChatPage()가 계속 재랜더링됨
 
   const onSend = () => {
+    if (!chat) {
+      return;
+    }
+
     let today = new Date();
     let time = (today.toLocaleTimeString().slice(0, -3));
 
