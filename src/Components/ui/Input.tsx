@@ -1,5 +1,6 @@
 import { Dispatch, KeyboardEvent, SetStateAction } from "react";
 import "./Input.css"
+import { debounce } from "../../utils/debounce";
 
 type Prop = {
   chat: string;
@@ -8,13 +9,16 @@ type Prop = {
 }
 
 function Input({ chat, setChat, onKeyDown }: Prop) {
+  const debounced = debounce(setChat, 250);
+
   return (
     <div className="input-container">
       <input
         className="input-content"
         placeholder="채팅 입력"
-        value={chat}
-        onChange={(e) => setChat(e.target.value)}
+        onChange={(e) => {
+          debounced(e.target.value);
+        }}
         onKeyDown={(e) => onKeyDown(e)}
       />
     </div>

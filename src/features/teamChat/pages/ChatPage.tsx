@@ -16,6 +16,7 @@ function ChatPage() {
   const [ chat, setChat ] = useState("");
 
   // 채팅을 입력할 때마다 ChatPage()가 계속 재랜더링됨
+  console.log("랜더링!");
 
   const onSend = () => {
     if (!chat) {
