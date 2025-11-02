@@ -1,6 +1,6 @@
-import { Dispatch, KeyboardEvent, SetStateAction, useEffect, useState } from "react";
-import "./Input.css"
+import { Dispatch, KeyboardEvent, SetStateAction, useEffect, useRef, useState } from "react";
 import { debounce } from "../../utils/debounce";
+import "./Input.css"
 
 type Prop = {
   setChat: Dispatch<SetStateAction<string>>;
@@ -10,10 +10,13 @@ type Prop = {
 
 function Input({ setChat, onKeyDown, clearId }: Prop) {
   const [ localValue, setLocalValue ] = useState("");
-  const debounced = debounce(setChat, 250);
+  const debouncedRef = useRef((value: any) => {});
 
   useEffect(() => {
-    console.log("리셋 신호 보냄!");
+    debouncedRef.current = debounce(setChat, 250);
+  }, []);
+
+  useEffect(() => {
     setLocalValue("");
   }, [clearId]);
 
@@ -25,7 +28,7 @@ function Input({ setChat, onKeyDown, clearId }: Prop) {
         value={localValue}
         onChange={(e) => {
           setLocalValue(e.target.value);
-          debounced(e.target.value);
+          debouncedRef.current(e.target.value);
         }}
         onKeyDown={(e) => onKeyDown(e)}
       />
