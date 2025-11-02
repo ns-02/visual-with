@@ -16,8 +16,6 @@ function ChatPage() {
   const [ chat, setChat ] = useState("");
   const [ clearId, setClearId ] = useState(1);
 
-  console.log("페이지 랜더링됨");
-
   const onSend = () => {
     if (!chat) {
       return;

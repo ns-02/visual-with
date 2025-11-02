@@ -13,7 +13,7 @@ function Input({ setChat, onKeyDown, clearId }: Prop) {
   const debouncedRef = useRef((value: any) => {});
 
   useEffect(() => {
-    debouncedRef.current = debounce(setChat, 250);
+    debouncedRef.current = debounce(setChat, 300);
   }, []);
 
   useEffect(() => {
