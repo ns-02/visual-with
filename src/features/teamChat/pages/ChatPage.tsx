@@ -14,9 +14,9 @@ function ChatPage() {
 
   const [ allChat, setAllChat ] = useState(initChats);
   const [ chat, setChat ] = useState("");
+  const [ clearId, setClearId ] = useState(1);
 
-  // 채팅을 입력할 때마다 ChatPage()가 계속 재랜더링됨
-  console.log("랜더링!");
+  console.log("페이지 랜더링됨");
 
   const onSend = () => {
     if (!chat) {
@@ -32,8 +32,13 @@ function ChatPage() {
 
     setItem('teamChats', JSON.stringify(nextChat));
     setAllChat(nextChat);
-    setChat("");    
+    setChat("");
+    reset();   
   };
+
+  const reset = () => {
+    setClearId(clearId + 1);
+  }
 
   return (
     <div className="chat-frame">
@@ -41,10 +46,10 @@ function ChatPage() {
         <ChatView allChat={allChat} />
       </div>
       <ChatBottom
-        chat={chat}
         setChat={setChat}
         onClick={onSend}
         onKeyDown={(e) => e.key === 'Enter' && onSend()}
+        clearId={clearId}
       />
     </div>
   )
