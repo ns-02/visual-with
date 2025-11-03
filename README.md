@@ -32,9 +32,9 @@ http://localhost:5173
 - Vite: 빌드 도구
 - lucide-react: 아이콘 불러오기
 - Storybook: 재사용되는 컴포넌트 관리 및 정리
+- radix-ui: ui 제작 도구
 
 ## 뭘 해야할까
-- radix-ui 적용 (필요 시)
 - Tailwind CSS + clsx 적용 (안함)
 - css module 적용
 - 화면 내 세부 요소 구현

@@ -5,11 +5,12 @@ interface ButtonProps {
   text: string | undefined;
   onClick: () => void;
   icon?: typeof Plus;
+  square?: boolean;
 }
-
-const Button: React.FC<ButtonProps> = ({ text, onClick, icon: Icon }) => {
+// "c-button" + square && " square"
+const Button: React.FC<ButtonProps> = ({ text, onClick, icon: Icon, square = false }) => {
   return (
-    <button className="c-button" onClick={onClick}>
+    <button className={`c-button ${square && "square"}`} onClick={onClick}>
       {Icon && <Icon className="c-icon" />}
       {text && text}
     </button>

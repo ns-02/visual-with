@@ -27,3 +27,11 @@ export const Icon: Story = {
     icon: Plus,
   },
 };
+
+export const Square: Story = {
+  args: {
+    text: '버',
+    onClick: fn(),
+    square: true,
+  },
+};
