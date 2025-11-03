@@ -16,14 +16,14 @@ type Story = StoryObj<typeof meta>;
 export const Primary: Story = {
   args: {
     text: '버튼',
-    onClick: fn(),
+    onCustomClick: fn(),
   },
 };
 
 export const Icon: Story = {
   args: {
     text: '버튼',
-    onClick: fn(),
+    onCustomClick: fn(),
     icon: Plus,
   },
 };
@@ -31,7 +31,7 @@ export const Icon: Story = {
 export const Square: Story = {
   args: {
     text: '버',
-    onClick: fn(),
+    onCustomClick: fn(),
     square: true,
   },
 };

@@ -5,8 +5,8 @@ import "./ToolHeader.css";
 
 interface HeaderProps {
   label: string;
-  button: string | undefined;
-  onClick?: () => void | undefined;
+  button?: string;
+  onClick?: () => void;
   icon?: typeof Plus;
 }
 
@@ -19,7 +19,7 @@ const ToolHeader: React.FC<HeaderProps> = ({ label, button, onClick, icon }) => 
       <div className="header-r-section">
         <InputSearch />
         {
-          button && onClick && <Button text={button} onClick={onClick} icon={icon} />
+          button && onClick && <Button text={button} onCustomClick={onClick} icon={icon} />
         }
       </div>
     </div>

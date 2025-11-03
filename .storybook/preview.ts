@@ -1,6 +1,11 @@
+import React from 'react';
 import type { Preview } from '@storybook/react-vite'
+import { Theme } from "@radix-ui/themes";
 
 const preview: Preview = {
+  decorators: [
+    (Story) => React.createElement(Theme, null, React.createElement(Story, null))
+  ],
   parameters: {
     controls: {
       matchers: {

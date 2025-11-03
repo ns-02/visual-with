@@ -1,12 +1,15 @@
-import { DropdownMenu } from "@radix-ui/themes"
+import { DropdownMenu } from "radix-ui";
 import Button from "./ui/Button";
 
 const DropdownButton = () => {
   return (
     <DropdownMenu.Root>
-      <DropdownMenu.Trigger>
-        <Button text="버" onClick={() => {}} />
+      <DropdownMenu.Trigger asChild>
+        <Button text="버" />
 	    </DropdownMenu.Trigger>
+      <DropdownMenu.Content>
+        <DropdownMenu.Item>Edit</DropdownMenu.Item>
+      </DropdownMenu.Content>
     </DropdownMenu.Root>
   )
 }

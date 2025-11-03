@@ -15,9 +15,9 @@ type Prop = {
 function DirectBottom({ setChat, onClick, onKeyDown, clearId }: Prop) {
   return (
     <div className="direct-bottom">
-      <Button text='' onClick={() => {}} icon={Plus} />
+      <Button text='' icon={Plus} />
       <Input setChat={setChat} onKeyDown={(e) => onKeyDown(e)} clearId={clearId} />
-      <Button text='' onClick={onClick} icon={Send} />
+      <Button text='' onCustomClick={onClick} icon={Send} />
     </div>
   )
 }
