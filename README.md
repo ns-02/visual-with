@@ -35,6 +35,7 @@ http://localhost:5173
 - radix-ui: ui 제작 도구
 
 ## 뭘 해야할까
+- LeftMenu의 type들을 각 컴포넌트에 통째로 넣는 방법 찾기
 - Tailwind CSS + clsx 적용 (안함)
 - css module 적용
 - 화면 내 세부 요소 구현
