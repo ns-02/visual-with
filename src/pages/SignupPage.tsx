@@ -1,11 +1,29 @@
 import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Container from "../components/Container";
 import './css/SignupPage.css';
 
 function SignupPage() {
+  const navigate = useNavigate();
   const [ id, setId ] = useState("");
   const [ password, setPassword ] = useState("");
   const [ checkPassword, setCheckPassword ] = useState("");
+
+  const handleSignUp = async () => {
+    if (!id || !password || !checkPassword) {
+      alert("양식이 입력되지 않았습니다.");
+      return;
+    }
+
+    if (password !== checkPassword) {
+      alert("비밀번호가 일치하지 않습니다.");
+      return;
+    }
+
+    // 서버 요청 및 응답 처리
+
+    navigate("/signup-result");
+  }
 
   return (
     <Container>
@@ -37,28 +55,11 @@ function SignupPage() {
               <input type="email"></input>
             </div>
             <br></br>
-            {/* type="button"으로 일부로 전송을 막아놓은 것! 필요시 해제 */}
             <div>
-              <button type="button" onClick={() => {
-                if (!id || !password || !checkPassword) {
-                  alert("양식이 입력되지 않았습니다.");
-                  console.log("양식이 입력되지 않았습니다.");
-                  return;
-                }
-
-                if (password !== checkPassword) {
-                  alert("비밀번호가 일치하지 않습니다.");
-                  console.log("비밀번호가 일치하지 않습니다.");
-                  return;
-                }
-
-                console.log(`유저 아이디: ${id}`);
-                console.log(`유저 페스워드: ${password}`);
-                console.log("회원가입");
-                
-
-                // 회원가입 완료를 알리는 페이지를 따로 만들어야하나?
-              }}>회원가입</button> 
+              <button type="button" onClick={handleSignUp}>회원가입</button>
+            </div>
+            <div>
+              <Link to={"/login"}>로그인</Link> 
             </div>
           </div>
         </form>

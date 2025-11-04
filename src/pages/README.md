@@ -14,6 +14,7 @@
 - `SignupPage.tsx` : 회원가입 페이지.
 - `SignupResultPage.tsx` : 회원가입 완료 페이지.
 - `MainPage.tsx` : 메인 페이지. 사용자가 로그인 후 실제 기능을 사용하는 페이지.
+- `NotFoundPage.tsx` : 404 등 잘못된 링크를 요청했을 때 나타나는 페이지.
 
 ## 규칙
 - 스타일은 `/css` 폴더에 작성

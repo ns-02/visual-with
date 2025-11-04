@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import './css/StartPage.css'
 
 function StartPage() {
@@ -10,8 +11,8 @@ function StartPage() {
             <image>로고</image>
           </span>
           <span className='login'>
-            <button>회원가입</button>
-            <button>로그인</button>
+            <Link to={"/signup"}>회원가입</Link>
+            <Link to={"/login"}>로그인</Link>
           </span>
         </div>
         <div className='body'>웹 소개</div>

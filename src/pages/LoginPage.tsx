@@ -1,10 +1,23 @@
 import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Container from "../components/Container";
 import './css/LoginPage.css';
 
 function LoginPage() {
+  const navigate = useNavigate();
   const [ id, setId ] = useState("");
   const [ password, setPassword ] = useState("");
+
+  const handleLogin = async () => {
+    if (!id || !password) {
+      alert("양식이 입력되지 않았습니다.");
+      return;
+    }
+
+    // 서버 요청 및 응답 처리
+
+    navigate("/main");
+  }
 
   return (
     <Container>
@@ -30,27 +43,13 @@ function LoginPage() {
                 placeholder="비밀번호를 입력하세요" required
               ></input>
             </div>
-            {/* type="button"으로 일부로 전송을 막아놓은 것! 필요시 해제 */}
             <div>
-              <button type="button" onClick={() => {
-                if (!id || !password) {
-                  alert("양식이 입력되지 않았습니다.");
-                  console.log("양식이 입력되지 않았습니다.");
-                  return;
-                }
-
-                console.log(`유저 아이디: ${id}`);
-                console.log(`유저 페스워드: ${password}`);
-                console.log("로그인");
-              }}>로그인</button> 
+              <button type="button" onClick={handleLogin}>로그인</button> 
             </div>
             <div>
-              <button type="button" onClick={() => {
-                console.log("회원가입");
-              }}>회원가입</button> 
+              <Link to={"/signup"}>회원가입</Link>
             </div>
           </div>
-          
         </form>
       </div>
     </Container>
