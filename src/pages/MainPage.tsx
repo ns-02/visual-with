@@ -12,7 +12,7 @@ import FriendListPage from "../features/friendList/pages/FriendListPage";
 import DirectPage from "../features/directChat/pages/DirectPage";
 import './css/MainPage.css';
 
-type Tool = 'team-chat' | 'files' | 'schedule' | 'todos' | 'friends' | 'direct-chat'
+type Tool = 'team-chat' | 'files' | 'schedule' | 'todos' | 'friends' | 'direct-chat' | 'log-out'
 
 function MainPage() {
   const [ on, setInvite ] = useState(false);
