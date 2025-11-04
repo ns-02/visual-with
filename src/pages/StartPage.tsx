@@ -8,7 +8,7 @@ function StartPage() {
       <div className='start-layout'>
         <div className='header'>
           <span className='image-container'>
-            <image>로고</image>
+            <img>로고</img>
           </span>
           <span className='login'>
             <Link to={"/signup"}>회원가입</Link>
