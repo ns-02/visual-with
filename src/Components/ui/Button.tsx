@@ -12,6 +12,7 @@ interface ButtonProps {
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
   const { text, icon: Icon, square = false, onCustomClick, ...rest } = props;
   
+  // Radix와 커스텀 클릭 둘 다 동작하기 위함
   const handleClick: React.MouseEventHandler<HTMLButtonElement> = (e) => {
     if ((props as any).onClick) (props as any).onClick(e);
     if (onCustomClick) onCustomClick(e);
