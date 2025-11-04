@@ -38,13 +38,13 @@ http://localhost:5173
 - Tailwind CSS + clsx 적용 (안함)
 - css module 적용
 - 화면 내 세부 요소 구현
-- 라우팅: 라우팅 배운 후 진행하면 됨
 - 전체 화면 디자인
 - 세부 요소 디자인
 
 ## 완료된 것
 - 핵심 화면: 친구 화면, 친구 채팅 화면
 - 화면의 명확한 세션 구분
+- 최소한의 라우팅 적용
 
 ## 미래에
 - src(루트)에 공용 hooks/, utils/, 각 features에 전용 hooks/, utils/를 두어 관리
@@ -52,5 +52,4 @@ http://localhost:5173
 
 ## 참고 링크
 - lucide-react: https://lucide.dev/icons/plus
-
-
+- radix-ui: https://www.radix-ui.com/
