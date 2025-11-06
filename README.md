@@ -79,6 +79,8 @@ http://localhost:5173
 - [ ] 사용자 맞춤형 환경 설정
 
 ## 뭘 해야할까
+- 아이디 중복확인 버튼 만들기
+- 회원가입, 로그인 페이지 api 서버 요청하고 응답받기
 - LeftMenu의 type들을 각 컴포넌트에 통째로 넣는 방법 찾기
 - Button의 square (boolean)을 없애로 shape로 대체. 모양은 정사각형, 원, 직사각형 3개. 기존 CircleButton은 없애기
 - Button 내부 컴포넌트들에 리액트 라우터에서 사용하는 Link 적용
