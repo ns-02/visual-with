@@ -1,25 +1,25 @@
-.start-layout {
+.start {
   margin: auto;
   padding-top: 20px;
   max-width: 1080px;
   background-color: aliceblue;
 }
 
-.start-layout .header {
+.start .header {
   height: 100px;
   background-color:rgb(255, 223, 223);
 }
 
-.start-layout .header .login {
+.start .header .login {
   margin-left: 920px;
 }
 
-.start-layout .body {
+.start .body {
   height: 300px;
   background-color: aqua;
 }
 
-.start-layout .footer {
+.start .footer {
   height: 200px;
   background-color: lightcyan;
 }
