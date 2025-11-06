@@ -54,12 +54,16 @@ function SignupPage() {
               <p>이메일</p>
               <input type="email"></input>
             </div>
-            <br></br>
+            <br />
             <div>
               <button type="button" onClick={handleSignUp}>회원가입</button>
             </div>
+            <br />
             <div>
               <Link to={"/login"}>로그인</Link> 
+            </div>
+            <div>
+              <Link to={"/"}>홈으로 돌아가기</Link> 
             </div>
           </div>
         </form>

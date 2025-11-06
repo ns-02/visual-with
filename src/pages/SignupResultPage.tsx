@@ -7,6 +7,7 @@ function SignupResultPage() {
     <Container>
       <div className="signup-result">
         <h3>회원가입을 환영합니다!</h3>
+        <br />
         <Link to={"/"}>홈으로</Link>
         <Link to={"/login"}>로그인</Link>
       </div>

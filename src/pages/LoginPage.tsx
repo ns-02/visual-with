@@ -25,6 +25,7 @@ function LoginPage() {
         <div>
           <h2>로그인</h2>
         </div>
+        <br />
         <form>
           <div>
             <div>
@@ -43,11 +44,16 @@ function LoginPage() {
                 placeholder="비밀번호를 입력하세요" required
               ></input>
             </div>
+            <br />
             <div>
               <button type="button" onClick={handleLogin}>로그인</button> 
             </div>
+            <br />
             <div>
               <Link to={"/signup"}>회원가입</Link>
+            </div>
+            <div>
+              <Link to={"/"}>홈으로 돌아가기</Link> 
             </div>
           </div>
         </form>
