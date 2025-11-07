@@ -14,8 +14,7 @@
 - `ToolHeader.tsx` : span, 검색 입력란, 관련 버튼 3개를 묶은 컴포넌트. 메인헤더 레이아웃 -> 모든 도구들의 헤더에서 사용
 
 ## ui/: 파일 및 폴더
-- `Button.tsx` : 모서리가 둥근 직사각형 버튼 컴포넌트. 상위 컴포넌트에서 사용
-- `CircleButton.tsx` : 원형 버튼 컴포넌트. LeftMenu.tsx에서 사용
+- `Button.tsx` :  버튼 컴포넌트. 일반, 정사각형, 원 모양
 - `Input.tsx` : 입력 창 컴포넌트. ChatFooter.tsx에서 사용
 - `InputSearch.tsx` : 검색 임력 창 컴포넌트. Toolheader.tsx에서 사용
 
@@ -42,3 +41,4 @@
 - 업로드 버튼의 역할 재정의
 - 정사각형 버튼 정의
 - 드롭다운 버튼 생성
+- 원 버튼, 버튼을 버튼으로 통합
