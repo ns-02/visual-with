@@ -58,7 +58,7 @@ function LeftMenu({ setTool, onInvite }: Prop) {
         <Button text='개발' shape='circle' />
       </div>
       <div>
-        <Button onCustomClick={onInvite} shape='circle' icon={Link2} />
+        <Button onCustomClick={onInvite} shape='circle' icon={Link2} iconSize={24} />
       </div>
       <Divider />
       {
@@ -67,7 +67,7 @@ function LeftMenu({ setTool, onInvite }: Prop) {
 
           return (
             <div key={item.id}>
-              <Button onCustomClick={() => handleNavItem(item)} shape='circle' icon={Icon} />
+              <Button onCustomClick={() => handleNavItem(item)} shape='circle' icon={Icon} iconSize={24} />
             </div>
           )
         })
