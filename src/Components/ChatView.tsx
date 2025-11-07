@@ -17,7 +17,7 @@ const ChatView = React.memo(({ allChat }: Props) => {
         {
           allChat.map((chatItem, index) => {
             return (
-              <div key={index}>
+              <div key={index}> {/* 이거 가능한 한 빨리 수정해야 함.. */}
                 <p>{chatItem.chat}</p>
                 <p>[ {chatItem.time} ]</p>
               </div>
