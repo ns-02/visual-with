@@ -13,18 +13,19 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Primary: Story = {
+export const Normal: Story = {
   args: {
     text: '버튼',
     onCustomClick: fn(),
   },
 };
 
-export const Icon: Story = {
+export const NormalIcon: Story = {
   args: {
     text: '버튼',
     onCustomClick: fn(),
     icon: Plus,
+    iconSize: 16,
   },
 };
 
@@ -32,6 +33,15 @@ export const Square: Story = {
   args: {
     text: '버',
     onCustomClick: fn(),
-    square: true,
+    shape: 'square',
+  },
+};
+
+export const CircleIcon: Story = {
+  args: {
+    onCustomClick: fn(),
+    shape: 'circle',
+    icon: Plus,
+    iconSize: 24,
   },
 };

@@ -5,7 +5,7 @@ const DropdownButton = () => {
   return (
     <DropdownMenu.Root>
       <DropdownMenu.Trigger asChild>
-        <Button text="버" />
+        <Button text="버" shape="square" />
 	    </DropdownMenu.Trigger>
       <DropdownMenu.Content>
         <DropdownMenu.Item>Edit</DropdownMenu.Item>

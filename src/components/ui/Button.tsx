@@ -3,17 +3,20 @@ import styles from "./Button.module.css";
 import React from 'react';
 
 type Shape = 'normal' | 'square' | 'circle'
+type IconSize = 16 | 24
 
 interface ButtonProps {
   text?: string;
-  icon?: typeof Plus;
   shape?: Shape;
-  square?: boolean;
+  icon?: typeof Plus;
+  iconSize?: IconSize;
   onCustomClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
-  const { text, icon: Icon, square = false, onCustomClick, ...rest } = props;
+  const { text, shape = 'normal', icon: Icon, iconSize, onCustomClick, ...rest } = props;
+  const buttonStyle = `${styles.button} ${(styles as any)[shape]}`;
+  const iconStyle = (Icon && iconSize) ? `${(styles as any)[`icon--size-${iconSize}`]}` : undefined;
 
   // Radix와 커스텀 클릭 둘 다 동작하기 위함
   const handleClick: React.MouseEventHandler<HTMLButtonElement> = (e) => {
@@ -24,11 +27,11 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => 
   return (
     <button 
       ref={ref} 
-      className={`${styles.button} ${square && styles.square}`} 
+      className={buttonStyle} 
       onClick={handleClick}
       {...rest}
     >
-      {Icon && <Icon className={`${styles.icon}`} />}
+      {Icon && <Icon className={iconStyle} />}
       {text && text}
     </button>
   )

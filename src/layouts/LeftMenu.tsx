@@ -1,8 +1,8 @@
 import { Dispatch, SetStateAction } from 'react';
-import { Calendar1, FileText, Link2, ListTodo, LogOut, MessageSquare, MessagesSquare, Users } from 'lucide-react';
-import CircleButton from '../components/ui/CircleButton';
-import './Layouts.css'
 import { useNavigate } from 'react-router-dom';
+import { Calendar1, FileText, Link2, ListTodo, LogOut, MessageSquare, MessagesSquare, Users } from 'lucide-react';
+import Button from '../components/ui/Button';
+import './Layouts.css'
 
 type Tool = 'team-chat' | 'files' | 'schedule' | 'todos' | 'friends' | 'direct-chat' | 'log-out'
 
@@ -55,10 +55,10 @@ function LeftMenu({ setTool, onInvite }: Prop) {
   return (
     <section className='leftmenu'>
       <div>
-        <CircleButton onClick={() => {}}>개발</CircleButton>
+        <Button text='개발' shape='circle' />
       </div>
       <div>
-        <CircleButton onClick={onInvite}><Link2 /></CircleButton>
+        <Button onCustomClick={onInvite} shape='circle' icon={Link2} />
       </div>
       <Divider />
       {
@@ -67,7 +67,7 @@ function LeftMenu({ setTool, onInvite }: Prop) {
 
           return (
             <div key={item.id}>
-              <CircleButton onClick={() => handleNavItem(item)}><Icon /></CircleButton>
+              <Button onCustomClick={() => handleNavItem(item)} shape='circle' icon={Icon} />
             </div>
           )
         })
@@ -79,7 +79,7 @@ function LeftMenu({ setTool, onInvite }: Prop) {
 
           return (
             <div key={item.id}>
-              <CircleButton onClick={() => handleNavItem(item)}><Icon /></CircleButton>
+              <Button onCustomClick={() => handleNavItem(item)} shape='circle' icon={Icon} />
             </div>
           )
         })
@@ -91,7 +91,7 @@ function LeftMenu({ setTool, onInvite }: Prop) {
 
           return (
             <div key={item.id}>
-              <CircleButton onClick={() => handleNavItem(item)}><Icon /></CircleButton>
+              <Button onCustomClick={() => handleNavItem(item)} shape='circle' icon={Icon} />
             </div>
           )
         })
