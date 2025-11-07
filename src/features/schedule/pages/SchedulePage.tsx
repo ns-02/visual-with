@@ -1,10 +1,10 @@
 import LeftCalendar from "../section/LeftCalendar";
 import RightContents from "../section/RightContents";
-import './SchedulePage.css'
+import styles from './SchedulePage.module.css'
 
 function SchedulePage() {
   return (
-    <div className="schedule">
+    <div className={styles.page}>
       <LeftCalendar></LeftCalendar>
       <RightContents></RightContents>
     </div>

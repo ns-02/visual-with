@@ -1,8 +1,8 @@
 import { useState } from "react";
 import ChatBottom from "../section/ChatBottom";
-import { getItem, setItem } from "../../../utils/sessionStorage";
-import './ChatPage.css'
 import ChatView from "../../../components/ChatView";
+import { getItem, setItem } from "../../../utils/sessionStorage";
+import styles from './ChatPage.module.css'
 
 interface ChatItem {
   chat: string,
@@ -39,8 +39,8 @@ function ChatPage() {
   }
 
   return (
-    <div className="chat-frame">
-      <div className="chat-container">
+    <div className={styles.page}>
+      <div className={styles.container}>
         <ChatView allChat={allChat} />
       </div>
       <ChatBottom

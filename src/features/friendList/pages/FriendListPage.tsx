@@ -1,9 +1,9 @@
 import RightContents from "../section/FriendContents";
-import './FriendListPage.css'
+import styles from './FriendListPage.module.css'
 
 function FriendListPage() {
   return (
-    <div className="friendlist">
+    <div className={styles.page}>
       <RightContents></RightContents>
     </div>
   )

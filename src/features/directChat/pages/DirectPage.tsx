@@ -2,9 +2,9 @@ import { useState } from 'react';
 import DirectBottom from '../section/DirectBottom';
 import LeftFriends from '../section/LeftFriends';
 import RightChats from '../section/RightChats';
-import { getItem, setItem } from '../../../utils/sessionStorage';
-import './DirectPage.css'
 import ChatView from '../../../components/ChatView';
+import { getItem, setItem } from '../../../utils/sessionStorage';
+import styles from './DirectPage.module.css'
 
 interface ChatItem {
   chat: string,
@@ -41,10 +41,10 @@ function DirectPage() {
   }
 
   return (
-    <div className="direct-frame">
+    <div className={styles.page}>
       <LeftFriends></LeftFriends>
       <RightChats>
-        <div className="direct-container">
+        <div className={styles.container}>
           <ChatView allChat={allChat} />
         </div>
         <DirectBottom

@@ -1,9 +1,5 @@
-import { Dispatch, SetStateAction, useState } from 'react';
+import { Dispatch, SetStateAction } from 'react';
 import './InvitePage.css'
-
-// type Prop = {
-//   isViewInvite: boolean;
-// }
 
 type Prop = {
   state: boolean;

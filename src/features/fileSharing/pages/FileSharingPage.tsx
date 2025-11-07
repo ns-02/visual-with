@@ -1,10 +1,10 @@
 import TopFiles from "../section/TopFiles";
 import BottomSection from "../section/BottomSection";
-import './FileSharingPage.css'
+import styles from './FileSharingPage.module.css'
 
 function FileSharingPage() {
   return (
-    <div className="file-sharing">
+    <div className={styles.page}>
       <TopFiles></TopFiles>
       <BottomSection></BottomSection>
     </div>
