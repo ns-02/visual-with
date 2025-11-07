@@ -29,7 +29,7 @@ function SignupPage() {
       password,
       email,
       name
-    }
+    };
 
     const res = await request('/api/register', {
       method: 'POST',
@@ -45,6 +45,26 @@ function SignupPage() {
     navigate("/signup-result");
   }
 
+  const handleIdCheck = async () => {
+    if (!id) {
+      alert("아이디를 입력해주세요.");
+      return;
+    }
+
+    // 서버 요청 및 응답 처리
+    const requestMessage = {
+      userId: id
+    };
+
+    const res = await request('/api/checkid', {
+      method: 'POST',
+      body: JSON.stringify(requestMessage)
+    });
+
+    
+    // console.log(res);
+  }
+
   return (
     <Container>
       <div className="signup">
@@ -57,6 +77,7 @@ function SignupPage() {
             <div>
               <p>아이디</p>
               <input type="text" value={id} onChange={(e) => setId(e.target.value)}/>
+              <button type="button" onClick={handleIdCheck}>중복확인</button>
             </div>
             <div>
               <p>비밀번호</p>
