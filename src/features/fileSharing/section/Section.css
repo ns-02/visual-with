@@ -1,0 +1,12 @@
+.top-files {
+  width: 100%;
+  height: 50px;
+  padding: 10px;
+  border: 1px solid #000;
+}
+
+.bottom-section {
+  width: 100%;
+  height: calc(100% - 50px);
+  border: 1px solid #000;
+}
