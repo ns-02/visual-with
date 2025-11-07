@@ -34,7 +34,7 @@ http://localhost:5173
 - Storybook: 재사용되는 컴포넌트 관리 및 정리
 - radix-ui: ui 제작 도구
 - React Router: 리액트 환경에서 라우팅 제공
-- (적용 예정) css module
+- css module: 지역 단위 css 적용
 
 ## 뭘 하는거지
 
