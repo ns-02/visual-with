@@ -28,6 +28,10 @@ function LoginPage() {
 
     console.log(res);
 
+    if (!res) {
+      return;
+    }
+
     navigate("/main");
   }
 

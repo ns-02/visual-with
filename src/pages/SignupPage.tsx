@@ -38,6 +38,10 @@ function SignupPage() {
 
     console.log(res)
 
+    if (!res) {
+      return;
+    }
+
     navigate("/signup-result");
   }
 
