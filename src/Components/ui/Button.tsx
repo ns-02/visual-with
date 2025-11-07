@@ -2,9 +2,12 @@ import { Plus } from 'lucide-react';
 import styles from "./Button.module.css";
 import React from 'react';
 
+type Shape = 'normal' | 'square' | 'circle'
+
 interface ButtonProps {
   text?: string;
   icon?: typeof Plus;
+  shape?: Shape;
   square?: boolean;
   onCustomClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
