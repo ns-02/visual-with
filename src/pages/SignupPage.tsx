@@ -2,10 +2,13 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Container from "../components/Container";
 import './css/SignupPage.css';
+import { request } from "../api/api";
 
 function SignupPage() {
   const navigate = useNavigate();
   const [ id, setId ] = useState("");
+  const [ name, setName ] = useState("");
+  const [ email, setEmail ] = useState("");
   const [ password, setPassword ] = useState("");
   const [ checkPassword, setCheckPassword ] = useState("");
 
@@ -21,6 +24,19 @@ function SignupPage() {
     }
 
     // 서버 요청 및 응답 처리
+    const requestMessage = {
+      userId: id,
+      password,
+      email,
+      name
+    }
+
+    const res = request('/api/register', {
+      method: 'POST',
+      body: JSON.stringify(requestMessage)
+    });
+
+    console.log(res)
 
     navigate("/signup-result");
   }
@@ -48,11 +64,11 @@ function SignupPage() {
             </div>
             <div>
               <p>이름</p>
-              <input type="text"></input>
+              <input type="text" value={name} onChange={(e) => setName(e.target.value)}></input>
             </div>
             <div>
               <p>이메일</p>
-              <input type="email"></input>
+              <input type="email" value={email} onChange={(e) => setEmail(e.target.value)}></input>
             </div>
             <br />
             <div>

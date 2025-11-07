@@ -1,8 +1,6 @@
-const API_END_POINT = 'http://localhost:8080'
-
 export const request = async (url: string, options = {}) => {
   try {
-    const response = await fetch(`${API_END_POINT}${url}`, {
+    const response = await fetch(url, {
       ...options,
       headers: {
         'Content-Type': 'application/json'

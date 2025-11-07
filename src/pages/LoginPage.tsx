@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Container from "../components/Container";
 import './css/LoginPage.css';
+import { request } from "../api/api";
 
 function LoginPage() {
   const navigate = useNavigate();
@@ -15,6 +16,17 @@ function LoginPage() {
     }
 
     // 서버 요청 및 응답 처리
+    const requestMessage = {
+      userId: id,
+      password
+    }
+
+    const res = await request('/api/login', {
+      method: 'POST',
+      body: JSON.stringify(requestMessage)
+    });
+
+    console.log(res);
 
     navigate("/main");
   }
