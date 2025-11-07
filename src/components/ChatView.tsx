@@ -1,5 +1,5 @@
 import React from "react";
-import './ChatView.css'
+import styles from './ChatView.module.css'
 
 type ChatItem = {
   chat: string;
@@ -12,8 +12,8 @@ type Props = {
 
 const ChatView = React.memo(({ allChat }: Props) => {
   return (
-    <div className="chat-view">
-      <div className="chat-contents">
+    <div className={styles.view}>
+      <div className={styles.contents}>
         {
           allChat.map((chatItem, index) => {
             return (

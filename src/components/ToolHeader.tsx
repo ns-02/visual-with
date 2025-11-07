@@ -1,7 +1,7 @@
 import { Plus } from 'lucide-react';
 import Button from "./ui/Button";
 import InputSearch from "./ui/InputSearch";
-import "./ToolHeader.css";
+import styles from "./ToolHeader.module.css";
 
 interface HeaderProps {
   label: string;
@@ -12,11 +12,11 @@ interface HeaderProps {
 
 const ToolHeader: React.FC<HeaderProps> = ({ label, button, onClick, icon }) => {
   return (
-    <div className="tool-header">
-      <div className="header-label">
+    <div className={styles.header}>
+      <div className={styles.label}>
         <span>{label}</span>
       </div>
-      <div className="header-r-section">
+      <div className={styles.rsection}>
         <InputSearch />
         {
           button && onClick && <Button text={button} onCustomClick={onClick} icon={icon} />

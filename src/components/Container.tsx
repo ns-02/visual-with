@@ -1,4 +1,4 @@
-import './Container.css'
+import styles from './Container.module.css'
 
 type Prop = {
   children: React.ReactNode;
@@ -6,8 +6,8 @@ type Prop = {
 
 function Container({ children }: Prop) {
   return (
-    <div className="app-layout">
-      <div className="container">
+    <div className={styles.layout}>
+      <div className={styles.container}>
         {children}
       </div>
     </div>

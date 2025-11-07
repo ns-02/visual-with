@@ -1,9 +1,9 @@
-.chat-view {
+.view {
   height: 100%;
   overflow: auto;
 }
 
-.chat-contents {
+.contents {
   display: flex;
   flex-direction: column;
   height: min-content;
