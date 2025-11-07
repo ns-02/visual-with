@@ -1,0 +1,19 @@
+.input-container {
+  display: flex;
+  width: calc(100% - 20px);
+  height: 36px;
+  padding: 0 10px;
+  gap: 6px;
+  align-items: center;
+  border: none;
+  border-radius: 6px;
+  background-color: #eee;
+}
+
+.input-content {
+  width: 100%;
+  font-size: 14px;
+  border: none;
+  outline: none;
+  background-color: #eee;
+}

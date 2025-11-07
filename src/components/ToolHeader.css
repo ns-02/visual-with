@@ -1,0 +1,15 @@
+.tool-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.header-label {
+  display: flex;
+  align-items: center;
+}
+
+.header-r-section {
+  display: flex;
+  gap: 16px;
+}
