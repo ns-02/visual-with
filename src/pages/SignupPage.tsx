@@ -31,7 +31,7 @@ function SignupPage() {
       name
     }
 
-    const res = request('/api/register', {
+    const res = await request('/api/register', {
       method: 'POST',
       body: JSON.stringify(requestMessage)
     });
