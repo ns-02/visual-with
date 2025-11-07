@@ -19,7 +19,7 @@ const ToolHeader: React.FC<HeaderProps> = ({ label, button, onClick, icon }) => 
       <div className={styles.rsection}>
         <InputSearch />
         {
-          button && onClick && <Button text={button} onCustomClick={onClick} icon={icon} />
+          button && onClick && <Button text={button} onCustomClick={onClick} icon={icon} iconSize={16} />
         }
       </div>
     </div>
