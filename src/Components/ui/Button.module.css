@@ -1,4 +1,4 @@
-.c-button {
+.button {
   display: flex;
   height: 36px;
   padding: 0 12px;
@@ -16,7 +16,7 @@
   justify-content: center;
 }
 
-.c-icon {
+.icon {
   width: 16px;
   height: 16px;
 }
