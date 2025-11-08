@@ -47,8 +47,6 @@ http://localhost:5173
 - 로그인, 회원가입, 회원가입 완료 페이지의 컴포넌트 디자인
 
 ## 수정 및 개선사항
-- StartPage를 HomePage로 변경
-- pages 내부의 시작 페이지를 제외한 나머지 파일을 별도 폴더로 분리
 - 시작 페이지와 메인 페이지를 제외한 나머지 페이지의 css 통합 혹은 삭제
 - invite 폴더를 추후 추가할 팀 관리 폴더와 통합. 팀 관리 폴더는 features에 등록
 - Input.tsx와 InputSearch.tsx 통합

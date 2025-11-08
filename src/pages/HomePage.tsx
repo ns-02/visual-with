@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
-import styles from './css/StartPage.module.css'
+import styles from './HomePage.module.css'
 
-function StartPage() {
+function HomePage() {
 
   return (
-    <div className={styles.start}>
+    <div className={styles.home}>
       <div className={styles.header}>
         <span className={styles['left-container']}>
           {/* <span>로고</span> */}
@@ -31,4 +31,4 @@ function StartPage() {
   )
 }
 
-export default StartPage;
+export default HomePage;

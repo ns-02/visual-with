@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { Outlet } from 'react-router-dom'
-import LeftMenu, { Tool } from "../layouts/LeftMenu";
-import RightSection from "../layouts/RightSection";
-import MainHeader from "../layouts/MainHeader";
-import MainBody from "../layouts/MainBody";
-import InvitePage from "../features/invite/pages/InvitePage";
+import LeftMenu, { Tool } from "../../layouts/LeftMenu";
+import RightSection from "../../layouts/RightSection";
+import MainHeader from "../../layouts/MainHeader";
+import MainBody from "../../layouts/MainBody";
+import InvitePage from "../../features/invite/pages/InvitePage";
 import './css/MainPage.css';
 
 function MainPage() {

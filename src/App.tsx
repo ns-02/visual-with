@@ -1,10 +1,10 @@
 import { Route, Routes } from 'react-router-dom'
-import StartPage from './pages/StartPage'
-import LoginPage from './pages/LoginPage'
-import MainPage from './pages/MainPage'
-import SignupPage from './pages/SignupPage'
-import SignupResultPage from './pages/SignupResultPage'
-import NotFoundPage from './pages/NotFoundPage'
+import StartPage from './pages/HomePage'
+import LoginPage from './pages/primary/LoginPage'
+import MainPage from './pages/primary/MainPage'
+import SignupPage from './pages/primary/SignupPage'
+import SignupResultPage from './pages/primary/SignupResultPage'
+import NotFoundPage from './pages/primary/NotFoundPage'
 import ChatPage from './features/teamChat/pages/ChatPage'
 import FileSharingPage from './features/fileSharing/pages/FileSharingPage';
 import SchedulePage from './features/schedule/pages/SchedulePage';

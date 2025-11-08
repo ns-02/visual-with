@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Container from "../components/Container";
+import Container from "../../components/Container";
+import { request } from "../../api/api";
 import './css/LoginPage.css';
-import { request } from "../api/api";
 
 function LoginPage() {
   const navigate = useNavigate();
