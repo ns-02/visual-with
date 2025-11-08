@@ -28,3 +28,4 @@
 - 원 버튼, 버튼을 버튼으로 통합
 - Button 내부 컴포넌트들에 리액트 라우터에서 사용하는 Link 적용
 - Input.tsx와 InputSearch.tsx 통합
+- ToolHeader가 제대로 변경되지 않는 버그 수정

@@ -12,23 +12,29 @@ interface ButtonProps {
   to?: string;
   icon?: typeof Plus;
   iconSize?: IconSize;
-  onCustomClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  onCustomClick?: (e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => void;
 }
 
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
+const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps>((props, ref) => {
   const { text, shape = 'normal', to, icon: Icon, iconSize, onCustomClick, ...rest } = props;
   const btnStyle = `${styles.button} ${(styles as any)[shape]}`;
   const iconStyle = (Icon && iconSize) ? `${(styles as any)[`icon--size-${iconSize}`]}` : undefined;
 
   // Radix와 커스텀 클릭 둘 다 동작하기 위함
-  const handleClick: React.MouseEventHandler<HTMLButtonElement> = (e) => {
+  const handleClick: React.MouseEventHandler<HTMLAnchorElement | HTMLButtonElement> = (e) => {
     if ((props as any).onClick) (props as any).onClick(e);
     if (onCustomClick) onCustomClick(e);
   }
 
   if (to) {
     return (
-      <Link to={to} className={btnStyle} >
+      <Link 
+        ref={ref as React.Ref<HTMLAnchorElement>} 
+        to={to} 
+        className={btnStyle} 
+        onClick={handleClick} 
+        {...rest}
+      >
         {Icon && <Icon className={iconStyle} />}
       </Link>
     )
@@ -36,7 +42,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => 
 
   return (
     <button 
-      ref={ref} 
+      ref={ref as React.Ref<HTMLButtonElement>} 
       className={btnStyle} 
       onClick={handleClick}
       {...rest}
