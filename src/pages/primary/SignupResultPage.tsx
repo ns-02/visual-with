@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 import Container from "../../components/Container";
-import './css/SignupResultPage.css';
+import styles from './Primary.module.css';
 
 function SignupResultPage() {
   return (
     <Container>
-      <div className="signup-result">
+      <div className={styles.contents}>
         <h3>회원가입을 환영합니다!</h3>
         <br />
         <Link to={"/"}>홈으로</Link>

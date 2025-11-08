@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Container from "../../components/Container";
 import { request } from "../../api/api";
-import './css/SignupPage.css';
+import styles from './Primary.module.css';
 
 function SignupPage() {
   const navigate = useNavigate();
@@ -77,7 +77,7 @@ function SignupPage() {
 
   return (
     <Container>
-      <div className="signup">
+      <div className={styles.contents}>
         <div>
           <h2>회원가입</h2>
           <br></br>

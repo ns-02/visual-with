@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Container from "../../components/Container";
 import { request } from "../../api/api";
-import './css/LoginPage.css';
+import styles from './Primary.module.css';
 
 function LoginPage() {
   const navigate = useNavigate();
@@ -37,7 +37,7 @@ function LoginPage() {
 
   return (
     <Container>
-      <div className="login">
+      <div className={styles.contents}>
         <div>
           <h2>로그인</h2>
         </div>
