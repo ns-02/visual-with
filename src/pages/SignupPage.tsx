@@ -11,6 +11,7 @@ function SignupPage() {
   const [ email, setEmail ] = useState("");
   const [ password, setPassword ] = useState("");
   const [ checkPassword, setCheckPassword ] = useState("");
+  const [ isValid, setIsValid ] = useState(false);
 
   const handleSignUp = async () => {
     if (!id || !password || !checkPassword) {
@@ -20,6 +21,11 @@ function SignupPage() {
 
     if (password !== checkPassword) {
       alert("비밀번호가 일치하지 않습니다.");
+      return;
+    }
+
+    if (!isValid) {
+      alert("사용 가능한 아이디인지 확인해주세요.");
       return;
     }
 
@@ -61,8 +67,12 @@ function SignupPage() {
       body: JSON.stringify(requestMessage)
     });
 
-    
     // console.log(res);
+
+    // 사용 가능한 아이디일 경우. 조건은 백엔드가 완성되면 변경할 것.
+    if (res) {
+      setIsValid(true);
+    }
   }
 
   return (
@@ -76,7 +86,10 @@ function SignupPage() {
           <div>
             <div>
               <p>아이디</p>
-              <input type="text" value={id} onChange={(e) => setId(e.target.value)}/>
+              <input type="text" value={id} onChange={(e) => {
+                setId(e.target.value);
+                setIsValid(false);
+              }}/>
               <button type="button" onClick={handleIdCheck}>중복확인</button>
             </div>
             <div>
