@@ -9,6 +9,7 @@ type Tool = 'team-chat' | 'files' | 'schedule' | 'todos' | 'friends' | 'direct-c
 interface NavItem {
   id: Tool;
   icon: typeof MessagesSquare;
+  link?: string;
 }
 
 type Prop = {
@@ -26,15 +27,15 @@ function LeftMenu({ setTool, onInvite }: Prop) {
   const navigate = useNavigate();
 
   const topNavItems: NavItem[] = [
-    { id: 'team-chat', icon: MessagesSquare },
-    { id: 'files', icon: FileText },
-    { id: 'schedule', icon: Calendar1 },
-    { id: 'todos', icon: ListTodo },
+    { id: 'team-chat', icon: MessagesSquare, link: 'teamchat' },
+    { id: 'files', icon: FileText, link: 'filesharing' },
+    { id: 'schedule', icon: Calendar1, link: 'schedule' },
+    { id: 'todos', icon: ListTodo, link: 'todolist' },
   ];
 
   const middleNavItems: NavItem[] = [
-    { id: 'friends', icon: Users },
-    { id: 'direct-chat', icon: MessageSquare },
+    { id: 'friends', icon: Users, link: 'friendlist' },
+    { id: 'direct-chat', icon: MessageSquare, link: 'directchat' },
   ];
 
   const bottomNavItems: NavItem[] = [
@@ -67,7 +68,7 @@ function LeftMenu({ setTool, onInvite }: Prop) {
 
           return (
             <div key={item.id}>
-              <Button onCustomClick={() => handleNavItem(item)} shape='circle' icon={Icon} iconSize={24} />
+              <Button to={item.link} onCustomClick={() => handleNavItem(item)} shape='circle' icon={Icon} iconSize={24} />
             </div>
           )
         })
@@ -79,7 +80,7 @@ function LeftMenu({ setTool, onInvite }: Prop) {
 
           return (
             <div key={item.id}>
-              <Button onCustomClick={() => handleNavItem(item)} shape='circle' icon={Icon} />
+              <Button to={item.link} onCustomClick={() => handleNavItem(item)} shape='circle' icon={Icon} iconSize={24} />
             </div>
           )
         })
@@ -91,7 +92,7 @@ function LeftMenu({ setTool, onInvite }: Prop) {
 
           return (
             <div key={item.id}>
-              <Button onCustomClick={() => handleNavItem(item)} shape='circle' icon={Icon} />
+              <Button to={item.link} onCustomClick={() => handleNavItem(item)} shape='circle' icon={Icon} iconSize={24} />
             </div>
           )
         })
