@@ -5,7 +5,7 @@
   background-color: aliceblue;
 }
 
-.start .header {
+.header {
   display: flex;
   height: 60px;
   padding: 20px 24px;
@@ -14,18 +14,18 @@
   /* background-color:rgb(255, 223, 223); */
 }
 
-.start .header .left-container {
+.left-container {
   display: flex;
   gap: 24px;
 }
 
-.start .header .right-container {
+.right-container {
   display: flex;
   padding: 0;
   gap: 12px;
 }
 
-.start .body {
+.body {
   display: flex;
   height: calc(100% - 120px);
   justify-content: center;
@@ -34,7 +34,7 @@
   /* background-color: aqua; */
 }
 
-.start .footer {
+.footer {
   display: flex;
   height: 60px;
   padding: 0 100px;

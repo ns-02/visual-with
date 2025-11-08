@@ -1,24 +1,24 @@
 import { Link } from 'react-router-dom';
-import './css/StartPage.css'
+import styles from './css/StartPage.module.css'
 
 function StartPage() {
 
   return (
-    <div className='start'>
-      <div className='header'>
-        <span className='left-container'>
+    <div className={styles.start}>
+      <div className={styles.header}>
+        <span className={styles['left-container']}>
           {/* <span>로고</span> */}
           <span>Visual With</span>
         </span>
-        <span className='right-container'>
+        <span className={styles['right-container']}>
           <Link to={"/signup"}>회원가입</Link>
           <Link to={"/login"}>로그인</Link>
         </span>
       </div>
-      <div className='body'>
+      <div className={styles.body}>
         <p>웹 소개</p>
       </div>
-      <div className='footer'>
+      <div className={styles.footer}>
         <span>Team 404</span>
         <span>정보</span>
         {/* <p>팀 소개</p>
