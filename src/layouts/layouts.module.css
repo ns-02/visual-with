@@ -16,7 +16,7 @@
   float: right;
 }
 
-.main .header {
+.header {
   display: flex;
   height: 64px;
   border: 1px solid #000;
@@ -24,6 +24,6 @@
   justify-content: center;
 }
 
-.main .body {
+.body {
   height: calc(100% - 64px);
 }

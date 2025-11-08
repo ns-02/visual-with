@@ -2,7 +2,7 @@ import { Dispatch, SetStateAction } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Calendar1, FileText, Link2, ListTodo, LogOut, MessageSquare, MessagesSquare, Users } from 'lucide-react';
 import Button from '../components/ui/Button';
-import './Layouts.css'
+import styles from './Layouts.module.css'
 
 type Tool = 'team-chat' | 'files' | 'schedule' | 'todos' | 'friends' | 'direct-chat' | 'log-out'
 
@@ -53,7 +53,7 @@ function LeftMenu({ setTool, onInvite }: Prop) {
   }
 
   return (
-    <section className='leftmenu'>
+    <section className={styles.leftmenu}>
       <div>
         <Button text='개발' shape='circle' />
       </div>

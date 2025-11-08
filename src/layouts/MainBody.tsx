@@ -1,4 +1,4 @@
-import './Layouts.css'
+import styles from './Layouts.module.css'
 
 type Prop = {
   children: React.ReactNode;
@@ -6,7 +6,7 @@ type Prop = {
 
 function MainBody({ children }: Prop) {
   return (
-    <div className='body'>
+    <div className={styles.body}>
       {children}
     </div>
   )

@@ -1,6 +1,6 @@
 import { Plus, Upload } from 'lucide-react';
 import ToolHeader from '../components/ToolHeader';
-import './Layouts.css'
+import styles from './Layouts.module.css'
 
 type Tool = 'team-chat' | 'files' | 'schedule' | 'todos' | 'friends' | 'direct-chat' | 'log-out'
 
@@ -29,7 +29,7 @@ function MainHeader({ viewTool }: Prop) {
   const headerItem = headerItems.filter(({ id }) => id === viewTool );
   
   return (
-    <div className="header">
+    <div className={styles.header}>
       {
         headerItem.map(({id, label, button, onClick, icon}) => {
           return (
