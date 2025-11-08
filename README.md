@@ -13,7 +13,7 @@ http://localhost:5173
 
 ## 폴더
 - `src/` : 앱의 실제 코드
-[src](src/README.md)
+<br> [src](src/README.md)
 
 ## 설계
 - 팀 초대받는 화면 설계
