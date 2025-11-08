@@ -1,14 +1,11 @@
 import { useState } from "react";
 import { Outlet } from 'react-router-dom'
-import LeftMenu from "../layouts/LeftMenu";
+import LeftMenu, { Tool } from "../layouts/LeftMenu";
 import RightSection from "../layouts/RightSection";
 import MainHeader from "../layouts/MainHeader";
 import MainBody from "../layouts/MainBody";
 import InvitePage from "../features/invite/pages/InvitePage";
-
 import './css/MainPage.css';
-
-type Tool = 'team-chat' | 'files' | 'schedule' | 'todos' | 'friends' | 'direct-chat' | 'log-out'
 
 function MainPage() {
   const [ on, setInvite ] = useState(false);

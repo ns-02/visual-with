@@ -4,7 +4,7 @@ import { Calendar1, FileText, Link2, ListTodo, LogOut, MessageSquare, MessagesSq
 import Button from '../components/ui/Button';
 import styles from './Layouts.module.css'
 
-type Tool = 'team-chat' | 'files' | 'schedule' | 'todos' | 'friends' | 'direct-chat' | 'log-out'
+export type Tool = 'team-chat' | 'files' | 'schedule' | 'todos' | 'friends' | 'direct-chat' | 'log-out'
 
 interface NavItem {
   id: Tool;

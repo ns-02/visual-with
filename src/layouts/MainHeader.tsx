@@ -1,8 +1,7 @@
 import { Plus, Upload } from 'lucide-react';
+import { Tool } from './LeftMenu';
 import ToolHeader from '../components/ToolHeader';
 import styles from './Layouts.module.css'
-
-type Tool = 'team-chat' | 'files' | 'schedule' | 'todos' | 'friends' | 'direct-chat' | 'log-out'
 
 type Prop = {
   viewTool: Tool;
