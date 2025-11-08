@@ -5,7 +5,7 @@ import MainPage from './pages/MainPage'
 import SignupPage from './pages/SignupPage'
 import SignupResultPage from './pages/SignupResultPage'
 import NotFoundPage from './pages/NotFoundPage'
-import './App.css'
+import './styles/global.css'
 
 const App: React.FC = () => {
 
