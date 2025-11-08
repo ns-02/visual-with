@@ -2,8 +2,7 @@ import { Dispatch, KeyboardEvent, SetStateAction } from 'react';
 import { Plus, Send } from 'lucide-react';
 import Button from '../../../components/ui/Button';
 import Input from '../../../components/ui/Input';
-
-import './Section.css'
+import styles from './Section.module.css'
 
 type Prop = {
   setChat: Dispatch<SetStateAction<string>>;
@@ -14,7 +13,7 @@ type Prop = {
 
 function DirectBottom({ setChat, onClick, onKeyDown, clearId }: Prop) {
   return (
-    <div className="direct-bottom">
+    <div className={styles.bottom}>
       <Button icon={Plus} iconSize={16} />
       <Input setChat={setChat} onKeyDown={(e) => onKeyDown(e)} clearId={clearId} />
       <Button onCustomClick={onClick} icon={Send} iconSize={16} />

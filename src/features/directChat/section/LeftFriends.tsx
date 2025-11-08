@@ -1,8 +1,8 @@
-import './Section.css'
+import styles from './Section.module.css'
 
 function LeftFriends() {
   return (
-    <div className="left-friends">
+    <div className={styles["left-friends"]}>
       <div>
         <div>친구 1</div>
         <div>친구 2</div>

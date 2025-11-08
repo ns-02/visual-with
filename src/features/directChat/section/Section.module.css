@@ -12,7 +12,7 @@
   float: right;
 }
 
-.direct-bottom {
+.bottom {
   display: flex;
   height: 60px;
   border: 1px solid #000;

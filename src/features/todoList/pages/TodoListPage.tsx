@@ -1,9 +1,9 @@
 import TodoContents from "../section/TodoContents";
-import './TodoListPage.css'
+import styles from './TodoListPage.module.css'
 
 function TodoListPage() {
   return (
-    <div className="todolist">
+    <div className={styles.page}>
       <TodoContents></TodoContents>
     </div>
   )

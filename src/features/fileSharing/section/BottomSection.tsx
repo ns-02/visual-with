@@ -1,8 +1,8 @@
-import './Section.css'
+import styles from './Section.module.css'
 
 function BottomSection() {
   return (
-    <div className="bottom-section">
+    <div className={styles.bottom}>
       <div className="drag-and-drop">
         <p>파일을 여기에 드래그하여 업로드하세요</p>
         <p>또는</p>

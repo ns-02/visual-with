@@ -1,4 +1,4 @@
-import './Section.css'
+import styles from './Section.module.css'
 
 type Prop = {
   children: React.ReactNode;
@@ -7,7 +7,7 @@ type Prop = {
 
 function RightChats({ children }: Prop) {
   return (
-    <div className="right-chats">
+    <div className={styles["right-chats"]}>
       {children}
     </div>
   )

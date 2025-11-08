@@ -1,8 +1,8 @@
-import './Section.css'
+import styles from './Section.module.css'
 
 function RightContents() {
   return (
-    <div className="todo-contents">
+    <div className={styles.contents}>
       <div>
         진행 중 (2)
         <div>

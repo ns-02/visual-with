@@ -1,8 +1,8 @@
-import './Section.css'
+import styles from './Section.module.css'
 
 function FriendContents() {
   return (
-    <div className="friend-contents">
+    <div className={styles.contents}>
       <span>친구 요청</span>
       <div>
         <span>정보 1</span>

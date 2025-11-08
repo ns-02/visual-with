@@ -1,8 +1,8 @@
-import './Section.css'
+import styles from './Section.module.css'
 
 function TopFiles() {
   return (
-    <div className="top-files">
+    <div className={styles["top-files"]}>
       <span>
         <button>전체</button>
       </span>
