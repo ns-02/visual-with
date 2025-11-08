@@ -1,6 +1,6 @@
-import { Plus } from 'lucide-react';
+import { Plus, Search } from 'lucide-react';
 import Button from "./ui/Button";
-import InputSearch from "./ui/InputSearch";
+import Input from './ui/Input';
 import styles from "./ToolHeader.module.css";
 
 interface HeaderProps {
@@ -17,7 +17,7 @@ const ToolHeader: React.FC<HeaderProps> = ({ label, button, onClick, icon }) => 
         <span>{label}</span>
       </div>
       <div className={styles.rsection}>
-        <InputSearch />
+        <Input placeholder='검색' sizeMode='fixed' icon={Search} iconSize={16} />
         {
           button && onClick && <Button text={button} onCustomClick={onClick} icon={icon} iconSize={16} />
         }

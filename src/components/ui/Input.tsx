@@ -1,36 +1,56 @@
 import { Dispatch, KeyboardEvent, SetStateAction, useEffect, useRef, useState } from "react";
+import { Plus } from "lucide-react";
 import { debounce } from "../../utils/debounce";
-import "./Input.css"
+import { IconSize } from "./Button";
+import styles from "./Input.module.css"
+
+type SizeMode = 'fixed' | 'flexible'
 
 type Prop = {
-  setChat: Dispatch<SetStateAction<string>>;
-  onKeyDown: (e: KeyboardEvent<HTMLInputElement>) => void;
-  clearId: number;
+  placeholder?: string;
+  sizeMode: SizeMode;
+  icon?: typeof Plus;
+  iconSize?: IconSize;
+  setChat?: Dispatch<SetStateAction<string>>;
+  onKeyDown?: (e: KeyboardEvent<HTMLInputElement>) => void;
+  clearId?: number;
 }
 
-function Input({ setChat, onKeyDown, clearId }: Prop) {
+function Input({ placeholder, sizeMode, icon: Icon, iconSize, setChat, onKeyDown, clearId }: Prop) {
+  const containerStyle = `${styles.container} ${(styles as any)[`container--${sizeMode}`]}`;
+  const inputStyle = `${styles.input} ${(styles as any)[`input--${sizeMode}`]}`;
+  const iconStyle = (Icon && iconSize) ? `${(styles as any)[`icon--size-${iconSize}`]}` : undefined;
   const [ localValue, setLocalValue ] = useState("");
   const debouncedRef = useRef((value: any) => {});
 
-  useEffect(() => {
-    debouncedRef.current = debounce(setChat, 300);
-  }, []);
+  if (setChat) {
+    useEffect(() => {
+      debouncedRef.current = debounce(setChat, 300);
+    }, []);
+  }
+  
+  if (clearId) {
+    useEffect(() => {
+      setLocalValue("");
+    }, [clearId]);
+  }
 
-  useEffect(() => {
-    setLocalValue("");
-  }, [clearId]);
+  const handleKeyDown = () => {
+    if (onKeyDown) (e: KeyboardEvent<HTMLInputElement>) => onKeyDown(e);
+  }
 
   return (
-    <div className="input-container">
+    <div className={containerStyle}>
+      {Icon && <Icon className={iconStyle} />}
       <input
-        className="input-content"
-        placeholder="채팅 입력"
+        className={inputStyle}
+        placeholder={placeholder}
         value={localValue}
         onChange={(e) => {
           setLocalValue(e.target.value);
           debouncedRef.current(e.target.value);
         }}
-        onKeyDown={(e) => onKeyDown(e)}
+        onKeyDown={handleKeyDown}
       />
     </div>
     

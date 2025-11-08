@@ -48,7 +48,6 @@ http://localhost:5173
 
 ## 수정 및 개선사항
 - invite 폴더를 추후 추가할 팀 관리 폴더와 통합. 팀 관리 폴더는 features에 등록
-- Input.tsx와 InputSearch.tsx 통합
 - input에 적용된 디바운스를 상위 컴포넌트가 관리하도록 역할 이전
 - 채팅 형식을 DB에 맞게 변경
 - 채팅 콘텐츠가 가로 스크롤이 되는 것 방지

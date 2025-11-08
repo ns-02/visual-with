@@ -15,7 +15,7 @@ function ChatBottom({ setChat, onClick, onKeyDown, clearId }: Prop) {
   return (
     <div className={styles.bottom}>
       <Button icon={Plus} iconSize={16} />
-      <Input setChat={setChat} onKeyDown={(e) => onKeyDown(e)} clearId={clearId} />
+      <Input placeholder='채팅 입력' sizeMode='flexible' setChat={setChat} onKeyDown={(e) => onKeyDown(e)} clearId={clearId} />
       <Button onCustomClick={onClick} icon={Send} iconSize={16} />
     </div>
   )

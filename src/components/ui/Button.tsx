@@ -4,7 +4,7 @@ import { Plus } from 'lucide-react';
 import styles from "./Button.module.css";
 
 type Shape = 'normal' | 'square' | 'circle'
-type IconSize = 16 | 24
+export type IconSize = 16 | 24
 
 interface ButtonProps {
   text?: string;

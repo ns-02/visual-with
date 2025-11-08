@@ -1,6 +1,5 @@
-.search-container {
+.container {
   display: flex;
-  width: min-content;
   height: 36px;
   padding: 0 10px;
   gap: 6px;
@@ -10,15 +9,35 @@
   background-color: #eee;
 }
 
-.input-element {
-  width: 240px;
+.container--fixed {
+  width: min-content;
+}
+
+.container--flexible {
+  width: calc(100% - 20px);
+}
+
+.input {
   font-size: 14px;
   border: none;
   outline: none;
   background-color: #eee;
 }
 
-.search-icon {
+.input--fixed {
+  width: 240px;
+}
+
+.input--flexible {
+  width: 100%;
+}
+
+.icon--size-16 {
   width: 16px;
   height: 16px;
+}
+
+.icon--size-24 {
+  width: 24px;
+  height: 24px;
 }
