@@ -20,7 +20,7 @@ function InvitePage({ state, setInvite }: Prop) {
             <br></br>
             <div>
               <span>
-                <input type='text' readOnly value="대충 url"></input>
+                <input name="inviteUrl" type='text' readOnly value="대충 url"></input>
               </span>
               <span>
                 <button>링크 복사</button>

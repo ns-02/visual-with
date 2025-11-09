@@ -4,7 +4,7 @@ function LeftCalendar() {
   return (
     <div className={styles["left-calender"]}>
       <div>
-        <input type='date'></input>
+        <input name="schedule-date" type='date'></input>
       </div>
     </div>
   )

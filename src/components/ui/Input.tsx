@@ -11,12 +11,13 @@ type Prop = {
   sizeMode: SizeMode;
   icon?: typeof Plus;
   iconSize?: IconSize;
+  name?: string;
   setChat?: Dispatch<SetStateAction<string>>;
   onKeyDown?: (e: KeyboardEvent<HTMLInputElement>) => void;
   clearId?: number;
 }
 
-function Input({ placeholder, sizeMode, icon: Icon, iconSize, setChat, onKeyDown, clearId }: Prop) {
+function Input({ placeholder, sizeMode, icon: Icon, iconSize, name, setChat, onKeyDown, clearId }: Prop) {
   const containerStyle = `${styles.container} ${(styles as any)[`container--${sizeMode}`]}`;
   const inputStyle = `${styles.input} ${(styles as any)[`input--${sizeMode}`]}`;
   const iconStyle = (Icon && iconSize) ? `${(styles as any)[`icon--size-${iconSize}`]}` : undefined;
@@ -35,8 +36,8 @@ function Input({ placeholder, sizeMode, icon: Icon, iconSize, setChat, onKeyDown
     }, [clearId]);
   }
 
-  const handleKeyDown = () => {
-    if (onKeyDown) (e: KeyboardEvent<HTMLInputElement>) => onKeyDown(e);
+  const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (onKeyDown) onKeyDown(e);
   }
 
   return (
@@ -44,6 +45,7 @@ function Input({ placeholder, sizeMode, icon: Icon, iconSize, setChat, onKeyDown
       {Icon && <Icon className={iconStyle} />}
       <input
         className={inputStyle}
+        name={name ?? "input"}
         placeholder={placeholder}
         value={localValue}
         onChange={(e) => {

@@ -86,7 +86,7 @@ function SignupPage() {
           <div>
             <div>
               <p>아이디</p>
-              <input type="text" value={id} onChange={(e) => {
+              <input name="userId" type="text" value={id} onChange={(e) => {
                 setId(e.target.value);
                 setIsValid(false);
               }}/>
@@ -94,19 +94,19 @@ function SignupPage() {
             </div>
             <div>
               <p>비밀번호</p>
-              <input type="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
+              <input name="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
             </div>
             <div>
               <p>비밀번호 확인</p>
-              <input type="password" value={checkPassword} onChange={(e) => setCheckPassword(e.target.value)}/>
+              <input name="passwordConfirm" type="password" value={checkPassword} onChange={(e) => setCheckPassword(e.target.value)}/>
             </div>
             <div>
               <p>이름</p>
-              <input type="text" value={name} onChange={(e) => setName(e.target.value)}></input>
+              <input name="name" type="text" value={name} onChange={(e) => setName(e.target.value)}></input>
             </div>
             <div>
               <p>이메일</p>
-              <input type="email" value={email} onChange={(e) => setEmail(e.target.value)}></input>
+              <input name="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)}></input>
             </div>
             <br />
             <div>

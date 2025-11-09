@@ -46,6 +46,7 @@ function LoginPage() {
           <div>
             <div>
               <input
+                name="userId"
                 type="text"
                 value={id} 
                 onChange={(e) => setId(e.target.value)} 
@@ -54,6 +55,7 @@ function LoginPage() {
             </div>
             <div>
               <input 
+                name="password"
                 type="password" 
                 value={password} 
                 onChange={(e) => setPassword(e.target.value)} 
