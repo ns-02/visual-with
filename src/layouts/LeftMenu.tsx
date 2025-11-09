@@ -9,7 +9,7 @@ export type Tool = 'team-chat' | 'files' | 'schedule' | 'todos' | 'friends' | 'd
 interface NavItem {
   id: Tool;
   icon: typeof MessagesSquare;
-  link?: string;
+  path?: string;
 }
 
 type Prop = {
@@ -27,15 +27,15 @@ function LeftMenu({ setTool, onInvite }: Prop) {
   const navigate = useNavigate();
 
   const topNavItems: NavItem[] = [
-    { id: 'team-chat', icon: MessagesSquare, link: 'teamchat' },
-    { id: 'files', icon: FileText, link: 'filesharing' },
-    { id: 'schedule', icon: Calendar1, link: 'schedule' },
-    { id: 'todos', icon: ListTodo, link: 'todolist' },
+    { id: 'team-chat', icon: MessagesSquare, path: 'teamchat' },
+    { id: 'files', icon: FileText, path: 'filesharing' },
+    { id: 'schedule', icon: Calendar1, path: 'schedule' },
+    { id: 'todos', icon: ListTodo, path: 'todolist' },
   ];
 
   const middleNavItems: NavItem[] = [
-    { id: 'friends', icon: Users, link: 'friendlist' },
-    { id: 'direct-chat', icon: MessageSquare, link: 'directchat' },
+    { id: 'friends', icon: Users, path: 'friendlist' },
+    { id: 'direct-chat', icon: MessageSquare, path: 'directchat' },
   ];
 
   const bottomNavItems: NavItem[] = [
@@ -64,11 +64,11 @@ function LeftMenu({ setTool, onInvite }: Prop) {
       <Divider />
       {
         topNavItems.map((item) => {
-          const Icon = item.icon;
+          const { icon } = item;
 
           return (
             <div key={item.id}>
-              <Button to={item.link} onCustomClick={() => handleNavItem(item)} shape='circle' icon={Icon} iconSize={24} />
+              <Button to={item.path} onCustomClick={() => handleNavItem(item)} shape='circle' icon={icon} iconSize={24} />
             </div>
           )
         })
@@ -76,11 +76,11 @@ function LeftMenu({ setTool, onInvite }: Prop) {
       <Divider />
       {
         middleNavItems.map((item) => {
-          const Icon = item.icon;
+          const { icon } = item;
 
           return (
             <div key={item.id}>
-              <Button to={item.link} onCustomClick={() => handleNavItem(item)} shape='circle' icon={Icon} iconSize={24} />
+              <Button to={item.path} onCustomClick={() => handleNavItem(item)} shape='circle' icon={icon} iconSize={24} />
             </div>
           )
         })
@@ -88,11 +88,11 @@ function LeftMenu({ setTool, onInvite }: Prop) {
       <Divider />
       {
         bottomNavItems.map((item) => {
-          const Icon = item.icon;
+          const { icon } = item;
 
           return (
             <div key={item.id}>
-              <Button to={item.link} onCustomClick={() => handleNavItem(item)} shape='circle' icon={Icon} iconSize={24} />
+              <Button to={item.path} onCustomClick={() => handleNavItem(item)} shape='circle' icon={icon} iconSize={24} />
             </div>
           )
         })
