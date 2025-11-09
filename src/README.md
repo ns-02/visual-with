@@ -13,10 +13,12 @@
 - [`assets/` : 이미지, 아이콘](assets/README.md)
 - [`components/` : 그룹 단위의 공용 UI 컴포넌트](components/README.md)
 - `components/ui` : 기본 단위의 공용 UI 컴포넌트
+- [`context/` : 전역 컨텍스트 관리](context/README.md)
 - [`features/` : 실제 기능별 코드](features/README.md)
 - [`hooks/` : 커스텀 훅](hooks/README.md)
 - [`layouts/` : 화면 레이아웃 구조](layouts/README.md)
 - [`pages/` : 라우팅되는 페이지](pages/README.md)
+- [`routes/` : 라우팅 관련 코드](routes/README.md)
 - [`utils/` : 재사용 가능한 함수들](utils/README.md)
 - [`styles/` : 전역 스타일, CSS 변수](styles/README.md)
 - [`stories/` : Storybook 파일](stories/README.md)
