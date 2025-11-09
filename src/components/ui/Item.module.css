@@ -1,0 +1,17 @@
+/* span {
+  margin: 0;
+  padding: 0;
+} */
+
+.item {
+  width: 200px;
+  display: flex;
+  padding: 5px 10px;
+  gap: 12px;
+  align-items: center;
+}
+
+.icon--size-12 {
+  width: 16px;
+  height: 16px;
+}
