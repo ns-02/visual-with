@@ -4,7 +4,7 @@ import ToolHeader from '../components/ToolHeader';
 import styles from './Layouts.module.css'
 
 type Prop = {
-  viewTool: Tool;
+  toolId: Tool;
 }
 
 interface HeaderItem {
@@ -15,7 +15,7 @@ interface HeaderItem {
   icon?: typeof Plus;
 }
 
-function MainHeader({ viewTool }: Prop) {
+function MainHeader({ toolId }: Prop) {
   const headerItems: HeaderItem[] = [
     { id: 'team-chat', label: '팀 채팅' },
     { id: 'files', label: '파일 공유', button: '업로드', icon: Upload, onClick: () => console.log("파일 업로드") },
@@ -25,7 +25,7 @@ function MainHeader({ viewTool }: Prop) {
     { id: 'direct-chat', label: '친구 채팅' }
   ];
 
-  const headerItem = headerItems.filter(({ id }) => id === viewTool );
+  const headerItem = headerItems.filter(({ id }) => id === toolId );
   
   return (
     <div className={styles.header}>

@@ -1,4 +1,3 @@
-import { Dispatch, SetStateAction } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Calendar1, FileText, Link2, ListTodo, LogOut, MessageSquare, MessagesSquare, Users } from 'lucide-react';
 import Button from '../components/ui/Button';
@@ -13,7 +12,6 @@ interface NavItem {
 }
 
 type Prop = {
-  setTool: Dispatch<SetStateAction<Tool>>;
   onInvite: VoidFunction;
 }
 
@@ -23,7 +21,7 @@ function Divider() {
   );
 }
 
-function LeftMenu({ setTool, onInvite }: Prop) {
+function LeftMenu({ onInvite }: Prop) {
   const navigate = useNavigate();
 
   const topNavItems: NavItem[] = [
@@ -38,20 +36,13 @@ function LeftMenu({ setTool, onInvite }: Prop) {
     { id: 'direct-chat', icon: MessageSquare, path: 'directchat' },
   ];
 
-  const bottomNavItems: NavItem[] = [
-    { id: 'log-out', icon: LogOut },
-  ];
+  const bottomNavItem: NavItem = { id: 'log-out', icon: LogOut };
 
-  const handleNavItem = (item: NavItem) => {
-    if (item.id === 'log-out') {
-      // 로그아웃 처리
+  const handleLogout = () => {
+    // 로그아웃 처리
 
-      navigate("/");
-
-      return;
-    }
-    setTool(item.id)
-  }
+    navigate("/");
+  };
 
   return (
     <section className={styles.leftmenu}>
@@ -68,7 +59,7 @@ function LeftMenu({ setTool, onInvite }: Prop) {
 
           return (
             <div key={item.id}>
-              <Button to={item.path} onCustomClick={() => handleNavItem(item)} shape='circle' icon={icon} iconSize={24} />
+              <Button to={item.path} shape='circle' icon={icon} iconSize={24} />
             </div>
           )
         })
@@ -80,23 +71,15 @@ function LeftMenu({ setTool, onInvite }: Prop) {
 
           return (
             <div key={item.id}>
-              <Button to={item.path} onCustomClick={() => handleNavItem(item)} shape='circle' icon={icon} iconSize={24} />
+              <Button to={item.path} shape='circle' icon={icon} iconSize={24} />
             </div>
           )
         })
       }
       <Divider />
-      {
-        bottomNavItems.map((item) => {
-          const { icon } = item;
-
-          return (
-            <div key={item.id}>
-              <Button to={item.path} onCustomClick={() => handleNavItem(item)} shape='circle' icon={icon} iconSize={24} />
-            </div>
-          )
-        })
-      }
+      <div>
+        <Button onCustomClick={handleLogout} shape='circle' icon={bottomNavItem.icon} iconSize={24} />
+      </div>
     </section>
   )
 }

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Outlet } from 'react-router-dom'
 import LeftMenu, { Tool } from "../../layouts/LeftMenu";
 import RightSection from "../../layouts/RightSection";
@@ -14,8 +14,7 @@ interface PathIdList {
 
 function MainPage() {
   const [ on, setInvite ] = useState(false);
-  const [ viewTool, setTool ] = useState<Tool>('team-chat');
-  const [ path ] = usePath();
+  const [ path ] = usePath();  
 
   const pathIdList: PathIdList[] = [
     { id: 'team-chat', path: 'teamchat' },
@@ -30,9 +29,9 @@ function MainPage() {
 
   return (
     <>
-      <LeftMenu setTool={setTool} onInvite={() => { setInvite(!on); }} ></LeftMenu>
+      <LeftMenu onInvite={() => { setInvite(!on); }} ></LeftMenu>
       <RightSection>
-        <MainHeader viewTool={toolId as Tool} />
+        <MainHeader toolId={toolId as Tool} />
         <MainBody>
           <Outlet />
         </MainBody>
