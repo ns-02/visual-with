@@ -13,3 +13,6 @@
 - [`friendList/` : 친구 목록](friendList/README.md)
 - [`directChat/` : 친구 채팅](directChat/README.md)
 - [`invite/` : 초대](invite/README.md)
+
+## 완료된 것
+- teamManager 폴더 생성
