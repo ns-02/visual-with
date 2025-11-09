@@ -11,7 +11,7 @@ interface Props {
 
 const Item = (props: Props) => {
   const { type, text, icon: Icon } = props;
-  const iconStyle = `${(styles as any)[`icon--size-12`]}`;
+  const iconStyle = `${(styles as any)[`icon--size-16`]}`;
 
   if (type === 'add') {
     return (
