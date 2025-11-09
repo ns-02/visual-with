@@ -11,26 +11,31 @@ import SchedulePage from './features/schedule/pages/SchedulePage';
 import TodoListPage from './features/todoList/pages/TodoListPage';
 import FriendListPage from './features/friendList/pages/FriendListPage';
 import DirectPage from './features/directChat/pages/DirectPage';
-import './styles/global.css'
+import { ToolProvider } from './context/ToolContext';
+import { RouteWatcher } from './routes/RouteWatcher'
+import './styles/global.css';
 
 const App: React.FC = () => {
 
   return (
-    <Routes>
-      <Route path="/" element={<StartPage />} />
-      <Route path="*" element={<NotFoundPage />} />
-      <Route path="/login" element={<LoginPage />} />
-      <Route path="/signup" element={<SignupPage />} />
-      <Route path="/signup-result" element={<SignupResultPage />} />
-      <Route path="/main" element={<MainPage />} >
-        <Route path="teamchat" element={<ChatPage />} />
-        <Route path="filesharing" element={<FileSharingPage />} />
-        <Route path="schedule" element={<SchedulePage />} />
-        <Route path="todolist" element={<TodoListPage />} />
-        <Route path="friendlist" element={<FriendListPage />} />
-        <Route path="directchat" element={<DirectPage />} />
-      </Route>
-    </Routes>
+    <ToolProvider>
+      <RouteWatcher />
+      <Routes>
+        <Route path="/" element={<StartPage />} />
+        <Route path="*" element={<NotFoundPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/signup" element={<SignupPage />} />
+        <Route path="/signup-result" element={<SignupResultPage />} />
+        <Route path="/main" element={<MainPage />} >
+          <Route path="teamchat" element={<ChatPage />} />
+          <Route path="filesharing" element={<FileSharingPage />} />
+          <Route path="schedule" element={<SchedulePage />} />
+          <Route path="todolist" element={<TodoListPage />} />
+          <Route path="friendlist" element={<FriendListPage />} />
+          <Route path="directchat" element={<DirectPage />} />
+        </Route>
+      </Routes>
+    </ToolProvider>
   )
 }
 

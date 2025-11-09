@@ -2,10 +2,7 @@ import { Plus, Upload } from 'lucide-react';
 import { Tool } from './LeftMenu';
 import ToolHeader from '../components/ToolHeader';
 import styles from './Layouts.module.css'
-
-type Prop = {
-  toolId: Tool;
-}
+import { useTool } from '../context/ToolContext';
 
 interface HeaderItem {
   id: Tool;
@@ -15,7 +12,9 @@ interface HeaderItem {
   icon?: typeof Plus;
 }
 
-function MainHeader({ toolId }: Prop) {
+function MainHeader() {
+  const { toolId } = useTool();
+
   const headerItems: HeaderItem[] = [
     { id: 'team-chat', label: '팀 채팅' },
     { id: 'files', label: '파일 공유', button: '업로드', icon: Upload, onClick: () => console.log("파일 업로드") },
