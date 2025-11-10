@@ -20,17 +20,18 @@
 }
 
 .title {
-  margin: 0 0 15px 0;
+  margin: 0 0 12px 0;
   font-size: 18px;
 }
 
 .description {
-  margin: 0;
+  margin-bottom: 4px;
+  color: #666;
 }
 
 .btnfield {
   display: flex;
-  margin-top: 25px;
+  margin-top: 18px;
   justify-content: flex-end;
   gap: 6px;
 }

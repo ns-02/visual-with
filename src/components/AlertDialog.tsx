@@ -8,12 +8,13 @@ interface DialogProps {
   onOpenChange?: Dispatch<SetStateAction<boolean>>;
   title?: string;
   btnName?: string;
+  description?: string;
   onClick?: () => void;
   children?: React.ReactNode;
 }
 
 const AlertDialog = ({
-  open, onOpenChange, title = '제목', btnName = '확인', children
+  open, onOpenChange, title = '제목', btnName = '확인', description = '설명', children
 }: DialogProps) => {
   return (
     <RadixAlertDialog.Root open={open} onOpenChange={onOpenChange} >
@@ -21,7 +22,7 @@ const AlertDialog = ({
         <RadixAlertDialog.Overlay className={styles.overlay} />
         <RadixAlertDialog.Content className={styles.content}>
           <RadixAlertDialog.Title className={styles.title}>{title}</RadixAlertDialog.Title>
-          <RadixAlertDialog.Description className={styles.description} />
+          <RadixAlertDialog.Description className={styles.description}>{description}</RadixAlertDialog.Description>
           {children}
           <div className={styles.btnfield}>
             <RadixAlertDialog.Cancel asChild>

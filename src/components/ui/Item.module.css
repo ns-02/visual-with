@@ -3,10 +3,18 @@
   padding: 0;
 } */
 
-.item {
-  width: 200px;
+.itemadd {
   display: flex;
+  width: 200px;
   padding: 5px 10px;
   gap: 12px;
   align-items: center;
+}
+
+.itemlist {
+  display: flex;
+  width: 200px;
+  padding: 5px 10px;
+  align-items: center;
+  justify-content: space-between;
 }
