@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
 import Dialog from "../../../components/Dialog";
+import Field from "../../../components/ui/Field";
 
 interface Props {
   open: boolean;
@@ -7,16 +8,15 @@ interface Props {
 }
 
 const CreateTeamDialog = ({ open, onOpenChange }: Props) => {
-  const dialogInfo = {
-    title: "팀 생성",
-    fields: [
-      { label: "팀 이름", input: "팀 이름을 입력하세요" },
-    ],
-    btnOk: { name: "생성", onClick: () => {} }
-  }
-
   return (
-    <Dialog open={open} onOpenChange={onOpenChange} dialogInfo={dialogInfo} />
+    <Dialog
+      title="팀 생성"
+      btnName="생성"
+      open={open} 
+      onOpenChange={onOpenChange}
+    >
+      <Field label="팀 이름" input="팀 이름을 입력하세요" />
+    </Dialog>
   )
 }
 

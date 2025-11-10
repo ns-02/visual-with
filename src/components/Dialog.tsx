@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import * as RadixDialog from '@radix-ui/react-dialog';
 import styles from './Dialog.module.css';
 import Field from "./ui/Field";
@@ -8,20 +8,20 @@ import { X } from 'lucide-react';
 interface DialogProps {
   open?: boolean;
   onOpenChange?: Dispatch<SetStateAction<boolean>>; 
+  title?: string;
+  btnName?: string;
+  onClick?: () => void;
   dialogInfo?: {
     title: string;
     fields: { label: string, input: string }[]
     btnOk: { name: string, onClick?: () => void }
-  }
+  },
+  children?: React.ReactNode;
 }
 
-const Dialog = ({ open, onOpenChange, dialogInfo }: DialogProps) => {
-  const { 
-    title = '제목', 
-    fields, 
-    btnOk = { name: '확인' }
-  } = dialogInfo ?? {};
-
+const Dialog = ({ 
+  open, onOpenChange, title = '제목', btnName = '확인', dialogInfo, children 
+}: DialogProps) => {
   return (
     <RadixDialog.Root open={open} onOpenChange={onOpenChange} >
       <RadixDialog.Portal>
@@ -29,19 +29,13 @@ const Dialog = ({ open, onOpenChange, dialogInfo }: DialogProps) => {
         <RadixDialog.Content className={styles.content}>
           <RadixDialog.Title className={styles.title}>{title}</RadixDialog.Title>
           <RadixDialog.Description className={styles.description} />
-          {
-            fields?.map((field) => {
-              return (
-                <Field label={field.label} input={field.input} />
-              )
-            })
-          }
+          {children}
           <div className={styles.btnfield}>
             <RadixDialog.Close asChild>
               <Button text="취소"></Button>
             </RadixDialog.Close>
             <RadixDialog.Close asChild>
-              <Button text={btnOk.name}></Button>
+              <Button text={btnName}></Button>
             </RadixDialog.Close>
           </div>
           <RadixDialog.Close asChild>
