@@ -20,7 +20,6 @@ type Prop = {
 function Input({ placeholder, sizeMode, icon: Icon, iconSize, name, setChat, onKeyDown, clearId }: Prop) {
   const containerStyle = `${styles.container} ${(styles as any)[`container--${sizeMode}`]}`;
   const inputStyle = `${styles.input} ${(styles as any)[`input--${sizeMode}`]}`;
-  const iconStyle = (Icon && iconSize) ? `${(styles as any)[`icon--size-${iconSize}`]}` : undefined;
   const [ localValue, setLocalValue ] = useState("");
   const debouncedRef = useRef((value: any) => {});
 
@@ -42,7 +41,7 @@ function Input({ placeholder, sizeMode, icon: Icon, iconSize, name, setChat, onK
 
   return (
     <div className={containerStyle}>
-      {Icon && <Icon className={iconStyle} />}
+      {Icon && <Icon size={iconSize} />}
       <input
         className={inputStyle}
         name={name ?? "input"}

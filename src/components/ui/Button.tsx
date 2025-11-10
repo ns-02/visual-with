@@ -18,7 +18,6 @@ interface ButtonProps {
 const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps>((props, ref) => {
   const { text, shape = 'normal', to, icon: Icon, iconSize, onCustomClick, ...rest } = props;
   const btnStyle = `${styles.button} ${(styles as any)[shape]}`;
-  const iconStyle = (Icon && iconSize) ? `${(styles as any)[`icon--size-${iconSize}`]}` : undefined;
 
   // Radix와 커스텀 클릭 둘 다 동작하기 위함
   const handleClick: React.MouseEventHandler<HTMLAnchorElement | HTMLButtonElement> = (e) => {
@@ -35,7 +34,7 @@ const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPro
         onClick={handleClick} 
         {...rest}
       >
-        {Icon && <Icon className={iconStyle} />}
+        {Icon && <Icon size={iconSize} />}
       </Link>
     )
   }
@@ -47,7 +46,7 @@ const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPro
       onClick={handleClick}
       {...rest}
     >
-      {Icon && <Icon className={iconStyle} />}
+      {Icon && <Icon size={iconSize} />}
       {text && text}
     </button>
   )

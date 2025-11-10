@@ -3,6 +3,7 @@ import * as RadixDialog from '@radix-ui/react-dialog';
 import styles from './Dialog.module.css';
 import Field from "./ui/Field";
 import Button from "./ui/Button";
+import { X } from 'lucide-react';
 
 interface DialogProps {
   open?: boolean;
@@ -28,7 +29,13 @@ const Dialog = ({ open, onOpenChange, dialogInfo }: DialogProps) => {
         <RadixDialog.Content className={styles.content}>
           <RadixDialog.Title className={styles.title}>{title}</RadixDialog.Title>
           <RadixDialog.Description className={styles.description} />
-          <Field />
+          {
+            fields?.map((field) => {
+              return (
+                <Field label={field.label} input={field.input} />
+              )
+            })
+          }
           <div className={styles.btnfield}>
             <RadixDialog.Close asChild>
               <Button text="취소"></Button>
@@ -37,6 +44,25 @@ const Dialog = ({ open, onOpenChange, dialogInfo }: DialogProps) => {
               <Button text={btnOk.name}></Button>
             </RadixDialog.Close>
           </div>
+          <RadixDialog.Close asChild>
+            <button style={{
+              position: 'absolute',
+              top: '8px',
+              right: '8px',
+              display: 'inline-flex',
+              width: 24,
+              height: 24,
+              margin: 0,
+              padding: 0,
+              justifyContent: 'center',
+              alignItems: 'center',
+              border: 'none',
+              backgroundColor: 'white',
+              cursor: 'pointer',
+            }}>
+              <X size={14} />
+            </button>
+          </RadixDialog.Close>
         </RadixDialog.Content>
       </RadixDialog.Portal>
     </RadixDialog.Root>

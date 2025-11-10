@@ -1,10 +1,15 @@
 import styles from "./Field.module.css";
 
-const Field = () => {
+type Prop = {
+  label?: string;
+  input?: string;
+}
+
+const Field = ({ label, input }: Prop) => {
   return (
     <div className={styles.field}>
-      <label className={styles.label}>라벨</label>
-      <input className={styles.input} name="input" placeholder="입력" />
+      <label className={styles.label}>{label}</label>
+      <input className={styles.input} name="input" placeholder={input} />
     </div>
   )
 }

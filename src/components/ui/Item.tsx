@@ -14,7 +14,6 @@ type CombinedProps = BaseProps & React.ComponentPropsWithoutRef<'div'>;
 
 const Item = React.forwardRef<HTMLDivElement, CombinedProps>((props, ref) => {
   const { type, text, icon: Icon, ...rest } = props;
-  const iconStyle = `${(styles as any)[`icon--size-16`]}`;
 
   if (type === 'add') {
     return (
@@ -23,7 +22,7 @@ const Item = React.forwardRef<HTMLDivElement, CombinedProps>((props, ref) => {
         className={styles.item}
         {...rest}
       >
-        <Plus className={iconStyle} />
+        <Plus size={16} />
         <span>{text}</span>
       </div>
     )
