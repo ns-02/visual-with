@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import DropdownButton from "../components/DropdownButton";
+import DropdownButton from "../components/Dropdown";
 import { fn } from 'storybook/internal/test';
 
 const meta = {

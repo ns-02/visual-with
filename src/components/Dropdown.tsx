@@ -1,7 +1,7 @@
 import React from "react";
 import { DropdownMenu } from "radix-ui";
 import Button from "./ui/Button";
-import styles from './DropdownButton.module.css';
+import styles from './Dropdown.module.css';
 import Item from "./ui/Item";
 
 interface Props {
@@ -9,7 +9,7 @@ interface Props {
   children?: React.ReactNode;
 }
 
-const DropdownButton = (props: Props) => {
+const Dropdown = (props: Props) => {
   const { text, children } = props;
 
   return (
@@ -41,4 +41,4 @@ const DropdownButton = (props: Props) => {
   )
 }
 
-export default DropdownButton;
+export default Dropdown;

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Calendar1, FileText, Link2, ListTodo, LogOut, MessageSquare, MessagesSquare, Users } from 'lucide-react';
 import Button from '../components/ui/Button';
 import styles from './Layouts.module.css'
-import DropdownButton from '../components/DropdownButton';
+import DropdownButton from '../components/Dropdown';
 
 export type Tool = 'team-chat' | 'files' | 'schedule' | 'todos' | 'friends' | 'direct-chat' | 'log-out'
 
