@@ -1,8 +1,7 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import * as RadixDialog from '@radix-ui/react-dialog';
-import styles from './Dialog.module.css';
-import Field from "./ui/Field";
 import Button from "./ui/Button";
+import styles from './Dialog.module.css';
 import { X } from 'lucide-react';
 
 interface DialogProps {
@@ -11,16 +10,11 @@ interface DialogProps {
   title?: string;
   btnName?: string;
   onClick?: () => void;
-  dialogInfo?: {
-    title: string;
-    fields: { label: string, input: string }[]
-    btnOk: { name: string, onClick?: () => void }
-  },
   children?: React.ReactNode;
 }
 
 const Dialog = ({ 
-  open, onOpenChange, title = '제목', btnName = '확인', dialogInfo, children 
+  open, onOpenChange, title = '제목', btnName = '확인', children 
 }: DialogProps) => {
   return (
     <RadixDialog.Root open={open} onOpenChange={onOpenChange} >

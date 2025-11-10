@@ -1,11 +1,11 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import Dialog from '../components/Dialog';
+import AlertDialog from '../components/AlertDialog';
 
 // 1. 메타데이터 정의: Storybook에 컴포넌트를 등록하고 open 상태 제어판을 설정
-const meta: Meta<typeof Dialog> = {
-  title: 'Common/Dialog',
-  component: Dialog,
+const meta: Meta<typeof AlertDialog> = {
+  title: 'Common/AlertDialog',
+  component: AlertDialog,
   argTypes: {
     // open 속성을 제어판에 노출 (다이얼로그 상태를 수동으로 제어 가능)
     open: { control: 'boolean' },
@@ -15,7 +15,7 @@ const meta: Meta<typeof Dialog> = {
 };
 export default meta;
 
-type Story = StoryObj<typeof Dialog>;
+type Story = StoryObj<typeof AlertDialog>;
 
 // 2. 렌더링 템플릿: 최소한의 상태 관리 로직과 테스트용 버튼 추가
 const Template = (args: any) => {
@@ -33,7 +33,7 @@ const Template = (args: any) => {
       <button onClick={() => setIsOpen(true)}>다이얼로그 열기</button>
       
       {/* CDialog 렌더링: Storybook Args와 내부 상태를 연결 */}
-      <Dialog 
+      <AlertDialog 
         {...args} 
         open={isOpen} 
         onOpenChange={(newOpen) => {
@@ -43,7 +43,7 @@ const Template = (args: any) => {
       >
         {/* Dialog 내부에 들어갈 더미 내용물 (필수) */}
         <p>이것은 Dialog의 내용입니다.</p>
-      </Dialog>
+      </AlertDialog>
     </>
   );
 };
