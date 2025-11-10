@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
-import Dialog from "../../../components/Dialog";
+import Dialog from "../../../components/dialogs/Dialog";
 import Field from "../../../components/ui/Field";
 
 interface Props {

@@ -1,6 +1,6 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import * as RadixDialog from '@radix-ui/react-dialog';
-import Button from "./ui/Button";
+import Button from "../ui/Button";
 import styles from './Dialog.module.css';
 import { X } from 'lucide-react';
 

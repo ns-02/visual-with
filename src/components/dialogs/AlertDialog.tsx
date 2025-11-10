@@ -1,6 +1,6 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import * as RadixAlertDialog from '@radix-ui/react-alert-dialog';
-import Button from "./ui/Button";
+import Button from "../ui/Button";
 import styles from './Dialog.module.css';
 
 interface DialogProps {

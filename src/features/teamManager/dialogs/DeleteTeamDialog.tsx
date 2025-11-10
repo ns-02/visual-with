@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
-import AlertDialog from "../../../components/AlertDialog";
+import AlertDialog from "../../../components/dialogs/AlertDialog";
 import Field from "../../../components/ui/Field";
 
 interface Props {

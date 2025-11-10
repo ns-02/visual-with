@@ -1,6 +1,10 @@
 import { Dispatch, SetStateAction } from "react";
-import Dialog from "../../../components/Dialog";
-import Field from "../../../components/ui/Field";
+import Dialog from "../../../components/dialogs/Dialog";
+import Input from "../../../components/dialogs/ui/Input";
+import Group from "../../../components/dialogs/ui/Group";
+import Button from "../../../components/ui/Button";
+import { Copy } from "lucide-react";
+import Row from "../../../components/dialogs/ui/Row";
 
 interface Props {
   open: boolean;
@@ -14,10 +18,17 @@ const InviteTeamDialog = ({ open, onOpenChange }: Props) => {
       open={open} 
       onOpenChange={onOpenChange}
     >
-      <p>[ 게스트 초대 (v) ] [ 유저 초대 ]</p>
-      <b>초대 링크</b>
-      <p>아래 링크를 복사하여 팀원을 초대하세요.</p>
-      <Field label="" input="" />
+      <Group>
+        <p>[ 게스트 초대 (v) ] [ 유저 초대 ]</p>
+      </Group>
+      <Group>
+        <b>초대 링크</b>
+        <p>아래 링크를 복사하여 팀원을 초대하세요.</p>
+      </Group>
+      <Row>
+        <Input value="https://example.com/invite/개발팀/abc123" />
+        <Button icon={Copy} iconSize={16} />
+      </Row>
     </Dialog>
   )
 }
