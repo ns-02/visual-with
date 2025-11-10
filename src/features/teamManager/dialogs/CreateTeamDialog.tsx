@@ -20,6 +20,4 @@ const CreateTeamDialog = ({ open, onOpenChange }: Props) => {
   )
 }
 
-CreateTeamDialog.componentName = 'CreateTeam';
-
 export default CreateTeamDialog;

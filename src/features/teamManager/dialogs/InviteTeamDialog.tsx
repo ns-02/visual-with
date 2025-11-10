@@ -19,9 +19,7 @@ const InviteTeamDialog = ({ open, onOpenChange }: Props) => {
       onOpenChange={onOpenChange}
       viewButton={false}
     >
-      <Group>
-        <p>[ 게스트 초대 (v) ] [ 유저 초대 ]</p>
-      </Group>
+      <Group><p>[ 게스트 초대 (v) ] [ 유저 초대 ]</p></Group>
       <Group>
         <p>초대 링크</p>
         <p style={{ color: '#666' }}>아래 링크를 복사하여 팀원을 초대하세요.</p>
@@ -33,7 +31,5 @@ const InviteTeamDialog = ({ open, onOpenChange }: Props) => {
     </Dialog>
   )
 }
-
-InviteTeamDialog.componentName = 'CreateTeam';
 
 export default InviteTeamDialog;
