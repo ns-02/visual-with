@@ -1,3 +1,4 @@
+import React from "react";
 import { DropdownMenu } from "radix-ui";
 import Button from "./ui/Button";
 import styles from './DropdownButton.module.css';
@@ -5,10 +6,11 @@ import Item from "./ui/Item";
 
 interface Props {
   text?: string;
+  children?: React.ReactNode;
 }
 
 const DropdownButton = (props: Props) => {
-  const { text } = props;
+  const { text, children } = props;
 
   return (
     <DropdownMenu.Root>
@@ -27,7 +29,12 @@ const DropdownButton = (props: Props) => {
         </DropdownMenu.Item>
         <DropdownMenu.Separator className={styles.separator} />
         <DropdownMenu.Item>
-          <Item type="add" text="팀 생성" />
+          {
+            children ?
+            <>
+            </> : 
+            <Item type="add" text="팀 생성" />
+          }
         </DropdownMenu.Item>
       </DropdownMenu.Content>
     </DropdownMenu.Root>

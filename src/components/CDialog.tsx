@@ -1,8 +1,23 @@
 import { Dialog } from "radix-ui";
 import styles from './CDialog.module.css';
 import Field from "./ui/Field";
+import Button from "./ui/Button";
 
-const CDialog = () => {
+interface DialogInfo {
+  dialogInfo?: {
+    title: string;
+    fields: { label: string, input: string }[]
+    btnOk: { name: string, onClick?: () => void }
+  }
+}
+
+const CDialog = ({ dialogInfo }: DialogInfo) => {
+  const { 
+    title = '제목', 
+    fields, 
+    btnOk = { name: '확인' }
+  } = dialogInfo ?? {};
+
   return (
     <Dialog.Root>
       <Dialog.Trigger asChild>
@@ -11,15 +26,15 @@ const CDialog = () => {
       <Dialog.Portal>
         <Dialog.Overlay className={styles.overlay} />
         <Dialog.Content className={styles.content}>
-          <Dialog.Title className={styles.title}>제목</Dialog.Title>
+          <Dialog.Title className={styles.title}>{title}</Dialog.Title>
           <Dialog.Description className={styles.description} />
           <Field />
           <div className={styles.btnfield}>
             <Dialog.Close asChild>
-              <button>취소</button>
+              <Button text="취소"></Button>
             </Dialog.Close>
             <Dialog.Close asChild>
-              <button>확인</button>
+              <Button text={btnOk.name}></Button>
             </Dialog.Close>
           </div>
         </Dialog.Content>
