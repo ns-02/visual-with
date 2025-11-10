@@ -6,14 +6,16 @@
 
 ## 파일 및 폴더
 - [`../`](../README.md)
+- [`teamManager/` : 팀 관리](teamManager/README.md)
 - [`teamChat/` : 팀 채팅](teamChat/README.md)
 - [`fileSharing/` : 파일 공유](fileSharing/README.md)
 - [`schedule/` : 일정 관리](schedule/README.md)
 - [`todoList/` : 할 일 목록](todoList/README.md)
 - [`friendList/` : 친구 목록](friendList/README.md)
 - [`directChat/` : 친구 채팅](directChat/README.md)
-- [`teamManager/` : 팀 관리](teamManager/README.md)
-- [`invite/` : 초대](invite/README.md)
 
 ## 완료된 것
 - teamManager 폴더 생성
+- invite 폴더를 팀 관리 폴더와 통합
+- misc (미분류) 폴더 생성
+- 로그아웃 다이얼로그 정의

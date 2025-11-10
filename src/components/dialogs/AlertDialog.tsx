@@ -14,7 +14,7 @@ interface DialogProps {
 }
 
 const AlertDialog = ({
-  open, onOpenChange, title = '제목', btnName = '확인', description = '설명', children
+  open, onOpenChange, title = '제목', btnName = '확인', description = '설명', children, onClick
 }: DialogProps) => {
   return (
     <RadixAlertDialog.Root open={open} onOpenChange={onOpenChange} >
@@ -28,7 +28,7 @@ const AlertDialog = ({
             <RadixAlertDialog.Cancel asChild>
               <Button text="취소"></Button>
             </RadixAlertDialog.Cancel>
-            <RadixAlertDialog.Action asChild>
+            <RadixAlertDialog.Action asChild onClick={onClick}>
               <Button text={btnName}></Button>
             </RadixAlertDialog.Action>
           </div>

@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { Calendar1, FileText, Link2, ListTodo, LogOut, MessageSquare, MessagesSquare, Users } from 'lucide-react';
 import Button from '../components/ui/Button';
 import styles from './Layouts.module.css'
 import SelectTeamDropdown from '../features/teamManager/components/SelectTeamDropdown';
 import InviteTeamDialog from '../features/teamManager/dialogs/InviteTeamDialog';
+import LogoutDialog from '../features/misc/dialogs/LogoutDialog';
 
 export type Tool = 'team-chat' | 'files' | 'schedule' | 'todos' | 'friends' | 'direct-chat' | 'log-out'
 
@@ -26,7 +26,7 @@ function Divider() {
 
 function LeftMenu({ children }: WrapperProps) {
   const [isInviteTeamDialogOpen, setIsInviteTeamDialogOpen] = useState(false);
-  const navigate = useNavigate();
+  const [isLogoutDialogOpen, setIsLogoutDialogOpen] = useState(false);
 
   const topNavItems: NavItem[] = [
     { id: 'team-chat', icon: MessagesSquare, path: 'teamchat' },
@@ -42,12 +42,6 @@ function LeftMenu({ children }: WrapperProps) {
 
   const bottomNavItem: NavItem = { id: 'log-out', icon: LogOut };
 
-  const handleLogout = () => {
-    // 로그아웃 처리
-
-    navigate("/");
-  };
-
   return (
     <section className={styles.leftmenu}>
       <div>
@@ -55,6 +49,7 @@ function LeftMenu({ children }: WrapperProps) {
         {children}
       </div>
       <InviteTeamDialog open={isInviteTeamDialogOpen} onOpenChange={setIsInviteTeamDialogOpen} />
+      <LogoutDialog open={isLogoutDialogOpen} onOpenChange={setIsLogoutDialogOpen} />
       <div>
         <Button onCustomClick={() => setIsInviteTeamDialogOpen(true)} shape='circle' icon={Link2} iconSize={24} />
       </div>
@@ -84,7 +79,7 @@ function LeftMenu({ children }: WrapperProps) {
       }
       <Divider />
       <div>
-        <Button onCustomClick={handleLogout} shape='circle' icon={bottomNavItem.icon} iconSize={24} />
+        <Button onCustomClick={() => setIsLogoutDialogOpen(true)} shape='circle' icon={bottomNavItem.icon} iconSize={24} />
       </div>
     </section>
   )
