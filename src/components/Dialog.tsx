@@ -1,6 +1,6 @@
-import { Dispatch, SetStateAction, useEffect } from 'react';
+import { Dispatch, SetStateAction } from 'react';
 import * as RadixDialog from '@radix-ui/react-dialog';
-import styles from './CDialog.module.css';
+import styles from './Dialog.module.css';
 import Field from "./ui/Field";
 import Button from "./ui/Button";
 
@@ -14,7 +14,7 @@ interface DialogProps {
   }
 }
 
-const CDialog = ({ open, onOpenChange, dialogInfo }: DialogProps) => {
+const Dialog = ({ open, onOpenChange, dialogInfo }: DialogProps) => {
   const { 
     title = '제목', 
     fields, 
@@ -43,4 +43,4 @@ const CDialog = ({ open, onOpenChange, dialogInfo }: DialogProps) => {
   )
 };
 
-export default CDialog;
+export default Dialog;

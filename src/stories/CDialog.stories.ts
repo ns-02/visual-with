@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import CDialog from '../components/CDialog';
+import CDialog from '../components/Dialog';
 import { fn } from 'storybook/internal/test';
 
 const meta = {

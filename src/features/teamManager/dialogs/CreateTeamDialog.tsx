@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
-import CDialog from "../../../components/CDialog";
+import Dialog from "../../../components/Dialog";
 
 interface Props {
   open: boolean;
@@ -16,7 +16,7 @@ const CreateTeamDialog = ({ open, onOpenChange }: Props) => {
   }
 
   return (
-    <CDialog open={open} onOpenChange={onOpenChange} dialogInfo={dialogInfo} />
+    <Dialog open={open} onOpenChange={onOpenChange} dialogInfo={dialogInfo} />
   )
 }
 
