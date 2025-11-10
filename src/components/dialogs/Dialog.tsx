@@ -9,12 +9,13 @@ interface DialogProps {
   onOpenChange?: Dispatch<SetStateAction<boolean>>; 
   title?: string;
   btnName?: string;
+  viewButton?: boolean;
   onClick?: () => void;
   children?: React.ReactNode;
 }
 
 const Dialog = ({ 
-  open, onOpenChange, title = '제목', btnName = '확인', children 
+  open, onOpenChange, title = '제목', btnName = '확인', viewButton = true, children
 }: DialogProps) => {
   return (
     <RadixDialog.Root open={open} onOpenChange={onOpenChange} >
@@ -24,14 +25,17 @@ const Dialog = ({
           <RadixDialog.Title className={styles.title}>{title}</RadixDialog.Title>
           <RadixDialog.Description className={styles.description} />
           {children}
-          <div className={styles.btnfield}>
-            <RadixDialog.Close asChild>
-              <Button text="취소"></Button>
-            </RadixDialog.Close>
-            <RadixDialog.Close asChild>
-              <Button text={btnName}></Button>
-            </RadixDialog.Close>
-          </div>
+          {
+            viewButton && <div className={styles.btnfield}>
+              <RadixDialog.Close asChild>
+                <Button text="취소"></Button>
+              </RadixDialog.Close>
+              <RadixDialog.Close asChild>
+                <Button text={btnName}></Button>
+              </RadixDialog.Close>
+            </div>
+          }
+          
           <RadixDialog.Close asChild>
             <button style={{
               position: 'absolute',
