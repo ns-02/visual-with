@@ -12,9 +12,7 @@ function MainPage() {
 
   return (
     <>
-      <LeftMenu onInvite={() => { setInvite(!on); }} >
-        <CreateTeamDialog />
-      </LeftMenu>
+      <LeftMenu onInvite={() => { setInvite(!on); }} />
       <RightSection>
         <MainHeader />
         <MainBody>

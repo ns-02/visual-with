@@ -13,7 +13,7 @@ const Dropdown = (props: Props) => {
   const { text, children } = props;
 
   return (
-    <DropdownMenu.Root>
+    <DropdownMenu.Root onOpenChange={(open) => console.log('Dropdown: open changed ->', open)}>
       <DropdownMenu.Trigger asChild>
         <Button text={text} shape="square" />
 	    </DropdownMenu.Trigger>
@@ -27,15 +27,8 @@ const Dropdown = (props: Props) => {
         <DropdownMenu.Item onClick={() => {}}>
           <Item type="list" text="운영팀" />
         </DropdownMenu.Item>
-        <DropdownMenu.Separator className={styles.separator} />
-        <DropdownMenu.Item>
-          {
-            children ?
-            <>
-            </> : 
-            <Item type="add" text="팀 생성" />
-          }
-        </DropdownMenu.Item>
+  <DropdownMenu.Separator className={styles.separator} />
+  {children}
       </DropdownMenu.Content>
     </DropdownMenu.Root>
   )

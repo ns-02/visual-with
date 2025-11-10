@@ -12,6 +12,7 @@
 - [`todoList/` : 할 일 목록](todoList/README.md)
 - [`friendList/` : 친구 목록](friendList/README.md)
 - [`directChat/` : 친구 채팅](directChat/README.md)
+- [`teamManager/` : 팀 관리](teamManager/README.md)
 - [`invite/` : 초대](invite/README.md)
 
 ## 완료된 것

@@ -1,0 +1,13 @@
+
+---
+## 📂 `features/teamManager/README.md`
+
+팀 관리와 관련된 모든 코드 모음
+
+## 구조
+- [`../`](../README.md)
+- `components/` : teamManager에서 사용하는 전용 컴포넌트
+- `dialogs/` : teamManager의 전용 다이얼로그
+
+## 버그 기록
+- 드롭다운과 다이얼로그가 잘못된 동작을 일으킴. 드롭다운과 다이얼로그가 동시에 나타났다 사라지거나, 다이얼로그가 드롭다운의 트리거를 눌렀을 때 나타남. 문제의 원인은 드롭다운 메뉴의 자식 요소로 다이얼로그가 포함되어 있어, 드롭다운이 사라지면 다이얼로그도 사라졌던 것. SelectTeamDropdown에서, CreateTeamDialog를 Dropdown 외부로 분리하여 문제를 해결함.

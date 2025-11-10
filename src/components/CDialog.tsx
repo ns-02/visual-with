@@ -1,9 +1,12 @@
-import { Dialog } from "radix-ui";
+import { Dispatch, SetStateAction, useEffect } from 'react';
+import * as RadixDialog from '@radix-ui/react-dialog';
 import styles from './CDialog.module.css';
 import Field from "./ui/Field";
 import Button from "./ui/Button";
 
-interface DialogInfo {
+interface DialogProps {
+  open?: boolean;
+  onOpenChange?: Dispatch<SetStateAction<boolean>>; 
   dialogInfo?: {
     title: string;
     fields: { label: string, input: string }[]
@@ -11,7 +14,11 @@ interface DialogInfo {
   }
 }
 
-const CDialog = ({ dialogInfo }: DialogInfo) => {
+const CDialog = ({ open, onOpenChange, dialogInfo }: DialogProps) => {
+  useEffect(() => {
+    console.log('CDialog: prop open ->', open);
+  }, [open]);
+
   const { 
     title = '제목', 
     fields, 
@@ -19,27 +26,24 @@ const CDialog = ({ dialogInfo }: DialogInfo) => {
   } = dialogInfo ?? {};
 
   return (
-    <Dialog.Root>
-      <Dialog.Trigger asChild>
-        <button>버튼</button>
-      </Dialog.Trigger>
-      <Dialog.Portal>
-        <Dialog.Overlay className={styles.overlay} />
-        <Dialog.Content className={styles.content}>
-          <Dialog.Title className={styles.title}>{title}</Dialog.Title>
-          <Dialog.Description className={styles.description} />
+    <RadixDialog.Root open={open} onOpenChange={onOpenChange} >
+      <RadixDialog.Portal>
+        <RadixDialog.Overlay className={styles.overlay} />
+        <RadixDialog.Content className={styles.content}>
+          <RadixDialog.Title className={styles.title}>{title}</RadixDialog.Title>
+          <RadixDialog.Description className={styles.description} />
           <Field />
           <div className={styles.btnfield}>
-            <Dialog.Close asChild>
+            <RadixDialog.Close asChild>
               <Button text="취소"></Button>
-            </Dialog.Close>
-            <Dialog.Close asChild>
+            </RadixDialog.Close>
+            <RadixDialog.Close asChild>
               <Button text={btnOk.name}></Button>
-            </Dialog.Close>
+            </RadixDialog.Close>
           </div>
-        </Dialog.Content>
-      </Dialog.Portal>
-    </Dialog.Root>
+        </RadixDialog.Content>
+      </RadixDialog.Portal>
+    </RadixDialog.Root>
   )
 };
 

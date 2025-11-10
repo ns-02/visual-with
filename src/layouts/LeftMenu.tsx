@@ -1,9 +1,8 @@
-import React, { ReactNode, isValidElement, Children } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Calendar1, FileText, Link2, ListTodo, LogOut, MessageSquare, MessagesSquare, Users } from 'lucide-react';
 import Button from '../components/ui/Button';
 import styles from './Layouts.module.css'
-import DropdownButton from '../components/Dropdown';
+import SelectTeamDropdown from '../features/teamManager/components/SelectTeamDropdown';
 
 export type Tool = 'team-chat' | 'files' | 'schedule' | 'todos' | 'friends' | 'direct-chat' | 'log-out'
 
@@ -13,17 +12,9 @@ interface NavItem {
   path?: string;
 }
 
-interface ComponentName extends React.FunctionComponent<any> {
-  componentName?: string;
-}
-
-interface CustomElement extends React.ReactElement<any> {
-  type: ComponentName | string;
-}
-
 interface WrapperProps {
   onInvite: VoidFunction;
-  children?: ReactNode;
+  children?: React.ReactNode;
 }
 
 function Divider() {
@@ -33,23 +24,6 @@ function Divider() {
 }
 
 function LeftMenu({ onInvite, children }: WrapperProps) {
-  const dialogs: Record<string, ReactNode> = {};
-
-  Children.forEach(children, (child) => {
-    // child의 유효성 검사
-    if (React.isValidElement(child)) {
-      const customChild = child as CustomElement;
-
-      if (typeof customChild.type !== 'string') {
-        const name = customChild.type.componentName;
-
-        if (name) {
-          dialogs[name] = customChild;
-        }
-      }
-    }
-  });
-
   const navigate = useNavigate();
 
   const topNavItems: NavItem[] = [
@@ -75,9 +49,8 @@ function LeftMenu({ onInvite, children }: WrapperProps) {
   return (
     <section className={styles.leftmenu}>
       <div>
-        <DropdownButton text='개' >
-          {dialogs.CreateTeam}
-        </DropdownButton>
+        <SelectTeamDropdown />
+        {children}
       </div>
       <div>
         <Button onCustomClick={onInvite} shape='circle' icon={Link2} iconSize={24} />
