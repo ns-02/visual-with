@@ -1,8 +1,13 @@
+import { useState } from 'react';
 import { Plus, Upload } from 'lucide-react';
 import { Tool } from './LeftMenu';
 import ToolHeader from '../components/ToolHeader';
 import styles from './Layouts.module.css'
 import { useTool } from '../context/ToolContext';
+import UploadFileDialog from '../features/fileSharing/dialogs/UploadFileDialog';
+import AddScheduleDialog from '../features/schedule/dialogs/AddScheduleDialog';
+import AddTodoDialog from '../features/todoList/dialogs/AddTodoDialog';
+import AddFriendDialog from '../features/friendList/dialogs/AddFriendDialog';
 
 interface HeaderItem {
   id: Tool;
@@ -14,13 +19,17 @@ interface HeaderItem {
 
 function MainHeader() {
   const { toolId } = useTool();
+  const [isUploadFileDialogOpen, setIsUploadFileDialogOpen] = useState(false);
+  const [isAddScheduleDialogOpen, setIsAddScheduleDialogOpen] = useState(false);
+  const [isAddTodoDialogOpen, setIsAddTodoDialogOpen] = useState(false);
+  const [isAddFriendDialogOpen, setIsAddFriendDialogOpen] = useState(false);
 
   const headerItems: HeaderItem[] = [
     { id: 'team-chat', label: '팀 채팅' },
-    { id: 'files', label: '파일 공유', button: '업로드', icon: Upload, onClick: () => console.log("파일 업로드") },
-    { id: 'schedule', label: '일정 관리', button: '일정 추가', icon: Plus, onClick: () => console.log("일정 추가") },
-    { id: 'todos', label: '할 일 목록', button: '할 일 추가', icon: Plus, onClick: () => console.log("할 일 추가") },
-    { id: 'friends', label: '친구 목록', button: '친구 추가', icon: Plus, onClick: () => console.log("친구 추가") },
+    { id: 'files', label: '파일 공유', button: '업로드', icon: Upload, onClick: () => setIsUploadFileDialogOpen(true)},
+    { id: 'schedule', label: '일정 관리', button: '일정 추가', icon: Plus, onClick: () => setIsAddScheduleDialogOpen(true)},
+    { id: 'todos', label: '할 일 목록', button: '할 일 추가', icon: Plus, onClick: () => setIsAddTodoDialogOpen(true)},
+    { id: 'friends', label: '친구 목록', button: '친구 추가', icon: Plus, onClick: () => setIsAddFriendDialogOpen(true)},
     { id: 'direct-chat', label: '친구 채팅' }
   ];
 
@@ -41,6 +50,10 @@ function MainHeader() {
           )
         })
       }
+      <UploadFileDialog open={isUploadFileDialogOpen} onOpenChange={setIsUploadFileDialogOpen} />
+      <AddScheduleDialog open={isAddScheduleDialogOpen} onOpenChange={setIsAddScheduleDialogOpen} />
+      <AddTodoDialog open={isAddTodoDialogOpen} onOpenChange={setIsAddTodoDialogOpen} />
+      <AddFriendDialog open={isAddFriendDialogOpen} onOpenChange={setIsAddFriendDialogOpen} />
     </div>
   )
 }

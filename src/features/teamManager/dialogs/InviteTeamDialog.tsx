@@ -25,7 +25,7 @@ const InviteTeamDialog = ({ open, onOpenChange }: Props) => {
         <p style={{ color: '#666' }}>아래 링크를 복사하여 팀원을 초대하세요.</p>
       </Group>
       <Row>
-        <Input value="https://example.com/invite/개발팀/abc123" />
+        <Input value="https://example.com/invite/개발팀/abc123" readOnly={true} />
         <Button icon={Copy} iconSize={16} />
       </Row>
     </Dialog>

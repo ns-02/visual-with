@@ -13,9 +13,9 @@ const SelectTeamDropdown = () => {
   const [isDeleteTeamDialogOpen, setIsDeleteTeamDialogOpen] = useState(false);
   
   const teamItems = [
-    { text: "기획팀" },
-    { text: "개발팀" },
-    { text: "운영팀" },
+    { id: "1", text: "기획팀" },
+    { id: "2", text: "개발팀" },
+    { id: "3", text: "운영팀" },
   ];
 
   return (
@@ -24,7 +24,7 @@ const SelectTeamDropdown = () => {
         {
           teamItems.map((item) => {
             return (
-              <DropdownMenu.Item>
+              <DropdownMenu.Item key={item.id}>
                 <Item type="list" text={item.text}>
                   <Button icon={Trash2} iconSize={16} onCustomClick={() => setIsDeleteTeamDialogOpen(true)} />
                 </Item>

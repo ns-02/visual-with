@@ -15,7 +15,6 @@ interface NavItem {
 }
 
 interface WrapperProps {
-  onInvite: VoidFunction;
   children?: React.ReactNode;
 }
 
@@ -25,7 +24,7 @@ function Divider() {
   );
 }
 
-function LeftMenu({ onInvite, children }: WrapperProps) {
+function LeftMenu({ children }: WrapperProps) {
   const [isInviteTeamDialogOpen, setIsInviteTeamDialogOpen] = useState(false);
   const navigate = useNavigate();
 
