@@ -15,10 +15,6 @@ interface DialogProps {
 }
 
 const CDialog = ({ open, onOpenChange, dialogInfo }: DialogProps) => {
-  useEffect(() => {
-    console.log('CDialog: prop open ->', open);
-  }, [open]);
-
   const { 
     title = '제목', 
     fields, 

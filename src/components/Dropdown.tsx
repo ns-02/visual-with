@@ -13,7 +13,7 @@ const Dropdown = (props: Props) => {
   const { text, children } = props;
 
   return (
-    <DropdownMenu.Root onOpenChange={(open) => console.log('Dropdown: open changed ->', open)}>
+    <DropdownMenu.Root>
       <DropdownMenu.Trigger asChild>
         <Button text={text} shape="square" />
 	    </DropdownMenu.Trigger>

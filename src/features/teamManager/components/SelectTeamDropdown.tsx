@@ -8,7 +8,6 @@ const SelectTeamDropdown = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   
   useEffect(() => {
-    console.log("SelectTeamDropdown: isDialogOpen ->", isDialogOpen);
   }, [isDialogOpen]);
 
   return (
