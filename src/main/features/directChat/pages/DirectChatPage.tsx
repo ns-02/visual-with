@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import DirectBottom from '../section/DirectBottom';
+import DirectBottom from '../section/DirectChatBottom';
 import LeftFriends from '../section/LeftFriends';
 import RightChats from '../section/RightChats';
 import ChatView from '../../../../components/ChatView';
 import { getItem, setItem } from '../../../../utils/sessionStorage';
-import styles from './DirectPage.module.css'
+import styles from './DirectChatPage.module.css'
 
 interface ChatItem {
   chat: string,

@@ -53,7 +53,9 @@ http://localhost:5173
 - 접근 권한 제어: RouteWatcher.tsx에 라우트 가드를 추가
 - AuthContext에서 로그인 여부를 확인하고, 로그인이 안 되어 있다면 강제로 LoginPage로 리다이렉트
 - main/features에서, 해당 기능과 관련된 모든 타입 정의(인터페이스)를 (기능명)/types.ts에 기록
+- 프로젝트 전체에서 사용할 전역 타입 모델 폴더 (models or types) 정의
 - ChatView.tsx에 데이터와 로직을 보내줄, ChatViewWrapper(예)를 만들어서 각 features에 저장
+- api 폴더의 분리 및 모듈화: api 폴더 내부를 기능(Domain)별로 분리
 
 ## 고려사항
 - RightSection.tsx, MainBody.tsx는 필요에 의해 별도의 파일로 분리했지만 (코드의 재사용 방지, css의 명확성) 아직까진 하는 역할이 컨테이너 뿐이라서 아쉬움.

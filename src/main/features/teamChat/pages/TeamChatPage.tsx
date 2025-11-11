@@ -1,8 +1,8 @@
 import { useState } from "react";
-import ChatBottom from "../section/ChatBottom";
+import ChatBottom from "../section/TeamChatBottom";
 import ChatView from "../../../../components/ChatView";
 import { getItem, setItem } from "../../../../utils/sessionStorage";
-import styles from './ChatPage.module.css'
+import styles from './TeamChatPage.module.css'
 
 interface ChatItem {
   chat: string,

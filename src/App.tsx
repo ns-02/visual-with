@@ -5,12 +5,12 @@ import MainPage from './main/MainPage'
 import SignupPage from './pages/primary/SignupPage'
 import SignupResultPage from './pages/primary/SignupResultPage'
 import NotFoundPage from './pages/primary/NotFoundPage'
-import ChatPage from './main/features/teamChat/pages/ChatPage'
+import TeamChatPage from './main/features/teamChat/pages/TeamChatPage'
 import FileSharingPage from './main/features/fileSharing/pages/FileSharingPage';
 import SchedulePage from './main/features/schedule/pages/SchedulePage';
 import TodoListPage from './main/features/todoList/pages/TodoListPage';
 import FriendListPage from './main/features/friendList/pages/FriendListPage';
-import DirectPage from './main/features/directChat/pages/DirectPage';
+import DirectChatPage from './main/features/directChat/pages/DirectChatPage';
 import { ToolProvider } from './context/ToolContext';
 import { RouteWatcher } from './routes/RouteWatcher'
 import './styles/global.css';
@@ -27,12 +27,12 @@ const App: React.FC = () => {
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/signup-result" element={<SignupResultPage />} />
         <Route path="/main" element={<MainPage />} >
-          <Route path="teamchat" element={<ChatPage />} />
+          <Route path="teamchat" element={<TeamChatPage />} />
           <Route path="filesharing" element={<FileSharingPage />} />
           <Route path="schedule" element={<SchedulePage />} />
           <Route path="todolist" element={<TodoListPage />} />
           <Route path="friendlist" element={<FriendListPage />} />
-          <Route path="directchat" element={<DirectPage />} />
+          <Route path="directchat" element={<DirectChatPage />} />
         </Route>
       </Routes>
     </ToolProvider>
