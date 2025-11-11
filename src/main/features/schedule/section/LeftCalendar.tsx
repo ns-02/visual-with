@@ -1,10 +1,11 @@
+import Calender from '../components/Calendar';
 import styles from './ScheduleSection.module.css'
 
 function LeftCalendar() {
   return (
     <div className={styles["left-calender"]}>
       <div>
-        <input name="schedule-date" type='date'></input>
+        <Calender />
       </div>
     </div>
   )
