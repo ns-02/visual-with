@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { Plus, Upload } from 'lucide-react';
 import { Tool } from './LeftMenu';
-import ToolHeader from '../components/ToolHeader';
+import ToolHeader from '../../../components/ToolHeader';
 import styles from './Layouts.module.css'
-import { useTool } from '../context/ToolContext';
-import UploadFileDialog from '../features/fileSharing/dialogs/UploadFileDialog';
-import AddScheduleDialog from '../features/schedule/dialogs/AddScheduleDialog';
-import AddTodoDialog from '../features/todoList/dialogs/AddTodoDialog';
-import AddFriendDialog from '../features/friendList/dialogs/AddFriendDialog';
+import { useTool } from '../../../context/ToolContext';
+import UploadFileDialog from '../../../features/fileSharing/dialogs/UploadFileDialog';
+import AddScheduleDialog from '../../../features/schedule/dialogs/AddScheduleDialog';
+import AddTodoDialog from '../../../features/todoList/dialogs/AddTodoDialog';
+import AddFriendDialog from '../../../features/friendList/dialogs/AddFriendDialog';
 
 interface HeaderItem {
   id: Tool;

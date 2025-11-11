@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { Calendar1, FileText, Link2, ListTodo, LogOut, MessageSquare, MessagesSquare, Users } from 'lucide-react';
-import Button from '../components/ui/Button';
+import Button from '../../../components/ui/Button';
 import styles from './Layouts.module.css'
-import SelectTeamDropdown from '../features/teamManager/components/SelectTeamDropdown';
-import InviteTeamDialog from '../features/teamManager/dialogs/InviteTeamDialog';
-import LogoutDialog from '../features/misc/dialogs/LogoutDialog';
+import SelectTeamDropdown from '../../../features/teamManager/components/SelectTeamDropdown';
+import InviteTeamDialog from '../../../features/teamManager/dialogs/InviteTeamDialog';
+import LogoutDialog from '../../../features/misc/dialogs/LogoutDialog';
 
 export type Tool = 'team-chat' | 'files' | 'schedule' | 'todos' | 'friends' | 'direct-chat' | 'log-out'
 
