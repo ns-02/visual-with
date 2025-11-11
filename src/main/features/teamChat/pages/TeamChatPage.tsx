@@ -9,7 +9,7 @@ interface ChatItem {
   time: string,
 }
 
-function ChatPage() {
+function TeamChatPage() {
   const initChats: ChatItem[] = getItem('teamChats', "") || [];
 
   const [ allChat, setAllChat ] = useState(initChats);
@@ -53,4 +53,4 @@ function ChatPage() {
   )
 }
 
-export default ChatPage;
+export default TeamChatPage;

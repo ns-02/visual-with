@@ -10,7 +10,7 @@ interface HeaderProps {
   icon?: typeof Plus;
 }
 
-const ToolHeader: React.FC<HeaderProps> = ({ label, button, onClick, icon }) => {
+const HeaderBar: React.FC<HeaderProps> = ({ label, button, onClick, icon }) => {
   return (
     <div className={styles.header}>
       <div className={styles.label}>
@@ -26,4 +26,4 @@ const ToolHeader: React.FC<HeaderProps> = ({ label, button, onClick, icon }) => 
   )
 }
 
-export default ToolHeader;
+export default HeaderBar;

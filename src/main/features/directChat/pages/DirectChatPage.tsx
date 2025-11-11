@@ -11,7 +11,7 @@ interface ChatItem {
   time: string,
 }
 
-function DirectPage() {
+function DirectChatPage() {
   const initChats: ChatItem[] = getItem('directChats', "") || [];
   
   const [ allChat, setAllChat ] = useState(initChats);
@@ -58,4 +58,4 @@ function DirectPage() {
   )
 }
 
-export default DirectPage;
+export default DirectChatPage;
