@@ -15,6 +15,7 @@
 - `components/ui` : 기본 단위의 공용 UI 컴포넌트
 - [`context/` : 전역 컨텍스트 관리](context/README.md)
 - [`hooks/` : 커스텀 훅](hooks/README.md)
+- [`main/ : 메인 페이지`](main/README.md)
 - [`pages/` : 라우팅되는 페이지](pages/README.md)
 - [`routes/` : 라우팅 관련 코드](routes/README.md)
 - [`utils/` : 재사용 가능한 함수들](utils/README.md)
