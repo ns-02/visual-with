@@ -1,10 +1,12 @@
 import { Dispatch, SetStateAction } from "react";
+import * as Tabs from "@radix-ui/react-tabs";
+import { Copy, Search } from "lucide-react";
 import Dialog from "../../../../components/dialogs/Dialog";
 import Input from "../../../../components/dialogs/ui/Input";
 import Group from "../../../../components/dialogs/ui/Group";
 import Button from "../../../../components/ui/Button";
-import { Copy } from "lucide-react";
 import Row from "../../../../components/dialogs/ui/Row";
+import styles from "./InviteTeamDialog.module.css";
 
 interface Props {
   open: boolean;
@@ -19,15 +21,33 @@ const InviteTeamDialog = ({ open, onOpenChange }: Props) => {
       onOpenChange={onOpenChange}
       viewButton={false}
     >
-      <Group><p>[ 게스트 초대 (v) ] [ 유저 초대 ]</p></Group>
-      <Group>
-        <p>초대 링크</p>
-        <p style={{ color: '#666' }}>아래 링크를 복사하여 팀원을 초대하세요.</p>
-      </Group>
-      <Row>
-        <Input value="https://example.com/invite/개발팀/abc123" readOnly={true} />
-        <Button icon={Copy} iconSize={16} />
-      </Row>
+      <Tabs.Root>
+        <Tabs.List style={{ display: "flex", width: 360, marginBottom: 12 }}>
+          <Tabs.Trigger className={styles.trigger} value="tab1" asChild><Button text="게스트" /></Tabs.Trigger>
+          <Tabs.Trigger className={styles.trigger} value="tab2" asChild><Button text="유저" /></Tabs.Trigger>
+        </Tabs.List>
+          <Tabs.Content value="tab1">
+            <Group>
+              <p>초대 링크</p>
+              <p style={{ color: '#666' }}>아래 링크를 복사하여 팀원을 초대하세요.</p>
+            </Group>
+            <Row>
+              <Input value="https://example.com/invite/개발팀/abc123" readOnly={true} />
+              <Button icon={Copy} iconSize={16} />
+            </Row>
+          </Tabs.Content>
+          <Tabs.Content value="tab2">
+            <Group>
+              <p>팀원 ID 검색</p>
+              <p style={{ color: '#666' }}>아이디를 입력하여 팀원을 초대하세요.</p>
+            </Group>
+            <Row>
+              <Input placeholder="팀원의 ID를 검색하세요" />
+              <Button icon={Search} iconSize={16} />
+            </Row>
+          </Tabs.Content>
+      </Tabs.Root>
+      
     </Dialog>
   )
 }
