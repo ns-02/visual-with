@@ -1,16 +1,16 @@
 import { Route, Routes } from 'react-router-dom'
 import StartPage from './pages/HomePage'
 import LoginPage from './pages/primary/LoginPage'
-import MainPage from './pages/main/MainPage'
+import MainPage from './main/MainPage'
 import SignupPage from './pages/primary/SignupPage'
 import SignupResultPage from './pages/primary/SignupResultPage'
 import NotFoundPage from './pages/primary/NotFoundPage'
-import ChatPage from './features/teamChat/pages/ChatPage'
-import FileSharingPage from './features/fileSharing/pages/FileSharingPage';
-import SchedulePage from './features/schedule/pages/SchedulePage';
-import TodoListPage from './features/todoList/pages/TodoListPage';
-import FriendListPage from './features/friendList/pages/FriendListPage';
-import DirectPage from './features/directChat/pages/DirectPage';
+import ChatPage from './main/features/teamChat/pages/ChatPage'
+import FileSharingPage from './main/features/fileSharing/pages/FileSharingPage';
+import SchedulePage from './main/features/schedule/pages/SchedulePage';
+import TodoListPage from './main/features/todoList/pages/TodoListPage';
+import FriendListPage from './main/features/friendList/pages/FriendListPage';
+import DirectPage from './main/features/directChat/pages/DirectPage';
 import { ToolProvider } from './context/ToolContext';
 import { RouteWatcher } from './routes/RouteWatcher'
 import './styles/global.css';
