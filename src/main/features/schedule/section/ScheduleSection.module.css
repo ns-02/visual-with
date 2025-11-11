@@ -6,10 +6,18 @@
   border: 1px solid #000;
 }
 
+.calender_container {
+  width: 100%;
+}
+
 .right-contents {
   width: calc(100% - 280px);
   height: 100%;
   float: right;
   padding: 10px;
   border: 1px solid #000;
+}
+
+.month_grid {
+  width: 100%;
 }

@@ -4,7 +4,7 @@ import styles from './ScheduleSection.module.css'
 function LeftCalendar() {
   return (
     <div className={styles["left-calender"]}>
-      <div>
+      <div className={styles.calender_container}>
         <Calender />
       </div>
     </div>
