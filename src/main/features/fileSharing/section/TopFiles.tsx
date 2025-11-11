@@ -1,4 +1,4 @@
-import styles from './Section.module.css'
+import styles from './FileSharingSection.module.css'
 
 function TopFiles() {
   return (

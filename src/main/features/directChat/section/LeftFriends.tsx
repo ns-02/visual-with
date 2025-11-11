@@ -1,4 +1,4 @@
-import styles from './Section.module.css'
+import styles from './DirectChatSection.module.css'
 
 function LeftFriends() {
   return (

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Plus, Upload } from 'lucide-react';
 import { Tool } from './LeftMenu';
-import ToolHeader from '../../components/ToolHeader';
+import ToolHeader from '../../components/HeaderBar';
 import styles from './Layouts.module.css'
 import { useTool } from '../../context/ToolContext';
 import UploadFileDialog from '../features/fileSharing/dialogs/UploadFileDialog';

@@ -1,4 +1,4 @@
-import styles from './Section.module.css'
+import styles from './FriendListSection.module.css'
 
 function FriendContents() {
   return (

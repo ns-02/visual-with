@@ -46,6 +46,14 @@ http://localhost:5173
 - 채팅 형식을 DB에 맞게 변경
 - 채팅 콘텐츠가 가로 스크롤이 되는 것 방지
 - 포커스가 채팅의 하단부을 가리키도록 변경
+- api를 주고받을 시, API 엔드포인트와 요청/응답 구조를 명확하게 문서화
+- 응답 데이터의 인터페이스 정의를 api 폴더 근처에 모아둘 것
+- 로그인 및 회원가입 로직을 커스텀 훅으로 분리 (AI 추천) -> hooks 폴더
+- 인증 상태를 관리하는 context/AuthContext.tsx 만들기
+- 접근 권한 제어: RouteWatcher.tsx에 라우트 가드를 추가
+- AuthContext에서 로그인 여부를 확인하고, 로그인이 안 되어 있다면 강제로 LoginPage로 리다이렉트
+- main/features에서, 해당 기능과 관련된 모든 타입 정의(인터페이스)를 (기능명)/types.ts에 기록
+- ChatView.tsx에 데이터와 로직을 보내줄, ChatViewWrapper(예)를 만들어서 각 features에 저장
 
 ## 고려사항
 - RightSection.tsx, MainBody.tsx는 필요에 의해 별도의 파일로 분리했지만 (코드의 재사용 방지, css의 명확성) 아직까진 하는 역할이 컨테이너 뿐이라서 아쉬움.

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import ToolHeader from "../components/ToolHeader";
+import ToolHeader from "../components/HeaderBar";
 import { fn } from 'storybook/internal/test';
 import { Plus } from 'lucide-react';
 

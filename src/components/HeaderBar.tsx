@@ -1,7 +1,7 @@
 import { Plus, Search } from 'lucide-react';
 import Button from "./ui/Button";
 import Input from './ui/Input';
-import styles from "./ToolHeader.module.css";
+import styles from "./HeaderBar.module.css";
 
 interface HeaderProps {
   label: string;

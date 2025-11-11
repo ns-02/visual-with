@@ -21,3 +21,9 @@
 - [`utils/` : 재사용 가능한 함수들](utils/README.md)
 - [`styles/` : 전역 스타일, CSS 변수](styles/README.md)
 - [`stories/` : Storybook 파일](stories/README.md)
+
+## README 작성 규칙
+각 README.md 파일에, 다음 내용을 최소한으로 기록할 것.
+- main/features/기능명: 해당 기능이 담당하는 주요 유즈케이스 (예: 친구 요청 목록 조회 및 수락/거절 처리)
+- components: 이 폴더에 있는 컴포넌트들의 명명 규칙 및 데이터/로직 포함 여부 규칙
+- api: 백엔드 API와의 연동 상태 및 주요 API 호출 로직

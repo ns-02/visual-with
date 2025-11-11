@@ -2,7 +2,7 @@ import { Dispatch, KeyboardEvent, SetStateAction } from 'react';
 import { Plus, Send } from 'lucide-react';
 import Button from '../../../../components/ui/Button';
 import Input from '../../../../components/ui/Input';
-import styles from './Section.module.css'
+import styles from './TeamChatSection.module.css'
 
 type Prop = {
   setChat: Dispatch<SetStateAction<string>>;
