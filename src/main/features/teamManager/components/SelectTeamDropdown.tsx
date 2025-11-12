@@ -20,7 +20,7 @@ const SelectTeamDropdown = () => {
 
   return (
     <>
-      <Dropdown>
+      <Dropdown text="개">
         {
           teamItems.map((item) => {
             return (
