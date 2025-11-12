@@ -24,6 +24,7 @@ http://localhost:5173
 - radix-ui: ui 제작 도구
 - React Router: 리액트 환경에서 라우팅 제공
 - css module: 지역 단위 css 적용
+- React DayPicker: 날짜 선택 ui 지원 
 
 ## 전체 기능
 [바로 가기](docs/features.md)
@@ -79,3 +80,4 @@ http://localhost:5173
 - storybook: https://storybook.js.org/
 - lucide-react: https://lucide.dev/icons/plus
 - radix-ui: https://www.radix-ui.com/
+- **React DayPicker**: https://daypicker.dev/
