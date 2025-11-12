@@ -38,7 +38,7 @@ const UpdateScheduleDialog = ({ open, onOpenChange }: Props) => {
       </Group>
       <Group>
         <label>설명</label>
-        <Input placeholder="알림 설명을 입력하세요 (선택사항)" />
+        <Input placeholder="일정 설명을 입력하세요 (선택사항)" />
       </Group>
     </Dialog>
   )
