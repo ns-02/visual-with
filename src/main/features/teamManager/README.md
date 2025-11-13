@@ -6,8 +6,8 @@
 
 ## 구조
 - [`../`](../README.md)
-- `components/` : teamManager에서 사용하는 전용 컴포넌트
-- `dialogs/` : teamManager의 전용 다이얼로그
+- `components/` : 팀 관리 전용 컴포넌트
+- `dialogs/` : 팀 관리 전용 다이얼로그
 
 ## 완료된 것
 - 팀 선택 드롭다운 정의

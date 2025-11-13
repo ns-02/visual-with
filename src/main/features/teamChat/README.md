@@ -6,6 +6,7 @@
 
 ## 구조
 - [`../`](../README.md)
+- `controller/` : 팀 채팅 로직
 - `pages/` : 실제 채팅 페이지
 - `section/` : 화면 구성 요소
 
