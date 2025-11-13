@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { DropdownMenu } from "radix-ui";
 import Dropdown from "../../../../components/Dropdown";
 import CreateTeamDialog from "../dialogs/CreateTeamDialog";
@@ -8,12 +8,7 @@ import styles from "../../../../components/Dropdown.module.css";
 import { Trash2 } from "lucide-react";
 import DeleteTeamDialog from "../dialogs/DeleteTeamDialog";
 
-interface Props {
-  open?: boolean;
-  onOpenChange?: Dispatch<SetStateAction<boolean>>;
-}
-
-const SelectTeamDropdown = ({ open, onOpenChange }: Props) => {
+const SelectTeamDropdown = () => {
   const [isCreateTeamDialogOpen, setIsCreateTeamDialogOpen] = useState(false);
   const [isDeleteTeamDialogOpen, setIsDeleteTeamDialogOpen] = useState(false);
   
@@ -25,7 +20,7 @@ const SelectTeamDropdown = ({ open, onOpenChange }: Props) => {
 
   return (
     <>
-      <Dropdown open={open} onOpenChange={onOpenChange}>
+      <Dropdown text="개">
         {
           teamItems.map((item) => {
             return (
