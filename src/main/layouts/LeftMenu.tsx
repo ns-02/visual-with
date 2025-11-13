@@ -25,6 +25,7 @@ function Divider() {
 }
 
 function LeftMenu({ children }: WrapperProps) {
+  const [isSelectTeamDropdownOpen, setIsSelectTeamDropdownOpen] = useState(false);
   const [isInviteTeamDialogOpen, setIsInviteTeamDialogOpen] = useState(false);
   const [isLogoutDialogOpen, setIsLogoutDialogOpen] = useState(false);
 
@@ -45,7 +46,8 @@ function LeftMenu({ children }: WrapperProps) {
   return (
     <section className={styles.leftmenu}>
       <div>
-        <SelectTeamDropdown />
+        <Button text={"개"} shape="square" onCustomClick={() => setIsSelectTeamDropdownOpen(true)} />
+        <SelectTeamDropdown open={isSelectTeamDropdownOpen} onOpenChange={setIsSelectTeamDropdownOpen} />
         {children}
       </div>
       <InviteTeamDialog open={isInviteTeamDialogOpen} onOpenChange={setIsInviteTeamDialogOpen} />
