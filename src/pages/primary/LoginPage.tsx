@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Container from "../../components/Container";
-import { request } from "../../api/api";
+import { loginUser } from "../../api/api";
 import styles from './Primary.module.css';
 
 function LoginPage() {
@@ -15,24 +15,17 @@ function LoginPage() {
       return;
     }
 
-    // 서버 요청 및 응답 처리
-    const requestMessage = {
-      userId: id,
-      password
+    try {
+      const res = await loginUser(id, password);
+
+      if (res.message !== "ok") {
+        return;
+      }
+
+      navigate("/main");
+    } catch (e: any) {
+      
     }
-
-    const res = await request('/api/login', {
-      method: 'POST',
-      body: JSON.stringify(requestMessage)
-    });
-
-    console.log(res);
-
-    if (!res) {
-      return;
-    }
-
-    navigate("/main");
   }
 
   return (

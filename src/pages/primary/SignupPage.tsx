@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Container from "../../components/Container";
-import { request } from "../../api/api";
+import { checkId, signupUser } from "../../api/api";
 import styles from './Primary.module.css';
 
 function SignupPage() {
@@ -37,12 +37,7 @@ function SignupPage() {
       name
     };
 
-    const res = await request('/api/register', {
-      method: 'POST',
-      body: JSON.stringify(requestMessage)
-    });
-
-    console.log(res)
+    const res = await signupUser(requestMessage);
 
     if (!res) {
       return;
@@ -57,21 +52,15 @@ function SignupPage() {
       return;
     }
 
-    // 서버 요청 및 응답 처리
-    const requestMessage = {
-      userId: id
-    };
+    const res = await checkId(id);
 
-    const res = await request('/api/checkid', {
-      method: 'POST',
-      body: JSON.stringify(requestMessage)
-    });
-
-    // console.log(res);
-
-    // 사용 가능한 아이디일 경우. 조건은 백엔드가 완성되면 변경할 것.
-    if (res) {
+    // true: 사용가능, false: 사용불가능
+    if (res.available) {
+      alert("사용 가능한 아이디입니다.");
       setIsValid(true);
+    } else {
+      alert("현재 사용 중인 아이디입니다.");
+      setIsValid(false);
     }
   }
 
