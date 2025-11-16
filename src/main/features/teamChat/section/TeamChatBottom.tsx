@@ -3,6 +3,7 @@ import { Plus, Send } from 'lucide-react';
 import Button from '../../../../components/ui/Button';
 import Input from '../../../../components/ui/Input';
 import styles from './TeamChatSection.module.css'
+import FileUploadDropdown from '../components/FileUploadDropdown';
 
 type Prop = {
   setChat: Dispatch<SetStateAction<string>>;
@@ -12,9 +13,13 @@ type Prop = {
 }
 
 function ChatBottom({ setChat, onClick, onKeyDown, clearId }: Prop) {
+  const triggerElement = (
+    <Button icon={Plus} iconSize={16} />
+  );
+
   return (
     <div className={styles.bottom}>
-      <Button icon={Plus} iconSize={16} />
+      <FileUploadDropdown triggerElement={triggerElement} />
       <Input placeholder='채팅 입력' sizeMode='flexible' setChat={setChat} onKeyDown={(e) => onKeyDown(e)} clearId={clearId} />
       <Button onCustomClick={onClick} icon={Send} iconSize={16} />
     </div>
