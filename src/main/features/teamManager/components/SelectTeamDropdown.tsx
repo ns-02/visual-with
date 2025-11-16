@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { DropdownMenu } from "radix-ui";
 import Dropdown from "../../../../components/Dropdown";
 import CreateTeamDialog from "../dialogs/CreateTeamDialog";
@@ -8,7 +8,11 @@ import styles from "../../../../components/Dropdown.module.css";
 import { Trash2 } from "lucide-react";
 import DeleteTeamDialog from "../dialogs/DeleteTeamDialog";
 
-const SelectTeamDropdown = () => {
+interface Props {
+  triggerElement?: React.ReactNode;
+}
+
+const SelectTeamDropdown = ({ triggerElement }: Props) => {
   const [isCreateTeamDialogOpen, setIsCreateTeamDialogOpen] = useState(false);
   const [isDeleteTeamDialogOpen, setIsDeleteTeamDialogOpen] = useState(false);
   
@@ -17,29 +21,33 @@ const SelectTeamDropdown = () => {
     { id: "2", text: "개발팀" },
     { id: "3", text: "운영팀" },
   ];
+  
+  const dropdownContent = (
+    <>
+      {
+        teamItems.map((item) => {
+          return (
+            <DropdownMenu.Item key={item.id}>
+              <Item type="list" text={item.text}>
+                <Button icon={Trash2} iconSize={16} onCustomClick={() => setIsDeleteTeamDialogOpen(true)} />
+              </Item>
+            </DropdownMenu.Item>
+          )
+        })
+      }
+      <DropdownMenu.Separator className={styles.separator} />
+      <DropdownMenu.Item
+        onSelect={() => setIsCreateTeamDialogOpen(true)}
+        asChild
+      >
+        <Item type="add" text="팀 생성" />
+      </DropdownMenu.Item>
+    </>
+  )
 
   return (
     <>
-      <Dropdown text="개">
-        {
-          teamItems.map((item) => {
-            return (
-              <DropdownMenu.Item key={item.id}>
-                <Item type="list" text={item.text}>
-                  <Button icon={Trash2} iconSize={16} onCustomClick={() => setIsDeleteTeamDialogOpen(true)} />
-                </Item>
-              </DropdownMenu.Item>
-            )
-          })
-        }
-        <DropdownMenu.Separator className={styles.separator} />
-        <DropdownMenu.Item
-          onSelect={() => setIsCreateTeamDialogOpen(true)}
-          asChild
-        >
-          <Item type="add" text="팀 생성" />
-        </DropdownMenu.Item>
-      </Dropdown>
+      <Dropdown trigger={triggerElement} content={dropdownContent} />
       <CreateTeamDialog open={isCreateTeamDialogOpen} onOpenChange={setIsCreateTeamDialogOpen} />
       <DeleteTeamDialog open={isDeleteTeamDialogOpen} onOpenChange={setIsDeleteTeamDialogOpen} />
     </>

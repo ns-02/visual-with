@@ -42,10 +42,16 @@ function LeftMenu({ children }: WrapperProps) {
 
   const bottomNavItem: NavItem = { id: 'log-out', icon: LogOut };
 
+  const triggerElement = (
+    <Button text={"개"} shape="square" />
+  )
+
   return (
     <section className={styles.leftmenu}>
       <div>
-        <SelectTeamDropdown />
+        <SelectTeamDropdown 
+          triggerElement={triggerElement}
+        />
         {children}
       </div>
       <InviteTeamDialog open={isInviteTeamDialogOpen} onOpenChange={setIsInviteTeamDialogOpen} />
