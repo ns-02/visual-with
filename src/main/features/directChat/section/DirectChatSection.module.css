@@ -1,13 +1,12 @@
 .left-friends {
-  width: 160px;
+  width: 280px;
   height: 100%;
   float: left;
-  padding: 10px;
   border: 1px solid #000;
 }
 
 .right-chats {
-  width: calc(100% - 160px);
+  width: calc(100% - 280px);
   height: 100%;
   float: right;
 }

@@ -1,0 +1,13 @@
+.container {
+  display: flex;
+  padding: 16px;
+  gap: 12px;
+  background-color: white;
+}
+
+.container_selected {
+  display: flex;
+  padding: 16px;
+  gap: 12px;
+  background-color: aliceblue;
+}

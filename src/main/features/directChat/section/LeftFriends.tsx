@@ -1,13 +1,22 @@
+import FriendCard from '../components/FriendCard';
 import styles from './DirectChatSection.module.css'
 
 function LeftFriends() {
+  const friendItems = [
+    { id: 1, name: '김철수', chat: '안녕하세요', selected: true },
+    { id: 2, name: '이영희', chat: '감사합니다', selected: false },
+    { id: 3, name: '박영수', chat: '수고하셨어요', selected: false },
+  ];
+
   return (
     <div className={styles["left-friends"]}>
-      <div>
-        <div>친구 1</div>
-        <div>친구 2</div>
-        <div>친구 3</div>
-      </div>
+      {
+        friendItems.map((item) => {
+          return (
+            <FriendCard name={item.name} chat={item.chat} selected={item.selected} />
+          )
+        })
+      }
     </div>
   )
 }
