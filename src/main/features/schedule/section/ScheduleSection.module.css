@@ -3,7 +3,7 @@
   height: 100%;
   float: left;
   padding: 10px;
-  border: 1px solid #000;
+  border-top: 1px solid aliceblue;
   background-color: white;
 }
 
@@ -16,7 +16,6 @@
   height: 100%;
   float: right;
   padding: 0 100px;
-  border: 1px solid #000;
 }
 
 .month_grid {
