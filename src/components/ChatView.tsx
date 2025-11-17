@@ -11,9 +11,14 @@ type Props = {
 };
 
 const ChatView = React.memo(({ allChat }: Props) => {
+  let year = new Date().getFullYear();
+  let month = new Date().getMonth() + 1;
+  let today = new Date().getDate();
+
   return (
     <div className={styles.view}>
       <div className={styles.contents}>
+        <p style={{ textAlign: "center" }}>{`${year}년 ${month}월 ${today}일`}</p>
         {
           allChat.map((chatItem, index) => {
             return (
