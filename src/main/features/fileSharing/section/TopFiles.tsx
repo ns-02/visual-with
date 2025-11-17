@@ -3,7 +3,8 @@ import styles from './FileSharingSection.module.css'
 function TopFiles() {
   return (
     <div className={styles["top-files"]}>
-      <span>
+      (버튼 요소 예정)
+      {/* <span>
         <button>전체</button>
       </span>
       <span>
@@ -17,7 +18,7 @@ function TopFiles() {
       </span>
       <span>
         <button>기타</button>
-      </span>
+      </span> */}
     </div>
   )
 }
