@@ -4,6 +4,7 @@
   float: left;
   padding: 10px;
   border: 1px solid #000;
+  background-color: white;
 }
 
 .calender_container {
@@ -14,7 +15,7 @@
   width: calc(100% - 280px);
   height: 100%;
   float: right;
-  padding: 10px;
+  padding: 0 100px;
   border: 1px solid #000;
 }
 

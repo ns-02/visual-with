@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Calender from '../components/Calendar';
+import Calender from '../components/Calender';
 import styles from './ScheduleSection.module.css'
 
 function LeftCalendar() {
