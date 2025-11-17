@@ -1,0 +1,22 @@
+.container {
+  position: relative;
+  display: flex;
+  margin-bottom: 10px;
+  border-radius: 12px;
+  background-color: white;
+}
+
+.info_contents {
+  display: flex;
+  padding: 16px;
+  gap: 12px;
+}
+
+.navigation {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  align-items: center;
+  padding: 14px;
+  gap: 8px;
+}

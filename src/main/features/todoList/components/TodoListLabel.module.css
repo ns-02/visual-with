@@ -1,0 +1,12 @@
+.label {
+  display: flex;
+  margin-top: 24px;
+  margin-bottom: 12px;
+  gap: 12px;
+  align-items: center;
+}
+
+.count {
+  font-size: 10pt;
+  color: #777;
+}
