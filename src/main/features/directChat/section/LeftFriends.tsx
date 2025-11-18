@@ -1,4 +1,4 @@
-import FriendCard from '../components/FriendCard';
+import SelectFriendCard from '../components/SelectFriendCard';
 import styles from './DirectChatSection.module.css'
 
 function LeftFriends() {
@@ -13,7 +13,7 @@ function LeftFriends() {
       {
         friendItems.map((item) => {
           return (
-            <FriendCard name={item.name} chat={item.chat} selected={item.selected} />
+            <SelectFriendCard name={item.name} chat={item.chat} selected={item.selected} />
           )
         })
       }
