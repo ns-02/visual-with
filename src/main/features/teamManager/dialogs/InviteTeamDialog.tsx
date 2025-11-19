@@ -23,8 +23,8 @@ const InviteTeamDialog = ({ open, onOpenChange }: Props) => {
     >
       <Tabs.Root>
         <Tabs.List style={{ display: "flex", width: 360, marginBottom: 12 }}>
-          <Tabs.Trigger className={styles.trigger} value="tab1" asChild><Button text="게스트" /></Tabs.Trigger>
-          <Tabs.Trigger className={styles.trigger} value="tab2" asChild><Button text="유저" /></Tabs.Trigger>
+          <Tabs.Trigger className={styles.trigger} value="tab1" asChild><Button text="초대 링크" /></Tabs.Trigger>
+          <Tabs.Trigger className={styles.trigger} value="tab2" asChild><Button text="친구 ID" /></Tabs.Trigger>
         </Tabs.List>
           <Tabs.Content value="tab1">
             <Group>

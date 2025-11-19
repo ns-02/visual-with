@@ -21,7 +21,7 @@ function BottomSection() {
       {
         fileItems.map((item) => {
           return (
-            <FileListCard fileName={item.fileName} date={item.date} fileSize={item.fileSize} timeAgo={item.timeAgo} uploader={item.uploader} />
+            <FileListCard key={item.id} fileName={item.fileName} date={item.date} fileSize={item.fileSize} timeAgo={item.timeAgo} uploader={item.uploader} />
           )
         })
       }
