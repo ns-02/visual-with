@@ -1,3 +1,4 @@
+import { Dispatch, SetStateAction } from 'react';
 import { EllipsisVertical, User } from 'lucide-react';
 import Button from '../../../../components/ui/Button';
 import styles from './TodoListCard.module.css';
@@ -6,13 +7,14 @@ interface Props {
   title?: string;
   description?: string;
   checked?: boolean;
+  onClick?: () => void;
 }
 
-const TodoListCard = ({ title, description, checked }: Props) => {
+const TodoListCard = ({ title, description, checked, onClick }: Props) => {
   return (
     <div className={styles.container}>
       <div className={styles.info_contents}>
-        <input type='checkbox' checked={checked} />
+        <input type='checkbox' checked={checked} onClick={onClick} />
         <div>
           {
             checked ?
