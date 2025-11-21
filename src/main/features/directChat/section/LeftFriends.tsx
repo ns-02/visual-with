@@ -13,7 +13,7 @@ function LeftFriends() {
       {
         friendItems.map((item) => {
           return (
-            <SelectFriendCard name={item.name} chat={item.chat} selected={item.selected} />
+            <SelectFriendCard key={item.id} name={item.name} chat={item.chat} selected={item.selected} />
           )
         })
       }

@@ -12,6 +12,7 @@ interface TodoItems {
 }
 
 function RightContents() {
+  // checked를 별도의 useState로 분리하여 관리하기 vs 지금처럼 한 객체에 담아 관리하기
   // const [ checked, setChecked ] = useState(false);
 
   const progressItems: TodoItems[] = [
@@ -28,12 +29,15 @@ function RightContents() {
   const [progressData, setProgressData] = useState<TodoItems[]>(progressItems);
   const [completedData, setCompletedData] = useState<TodoItems[]>(completedItems);
 
-  const handleProgCheckBoxClick = (id: number) => {
+  // 사용 가능한 데이터 접근 방법
+  // 1. id로 접근 (현안)
+  // 2. index로 접근: map에서 인덱스를 핸들링 함수로 넘겨줘서, 이 인덱스로 데이터 접근
+  const handleProgCheckBoxChange = (id: number) => {
     const nextData = progressData.map((item) => item.id === id ? {...item, checked: !item.checked} : item);
     setProgressData(nextData);
   }
 
-  const handleCompCheckBoxClick = (id: number) => {
+  const handleCompCheckBoxChange = (id: number) => {
     const nextData = completedData.map((item) => item.id === id ? {...item, checked: !item.checked} : item);
     setCompletedData(nextData);
   }
@@ -46,7 +50,7 @@ function RightContents() {
       {
         progressData.map((item) => {
           return (
-            <TodoListCard title={item.title} description={item.description} checked={item.checked} onClick={() => handleProgCheckBoxClick(item.id)} />
+            <TodoListCard key={item.id} title={item.title} description={item.description} checked={item.checked} onChange={() => handleProgCheckBoxChange(item.id)} />
           )
         })
       }
@@ -56,7 +60,7 @@ function RightContents() {
       {
         completedData.map((item) => {
           return (
-            <TodoListCard title={item.title} description={item.description} checked={item.checked} onClick={() => handleCompCheckBoxClick(item.id)} />
+            <TodoListCard key={item.id} title={item.title} description={item.description} checked={item.checked} onChange={() => handleCompCheckBoxChange(item.id)} />
           )
         })
       }

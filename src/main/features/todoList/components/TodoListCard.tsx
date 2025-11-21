@@ -7,14 +7,14 @@ interface Props {
   title?: string;
   description?: string;
   checked?: boolean;
-  onClick?: () => void;
+  onChange?: () => void;
 }
 
-const TodoListCard = ({ title, description, checked, onClick }: Props) => {
+const TodoListCard = ({ title, description, checked, onChange }: Props) => {
   return (
     <div className={styles.container}>
       <div className={styles.info_contents}>
-        <input type='checkbox' checked={checked} onClick={onClick} />
+        <input type='checkbox' checked={checked} onChange={onChange} />
         <div>
           {
             checked ?

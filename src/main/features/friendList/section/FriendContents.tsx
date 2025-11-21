@@ -24,7 +24,7 @@ function FriendContents() {
       {
         friendRequestItems.map((item) => {
           return (
-            <FriendRequestCard name={item.name} description={item.description} />
+            <FriendRequestCard key={item.id} name={item.name} description={item.description} />
           )
         })
       }
@@ -34,7 +34,7 @@ function FriendContents() {
       {
         friendListItems.map((item) => {
           return (
-            <FriendListCard name={item.name} description={item.description} />
+            <FriendListCard key={item.id} name={item.name} description={item.description} />
           )
         })
       }
