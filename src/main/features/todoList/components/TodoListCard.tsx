@@ -1,16 +1,7 @@
-import { Dispatch, SetStateAction } from 'react';
-import { EllipsisVertical, User } from 'lucide-react';
-import Button from '../../../../components/ui/Button';
+import { TodoListCardProps } from '../types';
 import styles from './TodoListCard.module.css';
 
-interface Props {
-  title?: string;
-  description?: string;
-  checked?: boolean;
-  onChange?: () => void;
-}
-
-const TodoListCard = ({ title, description, checked, onChange }: Props) => {
+const TodoListCard = ({ title, description, checked, onChange }: TodoListCardProps) => {
   return (
     <div className={styles.container}>
       <div className={styles.info_contents}>

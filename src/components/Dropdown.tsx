@@ -1,13 +1,8 @@
-import React from 'react';
 import { DropdownMenu } from "radix-ui";
+import DropDownProps from './DropdownProps';
 import styles from './Dropdown.module.css';
 
-interface Props {
-  trigger?: React.ReactNode;
-  content?: React.ReactNode;
-}
-
-const Dropdown = (props: Props) => {
+const Dropdown = (props: DropDownProps) => {
   const { trigger, content } = props;
 
   return (

@@ -1,9 +1,5 @@
+import { Prop } from '../types';
 import styles from './DirectChatSection.module.css'
-
-type Prop = {
-  children: React.ReactNode;
-}
-
 
 function RightChats({ children }: Prop) {
   return (

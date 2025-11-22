@@ -1,13 +1,9 @@
 import { EllipsisVertical, User } from 'lucide-react';
 import Button from '../../../../components/ui/Button';
+import { FriendListCardProps } from '../types';
 import styles from './FriendListCard.module.css';
 
-interface Props {
-  name?: string;
-  description?: string;
-}
-
-const FriendListCard = ({ name, description }: Props) => {
+const FriendListCard = ({ name, description }: FriendListCardProps) => {
   return (
     <div className={styles.container}>
       <div className={styles.info_contents}>

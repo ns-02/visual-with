@@ -1,8 +1,5 @@
+import { Prop } from "./DialogUI";
 import styles from "./Row.module.css";
-
-type Prop = {
-  children?: React.ReactNode;
-}
 
 function Row({ children }: Prop) {
   return (

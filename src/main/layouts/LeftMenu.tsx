@@ -5,14 +5,7 @@ import styles from './Layouts.module.css'
 import SelectTeamDropdown from '../features/teamManager/components/SelectTeamDropdown';
 import InviteTeamDialog from '../features/teamManager/dialogs/InviteTeamDialog';
 import LogoutDialog from '../features/misc/dialogs/LogoutDialog';
-
-export type Tool = 'team-chat' | 'files' | 'schedule' | 'todos' | 'friends' | 'direct-chat' | 'log-out'
-
-interface NavItem {
-  id: Tool;
-  icon: typeof MessagesSquare;
-  path?: string;
-}
+import NavItem from './LeftMenuItemType';
 
 function Divider() {
   return (

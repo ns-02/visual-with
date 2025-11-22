@@ -1,11 +1,7 @@
+import FieldProps from "./FieldProps";
 import styles from "./Field.module.css";
 
-type Prop = {
-  label?: string;
-  input?: string;
-}
-
-const Field = ({ label, input }: Prop) => {
+const Field = ({ label, input }: FieldProps) => {
   return (
     <div className={styles.field}>
       <label className={styles.label}>{label}</label>

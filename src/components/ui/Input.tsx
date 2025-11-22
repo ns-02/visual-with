@@ -1,20 +1,9 @@
-import { Dispatch, KeyboardEvent, SetStateAction, useEffect, useRef, useState } from "react";
+import { KeyboardEvent, useEffect, useRef, useState } from "react";
 import { debounce } from "../../utils/debounce";
+import InputProps from "./InputProps";
 import styles from "./Input.module.css"
 
-type SizeMode = 'fixed' | 'flexible'
-
-type Prop = {
-  placeholder?: string;
-  sizeMode: SizeMode;
-  name?: string;
-  setChat?: Dispatch<SetStateAction<string>>;
-  onKeyDown?: (e: KeyboardEvent<HTMLInputElement>) => void;
-  clearId?: number;
-  children?: React.ReactNode;
-}
-
-function Input({ placeholder, sizeMode, name, setChat, onKeyDown, clearId, children }: Prop) {
+function Input({ placeholder, sizeMode, name, setChat, onKeyDown, clearId, children }: InputProps) {
   const containerStyle = `${styles.container} ${(styles as any)[`container--${sizeMode}`]}`;
   const inputStyle = `${styles.input} ${(styles as any)[`input--${sizeMode}`]}`;
   const [ localValue, setLocalValue ] = useState("");

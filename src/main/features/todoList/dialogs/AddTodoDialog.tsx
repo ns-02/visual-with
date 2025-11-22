@@ -1,14 +1,9 @@
-import { Dispatch, SetStateAction } from "react";
 import Dialog from "../../../../components/dialogs/Dialog";
 import Input from "../../../../components/dialogs/ui/Input";
 import Group from "../../../../components/dialogs/ui/Group";
+import { TodoDialogProps } from "../types";
 
-interface Props {
-  open: boolean;
-  onOpenChange: Dispatch<SetStateAction<boolean>>;
-}
-
-const AddTodoDialog = ({ open, onOpenChange }: Props) => {
+const AddTodoDialog = ({ open, onOpenChange }: TodoDialogProps) => {
   return (
     <Dialog
       title="할 일 추가"

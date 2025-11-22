@@ -1,13 +1,7 @@
-import React from "react";
+import { TodoListLabelProps } from '../types';
 import styles from './TodoListLabel.module.css';
 
-interface Props {
-  text?: string;
-  count?: number;
-  children?: React.ReactNode;
-}
-
-const TodoListLabel = ({ text, count, children }: Props) => {
+const TodoListLabel = ({ text, count, children }: TodoListLabelProps) => {
   return (
     <div className={styles.label}>
       {children}

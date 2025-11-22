@@ -1,15 +1,11 @@
 import { useState } from 'react';
-import DirectBottom from '../section/DirectChatBottom';
+import DirectChatBottom from '../section/DirectChatBottom';
 import LeftFriends from '../section/LeftFriends';
 import RightChats from '../section/RightChats';
 import ChatView from '../../../../components/ChatView';
 import { getItem, setItem } from '../../../../utils/sessionStorage';
 import styles from './DirectChatPage.module.css'
-
-interface ChatItem {
-  chat: string,
-  time: string,
-}
+import { ChatItem } from '../../../../types/Chat';
 
 function DirectChatPage() {
   const initChats: ChatItem[] = getItem('directChats', "") || [];
@@ -47,7 +43,7 @@ function DirectChatPage() {
         <div className={styles.container}>
           <ChatView allChat={allChat} />
         </div>
-        <DirectBottom
+        <DirectChatBottom
           setChat={setChat}
           onClick={onSend}
           onKeyDown={(e) => e.key === 'Enter' && onSend()}

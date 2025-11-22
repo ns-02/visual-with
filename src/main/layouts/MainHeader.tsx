@@ -1,21 +1,13 @@
 import { useState } from 'react';
-import { LucideProps, Plus, Search, Upload } from 'lucide-react';
-import { Tool } from './LeftMenu';
+import { Plus, Search, Upload } from 'lucide-react';
 import HeaderBar from '../../components/HeaderBar';
+import HeaderItem from './MainHeaderItemType';
 import styles from './Layouts.module.css'
 import { useTool } from '../../context/ToolContext';
 import UploadFileDialog from '../features/fileSharing/dialogs/UploadFileDialog';
 import AddScheduleDialog from '../features/schedule/dialogs/AddScheduleDialog';
 import AddTodoDialog from '../features/todoList/dialogs/AddTodoDialog';
 import AddFriendDialog from '../features/friendList/dialogs/AddFriendDialog';
-
-interface HeaderItem {
-  id: Tool;
-  label: string;
-  button?: string;
-  onClick?: () => void | undefined;
-  icon?: React.ComponentType<LucideProps>;
-}
 
 function MainHeader() {
   const { toolId } = useTool();

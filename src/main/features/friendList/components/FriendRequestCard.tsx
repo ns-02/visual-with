@@ -1,13 +1,9 @@
 import { Check, User, X } from 'lucide-react';
 import Button from '../../../../components/ui/Button';
+import { FriendListCardProps } from '../types';
 import styles from './FriendRequestCard.module.css';
 
-interface Props {
-  name?: string;
-  description?: string;
-}
-
-const FriendRequestCard = ({ name, description }: Props) => {
+const FriendRequestCard = ({ name, description }: FriendListCardProps) => {
   return (
     <div className={styles.container}>
       <div className={styles.info_contents}>

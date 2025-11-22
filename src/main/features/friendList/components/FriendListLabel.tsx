@@ -1,13 +1,7 @@
-import React from "react";
+import { FriendListLabelProps } from "../types";
 import styles from './FriendListLabel.module.css';
 
-interface Props {
-  text?: string;
-  count?: number;
-  children?: React.ReactNode;
-}
-
-const FriendListLabel = ({ text, count, children }: Props) => {
+const FriendListLabel = ({ text, count, children }: FriendListLabelProps) => {
   return (
     <div className={styles.label}>
       {children}

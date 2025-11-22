@@ -1,11 +1,7 @@
+import { FileSelectButtonProps } from '../types';
 import styles from './FileSelectButton.module.css';
 
-type Prop = {
-  text?: string;
-  onClick?: () => void;
-}
-
-const FileSelectButton = ({ text, onClick }: Prop) => {
+const FileSelectButton = ({ text, onClick }: FileSelectButtonProps) => {
   return (
     <button className={styles.button} onClick={onClick}>{text}</button>
   )

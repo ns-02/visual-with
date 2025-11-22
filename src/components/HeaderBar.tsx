@@ -1,17 +1,9 @@
-import { Plus, Search } from 'lucide-react';
 import Button from "./ui/Button";
 import Input from './ui/Input';
+import HeaderBarProps from './HeaderBarProps';
 import styles from "./HeaderBar.module.css";
 
-interface HeaderProps {
-  label: string;
-  button?: string;
-  onClick?: () => void;
-  children?: React.ReactNode;
-  inputIcon?: React.ReactNode;
-}
-
-const HeaderBar: React.FC<HeaderProps> = ({ label, button, onClick, children, inputIcon }) => {
+const HeaderBar: React.FC<HeaderBarProps> = ({ label, button, onClick, children, inputIcon }) => {
   return (
     <div className={styles.header}>
       <div className={styles.label}>

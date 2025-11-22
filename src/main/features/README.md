@@ -19,3 +19,4 @@
 - invite 폴더를 팀 관리 폴더와 통합
 - misc (미분류) 폴더 생성
 - 로그아웃 다이얼로그 정의
+- 기능과 관련된 모든 types과 interface 정의를 (기능명)/types/index.ts에 기록

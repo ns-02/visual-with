@@ -1,13 +1,8 @@
-import { Dispatch, SetStateAction } from "react";
 import Dialog from "../../../../components/dialogs/Dialog";
 import Field from "../../../../components/ui/Field";
+import { TeamDialogProps } from "../types";
 
-interface Props {
-  open: boolean;
-  onOpenChange: Dispatch<SetStateAction<boolean>>;
-}
-
-const CreateTeamDialog = ({ open, onOpenChange }: Props) => {
+const CreateTeamDialog = ({ open, onOpenChange }: TeamDialogProps) => {
   return (
     <Dialog
       title="팀 생성"

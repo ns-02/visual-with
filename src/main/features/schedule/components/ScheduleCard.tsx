@@ -1,15 +1,7 @@
-import { Check, X } from 'lucide-react';
-import Button from '../../../../components/ui/Button';
+import { ScheduleCardProps } from '../types';
 import styles from './ScheduleCard.module.css';
 
-interface Props {
-  title?: string;
-  date?: string;
-  time?: string;
-  state?: string;
-}
-
-const ScheduleCard = ({ title, date, time, state }: Props) => {
+const ScheduleCard = ({ title, date, time, state }: ScheduleCardProps) => {
   return (
     <div className={styles.container}>
       <div className={styles.info_contents}>

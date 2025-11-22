@@ -1,16 +1,8 @@
 import React from "react";
+import Chat from "../types/Chat";
 import styles from './ChatView.module.css'
 
-type ChatItem = {
-  chat: string;
-  time: string;
-};
-
-type Props = {
-  allChat: ChatItem[];
-};
-
-const ChatView = React.memo(({ allChat }: Props) => {
+const ChatView = React.memo(({ allChat }: Chat) => {
   let year = new Date().getFullYear();
   let month = new Date().getMonth() + 1;
   let today = new Date().getDate();

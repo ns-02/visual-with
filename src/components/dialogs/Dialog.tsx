@@ -1,18 +1,8 @@
-import React, { Dispatch, SetStateAction } from 'react';
 import * as RadixDialog from '@radix-ui/react-dialog';
-import Button from "../ui/Button";
-import styles from './Dialog.module.css';
 import { X } from 'lucide-react';
-
-interface DialogProps {
-  open?: boolean;
-  onOpenChange?: Dispatch<SetStateAction<boolean>>; 
-  title?: string;
-  btnName?: string;
-  viewButton?: boolean;
-  onClick?: () => void;
-  children?: React.ReactNode;
-}
+import Button from "../ui/Button";
+import DialogProps from './DialogProps';
+import styles from './Dialog.module.css';
 
 const Dialog = ({ 
   open, onOpenChange, title = '제목', btnName = '확인', viewButton = true, children

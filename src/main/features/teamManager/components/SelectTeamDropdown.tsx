@@ -7,12 +7,9 @@ import Button from "../../../../components/ui/Button";
 import styles from "../../../../components/Dropdown.module.css";
 import { Trash2 } from "lucide-react";
 import DeleteTeamDialog from "../dialogs/DeleteTeamDialog";
+import { DropdownProps } from "../types";
 
-interface Props {
-  triggerElement?: React.ReactNode;
-}
-
-const SelectTeamDropdown = ({ triggerElement }: Props) => {
+const SelectTeamDropdown = ({ triggerElement }: DropdownProps) => {
   const [isCreateTeamDialogOpen, setIsCreateTeamDialogOpen] = useState(false);
   const [isDeleteTeamDialogOpen, setIsDeleteTeamDialogOpen] = useState(false);
   

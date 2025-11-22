@@ -2,14 +2,8 @@ import { useState } from 'react';
 import { Circle, CircleCheckBig } from 'lucide-react';
 import TodoListCard from '../components/TodoListCard';
 import TodoListLabel from '../components/TodoListLabel';
+import { TodoItems } from '../types';
 import styles from './TodoListSection.module.css'
-
-interface TodoItems {
-  id: number;
-  title?: string;
-  description?: string;
-  checked?: boolean;
-}
 
 function RightContents() {
   // checked를 별도의 useState로 분리하여 관리하기 vs 지금처럼 한 객체에 담아 관리하기

@@ -1,14 +1,9 @@
-import { Dispatch, SetStateAction } from "react";
 import Dialog from "../../../../components/dialogs/Dialog";
 import Input from "../../../../components/dialogs/ui/Input";
 import Group from "../../../../components/dialogs/ui/Group";
+import { UploadFileDialogProps } from "../types";
 
-interface Props {
-  open: boolean;
-  onOpenChange: Dispatch<SetStateAction<boolean>>;
-}
-
-const UploadFileDialog = ({ open, onOpenChange }: Props) => {
+const UploadFileDialog = ({ open, onOpenChange }: UploadFileDialogProps) => {
   return (
     <Dialog
       title="파일 업로드"

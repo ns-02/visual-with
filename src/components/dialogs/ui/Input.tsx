@@ -1,13 +1,7 @@
+import { InputProps } from "./DialogUI";
 import styles from "./Input.module.css";
 
-type Prop = {
-  type?: string;
-  value?: string;
-  placeholder?: string;
-  readOnly?: boolean;
-}
-
-function Input({type, value, placeholder, readOnly}: Prop) {
+function Input({type, value, placeholder, readOnly}: InputProps) {
   return (
     <input
       type={type}

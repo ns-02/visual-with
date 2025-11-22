@@ -1,13 +1,9 @@
 import { useState } from "react";
-import ChatBottom from "../section/TeamChatBottom";
+import TeamChatBottom from "../section/TeamChatBottom";
 import ChatView from "../../../../components/ChatView";
 import { getItem, setItem } from "../../../../utils/sessionStorage";
 import styles from './TeamChatPage.module.css'
-
-interface ChatItem {
-  chat: string,
-  time: string,
-}
+import { ChatItem } from "../../../../types/Chat";
 
 function TeamChatPage() {
   const initChats: ChatItem[] = getItem('teamChats', "") || [];
@@ -43,7 +39,7 @@ function TeamChatPage() {
       <div className={styles.container}>
         <ChatView allChat={allChat} />
       </div>
-      <ChatBottom
+      <TeamChatBottom
         setChat={setChat}
         onClick={onSend}
         onKeyDown={(e) => e.key === 'Enter' && onSend()}

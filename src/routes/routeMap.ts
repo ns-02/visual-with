@@ -1,4 +1,4 @@
-export type ToolId = 'team-chat' | 'files' | 'schedule' | 'todos' | 'friends' | 'direct-chat';
+import { ToolId } from "../types/ToolId";
 
 const ROUTES: { id: ToolId; path: string }[] = [
   { id: 'team-chat',   path: 'teamchat' },

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 import styles from "./Button.module.css";
-import ButtonProps from '../../types/ButtonProps';
+import ButtonProps from './ButtonProps';
 
 const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps>((props, ref) => {
   const { text, shape = 'normal', to, onCustomClick, children, ...rest } = props;

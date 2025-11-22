@@ -1,11 +1,6 @@
-import { ChangeEventHandler, RefObject } from "react";
+import { FileInputProps } from "../types";
 
-type Prop = {
-  ref: RefObject<HTMLInputElement | null>;
-  onChange?: ChangeEventHandler<HTMLInputElement> | undefined;
-}
-
-function FileInput({ ref, onChange }: Prop) {
+function FileInput({ ref, onChange }: FileInputProps) {
   return (
     <input style={{ display: "none" }} ref={ref} type="file" onChange={onChange} />
   )

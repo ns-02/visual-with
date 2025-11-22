@@ -1,15 +1,10 @@
-import { Dispatch, SetStateAction } from "react";
 import { DayPicker } from "react-day-picker";
 import { ko } from "date-fns/locale";
+import { CalenderProps } from "../types";
 import styles from "./Calender.module.css";
 import "react-day-picker/style.css";
 
-type Prop = {
-  selected: Date | undefined
-  setSelected: Dispatch<SetStateAction<Date | undefined>>;
-}
-
-const Calender = ({ selected, setSelected }: Prop) => {
+const Calender = ({ selected, setSelected }: CalenderProps) => {
   return (
     <>
       <DayPicker

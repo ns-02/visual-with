@@ -1,8 +1,5 @@
+import { Prop } from "./DialogUI";
 import styles from "./Group.module.css";
-
-type Prop = {
-  children?: React.ReactNode;
-}
 
 function Group({ children }: Prop) {
   return (

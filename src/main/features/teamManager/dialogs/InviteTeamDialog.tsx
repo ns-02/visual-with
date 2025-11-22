@@ -1,4 +1,3 @@
-import { Dispatch, SetStateAction } from "react";
 import * as Tabs from "@radix-ui/react-tabs";
 import { Copy, Search } from "lucide-react";
 import Dialog from "../../../../components/dialogs/Dialog";
@@ -6,14 +5,10 @@ import Input from "../../../../components/dialogs/ui/Input";
 import Group from "../../../../components/dialogs/ui/Group";
 import Button from "../../../../components/ui/Button";
 import Row from "../../../../components/dialogs/ui/Row";
+import { TeamDialogProps } from "../types";
 import styles from "./InviteTeamDialog.module.css";
 
-interface Props {
-  open: boolean;
-  onOpenChange: Dispatch<SetStateAction<boolean>>;
-}
-
-const InviteTeamDialog = ({ open, onOpenChange }: Props) => {
+const InviteTeamDialog = ({ open, onOpenChange }: TeamDialogProps) => {
   return (
     <Dialog
       title="팀 초대"

@@ -18,6 +18,7 @@
 - [`main/` : 메인 페이지](main/README.md)
 - [`pages/` : 라우팅되는 페이지](pages/README.md)
 - [`routes/` : 라우팅 관련 코드](routes/README.md)
+- [`types/` : 전역 타입 관리](types/README.md)
 - [`utils/` : 재사용 가능한 함수들](utils/README.md)
 - [`styles/` : 전역 스타일, CSS 변수](styles/README.md)
 - [`stories/` : Storybook 파일](stories/README.md)

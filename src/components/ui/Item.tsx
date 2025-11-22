@@ -1,19 +1,9 @@
 import React from 'react';
 import { Plus } from 'lucide-react';
+import { ItemProps } from './ItemProps';
 import styles from './Item.module.css';
 
-type Type = 'list' | 'add'
-
-interface BaseProps {
-  type: Type;
-  text?: string;
-  icon?: typeof Plus;
-  children?: React.ReactNode;
-}
-
-type CombinedProps = BaseProps & React.ComponentPropsWithoutRef<'div'>;
-
-const Item = React.forwardRef<HTMLDivElement, CombinedProps>((props, ref) => {
+const Item = React.forwardRef<HTMLDivElement, ItemProps>((props, ref) => {
   const { type, text, icon: Icon, children, ...rest } = props;
 
   if (type === 'add') {

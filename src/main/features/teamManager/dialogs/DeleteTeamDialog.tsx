@@ -1,13 +1,8 @@
-import { Dispatch, SetStateAction } from "react";
 import AlertDialog from "../../../../components/dialogs/AlertDialog";
 import Field from "../../../../components/ui/Field";
+import { TeamDialogProps } from "../types";
 
-interface Props {
-  open: boolean;
-  onOpenChange: Dispatch<SetStateAction<boolean>>;
-}
-
-const DeleteTeamDialog = ({ open, onOpenChange }: Props) => {
+const DeleteTeamDialog = ({ open, onOpenChange }: TeamDialogProps) => {
   return (
     <AlertDialog
       title="팀을 삭제하시겠습니까?"

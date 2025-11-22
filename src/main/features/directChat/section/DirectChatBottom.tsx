@@ -1,18 +1,11 @@
-import { Dispatch, KeyboardEvent, SetStateAction } from 'react';
 import { Plus, Send } from 'lucide-react';
 import Button from '../../../../components/ui/Button';
 import Input from '../../../../components/ui/Input';
 import styles from './DirectChatSection.module.css'
 import FileUploadDropdown from '../components/FileUploadDropdown';
+import { DirectChatBottomProps } from '../types';
 
-type Prop = {
-  setChat: Dispatch<SetStateAction<string>>;
-  onClick: () => void;
-  onKeyDown: (e: KeyboardEvent<HTMLInputElement>) => void;
-  clearId: number;
-}
-
-function DirectBottom({ setChat, onClick, onKeyDown, clearId }: Prop) {
+function DirectChatBottom({ setChat, onClick, onKeyDown, clearId }: DirectChatBottomProps) {
   const triggerElement = (
     <Button>
       <Plus size={16} />
@@ -30,4 +23,4 @@ function DirectBottom({ setChat, onClick, onKeyDown, clearId }: Prop) {
   )
 }
 
-export default DirectBottom;
+export default DirectChatBottom;

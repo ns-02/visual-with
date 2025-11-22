@@ -1,16 +1,9 @@
 import { Download, EllipsisVertical, FileText } from 'lucide-react';
 import Button from '../../../../components/ui/Button';
+import { FileListCardProps } from '../types';
 import styles from './FileListCard.module.css';
 
-interface Props {
-  fileName?: string;
-  date?: string;
-  fileSize?: string;
-  timeAgo?: string;
-  uploader?: string;
-}
-
-const FileListCard = ({ fileName, date, fileSize, timeAgo, uploader }: Props) => {
+const FileListCard = ({ fileName, date, fileSize, timeAgo, uploader }: FileListCardProps) => {
   return (
     <div className={styles.container}>
       <div className={styles.info_contents}>

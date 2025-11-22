@@ -1,18 +1,11 @@
-import { Dispatch, KeyboardEvent, SetStateAction } from 'react';
 import { Plus, Send } from 'lucide-react';
 import Button from '../../../../components/ui/Button';
 import Input from '../../../../components/ui/Input';
 import styles from './TeamChatSection.module.css'
 import FileUploadDropdown from '../components/FileUploadDropdown';
+import { TeamChatBottomProps } from '../types';
 
-type Prop = {
-  setChat: Dispatch<SetStateAction<string>>;
-  onClick: () => void;
-  onKeyDown: (e: KeyboardEvent<HTMLInputElement>) => void;
-  clearId: number;
-}
-
-function ChatBottom({ setChat, onClick, onKeyDown, clearId }: Prop) {
+function TeamChatBottom({ setChat, onClick, onKeyDown, clearId }: TeamChatBottomProps) {
   const triggerElement = (
     <Button><Plus size={16} /></Button>
   );
@@ -28,4 +21,4 @@ function ChatBottom({ setChat, onClick, onKeyDown, clearId }: Prop) {
   )
 }
 
-export default ChatBottom;
+export default TeamChatBottom;

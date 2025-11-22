@@ -1,15 +1,10 @@
-import { Dispatch, SetStateAction } from "react";
 import Dialog from "../../../../components/dialogs/Dialog";
 import Input from "../../../../components/dialogs/ui/Input";
 import Group from "../../../../components/dialogs/ui/Group";
 import Row from "../../../../components/dialogs/ui/Row";
+import { ScheduleDialogProps } from "../types";
 
-interface Props {
-  open: boolean;
-  onOpenChange: Dispatch<SetStateAction<boolean>>;
-}
-
-const UpdateScheduleDialog = ({ open, onOpenChange }: Props) => {
+const UpdateScheduleDialog = ({ open, onOpenChange }: ScheduleDialogProps) => {
   return (
     <Dialog
       title="일정 수정"
