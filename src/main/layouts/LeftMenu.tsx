@@ -14,19 +14,16 @@ interface NavItem {
   path?: string;
 }
 
-interface WrapperProps {
-  children?: React.ReactNode;
-}
-
 function Divider() {
   return (
     <hr style={{ marginTop: 8, marginBottom: 8, width: "100%" }}></hr>
   );
 }
 
-function LeftMenu({ children }: WrapperProps) {
+function LeftMenu() {
   const [isInviteTeamDialogOpen, setIsInviteTeamDialogOpen] = useState(false);
   const [isLogoutDialogOpen, setIsLogoutDialogOpen] = useState(false);
+  const [isTeamMember, setIsTeamMember] = useState(true);
 
   const topNavItems: NavItem[] = [
     { id: 'team-chat', icon: MessagesSquare, path: 'teamchat' },
@@ -46,27 +43,60 @@ function LeftMenu({ children }: WrapperProps) {
     <Button text={"개"} shape="square" />
   )
 
+  // 팀에 소속되지 않은 경우
+  if (!isTeamMember) {
+    return (
+      <section className={styles.leftmenu}>
+        <div>
+          <SelectTeamDropdown 
+            triggerElement={triggerElement}
+          />
+        </div>
+        <LogoutDialog open={isLogoutDialogOpen} onOpenChange={setIsLogoutDialogOpen} />
+        <Divider />
+        {
+          middleNavItems.map((item) => {
+            return (
+              <div key={item.id}>
+                <Button to={item.path} shape='circle'>
+                  <item.icon size={24} />
+                </Button>
+              </div>
+            )
+          })
+        }
+        <Divider />
+        <div>
+          <Button onCustomClick={() => setIsLogoutDialogOpen(true)} shape='circle'>
+            <bottomNavItem.icon size={24} />
+          </Button>
+        </div>
+      </section>
+    )
+  }
+
   return (
     <section className={styles.leftmenu}>
       <div>
         <SelectTeamDropdown 
           triggerElement={triggerElement}
         />
-        {children}
       </div>
       <InviteTeamDialog open={isInviteTeamDialogOpen} onOpenChange={setIsInviteTeamDialogOpen} />
       <LogoutDialog open={isLogoutDialogOpen} onOpenChange={setIsLogoutDialogOpen} />
       <div>
-        <Button onCustomClick={() => setIsInviteTeamDialogOpen(true)} shape='circle' icon={Link2} iconSize={24} />
+        <Button onCustomClick={() => setIsInviteTeamDialogOpen(true)} shape='circle'>
+          <Link2 size={24} />
+        </Button>
       </div>
       <Divider />
       {
         topNavItems.map((item) => {
-          const { icon } = item;
-
           return (
             <div key={item.id}>
-              <Button to={item.path} shape='circle' icon={icon} iconSize={24} />
+              <Button to={item.path} shape='circle'>
+                <item.icon size={24} />
+              </Button>
             </div>
           )
         })
@@ -74,18 +104,20 @@ function LeftMenu({ children }: WrapperProps) {
       <Divider />
       {
         middleNavItems.map((item) => {
-          const { icon } = item;
-
           return (
             <div key={item.id}>
-              <Button to={item.path} shape='circle' icon={icon} iconSize={24} />
+              <Button to={item.path} shape='circle'>
+                <item.icon size={24} />
+              </Button>
             </div>
           )
         })
       }
       <Divider />
       <div>
-        <Button onCustomClick={() => setIsLogoutDialogOpen(true)} shape='circle' icon={bottomNavItem.icon} iconSize={24} />
+        <Button onCustomClick={() => setIsLogoutDialogOpen(true)} shape='circle'>
+          <bottomNavItem.icon size={24} />
+        </Button>
       </div>
     </section>
   )

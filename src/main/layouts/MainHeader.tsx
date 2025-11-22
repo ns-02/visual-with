@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Plus, Upload } from 'lucide-react';
+import { LucideProps, Plus, Search, Upload } from 'lucide-react';
 import { Tool } from './LeftMenu';
 import HeaderBar from '../../components/HeaderBar';
 import styles from './Layouts.module.css'
@@ -14,7 +14,7 @@ interface HeaderItem {
   label: string;
   button?: string;
   onClick?: () => void | undefined;
-  icon?: typeof Plus;
+  icon?: React.ComponentType<LucideProps>;
 }
 
 function MainHeader() {
@@ -34,19 +34,24 @@ function MainHeader() {
   ];
 
   const headerItem = headerItems.filter(({ id }) => id === toolId );
+  const inputIcon = (<Search size={16}></Search>)
   
   return (
     <div className={styles.header}>
       {
         headerItem.map(({id, label, button, onClick, icon}) => {
+          const ButtonIcon = icon;
+
           return (
             <HeaderBar 
               label={label}
               button={button}
               onClick={onClick}
-              icon={icon}
               key={id}
-            />
+              inputIcon={inputIcon}
+            >
+              {ButtonIcon && <ButtonIcon size={16} />}
+            </HeaderBar>
           )
         })
       }

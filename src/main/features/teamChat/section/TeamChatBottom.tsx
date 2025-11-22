@@ -14,14 +14,16 @@ type Prop = {
 
 function ChatBottom({ setChat, onClick, onKeyDown, clearId }: Prop) {
   const triggerElement = (
-    <Button icon={Plus} iconSize={16} />
+    <Button><Plus size={16} /></Button>
   );
 
   return (
     <div className={styles.bottom}>
       <FileUploadDropdown triggerElement={triggerElement} />
       <Input placeholder='채팅 입력' sizeMode='flexible' setChat={setChat} onKeyDown={(e) => onKeyDown(e)} clearId={clearId} />
-      <Button onCustomClick={onClick} icon={Send} iconSize={16} />
+      <Button onCustomClick={onClick}>
+        <Send size={16} />
+      </Button>
     </div>
   )
 }

@@ -24,8 +24,6 @@ export const NormalIcon: Story = {
   args: {
     text: '버튼',
     onCustomClick: fn(),
-    icon: Plus,
-    iconSize: 16,
   },
 };
 
@@ -41,7 +39,5 @@ export const CircleIcon: Story = {
   args: {
     onCustomClick: fn(),
     shape: 'circle',
-    icon: Plus,
-    iconSize: 24,
   },
 };

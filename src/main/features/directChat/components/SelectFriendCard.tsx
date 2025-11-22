@@ -13,7 +13,9 @@ const SelectFriendCard = ({ name, chat, selected }: Props) => {
 
   return (
     <div className={containerStyle}>
-      <Button shape='circle' icon={User} iconSize={24} />
+      <Button shape='circle'>
+        <User size={24} />
+      </Button>
       <div>
         <p>{name}</p>
         <p style={{ fontSize: "15px", color: "#555" }} >{chat}</p>

@@ -31,7 +31,9 @@ const TodoListCard = ({ title, description, checked, onChange }: Props) => {
         </div>
       </div>
       {/* <div className={styles.navigation}>
-        <Button icon={EllipsisVertical} iconSize={16} />
+        <Button>
+          <EllipsisVertical size={16} />
+        </Button>
       </div> */}
     </div>
   )

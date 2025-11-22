@@ -11,15 +11,21 @@ const FriendRequestCard = ({ name, description }: Props) => {
   return (
     <div className={styles.container}>
       <div className={styles.info_contents}>
-        <Button shape='circle' icon={User} iconSize={24} />
+        <Button shape='circle'>
+          <User size={24} />
+        </Button>
         <div>
           <p>{name}</p>
           <p style={{ fontSize: "15px", color: "#555" }} >{description}</p>
         </div>
       </div>
       <div className={styles.navigation}>
-        <Button text='수락' icon={Check} iconSize={16} />
-        <Button text='거절' icon={X} iconSize={16} />
+        <Button text='수락'>
+          <Check size={16} />
+        </Button>
+        <Button text='거절'>
+          <X size={16} />
+        </Button>
       </div>
     </div>
   )

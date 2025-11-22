@@ -33,7 +33,9 @@ const InviteTeamDialog = ({ open, onOpenChange }: Props) => {
             </Group>
             <Row>
               <Input value="https://example.com/invite/개발팀/abc123" readOnly={true} />
-              <Button icon={Copy} iconSize={16} />
+              <Button>
+                <Copy size={16} />
+              </Button>
             </Row>
           </Tabs.Content>
           <Tabs.Content value="tab2">
@@ -43,7 +45,9 @@ const InviteTeamDialog = ({ open, onOpenChange }: Props) => {
             </Group>
             <Row>
               <Input placeholder="팀원의 ID를 검색하세요" />
-              <Button icon={Search} iconSize={16} />
+              <Button>
+                <Search size={16} />
+              </Button>
             </Row>
           </Tabs.Content>
       </Tabs.Root>

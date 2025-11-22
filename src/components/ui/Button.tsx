@@ -1,22 +1,10 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import { Plus } from 'lucide-react';
 import styles from "./Button.module.css";
-
-type Shape = 'normal' | 'square' | 'circle'
-export type IconSize = 16 | 24
-
-interface ButtonProps {
-  text?: string;
-  shape?: Shape;
-  to?: string;
-  icon?: typeof Plus;
-  iconSize?: IconSize;
-  onCustomClick?: (e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => void;
-}
+import ButtonProps from '../../types/ButtonProps';
 
 const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps>((props, ref) => {
-  const { text, shape = 'normal', to, icon: Icon, iconSize, onCustomClick, ...rest } = props;
+  const { text, shape = 'normal', to, onCustomClick, children, ...rest } = props;
   const btnStyle = `${styles.button} ${(styles as any)[shape]}`;
 
   // Radix와 커스텀 클릭 둘 다 동작하기 위함
@@ -34,7 +22,7 @@ const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPro
         onClick={handleClick} 
         {...rest}
       >
-        {Icon && <Icon size={iconSize} />}
+        {children}
       </Link>
     )
   }
@@ -46,7 +34,7 @@ const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPro
       onClick={handleClick}
       {...rest}
     >
-      {Icon && <Icon size={iconSize} />}
+      {children}
       {text && text}
     </button>
   )

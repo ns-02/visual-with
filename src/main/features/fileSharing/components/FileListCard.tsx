@@ -14,7 +14,9 @@ const FileListCard = ({ fileName, date, fileSize, timeAgo, uploader }: Props) =>
   return (
     <div className={styles.container}>
       <div className={styles.info_contents}>
-        <Button shape='square' icon={FileText} iconSize={24} />
+        <Button shape='square'>
+          <FileText size={24} />
+        </Button>
         <div>
           <p>{fileName}</p>
           <p style={{ fontSize: "15px", color: "#555" }} >
@@ -23,8 +25,12 @@ const FileListCard = ({ fileName, date, fileSize, timeAgo, uploader }: Props) =>
         </div>
       </div>
       <div className={styles.navigation}>
-        <Button icon={Download} iconSize={16} />
-        <Button icon={EllipsisVertical} iconSize={16} />
+        <Button>
+          <Download size={16} />
+        </Button>
+        <Button>
+          <EllipsisVertical size={16} />
+        </Button>
       </div>
     </div>
   )

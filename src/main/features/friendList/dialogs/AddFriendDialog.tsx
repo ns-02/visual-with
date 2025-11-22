@@ -24,7 +24,9 @@ const AddFriendDialog = ({ open, onOpenChange }: Props) => {
       </Group>
       <Row>
         <Input placeholder="친구의 ID를 검색하세요" />
-        <Button icon={Search} iconSize={16} />
+        <Button>
+          <Search size={16} />
+        </Button>
       </Row>
     </Dialog>
   )

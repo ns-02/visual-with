@@ -7,19 +7,23 @@ interface HeaderProps {
   label: string;
   button?: string;
   onClick?: () => void;
-  icon?: typeof Plus;
+  children?: React.ReactNode;
+  inputIcon?: React.ReactNode;
 }
 
-const HeaderBar: React.FC<HeaderProps> = ({ label, button, onClick, icon }) => {
+const HeaderBar: React.FC<HeaderProps> = ({ label, button, onClick, children, inputIcon }) => {
   return (
     <div className={styles.header}>
       <div className={styles.label}>
         <span>{label}</span>
       </div>
       <div className={styles.rsection}>
-        <Input placeholder='검색' sizeMode='fixed' icon={Search} iconSize={16} />
+        <Input placeholder='검색' sizeMode='fixed'>{inputIcon}</Input>
         {
-          button && onClick && <Button text={button} onCustomClick={onClick} icon={icon} iconSize={16} />
+          button && onClick &&
+          <Button text={button} onCustomClick={onClick}>
+            {children}
+          </Button>
         }
       </div>
     </div>

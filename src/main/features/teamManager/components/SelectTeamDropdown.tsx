@@ -16,7 +16,7 @@ const SelectTeamDropdown = ({ triggerElement }: Props) => {
   const [isCreateTeamDialogOpen, setIsCreateTeamDialogOpen] = useState(false);
   const [isDeleteTeamDialogOpen, setIsDeleteTeamDialogOpen] = useState(false);
   
-  const teamItems = [
+  const teamItems: any[] = [
     { id: "1", text: "기획팀" },
     { id: "2", text: "개발팀" },
     { id: "3", text: "운영팀" },
@@ -25,17 +25,20 @@ const SelectTeamDropdown = ({ triggerElement }: Props) => {
   const dropdownContent = (
     <>
       {
+        teamItems.length > 0 &&
         teamItems.map((item) => {
           return (
             <DropdownMenu.Item key={item.id}>
               <Item type="list" text={item.text}>
-                <Button icon={Trash2} iconSize={16} onCustomClick={() => setIsDeleteTeamDialogOpen(true)} />
+                <Button onCustomClick={() => setIsDeleteTeamDialogOpen(true)}>
+                  <Trash2 size={16} />
+                </Button>
               </Item>
             </DropdownMenu.Item>
           )
         })
       }
-      <DropdownMenu.Separator className={styles.separator} />
+      {teamItems.length > 0 && <DropdownMenu.Separator className={styles.separator} />}
       <DropdownMenu.Item
         onSelect={() => setIsCreateTeamDialogOpen(true)}
         asChild

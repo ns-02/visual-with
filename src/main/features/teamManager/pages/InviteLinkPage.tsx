@@ -10,7 +10,9 @@ const InviteLinkPage = () => {
     <Container>
       <div style={{ display: "flex", flexDirection: "column" }}>
         <div style={{ backgroundColor: "#f9f9f9", width: "280px", display: "flex", padding: "16px", gap: "12px" }}>
-          <Button shape='square' icon={CircleUser} iconSize={24} />
+          <Button shape='square'>
+            <CircleUser size={24} />
+          </Button>
           <div>
             <p>{`ㅇㅇ팀`}</p>
             <p style={{ fontSize: "15px", color: "#555" }} >{`리더: ㅇㅇㅇ`}</p>

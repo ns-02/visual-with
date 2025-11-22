@@ -1,7 +1,5 @@
 import { Dispatch, KeyboardEvent, SetStateAction, useEffect, useRef, useState } from "react";
-import { Plus } from "lucide-react";
 import { debounce } from "../../utils/debounce";
-import { IconSize } from "./Button";
 import styles from "./Input.module.css"
 
 type SizeMode = 'fixed' | 'flexible'
@@ -9,15 +7,14 @@ type SizeMode = 'fixed' | 'flexible'
 type Prop = {
   placeholder?: string;
   sizeMode: SizeMode;
-  icon?: typeof Plus;
-  iconSize?: IconSize;
   name?: string;
   setChat?: Dispatch<SetStateAction<string>>;
   onKeyDown?: (e: KeyboardEvent<HTMLInputElement>) => void;
   clearId?: number;
+  children?: React.ReactNode;
 }
 
-function Input({ placeholder, sizeMode, icon: Icon, iconSize, name, setChat, onKeyDown, clearId }: Prop) {
+function Input({ placeholder, sizeMode, name, setChat, onKeyDown, clearId, children }: Prop) {
   const containerStyle = `${styles.container} ${(styles as any)[`container--${sizeMode}`]}`;
   const inputStyle = `${styles.input} ${(styles as any)[`input--${sizeMode}`]}`;
   const [ localValue, setLocalValue ] = useState("");
@@ -41,7 +38,7 @@ function Input({ placeholder, sizeMode, icon: Icon, iconSize, name, setChat, onK
 
   return (
     <div className={containerStyle}>
-      {Icon && <Icon size={iconSize} />}
+      {children}
       <input
         className={inputStyle}
         name={name ?? "input"}
