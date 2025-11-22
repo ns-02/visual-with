@@ -4,9 +4,9 @@ import Input from "../../../../components/dialogs/ui/Input";
 import Group from "../../../../components/dialogs/ui/Group";
 import Row from "../../../../components/dialogs/ui/Row";
 import Button from "../../../../components/ui/Button";
-import LocalDialogProps from "../../../../types/LocalDialogProps";
+import { AddFriendDialogProps } from "../types";
 
-const AddFriendDialog = ({ open, onOpenChange }: LocalDialogProps) => {
+const AddFriendDialog = ({ open, onOpenChange }: AddFriendDialogProps) => {
   return (
     <Dialog
       title="친구 추가"
