@@ -11,6 +11,7 @@ import SchedulePage from './main/features/schedule/pages/SchedulePage';
 import TodoListPage from './main/features/todoList/pages/TodoListPage';
 import FriendListPage from './main/features/friendList/pages/FriendListPage';
 import DirectChatPage from './main/features/directChat/pages/DirectChatPage';
+import InviteLinkPage from './main/features/teamManager/pages/InviteLinkPage';
 import { ToolProvider } from './context/ToolContext';
 import { RouteWatcher } from './routes/RouteWatcher'
 import './styles/global.css';
@@ -33,6 +34,9 @@ const App: React.FC = () => {
           <Route path="todolist" element={<TodoListPage />} />
           <Route path="friendlist" element={<FriendListPage />} />
           <Route path="directchat" element={<DirectChatPage />} />
+        </Route>
+        <Route path="/invite">
+          <Route path=":id" element={<InviteLinkPage />} />
         </Route>
       </Routes>
     </ToolProvider>
