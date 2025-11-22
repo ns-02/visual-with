@@ -1,15 +1,18 @@
 import Dialog from "../../../../components/dialogs/Dialog";
 import Input from "../../../../components/dialogs/ui/Input";
 import Group from "../../../../components/dialogs/ui/Group";
+import Button from "../../../../components/ui/Button";
 import { TodoDialogProps } from "../types";
 
 const AddTodoDialog = ({ open, onOpenChange }: TodoDialogProps) => {
+  const confirmButton = (<Button text="추가" />);
+
   return (
     <Dialog
       title="할 일 추가"
-      btnName="추가"
       open={open} 
       onOpenChange={onOpenChange}
+      confirmButton={confirmButton}
     >
       <Group>
         <label>제목</label>

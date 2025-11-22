@@ -1,6 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
 import { useNavigate } from 'react-router-dom';
 import AlertDialog from "../../../../components/dialogs/AlertDialog";
+import Button from "../../../../components/ui/Button";
 
 interface Props {
   open: boolean;
@@ -16,14 +17,15 @@ const LogoutDialog = ({ open, onOpenChange }: Props) => {
     navigate("/");
   };
 
+  const confirmButton = (<Button text="로그아웃" onCustomClick={handleLogout} />);
+
   return (
     <AlertDialog
       title="로그아웃 확인"
       description="정말로 로그아웃하시겠습니까?"
-      btnName="로그아웃"
       open={open} 
       onOpenChange={onOpenChange}
-      onClick={handleLogout}
+      confirmButton={confirmButton}
     >
     </AlertDialog>
   )

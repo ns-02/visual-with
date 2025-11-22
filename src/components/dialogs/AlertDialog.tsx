@@ -4,7 +4,7 @@ import DialogProps from './DialogProps';
 import styles from './Dialog.module.css';
 
 const AlertDialog = ({
-  open, onOpenChange, title = '제목', btnName = '확인', description = '설명', children, onClick
+  open, onOpenChange, title = '제목', description = '설명', children, confirmButton
 }: DialogProps) => {
   return (
     <RadixAlertDialog.Root open={open} onOpenChange={onOpenChange} >
@@ -18,9 +18,7 @@ const AlertDialog = ({
             <RadixAlertDialog.Cancel asChild>
               <Button text="취소"></Button>
             </RadixAlertDialog.Cancel>
-            <RadixAlertDialog.Action asChild onClick={onClick}>
-              <Button text={btnName}></Button>
-            </RadixAlertDialog.Action>
+            {confirmButton}
           </div>
         </RadixAlertDialog.Content>
       </RadixAlertDialog.Portal>

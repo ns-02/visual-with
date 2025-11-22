@@ -5,7 +5,7 @@ import DialogProps from './DialogProps';
 import styles from './Dialog.module.css';
 
 const Dialog = ({ 
-  open, onOpenChange, title = '제목', btnName = '확인', viewButton = true, children
+  open, onOpenChange, title = '제목', viewButton = true, children, confirmButton
 }: DialogProps) => {
   return (
     <RadixDialog.Root open={open} onOpenChange={onOpenChange} >
@@ -20,9 +20,7 @@ const Dialog = ({
               <RadixDialog.Close asChild>
                 <Button text="취소"></Button>
               </RadixDialog.Close>
-              <RadixDialog.Close asChild>
-                <Button text={btnName}></Button>
-              </RadixDialog.Close>
+              {confirmButton}
             </div>
           }
           

@@ -2,15 +2,18 @@ import Dialog from "../../../../components/dialogs/Dialog";
 import Input from "../../../../components/dialogs/ui/Input";
 import Group from "../../../../components/dialogs/ui/Group";
 import Row from "../../../../components/dialogs/ui/Row";
+import Button from "../../../../components/ui/Button";
 import { ScheduleDialogProps } from "../types";
 
 const UpdateScheduleDialog = ({ open, onOpenChange }: ScheduleDialogProps) => {
+  const confirmButton = (<Button text="수정" />);
+
   return (
     <Dialog
       title="일정 수정"
-      btnName="수정"
       open={open} 
       onOpenChange={onOpenChange}
+      confirmButton={confirmButton}
     >
       <Group>
         <label>제목</label>

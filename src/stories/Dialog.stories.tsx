@@ -55,6 +55,5 @@ export const Default: Story = {
     open: false,
     // dialogInfo의 더미 데이터 설정 필요
     title: "테스트 다이얼로그",
-    btnName: "확인",
   },
 };

@@ -16,7 +16,8 @@ function Divider() {
 function LeftMenu() {
   const [isInviteTeamDialogOpen, setIsInviteTeamDialogOpen] = useState(false);
   const [isLogoutDialogOpen, setIsLogoutDialogOpen] = useState(false);
-  const [isTeamMember, setIsTeamMember] = useState(true);
+  const [isTeamMember, setIsTeamMember] = useState(false);
+  const [triggerText, setTriggerText] = useState("");
 
   const topNavItems: NavItem[] = [
     { id: 'team-chat', icon: MessagesSquare, path: 'teamchat' },
@@ -33,7 +34,7 @@ function LeftMenu() {
   const bottomNavItem: NavItem = { id: 'log-out', icon: LogOut };
 
   const triggerElement = (
-    <Button text={"개"} shape="square" />
+    <Button text={triggerText} shape="square" />
   )
 
   // 팀에 소속되지 않은 경우
