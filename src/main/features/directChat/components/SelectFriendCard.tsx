@@ -3,11 +3,15 @@ import Button from '../../../../components/ui/Button';
 import styles from './SelectFriendCard.module.css';
 import { SelectFriendCardProps } from '../types';
 
-const SelectFriendCard = ({ name, chat, selected }: SelectFriendCardProps) => {
+const SelectFriendCard = ({ name, chat, selected, onSelect }: SelectFriendCardProps) => {
   const containerStyle = selected ? styles.container_selected : styles.container;
 
+  const handleCardSelect = () => {
+    if (onSelect) onSelect();
+  };
+
   return (
-    <div className={containerStyle}>
+    <div className={containerStyle} onClick={handleCardSelect}>
       <Button shape='circle'>
         <User size={24} />
       </Button>
