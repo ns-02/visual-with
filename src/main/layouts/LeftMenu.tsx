@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Calendar1, FileText, Link2, ListTodo, LogOut, MessageSquare, MessagesSquare, Users } from 'lucide-react';
+import { Calendar1, FileText, Link2, ListTodo, LogOut, MessageSquare, MessagesSquare, Plus, Users } from 'lucide-react';
 import Button from '../../components/ui/Button';
 import styles from './Layouts.module.css'
 import SelectTeamDropdown from '../features/teamManager/components/SelectTeamDropdown';
@@ -16,7 +16,7 @@ function Divider() {
 function LeftMenu() {
   const [isInviteTeamDialogOpen, setIsInviteTeamDialogOpen] = useState(false);
   const [isLogoutDialogOpen, setIsLogoutDialogOpen] = useState(false);
-  const [isTeamMember, setIsTeamMember] = useState(false);
+  const [isTeamMember, setIsTeamMember] = useState(true);
   const [triggerText, setTriggerText] = useState("");
 
   const topNavItems: NavItem[] = [
@@ -33,9 +33,15 @@ function LeftMenu() {
 
   const bottomNavItem: NavItem = { id: 'log-out', icon: LogOut };
 
+  const renderTriggerText = (teamName: string) => {
+    teamName[0] && setTriggerText(teamName[0]);
+  };
+
   const triggerElement = (
-    <Button text={triggerText} shape="square" />
-  )
+    isTeamMember ?
+    <Button text={triggerText} shape="square" /> :
+    <Button shape="square"><Plus size={24} /></Button>
+  );
 
   // 팀에 소속되지 않은 경우
   if (!isTeamMember) {
@@ -74,6 +80,7 @@ function LeftMenu() {
       <div>
         <SelectTeamDropdown 
           triggerElement={triggerElement}
+          onSelect={renderTriggerText}
         />
       </div>
       <InviteTeamDialog open={isInviteTeamDialogOpen} onOpenChange={setIsInviteTeamDialogOpen} />

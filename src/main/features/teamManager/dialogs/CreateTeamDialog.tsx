@@ -4,15 +4,19 @@ import Input from "../../../../components/dialogs/ui/Input";
 import Button from "../../../../components/ui/Button";
 import { TeamDialogProps } from "../types";
 
-const CreateTeamDialog = ({ open, onOpenChange }: TeamDialogProps) => {
+const CreateTeamDialog = ({ open, onOpenChange, onCreate }: TeamDialogProps) => {
   const [teamName, setTeamName] = useState("");
 
-  const handleConfirm = () => {
+  const handleCreateTeam = () => {
+    if (!teamName) {
+      return;
+    }
+    if (onCreate) onCreate(teamName);
     setTeamName("");
     onOpenChange(false);
   };
 
-  const confirmButton = (<Button text="생성" onCustomClick={handleConfirm} />);
+  const confirmButton = (<Button text="생성" onCustomClick={handleCreateTeam} />);
 
   return (
     <Dialog

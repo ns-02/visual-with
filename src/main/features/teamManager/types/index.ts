@@ -8,8 +8,10 @@ export interface TeamItem {
 export interface TeamDialogProps {
   open: boolean;
   onOpenChange: Dispatch<SetStateAction<boolean>>;
+  onCreate?: (value: string) => void;
 };
 
 export interface DropdownProps {
   triggerElement?: React.ReactNode;
+  onSelect?: (value: string) => void;
 };
