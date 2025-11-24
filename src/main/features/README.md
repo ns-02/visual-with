@@ -14,6 +14,13 @@
 - [`friendList/` : 친구 목록](friendList/README.md)
 - [`directChat/` : 친구 채팅](directChat/README.md)
 
+## 유스케이스 구분
+- 0: 아무것도 만들어지지 않음
+- 1: UI 구조만 만들어짐
+- 2: UI 동작이 만들어짐 (=> 화면만 보면 그럴싸하게 동작함)
+- 3: 프론트엔드의 로직이 만들어짐
+- X: 백엔드까지 구현됨 or 완성됨
+
 ## 완료된 것
 - teamManager 폴더 생성
 - invite 폴더를 팀 관리 폴더와 통합

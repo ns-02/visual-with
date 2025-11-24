@@ -25,7 +25,8 @@ function DirectChatPage() {
       ]);
     } else if (id === 3) {
       setAllChat([
-        { chat: "제 소개가 늦었네요. 전 박영수고, 영수라고 불러주세요.", time: "오후 11:13" }
+        { chat: "제 소개가 늦었네요. 전 박영수고, 영수라고 불러주세요.", time: "오후 11:13" },
+        { chat: "앞으로 잘 부탁해요.", time: "오후 11:14" },
       ]);
     }
     
