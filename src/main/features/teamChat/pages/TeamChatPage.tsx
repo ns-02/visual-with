@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useTeam } from "../../../../context/TeamContext";
 import TeamChatBottom from "../section/TeamChatBottom";
 import ChatView from "../../../../components/ChatView";
 import { getItem, setItem } from "../../../../utils/sessionStorage";
@@ -6,7 +7,9 @@ import styles from './TeamChatPage.module.css'
 import { ChatItem } from "../../../../types/Chat";
 
 function TeamChatPage() {
-  const initChats: ChatItem[] = getItem('teamChats', "") || [];
+   const { selectTeamData } = useTeam();
+
+  const initChats: ChatItem[] = getItem(`teamChats_${selectTeamData?.id}`, "") || [];
   const maxId = initChats.length > 0 
     ? Math.max(...initChats.map(item => item.id)) 
     : 0;
@@ -15,6 +18,10 @@ function TeamChatPage() {
   const [ chat, setChat ] = useState("");
   const [ clearId, setClearId ] = useState(1);
   const [ currentId, setCurrentId ] = useState(maxId + 1);
+
+  useEffect(() => {
+    setAllChat(initChats);
+  }, [selectTeamData]);
 
   const onSend = () => {
     if (!chat) {
@@ -28,7 +35,7 @@ function TeamChatPage() {
       ...allChat, { id: currentId, chat, time }
     ];
 
-    setItem('teamChats', JSON.stringify(nextChat));
+    setItem(`teamChats_${selectTeamData?.id}`, JSON.stringify(nextChat));
     setAllChat(nextChat);
     setChat("");
     setCurrentId(currentId + 1);
