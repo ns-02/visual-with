@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Container from "../../components/Container";
 import { checkId, signupUser } from "../../api/api";
@@ -13,7 +13,9 @@ function SignupPage() {
   const [ checkPassword, setCheckPassword ] = useState("");
   const [ isValid, setIsValid ] = useState(false);
 
-  const handleSignUp = async () => {
+  const handleSignUp = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
     if (!id || !password || !checkPassword) {
       alert("양식이 입력되지 않았습니다.");
       return;
@@ -29,21 +31,17 @@ function SignupPage() {
       return;
     }
 
-    // 서버 요청 및 응답 처리
-    const requestMessage = {
-      userId: id,
-      password,
-      email,
-      name
-    };
-
-    const res = await signupUser(requestMessage);
-
-    if (!res) {
-      return;
+    try {
+      const res = await signupUser({ userId: id, password, email, name });
+  
+      if (!res) {
+        return;
+      }
+  
+      navigate("/signup-result");
+    } catch (e: any) {
+      alert(e.message);
     }
-
-    navigate("/signup-result");
   }
 
   const handleIdCheck = async () => {
@@ -71,7 +69,7 @@ function SignupPage() {
           <h2>회원가입</h2>
           <br></br>
         </div>
-        <form>
+        <form onSubmit={(e) => handleSignUp(e)}>
           <div>
             <div>
               <p>아이디</p>
@@ -99,7 +97,7 @@ function SignupPage() {
             </div>
             <br />
             <div>
-              <button type="button" onClick={handleSignUp}>회원가입</button>
+              <button type="submit">회원가입</button>
             </div>
             <br />
             <div>

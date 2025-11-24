@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Container from "../../components/Container";
 import { loginUser } from "../../api/api";
@@ -9,7 +9,9 @@ function LoginPage() {
   const [ id, setId ] = useState("");
   const [ password, setPassword ] = useState("");
 
-  const handleLogin = async () => {
+  const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    
     if (!id || !password) {
       alert("양식이 입력되지 않았습니다.");
       return;
@@ -24,7 +26,7 @@ function LoginPage() {
 
       navigate("/main");
     } catch (e: any) {
-      
+      alert(e.message);
     }
   }
 
@@ -35,7 +37,7 @@ function LoginPage() {
           <h2>로그인</h2>
         </div>
         <br />
-        <form>
+        <form onSubmit={(e) => handleLogin(e)}>
           <div>
             <div>
               <input
@@ -57,7 +59,7 @@ function LoginPage() {
             </div>
             <br />
             <div>
-              <button type="button" onClick={handleLogin}>로그인</button> 
+              <button type="submit">로그인</button> 
             </div>
             <br />
             <div>
