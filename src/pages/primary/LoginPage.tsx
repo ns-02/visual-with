@@ -25,8 +25,12 @@ function LoginPage() {
       }
 
       navigate("/main");
-    } catch (e: any) {
-      alert(e.message);
+    } catch (e) {
+      if (e instanceof Error) {
+        alert(e.message);
+      } else {
+        alert("알 수 없는 오류가 발생했습니다.");
+      }
     }
   }
 

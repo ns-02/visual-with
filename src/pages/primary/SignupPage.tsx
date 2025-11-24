@@ -16,7 +16,7 @@ function SignupPage() {
   const handleSignUp = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (!id || !password || !checkPassword) {
+    if (!id || !password || !checkPassword || !name || !email) {
       alert("양식이 입력되지 않았습니다.");
       return;
     }
@@ -39,8 +39,12 @@ function SignupPage() {
       }
   
       navigate("/signup-result");
-    } catch (e: any) {
-      alert(e.message);
+    } catch (e) {
+      if (e instanceof Error) {
+        alert(e.message);
+      } else {
+        alert("알 수 없는 오류가 발생했습니다.");
+      }
     }
   }
 
@@ -72,7 +76,7 @@ function SignupPage() {
         <form onSubmit={(e) => handleSignUp(e)}>
           <div>
             <div>
-              <p>아이디</p>
+              <label>아이디</label>
               <input name="userId" type="text" value={id} onChange={(e) => {
                 setId(e.target.value);
                 setIsValid(false);
@@ -80,19 +84,19 @@ function SignupPage() {
               <button type="button" onClick={handleIdCheck}>중복확인</button>
             </div>
             <div>
-              <p>비밀번호</p>
+              <label>비밀번호</label>
               <input name="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
             </div>
             <div>
-              <p>비밀번호 확인</p>
+              <label>비밀번호 확인</label>
               <input name="passwordConfirm" type="password" value={checkPassword} onChange={(e) => setCheckPassword(e.target.value)}/>
             </div>
             <div>
-              <p>이름</p>
+              <label>이름</label>
               <input name="name" type="text" value={name} onChange={(e) => setName(e.target.value)}></input>
             </div>
             <div>
-              <p>이메일</p>
+              <label>이메일</label>
               <input name="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)}></input>
             </div>
             <br />

@@ -9,8 +9,6 @@ export const request = async (url: string, options = {}) => {
     const json = await response.json();
 
     if (!response.ok) {
-      const errorMessage = json.message || 'API 호출 오류';
-      alert(errorMessage);
       throw new Error(json.message || 'API 호출 오류');  
     }
 
@@ -18,8 +16,7 @@ export const request = async (url: string, options = {}) => {
   }
   catch (e: any) {
     if (e instanceof TypeError) {
-      alert('네트워크 오류가 발생했습니다.');
-      throw e;
+      throw new Error('네트워크 오류가 발생했습니다.');
     }
     throw e;
   }
