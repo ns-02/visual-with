@@ -7,10 +7,14 @@ import { ChatItem } from "../../../../types/Chat";
 
 function TeamChatPage() {
   const initChats: ChatItem[] = getItem('teamChats', "") || [];
+  const maxId = initChats.length > 0 
+    ? Math.max(...initChats.map(item => item.id)) 
+    : 0;
 
   const [ allChat, setAllChat ] = useState(initChats);
   const [ chat, setChat ] = useState("");
   const [ clearId, setClearId ] = useState(1);
+  const [ currentId, setCurrentId ] = useState(maxId + 1);
 
   const onSend = () => {
     if (!chat) {
@@ -21,12 +25,13 @@ function TeamChatPage() {
     let time = (today.toLocaleTimeString().slice(0, -3));
 
     const nextChat: ChatItem[] = [
-      ...allChat, { chat, time }
+      ...allChat, { id: currentId, chat, time }
     ];
 
     setItem('teamChats', JSON.stringify(nextChat));
     setAllChat(nextChat);
     setChat("");
+    setCurrentId(currentId + 1);
     reset();   
   };
 

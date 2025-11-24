@@ -1,23 +1,25 @@
 import React from "react";
-import Chat from "../types/Chat";
+import { ChatItem } from "../types/Chat";
 import styles from './ChatView.module.css'
+import { getDate } from "../utils/dateUtils";
 
-const ChatView = React.memo(({ allChat }: Chat) => {
-  let year = new Date().getFullYear();
-  let month = new Date().getMonth() + 1;
-  let today = new Date().getDate();
+interface ChatViewProps {
+    allChat: ChatItem[];
+}
+const ChatView = React.memo(({ allChat }: ChatViewProps) => {
+  const [year, month, day] = getDate();
 
   return (
     <div className={styles.view}>
       <div className={styles.contents}>
-        <p style={{ textAlign: "center" }}>{`${year}년 ${month}월 ${today}일`}</p>
+        <p style={{ textAlign: "center" }}>{`${year}년 ${month}월 ${day}일`}</p>
         {
-          allChat.map((chatItem, index) => {
+          allChat.map((chatItem) => {
             return (
-              <div key={index} > {/* 이거 가능한 한 빨리 수정해야 함.. */}
-                <p style={{ fontSize: "13px", color: "#777" }}>{chatItem.time}</p>
-                <div style={{ display: "inline-block", padding: "8px 12px", marginBottom: "8px", borderRadius: "10px",  backgroundColor: "white" }}>
-                  <p style={{ display: "inline-block" }} >{chatItem.chat}</p>
+              <div key={chatItem.id} >
+                <p className={styles.chat_time}>{chatItem.time}</p>
+                <div className={styles.chat_bubble}>
+                  <p className={styles.chat_text}>{chatItem.chat}</p>
                 </div>
               </div>
             )

@@ -13,20 +13,21 @@ function DirectChatPage() {
   const [ allChat, setAllChat ] = useState(initChats);
   const [ chat, setChat ] = useState("");
   const [ clearId, setClearId ] = useState(1);
+  const [ currentId, setCurrentId ] = useState(1);
 
   const handleFriendSelect = (id: number) => {
     if (id === 1) {
       setAllChat([
-        { chat: "안녕하세요. 저는 김철수입니다.", time: "오후 10:43" }
+        { id: 1, chat: "안녕하세요. 저는 김철수입니다.", time: "오후 10:43" }
       ]);
     } else if (id === 2) {
       setAllChat([
-        { chat: "반가워요! 이영희라고 해요.", time: "오후 10:51" }
+        { id: 1, chat: "반가워요! 이영희라고 해요.", time: "오후 10:51" }
       ]);
     } else if (id === 3) {
       setAllChat([
-        { chat: "제 소개가 늦었네요. 전 박영수고, 영수라고 불러주세요.", time: "오후 11:13" },
-        { chat: "앞으로 잘 부탁해요.", time: "오후 11:14" },
+        { id: 1, chat: "제 소개가 늦었네요. 전 박영수고, 영수라고 불러주세요.", time: "오후 11:13" },
+        { id: 2, chat: "앞으로 잘 부탁해요.", time: "오후 11:14" },
       ]);
     }
     
@@ -41,12 +42,13 @@ function DirectChatPage() {
     let time = (today.toLocaleTimeString().slice(0, -3));
 
     const nextChat: ChatItem[] = [
-      ...allChat, { chat, time }
+      ...allChat, { id: currentId, chat, time }
     ];
 
     setItem('directChats', JSON.stringify(nextChat));
     setAllChat(nextChat);
     setChat("");
+    setCurrentId(currentId + 1);
     reset();
   };
 

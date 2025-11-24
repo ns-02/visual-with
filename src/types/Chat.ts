@@ -1,8 +1,5 @@
-export type ChatItem = {
+export interface ChatItem {
+  id: number;
   chat: string;
   time: string;
-};
-
-export default interface Chat {
-  allChat: ChatItem[];
 };
