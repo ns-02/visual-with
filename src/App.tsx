@@ -12,21 +12,22 @@ import TodoListPage from './main/features/todoList/pages/TodoListPage';
 import FriendListPage from './main/features/friendList/pages/FriendListPage';
 import DirectChatPage from './main/features/directChat/pages/DirectChatPage';
 import InviteLinkPage from './main/features/teamManager/pages/InviteLinkPage';
-import { ToolProvider } from './context/ToolContext';
+import AppProviders from './providers/AppProviders'
 import { RouteWatcher } from './routes/RouteWatcher'
 import './styles/global.css';
 
 const App: React.FC = () => {
 
   return (
-    <ToolProvider>
+    <AppProviders>
       <RouteWatcher />
       <Routes>
         <Route path="/" element={<StartPage />} />
-        <Route path="*" element={<NotFoundPage />} />
+
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/signup-result" element={<SignupResultPage />} />
+
         <Route path="/main" element={<MainPage />} >
           <Route path="teamchat" element={<TeamChatPage />} />
           <Route path="filesharing" element={<FileSharingPage />} />
@@ -35,11 +36,14 @@ const App: React.FC = () => {
           <Route path="friendlist" element={<FriendListPage />} />
           <Route path="directchat" element={<DirectChatPage />} />
         </Route>
+
         <Route path="/invite">
           <Route path=":id" element={<InviteLinkPage />} />
         </Route>
+
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
-    </ToolProvider>
+    </AppProviders>
   )
 }
 

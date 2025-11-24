@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { Calendar1, FileText, Link2, ListTodo, LogOut, MessageSquare, MessagesSquare, Plus, Users } from 'lucide-react';
+import { useTeam } from '../../context/TeamContext';
 import Button from '../../components/ui/Button';
-import styles from './Layouts.module.css'
 import SelectTeamDropdown from '../features/teamManager/components/SelectTeamDropdown';
 import InviteTeamDialog from '../features/teamManager/dialogs/InviteTeamDialog';
 import LogoutDialog from '../features/misc/dialogs/LogoutDialog';
 import NavItem from './LeftMenuItemType';
+import styles from './Layouts.module.css'
 
 function Divider() {
   return (
@@ -16,8 +17,7 @@ function Divider() {
 function LeftMenu() {
   const [isInviteTeamDialogOpen, setIsInviteTeamDialogOpen] = useState(false);
   const [isLogoutDialogOpen, setIsLogoutDialogOpen] = useState(false);
-  const [isTeamMember, setIsTeamMember] = useState(true);
-  const [triggerText, setTriggerText] = useState("");
+  const { selectTeamData, isTeamMember } = useTeam();
 
   const topNavItems: NavItem[] = [
     { id: 'team-chat', icon: MessagesSquare, path: 'teamchat' },
@@ -33,13 +33,9 @@ function LeftMenu() {
 
   const bottomNavItem: NavItem = { id: 'log-out', icon: LogOut };
 
-  const renderTriggerText = (teamName: string) => {
-    teamName[0] && setTriggerText(teamName[0]);
-  };
-
   const triggerElement = (
     isTeamMember ?
-    <Button text={triggerText} shape="square" /> :
+    <Button text={selectTeamData?.name[0]} shape="square" /> :
     <Button shape="square"><Plus size={24} /></Button>
   );
 
@@ -80,7 +76,6 @@ function LeftMenu() {
       <div>
         <SelectTeamDropdown 
           triggerElement={triggerElement}
-          onSelect={renderTriggerText}
         />
       </div>
       <InviteTeamDialog open={isInviteTeamDialogOpen} onOpenChange={setIsInviteTeamDialogOpen} />
