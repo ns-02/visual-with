@@ -1,10 +1,11 @@
 import React, { createContext, useContext, useState } from "react";
-import { TeamContextType, TeamData } from "./TeamContextType";
+import { TeamData } from "../types/Team";
+import { TeamContextType } from "./TeamContextType";
 
 const TeamContext = createContext<TeamContextType | undefined>(undefined);
 
 export const TeamProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [teamData, setTeamData] = useState<TeamData[] | null>(null);
+  const [teamData, setTeamData] = useState<TeamData[] | undefined>(undefined);
   const [selectTeamData, setSelectTeamData] = useState<TeamData | null>(null);
   const [isTeamMember, setIsTeamMember] = useState<boolean>(false);
   return <TeamContext.Provider value={

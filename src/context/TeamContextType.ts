@@ -1,11 +1,8 @@
-export interface TeamData {
-  id: number;
-  name: string;
-}
+import { TeamData } from "../types/Team";
 
 export type TeamContextType = { 
-  teamData: TeamData[] | null; 
-  setTeamData: (item: TeamData[] | null) => void;
+  teamData: TeamData[] | undefined; 
+  setTeamData: (item: TeamData[] | undefined) => void;
   selectTeamData: TeamData | null;
   setSelectTeamData: (item: TeamData | null) => void;
   isTeamMember: boolean;

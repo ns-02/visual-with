@@ -8,9 +8,7 @@ const CreateTeamDialog = ({ open, onOpenChange, onCreate }: TeamDialogProps) => 
   const [teamName, setTeamName] = useState("");
 
   const handleCreateTeam = () => {
-    if (!teamName) {
-      return;
-    }
+    if (!teamName) return;
     if (onCreate) onCreate(teamName);
     setTeamName("");
     onOpenChange(false);

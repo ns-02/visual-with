@@ -8,7 +8,8 @@ import Button from "../../../../components/ui/Button";
 import styles from "../../../../components/Dropdown.module.css";
 import { Trash2 } from "lucide-react";
 import DeleteTeamDialog from "../dialogs/DeleteTeamDialog";
-import { DropdownProps, TeamItem } from "../types";
+import { DropdownProps } from "../types";
+import { TeamData } from "../../../../types/Team";
 
 const SelectTeamDropdown = ({ triggerElement }: DropdownProps) => {
   const { teamData, setTeamData, setSelectTeamData, setIsTeamMember } = useTeam();
@@ -16,7 +17,7 @@ const SelectTeamDropdown = ({ triggerElement }: DropdownProps) => {
   const [isDeleteTeamDialogOpen, setIsDeleteTeamDialogOpen] = useState(false);
 
   const [currentItemId, setcurrentItemId] = useState(1);
-  const [deleteTeamName, setDeleteTeamName] = useState("");
+  const [deleteTeamData, setDeleteTeamData] = useState<TeamData | undefined>(undefined);
 
   const handleCreateTeam = (teamName: string) => {
     const newData = { id: currentItemId, name: teamName };
@@ -26,14 +27,15 @@ const SelectTeamDropdown = ({ triggerElement }: DropdownProps) => {
     setcurrentItemId(currentItemId + 1);
   };
 
-  const handleItemClick = (item: TeamItem) => {
-    if (item) setIsTeamMember(true);
-    setSelectTeamData(item);
+  const handleDeleteTeam = () => {
+    const nextTeamData = teamData?.filter((item) => item.id !== deleteTeamData?.id && item );
+    setTeamData(nextTeamData);
+    if (!nextTeamData?.length) setIsTeamMember(false);
   };
 
-  const handleDeleteButtonClick = (teamName: string) => {
-    setDeleteTeamName(teamName);
-    setIsDeleteTeamDialogOpen(true);
+  const handleItemClick = (item: TeamData) => {
+    if (item) setIsTeamMember(true);
+    setSelectTeamData(item);
   };
   
   const dropdownContent = (
@@ -46,7 +48,10 @@ const SelectTeamDropdown = ({ triggerElement }: DropdownProps) => {
               return (
                 <DropdownMenu.Item key={item.id} onClick={() => handleItemClick(item)}>
                   <Item type="list" text={item.name}>
-                    <Button onCustomClick={() => handleDeleteButtonClick(item.name)}>
+                    <Button onCustomClick={() => {
+                      setDeleteTeamData(item);
+                      setIsDeleteTeamDialogOpen(true);
+                    }}>
                       <Trash2 size={16} />
                     </Button>
                   </Item>
@@ -78,7 +83,8 @@ const SelectTeamDropdown = ({ triggerElement }: DropdownProps) => {
       <DeleteTeamDialog
         open={isDeleteTeamDialogOpen}
         onOpenChange={setIsDeleteTeamDialogOpen}
-        deleteTeamName={deleteTeamName}
+        onDelete={handleDeleteTeam}
+        deleteTeamData={deleteTeamData}
       />
     </>
   )

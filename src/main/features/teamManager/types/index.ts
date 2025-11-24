@@ -1,16 +1,12 @@
 import { Dispatch, SetStateAction } from "react";
-
-export interface TeamItem {
-  id: number;
-  name: string;
-}
+import { TeamData } from "../../../../types/Team";
 
 export interface TeamDialogProps {
   open: boolean;
   onOpenChange: Dispatch<SetStateAction<boolean>>;
   onCreate?: (value: string) => void;
-  onDelete?: (value: string) => void;
-  deleteTeamName?: string;
+  onDelete?: () => void;
+  deleteTeamData?: TeamData;
 };
 
 export interface DropdownProps {
