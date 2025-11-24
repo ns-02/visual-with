@@ -1,9 +1,9 @@
+import { getDate } from '../../../../utils/dateUtils';
 import ScheduleCard from '../components/ScheduleCard';
 import styles from './ScheduleSection.module.css'
 
 function RightContents() {
-  let month = new Date().getMonth() + 1;
-  let today = new Date().getDate();
+  const [month, day] = getDate();
 
   const todayScheduleItems = [
     { id: 1, title: '코드 리뷰', date: '2025.11.20', time: '14:00', state: '진행중' },
@@ -19,7 +19,7 @@ function RightContents() {
   return (
     <div className={styles["right-contents"]}>
       <div style={{ marginTop: "24px", marginBottom: "12px" }}>
-        {`오늘 (${month}월 ${today}일)`}
+        {`오늘 (${month}월 ${day}일)`}
       </div>
       {
         todayScheduleItems.map((item) => {

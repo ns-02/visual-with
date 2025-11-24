@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import Calender from '../components/Calender';
 import styles from './ScheduleSection.module.css'
+import { getDate } from '../../../../utils/dateUtils';
 
 function LeftCalendar() {
   const [selected, setSelected] = useState<Date>();
-  let today = new Date().getDate();
+  const [day] = getDate();
 
   return (
     <div className={styles["left-calender"]}>
@@ -13,7 +14,7 @@ function LeftCalendar() {
       </div>
       <br />
       <div>
-        <p>{selected ? `${selected.getDate()}일` : `${today}일 (오늘)`}</p>
+        <p>{selected ? `${selected.getDate()}일` : `${day}일 (오늘)`}</p>
         <p>일정 제목 1</p>
         <p>일정 제목 2</p>
         <p>일정 제목 3</p>
