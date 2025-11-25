@@ -2,6 +2,10 @@ import { FriendListLabelProps } from "../types";
 import styles from './FriendListLabel.module.css';
 
 const FriendListLabel = ({ text, count, children }: FriendListLabelProps) => {
+  if (text === "친구 요청" && !count) {
+    return null;
+  }
+
   return (
     <div className={styles.label}>
       {children}

@@ -8,6 +8,8 @@ export interface AddFriendDialogProps {
 export interface FriendListCardProps {
   name?: string;
   description?: string;
+  onAccept?: () => void;
+  onReject?: () => void;
 };
 
 export interface FriendListLabelProps {

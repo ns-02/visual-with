@@ -1,9 +1,8 @@
 import { Dispatch, KeyboardEvent, SetStateAction } from "react";
 import { ChatItem } from "../../../../types/Chat";
+import { FriendData } from "../../../../types/Friend";
 
-export interface FriendItem {
-  id: number;
-  name: string;
+export interface FriendItem extends FriendData {
   chat: string;
   selected: boolean;
 }

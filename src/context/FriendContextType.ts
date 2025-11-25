@@ -1,7 +1,4 @@
-export interface FriendData {
-  id: number;
-  name: string;
-}
+import { FriendData } from "../types/Friend";
 
 export type FriendContextType = { 
   friendData: FriendData[] | null; 
