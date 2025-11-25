@@ -18,10 +18,6 @@ export interface DirectChatBottomProps {
   clearId: number;
 };
 
-export interface LeftFriendProps {
-  onSelect?: (value: number) => void;
-};
-
 export interface DropdownProps {
   triggerElement?: React.ReactNode;
 };

@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useFriend } from '../../../../context/FriendContext';
 import DirectChatBottom from '../section/DirectChatBottom';
 import LeftFriends from '../section/LeftFriends';
 import RightChats from '../section/RightChats';
@@ -8,30 +9,18 @@ import styles from './DirectChatPage.module.css'
 import { ChatItem } from '../../../../types/Chat';
 
 function DirectChatPage() {
-  const initChats: ChatItem[] = getItem('directChats', "") || [];
+  const { selectFriendData } = useFriend();
+
+  const initChats: ChatItem[] = getItem(`directChats_${selectFriendData?.id}`, "") || [];
   
   const [ allChat, setAllChat ] = useState(initChats);
   const [ chat, setChat ] = useState("");
   const [ clearId, setClearId ] = useState(1);
   const [ currentId, setCurrentId ] = useState(1);
 
-  const handleFriendSelect = (id: number) => {
-    if (id === 1) {
-      setAllChat([
-        { id: 1, chat: "안녕하세요. 저는 김철수입니다.", time: "오후 10:43" }
-      ]);
-    } else if (id === 2) {
-      setAllChat([
-        { id: 1, chat: "반가워요! 이영희라고 해요.", time: "오후 10:51" }
-      ]);
-    } else if (id === 3) {
-      setAllChat([
-        { id: 1, chat: "제 소개가 늦었네요. 전 박영수고, 영수라고 불러주세요.", time: "오후 11:13" },
-        { id: 2, chat: "앞으로 잘 부탁해요.", time: "오후 11:14" },
-      ]);
-    }
-    
-  };
+  useEffect(() => {
+      setAllChat(initChats);
+    }, [selectFriendData]);
 
   const onSend = () => {
     if (!chat) {
@@ -45,7 +34,7 @@ function DirectChatPage() {
       ...allChat, { id: currentId, chat, time }
     ];
 
-    setItem('directChats', JSON.stringify(nextChat));
+    setItem(`directChats_${selectFriendData?.id}`, JSON.stringify(nextChat));
     setAllChat(nextChat);
     setChat("");
     setCurrentId(currentId + 1);
@@ -58,7 +47,7 @@ function DirectChatPage() {
 
   return (
     <div className={styles.page}>
-      <LeftFriends onSelect={handleFriendSelect} />
+      <LeftFriends />
       <RightChats>
         <div className={styles.container}>
           <ChatView allChat={allChat} />

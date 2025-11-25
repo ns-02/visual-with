@@ -5,17 +5,9 @@ import FriendRequestCard from '../components/FriendRequestCard';
 import styles from './FriendListSection.module.css'
 import FriendListLabel from '../components/FriendListLabel';
 import { useFriend } from '../../../../context/FriendContext';
-import { useState } from 'react';
 
 function FriendContents() {
-  const { friendData, setFriendData } = useFriend();
-
-  const initFriendRequestData: FriendData[] = [
-    { id: 4, name: '정수진', description: '소프트웨어 아키텍트' },
-    { id: 5, name: '강민호', description: '보안 엔지니어' },
-  ];
-
-  const [friendRequestData, setFriendRequestData] = useState<FriendData[] | null | undefined>(initFriendRequestData);
+  const { friendData, setFriendData, friendRequestData, setFriendRequestData } = useFriend();
 
   const handleAccept = (data: FriendData) => {
     const nextFriendRequestData = friendRequestData?.filter((item) => item.id !== data.id && item );

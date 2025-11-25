@@ -7,7 +7,7 @@ import styles from './TeamChatPage.module.css'
 import { ChatItem } from "../../../../types/Chat";
 
 function TeamChatPage() {
-   const { selectTeamData } = useTeam();
+  const { selectTeamData } = useTeam();
 
   const initChats: ChatItem[] = getItem(`teamChats_${selectTeamData?.id}`, "") || [];
   const maxId = initChats.length > 0 
