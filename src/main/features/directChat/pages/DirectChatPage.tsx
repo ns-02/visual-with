@@ -12,11 +12,14 @@ function DirectChatPage() {
   const { selectFriendData } = useFriend();
 
   const initChats: ChatItem[] = getItem(`directChats_${selectFriendData?.id}`, "") || [];
+  const maxId = initChats.length > 0 
+    ? Math.max(...initChats.map(item => item.id)) 
+    : 0;
   
   const [ allChat, setAllChat ] = useState(initChats);
   const [ chat, setChat ] = useState("");
   const [ clearId, setClearId ] = useState(1);
-  const [ currentId, setCurrentId ] = useState(1);
+  const [ currentId, setCurrentId ] = useState(maxId + 1);
 
   useEffect(() => {
       setAllChat(initChats);
