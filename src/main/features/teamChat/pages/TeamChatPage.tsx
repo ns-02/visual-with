@@ -15,36 +15,26 @@ function TeamChatPage() {
     : 0;
 
   const [ allChat, setAllChat ] = useState(initChats);
-  const [ chat, setChat ] = useState("");
-  const [ clearId, setClearId ] = useState(1);
   const [ currentId, setCurrentId ] = useState(maxId + 1);
 
   useEffect(() => {
     setAllChat(initChats);
   }, [selectTeamData]);
 
-  const onSend = () => {
-    if (!chat) {
-      return;
-    }
+  const handleSend = (chatToSend: string) => {
+    if (!selectTeamData?.id) return;    
 
     let today = new Date();
     let time = (today.toLocaleTimeString().slice(0, -3));
 
     const nextChat: ChatItem[] = [
-      ...allChat, { id: currentId, chat, time }
+      ...allChat, { id: currentId, chat: chatToSend, time }
     ];
 
     setItem(`teamChats_${selectTeamData?.id}`, JSON.stringify(nextChat));
     setAllChat(nextChat);
-    setChat("");
     setCurrentId(currentId + 1);
-    reset();   
   };
-
-  const reset = () => {
-    setClearId(clearId + 1);
-  }
 
   return (
     <div className={styles.page}>
@@ -52,10 +42,7 @@ function TeamChatPage() {
         <ChatView allChat={allChat} />
       </div>
       <TeamChatBottom
-        setChat={setChat}
-        onClick={onSend}
-        onKeyDown={(e) => e.key === 'Enter' && onSend()}
-        clearId={clearId}
+        onSend={handleSend}
       />
     </div>
   )

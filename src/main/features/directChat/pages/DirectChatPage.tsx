@@ -7,7 +7,6 @@ import ChatView from '../../../../components/ChatView';
 import { getItem, setItem } from '../../../../utils/sessionStorage';
 import styles from './DirectChatPage.module.css'
 import { ChatItem } from '../../../../types/Chat';
-import { IdChatMap } from '../types';
 
 function DirectChatPage() {
   const { selectFriendData, setFriendIdChatMap } = useFriend();
@@ -22,10 +21,7 @@ function DirectChatPage() {
   
   let maxId = getMaxId();
   const [ allChat, setAllChat ] = useState(initChats);
-  const [ chat, setChat ] = useState("");
-  const [ clearId, setClearId ] = useState(1);
   const [ currentId, setCurrentId ] = useState(maxId + 1);
-  // const [ idChatMap, setIdChatMap ] = useState<IdChatMap>(() => new Map());
 
   useEffect(() => {
     setAllChat(initChats);
@@ -33,24 +29,20 @@ function DirectChatPage() {
     setCurrentId(maxId + 1);
   }, [selectFriendData]);
 
-  const onSend = () => {
-    if (!chat || !selectFriendData?.id) {
-      return;
-    }
+  const handleSend = (chatToSend: string) => {    
+    if (!selectFriendData?.id) return;
 
     let today = new Date();
     let time = (today.toLocaleTimeString().slice(0, -3));
 
     const nextChat: ChatItem[] = [
-      ...allChat, { id: currentId, chat, time }
+      ...allChat, { id: currentId, chat: chatToSend, time }
     ];
 
     setItem(`directChats_${selectFriendData?.id}`, JSON.stringify(nextChat));
-    handleAddLastChat(selectFriendData?.id, chat);
+    handleAddLastChat(selectFriendData?.id, chatToSend);
     setAllChat(nextChat);
-    setChat("");
     setCurrentId(currentId + 1);
-    reset();
   };
 
   const handleAddLastChat = (id: number, chat: string) => {
@@ -61,10 +53,6 @@ function DirectChatPage() {
     });
   };
 
-  const reset = () => {
-    setClearId(clearId + 1);
-  };
-
   return (
     <div className={styles.page}>
       <LeftFriends />
@@ -73,10 +61,7 @@ function DirectChatPage() {
           <ChatView allChat={allChat} />
         </div>
         <DirectChatBottom
-          setChat={setChat}
-          onClick={onSend}
-          onKeyDown={(e) => e.key === 'Enter' && onSend()}
-          clearId={clearId}
+          onSend={handleSend}
         />
       </RightChats>
     </div>

@@ -1,4 +1,3 @@
-import { Dispatch, KeyboardEvent, SetStateAction } from "react";
 import { ChatItem } from "../../../../types/Chat";
 import { FriendData } from "../../../../types/Friend";
 
@@ -11,13 +10,8 @@ export interface DirectChatItem extends ChatItem {
 
 };
 
-export type IdChatMap = Map<number, string>;
-
 export interface DirectChatBottomProps {
-  setChat: Dispatch<SetStateAction<string>>;
-  onClick: () => void;
-  onKeyDown: (e: KeyboardEvent<HTMLInputElement>) => void;
-  clearId: number;
+  onSend: (chat: string) => void;
 };
 
 // export interface LeftFriendProps {

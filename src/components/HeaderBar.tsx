@@ -10,7 +10,7 @@ const HeaderBar: React.FC<HeaderBarProps> = ({ label, button, onClick, children,
         <span>{label}</span>
       </div>
       <div className={styles.rsection}>
-        <Input placeholder='검색' sizeMode='fixed'>{inputIcon}</Input>
+        <Input value="" placeholder='검색' sizeMode='fixed'>{inputIcon}</Input>
         {
           button && onClick &&
           <Button text={button} onCustomClick={onClick}>

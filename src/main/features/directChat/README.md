@@ -28,3 +28,4 @@
 - 파일 업로드 드롭다운 생성 및 연결
 - 채팅의 id 중복 문제 해결 (채팅 복사 문제)
 - DirectChatPage.tsx 재랜더링 시 마지막 채팅 기록이 사라지는 문제 해결
+- ChatPage가 아닌 ChatBottom에서 chat을 관리하도록 변경 (렌더링 최적화)
