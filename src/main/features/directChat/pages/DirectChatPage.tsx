@@ -7,6 +7,7 @@ import ChatView from '../../../../components/ChatView';
 import { getItem, setItem } from '../../../../utils/sessionStorage';
 import styles from './DirectChatPage.module.css'
 import { ChatItem } from '../../../../types/Chat';
+import { IdChat, IdChatMap } from '../types';
 
 function DirectChatPage() {
   const { selectFriendData } = useFriend();
@@ -20,13 +21,15 @@ function DirectChatPage() {
   const [ chat, setChat ] = useState("");
   const [ clearId, setClearId ] = useState(1);
   const [ currentId, setCurrentId ] = useState(maxId + 1);
+  const [ idChat, setIdChat ] = useState<IdChat | null>(null);
+  const [ idChatMap, setIdChatMap ] = useState<IdChatMap>(() => new Map());
 
   useEffect(() => {
       setAllChat(initChats);
     }, [selectFriendData]);
 
   const onSend = () => {
-    if (!chat) {
+    if (!chat || !selectFriendData?.id) {
       return;
     }
 
@@ -38,19 +41,28 @@ function DirectChatPage() {
     ];
 
     setItem(`directChats_${selectFriendData?.id}`, JSON.stringify(nextChat));
+    handleAddLastChat(selectFriendData?.id, chat);
     setAllChat(nextChat);
     setChat("");
     setCurrentId(currentId + 1);
     reset();
   };
 
+  const handleAddLastChat = (id: number, chat: string) => {
+    setIdChatMap((prevIdChatMap) => {
+      const nextIdChatMap = new Map(prevIdChatMap);
+      nextIdChatMap.set(id, chat);
+      return nextIdChatMap;
+    });
+  };
+
   const reset = () => {
     setClearId(clearId + 1);
-  }
+  };
 
   return (
     <div className={styles.page}>
-      <LeftFriends />
+      <LeftFriends idChat={idChat} idChatMap={idChatMap} />
       <RightChats>
         <div className={styles.container}>
           <ChatView allChat={allChat} />

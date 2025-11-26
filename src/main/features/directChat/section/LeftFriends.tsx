@@ -1,22 +1,37 @@
 import { useEffect, useState } from 'react';
 import { useFriend } from '../../../../context/FriendContext';
 import SelectFriendCard from '../components/SelectFriendCard';
-import { FriendItem } from '../types';
+import { FriendItem, IdChat, LeftFriendProps } from '../types';
 import styles from './DirectChatSection.module.css'
 
-function LeftFriends() {
+function LeftFriends({ idChat, idChatMap } : LeftFriendProps) {
   const { friendData, selectFriendData ,setSelectFriendData } = useFriend();
   const [friendItems, setFriendItems] = useState<FriendItem[]>([]);
+  const [lastFriendChat, setLastFriendChat] = useState([]);
+  const [idChatItems, setIdChatItems] = useState<IdChat[]>([]);
 
   useEffect(() => {
-    const nextFriendItems = friendData?.map((item) => {
-      return item.id === selectFriendData?.id ? 
-      {...item, chat: "", selected: true} : 
-      {...item, chat: "", selected: false};
+    const nextFriendItems = friendData?.map((data) => {
+      return data.id === selectFriendData?.id ? 
+      {...data, chat: idChatMap.get(data.id) || "", selected: true} : 
+      {...data, chat: idChatMap.get(data.id) || "", selected: false};
     });
 
     nextFriendItems && setFriendItems(nextFriendItems);
-  }, [friendData]);
+  }, [friendData, idChatMap]);
+
+  useEffect(() => {
+    if (idChat) {
+      const hasFriendId = idChatItems.some(item => item.id === idChat?.id);
+      const nextIdChatItems = hasFriendId ? idChatItems.map((item) => 
+        item.id === idChat?.id ? {...item, chat: idChat.chat} : item
+      ) : [...idChatItems, idChat];
+
+      setIdChatItems(nextIdChatItems);
+
+      console.log(nextIdChatItems);
+    }
+  }, [idChat]);
 
   const handleCardSelect = (id: number) => {
     const nextFriendItems = friendItems.map((item) => 
