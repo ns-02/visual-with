@@ -13,11 +13,6 @@ export interface DirectChatItem extends ChatItem {
 
 export type IdChatMap = Map<number, string>;
 
-export interface IdChat {
-  id: number;
-  chat: string;
-}
-
 export interface DirectChatBottomProps {
   setChat: Dispatch<SetStateAction<string>>;
   onClick: () => void;
@@ -26,7 +21,6 @@ export interface DirectChatBottomProps {
 };
 
 export interface LeftFriendProps {
-  idChat: IdChat | null;
   idChatMap: IdChatMap;
 }
 

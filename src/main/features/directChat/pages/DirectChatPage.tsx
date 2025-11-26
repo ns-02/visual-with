@@ -7,7 +7,7 @@ import ChatView from '../../../../components/ChatView';
 import { getItem, setItem } from '../../../../utils/sessionStorage';
 import styles from './DirectChatPage.module.css'
 import { ChatItem } from '../../../../types/Chat';
-import { IdChat, IdChatMap } from '../types';
+import { IdChatMap } from '../types';
 
 function DirectChatPage() {
   const { selectFriendData } = useFriend();
@@ -21,7 +21,6 @@ function DirectChatPage() {
   const [ chat, setChat ] = useState("");
   const [ clearId, setClearId ] = useState(1);
   const [ currentId, setCurrentId ] = useState(maxId + 1);
-  const [ idChat, setIdChat ] = useState<IdChat | null>(null);
   const [ idChatMap, setIdChatMap ] = useState<IdChatMap>(() => new Map());
 
   useEffect(() => {
@@ -62,7 +61,7 @@ function DirectChatPage() {
 
   return (
     <div className={styles.page}>
-      <LeftFriends idChat={idChat} idChatMap={idChatMap} />
+      <LeftFriends idChatMap={idChatMap} />
       <RightChats>
         <div className={styles.container}>
           <ChatView allChat={allChat} />
