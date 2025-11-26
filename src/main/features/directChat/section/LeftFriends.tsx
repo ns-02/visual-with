@@ -1,22 +1,22 @@
 import { useEffect, useState } from 'react';
 import { useFriend } from '../../../../context/FriendContext';
 import SelectFriendCard from '../components/SelectFriendCard';
-import { FriendItem, LeftFriendProps } from '../types';
+import { FriendItem } from '../types';
 import styles from './DirectChatSection.module.css'
 
-function LeftFriends({ idChatMap } : LeftFriendProps) {
-  const { friendData, selectFriendData ,setSelectFriendData } = useFriend();
+function LeftFriends() {
+  const { friendData, selectFriendData, setSelectFriendData, friendIdChatMap } = useFriend();
   const [friendItems, setFriendItems] = useState<FriendItem[]>([]);
 
   useEffect(() => {
     const nextFriendItems = friendData?.map((data) => {
       return data.id === selectFriendData?.id ? 
-      {...data, chat: idChatMap.get(data.id) || "", selected: true} : 
-      {...data, chat: idChatMap.get(data.id) || "", selected: false};
+      {...data, chat: friendIdChatMap.get(data.id) || "", selected: true} : 
+      {...data, chat: friendIdChatMap.get(data.id) || "", selected: false};
     });
 
     nextFriendItems && setFriendItems(nextFriendItems);
-  }, [friendData, idChatMap]);
+  }, [friendData, friendIdChatMap]);
 
   const handleCardSelect = (id: number) => {
     const nextFriendItems = friendItems.map((item) => 

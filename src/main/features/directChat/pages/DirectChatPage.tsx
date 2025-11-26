@@ -10,22 +10,28 @@ import { ChatItem } from '../../../../types/Chat';
 import { IdChatMap } from '../types';
 
 function DirectChatPage() {
-  const { selectFriendData } = useFriend();
+  const { selectFriendData, setFriendIdChatMap } = useFriend();
 
   const initChats: ChatItem[] = getItem(`directChats_${selectFriendData?.id}`, "") || [];
-  const maxId = initChats.length > 0 
-    ? Math.max(...initChats.map(item => item.id)) 
-    : 0;
   
+  const getMaxId = () => {
+    return initChats.length > 0 
+      ? Math.max(...initChats.map(item => item.id)) 
+      : 0;
+  };
+  
+  let maxId = getMaxId();
   const [ allChat, setAllChat ] = useState(initChats);
   const [ chat, setChat ] = useState("");
   const [ clearId, setClearId ] = useState(1);
   const [ currentId, setCurrentId ] = useState(maxId + 1);
-  const [ idChatMap, setIdChatMap ] = useState<IdChatMap>(() => new Map());
+  // const [ idChatMap, setIdChatMap ] = useState<IdChatMap>(() => new Map());
 
   useEffect(() => {
-      setAllChat(initChats);
-    }, [selectFriendData]);
+    setAllChat(initChats);
+    maxId = getMaxId();
+    setCurrentId(maxId + 1);
+  }, [selectFriendData]);
 
   const onSend = () => {
     if (!chat || !selectFriendData?.id) {
@@ -48,7 +54,7 @@ function DirectChatPage() {
   };
 
   const handleAddLastChat = (id: number, chat: string) => {
-    setIdChatMap((prevIdChatMap) => {
+    setFriendIdChatMap((prevIdChatMap) => {
       const nextIdChatMap = new Map(prevIdChatMap);
       nextIdChatMap.set(id, chat);
       return nextIdChatMap;
@@ -61,7 +67,7 @@ function DirectChatPage() {
 
   return (
     <div className={styles.page}>
-      <LeftFriends idChatMap={idChatMap} />
+      <LeftFriends />
       <RightChats>
         <div className={styles.container}>
           <ChatView allChat={allChat} />

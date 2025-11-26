@@ -20,9 +20,9 @@ export interface DirectChatBottomProps {
   clearId: number;
 };
 
-export interface LeftFriendProps {
-  idChatMap: IdChatMap;
-}
+// export interface LeftFriendProps {
+//   idChatMap: IdChatMap;
+// }
 
 export interface DropdownProps {
   triggerElement?: React.ReactNode;
