@@ -1,3 +1,5 @@
+import { checkIdRequest, checkIdResponse, LoginRequest, LoginResponse, SignupRequest, SignupResponse } from "./apiModel";
+
 export const request = async (url: string, options = {}) => {
   try {
     const response = await fetch(url, {
@@ -22,30 +24,27 @@ export const request = async (url: string, options = {}) => {
   }
 };
 
-export const loginUser = async (userId: string, password: string) => {
+export const loginUser = async ({
+  userId, password
+}: LoginRequest): Promise<LoginResponse> => {
   return await request('/api/login', {
     method: 'POST',
     body: JSON.stringify({ userId, password })
   });
 };
 
-export const checkId = async (userId: string) => {
+export const checkId = async ({
+  userId
+}: checkIdRequest): Promise<checkIdResponse> => {
   return await request('/api/checkid', {
     method: 'POST',
     body: JSON.stringify({ userId })
   });
 };
 
-interface SignupModel {
-  userId: string;
-  password: string;
-  email: string;
-  name: string;
-};
-
-export const signupUser = async (
-  { userId, password, email, name }: SignupModel
-) => {
+export const signupUser = async ({ 
+  userId, password, email, name
+ }: SignupRequest): Promise<SignupResponse> => {
   return await request('/api/register', {
     method: 'POST',
     body: JSON.stringify({ userId, password, email, name })

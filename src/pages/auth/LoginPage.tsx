@@ -1,12 +1,14 @@
 import { FormEvent, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
+import { useUser } from "../../context/UserContext";
 import Container from "../../components/Container";
 import { loginUser } from "../../api/api";
 import styles from './Auth.module.css';
 
 function LoginPage() {
   const {setIsLoggedin} = useAuth();
+  const {setUserId, setUserName, setUserEmail} = useUser();
 
   const navigate = useNavigate();
   const [ id, setId ] = useState("");
@@ -21,7 +23,7 @@ function LoginPage() {
     }
 
     try {
-      const res = await loginUser(id, password);
+      const res = await loginUser({userId: id, password});
 
       if (res.message !== "ok") {
         return;

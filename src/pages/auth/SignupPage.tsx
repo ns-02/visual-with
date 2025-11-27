@@ -54,7 +54,7 @@ function SignupPage() {
       return;
     }
 
-    const res = await checkId(id);
+    const res = await checkId({userId: id});
 
     // true: 사용가능, false: 사용불가능
     if (res.available) {
