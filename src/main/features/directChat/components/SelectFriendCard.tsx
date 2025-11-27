@@ -1,7 +1,7 @@
 import { User } from 'lucide-react';
-import Button from '@components/ui/Button';
-import styles from './SelectFriendCard.module.css';
+import { Button } from '@components/ui';
 import { SelectFriendCardProps } from '../types';
+import styles from './SelectFriendCard.module.css';
 
 const SelectFriendCard = ({ name, chat, selected, onSelect }: SelectFriendCardProps) => {
   const containerStyle = selected ? styles.container_selected : styles.container;

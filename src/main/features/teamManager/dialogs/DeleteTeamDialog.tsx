@@ -1,7 +1,6 @@
 import { useState } from "react";
-import AlertDialog from "@components/dialogs/AlertDialog";
-import Input from "@components/dialogs/ui/Input";
-import Button from "@components/ui/Button";
+import { AlertDialog, Input } from "@components/dialogs";
+import { Button } from "@components/ui";
 import { TeamDialogProps } from "../types";
 
 const DeleteTeamDialog = ({ open, onOpenChange, onDelete, deleteTeamData }: TeamDialogProps) => {

@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
+import { ChatView } from "@components";
 import { useTeam } from "@context/TeamContext";
-import TeamChatBottom from "../section/TeamChatBottom";
-import ChatView from "@components/ChatView";
-import { getItem, setItem } from "@utils/sessionStorage";
-import styles from './TeamChatPage.module.css'
 import { ChatItem } from "@models/Chat";
+import { getItem, setItem } from "@utils/sessionStorage";
+import TeamChatBottom from "../section/TeamChatBottom";
+import styles from './TeamChatPage.module.css'
 
 function TeamChatPage() {
   const { selectTeamData } = useTeam();

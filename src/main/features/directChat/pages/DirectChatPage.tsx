@@ -1,12 +1,10 @@
 import { useEffect, useState } from 'react';
+import { ChatView } from '@components';
 import { useFriend } from '@context/FriendContext';
-import DirectChatBottom from '../section/DirectChatBottom';
-import LeftFriends from '../section/LeftFriends';
-import RightChats from '../section/RightChats';
-import ChatView from '@components/ChatView';
+import { ChatItem } from '@models/Chat'; 
 import { getItem, setItem } from '@utils/sessionStorage';
+import { DirectChatBottom, LeftFriends, RightChats } from '../section';
 import styles from './DirectChatPage.module.css'
-import { ChatItem } from 'models/Chat'; 
 
 function DirectChatPage() {
   const { selectFriendData, setFriendIdChatMap } = useFriend();

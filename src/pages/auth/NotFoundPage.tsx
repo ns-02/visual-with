@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import Container from "@components/Container";
+import { Container } from "@components";
 import styles from './Auth.module.css';
 
 function NotFoundPage() {

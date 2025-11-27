@@ -1,9 +1,6 @@
 import { Search } from "lucide-react";
-import Dialog from "@components/dialogs/Dialog";
-import Input from "@components/dialogs/ui/Input";
-import Group from "@components/dialogs/ui/Group";
-import Row from "@components/dialogs/ui/Row";
-import Button from "@components/ui/Button";
+import { Dialog, Group, Input, Row } from "@components/dialogs";
+import { Button } from "@components/ui";
 import { AddFriendDialogProps } from "../types";
 
 const AddFriendDialog = ({ open, onOpenChange }: AddFriendDialogProps) => {

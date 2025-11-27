@@ -15,8 +15,12 @@
     "paths": {
       "@api/*": ["api/*"],
       "@components/*": ["components/*"],
+      "@components": ["components/index.ts"],
       "@context/*": ["context/*"],
+      "@context": ["context/index.ts"],
+      "@features/*": ["main/features*"],
       "@models/*": ["models/*"],
+      "@pages/*": ["pages/*"],
       "@utils/*": ["utils/*"],
     }
   },

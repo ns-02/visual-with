@@ -1,6 +1,6 @@
 import { FormEvent, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Container from "@components/Container";
+import { Container } from "@components";
 import { checkId, signupUser } from "@api/api";
 import styles from './Auth.module.css';
 

@@ -1,10 +1,9 @@
 import { KeyboardEvent, useState } from 'react';
 import { Plus, Send } from 'lucide-react';
-import Button from '@components/ui/Button';
-import Input from '@components/ui/Input';
-import styles from './DirectChatSection.module.css'
+import { Button, Input } from '@components/ui';
 import FileUploadDropdown from '../components/FileUploadDropdown';
 import { DirectChatBottomProps } from '../types';
+import styles from './DirectChatSection.module.css'
 
 function DirectChatBottom({ onSend }: DirectChatBottomProps) {
   const [ chat, setChat ] = useState("");

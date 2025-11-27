@@ -1,7 +1,5 @@
-import Dialog from "@components/dialogs/Dialog";
-import Input from "@components/dialogs/ui/Input";
-import Group from "@components/dialogs/ui/Group";
-import Button from "@components/ui/Button";
+import { Dialog, Group, Input } from "@components/dialogs";
+import { Button } from "@components/ui";
 import { TodoDialogProps } from "../types";
 
 const AddTodoDialog = ({ open, onOpenChange }: TodoDialogProps) => {

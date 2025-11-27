@@ -1,6 +1,6 @@
 import styles from './FileSharingSection.module.css'
 
-function TopFiles() {
+function TopFileNavBar() {
   return (
     <div className={styles["top-files"]}>
       (버튼 요소 예정)
@@ -23,4 +23,4 @@ function TopFiles() {
   )
 }
 
-export default TopFiles;
+export default TopFileNavBar;

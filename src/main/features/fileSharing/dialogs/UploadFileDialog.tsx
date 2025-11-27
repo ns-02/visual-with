@@ -1,6 +1,4 @@
-import Dialog from "@components/dialogs/Dialog";
-import Input from "@components/dialogs/ui/Input";
-import Group from "@components/dialogs/ui/Group";
+import { Dialog, Group, Input } from "@components/dialogs";
 import Button from "@components/ui/Button";
 import { UploadFileDialogProps } from "../types";
 
