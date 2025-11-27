@@ -1,5 +1,5 @@
-import { ChatItem } from "../../../../types/Chat";
-import { FriendData } from "../../../../types/Friend";
+import { ChatItem } from "@models/Chat";
+import { FriendData } from "@models/Friend";
 
 export interface FriendItem extends FriendData {
   chat: string;

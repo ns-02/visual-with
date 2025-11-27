@@ -1,7 +1,7 @@
 import { useState } from "react";
-import Dialog from "../../../../components/dialogs/Dialog";
-import Input from "../../../../components/dialogs/ui/Input";
-import Button from "../../../../components/ui/Button";
+import Dialog from "@components/dialogs/Dialog";
+import Input from "@components/dialogs/ui/Input";
+import Button from "@components/ui/Button";
 import { TeamDialogProps } from "../types";
 
 const CreateTeamDialog = ({ open, onOpenChange, onCreate }: TeamDialogProps) => {

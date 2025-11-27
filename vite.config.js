@@ -12,6 +12,15 @@ const dirname = typeof __dirname !== 'undefined' ? __dirname : path.dirname(file
 // More info at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon
 export default defineConfig({
   plugins: [react()],
+  resolve: {
+    alias: {
+      '@api': path.resolve(dirname, './src/api'),
+      '@components': path.resolve(dirname, './src/components'),
+      '@context': path.resolve(dirname, './src/context'),
+      '@models': path.resolve(dirname, './src/models'),
+      '@utils': path.resolve(dirname, './src/utils'),
+    }
+  },
   test: {
     projects: [{
       extends: true,

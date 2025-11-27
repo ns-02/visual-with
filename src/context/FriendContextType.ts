@@ -1,4 +1,4 @@
-import { FriendData } from "../types/Friend";
+import { FriendData } from "@models/Friend";
 
 export type FriendIdChatMap = Map<number, string>;
 

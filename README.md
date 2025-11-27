@@ -69,6 +69,7 @@ http://localhost:5173
 - (피드백) '개' 부분(드롭다운의 트리거 버튼) 호버링 구현
 - (피드백) 파일 공유 화면: '파일 공유' 라벨 오른쪽에 파일의 만료일 팝업 표시
 - src(루트)에 공용 hooks/, utils/, 각 features에 전용 hooks/, utils/를 두어 관리
+- 유닛 테스트 (Jest + React Testing Library) 추가 고려
 - store/도 루트에 필요하다면 두고 관리
 - 전역 색상 스타일 적용
 - 다크 모드 적용

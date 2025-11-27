@@ -1,8 +1,8 @@
-import Dialog from "../../../../components/dialogs/Dialog";
-import Input from "../../../../components/dialogs/ui/Input";
-import Group from "../../../../components/dialogs/ui/Group";
-import Row from "../../../../components/dialogs/ui/Row";
-import Button from "../../../../components/ui/Button";
+import Dialog from "@components/dialogs/Dialog";
+import Input from "@components/dialogs/ui/Input";
+import Group from "@components/dialogs/ui/Group";
+import Row from "@components/dialogs/ui/Row";
+import Button from "@components/ui/Button";
 import { ScheduleDialogProps } from "../types";
 
 const UpdateScheduleDialog = ({ open, onOpenChange }: ScheduleDialogProps) => {

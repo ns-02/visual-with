@@ -1,6 +1,6 @@
 import { DropdownMenu } from "radix-ui";
-import Dropdown from "../../../../components/Dropdown";
-import Item from "../../../../components/ui/Item";
+import Dropdown from "@components/Dropdown";
+import Item from "@components/ui/Item";
 import { DropdownProps } from "../types";
 
 const FileUploadDropdown = ({ triggerElement }: DropdownProps) => {

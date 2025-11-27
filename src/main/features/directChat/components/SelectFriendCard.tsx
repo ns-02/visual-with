@@ -1,5 +1,5 @@
 import { User } from 'lucide-react';
-import Button from '../../../../components/ui/Button';
+import Button from '@components/ui/Button';
 import styles from './SelectFriendCard.module.css';
 import { SelectFriendCardProps } from '../types';
 

@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
 import { useNavigate } from 'react-router-dom';
-import AlertDialog from "../../../../components/dialogs/AlertDialog";
-import Button from "../../../../components/ui/Button";
+import AlertDialog from "@components/dialogs/AlertDialog";
+import Button from "@components/ui/Button";
 
 interface Props {
   open: boolean;

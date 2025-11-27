@@ -1,4 +1,4 @@
-import { TeamData } from "../types/Team";
+import { TeamData } from "@models/Team";
 
 export type TeamContextType = { 
   teamData: TeamData[] | undefined; 

@@ -1,10 +1,10 @@
 import { User, UserPlus } from 'lucide-react';
-import { FriendData } from '../../../../types/Friend';
+import { FriendData } from '@models/Friend';
 import FriendListCard from '../components/FriendListCard';
 import FriendRequestCard from '../components/FriendRequestCard';
 import styles from './FriendListSection.module.css'
 import FriendListLabel from '../components/FriendListLabel';
-import { useFriend } from '../../../../context/FriendContext';
+import { useFriend } from '@context/FriendContext';
 
 function FriendContents() {
   const { friendData, setFriendData, friendRequestData, setFriendRequestData } = useFriend();

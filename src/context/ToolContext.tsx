@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState } from 'react';
-import { ToolId } from '../types/ToolId';
+import { ToolId } from '@models/ToolId';
 import { ToolContextType } from './ToolContextType';
 
 const ToolContext = createContext<ToolContextType | undefined>(undefined);

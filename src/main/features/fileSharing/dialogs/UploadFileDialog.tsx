@@ -1,7 +1,7 @@
-import Dialog from "../../../../components/dialogs/Dialog";
-import Input from "../../../../components/dialogs/ui/Input";
-import Group from "../../../../components/dialogs/ui/Group";
-import Button from "../../../../components/ui/Button";
+import Dialog from "@components/dialogs/Dialog";
+import Input from "@components/dialogs/ui/Input";
+import Group from "@components/dialogs/ui/Group";
+import Button from "@components/ui/Button";
 import { UploadFileDialogProps } from "../types";
 
 const UploadFileDialog = ({ open, onOpenChange }: UploadFileDialogProps) => {

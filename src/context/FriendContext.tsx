@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState } from "react";
 import { FriendContextType, FriendIdChatMap } from "./FriendContextType";
-import { FriendData } from "../types/Friend";
+import { FriendData } from "@models/Friend";
 
 const initFriendData: FriendData[] = [
   { id: 1, name: '김철수', description: '프론트엔드 개발자' },

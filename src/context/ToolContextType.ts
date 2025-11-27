@@ -1,4 +1,4 @@
-import { ToolId } from "../types/ToolId";
+import { ToolId } from "@models/ToolId";
 
 export type ToolContextType = { 
   toolId: ToolId | null; 

@@ -1,6 +1,6 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import AlertDialog from '../components/dialogs/AlertDialog';
+import AlertDialog from '@components/dialogs/AlertDialog';
 
 // 1. 메타데이터 정의: Storybook에 컴포넌트를 등록하고 open 상태 제어판을 설정
 const meta: Meta<typeof AlertDialog> = {

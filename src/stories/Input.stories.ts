@@ -1,6 +1,6 @@
 import type { Meta } from '@storybook/react-vite';
 
-import Input from "../components/ui/Input";
+import Input from "@components/ui/Input";
 
 const meta = {
   title: 'Example/Input',

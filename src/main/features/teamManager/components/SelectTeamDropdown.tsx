@@ -1,15 +1,15 @@
 import { useState } from "react";
 import { DropdownMenu } from "radix-ui";
-import { useTeam } from "../../../../context/TeamContext";
-import Dropdown from "../../../../components/Dropdown";
+import { useTeam } from "@context/TeamContext";
+import Dropdown from "@components/Dropdown";
 import CreateTeamDialog from "../dialogs/CreateTeamDialog";
-import Item from "../../../../components/ui/Item";
-import Button from "../../../../components/ui/Button";
-import styles from "../../../../components/Dropdown.module.css";
+import Item from "@components/ui/Item";
+import Button from "@components/ui/Button";
+import styles from "@components/Dropdown.module.css";
 import { Trash2 } from "lucide-react";
 import DeleteTeamDialog from "../dialogs/DeleteTeamDialog";
 import { DropdownProps } from "../types";
-import { TeamData } from "../../../../types/Team";
+import { TeamData } from "@models/Team";
 
 const SelectTeamDropdown = ({ triggerElement }: DropdownProps) => {
   const { teamData, setTeamData, setSelectTeamData, setIsTeamMember } = useTeam();

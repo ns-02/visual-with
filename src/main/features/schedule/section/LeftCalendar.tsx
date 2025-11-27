@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Calender from '../components/Calender';
 import styles from './ScheduleSection.module.css'
-import { getDate } from '../../../../utils/dateUtils';
+import { getDate } from '@utils/dateUtils';
 
 function LeftCalendar() {
   const [selected, setSelected] = useState<Date>();

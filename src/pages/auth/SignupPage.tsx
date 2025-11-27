@@ -1,7 +1,7 @@
 import { FormEvent, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Container from "../../components/Container";
-import { checkId, signupUser } from "../../api/api";
+import Container from "@components/Container";
+import { checkId, signupUser } from "@api/api";
 import styles from './Auth.module.css';
 
 function SignupPage() {

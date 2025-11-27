@@ -1,5 +1,5 @@
 import { Download, EllipsisVertical, FileText } from 'lucide-react';
-import Button from '../../../../components/ui/Button';
+import Button from '@components/ui/Button';
 import { FileListCardProps } from '../types';
 import styles from './FileListCard.module.css';
 

@@ -1,7 +1,7 @@
 import React from "react";
-import { ChatItem } from "../types/Chat";
+import { ChatItem } from "@models/Chat";
 import styles from './ChatView.module.css'
-import { getDate } from "../utils/dateUtils";
+import { getDate } from "@utils/dateUtils";
 
 interface ChatViewProps {
     allChat: ChatItem[];

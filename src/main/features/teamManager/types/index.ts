@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
-import { TeamData } from "../../../../types/Team";
+import { TeamData } from "@models/Team";
 
 export interface TeamDialogProps {
   open: boolean;

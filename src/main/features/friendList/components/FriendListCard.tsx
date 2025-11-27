@@ -1,5 +1,5 @@
 import { EllipsisVertical, User } from 'lucide-react';
-import Button from '../../../../components/ui/Button';
+import Button from '@components/ui/Button';
 import { FriendListCardProps } from '../types';
 import styles from './FriendListCard.module.css';
 

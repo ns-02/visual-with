@@ -1,4 +1,4 @@
-import { useTeam } from "../../../../context/TeamContext";
+import { useTeam } from "@context/TeamContext";
 import LeftCalendar from "../section/LeftCalendar";
 import RightContents from "../section/RightContents";
 import styles from './SchedulePage.module.css'

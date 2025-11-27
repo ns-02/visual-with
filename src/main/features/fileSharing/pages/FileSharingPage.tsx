@@ -1,4 +1,4 @@
-import { useTeam } from '../../../../context/TeamContext';
+import { useTeam } from '@context/TeamContext';
 import TopFiles from "../section/TopFiles";
 import BottomSection from "../section/BottomSection";
 import styles from './FileSharingPage.module.css'

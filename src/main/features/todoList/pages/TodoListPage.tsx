@@ -1,4 +1,4 @@
-import { useTeam } from "../../../../context/TeamContext";
+import { useTeam } from "@context/TeamContext";
 import TodoContents from "../section/TodoContents";
 import styles from './TodoListPage.module.css'
 

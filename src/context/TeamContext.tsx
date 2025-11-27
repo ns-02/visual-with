@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState } from "react";
-import { TeamData } from "../types/Team";
+import { TeamData } from "@models/Team";
 import { TeamContextType } from "./TeamContextType";
 
 const TeamContext = createContext<TeamContextType | undefined>(undefined);

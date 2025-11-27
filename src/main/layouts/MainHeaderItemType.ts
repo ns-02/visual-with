@@ -1,5 +1,5 @@
 import { LucideProps } from "lucide-react";
-import { ToolId } from "../../types/ToolId";
+import { ToolId } from "@models/ToolId";
 
 export default interface HeaderItem {
   id: ToolId;

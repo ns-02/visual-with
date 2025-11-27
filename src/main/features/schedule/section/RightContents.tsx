@@ -1,4 +1,4 @@
-import { getDate } from '../../../../utils/dateUtils';
+import { getDate } from '@utils/dateUtils';
 import ScheduleCard from '../components/ScheduleCard';
 import styles from './ScheduleSection.module.css'
 
