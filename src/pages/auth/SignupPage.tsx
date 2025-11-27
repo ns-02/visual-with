@@ -2,7 +2,7 @@ import { FormEvent, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Container from "../../components/Container";
 import { checkId, signupUser } from "../../api/api";
-import styles from './Primary.module.css';
+import styles from './Auth.module.css';
 
 function SignupPage() {
   const navigate = useNavigate();
@@ -76,28 +76,28 @@ function SignupPage() {
         <form onSubmit={(e) => handleSignUp(e)}>
           <div>
             <div>
-              <label>아이디</label>
-              <input name="userId" type="text" value={id} onChange={(e) => {
+              <label htmlFor="userId">아이디</label><br />
+              <input id="userId" name="userId" type="text" value={id} onChange={(e) => {
                 setId(e.target.value);
                 setIsValid(false);
               }}/>
               <button type="button" onClick={handleIdCheck}>중복확인</button>
             </div>
             <div>
-              <label>비밀번호</label>
-              <input name="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
+              <label htmlFor="password">비밀번호</label><br />
+              <input id="password" name="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
             </div>
             <div>
-              <label>비밀번호 확인</label>
-              <input name="passwordConfirm" type="password" value={checkPassword} onChange={(e) => setCheckPassword(e.target.value)}/>
+              <label htmlFor="passwordConfirm">비밀번호 확인</label><br />
+              <input id="passwordConfirm" name="passwordConfirm" type="password" value={checkPassword} onChange={(e) => setCheckPassword(e.target.value)}/>
             </div>
             <div>
-              <label>이름</label>
-              <input name="name" type="text" value={name} onChange={(e) => setName(e.target.value)}></input>
+              <label htmlFor="name">이름</label><br />
+              <input id="name" name="name" type="text" value={name} onChange={(e) => setName(e.target.value)}></input>
             </div>
             <div>
-              <label>이메일</label>
-              <input name="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)}></input>
+              <label htmlFor="email">이메일</label><br />
+              <input id="email" name="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)}></input>
             </div>
             <br />
             <div>

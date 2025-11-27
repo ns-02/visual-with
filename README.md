@@ -49,15 +49,15 @@ http://localhost:5173
 - 로그인, 회원가입, 회원가입 완료 페이지의 컴포넌트 디자인
 
 ## 수정 및 개선사항
+- UserContext.tsx를 추가하여 id, nickname, email 보관
+- AuthContext.tsx에 login/logout, isLoading 함수 추가 고려
 - 친구 미선택 시 채팅 입력 방지 & 미선택 상태일 때 컴포넌트 렌더링 정의
+- HeaderBar의 현재 상태는 input의 값이 바뀌지 않음. input 로직 변경하면서 그렇게 됨.
 - 채팅 형식을 DB에 맞게 변경
 - 포커스가 채팅의 하단부을 가리키도록 변경
 - 개인 채팅의 오버플로우 현상 변경
 - 응답 데이터의 인터페이스 정의를 api 폴더 근처에 모아둘 것
 - 로그인 및 회원가입 로직을 커스텀 훅으로 분리 (AI 추천) -> hooks 폴더
-- 인증 상태를 관리하는 context/AuthContext.tsx 만들기
-- 접근 권한 제어: RouteWatcher.tsx에 라우트 가드를 추가
-- AuthContext에서 로그인 여부를 확인하고, 로그인이 안 되어 있다면 강제로 LoginPage로 리다이렉트
 - ChatView.tsx에 데이터와 로직을 보내줄, (features)View를 만들어서 각 features에 저장
 - api 폴더의 분리 및 모듈화: api 폴더 내부를 기능(Domain)별로 분리
 

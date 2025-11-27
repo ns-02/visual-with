@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Calendar1, FileText, Link2, ListTodo, LogOut, MessageSquare, MessagesSquare, Plus, Users } from 'lucide-react';
 import { useTeam } from '../../context/TeamContext';
 import Button from '../../components/ui/Button';
-import Divider from '../../components/ui/Divider';
+import Divider from './Divider';
 import SelectTeamDropdown from '../features/teamManager/components/SelectTeamDropdown';
 import InviteTeamDialog from '../features/teamManager/dialogs/InviteTeamDialog';
 import LogoutDialog from '../features/misc/dialogs/LogoutDialog';

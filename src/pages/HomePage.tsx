@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 import styles from './HomePage.module.css'
 
 function HomePage() {
+  const {isLoggedin} = useAuth();
 
   return (
     <div className={styles.home}>
@@ -11,8 +13,16 @@ function HomePage() {
           <span>Visual With</span>
         </span>
         <span className={styles['right-container']}>
-          <Link to={"/signup"}>회원가입</Link>
-          <Link to={"/login"}>로그인</Link>
+          {
+            isLoggedin ? <>
+              <Link to={"/main"}>시작하기</Link>
+            </> :
+            <>
+              <Link to={"/signup"}>회원가입</Link>
+              <Link to={"/login"}>로그인</Link>
+            </>
+          }
+          
         </span>
       </div>
       <div className={styles.body}>
