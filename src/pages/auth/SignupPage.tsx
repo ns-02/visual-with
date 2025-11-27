@@ -38,7 +38,7 @@ function SignupPage() {
         return;
       }
   
-      navigate("/signup-result");
+      navigate("/signup-result", { state: { userId: res.user_id } });
     } catch (e) {
       if (e instanceof Error) {
         alert(e.message);

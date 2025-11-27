@@ -49,8 +49,6 @@ http://localhost:5173
 - 로그인, 회원가입, 회원가입 완료 페이지의 컴포넌트 디자인
 
 ## 수정 및 개선사항
-- 채팅의 형식 확인하기 (이전에는 string이 아니라 배열이었음)
-- UserContext.tsx를 추가하여 id, nickname, email 보관
 - AuthContext.tsx에 login/logout, isLoading 함수 추가 고려
 - 친구 미선택 시 채팅 입력 방지 & 미선택 상태일 때 컴포넌트 렌더링 정의
 - HeaderBar의 현재 상태는 input의 값이 바뀌지 않음. input 로직 변경하면서 그렇게 됨.

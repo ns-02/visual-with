@@ -25,11 +25,16 @@ function LoginPage() {
     try {
       const res = await loginUser({userId: id, password});
 
+      console.log(res);
+
       if (res.message !== "ok") {
         return;
       }
 
       setIsLoggedin(true);
+      setUserId(res.userId);
+      setUserName(res.name);
+      setUserEmail(res.userEmail);
 
       navigate("/main");
     } catch (e) {

@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
-import { useAuth } from '@context/AuthContext';
 import styles from './HomePage.module.css'
+import { useUser } from '@context/UserContext';
 
 function HomePage() {
-  const {isLoggedin} = useAuth();
+  const {userId} = useUser();
 
   return (
     <div className={styles.home}>
@@ -14,7 +14,8 @@ function HomePage() {
         </span>
         <span className={styles['right-container']}>
           {
-            isLoggedin ? <>
+            userId ? <>
+              <label>{`${userId}님`}</label>
               <Link to={"/main"}>시작하기</Link>
             </> :
             <>

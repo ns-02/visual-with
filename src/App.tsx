@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom'
 import HomePage from '@pages/HomePage';
 import { LoginPage, NotFoundPage, SignupPage, SignupResultPage } from '@pages/auth';
-import MainPage from 'main/MainPage';
+import MainPage from './main/MainPage';
 import TeamChatPage from './main/features/teamChat/pages/TeamChatPage'
 import FileSharingPage from './main/features/fileSharing/pages/FileSharingPage';
 import SchedulePage from './main/features/schedule/pages/SchedulePage';

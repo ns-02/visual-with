@@ -17,9 +17,7 @@ export interface SignupRequest {
 // 회원가입 응답 (성공)
 export interface SignupResponse {
   id: number;
-  userId: string;
-  email: string;
-  name: string;
+  user_id: string;
 };
 
 // 로그인 요청
@@ -30,7 +28,9 @@ export interface LoginRequest {
 
 // 로그인 응답 (성공)
 export interface LoginResponse {
-  username: string;
+  userId: string;
+  name: string;
+  userEmail: string;
   token: string;
   message: string;
 };
