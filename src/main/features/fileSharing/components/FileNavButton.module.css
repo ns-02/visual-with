@@ -1,0 +1,15 @@
+.button {
+  display: flex;
+  height: 36px;
+  padding: 0 12px;
+  align-items: center;
+  border-radius: 6px;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  background-color: #ffffff;
+}
+
+.selected {
+  background-color: #d0deef;
+}

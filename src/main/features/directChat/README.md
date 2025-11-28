@@ -6,7 +6,7 @@
 
 ## 구조
 - [`../`](../README.md)
-- `controller/` : 친구 채팅 로직
+- `components/` : 친구 채팅 전용 컴포넌트
 - `pages/` : 실제 채팅 페이지
 - `section/` : 화면 구성 요소
 

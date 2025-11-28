@@ -1,8 +1,9 @@
 import DragAndDrop from '../components/DragAndDrop';
 import FileListCard from '../components/FileListCard';
+import { BottomSectionProps } from '../types';
 import styles from './FileSharingSection.module.css';
 
-function BottomSection() {
+function BottomSection({ fileTypes }: BottomSectionProps) {
   const fileItems = [
     {
       id: 1,
@@ -11,6 +12,7 @@ function BottomSection() {
       fileSize: '2.4MB',
       timeAgo: '3일 전',
       uploader: '김철수',
+      fileType: 'images',
     },
     {
       id: 2,
@@ -19,6 +21,7 @@ function BottomSection() {
       fileSize: '45.2MB',
       timeAgo: '5일 전',
       uploader: '김철수',
+      fileType: 'movies',
     },
     {
       id: 3,
@@ -27,28 +30,30 @@ function BottomSection() {
       fileSize: '1.8MB',
       timeAgo: '8일 전',
       uploader: '이영희',
+      fileType: 'others',
     },
   ];
 
   return (
     <div className={styles.bottom}>
       <DragAndDrop />
-      {/* <div className="upload">
-        업로드 중
-      </div> */}
       <div style={{ marginTop: '24px', marginBottom: '12px' }}>파일 목록</div>
-      {fileItems.map((item) => {
-        return (
-          <FileListCard
-            key={item.id}
-            fileName={item.fileName}
-            date={item.date}
-            fileSize={item.fileSize}
-            timeAgo={item.timeAgo}
-            uploader={item.uploader}
-          />
-        );
-      })}
+      {fileItems
+        .filter((item) => {
+          return fileTypes === 'all' ? item : item.fileType === fileTypes;
+        })
+        .map((item) => {
+          return (
+            <FileListCard
+              key={item.id}
+              fileName={item.fileName}
+              date={item.date}
+              fileSize={item.fileSize}
+              timeAgo={item.timeAgo}
+              uploader={item.uploader}
+            />
+          );
+        })}
     </div>
   );
 }

@@ -1,5 +1,15 @@
 import { ChangeEventHandler, Dispatch, RefObject, SetStateAction } from 'react';
 
+// export type FileType = 'all' | 'images' | 'movies' | 'audios' | 'others';
+
+export interface TopFileNavBarProps {
+  onSelect: Dispatch<SetStateAction<string>>;
+}
+
+export interface BottomSectionProps {
+  fileTypes: string;
+}
+
 export interface UploadFileDialogProps {
   open: boolean;
   onOpenChange: Dispatch<SetStateAction<boolean>>;
@@ -20,5 +30,11 @@ export interface FileInputProps {
 
 export interface FileSelectButtonProps {
   text?: string;
+  onClick?: () => void;
+}
+
+export interface FileNavButtonProps {
+  text: string;
+  selected: boolean;
   onClick?: () => void;
 }

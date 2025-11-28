@@ -1,6 +1,8 @@
-.top-files {
+.top_files {
+  display: flex;
   width: 100%;
-  padding: 24px 120px 12px;
+  padding: 32px 120px 16px;
+  gap: 8px;
 }
 
 .bottom {

@@ -23,7 +23,7 @@ http://localhost:5173
 - Storybook: 재사용되는 컴포넌트 관리 및 정리
 - radix-ui: ui 제작 도구
 - React Router: 리액트 환경에서 라우팅 제공
-- css module: 지역 단위 css 적용
+- css module: 지역 단위 css 적용 (라이브러리 X, 설정)
 - React DayPicker: 날짜 선택 ui 지원
 - ESLint: 정적 코드 분석 도구
 - Prettier: 코드 포맷터
@@ -39,7 +39,7 @@ http://localhost:5173
 - handle[EventName]: 콜백이 실행할 실제 로직
 
 ## 방향성
-- 백엔드 연계: 토큰 관리 -> 비허가 접근 관리
+- 백엔드 연계: 토큰 관리
 - 구조 및 디자인: 초대받은 화면 -> 팀 설정 다이얼로그
 - 데이터 및 로직: 팀 변경 로직 -> 역할별 권한 설정 로직
 
@@ -74,6 +74,15 @@ http://localhost:5173
 - 전역 색상 스타일 적용
 - 다크 모드 적용
 - 호버링 등 요소별 UI 반응 구현
+
+## 추천 라이브러리
+- Zustand (전역 컨텍스트)
+- TanStack Query (비동기 데이터 관리)
+- socket.io-client (실시간 웹 통신)
+- Lodash (유틸리티 함수 묶음)
+- Jest (단위 테스트) (도입을 100번 정도 고려해볼 것)
+- React Testing Library (React 컴포넌트 테스트) (도입을 100번 정도 고려해볼 것)
+- Recharts (데이터 시각화 - 차트)
 
 ## 다음 프로젝트 시
 - Tailwind CSS + clsx 적용
