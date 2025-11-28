@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import ToolHeader from "@components/HeaderBar";
+import ToolHeader from '@components/HeaderBar';
 import { fn } from 'storybook/internal/test';
 import { Plus } from 'lucide-react';
 
@@ -18,6 +18,5 @@ export const Default: Story = {
     label: '텍스트',
     button: '버튼',
     onClick: fn(),
-    icon: Plus,
   },
 };

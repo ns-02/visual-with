@@ -1,5 +1,5 @@
-import { Dispatch, SetStateAction } from "react";
-import { TeamData } from "@models/Team";
+import { Dispatch, SetStateAction } from 'react';
+import { TeamData } from '@models/Team';
 
 export interface TeamDialogProps {
   open: boolean;
@@ -7,8 +7,8 @@ export interface TeamDialogProps {
   onCreate?: (value: string) => void;
   onDelete?: () => void;
   deleteTeamData?: TeamData;
-};
+}
 
 export interface DropdownProps {
   triggerElement?: React.ReactNode;
-};
+}

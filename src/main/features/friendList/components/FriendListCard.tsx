@@ -12,7 +12,7 @@ const FriendListCard = ({ name, description }: FriendListCardProps) => {
         </Button>
         <div>
           <p>{name}</p>
-          <p style={{ fontSize: "15px", color: "#555" }} >{description}</p>
+          <p style={{ fontSize: '15px', color: '#555' }}>{description}</p>
         </div>
       </div>
       <div className={styles.navigation}>
@@ -21,7 +21,7 @@ const FriendListCard = ({ name, description }: FriendListCardProps) => {
         </Button>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default FriendListCard;

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Calender from '../components/Calender';
-import styles from './ScheduleSection.module.css'
+import styles from './ScheduleSection.module.css';
 import { getDate } from '@utils/dateUtils';
 
 function LeftCalendar() {
@@ -8,7 +8,7 @@ function LeftCalendar() {
   const [day] = getDate();
 
   return (
-    <div className={styles["left-calender"]}>
+    <div className={styles['left-calender']}>
       <div className={styles.calender_container}>
         <Calender selected={selected} setSelected={setSelected} />
       </div>
@@ -20,7 +20,7 @@ function LeftCalendar() {
         <p>일정 제목 3</p>
       </div>
     </div>
-  )
+  );
 }
 
 export default LeftCalendar;

@@ -1,11 +1,11 @@
-import { ToolId } from "@models/ToolId";
+import { ToolId } from '@models/ToolId';
 
 const ROUTES: { id: ToolId; path: string }[] = [
-  { id: 'team-chat',   path: 'teamchat' },
-  { id: 'files',       path: 'filesharing' },
-  { id: 'schedule',    path: 'schedule' },
-  { id: 'todos',       path: 'todolist' },
-  { id: 'friends',     path: 'friendlist' },
+  { id: 'team-chat', path: 'teamchat' },
+  { id: 'files', path: 'filesharing' },
+  { id: 'schedule', path: 'schedule' },
+  { id: 'todos', path: 'todolist' },
+  { id: 'friends', path: 'friendlist' },
   { id: 'direct-chat', path: 'directchat' },
 ];
 

@@ -1,6 +1,6 @@
-import { ComponentType } from "react";
-import { LucideProps } from "lucide-react";
-import { ToolId } from "@models/ToolId";
+import { ComponentType } from 'react';
+import { LucideProps } from 'lucide-react';
+import { ToolId } from '@models/ToolId';
 
 export default interface MenuItem {
   id: ToolId;

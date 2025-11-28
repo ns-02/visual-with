@@ -5,7 +5,7 @@
 :global(.rdp-weeks) {
   width: 100%;
   /* 테이블 레이아웃을 고정하여 셀 너비가 부모에 맞게 조정되도록 유도 */
-  table-layout: fixed; 
+  table-layout: fixed;
 }
 
 .button {

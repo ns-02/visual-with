@@ -1,33 +1,33 @@
-import { FormEvent, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "@context/AuthContext";
-import { useUser } from "@context/UserContext";
-import { Container } from "@components";
-import { loginUser } from "@api/api";
+import { FormEvent, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '@context/AuthContext';
+import { useUser } from '@context/UserContext';
+import { Container } from '@components';
+import { loginUser } from '@api/api';
 import styles from './Auth.module.css';
 
 function LoginPage() {
-  const {setIsLoggedin} = useAuth();
-  const {setUserId, setUserName, setUserEmail} = useUser();
+  const { setIsLoggedin } = useAuth();
+  const { setUserId, setUserName, setUserEmail } = useUser();
 
   const navigate = useNavigate();
-  const [ id, setId ] = useState("");
-  const [ password, setPassword ] = useState("");
+  const [id, setId] = useState('');
+  const [password, setPassword] = useState('');
 
   const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    
+
     if (!id || !password) {
-      alert("양식이 입력되지 않았습니다.");
+      alert('양식이 입력되지 않았습니다.');
       return;
     }
 
     try {
-      const res = await loginUser({userId: id, password});
+      const res = await loginUser({ userId: id, password });
 
       console.log(res);
 
-      if (res.message !== "ok") {
+      if (res.message !== 'ok') {
         return;
       }
 
@@ -36,15 +36,15 @@ function LoginPage() {
       setUserName(res.name);
       setUserEmail(res.userEmail);
 
-      navigate("/main");
+      navigate('/main');
     } catch (e) {
       if (e instanceof Error) {
         alert(e.message);
       } else {
-        alert("알 수 없는 오류가 발생했습니다.");
+        alert('알 수 없는 오류가 발생했습니다.');
       }
     }
-  }
+  };
 
   return (
     <Container>
@@ -57,38 +57,40 @@ function LoginPage() {
           <div>
             <div>
               <input
-                name="userId"
-                type="text"
-                value={id} 
-                onChange={(e) => setId(e.target.value)} 
-                placeholder="아이디를 입력하세요" required
+                name='userId'
+                type='text'
+                value={id}
+                onChange={(e) => setId(e.target.value)}
+                placeholder='아이디를 입력하세요'
+                required
               ></input>
             </div>
             <div>
-              <input 
-                name="password"
-                type="password" 
-                value={password} 
-                onChange={(e) => setPassword(e.target.value)} 
-                placeholder="비밀번호를 입력하세요" required
+              <input
+                name='password'
+                type='password'
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder='비밀번호를 입력하세요'
+                required
               ></input>
             </div>
             <br />
             <div>
-              <button type="submit">로그인</button> 
+              <button type='submit'>로그인</button>
             </div>
             <br />
             <div>
-              <Link to={"/signup"}>회원가입</Link>
+              <Link to={'/signup'}>회원가입</Link>
             </div>
             <div>
-              <Link to={"/"}>홈으로 돌아가기</Link> 
+              <Link to={'/'}>홈으로 돌아가기</Link>
             </div>
           </div>
         </form>
       </div>
     </Container>
-  )
+  );
 }
 
 export default LoginPage;

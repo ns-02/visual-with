@@ -1,5 +1,15 @@
 import { useState } from 'react';
-import { Calendar1, FileText, Link2, ListTodo, LogOut, MessageSquare, MessagesSquare, Plus, Users } from 'lucide-react';
+import {
+  Calendar1,
+  FileText,
+  Link2,
+  ListTodo,
+  LogOut,
+  MessageSquare,
+  MessagesSquare,
+  Plus,
+  Users,
+} from 'lucide-react';
 import { useTeam } from '@context/TeamContext';
 import { Button } from '@components/ui';
 import Divider from './Divider';
@@ -7,7 +17,7 @@ import SelectTeamDropdown from '../features/teamManager/components/SelectTeamDro
 import InviteTeamDialog from '../features/teamManager/dialogs/InviteTeamDialog';
 import LogoutDialog from '../features/misc/dialogs/LogoutDialog';
 import MenuItem from './LeftMenuItemType';
-import styles from './Layouts.module.css'
+import styles from './Layouts.module.css';
 
 function LeftMenu() {
   const [isInviteTeamDialogOpen, setIsInviteTeamDialogOpen] = useState(false);
@@ -28,10 +38,12 @@ function LeftMenu() {
 
   const bottomMenuItem: MenuItem = { id: 'log-out', icon: LogOut };
 
-  const triggerElement = (
-    isTeamMember ?
-    <Button text={selectTeamData?.name?.[0]} shape="square" /> :
-    <Button shape="square"><Plus size={24} /></Button>
+  const triggerElement = isTeamMember ? (
+    <Button text={selectTeamData?.name?.[0]} shape='square' />
+  ) : (
+    <Button shape='square'>
+      <Plus size={24} />
+    </Button>
   );
 
   const renderMenuItems = (items: MenuItem[]) => {
@@ -47,34 +59,45 @@ function LeftMenu() {
     return (
       <section className={styles.leftmenu}>
         <div>
-          <SelectTeamDropdown 
-            triggerElement={triggerElement}
-          />
+          <SelectTeamDropdown triggerElement={triggerElement} />
         </div>
-        <LogoutDialog open={isLogoutDialogOpen} onOpenChange={setIsLogoutDialogOpen} />
+        <LogoutDialog
+          open={isLogoutDialogOpen}
+          onOpenChange={setIsLogoutDialogOpen}
+        />
         <Divider />
         {renderMenuItems(middleMenuItems)}
         <Divider />
         <div>
-          <Button onCustomClick={() => setIsLogoutDialogOpen(true)} shape='circle'>
+          <Button
+            onCustomClick={() => setIsLogoutDialogOpen(true)}
+            shape='circle'
+          >
             <bottomMenuItem.icon size={24} />
           </Button>
         </div>
       </section>
-    )
+    );
   }
 
   return (
     <section className={styles.leftmenu}>
       <div>
-        <SelectTeamDropdown 
-          triggerElement={triggerElement}
-        />
+        <SelectTeamDropdown triggerElement={triggerElement} />
       </div>
-      <InviteTeamDialog open={isInviteTeamDialogOpen} onOpenChange={setIsInviteTeamDialogOpen} />
-      <LogoutDialog open={isLogoutDialogOpen} onOpenChange={setIsLogoutDialogOpen} />
+      <InviteTeamDialog
+        open={isInviteTeamDialogOpen}
+        onOpenChange={setIsInviteTeamDialogOpen}
+      />
+      <LogoutDialog
+        open={isLogoutDialogOpen}
+        onOpenChange={setIsLogoutDialogOpen}
+      />
       <div>
-        <Button onCustomClick={() => setIsInviteTeamDialogOpen(true)} shape='circle'>
+        <Button
+          onCustomClick={() => setIsInviteTeamDialogOpen(true)}
+          shape='circle'
+        >
           <Link2 size={24} />
         </Button>
       </div>
@@ -84,12 +107,15 @@ function LeftMenu() {
       {renderMenuItems(middleMenuItems)}
       <Divider />
       <div>
-        <Button onCustomClick={() => setIsLogoutDialogOpen(true)} shape='circle'>
+        <Button
+          onCustomClick={() => setIsLogoutDialogOpen(true)}
+          shape='circle'
+        >
           <bottomMenuItem.icon size={24} />
         </Button>
       </div>
     </section>
-  )
+  );
 }
 
 export default LeftMenu;

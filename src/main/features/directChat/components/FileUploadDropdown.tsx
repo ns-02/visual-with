@@ -1,31 +1,24 @@
-import { DropdownMenu } from "radix-ui";
-import { DropdownProps } from "../types";
-import { Item } from "@components/ui";
-import { Dropdown } from "@components";
+import { DropdownMenu } from 'radix-ui';
+import { DropdownProps } from '../types';
+import { Item } from '@components/ui';
+import { Dropdown } from '@components';
 
 const FileUploadDropdown = ({ triggerElement }: DropdownProps) => {
-  
-  const Items = [
-    { id: "1", text: "파일 업로드" },
-  ];
-  
+  const Items = [{ id: '1', text: '파일 업로드' }];
+
   const dropdownContent = (
     <>
-      {
-        Items.map((item) => {
-          return (
-            <DropdownMenu.Item key={item.id}>
-              <Item type="list" text={item.text} />
-            </DropdownMenu.Item>
-          )
-        })
-      }
+      {Items.map((item) => {
+        return (
+          <DropdownMenu.Item key={item.id}>
+            <Item type='list' text={item.text} />
+          </DropdownMenu.Item>
+        );
+      })}
     </>
-  )
+  );
 
-  return (
-    <Dropdown trigger={triggerElement} content={dropdownContent} />
-  )
-}
+  return <Dropdown trigger={triggerElement} content={dropdownContent} />;
+};
 
 export default FileUploadDropdown;

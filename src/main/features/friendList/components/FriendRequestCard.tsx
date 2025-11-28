@@ -3,7 +3,12 @@ import Button from '@components/ui/Button';
 import { FriendListCardProps } from '../types';
 import styles from './FriendRequestCard.module.css';
 
-const FriendRequestCard = ({ name, description, onAccept, onReject }: FriendListCardProps) => {
+const FriendRequestCard = ({
+  name,
+  description,
+  onAccept,
+  onReject,
+}: FriendListCardProps) => {
   return (
     <div className={styles.container}>
       <div className={styles.info_contents}>
@@ -12,7 +17,7 @@ const FriendRequestCard = ({ name, description, onAccept, onReject }: FriendList
         </Button>
         <div>
           <p>{name}</p>
-          <p style={{ fontSize: "15px", color: "#555" }} >{description}</p>
+          <p style={{ fontSize: '15px', color: '#555' }}>{description}</p>
         </div>
       </div>
       <div className={styles.navigation}>
@@ -24,7 +29,7 @@ const FriendRequestCard = ({ name, description, onAccept, onReject }: FriendList
         </Button>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default FriendRequestCard;

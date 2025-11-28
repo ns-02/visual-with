@@ -1,9 +1,13 @@
-import { useEffect, useRef } from "react";
-import { useLocation, useNavigationType } from "react-router-dom";
-import { getToolIdFromPath } from "./routeMap";
-import { useTool } from "@context/ToolContext";
+import { useEffect, useRef } from 'react';
+import { useLocation, useNavigationType } from 'react-router-dom';
+import { getToolIdFromPath } from './routeMap';
+import { useTool } from '@context/ToolContext';
 
-export function RouteWatcher({ callOnInitial = true }: { callOnInitial?: boolean }) {
+export function RouteWatcher({
+  callOnInitial = true,
+}: {
+  callOnInitial?: boolean;
+}) {
   const location = useLocation();
   const navType = useNavigationType();
 
@@ -26,10 +30,10 @@ export function RouteWatcher({ callOnInitial = true }: { callOnInitial?: boolean
     // route가 바뀌었을 때만
     if (prevTool !== nextTool) {
       prevRef.current = nextTool;
-      // ToolContext에 저장된 값과 다를 때만 
+      // ToolContext에 저장된 값과 다를 때만
       if (nextTool !== current) setToolId(nextTool);
     }
   }, [location.pathname, navType, setToolId, current, callOnInitial]);
 
   return null;
-};
+}

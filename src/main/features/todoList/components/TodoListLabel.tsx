@@ -8,7 +8,7 @@ const TodoListLabel = ({ text, count, children }: TodoListLabelProps) => {
       <span>{text}</span>
       <span className={styles.count}>{count}</span>
     </div>
-  )
-}
+  );
+};
 
 export default TodoListLabel;

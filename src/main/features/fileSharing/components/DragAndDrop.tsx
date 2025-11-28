@@ -1,13 +1,15 @@
-import { ChangeEvent, DragEvent, useRef, useState } from "react";
-import { Upload } from "lucide-react";
-import { FileInput, FileSelectButton } from "./";
-import styles from "./DragAndDrop.module.css";
+import { ChangeEvent, DragEvent, useRef, useState } from 'react';
+import { Upload } from 'lucide-react';
+import { FileInput, FileSelectButton } from './';
+import styles from './DragAndDrop.module.css';
 
 const DragAndDrop = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   const [dragging, setDragging] = useState(false);
-  const [file, setFile] = useState<File | undefined | null>(null)
-  const containerStyle = dragging ? styles.container_dragging : styles.container;
+  const [file, setFile] = useState<File | undefined | null>(null);
+  const containerStyle = dragging
+    ? styles.container_dragging
+    : styles.container;
 
   // '파일 선택' 버튼 클릭 시 동작
   const handleSelectFile = () => {
@@ -22,14 +24,15 @@ const DragAndDrop = () => {
       const selectedFile = e.target.files[0];
       setFile(selectedFile);
     }
-  }
+  };
 
   // 드래그가 영역 안에 최초로 들어왔을 시
   const handleDragEnter = (e: DragEvent<HTMLDivElement>) => {
-    e.preventDefault();   // 브라우저 기본 이벤트 X
-    e.stopPropagation();  // 이벤트 전달 X
+    e.preventDefault(); // 브라우저 기본 이벤트 X
+    e.stopPropagation(); // 이벤트 전달 X
 
-    if (e.dataTransfer.items && e.dataTransfer.items.length > 0) {  // 파일 유효성 검사
+    if (e.dataTransfer.items && e.dataTransfer.items.length > 0) {
+      // 파일 유효성 검사
       setDragging(true);
     }
   };
@@ -61,7 +64,7 @@ const DragAndDrop = () => {
   };
 
   return (
-    <div 
+    <div
       className={containerStyle}
       onDrop={handleFileDrop}
       onDragEnter={handleDragEnter}
@@ -69,17 +72,18 @@ const DragAndDrop = () => {
       onDragOver={handleDragOver}
     >
       <FileInput ref={inputRef} onChange={handleFileChange} />
-      {
-        file ? <p>{file.name}</p> :
+      {file ? (
+        <p>{file.name}</p>
+      ) : (
         <>
-          <Upload size={48} color="#aaa" />
-          <p style={{ color: "#555" }}>파일을 여기에 드래그하여 업로드하세요</p>
-          <p style={{ fontSize: "14px", color: "#777" }}>또는</p>
-          <FileSelectButton text="파일 선택" onClick={handleSelectFile} />
+          <Upload size={48} color='#aaa' />
+          <p style={{ color: '#555' }}>파일을 여기에 드래그하여 업로드하세요</p>
+          <p style={{ fontSize: '14px', color: '#777' }}>또는</p>
+          <FileSelectButton text='파일 선택' onClick={handleSelectFile} />
         </>
-      }
+      )}
     </div>
-  )
-}
+  );
+};
 
 export default DragAndDrop;

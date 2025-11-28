@@ -1,9 +1,9 @@
-import { FriendData } from "@models/Friend";
+import { FriendData } from '@models/Friend';
 
 export type FriendIdChatMap = Map<number, string>;
 
-export type FriendContextType = { 
-  friendData: FriendData[] | null; 
+export type FriendContextType = {
+  friendData: FriendData[] | null;
   setFriendData: (item: FriendData[] | null) => void;
   selectFriendData: FriendData | null | undefined;
   setSelectFriendData: (item: FriendData | null | undefined) => void;

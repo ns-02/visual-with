@@ -1,9 +1,9 @@
-import { Outlet } from "react-router-dom";
-import { useAuth } from "@context/AuthContext";
-import GuardPage from "../pages/auth/GuardPage";
+import { Outlet } from 'react-router-dom';
+import { useAuth } from '@context/AuthContext';
+import GuardPage from '../pages/auth/GuardPage';
 
 const PrivateRoute = () => {
-  const {isLoggedin} = useAuth();
+  const { isLoggedin } = useAuth();
 
   if (!isLoggedin) {
     return <GuardPage />;

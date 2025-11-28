@@ -1,5 +1,5 @@
-import { useNavigate } from "react-router-dom";
-import { Container } from "@components";
+import { useNavigate } from 'react-router-dom';
+import { Container } from '@components';
 import styles from './Auth.module.css';
 
 function NotFoundPage() {
@@ -12,7 +12,7 @@ function NotFoundPage() {
         <button onClick={() => navigate(-1)}>돌아가기</button>
       </div>
     </Container>
-  )
+  );
 }
 
 export default NotFoundPage;

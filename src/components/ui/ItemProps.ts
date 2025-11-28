@@ -1,7 +1,7 @@
-import React from "react";
-import { Plus } from "lucide-react";
+import React from 'react';
+import { Plus } from 'lucide-react';
 
-type Type = 'list' | 'add'
+type Type = 'list' | 'add';
 
 interface BaseProps {
   type: Type;

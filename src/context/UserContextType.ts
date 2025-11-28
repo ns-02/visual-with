@@ -1,4 +1,4 @@
-export type UserContextType = { 
+export type UserContextType = {
   userId: string | null;
   setUserId: (value: string) => void;
   userName: string | null;

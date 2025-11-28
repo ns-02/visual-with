@@ -1,6 +1,6 @@
-import React, { createContext, useContext, useState } from "react";
-import { FriendContextType, FriendIdChatMap } from "./FriendContextType";
-import { FriendData } from "@models/Friend";
+import React, { createContext, useContext, useState } from 'react';
+import { FriendContextType, FriendIdChatMap } from './FriendContextType';
+import { FriendData } from '@models/Friend';
 
 const initFriendData: FriendData[] = [
   { id: 1, name: '김철수', description: '프론트엔드 개발자' },
@@ -15,22 +15,45 @@ const initFriendRequestData: FriendData[] = [
 
 const FriendContext = createContext<FriendContextType | undefined>(undefined);
 
-export const FriendProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [friendData, setFriendData] = useState<FriendData[] | null>(initFriendData);
-  const [friendRequestData, setFriendRequestData] = useState<FriendData[] | null | undefined>(initFriendRequestData);
-  const [selectFriendData, setSelectFriendData] = useState<FriendData | null | undefined>(null);
-  const [friendIdChatMap, setFriendIdChatMap] = useState<FriendIdChatMap>(() => new Map());
-  
-  return <FriendContext.Provider value={{ 
-    friendData, setFriendData, 
-    friendRequestData, setFriendRequestData, 
-    selectFriendData, setSelectFriendData,
-    friendIdChatMap, setFriendIdChatMap
-  }}>{children}</FriendContext.Provider>;
+export const FriendProvider: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
+  const [friendData, setFriendData] = useState<FriendData[] | null>(
+    initFriendData,
+  );
+  const [friendRequestData, setFriendRequestData] = useState<
+    FriendData[] | null | undefined
+  >(initFriendRequestData);
+  const [selectFriendData, setSelectFriendData] = useState<
+    FriendData | null | undefined
+  >(null);
+  const [friendIdChatMap, setFriendIdChatMap] = useState<FriendIdChatMap>(
+    () => new Map(),
+  );
+
+  return (
+    <FriendContext.Provider
+      value={{
+        friendData,
+        setFriendData,
+        friendRequestData,
+        setFriendRequestData,
+        selectFriendData,
+        setSelectFriendData,
+        friendIdChatMap,
+        setFriendIdChatMap,
+      }}
+    >
+      {children}
+    </FriendContext.Provider>
+  );
 };
 
 export function useFriend() {
   const v = useContext(FriendContext);
-  if (!v) throw new   Error('useFriend는 반드시 FriendProvider 내부에서 사용해야 합니다.');
+  if (!v)
+    throw new Error(
+      'useFriend는 반드시 FriendProvider 내부에서 사용해야 합니다.',
+    );
   return v;
-};
+}

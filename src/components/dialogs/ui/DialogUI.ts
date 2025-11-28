@@ -1,4 +1,4 @@
-import { ChangeEvent } from "react";
+import { ChangeEvent } from 'react';
 
 export interface InputProps {
   type?: string;
@@ -10,4 +10,4 @@ export interface InputProps {
 
 export type Prop = {
   children?: React.ReactNode;
-}
+};

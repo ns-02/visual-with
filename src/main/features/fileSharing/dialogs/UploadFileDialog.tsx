@@ -1,23 +1,23 @@
-import { Dialog, Group, Input } from "@components/dialogs";
-import Button from "@components/ui/Button";
-import { UploadFileDialogProps } from "../types";
+import { Dialog, Group, Input } from '@components/dialogs';
+import Button from '@components/ui/Button';
+import { UploadFileDialogProps } from '../types';
 
 const UploadFileDialog = ({ open, onOpenChange }: UploadFileDialogProps) => {
-  const confirmButton = (<Button text="업로드" />);
+  const confirmButton = <Button text='업로드' />;
 
   return (
     <Dialog
-      title="파일 업로드"
-      open={open} 
+      title='파일 업로드'
+      open={open}
       onOpenChange={onOpenChange}
       confirmButton={confirmButton}
     >
       <Group>
         <p>파일 선택</p>
       </Group>
-      <Input type="file" />
+      <Input type='file' />
     </Dialog>
-  )
-}
+  );
+};
 
 export default UploadFileDialog;

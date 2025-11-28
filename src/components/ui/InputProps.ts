@@ -1,6 +1,6 @@
-import React, { Dispatch, SetStateAction, KeyboardEvent } from "react";
+import React, { Dispatch, SetStateAction, KeyboardEvent } from 'react';
 
-type SizeMode = 'fixed' | 'flexible'
+type SizeMode = 'fixed' | 'flexible';
 
 export default interface InputProps {
   value: string;

@@ -1,4 +1,4 @@
-import { Outlet } from 'react-router-dom'
+import { Outlet } from 'react-router-dom';
 import { LeftMenu, MainBody, MainHeader, RightSection } from './layouts';
 
 function MainPage() {
@@ -12,7 +12,7 @@ function MainPage() {
         </MainBody>
       </RightSection>
     </>
-  )
+  );
 }
 
 export default MainPage;

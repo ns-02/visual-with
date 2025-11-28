@@ -1,37 +1,33 @@
-import { DropdownMenu } from "radix-ui";
-import Dropdown from "@components/Dropdown";
-import Item from "@components/ui/Item";
-import { DropdownProps } from "../types";
+import { DropdownMenu } from 'radix-ui';
+import Dropdown from '@components/Dropdown';
+import Item from '@components/ui/Item';
+import { DropdownProps } from '../types';
 
 const FileUploadDropdown = ({ triggerElement }: DropdownProps) => {
   const handleFileUploadClick = () => {
-    // 실제 구현 시: 
+    // 실제 구현 시:
     // 1. 숨겨진 <input type="file"> 요소 참조 (useRef 사용)
     // 2. 해당 요소의 .click() 메소드를 호출
-    console.log("파일 업로드 클릭됨: 파일 선택 창을 띄웁니다.");
+    console.log('파일 업로드 클릭됨: 파일 선택 창을 띄웁니다.');
   };
-  
+
   const Items = [
-    { id: "1", text: "파일 업로드", handler: handleFileUploadClick },
+    { id: '1', text: '파일 업로드', handler: handleFileUploadClick },
   ];
-  
+
   const dropdownContent = (
     <>
-      {
-        Items.map((item) => {
-          return (
-            <DropdownMenu.Item key={item.id} onClick={item.handler}>
-              <Item type="list" text={item.text} />
-            </DropdownMenu.Item>
-          )
-        })
-      }
+      {Items.map((item) => {
+        return (
+          <DropdownMenu.Item key={item.id} onClick={item.handler}>
+            <Item type='list' text={item.text} />
+          </DropdownMenu.Item>
+        );
+      })}
     </>
-  )
+  );
 
-  return (
-    <Dropdown trigger={triggerElement} content={dropdownContent} />
-  )
-}
+  return <Dropdown trigger={triggerElement} content={dropdownContent} />;
+};
 
 export default FileUploadDropdown;

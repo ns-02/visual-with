@@ -1,25 +1,26 @@
 import { useEffect, useState } from 'react';
 import { ChatView } from '@components';
 import { useFriend } from '@context/FriendContext';
-import { ChatItem } from '@models/Chat'; 
+import { ChatItem } from '@models/Chat';
 import { getItem, setItem } from '@utils/sessionStorage';
 import { DirectChatBottom, LeftFriends, RightChats } from '../section';
-import styles from './DirectChatPage.module.css'
+import styles from './DirectChatPage.module.css';
 
 function DirectChatPage() {
   const { selectFriendData, setFriendIdChatMap } = useFriend();
 
-  const initChats: ChatItem[] = getItem(`directChats_${selectFriendData?.id}`, "") || [];
-  
+  const initChats: ChatItem[] =
+    getItem(`directChats_${selectFriendData?.id}`, '') || [];
+
   const getMaxId = () => {
-    return initChats.length > 0 
-      ? Math.max(...initChats.map(item => item.id)) 
+    return initChats.length > 0
+      ? Math.max(...initChats.map((item) => item.id))
       : 0;
   };
-  
+
   let maxId = getMaxId();
-  const [ allChat, setAllChat ] = useState(initChats);
-  const [ currentId, setCurrentId ] = useState(maxId + 1);
+  const [allChat, setAllChat] = useState(initChats);
+  const [currentId, setCurrentId] = useState(maxId + 1);
 
   useEffect(() => {
     setAllChat(initChats);
@@ -27,14 +28,15 @@ function DirectChatPage() {
     setCurrentId(maxId + 1);
   }, [selectFriendData]);
 
-  const handleSend = (chatToSend: string) => {    
+  const handleSend = (chatToSend: string) => {
     if (!selectFriendData?.id) return;
 
     let today = new Date();
-    let time = (today.toLocaleTimeString().slice(0, -3));
+    let time = today.toLocaleTimeString().slice(0, -3);
 
     const nextChat: ChatItem[] = [
-      ...allChat, { id: currentId, chat: chatToSend, time }
+      ...allChat,
+      { id: currentId, chat: chatToSend, time },
     ];
 
     setItem(`directChats_${selectFriendData?.id}`, JSON.stringify(nextChat));
@@ -58,12 +60,10 @@ function DirectChatPage() {
         <div className={styles.container}>
           <ChatView allChat={allChat} />
         </div>
-        <DirectChatBottom
-          onSend={handleSend}
-        />
+        <DirectChatBottom onSend={handleSend} />
       </RightChats>
     </div>
-  )
+  );
 }
 
 export default DirectChatPage;

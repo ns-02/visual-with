@@ -1,8 +1,8 @@
-import { FriendListLabelProps } from "../types";
+import { FriendListLabelProps } from '../types';
 import styles from './FriendListLabel.module.css';
 
 const FriendListLabel = ({ text, count, children }: FriendListLabelProps) => {
-  if (text === "친구 요청" && !count) {
+  if (text === '친구 요청' && !count) {
     return null;
   }
 
@@ -12,7 +12,7 @@ const FriendListLabel = ({ text, count, children }: FriendListLabelProps) => {
       <span>{text}</span>
       <span className={styles.count}>{count}</span>
     </div>
-  )
-}
+  );
+};
 
 export default FriendListLabel;

@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
-import styles from './HomePage.module.css'
+import styles from './HomePage.module.css';
 import { useUser } from '@context/UserContext';
 
 function HomePage() {
-  const {userId} = useUser();
+  const { userId } = useUser();
 
   return (
     <div className={styles.home}>
@@ -13,17 +13,17 @@ function HomePage() {
           <span>Visual With</span>
         </span>
         <span className={styles['right-container']}>
-          {
-            userId ? <>
-              <label>{`${userId}님`}</label>
-              <Link to={"/main"}>시작하기</Link>
-            </> :
+          {userId ? (
             <>
-              <Link to={"/signup"}>회원가입</Link>
-              <Link to={"/login"}>로그인</Link>
+              <label>{`${userId}님`}</label>
+              <Link to={'/main'}>시작하기</Link>
             </>
-          }
-          
+          ) : (
+            <>
+              <Link to={'/signup'}>회원가입</Link>
+              <Link to={'/login'}>로그인</Link>
+            </>
+          )}
         </span>
       </div>
       <div className={styles.body}>
@@ -39,7 +39,7 @@ function HomePage() {
         <p>문의하기: 구글폼</p> */}
       </div>
     </div>
-  )
+  );
 }
 
 export default HomePage;

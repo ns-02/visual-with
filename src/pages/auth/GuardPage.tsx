@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
-import { Container } from "@components";
+import { Link } from 'react-router-dom';
+import { Container } from '@components';
 import styles from './Auth.module.css';
 
 function GuardPage() {
@@ -8,11 +8,11 @@ function GuardPage() {
       <div className={styles.contents}>
         <h3>로그인 후 이용 가능한 서비스입니다.</h3>
         <br />
-        <Link to={"/"}>홈으로</Link>
-        <Link to={"/login"}>로그인</Link>
+        <Link to={'/'}>홈으로</Link>
+        <Link to={'/login'}>로그인</Link>
       </div>
     </Container>
-  )
+  );
 }
 
 export default GuardPage;

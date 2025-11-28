@@ -8,27 +8,19 @@ const Item = React.forwardRef<HTMLDivElement, ItemProps>((props, ref) => {
 
   if (type === 'add') {
     return (
-      <div 
-        ref={ref}
-        className={styles.itemadd}
-        {...rest}
-      >
+      <div ref={ref} className={styles.itemadd} {...rest}>
         <Plus size={16} />
         <span>{text}</span>
       </div>
-    )
+    );
   }
 
   return (
-    <div 
-      ref={ref}
-      className={styles.itemlist}
-      {...rest}
-    >
+    <div ref={ref} className={styles.itemlist} {...rest}>
       <span>{text}</span>
       {children}
     </div>
-  )
+  );
 });
 
 export default Item;

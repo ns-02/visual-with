@@ -10,6 +10,6 @@
   cursor: pointer;
 }
 
-.trigger[data-state="active"] {
+.trigger[data-state='active'] {
   border-bottom: 1px solid #000;
 }

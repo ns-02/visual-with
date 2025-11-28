@@ -3,7 +3,13 @@ import Button from '@components/ui/Button';
 import { FileListCardProps } from '../types';
 import styles from './FileListCard.module.css';
 
-const FileListCard = ({ fileName, date, fileSize, timeAgo, uploader }: FileListCardProps) => {
+const FileListCard = ({
+  fileName,
+  date,
+  fileSize,
+  timeAgo,
+  uploader,
+}: FileListCardProps) => {
   return (
     <div className={styles.container}>
       <div className={styles.info_contents}>
@@ -12,7 +18,7 @@ const FileListCard = ({ fileName, date, fileSize, timeAgo, uploader }: FileListC
         </Button>
         <div>
           <p>{fileName}</p>
-          <p style={{ fontSize: "15px", color: "#555" }} >
+          <p style={{ fontSize: '15px', color: '#555' }}>
             {`${date} · ${fileSize} · ${timeAgo} · ${uploader}`}
           </p>
         </div>
@@ -26,7 +32,7 @@ const FileListCard = ({ fileName, date, fileSize, timeAgo, uploader }: FileListC
         </Button>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default FileListCard;

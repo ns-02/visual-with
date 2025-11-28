@@ -10,7 +10,7 @@ const meta: Meta<typeof AlertDialog> = {
     // open 속성을 제어판에 노출 (다이얼로그 상태를 수동으로 제어 가능)
     open: { control: 'boolean' },
     // onOpenChange 함수 호출을 Action 탭에서 확인 가능
-    onOpenChange: { action: 'onOpenChange triggered' }, 
+    onOpenChange: { action: 'onOpenChange triggered' },
   },
 };
 export default meta;
@@ -31,11 +31,11 @@ const Template = (args: any) => {
     <>
       {/* 💡 테스트용 Trigger: 이 버튼으로 Dialog를 열 수 있습니다. */}
       <button onClick={() => setIsOpen(true)}>다이얼로그 열기</button>
-      
+
       {/* CDialog 렌더링: Storybook Args와 내부 상태를 연결 */}
-      <AlertDialog 
-        {...args} 
-        open={isOpen} 
+      <AlertDialog
+        {...args}
+        open={isOpen}
         onOpenChange={(newOpen) => {
           setIsOpen(newOpen);
           args.onOpenChange(newOpen);
@@ -54,6 +54,6 @@ export const Default: Story = {
   args: {
     open: false,
     // dialogInfo의 더미 데이터 설정 필요
-    title: "테스트 다이얼로그",
+    title: '테스트 다이얼로그',
   },
 };
