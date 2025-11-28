@@ -25,6 +25,8 @@ http://localhost:5173
 - React Router: 리액트 환경에서 라우팅 제공
 - css module: 지역 단위 css 적용
 - React DayPicker: 날짜 선택 ui 지원
+- ESLint: 정적 코드 분석 도구
+- Prettier: 코드 포맷터
 
 ## 전체 기능
 [바로 가기](docs/features.md)
