@@ -1,4 +1,3 @@
-export { default as ChatView } from './ChatView';
-export { default as Container } from './Container';
-export { default as Dropdown } from './Dropdown';
-export { default as HeaderBar } from './HeaderBar';
+export { default as Container } from './layouts/Container';
+export { default as HeaderBar } from './layouts/HeaderBar';
+export { default as ChatView } from './common/ChatView';

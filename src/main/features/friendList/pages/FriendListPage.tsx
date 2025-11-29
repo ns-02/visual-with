@@ -1,4 +1,4 @@
-import FriendContents from '../section/FriendContents';
+import FriendContents from '../layouts/FriendContents';
 import styles from './FriendListPage.module.css';
 
 function FriendListPage() {

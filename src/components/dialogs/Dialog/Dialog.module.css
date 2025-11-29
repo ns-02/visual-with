@@ -1,0 +1,37 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.content {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 18px 20px;
+  border-radius: 6px;
+  box-shadow: 0px 3px 6px 1px rgba(0, 0, 0, 0.2);
+  background-color: white;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.title {
+  margin: 0 0 12px 0;
+  font-size: 18px;
+}
+
+.description {
+  margin-bottom: 4px;
+  color: #666;
+}
+
+.btnfield {
+  display: flex;
+  margin-top: 18px;
+  justify-content: flex-end;
+  gap: 6px;
+}

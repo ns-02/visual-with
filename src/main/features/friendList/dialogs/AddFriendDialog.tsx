@@ -1,7 +1,7 @@
 import { Search } from 'lucide-react';
 import { Dialog, Group, Input, Row } from '@components/dialogs';
 import { Button } from '@components/ui';
-import { AddFriendDialogProps } from '../types';
+import { AddFriendDialogProps } from '..';
 
 const AddFriendDialog = ({ open, onOpenChange }: AddFriendDialogProps) => {
   const confirmButton = <Button text='친구 추가' />;

@@ -1,9 +1,9 @@
 import Dialog from '@components/dialogs/Dialog';
-import Input from '@components/dialogs/ui/Input';
-import Group from '@components/dialogs/ui/Group';
-import Row from '@components/dialogs/ui/Row';
+import Input from '@components/dialogs/Input';
+import Group from '@components/dialogs/Group';
+import Row from '@components/dialogs/Row';
 import Button from '@components/ui/Button';
-import { ScheduleDialogProps } from '../types';
+import { ScheduleDialogProps } from '..';
 
 const AddScheduleDialog = ({ open, onOpenChange }: ScheduleDialogProps) => {
   const confirmButton = <Button text='추가' />;

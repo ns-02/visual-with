@@ -1,6 +1,6 @@
 import { Dialog, Group, Input } from '@components/dialogs';
 import { Button } from '@components/ui';
-import { TodoDialogProps } from '../types';
+import { TodoDialogProps } from '..';
 
 const AddTodoDialog = ({ open, onOpenChange }: TodoDialogProps) => {
   const confirmButton = <Button text='추가' />;

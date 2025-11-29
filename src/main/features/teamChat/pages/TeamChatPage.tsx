@@ -3,7 +3,7 @@ import { ChatView } from '@components';
 import { useTeam } from '@context/TeamContext';
 import { ChatItem } from '@models/Chat';
 import { getItem, setItem } from '@utils/sessionStorage';
-import TeamChatBottom from '../section/TeamChatBottom';
+import TeamChatBottom from '../layouts/TeamChatBottom';
 import styles from './TeamChatPage.module.css';
 
 function TeamChatPage() {

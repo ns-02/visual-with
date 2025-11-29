@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Dialog, Input } from '@components/dialogs';
 import { Button } from '@components/ui';
-import { TeamDialogProps } from '../types';
+import { TeamDialogProps } from '..';
 
 const CreateTeamDialog = ({
   open,

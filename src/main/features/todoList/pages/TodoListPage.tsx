@@ -1,5 +1,5 @@
 import { useTeam } from '@context/TeamContext';
-import TodoContents from '../section/TodoContents';
+import TodoContents from '../layouts/TodoContents';
 import styles from './TodoListPage.module.css';
 
 function TodoListPage() {

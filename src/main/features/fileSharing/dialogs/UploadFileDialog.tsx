@@ -1,6 +1,6 @@
 import { Dialog, Group, Input } from '@components/dialogs';
 import Button from '@components/ui/Button';
-import { UploadFileDialogProps } from '../types';
+import { UploadFileDialogProps } from '..';
 
 const UploadFileDialog = ({ open, onOpenChange }: UploadFileDialogProps) => {
   const confirmButton = <Button text='업로드' />;

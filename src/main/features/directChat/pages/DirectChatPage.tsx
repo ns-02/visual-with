@@ -3,7 +3,7 @@ import { ChatView } from '@components';
 import { useFriend } from '@context/FriendContext';
 import { ChatItem } from '@models/Chat';
 import { getItem, setItem } from '@utils/sessionStorage';
-import { DirectChatBottom, LeftFriends, RightChats } from '../section';
+import { DirectChatBottom, LeftFriends, RightChats } from '../';
 import styles from './DirectChatPage.module.css';
 
 function DirectChatPage() {

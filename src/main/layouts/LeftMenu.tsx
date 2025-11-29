@@ -13,7 +13,7 @@ import {
 import { useTeam } from '@context/TeamContext';
 import { Button } from '@components/ui';
 import Divider from './Divider';
-import SelectTeamDropdown from '../features/teamManager/components/SelectTeamDropdown';
+import SelectTeamDropdown from '../features/teamManager/ui/SelectTeamDropdown';
 import InviteTeamDialog from '../features/teamManager/dialogs/InviteTeamDialog';
 import LogoutDialog from '../features/misc/dialogs/LogoutDialog';
 import MenuItem from './LeftMenuItemType';

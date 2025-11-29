@@ -2,7 +2,7 @@ import * as Tabs from '@radix-ui/react-tabs';
 import { Copy, Search } from 'lucide-react';
 import { Dialog, Group, Input, Row } from '@components/dialogs';
 import { Button } from '@components/ui';
-import { TeamDialogProps } from '../types';
+import { TeamDialogProps } from '..';
 import styles from './InviteTeamDialog.module.css';
 
 const InviteTeamDialog = ({ open, onOpenChange }: TeamDialogProps) => {

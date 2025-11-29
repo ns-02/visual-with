@@ -1,6 +1,6 @@
 import { useTeam } from '@context/TeamContext';
-import LeftCalendar from '../section/LeftCalendar';
-import RightContents from '../section/RightContents';
+import LeftCalendar from '../layouts/LeftCalendar';
+import RightContents from '../layouts/RightContents';
 import styles from './SchedulePage.module.css';
 
 function SchedulePage() {
