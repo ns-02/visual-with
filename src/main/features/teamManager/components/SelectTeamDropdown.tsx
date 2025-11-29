@@ -5,7 +5,8 @@ import { Button, Item } from '@components/ui';
 import { useTeam } from '@context/TeamContext';
 import { Dropdown } from '@components';
 import { TeamData } from '@models/Team';
-import { CreateTeamDialog, DeleteTeamDialog } from '../dialogs';
+import CreateTeamDialog from '../dialogs/CreateTeamDialog';
+import DeleteTeamDialog from '../dialogs/DeleteTeamDialog';
 import { DropdownProps } from '../types';
 import styles from '@components/Dropdown.module.css';
 

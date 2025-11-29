@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useTeam } from '@context/TeamContext';
-import { BottomSection, TopFileNavBar } from '../section';
+import TopFileNavBar from '../section/TopFileNavBar';
+import BottomSection from '../section/BottomSection';
 import styles from './FileSharingPage.module.css';
 
 function FileSharingPage() {

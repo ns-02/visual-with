@@ -11,6 +11,8 @@
 }
 
 .rightsection {
+  display: flex;
+  flex-direction: column;
   width: calc(100% - 80px);
   height: 100%;
   float: right;
@@ -18,11 +20,10 @@
 
 .header {
   display: flex;
-  height: 64px;
+  flex: 0 0 64px;
   padding: 12px 16px;
-  justify-content: center;
 }
 
 .body {
-  height: calc(100% - 64px);
+  flex: 1;
 }

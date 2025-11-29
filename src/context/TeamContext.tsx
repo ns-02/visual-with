@@ -1,13 +1,16 @@
 import React, { createContext, useContext, useState } from 'react';
 import { TeamData } from '@models/Team';
 import { TeamContextType } from './TeamContextType';
+import { teamDataMocks } from '../mocks/TeamDataMocks';
 
 const TeamContext = createContext<TeamContextType | undefined>(undefined);
 
 export const TeamProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const [teamData, setTeamData] = useState<TeamData[] | undefined>(undefined);
+  const [teamData, setTeamData] = useState<TeamData[] | undefined>(
+    teamDataMocks,
+  );
   const [selectTeamData, setSelectTeamData] = useState<TeamData | null>(null);
   const [isTeamMember, setIsTeamMember] = useState<boolean>(false);
 

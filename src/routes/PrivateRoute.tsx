@@ -5,9 +5,9 @@ import GuardPage from '../pages/auth/GuardPage';
 const PrivateRoute = () => {
   const { isLoggedin } = useAuth();
 
-  if (!isLoggedin) {
-    return <GuardPage />;
-  }
+  // if (!isLoggedin) {
+  //   return <GuardPage />;
+  // }
 
   return <Outlet />;
 };

@@ -6,6 +6,7 @@ import {
   SignupPage,
   SignupResultPage,
 } from '@pages/auth';
+import MainLayout from './main/MainLayout';
 import MainPage from './main/MainPage';
 import TeamChatPage from './main/features/teamChat/pages/TeamChatPage';
 import FileSharingPage from './main/features/fileSharing/pages/FileSharingPage';
@@ -31,7 +32,8 @@ const App: React.FC = () => {
         <Route path='/signup-result' element={<SignupResultPage />} />
 
         <Route element={<PrivateRoute />}>
-          <Route path='/main' element={<MainPage />}>
+          <Route path='/main' element={<MainLayout />}>
+            <Route index element={<MainPage />} />
             <Route path='teamchat' element={<TeamChatPage />} />
             <Route path='filesharing' element={<FileSharingPage />} />
             <Route path='schedule' element={<SchedulePage />} />

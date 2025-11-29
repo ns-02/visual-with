@@ -5,7 +5,7 @@ import {
   LoginResponse,
   SignupRequest,
   SignupResponse,
-} from './apiModel';
+} from '../models/apiModel';
 
 export const request = async (url: string, options = {}) => {
   try {

@@ -11,10 +11,15 @@ import styles from './Layouts.module.css';
 
 function MainHeader() {
   const { toolId } = useTool();
+
   const [isUploadFileDialogOpen, setIsUploadFileDialogOpen] = useState(false);
   const [isAddScheduleDialogOpen, setIsAddScheduleDialogOpen] = useState(false);
   const [isAddTodoDialogOpen, setIsAddTodoDialogOpen] = useState(false);
   const [isAddFriendDialogOpen, setIsAddFriendDialogOpen] = useState(false);
+
+  if (!toolId) {
+    return;
+  }
 
   const headerItems: HeaderItem[] = [
     { id: 'team-chat', label: '팀 채팅' },
