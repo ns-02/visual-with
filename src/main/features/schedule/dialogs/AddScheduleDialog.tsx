@@ -1,7 +1,4 @@
-import Dialog from '@components/dialogs/Dialog';
-import Input from '@components/dialogs/Input';
-import Group from '@components/dialogs/Group';
-import Row from '@components/dialogs/Row';
+import { Dialog, DialogInput, Group, Row } from '@components/dialogs';
 import Button from '@components/ui/Button';
 import { ScheduleDialogProps } from '..';
 
@@ -17,26 +14,26 @@ const AddScheduleDialog = ({ open, onOpenChange }: ScheduleDialogProps) => {
     >
       <Group>
         <label>제목</label>
-        <Input placeholder='일정 제목을 입력하세요' />
+        <DialogInput placeholder='일정 제목을 입력하세요' />
       </Group>
 
       <Row>
         <Group>
           <label>날짜</label>
-          <Input type='date' />
+          <DialogInput type='date' />
         </Group>
         <Group>
           <label>시간</label>
-          <Input type='time' />
+          <DialogInput type='time' />
         </Group>
       </Row>
       <Group>
         <label>카테고리</label>
-        <Input placeholder='일정' />
+        <DialogInput placeholder='일정' />
       </Group>
       <Group>
         <label>설명</label>
-        <Input placeholder='일정 설명을 입력하세요 (선택사항)' />
+        <DialogInput placeholder='일정 설명을 입력하세요 (선택사항)' />
       </Group>
     </Dialog>
   );

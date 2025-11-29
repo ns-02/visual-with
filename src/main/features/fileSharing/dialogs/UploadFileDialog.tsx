@@ -1,4 +1,4 @@
-import { Dialog, Group, Input } from '@components/dialogs';
+import { Dialog, Group, DialogInput } from '@components/dialogs';
 import Button from '@components/ui/Button';
 import { UploadFileDialogProps } from '..';
 
@@ -15,7 +15,7 @@ const UploadFileDialog = ({ open, onOpenChange }: UploadFileDialogProps) => {
       <Group>
         <p>파일 선택</p>
       </Group>
-      <Input type='file' />
+      <DialogInput type='file' />
     </Dialog>
   );
 };

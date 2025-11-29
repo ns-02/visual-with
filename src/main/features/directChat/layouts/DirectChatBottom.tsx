@@ -3,7 +3,7 @@ import { Plus, Send } from 'lucide-react';
 import { Button, Input } from '@components/ui';
 import FileUploadDropdown from '../ui/FileUploadDropdown';
 import { DirectChatBottomProps } from '..';
-import styles from './DirectChat.module.css';
+import styles from './DirectChatLayout.module.css';
 
 function DirectChatBottom({ onSend }: DirectChatBottomProps) {
   const [chat, setChat] = useState('');

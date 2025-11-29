@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import FileNavButton from '../ui/FileNavButton';
 import { TopFileNavBarProps } from '..';
-import styles from './FileSharing.module.css';
+import styles from './FileSharingLayout.module.css';
 
 function TopFileNavBar({ onSelect }: TopFileNavBarProps) {
   const fileNavItemsInit = [

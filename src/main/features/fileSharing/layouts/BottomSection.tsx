@@ -1,7 +1,7 @@
 import DragAndDrop from '../ui/DragAndDrop';
 import FileListCard from '../ui/FileListCard';
 import { BottomSectionProps } from '..';
-import styles from './FileSharing.module.css';
+import styles from './FileSharingLayout.module.css';
 
 function BottomSection({ fileTypes }: BottomSectionProps) {
   const fileItems = [

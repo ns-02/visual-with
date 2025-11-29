@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { AlertDialog, Input } from '@components/dialogs';
+import { AlertDialog, DialogInput } from '@components/dialogs';
 import { Button } from '@components/ui';
 import { TeamDialogProps } from '..';
 
@@ -28,7 +28,7 @@ const DeleteTeamDialog = ({
       onOpenChange={onOpenChange}
       confirmButton={confirmButton}
     >
-      <Input
+      <DialogInput
         placeholder='삭제를 입력하세요'
         value={confirmText}
         setValue={(e) => setConFirmText(e.target.value)}

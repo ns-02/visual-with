@@ -1,6 +1,6 @@
 import { ChangeEvent } from 'react';
 import { InputProps } from '..';
-import styles from './Input.module.css';
+import styles from './DialogInput.module.css';
 
 function Input({ type, value, setValue, placeholder, readOnly }: InputProps) {
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {

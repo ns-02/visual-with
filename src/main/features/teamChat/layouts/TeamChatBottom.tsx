@@ -2,7 +2,7 @@ import { KeyboardEvent, useState } from 'react';
 import { Plus, Send } from 'lucide-react';
 import Button from '@components/ui/Button';
 import Input from '@components/ui/Input';
-import styles from './TeamChatSection.module.css';
+import styles from './TeamChatBottom.module.css';
 import FileUploadDropdown from '../ui/FileUploadDropdown';
 import { TeamChatBottomProps } from '..';
 

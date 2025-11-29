@@ -1,5 +1,9 @@
 import { createContext, useContext, useState } from 'react';
-import { AuthContextType } from './AuthContextType';
+
+type AuthContextType = {
+  isLoggedin: boolean;
+  setIsLoggedin: (value: boolean) => void;
+};
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 

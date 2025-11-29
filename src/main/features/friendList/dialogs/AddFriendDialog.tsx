@@ -1,5 +1,5 @@
 import { Search } from 'lucide-react';
-import { Dialog, Group, Input, Row } from '@components/dialogs';
+import { Dialog, Group, DialogInput, Row } from '@components/dialogs';
 import { Button } from '@components/ui';
 import { AddFriendDialogProps } from '..';
 
@@ -17,7 +17,7 @@ const AddFriendDialog = ({ open, onOpenChange }: AddFriendDialogProps) => {
         <p>친구 ID 검색</p>
       </Group>
       <Row>
-        <Input placeholder='친구의 ID를 검색하세요' />
+        <DialogInput placeholder='친구의 ID를 검색하세요' />
         <Button>
           <Search size={16} />
         </Button>

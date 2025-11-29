@@ -3,7 +3,7 @@ import { Circle, CircleCheckBig } from 'lucide-react';
 import TodoListCard from '../ui/TodoListCard';
 import TodoListLabel from '../ui/TodoListLabel';
 import { TodoItems } from '..';
-import styles from './TodoListSection.module.css';
+import styles from './TodoContents.module.css';
 
 function RightContents() {
   // checked를 별도의 useState로 분리하여 관리하기 vs 지금처럼 한 객체에 담아 관리하기

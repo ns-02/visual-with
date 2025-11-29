@@ -1,6 +1,6 @@
 import { getDate } from '@utils/dateUtils';
 import ScheduleCard from '../ui/ScheduleCard';
-import styles from './Schedule.module.css';
+import styles from './ScheduleLayout.module.css';
 
 function RightContents() {
   const [month, day] = getDate();

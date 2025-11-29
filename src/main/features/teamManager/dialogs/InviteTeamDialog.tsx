@@ -1,6 +1,6 @@
 import * as Tabs from '@radix-ui/react-tabs';
 import { Copy, Search } from 'lucide-react';
-import { Dialog, Group, Input, Row } from '@components/dialogs';
+import { Dialog, Group, DialogInput, Row } from '@components/dialogs';
 import { Button } from '@components/ui';
 import { TeamDialogProps } from '..';
 import styles from './InviteTeamDialog.module.css';
@@ -30,7 +30,7 @@ const InviteTeamDialog = ({ open, onOpenChange }: TeamDialogProps) => {
             </p>
           </Group>
           <Row>
-            <Input
+            <DialogInput
               value='https://example.com/invite/개발팀/abc123'
               readOnly={true}
             />
@@ -47,7 +47,7 @@ const InviteTeamDialog = ({ open, onOpenChange }: TeamDialogProps) => {
             </p>
           </Group>
           <Row>
-            <Input placeholder='팀원의 ID를 검색하세요' />
+            <DialogInput placeholder='팀원의 ID를 검색하세요' />
             <Button>
               <Search size={16} />
             </Button>

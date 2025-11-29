@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Dialog, Input } from '@components/dialogs';
+import { Dialog, DialogInput } from '@components/dialogs';
 import { Button } from '@components/ui';
 import { TeamDialogProps } from '..';
 
@@ -27,7 +27,7 @@ const CreateTeamDialog = ({
       confirmButton={confirmButton}
     >
       <p>팀 이름</p>
-      <Input
+      <DialogInput
         placeholder='팀 이름을 입력하세요'
         value={teamName}
         setValue={(e) => setTeamName(e.target.value)}

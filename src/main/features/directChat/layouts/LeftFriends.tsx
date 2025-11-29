@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useFriend } from '@context/FriendContext';
 import SelectFriendCard from '../ui/SelectFriendCard';
 import { FriendItem } from '..';
-import styles from './DirectChat.module.css';
+import styles from './DirectChatLayout.module.css';
 
 function LeftFriends() {
   const { friendData, selectFriendData, setSelectFriendData, friendIdChatMap } =

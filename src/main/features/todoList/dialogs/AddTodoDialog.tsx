@@ -1,4 +1,4 @@
-import { Dialog, Group, Input } from '@components/dialogs';
+import { Dialog, Group, DialogInput } from '@components/dialogs';
 import { Button } from '@components/ui';
 import { TodoDialogProps } from '..';
 
@@ -14,11 +14,11 @@ const AddTodoDialog = ({ open, onOpenChange }: TodoDialogProps) => {
     >
       <Group>
         <label>제목</label>
-        <Input placeholder='할 일 제목을 입력하세요' />
+        <DialogInput placeholder='할 일 제목을 입력하세요' />
       </Group>
       <Group>
         <label>내용</label>
-        <Input placeholder='할 일을 입력하세요' />
+        <DialogInput placeholder='할 일을 입력하세요' />
       </Group>
     </Dialog>
   );

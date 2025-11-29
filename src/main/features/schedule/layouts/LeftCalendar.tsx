@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Calender from '../ui/Calender';
-import styles from './Schedule.module.css';
+import styles from './ScheduleLayout.module.css';
 import { getDate } from '@utils/dateUtils';
 
 function LeftCalendar() {

@@ -1,7 +1,15 @@
 import React, { createContext, useContext, useState } from 'react';
 import { TeamData } from '@models/Team';
-import { TeamContextType } from './TeamContextType';
 import { teamDataMocks } from '../mocks/TeamDataMocks';
+
+export type TeamContextType = {
+  teamData: TeamData[] | undefined;
+  setTeamData: (item: TeamData[] | undefined) => void;
+  selectTeamData: TeamData | null;
+  setSelectTeamData: (item: TeamData | null) => void;
+  isTeamMember: boolean;
+  setIsTeamMember: (value: boolean) => void;
+};
 
 const TeamContext = createContext<TeamContextType | undefined>(undefined);
 

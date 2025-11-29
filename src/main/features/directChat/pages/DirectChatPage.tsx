@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { ChatView } from '@components';
+import { ChatView } from '@components/ui';
 import { useFriend } from '@context/FriendContext';
 import { ChatItem } from '@models/Chat';
 import { getItem, setItem } from '@utils/sessionStorage';

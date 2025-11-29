@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState, ComponentType } from 'react';
 import {
+  LucideProps,
   Calendar1,
   FileText,
   Link2,
@@ -12,12 +13,18 @@ import {
 } from 'lucide-react';
 import { useTeam } from '@context/TeamContext';
 import { Button } from '@components/ui';
-import Divider from './Divider';
-import SelectTeamDropdown from '../features/teamManager/ui/SelectTeamDropdown';
-import InviteTeamDialog from '../features/teamManager/dialogs/InviteTeamDialog';
-import LogoutDialog from '../features/misc/dialogs/LogoutDialog';
-import MenuItem from './LeftMenuItemType';
+import { ToolId } from '@models/ToolId';
+import Divider from '../ui/Divider';
+import SelectTeamDropdown from '../../features/teamManager/ui/SelectTeamDropdown';
+import InviteTeamDialog from '../../features/teamManager/dialogs/InviteTeamDialog';
+import LogoutDialog from '../../features/misc/dialogs/LogoutDialog';
 import styles from './Layouts.module.css';
+
+interface MenuItem {
+  id: ToolId;
+  icon: ComponentType<LucideProps>;
+  path?: string;
+}
 
 function LeftMenu() {
   const [isInviteTeamDialogOpen, setIsInviteTeamDialogOpen] = useState(false);

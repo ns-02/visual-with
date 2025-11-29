@@ -3,7 +3,7 @@ import React, { Dispatch, SetStateAction, ChangeEvent } from 'react';
 export { default as AlertDialog } from './AlertDialog';
 export { default as Dialog } from './Dialog/';
 export { default as Group } from './Group';
-export { default as Input } from './Input';
+export { default as DialogInput } from './DialogInput';
 export { default as Row } from './Row';
 
 export default interface DialogProps {

@@ -1,6 +1,10 @@
 import React, { createContext, useContext, useState } from 'react';
 import { ToolId } from '@models/ToolId';
-import { ToolContextType } from './ToolContextType';
+
+type ToolContextType = {
+  toolId: ToolId | null;
+  setToolId: (id: ToolId | null) => void;
+};
 
 const ToolContext = createContext<ToolContextType | undefined>(undefined);
 
