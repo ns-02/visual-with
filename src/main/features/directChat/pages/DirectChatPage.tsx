@@ -3,6 +3,7 @@ import { ChatView } from '@components/ui';
 import { useFriend } from '@context/FriendContext';
 import { ChatItem } from '@models/Chat';
 import { getItem, setItem } from '@utils/sessionStorage';
+import getMaxId from '@utils/getMaxId';
 import { DirectChatBottom, LeftFriends, RightChats } from '../';
 import styles from './DirectChatPage.module.css';
 
@@ -12,19 +13,13 @@ function DirectChatPage() {
   const initChats: ChatItem[] =
     getItem(`directChats_${selectFriendData?.id}`, '') || [];
 
-  const getMaxId = () => {
-    return initChats.length > 0
-      ? Math.max(...initChats.map((item) => item.id))
-      : 0;
-  };
-
-  let maxId = getMaxId();
+  let maxId = getMaxId(initChats);
   const [allChat, setAllChat] = useState(initChats);
   const [currentId, setCurrentId] = useState(maxId + 1);
 
   useEffect(() => {
     setAllChat(initChats);
-    maxId = getMaxId();
+    maxId = getMaxId(initChats);
     setCurrentId(maxId + 1);
   }, [selectFriendData]);
 

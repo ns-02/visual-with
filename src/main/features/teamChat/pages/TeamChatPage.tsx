@@ -5,14 +5,14 @@ import { ChatItem } from '@models/Chat';
 import { getItem, setItem } from '@utils/sessionStorage';
 import TeamChatBottom from '../layouts/TeamChatBottom';
 import styles from './TeamChatPage.module.css';
+import getMaxId from '@utils/getMaxId';
 
 function TeamChatPage() {
   const { selectTeamData } = useTeam();
 
   const initChats: ChatItem[] =
     getItem(`teamChats_${selectTeamData?.id}`, '') || [];
-  const maxId =
-    initChats.length > 0 ? Math.max(...initChats.map((item) => item.id)) : 0;
+  const maxId = getMaxId(initChats);
 
   const [allChat, setAllChat] = useState(initChats);
   const [currentId, setCurrentId] = useState(maxId + 1);

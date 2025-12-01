@@ -9,6 +9,7 @@ import CreateTeamDialog from '../dialogs/CreateTeamDialog';
 import DeleteTeamDialog from '../dialogs/DeleteTeamDialog';
 import { DropdownProps } from '..';
 import styles from './SelectTeamDropdown.module.css';
+import getMaxId from '@utils/getMaxId';
 
 const SelectTeamDropdown = ({ triggerElement }: DropdownProps) => {
   const { teamData, setTeamData, setSelectTeamData, setIsTeamMember } =
@@ -16,7 +17,9 @@ const SelectTeamDropdown = ({ triggerElement }: DropdownProps) => {
   const [isCreateTeamDialogOpen, setIsCreateTeamDialogOpen] = useState(false);
   const [isDeleteTeamDialogOpen, setIsDeleteTeamDialogOpen] = useState(false);
 
-  const [currentItemId, setcurrentItemId] = useState(1);
+  const maxId = (teamData && getMaxId(teamData)) ?? 0;
+
+  const [currentItemId, setcurrentItemId] = useState(maxId);
   const [deleteTeamData, setDeleteTeamData] = useState<TeamData | undefined>(
     undefined,
   );
