@@ -7,7 +7,7 @@ interface ChatViewProps {
   allChat: ChatItem[];
 }
 const ChatView = React.memo(({ allChat }: ChatViewProps) => {
-  const [year, month, day] = getDate();
+  const { year, month, day } = getDate();
 
   return (
     <div className={styles.view}>
