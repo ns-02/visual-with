@@ -3,7 +3,7 @@ import ScheduleCard from '../ui/ScheduleCard';
 import styles from './ScheduleLayout.module.css';
 
 function RightContents() {
-  const [month, day] = getDate();
+  const { month, day } = getDate();
 
   const todayScheduleItems = [
     {

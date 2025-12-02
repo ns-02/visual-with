@@ -5,7 +5,7 @@ import { getDate } from '@utils/dateUtils';
 
 function LeftCalendar() {
   const [selected, setSelected] = useState<Date>();
-  const [day] = getDate();
+  const { day } = getDate();
 
   return (
     <div className={styles['left-calender']}>

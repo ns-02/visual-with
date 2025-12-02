@@ -5,5 +5,5 @@ export const getDate = () => {
   const month = today.getMonth() + 1;
   const day = today.getDate();
 
-  return [year, month, day];
+  return { year, month, day };
 };
