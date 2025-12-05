@@ -1,13 +1,18 @@
-import { useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 import { Dialog, DialogInput } from '@components/dialogs';
 import { Button } from '@components/ui';
-import { TeamDialogProps } from '..';
+
+interface CreateTeamDialogProps {
+  open: boolean;
+  onOpenChange: Dispatch<SetStateAction<boolean>>;
+  onCreate?: (value: string) => void;
+}
 
 const CreateTeamDialog = ({
   open,
   onOpenChange,
   onCreate,
-}: TeamDialogProps) => {
+}: CreateTeamDialogProps) => {
   const [teamName, setTeamName] = useState('');
 
   const handleCreateTeam = () => {

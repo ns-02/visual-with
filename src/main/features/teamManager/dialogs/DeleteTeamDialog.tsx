@@ -1,14 +1,21 @@
-import { useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 import { AlertDialog, DialogInput } from '@components/dialogs';
 import { Button } from '@components/ui';
-import { TeamDialogProps } from '..';
+import { TeamName } from '@models/Team';
+
+interface DeleteTeamDialogProps {
+  open: boolean;
+  onOpenChange: Dispatch<SetStateAction<boolean>>;
+  onDelete?: () => void;
+  deleteTeamName?: TeamName;
+}
 
 const DeleteTeamDialog = ({
   open,
   onOpenChange,
   onDelete,
-  deleteTeamData,
-}: TeamDialogProps) => {
+  deleteTeamName,
+}: DeleteTeamDialogProps) => {
   const [confirmText, setConFirmText] = useState('');
 
   const handleDeleteTeam = () => {
@@ -23,7 +30,7 @@ const DeleteTeamDialog = ({
   return (
     <AlertDialog
       title='팀을 삭제하시겠습니까?'
-      description={`"${deleteTeamData?.name}" 팀이 영구적으로 삭제됩니다. 이 작업은 취소할 수 없습니다.`}
+      description={`"${deleteTeamName}" 팀이 영구적으로 삭제됩니다. 이 작업은 취소할 수 없습니다.`}
       open={open}
       onOpenChange={onOpenChange}
       confirmButton={confirmButton}

@@ -7,44 +7,28 @@ import { Dropdown } from '@components/ui';
 import { TeamData } from '@models/Team';
 import CreateTeamDialog from '../dialogs/CreateTeamDialog';
 import DeleteTeamDialog from '../dialogs/DeleteTeamDialog';
-import { DropdownProps } from '..';
-import styles from './SelectTeamDropdown.module.css';
-import getMaxId from '@utils/getMaxId';
+import useTeamManager from '../hooks/useTeamManager';
+import styles from './TeamDropdown.module.css';
 
-const SelectTeamDropdown = ({ triggerElement }: DropdownProps) => {
+interface DropdownProps {
+  triggerElement?: React.ReactNode;
+}
+
+const TeamDropdown = ({ triggerElement }: DropdownProps) => {
   const {
     teamData,
-    setTeamData,
     selectTeamId,
     setSelectTeamId,
     setSelectTeamName,
     setIsTeamMember,
   } = useTeam();
+
   const [isCreateTeamDialogOpen, setIsCreateTeamDialogOpen] = useState(false);
   const [isDeleteTeamDialogOpen, setIsDeleteTeamDialogOpen] = useState(false);
-
-  const maxId = (teamData && getMaxId(teamData)) ?? 0;
-
-  const [currentItemId, setcurrentItemId] = useState(maxId + 1);
-  const [deleteTeamData, setDeleteTeamData] = useState<TeamData | undefined>(
-    undefined,
-  );
-
-  const handleCreateTeam = (teamName: string) => {
-    const newData = { id: currentItemId, name: teamName };
-    const nextTeamData = teamData ? [...teamData, newData] : [newData];
-
-    setTeamData(nextTeamData);
-    setcurrentItemId(currentItemId + 1);
-  };
-
-  const handleDeleteTeam = () => {
-    const nextTeamData = teamData?.filter(
-      (item) => item.id !== deleteTeamData?.id && item,
-    );
-    setTeamData(nextTeamData);
-    if (!nextTeamData?.length) setIsTeamMember(false);
-  };
+  const { deleteTeamName, CreateTeam, DeleteTeam, DeleteTeamData } =
+    useTeamManager({
+      teamData,
+    });
 
   const handleItemClick = (item: TeamData) => {
     if (item) setIsTeamMember(true);
@@ -73,7 +57,7 @@ const SelectTeamDropdown = ({ triggerElement }: DropdownProps) => {
                 >
                   <Button
                     onCustomClick={() => {
-                      setDeleteTeamData(item);
+                      DeleteTeamData(item);
                       setIsDeleteTeamDialogOpen(true);
                     }}
                   >
@@ -97,20 +81,20 @@ const SelectTeamDropdown = ({ triggerElement }: DropdownProps) => {
 
   return (
     <>
-      <Dropdown trigger={triggerElement} content={dropdownContent} />
+      <Dropdown trigger={triggerElement} items={dropdownContent} />
       <CreateTeamDialog
         open={isCreateTeamDialogOpen}
         onOpenChange={setIsCreateTeamDialogOpen}
-        onCreate={handleCreateTeam}
+        onCreate={CreateTeam}
       />
       <DeleteTeamDialog
         open={isDeleteTeamDialogOpen}
         onOpenChange={setIsDeleteTeamDialogOpen}
-        onDelete={handleDeleteTeam}
-        deleteTeamData={deleteTeamData}
+        onDelete={DeleteTeam}
+        deleteTeamName={deleteTeamName}
       />
     </>
   );
 };
 
-export default SelectTeamDropdown;
+export default TeamDropdown;

@@ -15,7 +15,7 @@ import { useTeam } from '@context/TeamContext';
 import { Button } from '@components/ui';
 import { ToolId } from '@models/ToolId';
 import Divider from '../ui/Divider';
-import SelectTeamDropdown from '../../features/teamManager/ui/SelectTeamDropdown';
+import TeamDropdown from '../../features/teamManager/ui/TeamDropdown';
 import InviteTeamDialog from '../../features/teamManager/dialogs/InviteTeamDialog';
 import LogoutDialog from '../../features/misc/dialogs/LogoutDialog';
 import styles from './Layouts.module.css';
@@ -66,7 +66,7 @@ function LeftMenu() {
     return (
       <section className={styles.leftmenu}>
         <div>
-          <SelectTeamDropdown triggerElement={triggerElement} />
+          <TeamDropdown triggerElement={triggerElement} />
         </div>
         <LogoutDialog
           open={isLogoutDialogOpen}
@@ -90,7 +90,7 @@ function LeftMenu() {
   return (
     <section className={styles.leftmenu}>
       <div>
-        <SelectTeamDropdown triggerElement={triggerElement} />
+        <TeamDropdown triggerElement={triggerElement} />
       </div>
       <InviteTeamDialog
         open={isInviteTeamDialogOpen}

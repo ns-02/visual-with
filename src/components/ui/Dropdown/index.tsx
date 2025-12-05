@@ -4,17 +4,17 @@ import styles from './Dropdown.module.css';
 
 interface DropDownProps {
   trigger?: React.ReactNode;
-  content?: React.ReactNode;
+  items?: React.ReactNode;
 }
 
 const Dropdown = (props: DropDownProps) => {
-  const { trigger, content } = props;
+  const { trigger, items } = props;
 
   return (
     <DropdownMenu.Root>
       <DropdownMenu.Trigger asChild>{trigger}</DropdownMenu.Trigger>
       <DropdownMenu.Content align='start' className={styles.container}>
-        {content}
+        {items}
       </DropdownMenu.Content>
     </DropdownMenu.Root>
   );
