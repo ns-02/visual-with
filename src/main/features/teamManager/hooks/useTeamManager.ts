@@ -15,7 +15,7 @@ const useTeamManager = ({ teamData }: TeamManagerType) => {
   const [deleteTeamId, setDeleteTeamId] = useState<TeamId>(0);
   const [deleteTeamName, setDeleteTeamName] = useState<TeamName>('');
 
-  const CreateTeam = (teamName: TeamName) => {
+  const createTeam = (teamName: TeamName) => {
     const newData = { id: currentItemId, name: teamName };
     const nextTeamData = teamData ? [...teamData, newData] : [newData];
 
@@ -23,7 +23,7 @@ const useTeamManager = ({ teamData }: TeamManagerType) => {
     setcurrentItemId(currentItemId + 1);
   };
 
-  const DeleteTeam = () => {
+  const deleteTeam = () => {
     const nextTeamData = teamData?.filter(
       (item) => item.id !== deleteTeamId && item,
     );
@@ -31,12 +31,12 @@ const useTeamManager = ({ teamData }: TeamManagerType) => {
     if (!nextTeamData?.length) setIsTeamMember(false);
   };
 
-  const DeleteTeamData = (teamData: TeamData) => {
+  const setDeleteTeamData = (teamData: TeamData) => {
     setDeleteTeamId(teamData.id);
     setDeleteTeamName(teamData.name);
   };
 
-  return { deleteTeamName, DeleteTeamData, CreateTeam, DeleteTeam };
+  return { deleteTeamName, setDeleteTeamData, createTeam, deleteTeam };
 };
 
 export default useTeamManager;

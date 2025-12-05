@@ -16,7 +16,7 @@ const TeamDropdown = ({ triggerElement }: DropdownProps) => {
 
   const [isCreateTeamDialogOpen, setIsCreateTeamDialogOpen] = useState(false);
   const [isDeleteTeamDialogOpen, setIsDeleteTeamDialogOpen] = useState(false);
-  const { deleteTeamName, CreateTeam, DeleteTeam, DeleteTeamData } =
+  const { deleteTeamName, createTeam, deleteTeam, setDeleteTeamData } =
     useTeamManager({
       teamData,
     });
@@ -25,7 +25,7 @@ const TeamDropdown = ({ triggerElement }: DropdownProps) => {
     <>
       <TeamDropdownItems
         deleteTeamDialogOpen={setIsDeleteTeamDialogOpen}
-        DeleteTeamData={DeleteTeamData}
+        setDeleteTeamData={setDeleteTeamData}
       />
       <DropdownMenu.Item
         onSelect={() => setIsCreateTeamDialogOpen(true)}
@@ -42,12 +42,12 @@ const TeamDropdown = ({ triggerElement }: DropdownProps) => {
       <CreateTeamDialog
         open={isCreateTeamDialogOpen}
         onOpenChange={setIsCreateTeamDialogOpen}
-        onCreate={CreateTeam}
+        onCreate={createTeam}
       />
       <DeleteTeamDialog
         open={isDeleteTeamDialogOpen}
         onOpenChange={setIsDeleteTeamDialogOpen}
-        onDelete={DeleteTeam}
+        onDelete={deleteTeam}
         deleteTeamName={deleteTeamName}
       />
     </>

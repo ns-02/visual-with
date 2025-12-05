@@ -8,12 +8,12 @@ import { TeamData } from '@models/Team';
 
 interface TeamDropdownItemsType {
   deleteTeamDialogOpen: (value: React.SetStateAction<boolean>) => void;
-  DeleteTeamData: (teamData: TeamData) => void;
+  setDeleteTeamData: (teamData: TeamData) => void;
 }
 
 const TeamDropdownItems = ({
   deleteTeamDialogOpen,
-  DeleteTeamData,
+  setDeleteTeamData,
 }: TeamDropdownItemsType) => {
   const {
     teamData,
@@ -52,7 +52,7 @@ const TeamDropdownItems = ({
             >
               <Button
                 onCustomClick={() => {
-                  DeleteTeamData(item);
+                  setDeleteTeamData(item);
                   deleteTeamDialogOpen(true);
                 }}
               >
