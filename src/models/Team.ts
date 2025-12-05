@@ -1,4 +1,8 @@
+export type TeamId = number;
+
+export type TeamName = string;
+
 export interface TeamData {
-  id: number;
-  name: string;
+  id: TeamId;
+  name: TeamName;
 }

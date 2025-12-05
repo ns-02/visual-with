@@ -12,14 +12,20 @@ import styles from './SelectTeamDropdown.module.css';
 import getMaxId from '@utils/getMaxId';
 
 const SelectTeamDropdown = ({ triggerElement }: DropdownProps) => {
-  const { teamData, setTeamData, setSelectTeamData, setIsTeamMember } =
-    useTeam();
+  const {
+    teamData,
+    setTeamData,
+    selectTeamId,
+    setSelectTeamId,
+    setSelectTeamName,
+    setIsTeamMember,
+  } = useTeam();
   const [isCreateTeamDialogOpen, setIsCreateTeamDialogOpen] = useState(false);
   const [isDeleteTeamDialogOpen, setIsDeleteTeamDialogOpen] = useState(false);
 
   const maxId = (teamData && getMaxId(teamData)) ?? 0;
 
-  const [currentItemId, setcurrentItemId] = useState(maxId);
+  const [currentItemId, setcurrentItemId] = useState(maxId + 1);
   const [deleteTeamData, setDeleteTeamData] = useState<TeamData | undefined>(
     undefined,
   );
@@ -42,7 +48,12 @@ const SelectTeamDropdown = ({ triggerElement }: DropdownProps) => {
 
   const handleItemClick = (item: TeamData) => {
     if (item) setIsTeamMember(true);
-    setSelectTeamData(item);
+    setSelectTeamId(item.id);
+    setSelectTeamName(item.name);
+  };
+
+  const handleItemSelected = (item: TeamData) => {
+    return item.id === selectTeamId ? true : false;
   };
 
   const dropdownContent = (
@@ -55,7 +66,11 @@ const SelectTeamDropdown = ({ triggerElement }: DropdownProps) => {
                 key={item.id}
                 onClick={() => handleItemClick(item)}
               >
-                <Item type='list' text={item.name}>
+                <Item
+                  type='list'
+                  text={item.name}
+                  selected={handleItemSelected(item)}
+                >
                   <Button
                     onCustomClick={() => {
                       setDeleteTeamData(item);

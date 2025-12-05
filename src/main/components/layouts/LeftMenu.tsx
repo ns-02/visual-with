@@ -29,7 +29,7 @@ interface MenuItem {
 function LeftMenu() {
   const [isInviteTeamDialogOpen, setIsInviteTeamDialogOpen] = useState(false);
   const [isLogoutDialogOpen, setIsLogoutDialogOpen] = useState(false);
-  const { selectTeamData, isTeamMember } = useTeam();
+  const { selectTeamName, isTeamMember } = useTeam();
 
   const topMenuItems: MenuItem[] = [
     { id: 'team-chat', icon: MessagesSquare, path: 'teamchat' },
@@ -46,7 +46,7 @@ function LeftMenu() {
   const bottomMenuItem: MenuItem = { id: 'log-out', icon: LogOut };
 
   const triggerElement = isTeamMember ? (
-    <Button text={selectTeamData?.name?.[0]} shape='square' />
+    <Button text={selectTeamName[0]} shape='square' />
   ) : (
     <Button shape='square'>
       <Plus size={24} />

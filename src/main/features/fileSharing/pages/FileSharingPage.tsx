@@ -6,7 +6,7 @@ import styles from './FileSharingPage.module.css';
 
 function FileSharingPage() {
   // 현재 선택된 팀 데이터
-  const { selectTeamData } = useTeam();
+  const { selectTeamId } = useTeam();
   const [fileTypes, setFileTypes] = useState<string>('all');
 
   return (

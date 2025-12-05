@@ -8,10 +8,9 @@ import styles from './TeamChatPage.module.css';
 import getMaxId from '@utils/getMaxId';
 
 function TeamChatPage() {
-  const { selectTeamData } = useTeam();
+  const { selectTeamId } = useTeam();
 
-  const initChats: ChatItem[] =
-    getItem(`teamChats_${selectTeamData?.id}`, '') || [];
+  const initChats: ChatItem[] = getItem(`teamChats_${selectTeamId}`, '') || [];
   const maxId = getMaxId(initChats);
 
   const [allChat, setAllChat] = useState(initChats);
@@ -19,10 +18,10 @@ function TeamChatPage() {
 
   useEffect(() => {
     setAllChat(initChats);
-  }, [selectTeamData]);
+  }, [selectTeamId]);
 
   const handleSend = (chatToSend: string) => {
-    if (!selectTeamData?.id) return;
+    if (!selectTeamId) return;
 
     let today = new Date();
     let time = today.toLocaleTimeString().slice(0, -3);
@@ -32,7 +31,7 @@ function TeamChatPage() {
       { id: currentId, chat: chatToSend, time },
     ];
 
-    setItem(`teamChats_${selectTeamData?.id}`, JSON.stringify(nextChat));
+    setItem(`teamChats_${selectTeamId}`, JSON.stringify(nextChat));
     setAllChat(nextChat);
     setCurrentId(currentId + 1);
   };

@@ -9,12 +9,14 @@ interface BaseProps {
   text?: string;
   icon?: typeof Plus;
   children?: React.ReactNode;
+  selected?: boolean;
 }
 
 type ItemProps = BaseProps & React.ComponentPropsWithoutRef<'div'>;
 
 const Item = React.forwardRef<HTMLDivElement, ItemProps>((props, ref) => {
-  const { type, text, icon: Icon, children, ...rest } = props;
+  const { type, text, icon: Icon, children, selected = false, ...rest } = props;
+  const itemListStyle = `${styles.itemlist} ${selected && styles.selected}`;
 
   if (type === 'add') {
     return (
@@ -26,7 +28,7 @@ const Item = React.forwardRef<HTMLDivElement, ItemProps>((props, ref) => {
   }
 
   return (
-    <div ref={ref} className={styles.itemlist} {...rest}>
+    <div ref={ref} className={itemListStyle} {...rest}>
       <span>{text}</span>
       {children}
     </div>

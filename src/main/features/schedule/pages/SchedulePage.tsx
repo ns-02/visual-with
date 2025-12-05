@@ -5,7 +5,7 @@ import styles from './SchedulePage.module.css';
 
 function SchedulePage() {
   // 현재 선택된 팀 데이터
-  const { selectTeamData } = useTeam();
+  const { selectTeamId } = useTeam();
 
   return (
     <div className={styles.page}>
