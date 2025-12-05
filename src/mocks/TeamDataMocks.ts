@@ -3,10 +3,10 @@ import { TeamData } from '@models/Team';
 export const teamDataMocks: TeamData[] = [
   {
     id: 1,
-    name: 'TeamAtest',
+    name: '가나다팀',
   },
   {
     id: 2,
-    name: 'TeamBtest',
+    name: '라마바팀',
   },
 ];
