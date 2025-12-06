@@ -1,5 +1,7 @@
+import { ContentButton } from '@components/ui';
 import { TodoListCardProps } from '..';
 import styles from './TodoListCard.module.css';
+import { EllipsisVertical } from 'lucide-react';
 
 const TodoListCard = ({
   title,
@@ -33,11 +35,11 @@ const TodoListCard = ({
           )}
         </div>
       </div>
-      {/* <div className={styles.navigation}>
-        <Button>
+      <div className={styles.navigation}>
+        <ContentButton>
           <EllipsisVertical size={16} />
-        </Button>
-      </div> */}
+        </ContentButton>
+      </div>
     </div>
   );
 };

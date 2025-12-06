@@ -2,6 +2,7 @@ import { EllipsisVertical, User } from 'lucide-react';
 import Button from '@components/ui/Button';
 import { FriendListCardProps } from '..';
 import styles from './FriendListCard.module.css';
+import { ContentButton } from '@components/ui';
 
 const FriendListCard = ({ name, description }: FriendListCardProps) => {
   return (
@@ -16,9 +17,9 @@ const FriendListCard = ({ name, description }: FriendListCardProps) => {
         </div>
       </div>
       <div className={styles.navigation}>
-        <Button>
+        <ContentButton>
           <EllipsisVertical size={16} />
-        </Button>
+        </ContentButton>
       </div>
     </div>
   );

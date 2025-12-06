@@ -1,7 +1,7 @@
 .container {
-  position: relative;
   display: flex;
   margin-bottom: 10px;
+  justify-content: space-between;
   border-radius: 12px;
   background-color: white;
 }
@@ -13,9 +13,7 @@
 }
 
 .navigation {
-  position: absolute;
-  top: 0px;
-  right: 0px;
+  display: flex;
   align-items: center;
   padding: 14px;
   gap: 8px;

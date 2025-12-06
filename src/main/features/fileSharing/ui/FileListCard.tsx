@@ -2,6 +2,7 @@ import { Download, EllipsisVertical, FileText } from 'lucide-react';
 import Button from '@components/ui/Button';
 import { FileListCardProps } from '..';
 import styles from './FileListCard.module.css';
+import { ContentButton } from '@components/ui';
 
 const FileListCard = ({
   fileName,
@@ -24,12 +25,12 @@ const FileListCard = ({
         </div>
       </div>
       <div className={styles.navigation}>
-        <Button>
+        <ContentButton>
           <Download size={16} />
-        </Button>
-        <Button>
+        </ContentButton>
+        <ContentButton>
           <EllipsisVertical size={16} />
-        </Button>
+        </ContentButton>
       </div>
     </div>
   );
