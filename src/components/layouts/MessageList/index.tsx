@@ -1,12 +1,12 @@
 import React from 'react';
 import { ChatItem } from '@models/Chat';
-import styles from './ChatView.module.css';
+import styles from './MessageList.module.css';
 import { getDate } from '@utils/dateUtils';
 
-interface ChatViewProps {
+interface MessageListProps {
   allChat: ChatItem[];
 }
-const ChatView = React.memo(({ allChat }: ChatViewProps) => {
+const MessageList = React.memo(({ allChat }: MessageListProps) => {
   const { year, month, day } = getDate();
 
   return (
@@ -28,4 +28,4 @@ const ChatView = React.memo(({ allChat }: ChatViewProps) => {
   );
 });
 
-export default ChatView;
+export default MessageList;

@@ -1,11 +1,17 @@
 import { useEffect, useState } from 'react';
-import { ChatView } from '@components/ui';
 import { useFriend } from '@context/FriendContext';
 import { ChatItem } from '@models/Chat';
 import { getItem, setItem } from '@utils/sessionStorage';
 import getMaxId from '@utils/getMaxId';
-import { DirectChatBottom, LeftFriends, RightChats } from '../';
+import {
+  BottomInputArea,
+  LeftFriendsPanel,
+  ChatViewPanel,
+  DirectChatArea,
+} from '../';
+
 import styles from './DirectChatPage.module.css';
+import RightFileListArea from '../layouts/RightFileListArea';
 
 function DirectChatPage() {
   const { selectFriendData, setFriendIdChatMap } = useFriend();
@@ -50,13 +56,14 @@ function DirectChatPage() {
 
   return (
     <div className={styles.page}>
-      <LeftFriends />
-      <RightChats>
+      <LeftFriendsPanel />
+      <ChatViewPanel>
         <div className={styles.container}>
-          <ChatView allChat={allChat} />
+          <DirectChatArea allChat={allChat} />
+          <RightFileListArea />
         </div>
-        <DirectChatBottom onSend={handleSend} />
-      </RightChats>
+        <BottomInputArea onSend={handleSend} />
+      </ChatViewPanel>
     </div>
   );
 }

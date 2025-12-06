@@ -2,10 +2,10 @@ import { KeyboardEvent, useState } from 'react';
 import { Plus, Send } from 'lucide-react';
 import { Button, Input } from '@components/ui';
 import FileUploadDropdown from '../ui/FileUploadDropdown';
-import { DirectChatBottomProps } from '..';
+import { BottomInputAreaProps } from '..';
 import styles from './DirectChatLayout.module.css';
 
-function DirectChatBottom({ onSend }: DirectChatBottomProps) {
+function BottomInputArea({ onSend }: BottomInputAreaProps) {
   const [chat, setChat] = useState('');
 
   const handleSend = () => {
@@ -41,4 +41,4 @@ function DirectChatBottom({ onSend }: DirectChatBottomProps) {
   );
 }
 
-export default DirectChatBottom;
+export default BottomInputArea;

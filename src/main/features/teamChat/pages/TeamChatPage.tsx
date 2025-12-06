@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { ChatView } from '@components/ui';
+import { MessageList } from '@components/ui';
 import { useTeam } from '@context/TeamContext';
 import { ChatItem } from '@models/Chat';
 import { getItem, setItem } from '@utils/sessionStorage';
@@ -39,7 +39,7 @@ function TeamChatPage() {
   return (
     <div className={styles.page}>
       <div className={styles.container}>
-        <ChatView allChat={allChat} />
+        <MessageList allChat={allChat} />
       </div>
       <TeamChatBottom onSend={handleSend} />
     </div>

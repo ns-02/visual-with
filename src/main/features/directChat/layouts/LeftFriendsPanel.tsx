@@ -4,7 +4,7 @@ import SelectFriendCard from '../ui/SelectFriendCard';
 import { FriendItem } from '..';
 import styles from './DirectChatLayout.module.css';
 
-function LeftFriends() {
+function LeftFriendsPanel() {
   const { friendData, selectFriendData, setSelectFriendData, friendIdChatMap } =
     useFriend();
   const [friendItems, setFriendItems] = useState<FriendItem[]>([]);
@@ -51,4 +51,4 @@ function LeftFriends() {
   );
 }
 
-export default LeftFriends;
+export default LeftFriendsPanel;

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { LucideProps, Plus, Search, Upload } from 'lucide-react';
+import { File, LucideProps, Plus, Search, Upload } from 'lucide-react';
 import { HeaderBar } from '@components';
 import { ToolId } from '@models/ToolId';
 import { useTool } from '@context/ToolContext';
@@ -59,7 +59,13 @@ function MainHeader() {
       icon: Plus,
       onClick: () => setIsAddFriendDialogOpen(true),
     },
-    { id: 'direct-chat', label: '친구 채팅' },
+    {
+      id: 'direct-chat',
+      label: '친구 채팅',
+      button: '파일 목록',
+      icon: File,
+      onClick: () => console.log('파일 목록 클릭됨!'),
+    },
   ];
 
   const headerItem = headerItems.filter(({ id }) => id === toolId);

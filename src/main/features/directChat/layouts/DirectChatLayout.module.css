@@ -7,10 +7,23 @@
   background-color: white;
 }
 
-.right-chats {
+.chat_view_panel {
   width: calc(100% - 280px);
   height: 100%;
   float: right;
+}
+
+.direct_chat_area {
+  flex: 1;
+  background-color: aliceblue;
+}
+
+.right_file_list_area {
+  display: flex;
+  flex: 0 0 240px;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
 }
 
 .bottom {

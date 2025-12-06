@@ -1,9 +1,10 @@
 import { ChatItem } from '@models/Chat';
 import { FriendData } from '@models/Friend';
 
-export { default as DirectChatBottom } from './layouts/DirectChatBottom';
-export { default as LeftFriends } from './layouts/LeftFriends';
-export { default as RightChats } from './layouts/RightChats';
+export { default as LeftFriendsPanel } from './layouts/LeftFriendsPanel';
+export { default as ChatViewPanel } from './layouts/ChatViewPanel';
+export { default as DirectChatArea } from './layouts/DirectChatArea';
+export { default as BottomInputArea } from './layouts/BottomInputArea';
 
 export interface FriendItem extends FriendData {
   chat: string;
@@ -12,7 +13,7 @@ export interface FriendItem extends FriendData {
 
 export interface DirectChatItem extends ChatItem {}
 
-export interface DirectChatBottomProps {
+export interface BottomInputAreaProps {
   onSend: (chat: string) => void;
 }
 
