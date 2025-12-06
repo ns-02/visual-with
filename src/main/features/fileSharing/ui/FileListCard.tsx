@@ -3,6 +3,7 @@ import Button from '@components/ui/Button';
 import { FileListCardProps } from '..';
 import styles from './FileListCard.module.css';
 import { ContentButton } from '@components/ui';
+import FileSharingDropdown from './FileSharingDropdown';
 
 const FileListCard = ({
   fileName,
@@ -11,6 +12,12 @@ const FileListCard = ({
   timeAgo,
   uploader,
 }: FileListCardProps) => {
+  const triggerElement = (
+    <ContentButton>
+      <EllipsisVertical size={16} />
+    </ContentButton>
+  );
+
   return (
     <div className={styles.container}>
       <div className={styles.info_contents}>
@@ -28,9 +35,7 @@ const FileListCard = ({
         <ContentButton>
           <Download size={16} />
         </ContentButton>
-        <ContentButton>
-          <EllipsisVertical size={16} />
-        </ContentButton>
+        <FileSharingDropdown triggerElement={triggerElement} />
       </div>
     </div>
   );
