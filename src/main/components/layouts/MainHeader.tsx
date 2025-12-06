@@ -8,6 +8,7 @@ import AddScheduleDialog from '../../features/schedule/dialogs/AddScheduleDialog
 import AddTodoDialog from '../../features/todoList/dialogs/AddTodoDialog';
 import AddFriendDialog from '../../features/friendList/dialogs/AddFriendDialog';
 import styles from './Layouts.module.css';
+import { useAreaOpen } from '@context/AreaOpenContext';
 
 interface HeaderItem {
   id: ToolId;
@@ -19,6 +20,8 @@ interface HeaderItem {
 
 function MainHeader() {
   const { toolId } = useTool();
+  const { isDirectChatFileAreaOpen, setIsDirectChatFileAreaOpen } =
+    useAreaOpen();
 
   const [isUploadFileDialogOpen, setIsUploadFileDialogOpen] = useState(false);
   const [isAddScheduleDialogOpen, setIsAddScheduleDialogOpen] = useState(false);
@@ -64,7 +67,7 @@ function MainHeader() {
       label: '친구 채팅',
       button: '파일 목록',
       icon: File,
-      onClick: () => console.log('파일 목록 클릭됨!'),
+      onClick: () => setIsDirectChatFileAreaOpen(!isDirectChatFileAreaOpen),
     },
   ];
 

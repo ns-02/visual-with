@@ -1,4 +1,5 @@
 import {
+  AreaOpenProvider,
   AuthProvider,
   FriendProvider,
   TeamProvider,
@@ -7,15 +8,17 @@ import {
 } from '@context';
 
 const AppProviders = ({ children }: { children: React.ReactNode }) => (
-  <TeamProvider>
-    <FriendProvider>
-      <ToolProvider>
-        <AuthProvider>
-          <UserProvider>{children}</UserProvider>
-        </AuthProvider>
-      </ToolProvider>
-    </FriendProvider>
-  </TeamProvider>
+  <AreaOpenProvider>
+    <TeamProvider>
+      <FriendProvider>
+        <ToolProvider>
+          <AuthProvider>
+            <UserProvider>{children}</UserProvider>
+          </AuthProvider>
+        </ToolProvider>
+      </FriendProvider>
+    </TeamProvider>
+  </AreaOpenProvider>
 );
 
 export default AppProviders;
