@@ -1,17 +1,24 @@
 import { DropdownMenu } from 'radix-ui';
-import { DropdownProps } from '..';
 import { Item } from '@components/ui';
 import { Dropdown } from '@components/ui';
+import styles from './ScheduleDropdown.module.css';
 
-const FileUploadDropdown = ({ triggerElement }: DropdownProps) => {
-  const Items = [{ id: '1', text: '파일 업로드' }];
+interface DropdownProps {
+  triggerElement?: React.ReactNode;
+}
+
+const ScheduleDropdown = ({ triggerElement }: DropdownProps) => {
+  const Items = [
+    { id: '1', text: '수정' },
+    { id: '2', text: '삭제' },
+  ];
 
   const dropdownContent = (
     <>
       {Items.map((item) => {
         return (
           <DropdownMenu.Item key={item.id}>
-            <Item type='list' text={item.text} />
+            <Item className={styles.item} type='list' text={item.text} />
           </DropdownMenu.Item>
         );
       })}
@@ -21,4 +28,4 @@ const FileUploadDropdown = ({ triggerElement }: DropdownProps) => {
   return <Dropdown trigger={triggerElement} items={dropdownContent} />;
 };
 
-export default FileUploadDropdown;
+export default ScheduleDropdown;

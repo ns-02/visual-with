@@ -5,6 +5,7 @@ import styles from './Item.module.css';
 type Type = 'list' | 'add';
 
 interface BaseProps {
+  className?: string;
   type: Type;
   text?: string;
   icon?: typeof Plus;
@@ -15,8 +16,16 @@ interface BaseProps {
 type ItemProps = BaseProps & React.ComponentPropsWithoutRef<'div'>;
 
 const Item = React.forwardRef<HTMLDivElement, ItemProps>((props, ref) => {
-  const { type, text, icon: Icon, children, selected = false, ...rest } = props;
-  const itemListStyle = `${styles.itemlist} ${selected && styles.selected}`;
+  const {
+    className,
+    type,
+    text,
+    icon: Icon,
+    children,
+    selected = false,
+    ...rest
+  } = props;
+  const itemListStyle = `${styles.itemlist} ${selected && styles.selected} ${className}`;
 
   if (type === 'add') {
     return (
