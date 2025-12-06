@@ -1,6 +1,8 @@
+import { useState } from 'react';
 import { DropdownMenu } from 'radix-ui';
-import { Item } from '@components/ui';
-import { Dropdown } from '@components/ui';
+import { Dropdown, Item } from '@components/ui';
+import UpdateScheduleDialog from '../dialogs/UpdateScheduleDialog';
+import DeleteScheduleDialog from '../dialogs/DeleteScheduleDialog';
 import styles from './ScheduleDropdown.module.css';
 
 interface DropdownProps {
@@ -8,16 +10,29 @@ interface DropdownProps {
 }
 
 const ScheduleDropdown = ({ triggerElement }: DropdownProps) => {
+  const [isUpdateScheduleDialogOpen, setIsUpdateScheduleDialogOpen] =
+    useState(false);
+  const [isDeleteScheduleDialogOpen, setIsDeleteScheduleDialogOpen] =
+    useState(false);
+
   const Items = [
-    { id: '1', text: '수정' },
-    { id: '2', text: '삭제' },
+    {
+      id: '1',
+      text: '수정',
+      onClick: () => setIsUpdateScheduleDialogOpen(true),
+    },
+    {
+      id: '2',
+      text: '삭제',
+      onClick: () => setIsDeleteScheduleDialogOpen(true),
+    },
   ];
 
   const dropdownContent = (
     <>
       {Items.map((item) => {
         return (
-          <DropdownMenu.Item key={item.id}>
+          <DropdownMenu.Item key={item.id} onClick={item.onClick}>
             <Item className={styles.item} type='list' text={item.text} />
           </DropdownMenu.Item>
         );
@@ -25,7 +40,19 @@ const ScheduleDropdown = ({ triggerElement }: DropdownProps) => {
     </>
   );
 
-  return <Dropdown trigger={triggerElement} items={dropdownContent} />;
+  return (
+    <>
+      <Dropdown trigger={triggerElement} items={dropdownContent} />
+      <UpdateScheduleDialog
+        open={isUpdateScheduleDialogOpen}
+        onOpenChange={setIsUpdateScheduleDialogOpen}
+      />
+      <DeleteScheduleDialog
+        open={isDeleteScheduleDialogOpen}
+        onOpenChange={setIsDeleteScheduleDialogOpen}
+      />
+    </>
+  );
 };
 
 export default ScheduleDropdown;
