@@ -27,7 +27,7 @@ const FileUploadDropdown = ({ triggerElement }: DropdownProps) => {
     </>
   );
 
-  return <Dropdown trigger={triggerElement} content={dropdownContent} />;
+  return <Dropdown trigger={triggerElement} items={dropdownContent} />;
 };
 
 export default FileUploadDropdown;
