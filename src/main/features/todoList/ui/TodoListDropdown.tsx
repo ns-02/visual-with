@@ -7,10 +7,11 @@ import UpdateTodoDialog from '../dialogs/UpdateTodoDialog';
 import DeleteTodoDialog from '../dialogs/DeleteTodoDialog';
 
 interface DropdownProps {
+  todoId?: number;
   triggerElement?: React.ReactNode;
 }
 
-const TodoListDropdown = ({ triggerElement }: DropdownProps) => {
+const TodoListDropdown = ({ todoId, triggerElement }: DropdownProps) => {
   const [isUpdateTodoDialogOpen, setIsUpdateTodoDialogOpen] = useState(false);
   const [isDeleteTodoDialogOpen, setIsDeleteTodoDialogOpen] = useState(false);
 
@@ -35,10 +36,12 @@ const TodoListDropdown = ({ triggerElement }: DropdownProps) => {
     <>
       <Dropdown trigger={triggerElement} items={dropdownContent} />
       <UpdateTodoDialog
+        todoId={todoId}
         open={isUpdateTodoDialogOpen}
         onOpenChange={setIsUpdateTodoDialogOpen}
       />
       <DeleteTodoDialog
+        todoId={todoId}
         open={isDeleteTodoDialogOpen}
         onOpenChange={setIsDeleteTodoDialogOpen}
       />

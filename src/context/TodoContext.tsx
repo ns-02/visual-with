@@ -3,8 +3,8 @@ import { TodoData } from '@models/Todo';
 import { todoDataMocks } from '../mocks/TodoDataMocks';
 
 type TodoContextType = {
-  todoData: TodoData[] | null;
-  setTodoData: (item: TodoData[] | null) => void;
+  todoData: TodoData[];
+  setTodoData: (item: TodoData[]) => void;
 };
 
 const TodoContext = createContext<TodoContextType | undefined>(undefined);
@@ -12,7 +12,7 @@ const TodoContext = createContext<TodoContextType | undefined>(undefined);
 export const TodoProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const [todoData, setTodoData] = useState<TodoData[] | null>(todoDataMocks);
+  const [todoData, setTodoData] = useState<TodoData[]>(todoDataMocks);
 
   return (
     <TodoContext.Provider value={{ todoData, setTodoData }}>

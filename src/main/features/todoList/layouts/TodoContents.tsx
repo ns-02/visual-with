@@ -39,6 +39,7 @@ function RightContents() {
         return (
           <TodoListCard
             key={item.id}
+            id={item.id}
             title={item.title}
             description={item.description}
             checked={item.checked}
@@ -53,6 +54,7 @@ function RightContents() {
         return (
           <TodoListCard
             key={item.id}
+            id={item.id}
             title={item.title}
             description={item.description}
             checked={item.checked}

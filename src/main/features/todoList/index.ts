@@ -7,18 +7,6 @@ export interface TodoItems {
   checked?: boolean;
 }
 
-export interface TodoDialogProps {
-  open: boolean;
-  onOpenChange: Dispatch<SetStateAction<boolean>>;
-}
-
-export interface TodoListCardProps {
-  title?: string;
-  description?: string;
-  checked?: boolean;
-  onChange?: () => void;
-}
-
 export interface TodoListLabelProps {
   text?: string;
   count?: number;

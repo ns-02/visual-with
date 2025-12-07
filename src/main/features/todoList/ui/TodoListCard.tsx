@@ -1,10 +1,18 @@
 import { ContentButton } from '@components/ui';
-import { TodoListCardProps } from '..';
-import styles from './TodoListCard.module.css';
 import { EllipsisVertical } from 'lucide-react';
 import TodoListDropdown from './TodoListDropdown';
+import styles from './TodoListCard.module.css';
+
+interface TodoListCardProps {
+  id?: number;
+  title?: string;
+  description?: string;
+  checked?: boolean;
+  onChange?: () => void;
+}
 
 const TodoListCard = ({
+  id,
   title,
   description,
   checked,
@@ -43,7 +51,7 @@ const TodoListCard = ({
         </div>
       </div>
       <div className={styles.navigation}>
-        <TodoListDropdown triggerElement={triggerElement} />
+        <TodoListDropdown todoId={id} triggerElement={triggerElement} />
       </div>
     </div>
   );
