@@ -3,8 +3,15 @@ import Button from '@components/ui/Button';
 import { FriendListCardProps } from '..';
 import styles from './FriendListCard.module.css';
 import { ContentButton } from '@components/ui';
+import FriendListDropdown from './FriendListDropdown';
 
 const FriendListCard = ({ name, description }: FriendListCardProps) => {
+  const triggerElement = (
+    <ContentButton>
+      <EllipsisVertical size={16} />
+    </ContentButton>
+  );
+
   return (
     <div className={styles.container}>
       <div className={styles.info_contents}>
@@ -17,9 +24,7 @@ const FriendListCard = ({ name, description }: FriendListCardProps) => {
         </div>
       </div>
       <div className={styles.navigation}>
-        <ContentButton>
-          <EllipsisVertical size={16} />
-        </ContentButton>
+        <FriendListDropdown triggerElement={triggerElement} />
       </div>
     </div>
   );

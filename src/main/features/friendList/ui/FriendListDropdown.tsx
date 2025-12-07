@@ -1,18 +1,19 @@
 import { useState } from 'react';
 import { DropdownMenu } from 'radix-ui';
 import { Dropdown, Item } from '@components/ui';
-import styles from './FileSharingDropdown.module.css';
-import DeleteFileDialog from '../dialogs/DeleteFileDialog';
+import styles from './FriendListDropdown.module.css';
+import DeleteFriendDialog from '../dialogs/DeleteFriendDialog';
 
 interface DropdownProps {
   triggerElement?: React.ReactNode;
 }
 
-const FileSharingDropdown = ({ triggerElement }: DropdownProps) => {
-  const [isDeleteFileDialogOpen, setIsDeleteFileDialogOpen] = useState(false);
+const FriendListDropdown = ({ triggerElement }: DropdownProps) => {
+  const [isDeleteFriendDialogOpen, setIsDeleteFriendDialogOpen] =
+    useState(false);
 
   const Items = [
-    { id: '1', text: '삭제', onClick: () => setIsDeleteFileDialogOpen(true) },
+    { id: '1', text: '삭제', onClick: () => setIsDeleteFriendDialogOpen(true) },
   ];
 
   const dropdownContent = (
@@ -30,12 +31,12 @@ const FileSharingDropdown = ({ triggerElement }: DropdownProps) => {
   return (
     <>
       <Dropdown trigger={triggerElement} items={dropdownContent} />
-      <DeleteFileDialog
-        open={isDeleteFileDialogOpen}
-        onOpenChange={setIsDeleteFileDialogOpen}
+      <DeleteFriendDialog
+        open={isDeleteFriendDialogOpen}
+        onOpenChange={setIsDeleteFriendDialogOpen}
       />
     </>
   );
 };
 
-export default FileSharingDropdown;
+export default FriendListDropdown;
