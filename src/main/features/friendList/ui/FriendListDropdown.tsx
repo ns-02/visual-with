@@ -5,10 +5,11 @@ import styles from './FriendListDropdown.module.css';
 import DeleteFriendDialog from '../dialogs/DeleteFriendDialog';
 
 interface DropdownProps {
+  friendId?: number;
   triggerElement?: React.ReactNode;
 }
 
-const FriendListDropdown = ({ triggerElement }: DropdownProps) => {
+const FriendListDropdown = ({ friendId, triggerElement }: DropdownProps) => {
   const [isDeleteFriendDialogOpen, setIsDeleteFriendDialogOpen] =
     useState(false);
 
@@ -32,6 +33,7 @@ const FriendListDropdown = ({ triggerElement }: DropdownProps) => {
     <>
       <Dropdown trigger={triggerElement} items={dropdownContent} />
       <DeleteFriendDialog
+        friendId={friendId}
         open={isDeleteFriendDialogOpen}
         onOpenChange={setIsDeleteFriendDialogOpen}
       />

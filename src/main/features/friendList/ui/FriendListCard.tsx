@@ -1,11 +1,16 @@
 import { EllipsisVertical, User } from 'lucide-react';
 import Button from '@components/ui/Button';
-import { FriendListCardProps } from '..';
-import styles from './FriendListCard.module.css';
 import { ContentButton } from '@components/ui';
 import FriendListDropdown from './FriendListDropdown';
+import styles from './FriendListCard.module.css';
 
-const FriendListCard = ({ name, description }: FriendListCardProps) => {
+interface FriendListCardProps {
+  id?: number;
+  name?: string;
+  description?: string;
+}
+
+const FriendListCard = ({ id, name, description }: FriendListCardProps) => {
   const triggerElement = (
     <ContentButton>
       <EllipsisVertical size={16} />
@@ -24,7 +29,7 @@ const FriendListCard = ({ name, description }: FriendListCardProps) => {
         </div>
       </div>
       <div className={styles.navigation}>
-        <FriendListDropdown triggerElement={triggerElement} />
+        <FriendListDropdown friendId={id} triggerElement={triggerElement} />
       </div>
     </div>
   );
