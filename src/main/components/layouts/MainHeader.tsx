@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { File, LucideProps, Plus, Search, Upload } from 'lucide-react';
 import { HeaderBar } from '@components';
 import { ToolId } from '@models/ToolId';
-import { useTool } from '@context/ToolContext';
+import { useTool } from '@context/ToolIdContext';
 import UploadFileDialog from '../../features/fileSharing/dialogs/UploadFileDialog';
 import AddScheduleDialog from '../../features/schedule/dialogs/AddScheduleDialog';
 import AddTodoDialog from '../../features/todoList/dialogs/AddTodoDialog';

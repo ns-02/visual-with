@@ -1,25 +1,25 @@
 import React, { createContext, useContext, useState } from 'react';
 import { ToolId } from '@models/ToolId';
 
-type ToolContextType = {
+type ToolIdContextType = {
   toolId: ToolId | null;
   setToolId: (id: ToolId | null) => void;
 };
 
-const ToolContext = createContext<ToolContextType | undefined>(undefined);
+const ToolIdContext = createContext<ToolIdContextType | undefined>(undefined);
 
 /**
  * Provider 컴포넌트.
  * useState로 toolId와 setToolId를 만들고 이를 children에게 전달하여 사용할 수 있게 함.
  */
-export const ToolProvider: React.FC<{ children: React.ReactNode }> = ({
+export const ToolIdProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [toolId, setToolId] = useState<ToolId | null>(null);
   return (
-    <ToolContext.Provider value={{ toolId, setToolId }}>
+    <ToolIdContext.Provider value={{ toolId, setToolId }}>
       {children}
-    </ToolContext.Provider>
+    </ToolIdContext.Provider>
   );
 };
 
@@ -31,8 +31,10 @@ export const ToolProvider: React.FC<{ children: React.ReactNode }> = ({
 // Provider 내부에서 toolId와 setToolId를 편하게 쓰도록 하기 위함
 // Provider 외부에서 사용하면 오류 발생
 export function useTool() {
-  const v = useContext(ToolContext);
+  const v = useContext(ToolIdContext);
   if (!v)
-    throw new Error('useTool은 반드시 ToolProvider 내부에서 사용해야 합니다.');
+    throw new Error(
+      'useTool은 반드시 ToolIdProvider 내부에서 사용해야 합니다.',
+    );
   return v;
 }

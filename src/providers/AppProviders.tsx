@@ -3,21 +3,21 @@ import {
   AuthProvider,
   FriendProvider,
   TeamProvider,
-  ToolProvider,
   UserProvider,
 } from '@context';
+import ToolProviders from './ToolProviders';
 
 const AppProviders = ({ children }: { children: React.ReactNode }) => (
   <AreaOpenProvider>
-    <TeamProvider>
-      <FriendProvider>
-        <ToolProvider>
+    <ToolProviders>
+      <TeamProvider>
+        <FriendProvider>
           <AuthProvider>
             <UserProvider>{children}</UserProvider>
           </AuthProvider>
-        </ToolProvider>
-      </FriendProvider>
-    </TeamProvider>
+        </FriendProvider>
+      </TeamProvider>
+    </ToolProviders>
   </AreaOpenProvider>
 );
 
