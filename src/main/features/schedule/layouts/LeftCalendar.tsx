@@ -4,11 +4,6 @@ import { getDate } from '@utils/dateUtils';
 import Calender from '../ui/Calender';
 import styles from './ScheduleLayout.module.css';
 
-interface ScheduleTitle {
-  id: number;
-  title: string;
-}
-
 function LeftCalendar() {
   const { scheduleData } = useSchedule();
   const [selected, setSelected] = useState<Date>();
@@ -29,6 +24,11 @@ function LeftCalendar() {
     }
   }, [selected]);
 
+  const filteredSchedules = scheduleData.filter((item) => {
+    const selectedFormattedDate = `${selectedYear}-${selectedMonth}-${selectedDay}`;
+    return item.startDate === selectedFormattedDate;
+  });
+
   return (
     <div className={styles['left-calender']}>
       <div className={styles.calender_container}>
@@ -37,14 +37,13 @@ function LeftCalendar() {
       <br />
       <div>
         <p>{selected ? `${selected.getDate()}일` : `${day}일 (오늘)`}</p>
-        {scheduleData
-          .filter((item) => {
-            const selectedFormattedDate = `${selectedYear}-${selectedMonth}-${selectedDay}`;
-            return item.startDate === selectedFormattedDate;
-          })
-          .map((item) => {
+        {filteredSchedules.length > 0 ? (
+          filteredSchedules.map((item) => {
             return <p key={item.id}>{item.title}</p>;
-          })}
+          })
+        ) : (
+          <p style={{ color: '#777' }}>일정 없음</p>
+        )}
       </div>
     </div>
   );
