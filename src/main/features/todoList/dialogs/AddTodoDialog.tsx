@@ -3,6 +3,7 @@ import { Dialog, Group, DialogInput } from '@components/dialogs';
 import { Button } from '@components/ui';
 import { useTodo } from '@context/TodoContext';
 import getMaxId from '@utils/getMaxId';
+import { TodoData } from '@models/Todo';
 
 interface AddTodoDialogProps {
   open: boolean;
@@ -17,7 +18,7 @@ const AddTodoDialog = ({ open, onOpenChange }: AddTodoDialogProps) => {
   const handleAddTodo = () => {
     if (!title) return;
     const maxId = getMaxId(todoData) ?? 0;
-    const nextTodoData = [
+    const nextTodoData: TodoData[] = [
       ...todoData,
       { id: maxId + 1, title, description, checked: false },
     ];

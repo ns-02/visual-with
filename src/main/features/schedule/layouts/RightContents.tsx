@@ -1,75 +1,65 @@
+import { useEffect, useState } from 'react';
+import { useSchedule } from '@context/ScheduleContext';
+import { ScheduleData } from '@models/Schedule';
 import { getDate } from '@utils/dateUtils';
 import ScheduleCard from '../ui/ScheduleCard';
 import styles from './ScheduleLayout.module.css';
 
 function RightContents() {
   const { month, day } = getDate();
+  const { scheduleData } = useSchedule();
+  const [completedData, setCompletedData] = useState<ScheduleData[] | null>(
+    null,
+  );
+  const [inProgressData, setInProgressData] = useState<ScheduleData[] | null>(
+    null,
+  );
+  const [upcomingData, setUpcomingData] = useState<ScheduleData[] | null>(null);
 
-  const todayScheduleItems = [
-    {
-      id: 1,
-      title: '코드 리뷰',
-      date: '2025.11.20',
-      time: '14:00',
-      state: '진행중',
-    },
-    {
-      id: 2,
-      title: '주간 팀 작업 계획',
-      date: '2025.11.20',
-      time: '16:30',
-      state: '진행중',
-    },
-  ];
+  useEffect(() => {
+    if (!scheduleData) return;
 
-  const scheduledItems = [
-    {
-      id: 1,
-      title: '프로젝트 미팅',
-      date: '2025.11.21',
-      time: '10:00',
-      state: '예정',
-    },
-    {
-      id: 2,
-      title: '디자인 리뷰',
-      date: '2025.11.22',
-      time: '15:00',
-      state: '예정',
-    },
-    {
-      id: 3,
-      title: '클라이언트 미팅',
-      date: '2025.11.23',
-      time: '11:00',
-      state: '예정',
-    },
-  ];
+    const nextCompletedData = scheduleData.filter(
+      (item) => item.state === '완료',
+    );
+    const nextInProgressData = scheduleData.filter(
+      (item) => item.state === '진행중',
+    );
+    const nextUpcomingData = scheduleData.filter(
+      (item) => item.state === '예정',
+    );
+
+    setCompletedData(nextCompletedData);
+    setInProgressData(nextInProgressData);
+    setUpcomingData(nextUpcomingData);
+  }, [scheduleData]);
 
   return (
     <div className={styles['right-contents']}>
       <div style={{ marginTop: '24px', marginBottom: '12px' }}>
         {`오늘 (${month}월 ${day}일)`}
       </div>
-      {todayScheduleItems.map((item) => {
+      {inProgressData?.map((item) => {
         return (
           <ScheduleCard
             key={item.id}
+            id={item.id}
             title={item.title}
-            date={item.date}
-            time={item.time}
+            date={item.startDate}
+            time={item.startTime}
             state={item.state}
           />
         );
       })}
       <div style={{ marginTop: '24px', marginBottom: '12px' }}>예정된 일정</div>
-      {scheduledItems.map((item) => {
+      {upcomingData?.map((item) => {
         return (
           <ScheduleCard
             key={item.id}
+            id={item.id}
             title={item.title}
-            date={item.date}
-            time={item.time}
+            date={item.startDate}
+            time={item.startTime}
             state={item.state}
           />
         );

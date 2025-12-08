@@ -6,10 +6,11 @@ import DeleteScheduleDialog from '../dialogs/DeleteScheduleDialog';
 import styles from './ScheduleDropdown.module.css';
 
 interface DropdownProps {
+  scheduleId?: number;
   triggerElement?: React.ReactNode;
 }
 
-const ScheduleDropdown = ({ triggerElement }: DropdownProps) => {
+const ScheduleDropdown = ({ scheduleId, triggerElement }: DropdownProps) => {
   const [isUpdateScheduleDialogOpen, setIsUpdateScheduleDialogOpen] =
     useState(false);
   const [isDeleteScheduleDialogOpen, setIsDeleteScheduleDialogOpen] =
@@ -44,10 +45,12 @@ const ScheduleDropdown = ({ triggerElement }: DropdownProps) => {
     <>
       <Dropdown trigger={triggerElement} items={dropdownContent} />
       <UpdateScheduleDialog
+        scheduleId={scheduleId}
         open={isUpdateScheduleDialogOpen}
         onOpenChange={setIsUpdateScheduleDialogOpen}
       />
       <DeleteScheduleDialog
+        scheduleId={scheduleId}
         open={isDeleteScheduleDialogOpen}
         onOpenChange={setIsDeleteScheduleDialogOpen}
       />

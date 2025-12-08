@@ -1,10 +1,17 @@
 import { ContentButton } from '@components/ui';
-import { ScheduleCardProps } from '..';
 import styles from './ScheduleCard.module.css';
 import { EllipsisVertical } from 'lucide-react';
 import ScheduleDropdown from './ScheduleDropdown';
 
-const ScheduleCard = ({ title, date, time, state }: ScheduleCardProps) => {
+interface ScheduleCardProps {
+  id?: number;
+  title?: string;
+  date?: string;
+  time?: string;
+  state?: string;
+}
+
+const ScheduleCard = ({ id, title, date, time, state }: ScheduleCardProps) => {
   const triggerElement = (
     <ContentButton>
       <EllipsisVertical size={16} />
@@ -22,7 +29,7 @@ const ScheduleCard = ({ title, date, time, state }: ScheduleCardProps) => {
       </div>
       <div className={styles.navigation}>
         <label className={styles.label}>{state}</label>
-        <ScheduleDropdown triggerElement={triggerElement} />
+        <ScheduleDropdown scheduleId={id} triggerElement={triggerElement} />
       </div>
     </div>
   );

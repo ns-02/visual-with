@@ -2,6 +2,7 @@ import { Dispatch, SetStateAction } from 'react';
 import { AlertDialog } from '@components/dialogs';
 import { Button } from '@components/ui';
 import { useTodo } from '@context/TodoContext';
+import { TodoData } from '@models/Todo';
 
 interface DeleteTodoDialogProps {
   todoId?: number;
@@ -20,7 +21,9 @@ const DeleteTodoDialog = ({
   const handleDeleteTodo = () => {
     if (!todoData || !todoId) return;
 
-    const nextTodoData = todoData.filter((item) => item.id !== todoId);
+    const nextTodoData: TodoData[] = todoData.filter(
+      (item) => item.id !== todoId,
+    );
     setTodoData(nextTodoData);
     onOpenChange(false);
   };
