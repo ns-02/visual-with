@@ -36,8 +36,21 @@ function RightContents() {
 
   return (
     <div className={styles['right-contents']}>
+      <div style={{ marginTop: '24px', marginBottom: '12px' }}>완료된 일정</div>
+      {completedData?.map((item) => {
+        return (
+          <ScheduleCard
+            key={item.id}
+            id={item.id}
+            title={item.title}
+            date={item.startDate}
+            time={item.startTime}
+            state={item.state}
+          />
+        );
+      })}
       <div style={{ marginTop: '24px', marginBottom: '12px' }}>
-        {`오늘 (${month}월 ${day}일)`}
+        진행 중인 일정
       </div>
       {inProgressData?.map((item) => {
         return (

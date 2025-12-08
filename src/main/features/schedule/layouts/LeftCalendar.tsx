@@ -1,11 +1,33 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useSchedule } from '@context/ScheduleContext';
+import { getDate } from '@utils/dateUtils';
 import Calender from '../ui/Calender';
 import styles from './ScheduleLayout.module.css';
-import { getDate } from '@utils/dateUtils';
+
+interface ScheduleTitle {
+  id: number;
+  title: string;
+}
 
 function LeftCalendar() {
+  const { scheduleData } = useSchedule();
   const [selected, setSelected] = useState<Date>();
-  const { day } = getDate();
+  const [selectedYear, setSelectedYear] = useState('');
+  const [selectedMonth, setSelectedMonth] = useState('');
+  const [selectedDay, setSelectedDay] = useState('');
+  const { year, month, day } = getDate();
+
+  useEffect(() => {
+    if (!selected) {
+      setSelectedYear(year.toString());
+      setSelectedMonth(month.toString());
+      setSelectedDay(day.toString());
+    } else {
+      setSelectedYear(selected.getFullYear().toString());
+      setSelectedMonth((selected.getMonth() + 1).toString());
+      setSelectedDay(selected.getDate().toString());
+    }
+  }, [selected]);
 
   return (
     <div className={styles['left-calender']}>
@@ -15,9 +37,14 @@ function LeftCalendar() {
       <br />
       <div>
         <p>{selected ? `${selected.getDate()}일` : `${day}일 (오늘)`}</p>
-        <p>일정 제목 1</p>
-        <p>일정 제목 2</p>
-        <p>일정 제목 3</p>
+        {scheduleData
+          .filter((item) => {
+            const selectedFormattedDate = `${selectedYear}-${selectedMonth}-${selectedDay}`;
+            return item.startDate === selectedFormattedDate;
+          })
+          .map((item) => {
+            return <p key={item.id}>{item.title}</p>;
+          })}
       </div>
     </div>
   );
