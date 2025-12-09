@@ -1,0 +1,15 @@
+.rdp-weekday:nth-child(1) {
+  color: #fa8072;
+}
+
+.rdp-weekday:nth-child(7) {
+  color: #a1caf1;
+}
+
+.rdp-day:nth-child(1) {
+  color: #fa8072;
+}
+
+.rdp-selected {
+  font-size: 16px;
+}
