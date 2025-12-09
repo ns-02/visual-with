@@ -33,7 +33,7 @@ const TeamDropdownItems = ({
     return item.id === selectTeamId ? true : false;
   };
 
-  if (!teamData) {
+  if (teamData.length === 0) {
     return null;
   }
 

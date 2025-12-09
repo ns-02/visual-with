@@ -1,42 +1,31 @@
-import { useState } from 'react';
 import { useTeam } from '@context/TeamContext';
-import getMaxId from '@utils/getMaxId';
-import { TeamData, TeamId, TeamName } from '@models/Team';
+import { TeamId, TeamName } from '@models/Team';
+import { useEffect } from 'react';
 
-interface TeamManagerType {
-  teamData: TeamData[] | undefined;
-}
+const useTeamManager = () => {
+  const { teamData, dispatch, setIsTeamMember } = useTeam();
 
-const useTeamManager = ({ teamData }: TeamManagerType) => {
-  const { setTeamData, setIsTeamMember } = useTeam();
-
-  const maxId = (teamData && getMaxId(teamData)) ?? 0;
-  const [currentItemId, setcurrentItemId] = useState(maxId + 1);
-  const [deleteTeamId, setDeleteTeamId] = useState<TeamId>(0);
-  const [deleteTeamName, setDeleteTeamName] = useState<TeamName>('');
+  useEffect(() => {
+    if (teamData && teamData.length === 0) {
+      setIsTeamMember(false);
+    }
+  }, [teamData, setIsTeamMember]);
 
   const createTeam = (teamName: TeamName) => {
-    const newData = { id: currentItemId, name: teamName };
-    const nextTeamData = teamData ? [...teamData, newData] : [newData];
-
-    setTeamData(nextTeamData);
-    setcurrentItemId(currentItemId + 1);
+    dispatch({
+      type: 'CREATE_TEAM',
+      payload: { name: teamName },
+    });
   };
 
-  const deleteTeam = () => {
-    const nextTeamData = teamData?.filter(
-      (item) => item.id !== deleteTeamId && item,
-    );
-    setTeamData(nextTeamData);
-    if (!nextTeamData?.length) setIsTeamMember(false);
+  const deleteTeam = (teamId: TeamId) => {
+    dispatch({
+      type: 'DELETE_TEAM',
+      payload: { id: teamId },
+    });
   };
 
-  const setDeleteTeamData = (teamData: TeamData) => {
-    setDeleteTeamId(teamData.id);
-    setDeleteTeamName(teamData.name);
-  };
-
-  return { deleteTeamName, setDeleteTeamData, createTeam, deleteTeam };
+  return { createTeam, deleteTeam };
 };
 
 export default useTeamManager;
