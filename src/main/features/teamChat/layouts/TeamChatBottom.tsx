@@ -20,8 +20,8 @@ function TeamChatBottom({ onSend }: TeamChatBottomProps) {
   };
 
   const triggerElement = (
-    <Button>
-      <Plus size={16} />
+    <Button className={styles.button}>
+      <Plus size={20} />
     </Button>
   );
 
@@ -29,14 +29,15 @@ function TeamChatBottom({ onSend }: TeamChatBottomProps) {
     <div className={styles.bottom}>
       <FileUploadDropdown triggerElement={triggerElement} />
       <Input
+        className={styles.input}
         value={chat}
         placeholder='채팅 입력'
         sizeMode='flexible'
         setChat={setChat}
         onKeyDown={(e) => handleKeyDown(e)}
       />
-      <Button onCustomClick={handleSend}>
-        <Send size={16} />
+      <Button className={styles.button} onCustomClick={handleSend}>
+        <Send size={20} />
       </Button>
     </div>
   );

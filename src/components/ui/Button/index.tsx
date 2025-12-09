@@ -5,6 +5,7 @@ import styles from './Button.module.css';
 type Shape = 'normal' | 'square' | 'circle';
 
 interface ButtonProps {
+  className?: string;
   text?: string;
   shape?: Shape;
   to?: string;
@@ -19,6 +20,7 @@ const Button = React.forwardRef<
   ButtonProps
 >((props, ref) => {
   const {
+    className,
     text,
     shape = 'normal',
     to,
@@ -26,7 +28,8 @@ const Button = React.forwardRef<
     children,
     ...rest
   } = props;
-  const btnStyle = `${styles.button} ${(styles as any)[shape]}`;
+  const btnStyle = `${styles.button} ${(styles as any)[shape]} ${className}`;
+  console.log(className);
 
   // Radix와 커스텀 클릭 둘 다 동작하기 위함
   const handleClick: React.MouseEventHandler<
