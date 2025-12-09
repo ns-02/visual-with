@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, ChangeEvent } from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 
 export { default as AlertDialog } from './AlertDialog';
 export { default as Dialog } from './Dialog/';
@@ -14,14 +14,6 @@ export default interface DialogProps {
   viewButton?: boolean;
   children?: React.ReactNode;
   confirmButton?: React.ReactNode;
-}
-
-export interface InputProps {
-  type?: string;
-  value?: string;
-  setValue?: (value: ChangeEvent<HTMLInputElement>) => void;
-  placeholder?: string;
-  readOnly?: boolean;
 }
 
 export type Prop = {

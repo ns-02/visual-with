@@ -1,12 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useSchedule } from '@context/ScheduleContext';
 import { ScheduleData } from '@models/Schedule';
-import { getDate } from '@utils/dateUtils';
 import ScheduleCard from '../ui/ScheduleCard';
 import styles from './ScheduleLayout.module.css';
 
 function RightContents() {
-  const { month, day } = getDate();
   const { scheduleData } = useSchedule();
   const [completedData, setCompletedData] = useState<ScheduleData[] | null>(
     null,

@@ -1,12 +1,15 @@
 import { ChangeEvent, DragEvent, useRef, useState } from 'react';
 import { Upload } from 'lucide-react';
 import { FileInput, FileSelectButton } from '..';
+import useFileManager from '../hooks/useFileManager';
 import styles from './DragAndDrop.module.css';
 
 const DragAndDrop = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   const [dragging, setDragging] = useState(false);
-  const [file, setFile] = useState<File | undefined | null>(null);
+  const [file, setFile] = useState<File>();
+  const { uploadFile } = useFileManager();
+
   const containerStyle = dragging
     ? styles.container_dragging
     : styles.container;
@@ -22,7 +25,8 @@ const DragAndDrop = () => {
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       const selectedFile = e.target.files[0];
-      setFile(selectedFile);
+      selectedFile && setFile(selectedFile);
+      selectedFile && uploadFile(selectedFile);
     }
   };
 
@@ -58,8 +62,10 @@ const DragAndDrop = () => {
     e.stopPropagation();
 
     // 실제 파일 처리 로직
+    console.log(e.dataTransfer.files);
     const selectedFile = e.dataTransfer.files[0];
-    setFile(selectedFile);
+    selectedFile && setFile(selectedFile);
+    selectedFile && uploadFile(selectedFile);
     setDragging(false);
   };
 
@@ -72,16 +78,10 @@ const DragAndDrop = () => {
       onDragOver={handleDragOver}
     >
       <FileInput ref={inputRef} onChange={handleFileChange} />
-      {file ? (
-        <p>{file.name}</p>
-      ) : (
-        <>
-          <Upload size={48} color='#aaa' />
-          <p style={{ color: '#555' }}>파일을 여기에 드래그하여 업로드하세요</p>
-          <p style={{ fontSize: '14px', color: '#777' }}>또는</p>
-          <FileSelectButton text='파일 선택' onClick={handleSelectFile} />
-        </>
-      )}
+      <Upload size={48} color='#aaa' />
+      <p style={{ color: '#555' }}>파일을 여기에 드래그하여 업로드하세요</p>
+      <p style={{ fontSize: '14px', color: '#777' }}>또는</p>
+      <FileSelectButton text='파일 선택' onClick={handleSelectFile} />
     </div>
   );
 };

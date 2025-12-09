@@ -1,19 +1,41 @@
 import { Dispatch, SetStateAction } from 'react';
 import { AlertDialog } from '@components/dialogs';
 import { Button } from '@components/ui';
+import { useFile } from '@context/FileContext';
+import { FileData } from '@models/File';
 
 interface DeleteFileDialogProps {
+  fileId?: number;
   open: boolean;
   onOpenChange: Dispatch<SetStateAction<boolean>>;
 }
 
-const DeleteFileDialog = ({ open, onOpenChange }: DeleteFileDialogProps) => {
-  const confirmButton = <Button text='삭제' />;
+const DeleteFileDialog = ({
+  fileId,
+  open,
+  onOpenChange,
+}: DeleteFileDialogProps) => {
+  const { fileData, setFileData } = useFile();
+  const currentFileName = fileData?.find(
+    (item) => item.id === fileId,
+  )?.fileName;
+
+  const handleDeleteFile = () => {
+    if (!fileData || !fileId) return;
+
+    const nextFileData: FileData[] = fileData.filter(
+      (item) => item.id !== fileId,
+    );
+    setFileData(nextFileData);
+    onOpenChange(false);
+  };
+
+  const confirmButton = <Button text='삭제' onCustomClick={handleDeleteFile} />;
 
   return (
     <AlertDialog
       title='파일을 삭제하시겠습니까?'
-      description={`"${`deleteFile`}" 파일이 영구적으로 삭제됩니다. 이 작업은 취소할 수 없습니다.`}
+      description={`"${currentFileName}" 파일이 영구적으로 삭제됩니다. 이 작업은 취소할 수 없습니다.`}
       open={open}
       onOpenChange={onOpenChange}
       confirmButton={confirmButton}

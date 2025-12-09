@@ -7,7 +7,7 @@ function TopFileNavBar({ onSelect }: TopFileNavBarProps) {
   const fileNavItemsInit = [
     { id: 'all', text: '전체', selected: true },
     { id: 'images', text: '이미지', selected: false },
-    { id: 'movies', text: '동영상', selected: false },
+    { id: 'videos', text: '동영상', selected: false },
     { id: 'audios', text: '오디오', selected: false },
     { id: 'others', text: '기타', selected: false },
   ];

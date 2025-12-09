@@ -1,11 +1,20 @@
 import { Download, EllipsisVertical, FileText } from 'lucide-react';
 import Button from '@components/ui/Button';
-import { FileListCardProps } from '..';
 import styles from './FileListCard.module.css';
 import { ContentButton } from '@components/ui';
 import FileSharingDropdown from './FileSharingDropdown';
 
+interface FileListCardProps {
+  id?: number;
+  fileName?: string;
+  date?: string;
+  fileSize?: string;
+  timeAgo?: string;
+  uploader?: string;
+}
+
 const FileListCard = ({
+  id,
   fileName,
   date,
   fileSize,
@@ -35,7 +44,7 @@ const FileListCard = ({
         <ContentButton>
           <Download size={16} />
         </ContentButton>
-        <FileSharingDropdown triggerElement={triggerElement} />
+        <FileSharingDropdown fileId={id} triggerElement={triggerElement} />
       </div>
     </div>
   );

@@ -1,9 +1,16 @@
-import { ScheduleProvider, TodoProvider, ToolIdProvider } from '@context';
+import {
+  FileProvider,
+  ScheduleProvider,
+  TodoProvider,
+  ToolIdProvider,
+} from '@context';
 
 const ToolProviders = ({ children }: { children: React.ReactNode }) => (
   <ToolIdProvider>
     <ScheduleProvider>
-      <TodoProvider>{children}</TodoProvider>
+      <FileProvider>
+        <TodoProvider>{children}</TodoProvider>
+      </FileProvider>
     </ScheduleProvider>
   </ToolIdProvider>
 );

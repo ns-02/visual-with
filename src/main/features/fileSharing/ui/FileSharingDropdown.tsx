@@ -5,10 +5,11 @@ import styles from './FileSharingDropdown.module.css';
 import DeleteFileDialog from '../dialogs/DeleteFileDialog';
 
 interface DropdownProps {
+  fileId?: number;
   triggerElement?: React.ReactNode;
 }
 
-const FileSharingDropdown = ({ triggerElement }: DropdownProps) => {
+const FileSharingDropdown = ({ fileId, triggerElement }: DropdownProps) => {
   const [isDeleteFileDialogOpen, setIsDeleteFileDialogOpen] = useState(false);
 
   const Items = [
@@ -31,6 +32,7 @@ const FileSharingDropdown = ({ triggerElement }: DropdownProps) => {
     <>
       <Dropdown trigger={triggerElement} items={dropdownContent} />
       <DeleteFileDialog
+        fileId={fileId}
         open={isDeleteFileDialogOpen}
         onOpenChange={setIsDeleteFileDialogOpen}
       />
