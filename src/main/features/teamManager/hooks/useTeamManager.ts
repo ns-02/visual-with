@@ -1,9 +1,15 @@
 import { useTeam } from '@context/TeamContext';
-import { TeamId, TeamName } from '@models/Team';
+import { TeamData, TeamId, TeamName } from '@models/Team';
 import { useEffect } from 'react';
 
 const useTeamManager = () => {
-  const { teamData, dispatch, setIsTeamMember } = useTeam();
+  const {
+    teamData,
+    dispatch,
+    setIsTeamMember,
+    setSelectTeamId,
+    setSelectTeamName,
+  } = useTeam();
 
   useEffect(() => {
     if (teamData && teamData.length === 0) {
@@ -25,7 +31,13 @@ const useTeamManager = () => {
     });
   };
 
-  return { createTeam, deleteTeam };
+  const selectTeam = (selectedTeam: TeamData) => {
+    if (selectedTeam) setIsTeamMember(true);
+    setSelectTeamId(selectedTeam.id);
+    setSelectTeamName(selectedTeam.name);
+  };
+
+  return { createTeam, deleteTeam, selectTeam };
 };
 
 export default useTeamManager;
