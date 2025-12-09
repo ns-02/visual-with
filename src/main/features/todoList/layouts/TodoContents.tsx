@@ -6,7 +6,7 @@ import TodoListCard from '../ui/TodoListCard';
 import TodoListLabel from '../ui/TodoListLabel';
 import styles from './TodoContents.module.css';
 
-function RightContents() {
+function TodoContents() {
   const { todoData, setTodoData } = useTodo();
   const [progressData, setProgressData] = useState<TodoData[] | null>(null);
   const [completedData, setCompletedData] = useState<TodoData[] | null>(null);
@@ -66,4 +66,4 @@ function RightContents() {
   );
 }
 
-export default RightContents;
+export default TodoContents;

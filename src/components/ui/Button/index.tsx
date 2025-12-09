@@ -29,7 +29,6 @@ const Button = React.forwardRef<
     ...rest
   } = props;
   const btnStyle = `${styles.button} ${(styles as any)[shape]} ${className}`;
-  console.log(className);
 
   // Radix와 커스텀 클릭 둘 다 동작하기 위함
   const handleClick: React.MouseEventHandler<

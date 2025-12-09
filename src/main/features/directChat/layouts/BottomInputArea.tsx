@@ -19,22 +19,23 @@ function BottomInputArea({ onSend }: BottomInputAreaProps) {
   };
 
   const triggerElement = (
-    <Button>
+    <Button className={styles.button}>
       <Plus size={16} />
     </Button>
   );
 
   return (
-    <div className={styles.bottom}>
+    <div className={styles.bottom_input_area}>
       <FileUploadDropdown triggerElement={triggerElement} />
       <Input
+        className={styles.input}
         value={chat}
         placeholder='채팅 입력'
         sizeMode='flexible'
         setChat={setChat}
         onKeyDown={(e) => handleKeyDown(e)}
       />
-      <Button onCustomClick={handleSend}>
+      <Button className={styles.button} onCustomClick={handleSend}>
         <Send size={16} />
       </Button>
     </div>

@@ -1,17 +1,17 @@
 import { useTeam } from '@context/TeamContext';
-import LeftCalendar from '../layouts/LeftCalendar';
-import RightContents from '../layouts/RightContents';
-import styles from './SchedulePage.module.css';
+import ScheduleRoot from '../layouts/ScheduleRoot';
+import LeftCalendarPanel from '../layouts/LeftCalendarPanel';
+import ScheduleViewPanel from '../layouts/ScheduleViewPanel';
 
 function SchedulePage() {
   // 현재 선택된 팀 데이터
   const { selectTeamId } = useTeam();
 
   return (
-    <div className={styles.page}>
-      <LeftCalendar></LeftCalendar>
-      <RightContents></RightContents>
-    </div>
+    <ScheduleRoot>
+      <LeftCalendarPanel></LeftCalendarPanel>
+      <ScheduleViewPanel></ScheduleViewPanel>
+    </ScheduleRoot>
   );
 }
 

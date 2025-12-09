@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
-import { MessageList } from '@components/ui';
 import { useTeam } from '@context/TeamContext';
 import { ChatItem } from '@models/Chat';
 import { getItem, setItem } from '@utils/sessionStorage';
-import TeamChatBottom from '../layouts/TeamChatBottom';
-import styles from './TeamChatPage.module.css';
 import getMaxId from '@utils/getMaxId';
+import TeamChatRoot from '../layouts/TeamChatRoot';
+import TeamChatPanel from '../layouts/TeamChatPanel';
+import TeamChatBottom from '../layouts/BottomInputPanel';
 
 function TeamChatPage() {
   const { selectTeamId } = useTeam();
@@ -37,12 +37,10 @@ function TeamChatPage() {
   };
 
   return (
-    <div className={styles.page}>
-      <div className={styles.container}>
-        <MessageList allChat={allChat} />
-      </div>
+    <TeamChatRoot>
+      <TeamChatPanel allChat={allChat} />
       <TeamChatBottom onSend={handleSend} />
-    </div>
+    </TeamChatRoot>
   );
 }
 

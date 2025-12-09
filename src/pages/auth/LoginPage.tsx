@@ -25,8 +25,6 @@ function LoginPage() {
     try {
       const res = await loginUser({ userId: id, password });
 
-      console.log(res);
-
       if (res.message !== 'ok') {
         return;
       }

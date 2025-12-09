@@ -1,3 +1,12 @@
+.team_chat_root {
+  height: 100%;
+  background-color: aliceblue;
+}
+
+.team_chat_panel {
+  height: calc(100% - 72px);
+}
+
 .bottom {
   display: flex;
   height: 72px;
@@ -14,6 +23,6 @@
 .button {
   width: 48px;
   height: 48px;
-  flex-shrink: 0;
+  flex-shrink: 0; /* 부모의 flex 속성으로부터 자식 요소의 크기 변경 방지 */
   justify-content: center;
 }

@@ -1,4 +1,8 @@
-.left-friends {
+.direct_chat_root {
+  height: 100%;
+}
+
+.left_friends_panel {
   width: 280px;
   height: 100%;
   float: left;
@@ -11,6 +15,11 @@
   width: calc(100% - 280px);
   height: 100%;
   float: right;
+}
+
+.chat_content_area {
+  display: flex;
+  height: calc(100% - 72px);
 }
 
 .direct_chat_area {
@@ -26,11 +35,22 @@
   background-color: white;
 }
 
-.bottom {
+.bottom_input_area {
   display: flex;
-  height: 60px;
+  height: 72px;
   padding: 12px 16px;
   align-items: center;
   gap: 16px;
   background-color: white;
+}
+
+.input {
+  height: 48px;
+}
+
+.button {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0; /* 부모의 flex 속성으로부터 자식 요소의 크기 변경 방지 */
+  justify-content: center;
 }

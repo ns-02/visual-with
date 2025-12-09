@@ -4,7 +4,7 @@ import { useFriend } from '@context/FriendContext';
 import FriendListCard from '../ui/FriendListCard';
 import FriendRequestCard from '../ui/FriendRequestCard';
 import FriendListLabel from '../ui/FriendListLabel';
-import styles from './FriendContents.module.css';
+import styles from './FriendListLayout.module.css';
 
 function FriendContents() {
   const { friendData, setFriendData, friendRequestData, setFriendRequestData } =

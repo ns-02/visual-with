@@ -62,7 +62,6 @@ const DragAndDrop = () => {
     e.stopPropagation();
 
     // 실제 파일 처리 로직
-    console.log(e.dataTransfer.files);
     const selectedFile = e.dataTransfer.files[0];
     selectedFile && setFile(selectedFile);
     selectedFile && uploadFile(selectedFile);

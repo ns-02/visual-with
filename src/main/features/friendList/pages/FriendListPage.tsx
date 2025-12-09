@@ -1,11 +1,11 @@
 import FriendContents from '../layouts/FriendContents';
-import styles from './FriendListPage.module.css';
+import FriendListRoot from '../layouts/FriendListRoot';
 
 function FriendListPage() {
   return (
-    <div className={styles.page}>
+    <FriendListRoot>
       <FriendContents></FriendContents>
-    </div>
+    </FriendListRoot>
   );
 }
 

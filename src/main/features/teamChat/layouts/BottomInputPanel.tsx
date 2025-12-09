@@ -2,11 +2,14 @@ import { KeyboardEvent, useState } from 'react';
 import { Plus, Send } from 'lucide-react';
 import Button from '@components/ui/Button';
 import Input from '@components/ui/Input';
-import styles from './TeamChatBottom.module.css';
 import FileUploadDropdown from '../ui/FileUploadDropdown';
-import { TeamChatBottomProps } from '..';
+import styles from './TeamChatLayout.module.css';
 
-function TeamChatBottom({ onSend }: TeamChatBottomProps) {
+interface BottomInputPanelProps {
+  onSend: (chat: string) => void;
+}
+
+function BottomInputPanel({ onSend }: BottomInputPanelProps) {
   const [chat, setChat] = useState('');
 
   const handleSend = () => {
@@ -43,4 +46,4 @@ function TeamChatBottom({ onSend }: TeamChatBottomProps) {
   );
 }
 
-export default TeamChatBottom;
+export default BottomInputPanel;
