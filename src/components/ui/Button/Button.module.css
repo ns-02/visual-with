@@ -8,6 +8,10 @@
   background-color: #eee;
 }
 
+.button:disabled {
+  cursor: wait;
+}
+
 .normal {
   height: 36px;
   padding: 0 12px;

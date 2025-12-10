@@ -2,11 +2,14 @@ import { KeyboardEvent, useState } from 'react';
 import { Plus, Send } from 'lucide-react';
 import Button from '@components/ui/Button';
 import Input from '@components/ui/Input';
-import styles from './TeamChatBottom.module.css';
 import FileUploadDropdown from '../ui/FileUploadDropdown';
-import { TeamChatBottomProps } from '..';
+import styles from './TeamChatLayout.module.css';
 
-function TeamChatBottom({ onSend }: TeamChatBottomProps) {
+interface BottomInputPanelProps {
+  onSend: (chat: string) => void;
+}
+
+function BottomInputPanel({ onSend }: BottomInputPanelProps) {
   const [chat, setChat] = useState('');
 
   const handleSend = () => {
@@ -20,8 +23,8 @@ function TeamChatBottom({ onSend }: TeamChatBottomProps) {
   };
 
   const triggerElement = (
-    <Button>
-      <Plus size={16} />
+    <Button className={styles.button}>
+      <Plus size={20} />
     </Button>
   );
 
@@ -29,17 +32,18 @@ function TeamChatBottom({ onSend }: TeamChatBottomProps) {
     <div className={styles.bottom}>
       <FileUploadDropdown triggerElement={triggerElement} />
       <Input
+        className={styles.input}
         value={chat}
         placeholder='채팅 입력'
         sizeMode='flexible'
         setChat={setChat}
         onKeyDown={(e) => handleKeyDown(e)}
       />
-      <Button onCustomClick={handleSend}>
-        <Send size={16} />
+      <Button className={styles.button} onCustomClick={handleSend}>
+        <Send size={20} />
       </Button>
     </div>
   );
 }
 
-export default TeamChatBottom;
+export default BottomInputPanel;

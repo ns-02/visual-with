@@ -1,42 +1,60 @@
-import { useState } from 'react';
+import { createTeam } from '@api/api';
 import { useTeam } from '@context/TeamContext';
-import getMaxId from '@utils/getMaxId';
+import { useUser } from '@context/UserContext';
 import { TeamData, TeamId, TeamName } from '@models/Team';
+import { useEffect } from 'react';
 
-interface TeamManagerType {
-  teamData: TeamData[] | undefined;
-}
+const useTeamManager = () => {
+  const {
+    teamData,
+    dispatch,
+    setIsTeamMember,
+    setSelectTeamId,
+    setSelectTeamName,
+  } = useTeam();
 
-const useTeamManager = ({ teamData }: TeamManagerType) => {
-  const { setTeamData, setIsTeamMember } = useTeam();
+  const { userId, setUserId } = useUser();
 
-  const maxId = (teamData && getMaxId(teamData)) ?? 0;
-  const [currentItemId, setcurrentItemId] = useState(maxId + 1);
-  const [deleteTeamId, setDeleteTeamId] = useState<TeamId>(0);
-  const [deleteTeamName, setDeleteTeamName] = useState<TeamName>('');
+  // 임시로 유저 아이디를 amugae(아무개)로 설정함. 반드시 지울 것
+  useEffect(() => {
+    setUserId('amugae');
+  }, []);
 
-  const createTeam = (teamName: TeamName) => {
-    const newData = { id: currentItemId, name: teamName };
-    const nextTeamData = teamData ? [...teamData, newData] : [newData];
+  useEffect(() => {
+    if (teamData && teamData.length === 0) {
+      setIsTeamMember(false);
+    }
+  }, [teamData, setIsTeamMember]);
 
-    setTeamData(nextTeamData);
-    setcurrentItemId(currentItemId + 1);
+  const onCreateTeam = async (teamName: TeamName) => {
+    if (!userId) return;
+
+    try {
+      const res = await createTeam({ userId, teamName });
+
+      dispatch({
+        type: 'CREATE_TEAM',
+        payload: { id: res.id, name: res.teamName },
+      });
+    } catch (e) {
+      console.log(e);
+    }
   };
 
-  const deleteTeam = () => {
-    const nextTeamData = teamData?.filter(
-      (item) => item.id !== deleteTeamId && item,
-    );
-    setTeamData(nextTeamData);
-    if (!nextTeamData?.length) setIsTeamMember(false);
+  const deleteTeam = (teamId: TeamId) => {
+    dispatch({
+      type: 'DELETE_TEAM',
+      payload: { id: teamId },
+    });
   };
 
-  const setDeleteTeamData = (teamData: TeamData) => {
-    setDeleteTeamId(teamData.id);
-    setDeleteTeamName(teamData.name);
+  const selectTeam = (selectedTeam: TeamData) => {
+    if (selectedTeam) setIsTeamMember(true);
+    setSelectTeamId(selectedTeam.id);
+    setSelectTeamName(selectedTeam.name);
   };
 
-  return { deleteTeamName, setDeleteTeamData, createTeam, deleteTeam };
+  return { onCreateTeam, deleteTeam, selectTeam };
 };
 
 export default useTeamManager;

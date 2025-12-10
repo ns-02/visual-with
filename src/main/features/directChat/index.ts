@@ -1,8 +1,10 @@
 import { ChatItem } from '@models/Chat';
 import { FriendData } from '@models/Friend';
 
+export { default as DirectChatRoot } from './layouts/DirectChatRoot';
 export { default as LeftFriendsPanel } from './layouts/LeftFriendsPanel';
 export { default as ChatViewPanel } from './layouts/ChatViewPanel';
+export { default as ChatContentArea } from './layouts/ChatContentArea';
 export { default as DirectChatArea } from './layouts/DirectChatArea';
 export { default as BottomInputArea } from './layouts/BottomInputArea';
 

@@ -21,8 +21,14 @@
       "@context/*": ["context/*"],
       "@context": ["context/index.ts"],
       "@features/*": ["main/features/*"],
+      "@hooks/*": ["hooks/*"],
+      "@main/*": ["main/*"],
+      "@mocks/*": ["mocks/*"],
       "@models/*": ["models/*"],
       "@pages/*": ["pages/*"],
+      "@providers/*": ["providers/*"],
+      "@routes/*": ["routes/*"],
+      "@styles/*": ["styles/*"],
       "@utils/*": ["utils/*"]
     }
   },

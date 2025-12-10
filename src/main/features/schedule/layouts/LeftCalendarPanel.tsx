@@ -4,7 +4,7 @@ import { getDate } from '@utils/dateUtils';
 import Calender from '../ui/Calender';
 import styles from './ScheduleLayout.module.css';
 
-function LeftCalendar() {
+function LeftCalendarPanel() {
   const { scheduleData } = useSchedule();
   const [selected, setSelected] = useState<Date>();
   const [selectedYear, setSelectedYear] = useState('');
@@ -30,7 +30,7 @@ function LeftCalendar() {
   });
 
   return (
-    <div className={styles['left-calender']}>
+    <div className={styles.left_calender_panel}>
       <div className={styles.calender_container}>
         <Calender selected={selected} setSelected={setSelected} />
       </div>
@@ -49,4 +49,4 @@ function LeftCalendar() {
   );
 }
 
-export default LeftCalendar;
+export default LeftCalendarPanel;

@@ -1,6 +1,8 @@
 import {
   checkIdRequest,
   checkIdResponse,
+  CreateTeamRequest,
+  CreateTeamResponse,
   LoginRequest,
   LoginResponse,
   SignupRequest,
@@ -8,11 +10,16 @@ import {
 } from './apiModel';
 
 export const request = async (url: string, options = {}) => {
+  const { headers, ...restOptions } = options as {
+    headers?: Record<string, string>;
+  };
+
   try {
     const response = await fetch(url, {
-      ...options,
+      ...restOptions,
       headers: {
         'Content-Type': 'application/json',
+        ...headers,
       },
     });
     const json = await response.json();
@@ -58,5 +65,18 @@ export const signupUser = async ({
   return await request('/api/register', {
     method: 'POST',
     body: JSON.stringify({ userId, password, email, name }),
+  });
+};
+
+export const createTeam = async ({
+  userId,
+  teamName,
+}: CreateTeamRequest): Promise<CreateTeamResponse> => {
+  return await request('/api/createteam', {
+    method: 'POST',
+    headers: {
+      'X-USER-ID': userId,
+    },
+    body: JSON.stringify({ teamName }),
   });
 };

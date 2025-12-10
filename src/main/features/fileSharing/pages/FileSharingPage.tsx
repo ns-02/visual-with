@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useTeam } from '@context/TeamContext';
+import FileSharingRoot from '../layouts/FileSharingRoot';
 import TopFileNavBar from '../layouts/TopFileNavBar';
-import BottomSection from '../layouts/BottomSection';
-import styles from './FileSharingPage.module.css';
+import FileViewPanel from '../layouts/FileViewPanel';
 
 function FileSharingPage() {
   // 현재 선택된 팀 데이터
@@ -10,10 +10,10 @@ function FileSharingPage() {
   const [fileTypes, setFileTypes] = useState<string>('all');
 
   return (
-    <div className={styles.page}>
+    <FileSharingRoot>
       <TopFileNavBar onSelect={setFileTypes}></TopFileNavBar>
-      <BottomSection fileTypes={fileTypes}></BottomSection>
-    </div>
+      <FileViewPanel fileTypes={fileTypes}></FileViewPanel>
+    </FileSharingRoot>
   );
 }
 

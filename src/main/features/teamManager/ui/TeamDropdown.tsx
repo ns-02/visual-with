@@ -1,25 +1,19 @@
 import { useState } from 'react';
 import { DropdownMenu } from 'radix-ui';
-import { useTeam } from '@context/TeamContext';
 import { Dropdown, Item } from '@components/ui';
 import CreateTeamDialog from '../dialogs/CreateTeamDialog';
 import DeleteTeamDialog from '../dialogs/DeleteTeamDialog';
-import useTeamManager from '../hooks/useTeamManager';
 import TeamDropdownItems from './TeamDropdownItems';
+import { TeamData } from '@models/Team';
 
 interface DropdownProps {
   triggerElement?: React.ReactNode;
 }
 
 const TeamDropdown = ({ triggerElement }: DropdownProps) => {
-  const { teamData } = useTeam();
-
   const [isCreateTeamDialogOpen, setIsCreateTeamDialogOpen] = useState(false);
   const [isDeleteTeamDialogOpen, setIsDeleteTeamDialogOpen] = useState(false);
-  const { deleteTeamName, createTeam, deleteTeam, setDeleteTeamData } =
-    useTeamManager({
-      teamData,
-    });
+  const [deleteTeamData, setDeleteTeamData] = useState<TeamData>();
 
   const dropdownItems = (
     <>
@@ -42,13 +36,11 @@ const TeamDropdown = ({ triggerElement }: DropdownProps) => {
       <CreateTeamDialog
         open={isCreateTeamDialogOpen}
         onOpenChange={setIsCreateTeamDialogOpen}
-        onCreate={createTeam}
       />
       <DeleteTeamDialog
+        deleteTeamData={deleteTeamData}
         open={isDeleteTeamDialogOpen}
         onOpenChange={setIsDeleteTeamDialogOpen}
-        onDelete={deleteTeam}
-        deleteTeamName={deleteTeamName}
       />
     </>
   );

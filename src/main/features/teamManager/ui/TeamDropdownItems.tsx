@@ -2,9 +2,10 @@ import React from 'react';
 import { DropdownMenu } from 'radix-ui';
 import { Trash2 } from 'lucide-react';
 import { ContentButton, Item } from '@components/ui';
-import styles from './TeamDropdownItems.module.css';
 import { useTeam } from '@context/TeamContext';
 import { TeamData } from '@models/Team';
+import useTeamManager from '../hooks/useTeamManager';
+import styles from './TeamDropdownItems.module.css';
 
 interface TeamDropdownItemsType {
   deleteTeamDialogOpen: (value: React.SetStateAction<boolean>) => void;
@@ -15,25 +16,14 @@ const TeamDropdownItems = ({
   deleteTeamDialogOpen,
   setDeleteTeamData,
 }: TeamDropdownItemsType) => {
-  const {
-    teamData,
-    selectTeamId,
-    setSelectTeamId,
-    setSelectTeamName,
-    setIsTeamMember,
-  } = useTeam();
-
-  const handleItemClick = (item: TeamData) => {
-    if (item) setIsTeamMember(true);
-    setSelectTeamId(item.id);
-    setSelectTeamName(item.name);
-  };
+  const { teamData, selectTeamId } = useTeam();
+  const { selectTeam } = useTeamManager();
 
   const handleItemSelected = (item: TeamData) => {
     return item.id === selectTeamId ? true : false;
   };
 
-  if (!teamData) {
+  if (teamData.length === 0) {
     return null;
   }
 
@@ -41,10 +31,7 @@ const TeamDropdownItems = ({
     <>
       {teamData.map((item) => {
         return (
-          <DropdownMenu.Item
-            key={item.id}
-            onClick={() => handleItemClick(item)}
-          >
+          <DropdownMenu.Item key={item.id} onClick={() => selectTeam(item)}>
             <Item
               type='list'
               text={item.name}

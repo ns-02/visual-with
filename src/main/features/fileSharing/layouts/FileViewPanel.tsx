@@ -3,15 +3,15 @@ import DragAndDrop from '../ui/DragAndDrop';
 import FileListCard from '../ui/FileListCard';
 import styles from './FileSharingLayout.module.css';
 
-interface BottomSectionProps {
+interface FileViewPanelProps {
   fileTypes: string;
 }
 
-function BottomSection({ fileTypes }: BottomSectionProps) {
+function FileViewPanel({ fileTypes }: FileViewPanelProps) {
   const { fileData } = useFile();
 
   return (
-    <div className={styles.bottom}>
+    <div className={styles.file_view_panel}>
       <DragAndDrop />
       <div style={{ marginTop: '24px', marginBottom: '12px' }}>파일 목록</div>
       {fileData
@@ -35,4 +35,4 @@ function BottomSection({ fileTypes }: BottomSectionProps) {
   );
 }
 
-export default BottomSection;
+export default FileViewPanel;

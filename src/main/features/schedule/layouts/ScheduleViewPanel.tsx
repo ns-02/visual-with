@@ -4,7 +4,7 @@ import { ScheduleData } from '@models/Schedule';
 import ScheduleCard from '../ui/ScheduleCard';
 import styles from './ScheduleLayout.module.css';
 
-function RightContents() {
+function ScheduleViewPanel() {
   const { scheduleData } = useSchedule();
   const [completedData, setCompletedData] = useState<ScheduleData[] | null>(
     null,
@@ -33,7 +33,7 @@ function RightContents() {
   }, [scheduleData]);
 
   return (
-    <div className={styles['right-contents']}>
+    <div className={styles.schedule_view_panel}>
       <div style={{ marginTop: '24px', marginBottom: '12px' }}>완료된 일정</div>
       {completedData?.map((item) => {
         return (
@@ -79,4 +79,4 @@ function RightContents() {
   );
 }
 
-export default RightContents;
+export default ScheduleViewPanel;

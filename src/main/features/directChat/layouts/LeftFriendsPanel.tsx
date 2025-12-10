@@ -35,7 +35,7 @@ function LeftFriendsPanel() {
   };
 
   return (
-    <div className={styles['left-friends']}>
+    <div className={styles.left_friends_panel}>
       {friendItems.map((item) => {
         return (
           <SelectFriendCard

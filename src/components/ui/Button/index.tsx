@@ -1,16 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Button.module.css';
 
 type Shape = 'normal' | 'square' | 'circle';
 
 interface ButtonProps {
+  className?: string;
   text?: string;
   shape?: Shape;
   to?: string;
   onCustomClick?: (
     e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>,
-  ) => void;
+  ) => Promise<void> | void;
   children?: React.ReactNode;
 }
 
@@ -19,6 +20,7 @@ const Button = React.forwardRef<
   ButtonProps
 >((props, ref) => {
   const {
+    className,
     text,
     shape = 'normal',
     to,
@@ -26,14 +28,19 @@ const Button = React.forwardRef<
     children,
     ...rest
   } = props;
-  const btnStyle = `${styles.button} ${(styles as any)[shape]}`;
+  const [isLoading, setIsLoading] = useState(false);
+  const btnStyle = `${styles.button} ${(styles as any)[shape]} ${className}`;
 
   // Radix와 커스텀 클릭 둘 다 동작하기 위함
   const handleClick: React.MouseEventHandler<
     HTMLAnchorElement | HTMLButtonElement
-  > = (e) => {
+  > = async (e) => {
     if ((props as any).onClick) (props as any).onClick(e);
-    if (onCustomClick) onCustomClick(e);
+    if (onCustomClick) {
+      setIsLoading(true);
+      await onCustomClick(e);
+      setIsLoading(false);
+    }
   };
 
   if (to) {
@@ -52,6 +59,7 @@ const Button = React.forwardRef<
 
   return (
     <button
+      disabled={isLoading}
       ref={ref as React.Ref<HTMLButtonElement>}
       className={btnStyle}
       onClick={handleClick}

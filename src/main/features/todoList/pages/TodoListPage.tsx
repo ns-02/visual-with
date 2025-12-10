@@ -1,15 +1,15 @@
 import { useTeam } from '@context/TeamContext';
 import TodoContents from '../layouts/TodoContents';
-import styles from './TodoListPage.module.css';
+import TodoListRoot from '../layouts/TodoListRoot';
 
 function TodoListPage() {
   // 현재 선택된 팀 데이터
   const { selectTeamId } = useTeam();
 
   return (
-    <div className={styles.page}>
+    <TodoListRoot>
       <TodoContents></TodoContents>
-    </div>
+    </TodoListRoot>
   );
 }
 

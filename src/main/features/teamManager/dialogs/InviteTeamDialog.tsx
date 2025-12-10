@@ -1,11 +1,17 @@
+import { Dispatch, SetStateAction } from 'react';
 import * as Tabs from '@radix-ui/react-tabs';
 import { Copy, Search } from 'lucide-react';
 import { Dialog, Group, DialogInput, Row } from '@components/dialogs';
 import { Button } from '@components/ui';
-import { TeamDialogProps } from '..';
 import styles from './InviteTeamDialog.module.css';
 
-const InviteTeamDialog = ({ open, onOpenChange }: TeamDialogProps) => {
+interface InviteTeamDialogProps {
+  open: boolean;
+  onOpenChange: Dispatch<SetStateAction<boolean>>;
+  onCreate?: (value: string) => void;
+}
+
+const InviteTeamDialog = ({ open, onOpenChange }: InviteTeamDialogProps) => {
   return (
     <Dialog
       title='팀 초대'

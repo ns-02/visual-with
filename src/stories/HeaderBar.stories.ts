@@ -1,13 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import ToolHeader from '@components/HeaderBar';
 import { fn } from 'storybook/internal/test';
+import { HeaderBar } from '@components/index';
 import { Plus } from 'lucide-react';
 
 const meta = {
   title: 'Example/ToolHeader',
-  component: ToolHeader,
-} satisfies Meta<typeof ToolHeader>;
+  component: HeaderBar,
+} satisfies Meta<typeof HeaderBar>;
 
 export default meta;
 

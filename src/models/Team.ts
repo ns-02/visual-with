@@ -1,4 +1,4 @@
-export type TeamId = number;
+export type TeamId = string;
 
 export type TeamName = string;
 

@@ -1,4 +1,9 @@
-.left-calender {
+.schedule_root {
+  height: 100%;
+  background-color: aliceblue;
+}
+
+.left_calender_panel {
   width: 280px;
   height: 100%;
   float: left;
@@ -11,13 +16,9 @@
   width: 100%;
 }
 
-.right-contents {
+.schedule_view_panel {
   width: calc(100% - 280px);
   height: 100%;
   float: right;
   padding: 0 100px;
-}
-
-.month_grid {
-  width: 100%;
 }

@@ -4,6 +4,7 @@ import styles from './Input.module.css';
 type SizeMode = 'fixed' | 'flexible';
 
 interface InputProps {
+  className?: string;
   value: string;
   placeholder?: string;
   sizeMode: SizeMode;
@@ -15,6 +16,7 @@ interface InputProps {
 }
 
 function Input({
+  className,
   value,
   placeholder,
   sizeMode,
@@ -23,7 +25,7 @@ function Input({
   onKeyDown,
   children,
 }: InputProps) {
-  const containerStyle = `${styles.container} ${(styles as any)[`container--${sizeMode}`]}`;
+  const containerStyle = `${styles.container} ${(styles as any)[`container--${sizeMode}`]} ${className}`;
   const inputStyle = `${styles.input} ${(styles as any)[`input--${sizeMode}`]}`;
 
   return (

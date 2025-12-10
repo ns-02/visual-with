@@ -1,3 +1,8 @@
+.file_sharing_root {
+  height: 100%;
+  background-color: aliceblue;
+}
+
 .top_files {
   display: flex;
   width: 100%;
@@ -5,7 +10,7 @@
   gap: 8px;
 }
 
-.bottom {
+.file_view_panel {
   width: 100%;
   padding: 0 120px;
 }

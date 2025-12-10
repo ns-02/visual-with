@@ -4,13 +4,13 @@ import { ChatItem } from '@models/Chat';
 import { getItem, setItem } from '@utils/sessionStorage';
 import getMaxId from '@utils/getMaxId';
 import {
-  BottomInputArea,
+  DirectChatRoot,
   LeftFriendsPanel,
   ChatViewPanel,
+  ChatContentArea,
   DirectChatArea,
+  BottomInputArea,
 } from '../';
-
-import styles from './DirectChatPage.module.css';
 import RightFileListArea from '../layouts/RightFileListArea';
 
 function DirectChatPage() {
@@ -55,16 +55,16 @@ function DirectChatPage() {
   };
 
   return (
-    <div className={styles.page}>
+    <DirectChatRoot>
       <LeftFriendsPanel />
       <ChatViewPanel>
-        <div className={styles.container}>
+        <ChatContentArea>
           <DirectChatArea allChat={allChat} />
           <RightFileListArea />
-        </div>
+        </ChatContentArea>
         <BottomInputArea onSend={handleSend} />
       </ChatViewPanel>
-    </div>
+    </DirectChatRoot>
   );
 }
 

@@ -3,6 +3,7 @@ import { ko } from 'date-fns/locale';
 import { CalenderProps } from '..';
 import styles from './Calender.module.css';
 import 'react-day-picker/style.css';
+import '../../../../styles/global_daypicker.css';
 
 const Calender = ({ selected, setSelected }: CalenderProps) => {
   return (
@@ -18,6 +19,8 @@ const Calender = ({ selected, setSelected }: CalenderProps) => {
             '--rdp-day-width': '38px',
             '--rdp-day_button-width': '36px',
             '--rdp-day_button-height': '36px',
+            '--rdp-today-color': '#6495ED',
+            '--rdp-selected-border': '2px solid #6495ED',
           } as React.CSSProperties
         }
         classNames={{

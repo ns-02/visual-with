@@ -1,0 +1,19 @@
+/* '일' 색상 지정 */
+.rdp-weekday:nth-child(1) {
+  color: #fa8072;
+}
+
+/* '토' 색상 지정 */
+.rdp-weekday:nth-child(7) {
+  color: #a1caf1;
+}
+
+/* 일요일의 날짜 색상 지정 */
+.rdp-day:nth-child(1) {
+  color: #fa8072;
+}
+
+/* 선택된 날짜 폰트 크기 지정 */
+.rdp-selected {
+  font-size: 16px;
+}
