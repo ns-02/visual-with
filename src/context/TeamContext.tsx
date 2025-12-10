@@ -22,7 +22,7 @@ export const TeamProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [teamData, dispatch] = useReducer(teamReducer, teamDataMocks || []);
-  const [selectTeamId, setSelectTeamId] = useState<TeamId>(0);
+  const [selectTeamId, setSelectTeamId] = useState<TeamId>('');
   const [selectTeamName, setSelectTeamName] = useState<TeamName>('');
   const [isTeamMember, setIsTeamMember] = useState<boolean>(false);
 

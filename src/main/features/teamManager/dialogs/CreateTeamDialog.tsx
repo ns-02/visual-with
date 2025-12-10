@@ -9,12 +9,12 @@ interface CreateTeamDialogProps {
 }
 
 const CreateTeamDialog = ({ open, onOpenChange }: CreateTeamDialogProps) => {
-  const { createTeam } = useTeamManager();
+  const { onCreateTeam } = useTeamManager();
   const [teamName, setTeamName] = useState('');
 
-  const handleCreateTeam = () => {
+  const handleCreateTeam = async () => {
     if (!teamName) return;
-    createTeam(teamName);
+    await onCreateTeam(teamName);
     setTeamName('');
     onOpenChange(false);
   };

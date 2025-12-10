@@ -2,11 +2,11 @@ import { TeamData } from '@models/Team';
 
 export const teamDataMocks: TeamData[] = [
   {
-    id: 1,
+    id: 'f5l8q0h4',
     name: '가나다팀',
   },
   {
-    id: 2,
+    id: 'b2y1m7j6',
     name: '라마바팀',
   },
 ];

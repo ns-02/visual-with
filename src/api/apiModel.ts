@@ -34,3 +34,14 @@ export interface LoginResponse {
   token: string;
   message: string;
 }
+
+export interface CreateTeamRequest {
+  userId: string;
+  teamName: string;
+}
+
+export interface CreateTeamResponse {
+  id: string;
+  teamName: string;
+  creatorId: string;
+}
