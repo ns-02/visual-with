@@ -23,7 +23,7 @@ function LeftFriendsPanel() {
     nextFriendItems && setFriendItems(nextFriendItems);
   }, [friendData, friendIdChatMap]);
 
-  const handleCardSelect = (id: number) => {
+  const handleCardSelect = (id: string) => {
     const nextFriendItems = friendItems.map((item) =>
       item.id === id
         ? { ...item, selected: true }

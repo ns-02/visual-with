@@ -5,7 +5,7 @@ import styles from './FriendListDropdown.module.css';
 import DeleteFriendDialog from '../dialogs/DeleteFriendDialog';
 
 interface DropdownProps {
-  friendId?: number;
+  friendId?: string;
   triggerElement?: React.ReactNode;
 }
 

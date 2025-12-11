@@ -5,7 +5,7 @@ import FriendListDropdown from './FriendListDropdown';
 import styles from './FriendListCard.module.css';
 
 interface FriendListCardProps {
-  id?: number;
+  id?: string;
   name?: string;
   description?: string;
 }

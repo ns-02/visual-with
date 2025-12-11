@@ -46,7 +46,7 @@ function DirectChatPage() {
     setCurrentId(currentId + 1);
   };
 
-  const handleAddLastChat = (id: number, chat: string) => {
+  const handleAddLastChat = (id: string, chat: string) => {
     setFriendIdChatMap((prevIdChatMap) => {
       const nextIdChatMap = new Map(prevIdChatMap);
       nextIdChatMap.set(id, chat);

@@ -4,7 +4,7 @@ import { Button } from '@components/ui';
 import { useFriend } from '@context/FriendContext';
 
 interface DeleteFriendDialogProps {
-  friendId?: number;
+  friendId?: string;
   open: boolean;
   onOpenChange: Dispatch<SetStateAction<boolean>>;
 }
