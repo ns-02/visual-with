@@ -3,6 +3,7 @@
   padding: 16px;
   gap: 12px;
   background-color: white;
+  cursor: pointer;
 }
 
 .container_selected {
@@ -10,4 +11,5 @@
   padding: 16px;
   gap: 12px;
   background-color: aliceblue;
+  cursor: pointer;
 }
