@@ -5,10 +5,35 @@ import FriendListCard from '../ui/FriendListCard';
 import FriendRequestCard from '../ui/FriendRequestCard';
 import FriendListLabel from '../ui/FriendListLabel';
 import styles from './FriendListLayout.module.css';
+import { useEffect } from 'react';
+import { futureRequestDataMocks } from '@mocks/FriendDataMocks';
+
+let isInit = false;
 
 function FriendContents() {
   const { friendData, setFriendData, friendRequestData, setFriendRequestData } =
     useFriend();
+
+  useEffect(() => {
+    if (isInit) return;
+    setTimeout(() => {
+      handleRequested();
+      isInit = true;
+    }, 3000);
+  }, []);
+
+  const handleRequested = () => {
+    // 요청받는 로직
+    const newFriendData = futureRequestDataMocks.shift();
+    if (!newFriendData) return;
+
+    const nextFriendRequestData = friendRequestData && [
+      ...friendRequestData,
+      newFriendData,
+    ];
+
+    setFriendRequestData(nextFriendRequestData);
+  };
 
   const handleAccept = (data: FriendData) => {
     const nextFriendRequestData = friendRequestData?.filter(

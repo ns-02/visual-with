@@ -18,6 +18,6 @@ export const notFriendDataMocks: FriendData[] = [
 ];
 
 // 미래에 요청을 보낼 예정
-export const futureRequestMocks: FriendData[] = [
+export const futureRequestDataMocks: FriendData[] = [
   { id: 'kwonth_pm', name: '권태희', description: '프로젝트 매니저' },
 ];
