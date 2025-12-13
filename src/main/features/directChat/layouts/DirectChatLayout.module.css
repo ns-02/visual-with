@@ -62,3 +62,11 @@
   flex-shrink: 0; /* 부모의 flex 속성으로부터 자식 요소의 크기 변경 방지 */
   justify-content: center;
 }
+
+.button_primary {
+  background-color: var(--color-button-primary);
+}
+
+.button_secondary {
+  background-color: var(--color-button-secondary-500);
+}

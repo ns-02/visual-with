@@ -1,6 +1,5 @@
 import { Dispatch, SetStateAction, useState } from 'react';
 import { AlertDialog, DialogInput } from '@components/dialogs';
-import { Button } from '@components/ui';
 import { TeamData } from '@models/Team';
 import useTeamManager from '../hooks/useTeamManager';
 
@@ -25,15 +24,14 @@ const DeleteTeamDialog = ({
     onOpenChange(false);
   };
 
-  const confirmButton = <Button text='삭제' onCustomClick={handleDeleteTeam} />;
-
   return (
     <AlertDialog
       title='팀을 삭제하시겠습니까?'
       description={`"${deleteTeamData?.name}" 팀이 영구적으로 삭제됩니다. 이 작업은 취소할 수 없습니다.`}
       open={open}
       onOpenChange={onOpenChange}
-      confirmButton={confirmButton}
+      confirmText='삭제'
+      onConfirm={handleDeleteTeam}
     >
       <DialogInput
         placeholder='삭제를 입력하세요'

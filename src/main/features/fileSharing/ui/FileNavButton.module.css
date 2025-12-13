@@ -7,9 +7,9 @@
   font-size: 14px;
   border: none;
   cursor: pointer;
-  background-color: #ffffff;
+  background-color: var(--color-button-default);
 }
 
 .selected {
-  background-color: #d0deef;
+  background-color: var(--color-button-focus);
 }

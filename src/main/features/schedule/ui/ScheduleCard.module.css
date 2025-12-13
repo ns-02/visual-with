@@ -29,5 +29,5 @@
 .label {
   padding: 2px 10px;
   border-radius: 6px;
-  background-color: #ddd;
+  background-color: var(--color-button-secondary-500);
 }

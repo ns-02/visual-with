@@ -1,6 +1,5 @@
 import { Dispatch, SetStateAction } from 'react';
 import { AlertDialog } from '@components/dialogs';
-import { Button } from '@components/ui';
 import { useFriend } from '@context/FriendContext';
 
 interface DeleteFriendDialogProps {
@@ -27,17 +26,14 @@ const DeleteFriendDialog = ({
     onOpenChange(false);
   };
 
-  const confirmButton = (
-    <Button text='삭제' onCustomClick={handleDeleteFriend} />
-  );
-
   return (
     <AlertDialog
       title='친구를 삭제하시겠습니까?'
       description={`"${currentFriendName}" 친구가 영구적으로 삭제됩니다. 이 작업은 취소할 수 없습니다.`}
       open={open}
       onOpenChange={onOpenChange}
-      confirmButton={confirmButton}
+      confirmText='삭제'
+      onConfirm={handleDeleteFriend}
     />
   );
 };

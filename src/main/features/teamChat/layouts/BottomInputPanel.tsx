@@ -23,7 +23,7 @@ function BottomInputPanel({ onSend }: BottomInputPanelProps) {
   };
 
   const triggerElement = (
-    <Button className={styles.button}>
+    <Button className={`${styles.button} ${styles.button_secondary}`}>
       <Plus size={20} />
     </Button>
   );
@@ -39,7 +39,10 @@ function BottomInputPanel({ onSend }: BottomInputPanelProps) {
         setChat={setChat}
         onKeyDown={(e) => handleKeyDown(e)}
       />
-      <Button className={styles.button} onCustomClick={handleSend}>
+      <Button
+        className={`${styles.button} ${styles.button_primary}`}
+        onCustomClick={handleSend}
+      >
         <Send size={20} />
       </Button>
     </div>

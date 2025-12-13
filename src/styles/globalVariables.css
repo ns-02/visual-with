@@ -1,14 +1,20 @@
 :root {
   --color-background-primary: aliceblue;
   --color-background-secondary: white;
+  --color-component-primary: #c5e5ff;
+  --color-component-secondary: #e0f4ff;
   --color-component-default: white;
-  --color-component-selected: aliceblue;
-  --color-component-border: #dbefff;
+  --color-component-focus: aliceblue;
+  --color-component-border: #e0f4ff;
   --color-menu-button-primary: #c5e5ff;
   --color-menu-button-secondary: #e0f4ff;
   --color-button-primary: #ffb6d9;
-  /* --color-button-secondary: #e0f4ff; */
+  --color-button-secondary-400: aliceblue;
+  --color-button-secondary-500: #e0f4ff;
+  --color-button-secondary-600: #c5e5ff;
+  --color-button-border: #aaa;
   --color-button-info: #c5e5ff;
+  --color-button-focus: #c5e5ff;
   --color-button-default: white;
   --color-content-default: black;
 }

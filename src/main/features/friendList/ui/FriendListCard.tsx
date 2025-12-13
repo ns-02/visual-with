@@ -1,8 +1,8 @@
-import { EllipsisVertical, User } from 'lucide-react';
-import Button from '@components/ui/Button';
+import { EllipsisVertical } from 'lucide-react';
 import { ContentButton } from '@components/ui';
 import FriendListDropdown from './FriendListDropdown';
 import styles from './FriendListCard.module.css';
+import Avatar from '@components/ui/Avatar';
 
 interface FriendListCardProps {
   id?: string;
@@ -20,9 +20,7 @@ const FriendListCard = ({ id, name, description }: FriendListCardProps) => {
   return (
     <div className={styles.container}>
       <div className={styles.info_contents}>
-        <Button shape='circle'>
-          <User size={24} />
-        </Button>
+        <Avatar />
         <div>
           <p>{name}</p>
           <p style={{ fontSize: '15px', color: '#555' }}>{description}</p>

@@ -1,8 +1,8 @@
-import { Download, EllipsisVertical, FileText } from 'lucide-react';
-import Button from '@components/ui/Button';
-import styles from './FileListCard.module.css';
+import { Download, EllipsisVertical } from 'lucide-react';
 import { ContentButton } from '@components/ui';
 import FileSharingDropdown from './FileSharingDropdown';
+import FileIcon from './FileIcon';
+import styles from './FileListCard.module.css';
 
 interface FileListCardProps {
   id?: number;
@@ -30,9 +30,7 @@ const FileListCard = ({
   return (
     <div className={styles.container}>
       <div className={styles.info_contents}>
-        <Button shape='square'>
-          <FileText size={24} />
-        </Button>
+        <FileIcon />
         <div>
           <p>{fileName}</p>
           <p style={{ fontSize: '15px', color: '#555' }}>

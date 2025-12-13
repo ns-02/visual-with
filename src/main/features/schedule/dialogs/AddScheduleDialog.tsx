@@ -1,6 +1,5 @@
 import { Dispatch, SetStateAction, useState } from 'react';
 import { Dialog, DialogInput, Group, Row } from '@components/dialogs';
-import Button from '@components/ui/Button';
 import { useSchedule } from '@context/ScheduleContext';
 import getMaxId from '@utils/getMaxId';
 import { ScheduleData } from '@models/Schedule';
@@ -47,16 +46,13 @@ const AddScheduleDialog = ({ open, onOpenChange }: AddScheduleDialogProps) => {
     onOpenChange(false);
   };
 
-  const confirmButton = (
-    <Button text='추가' onCustomClick={handleAddSchedule} />
-  );
-
   return (
     <Dialog
       title='일정 추가'
       open={open}
       onOpenChange={onOpenChange}
-      confirmButton={confirmButton}
+      confirmText='추가'
+      onConfirm={handleAddSchedule}
     >
       <Group>
         <label>제목</label>

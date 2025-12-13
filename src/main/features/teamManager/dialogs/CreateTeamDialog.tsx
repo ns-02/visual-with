@@ -1,6 +1,5 @@
 import { Dispatch, SetStateAction, useState } from 'react';
 import { Dialog, DialogInput } from '@components/dialogs';
-import { Button } from '@components/ui';
 import useTeamManager from '../hooks/useTeamManager';
 
 interface CreateTeamDialogProps {
@@ -19,14 +18,13 @@ const CreateTeamDialog = ({ open, onOpenChange }: CreateTeamDialogProps) => {
     onOpenChange(false);
   };
 
-  const confirmButton = <Button text='생성' onCustomClick={handleCreateTeam} />;
-
   return (
     <Dialog
       title='팀 생성'
       open={open}
       onOpenChange={onOpenChange}
-      confirmButton={confirmButton}
+      confirmText='생성'
+      onConfirm={handleCreateTeam}
     >
       <p>팀 이름</p>
       <DialogInput

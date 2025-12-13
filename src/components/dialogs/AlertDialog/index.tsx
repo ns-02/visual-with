@@ -9,7 +9,8 @@ const AlertDialog = ({
   title = '제목',
   description = '설명',
   children,
-  confirmButton,
+  confirmText,
+  onConfirm,
 }: DialogProps) => {
   return (
     <RadixAlertDialog.Root open={open} onOpenChange={onOpenChange}>
@@ -25,9 +26,13 @@ const AlertDialog = ({
           {children}
           <div className={styles.btnfield}>
             <RadixAlertDialog.Cancel asChild>
-              <Button text='취소'></Button>
+              <Button text='취소' className={styles.button_default}></Button>
             </RadixAlertDialog.Cancel>
-            {confirmButton}
+            <Button
+              text={confirmText}
+              onCustomClick={onConfirm}
+              className={styles.button_primary}
+            ></Button>
           </div>
         </RadixAlertDialog.Content>
       </RadixAlertDialog.Portal>

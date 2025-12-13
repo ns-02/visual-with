@@ -1,6 +1,5 @@
 import { Dispatch, SetStateAction } from 'react';
 import { AlertDialog } from '@components/dialogs';
-import { Button } from '@components/ui';
 import { useFile } from '@context/FileContext';
 import { FileData } from '@models/File';
 
@@ -30,15 +29,14 @@ const DeleteFileDialog = ({
     onOpenChange(false);
   };
 
-  const confirmButton = <Button text='삭제' onCustomClick={handleDeleteFile} />;
-
   return (
     <AlertDialog
       title='파일을 삭제하시겠습니까?'
       description={`"${currentFileName}" 파일이 영구적으로 삭제됩니다. 이 작업은 취소할 수 없습니다.`}
       open={open}
       onOpenChange={onOpenChange}
-      confirmButton={confirmButton}
+      confirmText='삭제'
+      onConfirm={handleDeleteFile}
     />
   );
 };

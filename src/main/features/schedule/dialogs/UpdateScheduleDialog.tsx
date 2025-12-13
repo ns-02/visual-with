@@ -1,4 +1,3 @@
-import Button from '@components/ui/Button';
 import { Dialog, DialogInput, Group, Row } from '@components/dialogs';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { useSchedule } from '@context/ScheduleContext';
@@ -62,16 +61,13 @@ const UpdateScheduleDialog = ({
     onOpenChange(false);
   };
 
-  const confirmButton = (
-    <Button text='수정' onCustomClick={handleUpdateSchedule} />
-  );
-
   return (
     <Dialog
       title='일정 수정'
       open={open}
       onOpenChange={onOpenChange}
-      confirmButton={confirmButton}
+      confirmText='수정'
+      onConfirm={handleUpdateSchedule}
     >
       <Group>
         <label>제목</label>

@@ -18,3 +18,11 @@
   padding: 14px;
   gap: 8px;
 }
+
+.button_secondary_400 {
+  background-color: var(--color-button-secondary-400);
+}
+
+.button_secondary_600 {
+  background-color: var(--color-button-secondary-600);
+}

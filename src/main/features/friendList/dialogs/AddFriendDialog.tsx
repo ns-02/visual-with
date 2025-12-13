@@ -38,16 +38,13 @@ const AddFriendDialog = ({ open, onOpenChange }: AddFriendDialogProps) => {
     }
   };
 
-  const confirmButton = (
-    <Button text='친구 추가' onCustomClick={handleRequestFriend} />
-  );
-
   return (
     <Dialog
       title='친구 추가'
       open={open}
       onOpenChange={onOpenChange}
-      confirmButton={confirmButton}
+      confirmText='친구 추가'
+      onConfirm={handleRequestFriend}
     >
       <Group>
         <p>친구 ID 검색</p>

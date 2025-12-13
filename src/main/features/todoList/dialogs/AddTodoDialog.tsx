@@ -1,6 +1,5 @@
 import { Dispatch, SetStateAction, useState } from 'react';
 import { Dialog, Group, DialogInput } from '@components/dialogs';
-import { Button } from '@components/ui';
 import { useTodo } from '@context/TodoContext';
 import getMaxId from '@utils/getMaxId';
 import { TodoData } from '@models/Todo';
@@ -29,14 +28,13 @@ const AddTodoDialog = ({ open, onOpenChange }: AddTodoDialogProps) => {
     onOpenChange(false);
   };
 
-  const confirmButton = <Button text='추가' onCustomClick={handleAddTodo} />;
-
   return (
     <Dialog
       title='할 일 추가'
       open={open}
       onOpenChange={onOpenChange}
-      confirmButton={confirmButton}
+      confirmText='추가'
+      onConfirm={handleAddTodo}
     >
       <Group>
         <label>제목</label>

@@ -2,6 +2,7 @@ import { User } from 'lucide-react';
 import { Button } from '@components/ui';
 import { SelectFriendCardProps } from '..';
 import styles from './SelectFriendCard.module.css';
+import Avatar from '@components/ui/Avatar';
 
 const SelectFriendCard = ({
   name,
@@ -19,9 +20,7 @@ const SelectFriendCard = ({
 
   return (
     <div className={containerStyle} onClick={handleCardSelect}>
-      <Button shape='circle'>
-        <User size={24} />
-      </Button>
+      <Avatar />
       <div>
         <p>{name}</p>
         <p style={{ fontSize: '15px', color: '#555' }}>{chat}</p>

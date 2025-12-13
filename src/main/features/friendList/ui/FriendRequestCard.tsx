@@ -1,6 +1,7 @@
-import { Check, User, X } from 'lucide-react';
+import { Check, X } from 'lucide-react';
 import Button from '@components/ui/Button';
 import styles from './FriendRequestCard.module.css';
+import Avatar from '@components/ui/Avatar';
 
 interface FriendRequestCardProps {
   name?: string;
@@ -18,19 +19,25 @@ const FriendRequestCard = ({
   return (
     <div className={styles.container}>
       <div className={styles.info_contents}>
-        <Button shape='circle'>
-          <User size={24} />
-        </Button>
+        <Avatar />
         <div>
           <p>{name}</p>
           <p style={{ fontSize: '15px', color: '#555' }}>{description}</p>
         </div>
       </div>
       <div className={styles.navigation}>
-        <Button text='수락' onCustomClick={onAccept}>
+        <Button
+          text='수락'
+          className={styles.button_secondary_600}
+          onCustomClick={onAccept}
+        >
           <Check size={16} />
         </Button>
-        <Button text='거절' onCustomClick={onReject}>
+        <Button
+          text='거절'
+          className={styles.button_secondary_400}
+          onCustomClick={onReject}
+        >
           <X size={16} />
         </Button>
       </div>

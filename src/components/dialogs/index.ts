@@ -13,7 +13,8 @@ export default interface DialogProps {
   description?: string;
   viewButton?: boolean;
   children?: React.ReactNode;
-  confirmButton?: React.ReactNode;
+  confirmText?: string;
+  onConfirm?: () => void;
 }
 
 export type Prop = {

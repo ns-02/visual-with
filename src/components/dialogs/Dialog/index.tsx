@@ -10,7 +10,8 @@ const Dialog = ({
   title = '제목',
   viewButton = true,
   children,
-  confirmButton,
+  confirmText,
+  onConfirm,
 }: DialogProps) => {
   return (
     <RadixDialog.Root open={open} onOpenChange={onOpenChange}>
@@ -25,9 +26,13 @@ const Dialog = ({
           {viewButton && (
             <div className={styles.btnfield}>
               <RadixDialog.Close asChild>
-                <Button text='취소'></Button>
+                <Button text='취소' className={styles.button_default}></Button>
               </RadixDialog.Close>
-              {confirmButton}
+              <Button
+                text={confirmText}
+                onCustomClick={onConfirm}
+                className={styles.button_primary}
+              ></Button>
             </div>
           )}
 
