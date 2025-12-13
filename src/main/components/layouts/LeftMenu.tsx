@@ -63,7 +63,7 @@ function LeftMenu() {
     return `${styles.menu_button} ${isItemSelected && styles.selected}`;
   };
 
-  const TeamTrigger = isTeamMember ? (
+  const DropdownTrigger = isTeamMember ? (
     <Button
       text={selectTeamName[0]}
       shape='square'
@@ -90,6 +90,7 @@ function LeftMenu() {
 
     return items.map((item) => (
       <Tooltip
+        key={item.id}
         trigger={renderMenuItem(item)}
         items={<TooltipItem text={item.text} />}
       />
@@ -114,8 +115,8 @@ function LeftMenu() {
 
   return (
     <section className={styles.leftmenu}>
-      <Tooltip.Provider delayDuration={100}>
-        <TeamDropdown trigger={TeamTrigger} />
+      <Tooltip.Provider>
+        <TeamDropdown trigger={DropdownTrigger} />
         {renderTeamMemberContainer}
         <Divider />
         <div className={styles.middle_menu_container}>

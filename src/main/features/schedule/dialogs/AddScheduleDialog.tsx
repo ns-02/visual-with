@@ -1,8 +1,9 @@
-import { Dispatch, SetStateAction, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { Dialog, DialogInput, Group, Row } from '@components/dialogs';
 import { useSchedule } from '@context/ScheduleContext';
 import getMaxId from '@utils/getMaxId';
 import { ScheduleData } from '@models/Schedule';
+import { getDate } from '@utils/dateUtils';
 
 export interface AddScheduleDialogProps {
   open: boolean;
@@ -17,6 +18,12 @@ const AddScheduleDialog = ({ open, onOpenChange }: AddScheduleDialogProps) => {
   const [finishDate, setFinishDate] = useState('');
   const [finishTime, setFinishTime] = useState('');
   const [description, setDescription] = useState('');
+  const { year, month, day, hour, minute } = getDate();
+
+  useEffect(() => {
+    setstartDate(`${year}-${month}-${day}`);
+    setStartTime(`${hour}:${minute}`);
+  }, []);
 
   const handleAddSchedule = () => {
     if (!title || !startDate || !startTime) return;

@@ -16,7 +16,7 @@ const Tooltip = (props: TooltipProps) => {
   const { align = 'start', side, trigger, items } = props;
 
   return (
-    <Tooltips.Root>
+    <Tooltips.Root delayDuration={100}>
       <Tooltips.Trigger asChild>{trigger}</Tooltips.Trigger>
       <Tooltips.Portal>
         <Tooltips.Content
