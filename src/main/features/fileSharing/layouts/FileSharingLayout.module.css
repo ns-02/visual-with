@@ -1,6 +1,6 @@
 .file_sharing_root {
   height: 100%;
-  background-color: aliceblue;
+  background-color: var(--color-background-primary);
 }
 
 .top_files {

@@ -2,6 +2,6 @@
   padding: 4px 12px;
   border-radius: 6px;
   border: 0.5px solid #ccc;
-  background-color: white;
+  background-color: var(--color-component-default);
   cursor: pointer;
 }

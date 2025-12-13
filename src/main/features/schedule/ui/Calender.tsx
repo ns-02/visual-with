@@ -3,7 +3,7 @@ import { ko } from 'date-fns/locale';
 import { CalenderProps } from '..';
 import styles from './Calender.module.css';
 import 'react-day-picker/style.css';
-import '../../../../styles/global_daypicker.css';
+import '../../../../styles/globalDaypicker.css';
 
 const Calender = ({ selected, setSelected }: CalenderProps) => {
   return (

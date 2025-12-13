@@ -20,7 +20,7 @@ function BottomInputArea({ onSend }: BottomInputAreaProps) {
 
   const triggerElement = (
     <Button className={styles.button}>
-      <Plus size={16} />
+      <Plus size={20} />
     </Button>
   );
 
@@ -36,7 +36,7 @@ function BottomInputArea({ onSend }: BottomInputAreaProps) {
         onKeyDown={(e) => handleKeyDown(e)}
       />
       <Button className={styles.button} onCustomClick={handleSend}>
-        <Send size={16} />
+        <Send size={20} />
       </Button>
     </div>
   );

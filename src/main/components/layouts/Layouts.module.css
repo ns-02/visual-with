@@ -1,3 +1,4 @@
+/* panel */
 .leftmenu {
   display: flex;
   flex-direction: column;
@@ -7,14 +8,7 @@
   padding: 10px;
   align-items: center;
   gap: 10px;
-  border-right: 1px solid aliceblue;
-}
-
-.middle_menu_container {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  flex: 1;
+  border-right: 1px solid var(--color-background-primary);
 }
 
 .rightsection {
@@ -33,4 +27,32 @@
 
 .body {
   flex: 1;
+}
+
+/* area */
+.middle_menu_container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+
+/* ui */
+.info_button {
+  background-color: var(--color-button-info);
+}
+
+.menu_button {
+  background-color: var(--color-menu-button-secondary);
+  color: var(--color-content-default);
+}
+
+.selected {
+  background-color: var(--color-menu-button-primary);
+}
+
+.link_button {
+  width: 36px;
+  height: 36px;
+  background-color: var(--color-button-default);
 }

@@ -1,22 +1,33 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { DropdownMenu } from 'radix-ui';
-import { Dropdown, Item } from '@components/ui';
+import { Button, Dropdown, Item } from '@components/ui';
 import { useUser } from '@context/UserContext';
 import LogoutDialog from '../dialogs/LogoutDialog';
 import styles from './UserDropdownItems.module.css';
 
-interface DropdownProps {
-  trigger?: React.ReactNode;
-}
-
-const UserDropdown = ({ trigger }: DropdownProps) => {
+const UserDropdown = () => {
   const [isLogoutDialogOpen, setIsLogoutDialogOpen] = useState(false);
+  const [triggerText, setTriggerText] = useState<string | undefined>();
   const { userName } = useUser();
 
   const renderUserName = () => {
     if (!userName) return '로그인되지 않음';
     return userName;
   };
+
+  useEffect(() => {
+    if (!userName) return;
+
+    setTriggerText(userName[0]);
+  }, [userName]);
+
+  const trigger = (
+    <Button
+      text={triggerText}
+      shape='circle'
+      className={styles.button_primary}
+    />
+  );
 
   const dropdownItems = (
     <>

@@ -7,7 +7,7 @@
   justify-content: center;
   border: 1px dashed #999;
   border-radius: 12px;
-  background-color: white;
+  background-color: var(--color-component-default);
 }
 
 .container_dragging {

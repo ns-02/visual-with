@@ -28,6 +28,7 @@ interface MenuItem {
 function LeftMenu() {
   const [isInviteTeamDialogOpen, setIsInviteTeamDialogOpen] = useState(false);
   const { selectTeamName, isTeamMember } = useTeam();
+  const [selectItemId, setSelectItemId] = useState<ToolId | null>(null);
 
   const topMenuItems: MenuItem[] = [
     { id: 'team-chat', icon: MessagesSquare, path: 'teamchat' },
@@ -41,19 +42,36 @@ function LeftMenu() {
     { id: 'direct-chat', icon: MessageSquare, path: 'directchat' },
   ];
 
-  const UserTrigger = <Button text='김' shape='circle' />;
+  const handleMenuClick = (id: ToolId) => {
+    setSelectItemId(id);
+  };
+
+  const getMenuStyle = (id: ToolId) => {
+    const isItemSelected = id === selectItemId ? true : false;
+    return `${styles.menu_button} ${isItemSelected && styles.selected}`;
+  };
 
   const TeamTrigger = isTeamMember ? (
-    <Button text={selectTeamName[0]} shape='square' />
+    <Button
+      text={selectTeamName[0]}
+      shape='square'
+      className={styles.info_button}
+    />
   ) : (
-    <Button shape='square'>
+    <Button shape='square' className={styles.info_button}>
       <Plus size={24} />
     </Button>
   );
 
   const renderMenuItems = (items: MenuItem[]) => {
     return items.map((item) => (
-      <Button key={item.id} to={item.path} shape='circle'>
+      <Button
+        key={item.id}
+        to={item.path}
+        shape='circle'
+        className={getMenuStyle(item.id)}
+        onCustomClick={() => handleMenuClick(item.id)}
+      >
         <item.icon size={24} />
       </Button>
     ));
@@ -63,10 +81,11 @@ function LeftMenu() {
     <>
       <div>
         <Button
-          onCustomClick={() => setIsInviteTeamDialogOpen(true)}
           shape='circle'
+          className={styles.link_button}
+          onCustomClick={() => setIsInviteTeamDialogOpen(true)}
         >
-          <Link2 size={24} />
+          <Link2 size={20} />
         </Button>
       </div>
       <Divider />
@@ -83,7 +102,7 @@ function LeftMenu() {
         {renderMenuItems(middleMenuItems)}
       </div>
       <Divider />
-      <UserDropdown trigger={UserTrigger} />
+      <UserDropdown />
       <InviteTeamDialog
         open={isInviteTeamDialogOpen}
         onOpenChange={setIsInviteTeamDialogOpen}

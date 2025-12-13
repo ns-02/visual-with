@@ -18,6 +18,7 @@ import InviteLinkPage from './main/features/teamManager/pages/InviteLinkPage';
 import AppProviders from './providers/AppProviders';
 import PrivateRoute from './routes/PrivateRoute';
 import { RouteWatcher } from './routes/RouteWatcher';
+import './styles/globalVariables.css';
 import './styles/global.css';
 
 const App: React.FC = () => {

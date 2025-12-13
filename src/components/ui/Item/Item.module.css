@@ -22,5 +22,5 @@
 }
 
 .selected {
-  background-color: aliceblue;
+  background-color: var(--color-component-selected);
 }

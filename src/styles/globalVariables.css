@@ -1,0 +1,21 @@
+:root {
+  --color-background-primary: aliceblue;
+  --color-background-secondary: white;
+  --color-component-default: white;
+  --color-component-selected: aliceblue;
+  --color-component-border: #dbefff;
+  --color-menu-button-primary: #c5e5ff;
+  --color-menu-button-secondary: #e0f4ff;
+  --color-button-primary: #ffb6d9;
+  /* --color-button-secondary: #e0f4ff; */
+  --color-button-info: #c5e5ff;
+  --color-button-default: white;
+  --color-content-default: black;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background-primary: aliceblue;
+    --color-background-secondary: white;
+  }
+}

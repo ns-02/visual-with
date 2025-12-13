@@ -28,7 +28,11 @@ const HeaderBar: React.FC<HeaderBarProps> = ({
           {inputIcon}
         </Input>
         {button && onClick && (
-          <Button text={button} onCustomClick={onClick}>
+          <Button
+            text={button}
+            className={styles.button_primary}
+            onCustomClick={onClick}
+          >
             {children}
           </Button>
         )}

@@ -14,3 +14,7 @@
   gap: 16px;
   align-items: center;
 }
+
+.button_primary {
+  background-color: var(--color-button-primary);
+}
