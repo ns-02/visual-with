@@ -5,7 +5,6 @@ import {
   FileText,
   Link2,
   ListTodo,
-  LogOut,
   MessageSquare,
   MessagesSquare,
   Plus,
@@ -14,10 +13,10 @@ import {
 import { useTeam } from '@context/TeamContext';
 import { Button } from '@components/ui';
 import { ToolId } from '@models/ToolId';
+import TeamDropdown from '@features/teamManager/ui/TeamDropdown';
+import UserDropdown from '@features/userManager/ui/UserDropdown';
+import InviteTeamDialog from '@features/teamManager/dialogs/InviteTeamDialog';
 import Divider from '../ui/Divider';
-import TeamDropdown from '../../features/teamManager/ui/TeamDropdown';
-import InviteTeamDialog from '../../features/teamManager/dialogs/InviteTeamDialog';
-import LogoutDialog from '../../features/misc/dialogs/LogoutDialog';
 import styles from './Layouts.module.css';
 
 interface MenuItem {
@@ -28,7 +27,6 @@ interface MenuItem {
 
 function LeftMenu() {
   const [isInviteTeamDialogOpen, setIsInviteTeamDialogOpen] = useState(false);
-  const [isLogoutDialogOpen, setIsLogoutDialogOpen] = useState(false);
   const { selectTeamName, isTeamMember } = useTeam();
 
   const topMenuItems: MenuItem[] = [
@@ -43,9 +41,9 @@ function LeftMenu() {
     { id: 'direct-chat', icon: MessageSquare, path: 'directchat' },
   ];
 
-  const bottomMenuItem: MenuItem = { id: 'log-out', icon: LogOut };
+  const UserTrigger = <Button text='김' shape='circle' />;
 
-  const triggerElement = isTeamMember ? (
+  const TeamTrigger = isTeamMember ? (
     <Button text={selectTeamName[0]} shape='square' />
   ) : (
     <Button shape='square'>
@@ -61,45 +59,8 @@ function LeftMenu() {
     ));
   };
 
-  // 팀에 소속되지 않은 경우
-  if (!isTeamMember) {
-    return (
-      <section className={styles.leftmenu}>
-        <div>
-          <TeamDropdown triggerElement={triggerElement} />
-        </div>
-        <LogoutDialog
-          open={isLogoutDialogOpen}
-          onOpenChange={setIsLogoutDialogOpen}
-        />
-        <Divider />
-        {renderMenuItems(middleMenuItems)}
-        <Divider />
-        <div>
-          <Button
-            onCustomClick={() => setIsLogoutDialogOpen(true)}
-            shape='circle'
-          >
-            <bottomMenuItem.icon size={24} />
-          </Button>
-        </div>
-      </section>
-    );
-  }
-
-  return (
-    <section className={styles.leftmenu}>
-      <div>
-        <TeamDropdown triggerElement={triggerElement} />
-      </div>
-      <InviteTeamDialog
-        open={isInviteTeamDialogOpen}
-        onOpenChange={setIsInviteTeamDialogOpen}
-      />
-      <LogoutDialog
-        open={isLogoutDialogOpen}
-        onOpenChange={setIsLogoutDialogOpen}
-      />
+  const renderTeamMemberContainer = isTeamMember && (
+    <>
       <div>
         <Button
           onCustomClick={() => setIsInviteTeamDialogOpen(true)}
@@ -110,17 +71,23 @@ function LeftMenu() {
       </div>
       <Divider />
       {renderMenuItems(topMenuItems)}
+    </>
+  );
+
+  return (
+    <section className={styles.leftmenu}>
+      <TeamDropdown trigger={TeamTrigger} />
+      {renderTeamMemberContainer}
       <Divider />
-      {renderMenuItems(middleMenuItems)}
-      <Divider />
-      <div>
-        <Button
-          onCustomClick={() => setIsLogoutDialogOpen(true)}
-          shape='circle'
-        >
-          <bottomMenuItem.icon size={24} />
-        </Button>
+      <div className={styles.middle_menu_container}>
+        {renderMenuItems(middleMenuItems)}
       </div>
+      <Divider />
+      <UserDropdown trigger={UserTrigger} />
+      <InviteTeamDialog
+        open={isInviteTeamDialogOpen}
+        onOpenChange={setIsInviteTeamDialogOpen}
+      />
     </section>
   );
 }

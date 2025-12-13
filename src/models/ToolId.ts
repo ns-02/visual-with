@@ -4,5 +4,4 @@ export type ToolId =
   | 'schedule'
   | 'todos'
   | 'friends'
-  | 'direct-chat'
-  | 'log-out';
+  | 'direct-chat';

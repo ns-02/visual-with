@@ -7,10 +7,10 @@ import TeamDropdownItems from './TeamDropdownItems';
 import { TeamData } from '@models/Team';
 
 interface DropdownProps {
-  triggerElement?: React.ReactNode;
+  trigger?: React.ReactNode;
 }
 
-const TeamDropdown = ({ triggerElement }: DropdownProps) => {
+const TeamDropdown = ({ trigger }: DropdownProps) => {
   const [isCreateTeamDialogOpen, setIsCreateTeamDialogOpen] = useState(false);
   const [isDeleteTeamDialogOpen, setIsDeleteTeamDialogOpen] = useState(false);
   const [deleteTeamData, setDeleteTeamData] = useState<TeamData>();
@@ -32,7 +32,7 @@ const TeamDropdown = ({ triggerElement }: DropdownProps) => {
 
   return (
     <>
-      <Dropdown trigger={triggerElement} items={dropdownItems} />
+      <Dropdown trigger={trigger} items={dropdownItems} />
       <CreateTeamDialog
         open={isCreateTeamDialogOpen}
         onOpenChange={setIsCreateTeamDialogOpen}

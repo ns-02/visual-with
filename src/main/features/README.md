@@ -6,6 +6,7 @@
 
 ## 파일 및 폴더
 - [`../`](../README.md)
+- [`userManager/` : 사용자 관리](userManager/README.md)
 - [`teamManager/` : 팀 관리](teamManager/README.md)
 - [`teamChat/` : 팀 채팅](teamChat/README.md)
 - [`fileSharing/` : 파일 공유](fileSharing/README.md)
