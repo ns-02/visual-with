@@ -1,0 +1,17 @@
+.container {
+  display: flex;
+  z-index: 2;
+  padding: 4px 12px;
+  background-color: var(--color-component-primary);
+  border-radius: 6px;
+}
+
+.separator {
+  height: 0.5px;
+  background-color: #666;
+  margin: 4px 0;
+}
+
+.arrow {
+  fill: var(--color-component-primary);
+}

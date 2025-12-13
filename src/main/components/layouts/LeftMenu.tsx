@@ -11,16 +11,18 @@ import {
   Users,
 } from 'lucide-react';
 import { useTeam } from '@context/TeamContext';
-import { Button } from '@components/ui';
+import { Button, Tooltip } from '@components/ui';
 import { ToolId } from '@models/ToolId';
 import TeamDropdown from '@features/teamManager/ui/TeamDropdown';
 import UserDropdown from '@features/userManager/ui/UserDropdown';
 import InviteTeamDialog from '@features/teamManager/dialogs/InviteTeamDialog';
 import Divider from '../ui/Divider';
 import styles from './Layouts.module.css';
+import TooltipItem from '../ui/TooltipItem';
 
 interface MenuItem {
   id: ToolId;
+  text: string;
   icon: ComponentType<LucideProps>;
   path?: string;
 }
@@ -31,15 +33,25 @@ function LeftMenu() {
   const [selectItemId, setSelectItemId] = useState<ToolId | null>(null);
 
   const topMenuItems: MenuItem[] = [
-    { id: 'team-chat', icon: MessagesSquare, path: 'teamchat' },
-    { id: 'files', icon: FileText, path: 'filesharing' },
-    { id: 'schedule', icon: Calendar1, path: 'schedule' },
-    { id: 'todos', icon: ListTodo, path: 'todolist' },
+    {
+      id: 'team-chat',
+      text: '팀 채팅',
+      icon: MessagesSquare,
+      path: 'teamchat',
+    },
+    { id: 'files', text: '파일 목록', icon: FileText, path: 'filesharing' },
+    { id: 'schedule', text: '일정 관리', icon: Calendar1, path: 'schedule' },
+    { id: 'todos', text: '할 일 목록', icon: ListTodo, path: 'todolist' },
   ];
 
   const middleMenuItems: MenuItem[] = [
-    { id: 'friends', icon: Users, path: 'friendlist' },
-    { id: 'direct-chat', icon: MessageSquare, path: 'directchat' },
+    { id: 'friends', text: '친구 목록', icon: Users, path: 'friendlist' },
+    {
+      id: 'direct-chat',
+      text: '친구 채팅',
+      icon: MessageSquare,
+      path: 'directchat',
+    },
   ];
 
   const handleMenuClick = (id: ToolId) => {
@@ -64,7 +76,7 @@ function LeftMenu() {
   );
 
   const renderMenuItems = (items: MenuItem[]) => {
-    return items.map((item) => (
+    const renderMenuItem = (item: MenuItem) => (
       <Button
         key={item.id}
         to={item.path}
@@ -74,6 +86,13 @@ function LeftMenu() {
       >
         <item.icon size={24} />
       </Button>
+    );
+
+    return items.map((item) => (
+      <Tooltip
+        trigger={renderMenuItem(item)}
+        items={<TooltipItem text={item.text} />}
+      />
     ));
   };
 
@@ -95,18 +114,20 @@ function LeftMenu() {
 
   return (
     <section className={styles.leftmenu}>
-      <TeamDropdown trigger={TeamTrigger} />
-      {renderTeamMemberContainer}
-      <Divider />
-      <div className={styles.middle_menu_container}>
-        {renderMenuItems(middleMenuItems)}
-      </div>
-      <Divider />
-      <UserDropdown />
-      <InviteTeamDialog
-        open={isInviteTeamDialogOpen}
-        onOpenChange={setIsInviteTeamDialogOpen}
-      />
+      <Tooltip.Provider delayDuration={100}>
+        <TeamDropdown trigger={TeamTrigger} />
+        {renderTeamMemberContainer}
+        <Divider />
+        <div className={styles.middle_menu_container}>
+          {renderMenuItems(middleMenuItems)}
+        </div>
+        <Divider />
+        <UserDropdown />
+        <InviteTeamDialog
+          open={isInviteTeamDialogOpen}
+          onOpenChange={setIsInviteTeamDialogOpen}
+        />
+      </Tooltip.Provider>
     </section>
   );
 }
