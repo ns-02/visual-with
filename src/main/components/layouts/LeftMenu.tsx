@@ -39,7 +39,7 @@ function LeftMenu() {
       icon: MessagesSquare,
       path: 'teamchat',
     },
-    { id: 'files', text: '파일 목록', icon: FileText, path: 'filesharing' },
+    { id: 'files', text: '파일 공유', icon: FileText, path: 'filesharing' },
     { id: 'schedule', text: '일정 관리', icon: Calendar1, path: 'schedule' },
     { id: 'todos', text: '할 일 목록', icon: ListTodo, path: 'todolist' },
   ];
