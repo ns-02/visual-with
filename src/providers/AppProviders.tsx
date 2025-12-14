@@ -5,20 +5,23 @@ import {
   TeamProvider,
   UserProvider,
 } from '@context';
+import { Tooltip } from '@components/ui';
 import ToolProviders from './ToolProviders';
 
 const AppProviders = ({ children }: { children: React.ReactNode }) => (
-  <AreaOpenProvider>
-    <ToolProviders>
-      <TeamProvider>
-        <FriendProvider>
-          <AuthProvider>
-            <UserProvider>{children}</UserProvider>
-          </AuthProvider>
-        </FriendProvider>
-      </TeamProvider>
-    </ToolProviders>
-  </AreaOpenProvider>
+  <Tooltip.Provider>
+    <AreaOpenProvider>
+      <ToolProviders>
+        <TeamProvider>
+          <FriendProvider>
+            <AuthProvider>
+              <UserProvider>{children}</UserProvider>
+            </AuthProvider>
+          </FriendProvider>
+        </TeamProvider>
+      </ToolProviders>
+    </AreaOpenProvider>
+  </Tooltip.Provider>
 );
 
 export default AppProviders;

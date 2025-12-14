@@ -82,7 +82,6 @@ function LeftMenu() {
         to={item.path}
         shape='circle'
         className={getMenuStyle(item.id)}
-        onCustomClick={() => handleMenuClick(item.id)}
       >
         <item.icon size={24} />
       </Button>
@@ -93,6 +92,7 @@ function LeftMenu() {
         key={item.id}
         trigger={renderMenuItem(item)}
         items={<TooltipItem text={item.text} />}
+        onClick={() => handleMenuClick(item.id)}
       />
     ));
   };
@@ -115,20 +115,18 @@ function LeftMenu() {
 
   return (
     <section className={styles.leftmenu}>
-      <Tooltip.Provider>
-        <TeamDropdown trigger={DropdownTrigger} />
-        {renderTeamMemberContainer}
-        <Divider />
-        <div className={styles.middle_menu_container}>
-          {renderMenuItems(middleMenuItems)}
-        </div>
-        <Divider />
-        <UserDropdown />
-        <InviteTeamDialog
-          open={isInviteTeamDialogOpen}
-          onOpenChange={setIsInviteTeamDialogOpen}
-        />
-      </Tooltip.Provider>
+      <TeamDropdown trigger={DropdownTrigger} />
+      {renderTeamMemberContainer}
+      <Divider />
+      <div className={styles.middle_menu_container}>
+        {renderMenuItems(middleMenuItems)}
+      </div>
+      <Divider />
+      <UserDropdown />
+      <InviteTeamDialog
+        open={isInviteTeamDialogOpen}
+        onOpenChange={setIsInviteTeamDialogOpen}
+      />
     </section>
   );
 }
