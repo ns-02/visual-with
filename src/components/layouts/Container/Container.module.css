@@ -1,7 +1,9 @@
 .layout {
   display: flex;
-  padding: 30px;
+  flex-direction: column;
   height: 100%;
+  padding: 30px;
+  gap: 20px;
   justify-content: center;
   align-items: center;
   background-color: var(--color-background-primary);
@@ -9,8 +11,8 @@
 
 .container {
   display: flex;
-  width: 480px;
-  padding: 60px 0;
+  width: 420px;
+  padding: 0;
   justify-content: center;
   align-items: center;
   border-radius: 24px;

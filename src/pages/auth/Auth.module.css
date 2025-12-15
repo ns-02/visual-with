@@ -1,4 +1,58 @@
-.contents {
-  padding: 10px;
+.login_form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 32px;
+  gap: 24px;
   text-align: center;
+}
+
+.signup_form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 32px;
+  gap: 20px;
+  text-align: center;
+}
+
+.title_container {
+  padding: 4px 0;
+}
+
+.title {
+  font-size: 28px;
+  font-weight: normal;
+}
+
+.contents {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 32px;
+  gap: 16px;
+  text-align: center;
+}
+
+.id_field {
+  display: flex;
+}
+
+.bottom_field {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.link {
+  text-decoration: none;
+  color: var(--color-content-default);
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.link_auth {
+  color: var(--color-button-secondary-800);
 }

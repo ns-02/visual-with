@@ -4,6 +4,7 @@ import { useAuth } from '@context/AuthContext';
 import { useUser } from '@context/UserContext';
 import { Container } from '@components';
 import { loginUser } from '@api/api';
+import { AuthButton, AuthInput } from '@components/ui';
 import styles from './Auth.module.css';
 
 function LoginPage() {
@@ -45,48 +46,40 @@ function LoginPage() {
   };
 
   return (
-    <Container>
-      <div className={styles.contents}>
-        <div>
-          <h2>로그인</h2>
+    <Container
+      outerButton={
+        <Link className={styles.link} to={'/'}>
+          ← 홈으로 돌아가기
+        </Link>
+      }
+    >
+      <form className={styles.login_form} onSubmit={(e) => handleLogin(e)}>
+        <div className={styles.title_container}>
+          <h1 className={styles.title}>로그인</h1>
         </div>
-        <br />
-        <form onSubmit={(e) => handleLogin(e)}>
-          <div>
-            <div>
-              <input
-                name='userId'
-                type='text'
-                value={id}
-                onChange={(e) => setId(e.target.value)}
-                placeholder='아이디를 입력하세요'
-                required
-              ></input>
-            </div>
-            <div>
-              <input
-                name='password'
-                type='password'
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder='비밀번호를 입력하세요'
-                required
-              ></input>
-            </div>
-            <br />
-            <div>
-              <button type='submit'>로그인</button>
-            </div>
-            <br />
-            <div>
-              <Link to={'/signup'}>회원가입</Link>
-            </div>
-            <div>
-              <Link to={'/'}>홈으로 돌아가기</Link>
-            </div>
-          </div>
-        </form>
-      </div>
+        <AuthInput
+          name='userId'
+          type='text'
+          value={id}
+          onChange={(e) => setId(e.target.value)}
+          placeholder='아이디를 입력하세요'
+        />
+        <AuthInput
+          name='password'
+          type='password'
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder='비밀번호를 입력하세요'
+        />
+        <AuthButton type='submit'>로그인</AuthButton>
+
+        <div className={styles.bottom_field}>
+          <p>계정이 없으신가요?</p>
+          <Link className={`${styles.link} ${styles.link_auth}`} to={'/signup'}>
+            회원가입
+          </Link>
+        </div>
+      </form>
     </Container>
   );
 }

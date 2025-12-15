@@ -1,15 +1,25 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Container } from '@components';
 import styles from './Auth.module.css';
+import { AuthButton } from '@components/ui';
 
 function GuardPage() {
+  const navigate = useNavigate();
+
   return (
-    <Container>
+    <Container
+      outerButton={
+        <Link className={styles.link} to={'/'}>
+          ← 홈으로 돌아가기
+        </Link>
+      }
+    >
       <div className={styles.contents}>
-        <h3>로그인 후 이용 가능한 서비스입니다.</h3>
-        <br />
-        <Link to={'/'}>홈으로</Link>
-        <Link to={'/login'}>로그인</Link>
+        <div className={styles.title_container}>
+          <h1 className={styles.title}>접근 제한</h1>
+        </div>
+        <p>로그인 후 이용 가능한 서비스입니다.</p>
+        <AuthButton onClick={() => navigate('/login')}>로그인</AuthButton>
       </div>
     </Container>
   );

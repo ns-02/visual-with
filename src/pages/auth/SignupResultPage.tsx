@@ -1,19 +1,27 @@
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Container } from '@components';
 import styles from './Auth.module.css';
+import { AuthButton } from '@components/ui';
 
 function SignupResultPage() {
+  const navigate = useNavigate();
   const location = useLocation();
   const { userId } = location.state;
 
   return (
-    <Container>
+    <Container
+      outerButton={
+        <Link className={styles.link} to={'/'}>
+          ← 홈으로 돌아가기
+        </Link>
+      }
+    >
       <div className={styles.contents}>
-        <h3>회원가입 완료</h3>
+        <div className={styles.title_container}>
+          <h1 className={styles.title}>회원가입 완료</h1>
+        </div>
         <p>{`${userId}님의 회원가입을 환영합니다!`}</p>
-        <br />
-        <Link to={'/'}>홈으로</Link>
-        <Link to={'/login'}>로그인</Link>
+        <AuthButton onClick={() => navigate('/login')}>로그인</AuthButton>
       </div>
     </Container>
   );

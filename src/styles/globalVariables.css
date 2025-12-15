@@ -12,11 +12,14 @@
   --color-button-secondary-400: aliceblue;
   --color-button-secondary-500: #e0f4ff;
   --color-button-secondary-600: #c5e5ff;
+  --color-button-secondary-700: #82c3f8;
+  --color-button-secondary-800: #5caef2;
   --color-button-border: #aaa;
   --color-button-info: #c5e5ff;
   --color-button-focus: #c5e5ff;
   --color-button-default: white;
   --color-content-default: black;
+  --color-content-light: white;
 }
 
 @media (prefers-color-scheme: dark) {
