@@ -1,11 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import HomePage from '@pages/HomePage';
-import {
-  LoginPage,
-  NotFoundPage,
-  SignupPage,
-  SignupResultPage,
-} from '@pages/auth';
+import * as Auth from '@pages/auth';
 import MainLayout from './main/MainLayout';
 import MainPage from './main/MainPage';
 import TeamChatPage from './main/features/teamChat/pages/TeamChatPage';
@@ -20,6 +15,8 @@ import PrivateRoute from './routes/PrivateRoute';
 import { RouteWatcher } from './routes/RouteWatcher';
 import './styles/globalVariables.css';
 import './styles/global.css';
+import TeamLayout from '@features/teamManager/layouts/TeamLayout';
+import TeamPage from '@features/teamManager/pages/TeamPage';
 
 const App: React.FC = () => {
   return (
@@ -28,19 +25,23 @@ const App: React.FC = () => {
       <Routes>
         <Route path='/' element={<HomePage />} />
 
-        <Route path='/login' element={<LoginPage />} />
-        <Route path='/signup' element={<SignupPage />} />
-        <Route path='/signup-result' element={<SignupResultPage />} />
+        <Route path='/login' element={<Auth.LoginPage />} />
+        <Route path='/signup' element={<Auth.SignupPage />} />
+        <Route path='/signup-result' element={<Auth.SignupResultPage />} />
 
         <Route element={<PrivateRoute />}>
           <Route path='/main' element={<MainLayout />}>
             <Route index element={<MainPage />} />
-            <Route path='teamchat' element={<TeamChatPage />} />
-            <Route path='filesharing' element={<FileSharingPage />} />
-            <Route path='schedule' element={<SchedulePage />} />
-            <Route path='todolist' element={<TodoListPage />} />
             <Route path='friendlist' element={<FriendListPage />} />
             <Route path='directchat' element={<DirectChatPage />} />
+
+            <Route path=':teamId' element={<TeamLayout />}>
+              <Route index element={<TeamPage />} />
+              <Route path='teamchat' element={<TeamChatPage />} />
+              <Route path='filesharing' element={<FileSharingPage />} />
+              <Route path='schedule' element={<SchedulePage />} />
+              <Route path='todolist' element={<TodoListPage />} />
+            </Route>
           </Route>
         </Route>
 
@@ -48,7 +49,7 @@ const App: React.FC = () => {
           <Route path=':id' element={<InviteLinkPage />} />
         </Route>
 
-        <Route path='*' element={<NotFoundPage />} />
+        <Route path='*' element={<Auth.NotFoundPage />} />
       </Routes>
     </AppProviders>
   );

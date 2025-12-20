@@ -16,15 +16,36 @@ for (const r of ROUTES) {
   idToPath.set(r.id, r.path);
 }
 
+// url로 toolId 추출하기
 export function getToolIdFromPath(pathname: string): ToolId | null {
   const parts = pathname.split('/').filter(Boolean);
 
-  // '/'으로 분리한 문자열의 2번째: features 찾기
-  const second = parts[1] ?? '';
-  return pathToId.get(second) ?? null;
+  // url에서 features 찾기
+  for (const part of parts) {
+    const toolId = pathToId.get(part);
+    if (toolId) return toolId;
+  }
+
+  return null;
 }
 
-export function getPathFromToolId(id: ToolId): string {
-  // return idToPath.get(id) ?? '';
-  return '';
+export interface ConvertPathProps {
+  id: ToolId;
+  onTeam: boolean;
+  selectTeamId: string;
+}
+
+// toolId로 url 만들기
+export function getPathFromToolId(props: ConvertPathProps): string {
+  const { id, onTeam, selectTeamId } = props;
+
+  if (onTeam) {
+    if (!selectTeamId) {
+      console.error('선택된 팀 아이디가 존재하지 않음');
+      return '';
+    }
+    return `${selectTeamId}/${idToPath.get(id)}`;
+  } else {
+    return idToPath.get(id) ?? '';
+  }
 }

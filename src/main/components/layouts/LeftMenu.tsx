@@ -19,17 +19,18 @@ import InviteTeamDialog from '@features/teamManager/dialogs/InviteTeamDialog';
 import Divider from '../ui/Divider';
 import styles from './Layouts.module.css';
 import TooltipItem from '../ui/TooltipItem';
+import { getPathFromToolId } from '@routes/routeMap';
 
 interface MenuItem {
   id: ToolId;
   text: string;
   icon: ComponentType<LucideProps>;
-  path?: string;
+  onTeam: boolean;
 }
 
 function LeftMenu() {
   const [isInviteTeamDialogOpen, setIsInviteTeamDialogOpen] = useState(false);
-  const { selectTeamName, isTeamMember } = useTeam();
+  const { selectTeamId, selectTeamName, isTeamMember } = useTeam();
   const [selectItemId, setSelectItemId] = useState<ToolId | null>(null);
 
   const topMenuItems: MenuItem[] = [
@@ -37,20 +38,40 @@ function LeftMenu() {
       id: 'team-chat',
       text: '팀 채팅',
       icon: MessagesSquare,
-      path: 'teamchat',
+      onTeam: true,
     },
-    { id: 'files', text: '파일 공유', icon: FileText, path: 'filesharing' },
-    { id: 'schedule', text: '일정 관리', icon: Calendar1, path: 'schedule' },
-    { id: 'todos', text: '할 일 목록', icon: ListTodo, path: 'todolist' },
+    {
+      id: 'files',
+      text: '파일 공유',
+      icon: FileText,
+      onTeam: true,
+    },
+    {
+      id: 'schedule',
+      text: '일정 관리',
+      icon: Calendar1,
+      onTeam: true,
+    },
+    {
+      id: 'todos',
+      text: '할 일 목록',
+      icon: ListTodo,
+      onTeam: true,
+    },
   ];
 
   const middleMenuItems: MenuItem[] = [
-    { id: 'friends', text: '친구 목록', icon: Users, path: 'friendlist' },
+    {
+      id: 'friends',
+      text: '친구 목록',
+      icon: Users,
+      onTeam: false,
+    },
     {
       id: 'direct-chat',
       text: '친구 채팅',
       icon: MessageSquare,
-      path: 'directchat',
+      onTeam: false,
     },
   ];
 
@@ -79,7 +100,11 @@ function LeftMenu() {
     const renderMenuItem = (item: MenuItem) => (
       <Button
         key={item.id}
-        to={item.path}
+        to={getPathFromToolId({
+          id: item.id,
+          onTeam: item.onTeam,
+          selectTeamId,
+        })}
         shape='circle'
         className={getMenuStyle(item.id)}
       >
