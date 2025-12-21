@@ -1,9 +1,10 @@
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { createTeam } from '@api/api';
 import { useTeam } from '@context/TeamContext';
 import { useUser } from '@context/UserContext';
 import { TeamData, TeamId, TeamName } from '@models/Team';
+import { getPathFromToolId, getToolIdFromPath } from '@routes/routeMap';
 
 const useTeamManager = () => {
   const {
@@ -16,6 +17,7 @@ const useTeamManager = () => {
 
   const { userId, setUserId } = useUser();
   const navigate = useNavigate();
+  const { pathname } = useLocation();
 
   // 임시로 유저 아이디를 amugae(아무개)로 설정함. 반드시 지울 것
   useEffect(() => {
@@ -51,9 +53,22 @@ const useTeamManager = () => {
   };
 
   const selectTeam = (selectedTeam: TeamData) => {
+    const toolId = getToolIdFromPath(pathname);
+
     if (selectedTeam) setIsTeamMember(true);
 
-    navigate(`${selectedTeam.id}`);
+    if (toolId) {
+      const toolPath = getPathFromToolId({ id: toolId });
+
+      if (toolPath !== 'directchat' && toolPath !== 'friendlist') {
+        navigate(`${selectedTeam.id}/${toolPath}`);
+      } else {
+        navigate(`${toolPath}`);
+      }
+    } else {
+      navigate(`${selectedTeam.id}`);
+    }
+
     setSelectTeamId(selectedTeam.id);
     setSelectTeamName(selectedTeam.name);
   };

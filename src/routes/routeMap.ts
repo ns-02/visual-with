@@ -31,8 +31,8 @@ export function getToolIdFromPath(pathname: string): ToolId | null {
 
 export interface ConvertPathProps {
   id: ToolId;
-  onTeam: boolean;
-  selectTeamId: string;
+  onTeam?: boolean;
+  selectTeamId?: string;
 }
 
 // toolId로 url 만들기
