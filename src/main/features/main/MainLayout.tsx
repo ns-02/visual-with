@@ -1,8 +1,8 @@
 import { Outlet } from 'react-router-dom';
-import LeftMenu from './components/layouts/LeftMenu';
-import RightSection from './components/layouts/RightSection';
-import MainHeader from './components/layouts/MainHeader';
-import MainBody from './components/layouts/MainBody';
+import LeftMenu from './layouts/LeftMenu';
+import RightSection from './layouts/RightSection';
+import MainHeader from './layouts/MainHeader';
+import MainBody from './layouts/MainBody';
 
 function MainLayout() {
   return (
