@@ -1,6 +1,6 @@
 import { Search } from 'lucide-react';
-import { Dialog, Group, DialogInput, Row } from '@components/dialogs';
-import { Button } from '@components/ui';
+import { Dialog, Group, DialogInput, Row } from '@shared/components/dialogs';
+import { Button } from '@shared/components/ui';
 import { AddFriendDialogProps } from '..';
 import { useState } from 'react';
 import { notFriendDataMocks } from '@mocks/FriendDataMocks';

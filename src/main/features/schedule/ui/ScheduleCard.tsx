@@ -1,4 +1,4 @@
-import { ContentButton } from '@components/ui';
+import { ContentButton } from '@shared/components/ui';
 import styles from './ScheduleCard.module.css';
 import { EllipsisVertical } from 'lucide-react';
 import ScheduleDropdown from './ScheduleDropdown';

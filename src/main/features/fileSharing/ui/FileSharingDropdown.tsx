@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { DropdownMenu } from 'radix-ui';
-import { Dropdown, Item } from '@components/ui';
+import { Dropdown, Item } from '@shared/components/ui';
 import styles from './FileSharingDropdown.module.css';
 import DeleteFileDialog from '../dialogs/DeleteFileDialog';
 

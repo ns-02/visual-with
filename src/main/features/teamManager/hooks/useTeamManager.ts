@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { createTeam } from '@shared/api/api';
 import { useTeam } from '@core/context/TeamContext';
 import { useUser } from '@core/context/UserContext';
-import { TeamData, TeamId, TeamName } from '@models/Team';
+import { TeamData, TeamId, TeamName } from '@shared/models/Team';
 import { getPathFromToolId, getToolIdFromPath } from '@core/routes/routeMap';
 
 const useTeamManager = () => {

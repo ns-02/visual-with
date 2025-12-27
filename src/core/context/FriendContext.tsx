@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState } from 'react';
-import { FriendData } from '@models/Friend';
+import { FriendData } from '@shared/models/Friend';
 import {
   friendDataMocks,
   friendRequestDataMocks,

@@ -1,7 +1,7 @@
-import { Dialog, DialogInput, Group, Row } from '@components/dialogs';
+import { Dialog, DialogInput, Group, Row } from '@shared/components/dialogs';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { useSchedule } from '@core/context/ScheduleContext';
-import { ScheduleData } from '@models/Schedule';
+import { ScheduleData } from '@shared/models/Schedule';
 
 export interface UpdateScheduleDialogProps {
   scheduleId?: number;

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useTeam } from '@core/context/TeamContext';
-import { ChatItem } from '@models/Chat';
+import { ChatItem } from '@shared/models/Chat';
 import { getItem, setItem } from '@shared/utils/sessionStorage';
 import getMaxId from '@shared/utils/getMaxId';
 import TeamChatRoot from '../layouts/TeamChatRoot';

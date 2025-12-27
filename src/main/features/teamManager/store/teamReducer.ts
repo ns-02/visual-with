@@ -1,4 +1,4 @@
-import { TeamData, TeamId, TeamName } from '@models/Team';
+import { TeamData, TeamId, TeamName } from '@shared/models/Team';
 
 export type TeamAction =
   | { type: 'CREATE_TEAM'; payload: { id: TeamId; name: TeamName } }

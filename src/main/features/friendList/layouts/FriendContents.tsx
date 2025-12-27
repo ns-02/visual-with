@@ -1,5 +1,5 @@
 import { User, UserPlus } from 'lucide-react';
-import { FriendData } from '@models/Friend';
+import { FriendData } from '@shared/models/Friend';
 import { useFriend } from '@core/context/FriendContext';
 import FriendListCard from '../ui/FriendListCard';
 import FriendRequestCard from '../ui/FriendRequestCard';

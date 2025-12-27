@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
-import { Container } from '@components';
-import { AuthButton } from '@components/ui';
+import { Container } from '@shared/components';
+import { AuthButton } from '@shared/components/ui';
 import styles from './Auth.module.css';
 
 function NotFoundPage() {

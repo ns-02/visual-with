@@ -1,6 +1,6 @@
-import { MessageList } from '@components/ui';
-import { ChatItem } from '@models/Chat';
+import { ChatItem } from '@shared/models/Chat';
 import styles from './TeamChatLayout.module.css';
+import { MessageList } from '@shared/components';
 
 interface TeamChatPanelProps {
   allChat: ChatItem[];

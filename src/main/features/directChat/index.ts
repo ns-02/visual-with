@@ -1,5 +1,5 @@
-import { ChatItem } from '@models/Chat';
-import { FriendData } from '@models/Friend';
+import { ChatItem } from '@shared/models/Chat';
+import { FriendData } from '@shared/models/Friend';
 
 export { default as DirectChatRoot } from './layouts/DirectChatRoot';
 export { default as LeftFriendsPanel } from './layouts/LeftFriendsPanel';

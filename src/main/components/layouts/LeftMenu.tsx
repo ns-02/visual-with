@@ -11,8 +11,8 @@ import {
   Users,
 } from 'lucide-react';
 import { useTeam } from '@core/context/TeamContext';
-import { Button, Tooltip } from '@components/ui';
-import { ToolId } from '@models/ToolId';
+import { Button, Tooltip } from '@shared/components/ui';
+import { ToolId } from '@shared/models/ToolId';
 import TeamDropdown from '@features/teamManager/ui/TeamDropdown';
 import UserDropdown from '@features/userManager/ui/UserDropdown';
 import InviteTeamDialog from '@features/teamManager/dialogs/InviteTeamDialog';

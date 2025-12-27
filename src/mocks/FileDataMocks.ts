@@ -1,4 +1,4 @@
-import { FileData } from '@models/File';
+import { FileData } from '@shared/models/File';
 
 export const fileDataMocks: FileData[] = [
   {

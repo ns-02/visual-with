@@ -5,7 +5,7 @@ import {
   TeamProvider,
   UserProvider,
 } from '@core/context';
-import { Tooltip } from '@components/ui';
+import { Tooltip } from '@shared/components/ui';
 import ToolProviders from './ToolProviders';
 
 const AppProviders = ({ children }: { children: React.ReactNode }) => (

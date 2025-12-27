@@ -1,4 +1,4 @@
-import { ScheduleData } from '@models/Schedule';
+import { ScheduleData } from '@shared/models/Schedule';
 
 export const scheduleDataMocks: ScheduleData[] = [
   {

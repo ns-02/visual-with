@@ -1,5 +1,5 @@
 import React from 'react';
-import { ChatItem } from '@models/Chat';
+import { ChatItem } from '@shared/models/Chat';
 import styles from './MessageList.module.css';
 import { getDate } from '@shared/utils/dateUtils';
 

@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from 'react';
-import { TodoData } from '@models/Todo';
+import { TodoData } from '@shared/models/Todo';
 import { todoDataMocks } from '../../mocks/TodoDataMocks';
 
 type TodoContextType = {

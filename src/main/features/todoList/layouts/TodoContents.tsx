@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Circle, CircleCheckBig } from 'lucide-react';
 import { useTodo } from '@core/context/TodoContext';
-import { TodoData } from '@models/Todo';
+import { TodoData } from '@shared/models/Todo';
 import TodoListCard from '../ui/TodoListCard';
 import TodoListLabel from '../ui/TodoListLabel';
 import styles from './TodoListLayout.module.css';

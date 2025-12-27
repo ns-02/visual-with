@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { DropdownMenu } from 'radix-ui';
-import { Dropdown, Item } from '@components/ui';
+import { Dropdown, Item } from '@shared/components/ui';
 import CreateTeamDialog from '../dialogs/CreateTeamDialog';
 import DeleteTeamDialog from '../dialogs/DeleteTeamDialog';
 import TeamDropdownItems from './TeamDropdownItems';
-import { TeamData } from '@models/Team';
+import { TeamData } from '@shared/models/Team';
 
 interface DropdownProps {
   trigger?: React.ReactNode;

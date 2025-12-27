@@ -1,5 +1,5 @@
 import { Download, EllipsisVertical } from 'lucide-react';
-import { ContentButton } from '@components/ui';
+import { ContentButton } from '@shared/components/ui';
 import FileSharingDropdown from './FileSharingDropdown';
 import FileIcon from './FileIcon';
 import styles from './FileListCard.module.css';

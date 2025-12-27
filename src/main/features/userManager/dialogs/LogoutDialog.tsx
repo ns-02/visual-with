@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from 'react';
 import { useNavigate } from 'react-router-dom';
-import AlertDialog from '@components/dialogs/AlertDialog';
+import AlertDialog from '@shared/components/dialogs/AlertDialog';
 interface Props {
   open: boolean;
   onOpenChange: Dispatch<SetStateAction<boolean>>;

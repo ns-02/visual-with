@@ -1,8 +1,8 @@
 import { User } from 'lucide-react';
-import { Button } from '@components/ui';
+import { Button } from '@shared/components/ui';
 import { SelectFriendCardProps } from '..';
 import styles from './SelectFriendCard.module.css';
-import Avatar from '@components/ui/Avatar';
+import Avatar from '@shared/components/ui/Avatar';
 
 const SelectFriendCard = ({
   name,

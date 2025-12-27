@@ -1,7 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { Container } from '@components';
+import { Container } from '@shared/components';
 import styles from './Auth.module.css';
-import { AuthButton } from '@components/ui';
+import { AuthButton } from '@shared/components/ui';
 
 function GuardPage() {
   const navigate = useNavigate();

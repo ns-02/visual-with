@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from 'react';
-import { AlertDialog } from '@components/dialogs';
+import { AlertDialog } from '@shared/components/dialogs';
 import { useFriend } from '@core/context/FriendContext';
 
 interface DeleteFriendDialogProps {

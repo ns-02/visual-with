@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { DropdownMenu } from 'radix-ui';
-import { Dropdown, Item } from '@components/ui';
+import { Dropdown, Item } from '@shared/components/ui';
 import UpdateScheduleDialog from '../dialogs/UpdateScheduleDialog';
 import DeleteScheduleDialog from '../dialogs/DeleteScheduleDialog';
 import styles from './ScheduleDropdown.module.css';

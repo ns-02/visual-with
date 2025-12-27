@@ -1,6 +1,6 @@
 import React from 'react';
-import Button from '@components/ui/Button';
-import Input from '@components/ui/Input';
+import Button from '@shared/components/ui/Button';
+import Input from '@shared/components/ui/Input';
 import styles from './HeaderBar.module.css';
 
 interface HeaderBarProps {

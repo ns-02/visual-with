@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { fn } from 'storybook/internal/test';
-import { HeaderBar } from '@components/index';
+import { HeaderBar } from '@shared/components/index';
 import { Plus } from 'lucide-react';
 
 const meta = {

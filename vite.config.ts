@@ -15,18 +15,12 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      '@components': path.resolve(__dirname, './src/components'),
       '@core': path.resolve(__dirname, './src/core'),
-      '@core/context': path.resolve(__dirname, './src/context'),
       '@features': path.resolve(__dirname, './src/main/features'),
-      '@hooks': path.resolve(__dirname, './src/hooks'),
       '@main': path.resolve(__dirname, './src/main'),
       '@mocks': path.resolve(__dirname, './src/mocks'),
-      '@models': path.resolve(__dirname, './src/models'),
       '@pages': path.resolve(__dirname, './src/pages'),
-      '@routes': path.resolve(__dirname, './src/routes'),
       '@shared': path.resolve(__dirname, './src/shared'),
-      '@styles': path.resolve(__dirname, './src/styles'),
     },
   },
   test: {

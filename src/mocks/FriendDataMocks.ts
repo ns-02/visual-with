@@ -1,4 +1,4 @@
-import { FriendData } from '@models/Friend';
+import { FriendData } from '@shared/models/Friend';
 
 export const friendDataMocks: FriendData[] = [
   { id: 'kcs_0707', name: '김철수', description: '프론트엔드 개발자' },

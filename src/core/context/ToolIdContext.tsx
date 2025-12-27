@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState } from 'react';
-import { ToolId } from '@models/ToolId';
+import { ToolId } from '@shared/models/ToolId';
 
 type ToolIdContextType = {
   toolId: ToolId | null;

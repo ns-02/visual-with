@@ -1,8 +1,8 @@
 import { Dispatch, SetStateAction, useState } from 'react';
-import { Dialog, Group, DialogInput } from '@components/dialogs';
+import { Dialog, Group, DialogInput } from '@shared/components/dialogs';
 import { useTodo } from '@core/context/TodoContext';
 import getMaxId from '@shared/utils/getMaxId';
-import { TodoData } from '@models/Todo';
+import { TodoData } from '@shared/models/Todo';
 
 interface AddTodoDialogProps {
   open: boolean;

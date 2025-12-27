@@ -1,4 +1,4 @@
-import { ToolId } from '@models/ToolId';
+import { ToolId } from '@shared/models/ToolId';
 
 const ROUTES: { id: ToolId; path: string }[] = [
   { id: 'team-chat', path: 'teamchat' },

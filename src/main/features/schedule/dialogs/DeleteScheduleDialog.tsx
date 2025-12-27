@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from 'react';
-import { AlertDialog } from '@components/dialogs';
+import { AlertDialog } from '@shared/components/dialogs';
 import { useSchedule } from '@core/context/ScheduleContext';
-import { ScheduleData } from '@models/Schedule';
+import { ScheduleData } from '@shared/models/Schedule';
 
 interface DeleteScheduleDialogProps {
   scheduleId?: number;

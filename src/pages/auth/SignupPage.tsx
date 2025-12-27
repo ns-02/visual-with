@@ -1,8 +1,8 @@
 import { FormEvent, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Container } from '@components';
+import { Container } from '@shared/components';
 import { checkId, signupUser } from '@shared/api/api';
-import { AuthButton, AuthInput } from '@components/ui';
+import { AuthButton, AuthInput } from '@shared/components/ui';
 import styles from './Auth.module.css';
 
 function SignupPage() {

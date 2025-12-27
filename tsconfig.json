@@ -15,17 +15,11 @@
     "lib": ["DOM", "DOM.Iterable", "ES2022"],
     "types": ["vite/client", "node"],
     "paths": {
-      "@components/*": ["src/components/*"],
       "@core/*": ["src/core/*"],
-      "@components": ["src/components/index.ts"],
       "@features/*": ["src/main/features/*"],
-      "@hooks/*": ["src/shared/hooks/*"],
       "@main/*": ["src/main/*"],
       "@mocks/*": ["src/mocks/*"],
-      "@models/*": ["src/models/*"],
       "@pages/*": ["src/pages/*"],
-      "@routes/*": ["src/routes/*"],
-      "@styles/*": ["src/styles/*"],
       "@shared/*": ["src/shared/*"]
     }
   },

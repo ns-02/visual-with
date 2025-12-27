@@ -1,6 +1,6 @@
 import { DropdownMenu } from 'radix-ui';
-import { Item } from '@components/ui';
-import { Dropdown } from '@components/ui';
+import { Item } from '@shared/components/ui';
+import { Dropdown } from '@shared/components/ui';
 import styles from './TodoListDropdown.module.css';
 import { useState } from 'react';
 import UpdateTodoDialog from '../dialogs/UpdateTodoDialog';

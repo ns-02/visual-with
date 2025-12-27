@@ -1,4 +1,4 @@
-import { ContentButton } from '@components/ui';
+import { ContentButton } from '@shared/components/ui';
 import { EllipsisVertical } from 'lucide-react';
 import TodoListDropdown from './TodoListDropdown';
 import styles from './TodoListCard.module.css';

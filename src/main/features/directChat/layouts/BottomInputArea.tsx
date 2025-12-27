@@ -1,6 +1,6 @@
 import { KeyboardEvent, useState } from 'react';
 import { Plus, Send } from 'lucide-react';
-import { Button, Input } from '@components/ui';
+import { Button, Input } from '@shared/components/ui';
 import FileUploadDropdown from '../ui/FileUploadDropdown';
 import { BottomInputAreaProps } from '..';
 import styles from './DirectChatLayout.module.css';

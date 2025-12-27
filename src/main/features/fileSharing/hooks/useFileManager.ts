@@ -1,5 +1,5 @@
 import { useFile } from '@core/context/FileContext';
-import { FileData } from '@models/File';
+import { FileData } from '@shared/models/File';
 import { getDate } from '@shared/utils/dateUtils';
 import getFormattedFileSize from '@shared/utils/getFormattedFileSize';
 import getFormattedFileType from '@shared/utils/getFormattedFileType';

@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useReducer, useState } from 'react';
-import { TeamData, TeamId, TeamName } from '@models/Team';
+import { TeamData, TeamId, TeamName } from '@shared/models/Team';
 import { teamDataMocks } from '../../mocks/TeamDataMocks';
 import teamReducer, {
   TeamAction,
