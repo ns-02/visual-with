@@ -16,8 +16,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@core': path.resolve(__dirname, './src/core'),
-      '@features': path.resolve(__dirname, './src/main/features'),
-      '@main': path.resolve(__dirname, './src/main'),
+      '@features': path.resolve(__dirname, './src/features'),
       '@mocks': path.resolve(__dirname, './src/mocks'),
       '@pages': path.resolve(__dirname, './src/pages'),
       '@shared': path.resolve(__dirname, './src/shared'),

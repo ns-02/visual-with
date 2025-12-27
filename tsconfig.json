@@ -16,8 +16,7 @@
     "types": ["vite/client", "node"],
     "paths": {
       "@core/*": ["src/core/*"],
-      "@features/*": ["src/main/features/*"],
-      "@main/*": ["src/main/*"],
+      "@features/*": ["src/features/*"],
       "@mocks/*": ["src/mocks/*"],
       "@pages/*": ["src/pages/*"],
       "@shared/*": ["src/shared/*"]
