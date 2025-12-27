@@ -1,9 +1,9 @@
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { Dialog, DialogInput, Group, Row } from '@components/dialogs';
 import { useSchedule } from '@context/ScheduleContext';
-import getMaxId from '@utils/getMaxId';
+import getMaxId from '@shared/utils/getMaxId';
 import { ScheduleData } from '@models/Schedule';
-import { getDate } from '@utils/dateUtils';
+import { getDate } from '@shared/utils/dateUtils';
 
 export interface AddScheduleDialogProps {
   open: boolean;

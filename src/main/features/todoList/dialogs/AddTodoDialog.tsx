@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction, useState } from 'react';
 import { Dialog, Group, DialogInput } from '@components/dialogs';
 import { useTodo } from '@context/TodoContext';
-import getMaxId from '@utils/getMaxId';
+import getMaxId from '@shared/utils/getMaxId';
 import { TodoData } from '@models/Todo';
 
 interface AddTodoDialogProps {

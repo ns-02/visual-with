@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useTeam } from '@context/TeamContext';
 import { ChatItem } from '@models/Chat';
-import { getItem, setItem } from '@utils/sessionStorage';
-import getMaxId from '@utils/getMaxId';
+import { getItem, setItem } from '@shared/utils/sessionStorage';
+import getMaxId from '@shared/utils/getMaxId';
 import TeamChatRoot from '../layouts/TeamChatRoot';
 import TeamChatPanel from '../layouts/TeamChatPanel';
 import TeamChatBottom from '../layouts/BottomInputPanel';

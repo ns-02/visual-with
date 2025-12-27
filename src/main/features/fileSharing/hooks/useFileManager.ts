@@ -1,9 +1,9 @@
 import { useFile } from '@context/FileContext';
 import { FileData } from '@models/File';
-import { getDate } from '@utils/dateUtils';
-import getFormattedFileSize from '@utils/getFormattedFileSize';
-import getFormattedFileType from '@utils/getFormattedFileType';
-import getMaxId from '@utils/getMaxId';
+import { getDate } from '@shared/utils/dateUtils';
+import getFormattedFileSize from '@shared/utils/getFormattedFileSize';
+import getFormattedFileType from '@shared/utils/getFormattedFileType';
+import getMaxId from '@shared/utils/getMaxId';
 
 const useFileManager = () => {
   const { fileData, setFileData } = useFile();

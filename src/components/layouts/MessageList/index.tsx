@@ -1,7 +1,7 @@
 import React from 'react';
 import { ChatItem } from '@models/Chat';
 import styles from './MessageList.module.css';
-import { getDate } from '@utils/dateUtils';
+import { getDate } from '@shared/utils/dateUtils';
 
 interface MessageListProps {
   allChat: ChatItem[];
