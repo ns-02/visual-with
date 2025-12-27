@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from 'react';
 import { AlertDialog } from '@components/dialogs';
-import { useFile } from '@context/FileContext';
+import { useFile } from '@core/context/FileContext';
 import { FileData } from '@models/File';
 
 interface DeleteFileDialogProps {

@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { useLocation, useNavigationType } from 'react-router-dom';
 import { getToolIdFromPath } from './routeMap';
-import { useTool } from '@context/ToolIdContext';
+import { useTool } from '@core/context/ToolIdContext';
 
 export function RouteWatcher({
   callOnInitial = true,

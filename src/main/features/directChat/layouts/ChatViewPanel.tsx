@@ -1,6 +1,6 @@
 import { Prop } from '..';
 import styles from './DirectChatLayout.module.css';
-import { useFriend } from '@context/FriendContext';
+import { useFriend } from '@core/context/FriendContext';
 
 function ChatViewPanel({ children }: Prop) {
   const { selectFriendData } = useFriend();

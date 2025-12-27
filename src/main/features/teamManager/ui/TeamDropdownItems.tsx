@@ -2,7 +2,7 @@ import React from 'react';
 import { DropdownMenu } from 'radix-ui';
 import { Trash2 } from 'lucide-react';
 import { ContentButton, Item } from '@components/ui';
-import { useTeam } from '@context/TeamContext';
+import { useTeam } from '@core/context/TeamContext';
 import { TeamData } from '@models/Team';
 import useTeamManager from '../hooks/useTeamManager';
 import styles from './TeamDropdownItems.module.css';

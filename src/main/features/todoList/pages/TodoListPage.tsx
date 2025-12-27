@@ -1,4 +1,4 @@
-import { useTeam } from '@context/TeamContext';
+import { useTeam } from '@core/context/TeamContext';
 import TodoContents from '../layouts/TodoContents';
 import TodoListRoot from '../layouts/TodoListRoot';
 

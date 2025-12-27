@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from 'react';
 import { AlertDialog } from '@components/dialogs';
-import { useFriend } from '@context/FriendContext';
+import { useFriend } from '@core/context/FriendContext';
 
 interface DeleteFriendDialogProps {
   friendId?: string;

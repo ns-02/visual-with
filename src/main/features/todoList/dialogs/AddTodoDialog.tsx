@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction, useState } from 'react';
 import { Dialog, Group, DialogInput } from '@components/dialogs';
-import { useTodo } from '@context/TodoContext';
+import { useTodo } from '@core/context/TodoContext';
 import getMaxId from '@shared/utils/getMaxId';
 import { TodoData } from '@models/Todo';
 

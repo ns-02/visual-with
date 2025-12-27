@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from 'react';
 import { ScheduleData } from '@models/Schedule';
-import { scheduleDataMocks } from '../mocks/ScheduleDataMocks';
+import { scheduleDataMocks } from '../../mocks/ScheduleDataMocks';
 
 type ScheduleContextType = {
   scheduleData: ScheduleData[];

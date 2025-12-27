@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from 'react';
 import { FileData } from '@models/File';
-import { fileDataMocks } from '../mocks/FileDataMocks';
+import { fileDataMocks } from '../../mocks/FileDataMocks';
 
 type FileContextType = {
   fileData: FileData[];

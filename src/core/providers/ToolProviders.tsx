@@ -3,7 +3,7 @@ import {
   ScheduleProvider,
   TodoProvider,
   ToolIdProvider,
-} from '@context';
+} from '@core/context';
 
 const ToolProviders = ({ children }: { children: React.ReactNode }) => (
   <ToolIdProvider>

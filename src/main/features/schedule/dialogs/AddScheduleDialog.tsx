@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { Dialog, DialogInput, Group, Row } from '@components/dialogs';
-import { useSchedule } from '@context/ScheduleContext';
+import { useSchedule } from '@core/context/ScheduleContext';
 import getMaxId from '@shared/utils/getMaxId';
 import { ScheduleData } from '@models/Schedule';
 import { getDate } from '@shared/utils/dateUtils';

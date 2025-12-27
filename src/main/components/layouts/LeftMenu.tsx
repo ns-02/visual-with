@@ -10,7 +10,7 @@ import {
   Plus,
   Users,
 } from 'lucide-react';
-import { useTeam } from '@context/TeamContext';
+import { useTeam } from '@core/context/TeamContext';
 import { Button, Tooltip } from '@components/ui';
 import { ToolId } from '@models/ToolId';
 import TeamDropdown from '@features/teamManager/ui/TeamDropdown';
@@ -19,7 +19,7 @@ import InviteTeamDialog from '@features/teamManager/dialogs/InviteTeamDialog';
 import Divider from '../ui/Divider';
 import styles from './Layouts.module.css';
 import TooltipItem from '../ui/TooltipItem';
-import { getPathFromToolId } from '@routes/routeMap';
+import { getPathFromToolId } from '@core/routes/routeMap';
 
 interface MenuItem {
   id: ToolId;

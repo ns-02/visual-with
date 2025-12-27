@@ -10,11 +10,11 @@ import TodoListPage from './main/features/todoList/pages/TodoListPage';
 import FriendListPage from './main/features/friendList/pages/FriendListPage';
 import DirectChatPage from './main/features/directChat/pages/DirectChatPage';
 import InviteLinkPage from './main/features/teamManager/pages/InviteLinkPage';
-import AppProviders from './providers/AppProviders';
-import PrivateRoute from './routes/PrivateRoute';
-import { RouteWatcher } from './routes/RouteWatcher';
-import './styles/globalVariables.css';
-import './styles/global.css';
+import AppProviders from '@core/providers/AppProviders';
+import PrivateRoute from '@core/routes/PrivateRoute';
+import { RouteWatcher } from '@core/routes/RouteWatcher';
+import '@core/styles/globalVariables.css';
+import '@core/styles/global.css';
 import TeamLayout from '@features/teamManager/layouts/TeamLayout';
 import TeamPage from '@features/teamManager/pages/TeamPage';
 

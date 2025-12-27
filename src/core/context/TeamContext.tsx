@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useReducer, useState } from 'react';
 import { TeamData, TeamId, TeamName } from '@models/Team';
-import { teamDataMocks } from '../mocks/TeamDataMocks';
+import { teamDataMocks } from '../../mocks/TeamDataMocks';
 import teamReducer, {
   TeamAction,
 } from '@features/teamManager/store/teamReducer';

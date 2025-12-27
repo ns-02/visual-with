@@ -1,4 +1,4 @@
-import { useFile } from '@context/FileContext';
+import { useFile } from '@core/context/FileContext';
 import DragAndDrop from '../ui/DragAndDrop';
 import FileListCard from '../ui/FileListCard';
 import styles from './FileSharingLayout.module.css';

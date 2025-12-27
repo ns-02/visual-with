@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useSchedule } from '@context/ScheduleContext';
+import { useSchedule } from '@core/context/ScheduleContext';
 import { getDate } from '@shared/utils/dateUtils';
 import Calender from '../ui/Calender';
 import styles from './ScheduleLayout.module.css';

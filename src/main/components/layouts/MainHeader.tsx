@@ -2,13 +2,13 @@ import { useState } from 'react';
 import { File, LucideProps, Plus, Search, Upload } from 'lucide-react';
 import { HeaderBar } from '@components';
 import { ToolId } from '@models/ToolId';
-import { useTool } from '@context/ToolIdContext';
+import { useTool } from '@core/context/ToolIdContext';
 import UploadFileDialog from '../../features/fileSharing/dialogs/UploadFileDialog';
 import AddScheduleDialog from '../../features/schedule/dialogs/AddScheduleDialog';
 import AddTodoDialog from '../../features/todoList/dialogs/AddTodoDialog';
 import AddFriendDialog from '../../features/friendList/dialogs/AddFriendDialog';
 import styles from './Layouts.module.css';
-import { useAreaOpen } from '@context/AreaOpenContext';
+import { useAreaOpen } from '@core/context/AreaOpenContext';
 
 interface HeaderItem {
   id: ToolId;

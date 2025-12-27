@@ -3,7 +3,7 @@ import { FriendData } from '@models/Friend';
 import {
   friendDataMocks,
   friendRequestDataMocks,
-} from '../mocks/FriendDataMocks';
+} from '../../mocks/FriendDataMocks';
 
 type FriendIdChatMap = Map<string, string>;
 

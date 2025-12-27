@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useTeam } from '@context/TeamContext';
+import { useTeam } from '@core/context/TeamContext';
 import FileSharingRoot from '../layouts/FileSharingRoot';
 import TopFileNavBar from '../layouts/TopFileNavBar';
 import FileViewPanel from '../layouts/FileViewPanel';

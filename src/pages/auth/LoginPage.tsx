@@ -1,9 +1,9 @@
 import { FormEvent, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '@context/AuthContext';
-import { useUser } from '@context/UserContext';
+import { useAuth } from '@core/context/AuthContext';
+import { useUser } from '@core/context/UserContext';
 import { Container } from '@components';
-import { loginUser } from '@api/api';
+import { loginUser } from '@shared/api/api';
 import { AuthButton, AuthInput } from '@components/ui';
 import styles from './Auth.module.css';
 

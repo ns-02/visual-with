@@ -1,4 +1,4 @@
-import { useAreaOpen } from '@context/AreaOpenContext';
+import { useAreaOpen } from '@core/context/AreaOpenContext';
 import styles from './DirectChatLayout.module.css';
 
 const RightFileListArea = () => {

@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from 'react';
 import { TodoData } from '@models/Todo';
-import { todoDataMocks } from '../mocks/TodoDataMocks';
+import { todoDataMocks } from '../../mocks/TodoDataMocks';
 
 type TodoContextType = {
   todoData: TodoData[];

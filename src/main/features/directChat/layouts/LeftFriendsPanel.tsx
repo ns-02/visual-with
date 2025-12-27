@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useFriend } from '@context/FriendContext';
+import { useFriend } from '@core/context/FriendContext';
 import SelectFriendCard from '../ui/SelectFriendCard';
 import { FriendItem } from '..';
 import styles from './DirectChatLayout.module.css';
