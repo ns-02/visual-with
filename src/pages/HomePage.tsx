@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import styles from './HomePage.module.css';
-import { useUser } from '@core/context';
+import { useUser } from '@core/contexts';
 
 function HomePage() {
   const { userId } = useUser();

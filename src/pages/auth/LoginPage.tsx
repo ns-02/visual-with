@@ -1,7 +1,7 @@
 import { FormEvent, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '@core/context/AuthContext';
-import { useUser } from '@core/context/UserContext';
+import { useAuth } from '@core/contexts/AuthContext';
+import { useUser } from '@core/contexts/UserContext';
 import { Container } from '@shared/components';
 import { loginUser } from '@shared/api/api';
 import { AuthButton, AuthInput } from '@shared/components/ui';

@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from 'react';
 import { AlertDialog } from '@shared/components/dialogs';
-import { useTodo } from '@core/context/TodoContext';
+import { useTodo } from '@core/contexts/TodoContext';
 import { TodoData } from '@shared/models/Todo';
 
 interface DeleteTodoDialogProps {

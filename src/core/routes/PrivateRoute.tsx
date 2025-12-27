@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router-dom';
-import { useAuth } from '@core/context/AuthContext';
+import { useAuth } from '@core/contexts/AuthContext';
 import GuardPage from '../../pages/auth/GuardPage';
 
 const PrivateRoute = () => {

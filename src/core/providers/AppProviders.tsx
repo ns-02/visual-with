@@ -4,7 +4,7 @@ import {
   FriendProvider,
   TeamProvider,
   UserProvider,
-} from '@core/context';
+} from '@core/contexts';
 import { Tooltip } from '@shared/components/ui';
 import ToolProviders from './ToolProviders';
 

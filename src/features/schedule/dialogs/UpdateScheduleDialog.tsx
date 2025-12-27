@@ -1,6 +1,6 @@
 import { Dialog, DialogInput, Group, Row } from '@shared/components/dialogs';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
-import { useSchedule } from '@core/context/ScheduleContext';
+import { useSchedule } from '@core/contexts/ScheduleContext';
 import { ScheduleData } from '@shared/models/Schedule';
 
 export interface UpdateScheduleDialogProps {

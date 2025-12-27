@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useTeam } from '@core/context/TeamContext';
+import { useTeam } from '@core/contexts/TeamContext';
 import { ChatItem } from '@shared/models/Chat';
 import { getItem, setItem } from '@shared/utils/sessionStorage';
 import getMaxId from '@shared/utils/getMaxId';

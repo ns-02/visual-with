@@ -1,4 +1,4 @@
-import { useTeam } from '@core/context/TeamContext';
+import { useTeam } from '@core/contexts/TeamContext';
 import ScheduleRoot from '../layouts/ScheduleRoot';
 import LeftCalendarPanel from '../layouts/LeftCalendarPanel';
 import ScheduleViewPanel from '../layouts/ScheduleViewPanel';

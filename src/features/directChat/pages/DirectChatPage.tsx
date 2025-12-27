@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useFriend } from '@core/context/FriendContext';
+import { useFriend } from '@core/contexts/FriendContext';
 import { ChatItem } from '@shared/models/Chat';
 import { getItem, setItem } from '@shared/utils/sessionStorage';
 import getMaxId from '@shared/utils/getMaxId';

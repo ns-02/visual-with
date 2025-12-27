@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { Dialog, Group, DialogInput } from '@shared/components/dialogs';
-import { useTodo } from '@core/context/TodoContext';
+import { useTodo } from '@core/contexts/TodoContext';
 import { TodoData } from '@shared/models/Todo';
 
 interface UpdateTodoDialogProps {

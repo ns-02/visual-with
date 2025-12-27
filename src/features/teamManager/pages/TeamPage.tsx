@@ -1,4 +1,4 @@
-import { useTeam } from '@core/context/TeamContext';
+import { useTeam } from '@core/contexts/TeamContext';
 import styles from './TeamPage.module.css';
 
 function TeamPage() {

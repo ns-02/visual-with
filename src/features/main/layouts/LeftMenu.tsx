@@ -10,7 +10,7 @@ import {
   Plus,
   Users,
 } from 'lucide-react';
-import { useTeam } from '@core/context/TeamContext';
+import { useTeam } from '@core/contexts/TeamContext';
 import { Button, Tooltip } from '@shared/components/ui';
 import { ToolId } from '@shared/models/ToolId';
 import TeamDropdown from '@features/teamManager/ui/TeamDropdown';

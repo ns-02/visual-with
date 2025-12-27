@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { createTeam } from '@shared/api/api';
-import { useTeam } from '@core/context/TeamContext';
-import { useUser } from '@core/context/UserContext';
+import { useTeam } from '@core/contexts/TeamContext';
+import { useUser } from '@core/contexts/UserContext';
 import { TeamData, TeamId, TeamName } from '@shared/models/Team';
 import { getPathFromToolId, getToolIdFromPath } from '@core/routes/routeMap';
 
