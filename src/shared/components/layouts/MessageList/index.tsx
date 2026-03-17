@@ -29,7 +29,7 @@ const MessageList = React.memo(({ allChat }: MessageListProps) => {
               <Avatar />
               <div>
                 <div className={styles.message_header}>
-                  <p className={styles.receiver}>{chatItem.author}</p>
+                  <p className={styles.receiver}>{chatItem.authorName}</p>
                   <p className={styles.chat_time}>{chatItem.time}</p>
                 </div>
                 <div className={styles.chat_bubble}>

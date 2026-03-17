@@ -1,6 +1,8 @@
 export interface ChatItem {
   id: number;
-  author: string;
+  authorId: string;
+  authorName: string;
   chat: string;
   time: string;
+  // isMe: boolean; // 예정
 }

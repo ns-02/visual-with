@@ -9,9 +9,10 @@ const useChatThread = (
   setCurrentId: (id: number) => void,
   id: string,
 ) => {
-  const { userName } = useUser();
+  const { userId, userName } = useUser();
 
   const handleSend = (chatToSend: string) => {
+    if (!userId) return;
     if (!userName) return;
 
     let today = new Date();
@@ -19,7 +20,14 @@ const useChatThread = (
 
     const nextChat: ChatItem[] = [
       ...allChat,
-      { id: currentId, chat: chatToSend, time, author: userName },
+      {
+        id: currentId,
+        chat: chatToSend,
+        time,
+        authorId: userId,
+        authorName: userName,
+        // isMe: true,  // 예정
+      },
     ];
     setItem(id, JSON.stringify(nextChat));
     setAllChat(nextChat);
