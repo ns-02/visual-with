@@ -1,4 +1,3 @@
-import { useFriend } from '@core/contexts/FriendContext';
 import {
   DirectChatRoot,
   LeftFriendsPanel,
@@ -11,11 +10,7 @@ import RightFileListArea from '../layouts/RightFileListArea';
 import useDirectChatThread from '../hooks/useDirectChatThread';
 
 function DirectChatPage() {
-  const { selectFriendData, setFriendIdChatMap } = useFriend();
-  const { allChat, handleDirectChatSend } = useDirectChatThread(
-    selectFriendData?.id,
-    setFriendIdChatMap,
-  );
+  const { allChat, handleDirectChatSend } = useDirectChatThread();
 
   return (
     <DirectChatRoot>

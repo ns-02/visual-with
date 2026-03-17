@@ -1,39 +1,38 @@
-import { FriendIdChatMap } from '@core/contexts';
+import { FriendIdChatMap, useFriend } from '@core/contexts';
 import useChatThread from '@shared/chat/useChatThread';
 import { ChatItem } from '@shared/models/Chat';
 import getMaxId from '@shared/utils/getMaxId';
 import { getItem } from '@shared/utils/sessionStorage';
 import { useEffect, useState } from 'react';
 
-const useDirectChatThread = (
-  id: string | undefined,
-  setFriendIdChatMap: React.Dispatch<React.SetStateAction<FriendIdChatMap>>,
-) => {
+const useDirectChatThread = () => {
+  const { selectFriendData, setFriendIdChatMap } = useFriend();
   const [allChat, setAllChat] = useState<ChatItem[]>([]);
   const [currentId, setCurrentId] = useState(1);
 
   useEffect(() => {
-    if (!id) return;
+    if (!selectFriendData?.id) return;
 
-    const nextAllChat = getItem(`directChats_${id || ''}`, '') || [];
+    const nextAllChat =
+      getItem(`directChats_${selectFriendData?.id || ''}`, '') || [];
     setAllChat(nextAllChat);
 
     const maxId = getMaxId(nextAllChat);
     setCurrentId(maxId + 1);
-  }, [id]);
+  }, [selectFriendData?.id]);
 
   const { handleSend } = useChatThread(
     allChat,
     setAllChat,
     currentId,
     setCurrentId,
-    `directChats_${id || ''}`,
+    `directChats_${selectFriendData?.id || ''}`,
   );
 
   const handleDirectChatSend = (chatToSend: string) => {
-    if (!id) return;
+    if (!selectFriendData?.id) return;
     handleSend(chatToSend);
-    handleAddLastChat(id, chatToSend);
+    handleAddLastChat(selectFriendData?.id, chatToSend);
   };
 
   const handleAddLastChat = (id: string, chat: string) => {

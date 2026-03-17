@@ -9,8 +9,7 @@ import TeamChatBottom from '../layouts/BottomInputPanel';
 import useTeamChatThread from '../hooks/useTeamChatThread';
 
 function TeamChatPage() {
-  const { selectTeamId } = useTeam();
-  const { allChat, handleTeamChatSend } = useTeamChatThread(selectTeamId);
+  const { allChat, handleTeamChatSend } = useTeamChatThread();
 
   return (
     <TeamChatRoot>
