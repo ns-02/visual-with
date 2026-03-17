@@ -1,8 +1,4 @@
-import { useEffect, useState } from 'react';
 import { useFriend } from '@core/contexts/FriendContext';
-import { ChatItem } from '@shared/models/Chat';
-import { getItem, setItem } from '@shared/utils/sessionStorage';
-import getMaxId from '@shared/utils/getMaxId';
 import {
   DirectChatRoot,
   LeftFriendsPanel,
@@ -12,50 +8,14 @@ import {
   BottomInputArea,
 } from '../';
 import RightFileListArea from '../layouts/RightFileListArea';
-import { useUser } from '@core/contexts';
+import useDirectChatThread from '../hooks/useDirectChatThread';
 
 function DirectChatPage() {
   const { selectFriendData, setFriendIdChatMap } = useFriend();
-  const { userName } = useUser();
-
-  const initChats: ChatItem[] =
-    getItem(`directChats_${selectFriendData?.id}`, '') || [];
-
-  let maxId = getMaxId(initChats);
-  const [allChat, setAllChat] = useState(initChats);
-  const [currentId, setCurrentId] = useState(maxId + 1);
-
-  useEffect(() => {
-    setAllChat(initChats);
-    maxId = getMaxId(initChats);
-    setCurrentId(maxId + 1);
-  }, [selectFriendData]);
-
-  const handleSend = (chatToSend: string) => {
-    if (!selectFriendData?.id) return;
-    if (!userName) return;
-
-    let today = new Date();
-    let time = today.toLocaleTimeString().slice(0, -3);
-
-    const nextChat: ChatItem[] = [
-      ...allChat,
-      { id: currentId, chat: chatToSend, time, author: userName },
-    ];
-
-    setItem(`directChats_${selectFriendData?.id}`, JSON.stringify(nextChat));
-    handleAddLastChat(selectFriendData?.id, chatToSend);
-    setAllChat(nextChat);
-    setCurrentId(currentId + 1);
-  };
-
-  const handleAddLastChat = (id: string, chat: string) => {
-    setFriendIdChatMap((prevIdChatMap) => {
-      const nextIdChatMap = new Map(prevIdChatMap);
-      nextIdChatMap.set(id, chat);
-      return nextIdChatMap;
-    });
-  };
+  const { allChat, handleDirectChatSend } = useDirectChatThread(
+    selectFriendData?.id,
+    setFriendIdChatMap,
+  );
 
   return (
     <DirectChatRoot>
@@ -65,7 +25,7 @@ function DirectChatPage() {
           <DirectChatArea allChat={allChat} />
           <RightFileListArea />
         </ChatContentArea>
-        <BottomInputArea onSend={handleSend} />
+        <BottomInputArea onSend={handleDirectChatSend} />
       </ChatViewPanel>
     </DirectChatRoot>
   );

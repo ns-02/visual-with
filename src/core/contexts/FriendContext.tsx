@@ -5,7 +5,7 @@ import {
   friendRequestDataMocks,
 } from '../../mocks/FriendDataMocks';
 
-type FriendIdChatMap = Map<string, string>;
+export type FriendIdChatMap = Map<string, string>;
 
 type FriendContextType = {
   friendData: FriendData[] | null;
