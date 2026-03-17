@@ -8,9 +8,14 @@ import {
 } from '../';
 import RightFileListArea from '../layouts/RightFileListArea';
 import useDirectChatThread from '../hooks/useDirectChatThread';
+import { useEffect } from 'react';
 
 function DirectChatPage() {
-  const { allChat, handleDirectChatSend } = useDirectChatThread();
+  const { allChat, handleDirectChatSend, isMyMessage } = useDirectChatThread();
+
+  useEffect(() => {
+    isMyMessage();
+  }, [allChat]);
 
   return (
     <DirectChatRoot>

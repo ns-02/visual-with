@@ -4,5 +4,5 @@ export interface ChatItem {
   authorName: string;
   chat: string;
   time: string;
-  // isMe: boolean; // 예정
+  isMe: boolean;
 }

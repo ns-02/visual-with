@@ -21,7 +21,7 @@ const useDirectChatThread = () => {
     setCurrentId(maxId + 1);
   }, [selectFriendData?.id]);
 
-  const { handleSend } = useChatThread(
+  const { handleSend, isMyMessage } = useChatThread(
     allChat,
     setAllChat,
     currentId,
@@ -43,7 +43,7 @@ const useDirectChatThread = () => {
     });
   };
 
-  return { allChat, handleDirectChatSend };
+  return { allChat, handleDirectChatSend, isMyMessage };
 };
 
 export default useDirectChatThread;

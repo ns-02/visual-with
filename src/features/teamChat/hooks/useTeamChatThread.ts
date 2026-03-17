@@ -20,7 +20,7 @@ const useTeamChatThread = () => {
     setCurrentId(maxId + 1);
   }, [selectTeamId]);
 
-  const { handleSend } = useChatThread(
+  const { handleSend, isMyMessage } = useChatThread(
     allChat,
     setAllChat,
     currentId,
@@ -33,7 +33,7 @@ const useTeamChatThread = () => {
     handleSend(chatToSend);
   };
 
-  return { allChat, handleTeamChatSend };
+  return { allChat, handleTeamChatSend, isMyMessage };
 };
 
 export default useTeamChatThread;

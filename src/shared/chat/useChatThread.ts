@@ -26,7 +26,7 @@ const useChatThread = (
         time,
         authorId: userId,
         authorName: userName,
-        // isMe: true,  // 예정
+        isMe: true,
       },
     ];
     setItem(id, JSON.stringify(nextChat));
@@ -34,7 +34,22 @@ const useChatThread = (
     setCurrentId(currentId + 1);
   };
 
-  return { handleSend };
+  const isMyMessage = () => {
+    // 어느 시점에서 호출되어야 하는가?
+    // 1. 채팅 페이지 전체가 새로 그려질 때
+    // 2. 다른 사용자가 채팅을 전송했을 때
+    const nextChat: ChatItem[] = allChat.map((chat) =>
+      chat.authorId !== userId
+        ? {
+            ...chat,
+            isMe: false,
+          }
+        : chat,
+    );
+    setAllChat(nextChat);
+  };
+
+  return { handleSend, isMyMessage };
 };
 
 export default useChatThread;
