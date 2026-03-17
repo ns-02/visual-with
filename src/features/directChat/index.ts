@@ -1,4 +1,3 @@
-import { ChatItem } from '@shared/models/Chat';
 import { FriendData } from '@shared/models/Friend';
 
 export { default as DirectChatRoot } from './layouts/DirectChatRoot';
@@ -12,8 +11,6 @@ export interface FriendItem extends FriendData {
   chat: string;
   selected: boolean;
 }
-
-export interface DirectChatItem extends ChatItem {}
 
 export interface BottomInputAreaProps {
   onSend: (chat: string) => void;

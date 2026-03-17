@@ -11,9 +11,27 @@
   justify-content: flex-end;
 }
 
+.chat_item {
+  display: flex;
+  gap: 16px;
+}
+
+.message_header {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.receiver {
+  display: inline-block;
+  font-size: 16px;
+  color: #000;
+}
+
 .chat_time {
-  font-size: '13px';
-  color: #777;
+  display: inline-block;
+  font-size: 13px;
+  color: #aaa;
 }
 
 .chat_bubble {

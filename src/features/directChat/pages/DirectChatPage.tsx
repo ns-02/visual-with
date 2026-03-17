@@ -12,9 +12,11 @@ import {
   BottomInputArea,
 } from '../';
 import RightFileListArea from '../layouts/RightFileListArea';
+import { useUser } from '@core/contexts';
 
 function DirectChatPage() {
   const { selectFriendData, setFriendIdChatMap } = useFriend();
+  const { userName } = useUser();
 
   const initChats: ChatItem[] =
     getItem(`directChats_${selectFriendData?.id}`, '') || [];
@@ -31,13 +33,14 @@ function DirectChatPage() {
 
   const handleSend = (chatToSend: string) => {
     if (!selectFriendData?.id) return;
+    if (!userName) return;
 
     let today = new Date();
     let time = today.toLocaleTimeString().slice(0, -3);
 
     const nextChat: ChatItem[] = [
       ...allChat,
-      { id: currentId, chat: chatToSend, time },
+      { id: currentId, chat: chatToSend, time, author: userName },
     ];
 
     setItem(`directChats_${selectFriendData?.id}`, JSON.stringify(nextChat));

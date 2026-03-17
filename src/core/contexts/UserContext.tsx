@@ -1,3 +1,4 @@
+import { userDataMocks } from '@mocks/UserDataMocks';
 import { createContext, useContext, useState } from 'react';
 
 export type UserContextType = {
@@ -17,10 +18,16 @@ const UserContext = createContext<UserContextType | undefined>(undefined);
 export const UserProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const [userId, setUserId] = useState<string | null>(null);
-  const [userName, setUserName] = useState<string | null>(null);
-  const [userEmail, setUserEmail] = useState<string | null>(null);
-  const [nickname, setNickname] = useState<string | null>(null);
+  const [userId, setUserId] = useState<string | null>(userDataMocks.userId);
+  const [userName, setUserName] = useState<string | null>(
+    userDataMocks.userName,
+  );
+  const [userEmail, setUserEmail] = useState<string | null>(
+    userDataMocks.userEmail,
+  );
+  const [nickname, setNickname] = useState<string | null>(
+    userDataMocks.nickname,
+  );
 
   const updateNickName = () => {
     console.log('서버 호출하고 닉네임 변경됨');
