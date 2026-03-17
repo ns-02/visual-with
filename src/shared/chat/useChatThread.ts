@@ -1,11 +1,13 @@
 import { useUser } from '@core/contexts';
 import { ChatItem } from '@shared/models/Chat';
+import { setItem } from '@shared/utils/sessionStorage';
 
 const useChatThread = (
   allChat: ChatItem[],
   setAllChat: (chat: ChatItem[]) => void,
   currentId: number,
   setCurrentId: (id: number) => void,
+  id: string,
 ) => {
   const { userName } = useUser();
 
@@ -19,6 +21,7 @@ const useChatThread = (
       ...allChat,
       { id: currentId, chat: chatToSend, time, author: userName },
     ];
+    setItem(id, JSON.stringify(nextChat));
     setAllChat(nextChat);
     setCurrentId(currentId + 1);
   };

@@ -9,15 +9,16 @@ const useDirectChatThread = (
   id: string | undefined,
   setFriendIdChatMap: React.Dispatch<React.SetStateAction<FriendIdChatMap>>,
 ) => {
-  const initChats: ChatItem[] = getItem(`directChats_${id}`, '') || [];
-
-  let maxId = getMaxId(initChats);
-  const [allChat, setAllChat] = useState(initChats);
-  const [currentId, setCurrentId] = useState(maxId + 1);
+  const [allChat, setAllChat] = useState<ChatItem[]>([]);
+  const [currentId, setCurrentId] = useState(1);
 
   useEffect(() => {
-    setAllChat(initChats);
-    maxId = getMaxId(initChats);
+    if (!id) return;
+
+    const nextAllChat = getItem(`directChats_${id || ''}`, '') || [];
+    setAllChat(nextAllChat);
+
+    const maxId = getMaxId(nextAllChat);
     setCurrentId(maxId + 1);
   }, [id]);
 
@@ -26,12 +27,12 @@ const useDirectChatThread = (
     setAllChat,
     currentId,
     setCurrentId,
+    `directChats_${id || ''}`,
   );
 
   const handleDirectChatSend = (chatToSend: string) => {
     if (!id) return;
     handleSend(chatToSend);
-
     handleAddLastChat(id, chatToSend);
   };
 
