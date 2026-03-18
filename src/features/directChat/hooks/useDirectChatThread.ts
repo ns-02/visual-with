@@ -1,4 +1,4 @@
-import { FriendIdChatMap, useFriend } from '@core/contexts';
+import { FriendIdChatMap, useFriend, useUser } from '@core/contexts';
 import useChatThread from '@shared/chat/useChatThread';
 import { ChatItem } from '@shared/models/Chat';
 import getMaxId from '@shared/utils/getMaxId';
@@ -7,21 +7,28 @@ import { useEffect, useState } from 'react';
 
 const useDirectChatThread = () => {
   const { selectFriendData, setFriendIdChatMap } = useFriend();
+  const { userId } = useUser();
   const [allChat, setAllChat] = useState<ChatItem[]>([]);
   const [currentId, setCurrentId] = useState(1);
 
   useEffect(() => {
     if (!selectFriendData?.id) return;
 
-    const nextAllChat =
+    const stored =
       getItem(`directChats_${selectFriendData?.id || ''}`, '') || [];
+
+    const nextAllChat: ChatItem[] = stored.map((chat: ChatItem) => ({
+      ...chat,
+      isMe: chat.authorId === userId,
+    }));
+
     setAllChat(nextAllChat);
 
     const maxId = getMaxId(nextAllChat);
     setCurrentId(maxId + 1);
   }, [selectFriendData?.id]);
 
-  const { handleSend, isMyMessage } = useChatThread(
+  const { handleSend } = useChatThread(
     allChat,
     setAllChat,
     currentId,
@@ -43,7 +50,7 @@ const useDirectChatThread = () => {
     });
   };
 
-  return { allChat, handleDirectChatSend, isMyMessage };
+  return { allChat, handleDirectChatSend };
 };
 
 export default useDirectChatThread;

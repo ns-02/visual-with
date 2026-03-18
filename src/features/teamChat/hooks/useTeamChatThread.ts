@@ -1,4 +1,4 @@
-import { useTeam } from '@core/contexts';
+import { useTeam, useUser } from '@core/contexts';
 import useChatThread from '@shared/chat/useChatThread';
 import { ChatItem } from '@shared/models/Chat';
 import getMaxId from '@shared/utils/getMaxId';
@@ -7,20 +7,27 @@ import { useEffect, useState } from 'react';
 
 const useTeamChatThread = () => {
   const { selectTeamId } = useTeam();
+  const { userId } = useUser();
   const [allChat, setAllChat] = useState<ChatItem[]>([]);
   const [currentId, setCurrentId] = useState(1);
 
   useEffect(() => {
     if (!selectTeamId) return;
 
-    const nextAllChat = getItem(`teamChats_${selectTeamId}`, '') || [];
+    const stored = getItem(`teamChats_${selectTeamId}`, '') || [];
+
+    const nextAllChat: ChatItem[] = stored.map((chat: ChatItem) => ({
+      ...chat,
+      isMe: chat.authorId === userId,
+    }));
+
     setAllChat(nextAllChat);
 
     const maxId = getMaxId(nextAllChat);
     setCurrentId(maxId + 1);
   }, [selectTeamId]);
 
-  const { handleSend, isMyMessage } = useChatThread(
+  const { handleSend } = useChatThread(
     allChat,
     setAllChat,
     currentId,
@@ -33,7 +40,7 @@ const useTeamChatThread = () => {
     handleSend(chatToSend);
   };
 
-  return { allChat, handleTeamChatSend, isMyMessage };
+  return { allChat, handleTeamChatSend };
 };
 
 export default useTeamChatThread;

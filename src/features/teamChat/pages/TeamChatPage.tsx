@@ -2,14 +2,9 @@ import TeamChatRoot from '../layouts/TeamChatRoot';
 import TeamChatPanel from '../layouts/TeamChatPanel';
 import TeamChatBottom from '../layouts/BottomInputPanel';
 import useTeamChatThread from '../hooks/useTeamChatThread';
-import { useEffect } from 'react';
 
 function TeamChatPage() {
-  const { allChat, handleTeamChatSend, isMyMessage } = useTeamChatThread();
-
-  useEffect(() => {
-    isMyMessage();
-  }, [allChat]);
+  const { allChat, handleTeamChatSend } = useTeamChatThread();
 
   return (
     <TeamChatRoot>
