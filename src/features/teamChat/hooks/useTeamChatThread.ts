@@ -2,19 +2,28 @@ import { useTeam, useUser } from '@core/contexts';
 import useChatThread from '@shared/chat/useChatThread';
 import { ChatItem } from '@shared/models/Chat';
 import getMaxId from '@shared/utils/getMaxId';
-import { getItem } from '@shared/utils/sessionStorage';
+import { getItem, setItem } from '@shared/utils/sessionStorage';
 import { useEffect, useState } from 'react';
+import { teamChatMockFactories } from '@mocks/TeamChatMocks';
 
 const useTeamChatThread = () => {
   const { selectTeamId } = useTeam();
-  const { userId } = useUser();
+  const { userId, userName } = useUser();
   const [allChat, setAllChat] = useState<ChatItem[]>([]);
   const [currentId, setCurrentId] = useState(1);
 
   useEffect(() => {
     if (!selectTeamId) return;
 
-    const stored = getItem(`teamChats_${selectTeamId}`, '') || [];
+    const storageKey = `teamChats_${selectTeamId}`;
+    let stored = getItem(storageKey, '') || [];
+
+    const createMocks = teamChatMockFactories[selectTeamId];
+    if (Array.isArray(stored) && stored.length === 0 && createMocks) {
+      const seeded = createMocks({ userId, userName });
+      setItem(storageKey, JSON.stringify(seeded));
+      stored = seeded;
+    }
 
     const nextAllChat: ChatItem[] = stored.map((chat: ChatItem) => ({
       ...chat,
@@ -25,7 +34,7 @@ const useTeamChatThread = () => {
 
     const maxId = getMaxId(nextAllChat);
     setCurrentId(maxId + 1);
-  }, [selectTeamId]);
+  }, [selectTeamId, userId, userName]);
 
   const { handleSend } = useChatThread(
     allChat,
