@@ -9,19 +9,11 @@
 - [`../`](../README.md)
 - `App.tsx` : 라우팅, 전역 레이아웃 연결
 - `index.tsx` : React를 브라우저에 연결하는 진입점
-- [`api/` : 서버와 통신하는 코드](api/README.md)
-- [`assets/` : 이미지, 아이콘](assets/README.md)
-- [`components/` : 그룹 단위의 공용 UI 컴포넌트](components/README.md)
-- `components/ui` : 기본 단위의 공용 UI 컴포넌트
-- [`context/` : 전역 컨텍스트 관리](context/README.md)
-- [`hooks/` : 커스텀 훅](hooks/README.md)
+- [`core/` : 라우팅 등 앱의 핵심 구조](core/README.md)
 - [`features/` : 앱의 전체 기능](features/README.md)
+- [`mocks/` : 목업 데이터](mocks/README.md)
+- [`shared/` : 재사용되는 코드 모음](shared/README.md)
 - [`pages/` : 라우팅되는 페이지](pages/README.md)
-- [`routes/` : 라우팅 관련 코드](routes/README.md)
-- [`models/` : 전역 타입 관리](models/README.md)
-- [`utils/` : 재사용 가능한 함수들](utils/README.md)
-- [`styles/` : 전역 스타일, CSS 변수](styles/README.md)
-- [`stories/` : Storybook 파일](stories/README.md)
 
 ## README 작성 규칙
 각 README.md 파일에, 다음 내용을 최소한으로 기록할 것.

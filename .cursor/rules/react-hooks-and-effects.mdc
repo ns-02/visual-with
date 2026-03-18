@@ -1,0 +1,14 @@
+---
+description: 리액트 훅, 이펙트 및 파생 상태 패턴
+globs: 'src/**/*.{ts,tsx}'
+alwaysApply: false
+---
+
+# 리액트 훅 및 이펙트 규칙
+
+- 훅은 반드시 최상위 레벨에서만 호출할 것.
+- 의존성 배열에 포함된 상태를 해당 `useEffect` 내부에서 다시 수정하여 무한 루프를 만드는 패턴을 피할 것.
+- `useEffect`를 통한 후처리보다는 `useMemo`나 인라인 매핑을 통한 파생 데이터(Derived data) 생성을 선호함.
+  - 예: `allChat`이 변경될 때 `useEffect`로 `isMe`를 계산하지 말고, 렌더링 과정에서 직접 계산하거나 `useMemo`를 사용할 것.
+- 이펙트 내부에서 읽는 `userId`, `selectTeamId` 등은 반드시 의존성 배열에 포함할 것.
+- 이전 상태에 의존하는 상태 업데이트는 항상 함수형 업데이트(`setX(prev => next)`)를 사용할 것.
