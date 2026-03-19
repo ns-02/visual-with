@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { createTeam } from '@shared/api/api';
+import { createTeam, deleteTeam } from '@shared/api/api';
 import { useTeam } from '@core/contexts/TeamContext';
 import { useUser } from '@core/contexts/UserContext';
 import { TeamData, TeamId, TeamName } from '@shared/models/Team';
@@ -45,11 +45,21 @@ const useTeamManager = () => {
     }
   };
 
-  const deleteTeam = (teamId: TeamId) => {
-    dispatch({
-      type: 'DELETE_TEAM',
-      payload: { id: teamId },
-    });
+  const onDeleteTeam = async (teamId: TeamId) => {
+    if (!userId) return;
+
+    try {
+      const res = await deleteTeam({ userId, teamId });
+      console.log(res);
+      // console.log(res.message);
+
+      dispatch({
+        type: 'DELETE_TEAM',
+        payload: { id: teamId },
+      });
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   const selectTeam = (selectedTeam: TeamData) => {
@@ -73,7 +83,7 @@ const useTeamManager = () => {
     setSelectTeamName(selectedTeam.name);
   };
 
-  return { onCreateTeam, deleteTeam, selectTeam };
+  return { onCreateTeam, onDeleteTeam, selectTeam };
 };
 
 export default useTeamManager;

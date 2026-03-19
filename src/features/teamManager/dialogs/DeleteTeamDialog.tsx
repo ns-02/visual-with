@@ -14,12 +14,12 @@ const DeleteTeamDialog = ({
   onOpenChange,
   deleteTeamData,
 }: DeleteTeamDialogProps) => {
-  const { deleteTeam } = useTeamManager();
+  const { onDeleteTeam } = useTeamManager();
   const [confirmText, setConFirmText] = useState('');
 
   const handleDeleteTeam = () => {
     if (confirmText !== '삭제') return;
-    if (deleteTeamData) deleteTeam(deleteTeamData.id);
+    if (deleteTeamData) onDeleteTeam(deleteTeamData.id);
     setConFirmText('');
     onOpenChange(false);
   };

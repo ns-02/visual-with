@@ -3,6 +3,8 @@ import {
   checkIdResponse,
   CreateTeamRequest,
   CreateTeamResponse,
+  DeleteTeamRequest,
+  DeleteTeamResponse,
   LoginRequest,
   LoginResponse,
   SignupRequest,
@@ -78,5 +80,18 @@ export const createTeam = async ({
       'X-USER-ID': userId,
     },
     body: JSON.stringify({ teamName }),
+  });
+};
+
+export const deleteTeam = async ({
+  userId,
+  teamId,
+}: DeleteTeamRequest): Promise<DeleteTeamResponse> => {
+  return await request(`/api/teams/${teamId}`, {
+    method: 'DELETE',
+    headers: {
+      'X-USER-ID': userId,
+    },
+    body: JSON.stringify({ teamId }),
   });
 };

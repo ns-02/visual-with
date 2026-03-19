@@ -45,3 +45,12 @@ export interface CreateTeamResponse {
   teamName: string;
   creatorId: string;
 }
+
+export interface DeleteTeamRequest {
+  userId: string;
+  teamId: string;
+}
+
+export interface DeleteTeamResponse {
+  message: string;
+}
