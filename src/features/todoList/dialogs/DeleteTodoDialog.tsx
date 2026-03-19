@@ -1,7 +1,6 @@
 import { Dispatch, SetStateAction } from 'react';
 import { AlertDialog } from '@shared/components/dialogs';
-import { useTodo } from '@core/contexts/TodoContext';
-import { TodoData } from '@shared/models/Todo';
+import { useTodoStore } from '../store/useTodoStore';
 
 interface DeleteTodoDialogProps {
   todoId?: number;
@@ -14,16 +13,14 @@ const DeleteTodoDialog = ({
   open,
   onOpenChange,
 }: DeleteTodoDialogProps) => {
-  const { todoData, setTodoData } = useTodo();
+  const todoData = useTodoStore((state) => state.todos);
+  const deleteTodo = useTodoStore((state) => state.deleteTodo);
   const currentTodoTitle = todoData?.find((item) => item.id === todoId)?.title;
 
   const handleDeleteTodo = () => {
     if (!todoData || !todoId) return;
 
-    const nextTodoData: TodoData[] = todoData.filter(
-      (item) => item.id !== todoId,
-    );
-    setTodoData(nextTodoData);
+    deleteTodo(todoId);
     onOpenChange(false);
   };
 

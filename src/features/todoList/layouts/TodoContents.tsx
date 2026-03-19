@@ -1,15 +1,16 @@
 import { useEffect, useState } from 'react';
 import { Circle, CircleCheckBig } from 'lucide-react';
-import { useTodo } from '@core/contexts/TodoContext';
-import { TodoData } from '@shared/models/Todo';
+import { TodoData } from '@features/todoList/models/Todo';
 import TodoListCard from '../ui/TodoListCard';
 import TodoListLabel from '../ui/TodoListLabel';
 import styles from './TodoListLayout.module.css';
+import { useTodoStore } from '../store/useTodoStore';
 
 function TodoContents() {
-  const { todoData, setTodoData } = useTodo();
-  const [progressData, setProgressData] = useState<TodoData[] | null>(null);
-  const [completedData, setCompletedData] = useState<TodoData[] | null>(null);
+  const todoData = useTodoStore((state) => state.todos);
+  const toggleTodo = useTodoStore((state) => state.toggleTodo);
+  const [progressData, setProgressData] = useState<TodoData[]>([]);
+  const [completedData, setCompletedData] = useState<TodoData[]>([]);
 
   useEffect(() => {
     if (!todoData) return;
@@ -21,21 +22,12 @@ function TodoContents() {
     setCompletedData(nextCompletedData);
   }, [todoData]);
 
-  const handleCheckBoxChange = (id: number) => {
-    if (!todoData) return;
-
-    const nextTodoData = todoData.map((item) =>
-      item.id === id ? { ...item, checked: !item.checked } : item,
-    );
-    setTodoData(nextTodoData);
-  };
-
   return (
     <div className={styles.contents}>
-      <TodoListLabel text='진행 중' count={progressData?.length}>
+      <TodoListLabel text='진행 중' count={progressData.length}>
         <Circle size={16} />
       </TodoListLabel>
-      {progressData?.map((item) => {
+      {progressData.map((item) => {
         return (
           <TodoListCard
             key={item.id}
@@ -43,14 +35,14 @@ function TodoContents() {
             title={item.title}
             description={item.description}
             checked={item.checked}
-            onChange={() => handleCheckBoxChange(item.id)}
+            onChange={() => toggleTodo(item.id)}
           />
         );
       })}
-      <TodoListLabel text='완료' count={completedData?.length}>
+      <TodoListLabel text='완료' count={completedData.length}>
         <CircleCheckBig size={16} />
       </TodoListLabel>
-      {completedData?.map((item) => {
+      {completedData.map((item) => {
         return (
           <TodoListCard
             key={item.id}
@@ -58,7 +50,7 @@ function TodoContents() {
             title={item.title}
             description={item.description}
             checked={item.checked}
-            onChange={() => handleCheckBoxChange(item.id)}
+            onChange={() => toggleTodo(item.id)}
           />
         );
       })}

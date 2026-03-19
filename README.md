@@ -17,6 +17,7 @@ http://localhost:5173
 ## 기술 스택 및 도구
 - React + TypeScript: 컴포넌트 추상화, 타입 안정성
 - Context API: 전역 상태 관리
+- Zustand: 상태 관리
 - CSS Modules: 단위 스타일 충돌 방지
 - Storybook: 재사용되는 컴포넌트 관리 및 UI 일관성 확보
 - Vite: 빌드 도구

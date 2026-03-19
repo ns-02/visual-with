@@ -1,8 +1,7 @@
 import { Dispatch, SetStateAction, useState } from 'react';
 import { Dialog, Group, DialogInput } from '@shared/components/dialogs';
-import { useTodo } from '@core/contexts/TodoContext';
 import getMaxId from '@shared/utils/getMaxId';
-import { TodoData } from '@shared/models/Todo';
+import { useTodoStore } from '../store/useTodoStore';
 
 interface AddTodoDialogProps {
   open: boolean;
@@ -10,19 +9,16 @@ interface AddTodoDialogProps {
 }
 
 const AddTodoDialog = ({ open, onOpenChange }: AddTodoDialogProps) => {
-  const { todoData, setTodoData } = useTodo();
+  const todoData = useTodoStore((state) => state.todos);
+  const addTodo = useTodoStore((state) => state.addTodo);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
 
   const handleAddTodo = () => {
     if (!title) return;
-    const maxId = getMaxId(todoData) ?? 0;
-    const nextTodoData: TodoData[] = [
-      ...todoData,
-      { id: maxId + 1, title, description, checked: false },
-    ];
 
-    setTodoData(nextTodoData);
+    const maxId = getMaxId(todoData) ?? 0;
+    addTodo(title, description, maxId);
     setTitle('');
     setDescription('');
     onOpenChange(false);

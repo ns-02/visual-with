@@ -1,7 +1,6 @@
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { Dialog, Group, DialogInput } from '@shared/components/dialogs';
-import { useTodo } from '@core/contexts/TodoContext';
-import { TodoData } from '@shared/models/Todo';
+import { useTodoStore } from '../store/useTodoStore';
 
 interface UpdateTodoDialogProps {
   todoId?: number;
@@ -14,7 +13,8 @@ const UpdateTodoDialog = ({
   open,
   onOpenChange,
 }: UpdateTodoDialogProps) => {
-  const { todoData, setTodoData } = useTodo();
+  const todoData = useTodoStore((state) => state.todos);
+  const updateTodo = useTodoStore((state) => state.updateTodo);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const currentTodoData = todoData?.find((item) => item.id === todoId);
@@ -27,11 +27,7 @@ const UpdateTodoDialog = ({
   const handleUpdateTodo = () => {
     if (!title || !todoId) return;
 
-    const nextTodoData: TodoData[] = todoData.map((item) =>
-      item.id === todoId ? { ...item, title, description } : item,
-    );
-
-    setTodoData(nextTodoData);
+    updateTodo(title, description, todoId);
     setTitle('');
     setDescription('');
     onOpenChange(false);
