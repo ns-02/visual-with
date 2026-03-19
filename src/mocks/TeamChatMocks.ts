@@ -19,6 +19,7 @@ export const teamChatMockFactories: Record<string, TeamChatMockFactory> = {
         authorName: '민지(팀장)',
         chat: '가나다팀 채팅방 목업이에요. 편하게 테스트해 주세요!',
         time: '오전 9:10',
+        createdAt: '2026-03-18',
         isMe: false,
       },
       {
@@ -27,6 +28,7 @@ export const teamChatMockFactories: Record<string, TeamChatMockFactory> = {
         authorName: '준호',
         chat: '오늘 목표는 팀 채팅 UX 개선이죠? 메시지 정렬부터 볼게요.',
         time: '오전 9:11',
+        createdAt: '2026-03-18',
         isMe: false,
       },
       {
@@ -35,6 +37,7 @@ export const teamChatMockFactories: Record<string, TeamChatMockFactory> = {
         authorName: meName,
         chat: '네! 저는 isMe 계산 로직부터 정리해볼게요.',
         time: '오전 9:12',
+        createdAt: '2026-03-18',
         isMe: true,
       },
       {
@@ -43,6 +46,7 @@ export const teamChatMockFactories: Record<string, TeamChatMockFactory> = {
         authorName: '수아(디자인)',
         chat: '말풍선 간격이랑 아바타 위치도 같이 확인 부탁드려요.',
         time: '오전 9:14',
+        createdAt: '2026-03-19',
         isMe: false,
       },
       {
@@ -51,6 +55,7 @@ export const teamChatMockFactories: Record<string, TeamChatMockFactory> = {
         authorName: '준호',
         chat: '오케이. 그리고 날짜 구분선도 나중에 넣으면 좋을 듯!',
         time: '오전 9:15',
+        createdAt: '2026-03-19',
         isMe: false,
       },
     ];

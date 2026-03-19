@@ -3,6 +3,7 @@ export interface ChatItem {
   authorId: string;
   authorName: string;
   chat: string;
+  createdAt: string;
   time: string;
   isMe: boolean;
 }

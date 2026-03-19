@@ -62,7 +62,7 @@
 .chat_bubble_receiver {
   display: inline-block;
   padding: 8px 12px;
-  margin-bottom: 12px;
+  margin-bottom: 20px;
   border-radius: 10px;
   background-color: var(--color-component-default);
 }
@@ -70,7 +70,7 @@
 .chat_bubble_sender {
   display: inline-block;
   padding: 8px 12px;
-  margin-bottom: 12px;
+  margin-bottom: 20px;
   border-radius: 10px;
   background-color: var(--color-component-another);
 }
