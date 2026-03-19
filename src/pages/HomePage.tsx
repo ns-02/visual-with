@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 import styles from './HomePage.module.css';
-import { useUser } from '@core/contexts';
+import { useUserStore } from '@core/store/useUserStore';
 
 function HomePage() {
-  const { userId } = useUser();
+  const userId = useUserStore((state) => state.userId);
 
   return (
     <div className={styles.home}>

@@ -1,14 +1,16 @@
-import { useTeam, useUser } from '@core/contexts';
+import { useTeam } from '@core/contexts';
 import useChatThread from '@shared/chat/useChatThread';
 import { ChatItem } from '@shared/models/Chat';
 import getMaxId from '@shared/utils/getMaxId';
 import { getItem, setItem } from '@shared/utils/sessionStorage';
 import { useEffect, useState } from 'react';
 import { teamChatMockFactories } from '@mocks/TeamChatMocks';
+import { useUserStore } from '@core/store/useUserStore';
 
 const useTeamChatThread = () => {
   const { selectTeamId } = useTeam();
-  const { userId, userName } = useUser();
+  const userId = useUserStore((state) => state.userId);
+  const userName = useUserStore((state) => state.userName);
   const [allChat, setAllChat] = useState<ChatItem[]>([]);
   const [currentId, setCurrentId] = useState(1);
 

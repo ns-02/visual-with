@@ -1,4 +1,4 @@
-import { useUser } from '@core/contexts';
+import { useUserStore } from '@core/store/useUserStore';
 import { ChatItem } from '@shared/models/Chat';
 import { setItem } from '@shared/utils/sessionStorage';
 
@@ -9,7 +9,8 @@ const useChatThread = (
   setCurrentId: (id: number) => void,
   id: string,
 ) => {
-  const { userId, userName } = useUser();
+  const userId = useUserStore((state) => state.userId);
+  const userName = useUserStore((state) => state.userName);
 
   const handleSend = (chatToSend: string) => {
     if (!userId) return;
