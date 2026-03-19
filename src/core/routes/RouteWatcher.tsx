@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { useLocation, useNavigationType } from 'react-router-dom';
 import { getToolIdFromPath } from './routeMap';
-import { useTool } from '@core/contexts/ToolIdContext';
+import { useToolIdStore } from '@core/store/useToolIdStore';
 
 export function RouteWatcher({
   callOnInitial = true,
@@ -12,7 +12,8 @@ export function RouteWatcher({
   const navType = useNavigationType();
 
   // setToolId()가 컴포넌트에 신호를 주는 역할
-  const { toolId: current, setToolId } = useTool();
+  const current = useToolIdStore((state) => state.toolId);
+  const setToolId = useToolIdStore((state) => state.setToolId);
   const prevRef = useRef<string | null>(null);
 
   useEffect(() => {

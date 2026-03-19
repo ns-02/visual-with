@@ -2,9 +2,9 @@ import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { createTeam, deleteTeam } from '@shared/api/api';
 import { useTeam } from '@core/contexts/TeamContext';
-import { useUser } from '@core/contexts/UserContext';
 import { TeamData, TeamId, TeamName } from '@shared/models/Team';
 import { getPathFromToolId, getToolIdFromPath } from '@core/routes/routeMap';
+import { useUserStore } from '@core/store/useUserStore';
 
 const useTeamManager = () => {
   const {
@@ -15,7 +15,8 @@ const useTeamManager = () => {
     setSelectTeamName,
   } = useTeam();
 
-  const { userId, setUserId } = useUser();
+  const userId = useUserStore((state) => state.userId);
+  const setUserId = useUserStore((state) => state.setUserId);
   const navigate = useNavigate();
   const { pathname } = useLocation();
 

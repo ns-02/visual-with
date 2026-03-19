@@ -1,9 +1,9 @@
 import { Outlet } from 'react-router-dom';
-import { useAuth } from '@core/contexts/AuthContext';
 import GuardPage from '../../pages/auth/GuardPage';
+import { useAuthStore } from '@core/store/useAuthStore';
 
 const PrivateRoute = () => {
-  const { isLoggedin } = useAuth();
+  const isLoggedin = useAuthStore((state) => state.isLoggedin);
 
   // if (!isLoggedin) {
   //   return <GuardPage />;

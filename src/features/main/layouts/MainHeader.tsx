@@ -2,13 +2,13 @@ import { useState } from 'react';
 import { File, LucideProps, Plus, Search, Upload } from 'lucide-react';
 import { HeaderBar } from '@shared/components';
 import { ToolId } from '@shared/models/ToolId';
-import { useTool } from '@core/contexts/ToolIdContext';
 import UploadFileDialog from '../../fileSharing/dialogs/UploadFileDialog';
 import AddScheduleDialog from '../../schedule/dialogs/AddScheduleDialog';
 import AddTodoDialog from '../../todoList/dialogs/AddTodoDialog';
 import AddFriendDialog from '../../friendList/dialogs/AddFriendDialog';
 import styles from './Layouts.module.css';
 import { useAreaOpenStore } from '@features/directChat/store/useAreaOpenStore';
+import { useToolIdStore } from '@core/store/useToolIdStore';
 
 interface HeaderItem {
   id: ToolId;
@@ -19,7 +19,7 @@ interface HeaderItem {
 }
 
 function MainHeader() {
-  const { toolId } = useTool();
+  const toolId = useToolIdStore((state) => state.toolId);
   const toggleAreaOpen = useAreaOpenStore((state) => state.toggleAreaOpen);
 
   const [isUploadFileDialogOpen, setIsUploadFileDialogOpen] = useState(false);

@@ -1,15 +1,17 @@
 import { FormEvent, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '@core/contexts/AuthContext';
-import { useUser } from '@core/contexts/UserContext';
 import { Container } from '@shared/components';
 import { loginUser } from '@shared/api/api';
 import { AuthButton, AuthInput } from '@shared/components/ui';
 import styles from './Auth.module.css';
+import { useAuthStore } from '@core/store/useAuthStore';
+import { useUserStore } from '@core/store/useUserStore';
 
 function LoginPage() {
-  const { setIsLoggedin } = useAuth();
-  const { setUserId, setUserName, setUserEmail } = useUser();
+  const setIsLoggedin = useAuthStore((state) => state.setIsLoggedin);
+  const setUserId = useUserStore((state) => state.setUserId);
+  const setUserName = useUserStore((state) => state.setUserName);
+  const setUserEmail = useUserStore((state) => state.setUserEmail);
 
   const navigate = useNavigate();
   const [id, setId] = useState('');

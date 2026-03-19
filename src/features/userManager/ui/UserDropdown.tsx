@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react';
 import { DropdownMenu } from 'radix-ui';
 import { Button, Dropdown, Item } from '@shared/components/ui';
-import { useUser } from '@core/contexts/UserContext';
 import LogoutDialog from '../dialogs/LogoutDialog';
 import styles from './UserDropdownItems.module.css';
+import { useUserStore } from '@core/store/useUserStore';
 
 const UserDropdown = () => {
   const [isLogoutDialogOpen, setIsLogoutDialogOpen] = useState(false);
   const [triggerText, setTriggerText] = useState<string | undefined>();
-  const { userName } = useUser();
+  const userName = useUserStore((state) => state.userName);
 
   const renderUserName = () => {
     if (!userName) return '로그인되지 않음';
