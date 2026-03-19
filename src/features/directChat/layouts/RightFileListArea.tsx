@@ -1,10 +1,10 @@
-import { useAreaOpen } from '@core/contexts/AreaOpenContext';
 import styles from './DirectChatLayout.module.css';
+import { useAreaOpenStore } from '../store/useAreaOpenStore';
 
 const RightFileListArea = () => {
-  const { isDirectChatFileAreaOpen } = useAreaOpen();
+  const isAreaOpen = useAreaOpenStore((state) => state.isAreaOpen);
 
-  if (!isDirectChatFileAreaOpen) {
+  if (!isAreaOpen) {
     return null;
   }
 

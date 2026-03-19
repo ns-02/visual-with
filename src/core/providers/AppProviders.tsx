@@ -1,5 +1,4 @@
 import {
-  AreaOpenProvider,
   AuthProvider,
   FriendProvider,
   TeamProvider,
@@ -10,17 +9,15 @@ import ToolProviders from './ToolProviders';
 
 const AppProviders = ({ children }: { children: React.ReactNode }) => (
   <Tooltip.Provider>
-    <AreaOpenProvider>
-      <ToolProviders>
-        <TeamProvider>
-          <FriendProvider>
-            <AuthProvider>
-              <UserProvider>{children}</UserProvider>
-            </AuthProvider>
-          </FriendProvider>
-        </TeamProvider>
-      </ToolProviders>
-    </AreaOpenProvider>
+    <ToolProviders>
+      <TeamProvider>
+        <FriendProvider>
+          <AuthProvider>
+            <UserProvider>{children}</UserProvider>
+          </AuthProvider>
+        </FriendProvider>
+      </TeamProvider>
+    </ToolProviders>
   </Tooltip.Provider>
 );
 
