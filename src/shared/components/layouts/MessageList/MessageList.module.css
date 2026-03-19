@@ -13,8 +13,9 @@
 
 .date_divider {
   text-align: center;
-  margin: 12px 0;
+  margin: 8px 0;
   font-size: 13px;
+  font-weight: 500;
   color: #888;
 }
 
