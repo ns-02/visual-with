@@ -1,5 +1,2 @@
-export interface TodoListLabelProps {
-  text?: string;
-  count?: number;
-  children?: React.ReactNode;
-}
+export { default as TodoListPage } from './pages/TodoListPage';
+export type { TodoData } from './models/Todo';

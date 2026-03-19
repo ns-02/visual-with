@@ -1,7 +1,6 @@
 import { Dialog, DialogInput, Group, Row } from '@shared/components/dialogs';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
-import { useSchedule } from '@core/contexts/ScheduleContext';
-import { ScheduleData } from '@shared/models/Schedule';
+import { useScheduleStore } from '../store/useScheduleStore';
 
 export interface UpdateScheduleDialogProps {
   scheduleId?: number;
@@ -14,7 +13,8 @@ const UpdateScheduleDialog = ({
   open,
   onOpenChange,
 }: UpdateScheduleDialogProps) => {
-  const { scheduleData, setScheduleData } = useSchedule();
+  const scheduleData = useScheduleStore((state) => state.schedules);
+  const updateSchedule = useScheduleStore((state) => state.updateSchedule);
   const [title, setTitle] = useState('');
   const [startDate, setstartDate] = useState('');
   const [startTime, setStartTime] = useState('');
@@ -35,23 +35,17 @@ const UpdateScheduleDialog = ({
   }, [currentScheduleData]);
 
   const handleUpdateSchedule = () => {
-    if (!title || !startDate || !startTime) return;
+    if (!title || !startDate || !startTime || !scheduleId) return;
 
-    const nextScheduleData: ScheduleData[] = scheduleData.map((item) =>
-      item.id === scheduleId
-        ? {
-            ...item,
-            title,
-            startDate,
-            startTime,
-            finishDate,
-            finishTime,
-            description,
-          }
-        : item,
+    updateSchedule(
+      title,
+      description,
+      scheduleId,
+      startDate,
+      startTime,
+      finishDate,
+      finishTime,
     );
-
-    setScheduleData(nextScheduleData);
     setTitle('');
     setstartDate('');
     setStartTime('');

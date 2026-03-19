@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
-import { useSchedule } from '@core/contexts/ScheduleContext';
-import { ScheduleData } from '@shared/models/Schedule';
+import { ScheduleData } from '@features/schedule/models/Schedule';
 import ScheduleCard from '../ui/ScheduleCard';
 import styles from './ScheduleLayout.module.css';
+import { useScheduleStore } from '../store/useScheduleStore';
 
 function ScheduleViewPanel() {
-  const { scheduleData } = useSchedule();
+  const scheduleData = useScheduleStore((state) => state.schedules);
   const [completedData, setCompletedData] = useState<ScheduleData[] | null>(
     null,
   );

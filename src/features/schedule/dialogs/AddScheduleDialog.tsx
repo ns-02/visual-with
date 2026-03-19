@@ -1,9 +1,7 @@
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { Dialog, DialogInput, Group, Row } from '@shared/components/dialogs';
-import { useSchedule } from '@core/contexts/ScheduleContext';
-import getMaxId from '@shared/utils/getMaxId';
-import { ScheduleData } from '@shared/models/Schedule';
 import { getDate } from '@shared/utils/dateUtils';
+import { useScheduleStore } from '../store/useScheduleStore';
 
 export interface AddScheduleDialogProps {
   open: boolean;
@@ -11,7 +9,7 @@ export interface AddScheduleDialogProps {
 }
 
 const AddScheduleDialog = ({ open, onOpenChange }: AddScheduleDialogProps) => {
-  const { scheduleData, setScheduleData } = useSchedule();
+  const addSchedule = useScheduleStore((state) => state.addSchedule);
   const [title, setTitle] = useState('');
   const [startDate, setstartDate] = useState('');
   const [startTime, setStartTime] = useState('');
@@ -28,22 +26,14 @@ const AddScheduleDialog = ({ open, onOpenChange }: AddScheduleDialogProps) => {
   const handleAddSchedule = () => {
     if (!title || !startDate || !startTime) return;
 
-    const maxId = getMaxId(scheduleData) ?? 0;
-    const nextScheduleData: ScheduleData[] = [
-      ...scheduleData,
-      {
-        id: maxId + 1,
-        title,
-        startDate,
-        startTime,
-        finishDate,
-        finishTime,
-        description,
-        state: '예정',
-      },
-    ];
-
-    setScheduleData(nextScheduleData);
+    addSchedule(
+      title,
+      description,
+      startDate,
+      startTime,
+      finishDate,
+      finishTime,
+    );
     setTitle('');
     setstartDate('');
     setStartTime('');

@@ -1,5 +1,10 @@
-import { TodoListLabelProps } from '..';
 import styles from './TodoListLabel.module.css';
+
+export interface TodoListLabelProps {
+  text?: string;
+  count?: number;
+  children?: React.ReactNode;
+}
 
 const TodoListLabel = ({ text, count, children }: TodoListLabelProps) => {
   return (

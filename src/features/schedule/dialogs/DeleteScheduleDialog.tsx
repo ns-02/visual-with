@@ -1,7 +1,6 @@
 import { Dispatch, SetStateAction } from 'react';
 import { AlertDialog } from '@shared/components/dialogs';
-import { useSchedule } from '@core/contexts/ScheduleContext';
-import { ScheduleData } from '@shared/models/Schedule';
+import { useScheduleStore } from '../store/useScheduleStore';
 
 interface DeleteScheduleDialogProps {
   scheduleId?: number;
@@ -14,7 +13,8 @@ const DeleteScheduleDialog = ({
   open,
   onOpenChange,
 }: DeleteScheduleDialogProps) => {
-  const { scheduleData, setScheduleData } = useSchedule();
+  const scheduleData = useScheduleStore((state) => state.schedules);
+  const deleteSchedule = useScheduleStore((state) => state.deleteSchedule);
   const currentScheduleTitle = scheduleData?.find(
     (item) => item.id === scheduleId,
   )?.title;
@@ -22,10 +22,7 @@ const DeleteScheduleDialog = ({
   const handleDeleteSchedule = () => {
     if (!scheduleData || !scheduleId) return;
 
-    const nextScheduleData: ScheduleData[] = scheduleData.filter(
-      (item) => item.id !== scheduleId,
-    );
-    setScheduleData(nextScheduleData);
+    deleteSchedule(scheduleId);
     onOpenChange(false);
   };
 

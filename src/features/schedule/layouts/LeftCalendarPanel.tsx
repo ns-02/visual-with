@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
-import { useSchedule } from '@core/contexts/ScheduleContext';
 import { getDate } from '@shared/utils/dateUtils';
 import Calender from '../ui/Calender';
 import styles from './ScheduleLayout.module.css';
+import { useScheduleStore } from '../store/useScheduleStore';
 
 function LeftCalendarPanel() {
-  const { scheduleData } = useSchedule();
+  const scheduleData = useScheduleStore((state) => state.schedules);
   const [selected, setSelected] = useState<Date>();
   const [selectedYear, setSelectedYear] = useState('');
   const [selectedMonth, setSelectedMonth] = useState('');
