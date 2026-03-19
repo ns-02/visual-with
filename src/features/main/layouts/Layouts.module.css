@@ -27,6 +27,7 @@
 
 .body {
   flex: 1;
+  height: calc(100% - 64px);
 }
 
 /* area */
