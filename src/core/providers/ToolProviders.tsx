@@ -1,9 +1,7 @@
-import { FileProvider, ToolIdProvider } from '@core/contexts';
+import { ToolIdProvider } from '@core/contexts';
 
 const ToolProviders = ({ children }: { children: React.ReactNode }) => (
-  <ToolIdProvider>
-    <FileProvider>{children}</FileProvider>
-  </ToolIdProvider>
+  <ToolIdProvider>{children}</ToolIdProvider>
 );
 
 export default ToolProviders;

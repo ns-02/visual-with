@@ -1,7 +1,10 @@
-import { useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 import FileNavButton from '../ui/FileNavButton';
-import { TopFileNavBarProps } from '..';
 import styles from './FileSharingLayout.module.css';
+
+interface TopFileNavBarProps {
+  onSelect: Dispatch<SetStateAction<string>>;
+}
 
 function TopFileNavBar({ onSelect }: TopFileNavBarProps) {
   const fileNavItemsInit = [

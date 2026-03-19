@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction, useState } from 'react';
 import { Dialog, Group, DialogInput } from '@shared/components/dialogs';
-import useFileManager from '../hooks/useFileManager';
+import { useFileStore } from '../store/useFileStore';
 
 interface UploadFileDialogProps {
   open: boolean;
@@ -8,11 +8,19 @@ interface UploadFileDialogProps {
 }
 
 const UploadFileDialog = ({ open, onOpenChange }: UploadFileDialogProps) => {
+  const uploadFile = useFileStore((state) => state.uploadFile);
   const [file, setFile] = useState<File>();
-  const { uploadFile } = useFileManager();
 
   const handleUploadFile = () => {
-    uploadFile(file);
+    if (!file) return;
+
+    const date = new Date();
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+
+    const formattedDate = `${year}-${month}-${day}`;
+    uploadFile(file, formattedDate);
     onOpenChange(false);
   };
 

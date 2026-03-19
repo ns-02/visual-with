@@ -1,14 +1,14 @@
-import { useFile } from '@core/contexts/FileContext';
 import DragAndDrop from '../ui/DragAndDrop';
 import FileListCard from '../ui/FileListCard';
 import styles from './FileSharingLayout.module.css';
+import { useFileStore } from '../store/useFileStore';
 
 interface FileViewPanelProps {
   fileTypes: string;
 }
 
 function FileViewPanel({ fileTypes }: FileViewPanelProps) {
-  const { fileData } = useFile();
+  const fileData = useFileStore((state) => state.files);
 
   return (
     <div className={styles.file_view_panel}>

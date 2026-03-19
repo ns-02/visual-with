@@ -1,14 +1,14 @@
 import { ChangeEvent, DragEvent, useRef, useState } from 'react';
 import { Upload } from 'lucide-react';
 import { FileInput, FileSelectButton } from '..';
-import useFileManager from '../hooks/useFileManager';
 import styles from './DragAndDrop.module.css';
+import { useFileStore } from '../store/useFileStore';
 
 const DragAndDrop = () => {
+  const uploadFile = useFileStore((state) => state.uploadFile);
   const inputRef = useRef<HTMLInputElement>(null);
   const [dragging, setDragging] = useState(false);
   const [file, setFile] = useState<File>();
-  const { uploadFile } = useFileManager();
 
   const containerStyle = dragging
     ? styles.container_dragging
@@ -24,9 +24,15 @@ const DragAndDrop = () => {
   // 파일 선택 모달이 닫힌 경우(Input 요소에 파일이 추가된 경우) 동작
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
+      const date = new Date();
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, '0');
+      const day = String(date.getDate()).padStart(2, '0');
+
+      const formattedDate = `${year}-${month}-${day}`;
       const selectedFile = e.target.files[0];
       selectedFile && setFile(selectedFile);
-      selectedFile && uploadFile(selectedFile);
+      selectedFile && uploadFile(selectedFile, formattedDate);
     }
   };
 
@@ -61,10 +67,16 @@ const DragAndDrop = () => {
     e.preventDefault();
     e.stopPropagation();
 
+    const date = new Date();
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+
+    const formattedDate = `${year}-${month}-${day}`;
     // 실제 파일 처리 로직
     const selectedFile = e.dataTransfer.files[0];
     selectedFile && setFile(selectedFile);
-    selectedFile && uploadFile(selectedFile);
+    selectedFile && uploadFile(selectedFile, formattedDate);
     setDragging(false);
   };
 

@@ -1,7 +1,6 @@
 import { Dispatch, SetStateAction } from 'react';
 import { AlertDialog } from '@shared/components/dialogs';
-import { useFile } from '@core/contexts/FileContext';
-import { FileData } from '@shared/models/File';
+import { useFileStore } from '../store/useFileStore';
 
 interface DeleteFileDialogProps {
   fileId?: number;
@@ -14,7 +13,8 @@ const DeleteFileDialog = ({
   open,
   onOpenChange,
 }: DeleteFileDialogProps) => {
-  const { fileData, setFileData } = useFile();
+  const fileData = useFileStore((state) => state.files);
+  const deleteFile = useFileStore((state) => state.deleteFile);
   const currentFileName = fileData?.find(
     (item) => item.id === fileId,
   )?.fileName;
@@ -22,10 +22,7 @@ const DeleteFileDialog = ({
   const handleDeleteFile = () => {
     if (!fileData || !fileId) return;
 
-    const nextFileData: FileData[] = fileData.filter(
-      (item) => item.id !== fileId,
-    );
-    setFileData(nextFileData);
+    deleteFile(fileId);
     onOpenChange(false);
   };
 
