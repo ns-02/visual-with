@@ -1,9 +1,9 @@
+import { useFriendStore } from '@features/friendList/store/useFriendStore';
 import { Prop } from '..';
 import styles from './DirectChatLayout.module.css';
-import { useFriend } from '@core/contexts/FriendContext';
 
 function ChatViewPanel({ children }: Prop) {
-  const { selectFriendData } = useFriend();
+  const selectFriendData = useFriendStore();
 
   if (!selectFriendData) {
     return (

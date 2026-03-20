@@ -1,56 +1,27 @@
 import { User, UserPlus } from 'lucide-react';
-import { FriendData } from '@shared/models/Friend';
-import { useFriend } from '@core/contexts/FriendContext';
 import FriendListCard from '../ui/FriendListCard';
 import FriendRequestCard from '../ui/FriendRequestCard';
 import FriendListLabel from '../ui/FriendListLabel';
 import styles from './FriendListLayout.module.css';
 import { useEffect } from 'react';
-import { futureRequestDataMocks } from '@mocks/FriendDataMocks';
+import { useFriendStore } from '../store/useFriendStore';
 
 let isInit = false;
 
 function FriendContents() {
-  const { friendData, setFriendData, friendRequestData, setFriendRequestData } =
-    useFriend();
+  const friendData = useFriendStore((state) => state.friends);
+  const friendRequestData = useFriendStore((state) => state.friendRequests);
+  const requestedFriend = useFriendStore((state) => state.requestedFriend);
+  const handleAccept = useFriendStore((state) => state.acceptFriend);
+  const handleReject = useFriendStore((state) => state.rejectFriend);
 
   useEffect(() => {
     if (isInit) return;
     setTimeout(() => {
-      handleRequested();
+      requestedFriend();
       isInit = true;
     }, 3000);
   }, []);
-
-  const handleRequested = () => {
-    // 요청받는 로직
-    const newFriendData = futureRequestDataMocks.shift();
-    if (!newFriendData) return;
-
-    const nextFriendRequestData = friendRequestData && [
-      ...friendRequestData,
-      newFriendData,
-    ];
-
-    setFriendRequestData(nextFriendRequestData);
-  };
-
-  const handleAccept = (data: FriendData) => {
-    const nextFriendRequestData = friendRequestData?.filter(
-      (item) => item.id !== data.id && item,
-    );
-    const nextFriendData = friendData && [...friendData, data];
-
-    setFriendRequestData(nextFriendRequestData);
-    setFriendData(nextFriendData);
-  };
-
-  const handleReject = (data: FriendData) => {
-    const nextFriendRequestData = friendRequestData?.filter(
-      (item) => item.id !== data.id && item,
-    );
-    setFriendRequestData(nextFriendRequestData);
-  };
 
   return (
     <div className={styles.contents}>

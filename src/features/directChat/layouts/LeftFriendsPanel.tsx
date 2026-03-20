@@ -1,12 +1,16 @@
 import { useEffect, useState } from 'react';
-import { useFriend } from '@core/contexts/FriendContext';
 import SelectFriendCard from '../ui/SelectFriendCard';
 import { FriendItem } from '..';
 import styles from './DirectChatLayout.module.css';
+import { useFriendStore } from '@features/friendList/store/useFriendStore';
 
 function LeftFriendsPanel() {
-  const { friendData, selectFriendData, setSelectFriendData, friendIdChatMap } =
-    useFriend();
+  const friendData = useFriendStore((state) => state.friends);
+  const selectFriendData = useFriendStore((state) => state.selectFriends);
+  const friendIdChatMap = useFriendStore((state) => state.friendIdChatMap);
+  const updateSelectFriend = useFriendStore(
+    (state) => state.updateSelectFriend,
+  );
   const [friendItems, setFriendItems] = useState<FriendItem[]>([]);
 
   useEffect(() => {
@@ -31,7 +35,7 @@ function LeftFriendsPanel() {
     );
 
     setFriendItems(nextFriendItems);
-    setSelectFriendData(friendData?.find((item) => item.id === id));
+    updateSelectFriend(id);
   };
 
   return (

@@ -1,5 +1,8 @@
-import { FriendIdChatMap, useFriend } from '@core/contexts';
 import { useUserStore } from '@core/store/useUserStore';
+import {
+  FriendIdChatMap,
+  useFriendStore,
+} from '@features/friendList/store/useFriendStore';
 import useChatThread from '@shared/chat/useChatThread';
 import { ChatItem } from '@shared/models/Chat';
 import getMaxId from '@shared/utils/getMaxId';
@@ -7,7 +10,10 @@ import { getItem } from '@shared/utils/sessionStorage';
 import { useEffect, useState } from 'react';
 
 const useDirectChatThread = () => {
-  const { selectFriendData, setFriendIdChatMap } = useFriend();
+  const selectFriendData = useFriendStore((state) => state.selectFriends);
+  const setFriendIdChatMap = useFriendStore(
+    (state) => state.setFriendIdChatMap,
+  );
   const userId = useUserStore((state) => state.userId);
   const [allChat, setAllChat] = useState<ChatItem[]>([]);
   const [currentId, setCurrentId] = useState(1);

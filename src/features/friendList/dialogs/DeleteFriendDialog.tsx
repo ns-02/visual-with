@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from 'react';
 import { AlertDialog } from '@shared/components/dialogs';
-import { useFriend } from '@core/contexts/FriendContext';
+import { useFriendStore } from '../store/useFriendStore';
 
 interface DeleteFriendDialogProps {
   friendId?: string;
@@ -13,7 +13,8 @@ const DeleteFriendDialog = ({
   open,
   onOpenChange,
 }: DeleteFriendDialogProps) => {
-  const { friendData, setFriendData } = useFriend();
+  const friendData = useFriendStore((state) => state.friends);
+  const deleteFriend = useFriendStore((state) => state.deleteFriend);
   const currentFriendName = friendData?.find(
     (item) => item.id === friendId,
   )?.name;
@@ -21,8 +22,7 @@ const DeleteFriendDialog = ({
   const handleDeleteFriend = () => {
     if (!friendData || !friendId) return;
 
-    const nextFriendData = friendData.filter((item) => item.id !== friendId);
-    setFriendData(nextFriendData);
+    deleteFriend(friendId);
     onOpenChange(false);
   };
 
