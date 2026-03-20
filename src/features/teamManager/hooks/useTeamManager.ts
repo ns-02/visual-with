@@ -1,19 +1,20 @@
 import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { createTeam, deleteTeam } from '@shared/api/api';
-import { useTeam } from '@core/contexts/TeamContext';
 import { TeamData, TeamId, TeamName } from '@shared/models/Team';
 import { getPathFromToolId, getToolIdFromPath } from '@core/routes/routeMap';
 import { useUserStore } from '@core/store/useUserStore';
+import { useTeamStore } from '@core/store/useTeamStore';
 
 const useTeamManager = () => {
-  const {
-    teamData,
-    dispatch,
-    setIsTeamMember,
-    setSelectTeamId,
-    setSelectTeamName,
-  } = useTeam();
+  const teamData = useTeamStore((state) => state.teams);
+  const createTeamInStore = useTeamStore((state) => state.createTeamInStore);
+  const deleteTeamFromStore = useTeamStore(
+    (state) => state.deleteTeamFromStore,
+  );
+  const setIsTeamMember = useTeamStore((state) => state.setIsTeamMember);
+  const setSelectTeamId = useTeamStore((state) => state.setSelectTeamId);
+  const setSelectTeamName = useTeamStore((state) => state.setSelectTeamName);
 
   const userId = useUserStore((state) => state.userId);
   const setUserId = useUserStore((state) => state.setUserId);
@@ -37,10 +38,7 @@ const useTeamManager = () => {
     try {
       const res = await createTeam({ userId, teamName });
 
-      dispatch({
-        type: 'CREATE_TEAM',
-        payload: { id: res.id, name: res.teamName },
-      });
+      createTeamInStore(res.id, res.teamName);
     } catch (e) {
       console.log(e);
     }
@@ -54,10 +52,7 @@ const useTeamManager = () => {
       console.log(res);
       // console.log(res.message);
 
-      dispatch({
-        type: 'DELETE_TEAM',
-        payload: { id: teamId },
-      });
+      deleteTeamFromStore(teamId);
     } catch (e) {
       console.log(e);
     }

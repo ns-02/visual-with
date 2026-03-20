@@ -1,8 +1,8 @@
-import { useTeam } from '@core/contexts/TeamContext';
+import { useTeamStore } from '@core/store/useTeamStore';
 import styles from './TeamPage.module.css';
 
 function TeamPage() {
-  const { selectTeamName } = useTeam();
+  const selectTeamName = useTeamStore((state) => state.selectTeamName);
 
   return (
     <div className={styles.page}>

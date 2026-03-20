@@ -2,10 +2,10 @@ import React from 'react';
 import { DropdownMenu } from 'radix-ui';
 import { Trash2 } from 'lucide-react';
 import { ContentButton, Item } from '@shared/components/ui';
-import { useTeam } from '@core/contexts/TeamContext';
 import { TeamData } from '@shared/models/Team';
 import useTeamManager from '../hooks/useTeamManager';
 import styles from './TeamDropdownItems.module.css';
+import { useTeamStore } from '@core/store/useTeamStore';
 
 interface TeamDropdownItemsType {
   deleteTeamDialogOpen: (value: React.SetStateAction<boolean>) => void;
@@ -16,7 +16,8 @@ const TeamDropdownItems = ({
   deleteTeamDialogOpen,
   setDeleteTeamData,
 }: TeamDropdownItemsType) => {
-  const { teamData, selectTeamId } = useTeam();
+  const teamData = useTeamStore((state) => state.teams);
+  const selectTeamId = useTeamStore((state) => state.selectTeamId);
   const { selectTeam } = useTeamManager();
 
   const handleItemSelected = (item: TeamData) => {

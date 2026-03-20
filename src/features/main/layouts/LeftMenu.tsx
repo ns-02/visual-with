@@ -10,7 +10,6 @@ import {
   Plus,
   Users,
 } from 'lucide-react';
-import { useTeam } from '@core/contexts/TeamContext';
 import { Button, Tooltip } from '@shared/components/ui';
 import { ToolId } from '@shared/models/ToolId';
 import TeamDropdown from '@features/teamManager/ui/TeamDropdown';
@@ -20,6 +19,7 @@ import Divider from '../ui/Divider';
 import styles from './Layouts.module.css';
 import TooltipItem from '../ui/TooltipItem';
 import { getPathFromToolId } from '@core/routes/routeMap';
+import { useTeamStore } from '@core/store/useTeamStore';
 
 interface MenuItem {
   id: ToolId;
@@ -30,7 +30,9 @@ interface MenuItem {
 
 function LeftMenu() {
   const [isInviteTeamDialogOpen, setIsInviteTeamDialogOpen] = useState(false);
-  const { selectTeamId, selectTeamName, isTeamMember } = useTeam();
+  const selectTeamId = useTeamStore((state) => state.selectTeamId);
+  const selectTeamName = useTeamStore((state) => state.selectTeamName);
+  const isTeamMember = useTeamStore((state) => state.isTeamMember);
   const [selectItemId, setSelectItemId] = useState<ToolId | null>(null);
 
   const topMenuItems: MenuItem[] = [

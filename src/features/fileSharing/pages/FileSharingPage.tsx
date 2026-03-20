@@ -1,12 +1,10 @@
 import { useState } from 'react';
-import { useTeam } from '@core/contexts/TeamContext';
 import FileSharingRoot from '../layouts/FileSharingRoot';
 import TopFileNavBar from '../layouts/TopFileNavBar';
 import FileViewPanel from '../layouts/FileViewPanel';
 
 function FileSharingPage() {
   // 현재 선택된 팀 데이터
-  const { selectTeamId } = useTeam();
   const [fileTypes, setFileTypes] = useState<string>('all');
 
   return (
