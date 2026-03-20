@@ -6,29 +6,20 @@ import {
 import { FriendData } from '@shared/models/Friend';
 import { create } from 'zustand';
 
-export type FriendIdChatMap = Map<string, string>;
-
-type FriendIdChatMapUpdater =
-  | FriendIdChatMap
-  | ((prevMap: FriendIdChatMap) => FriendIdChatMap);
-
 interface FriendState {
   friends: FriendData[];
   friendRequests: FriendData[];
   selectFriends: FriendData | null;
-  friendIdChatMap: FriendIdChatMap;
   requestedFriend: () => void;
   acceptFriend: (friend: FriendData) => void;
   rejectFriend: (friend: FriendData) => void;
   deleteFriend: (friendId: string) => void;
   updateSelectFriend: (friendId: string) => void;
-  setFriendIdChatMap: (updater: FriendIdChatMapUpdater) => void;
 }
 
 export const useFriendStore = create<FriendState>((set) => ({
   friends: friendDataMocks,
   friendRequests: friendRequestDataMocks,
-  friendIdChatMap: new Map(),
   selectFriends: null,
 
   requestedFriend: () =>
@@ -42,7 +33,7 @@ export const useFriendStore = create<FriendState>((set) => ({
   acceptFriend: (friend) => {
     set((state) => ({
       friendRequests: state.friendRequests.filter(
-        (item) => item.id !== friend.id && item,
+        (item) => item.id !== friend.id,
       ),
 
       friends: [...state.friends, friend],
@@ -52,7 +43,7 @@ export const useFriendStore = create<FriendState>((set) => ({
   rejectFriend: (friend) => {
     set((state) => ({
       friendRequests: state.friendRequests.filter(
-        (item) => item.id !== friend.id && item,
+        (item) => item.id !== friend.id,
       ),
     }));
   },
@@ -66,14 +57,4 @@ export const useFriendStore = create<FriendState>((set) => ({
     set((state) => ({
       selectFriends: state.friends.find((item) => item.id === friendId),
     })),
-
-  setFriendIdChatMap: (updater) =>
-    set((state) => {
-      const nextMap =
-        typeof updater === 'function'
-          ? updater(state.friendIdChatMap)
-          : updater;
-
-      return { friendIdChatMap: new Map(nextMap) };
-    }),
 }));

@@ -3,11 +3,12 @@ import SelectFriendCard from '../ui/SelectFriendCard';
 import { FriendItem } from '..';
 import styles from './DirectChatLayout.module.css';
 import { useFriendStore } from '@features/friendList/store/useFriendStore';
+import { useDirectChatStore } from '../store/useDirectChatStore';
 
 function LeftFriendsPanel() {
   const friendData = useFriendStore((state) => state.friends);
   const selectFriendData = useFriendStore((state) => state.selectFriends);
-  const friendIdChatMap = useFriendStore((state) => state.friendIdChatMap);
+  const friendIdChatMap = useDirectChatStore((state) => state.friendIdChatMap);
   const updateSelectFriend = useFriendStore(
     (state) => state.updateSelectFriend,
   );
@@ -25,7 +26,7 @@ function LeftFriendsPanel() {
     });
 
     nextFriendItems && setFriendItems(nextFriendItems);
-  }, [friendData, friendIdChatMap]);
+  }, [friendData, selectFriendData, friendIdChatMap]);
 
   const handleCardSelect = (id: string) => {
     const nextFriendItems = friendItems.map((item) =>

@@ -7,7 +7,7 @@ import AddScheduleDialog from '../../schedule/dialogs/AddScheduleDialog';
 import AddTodoDialog from '../../todoList/dialogs/AddTodoDialog';
 import AddFriendDialog from '../../friendList/dialogs/AddFriendDialog';
 import styles from './Layouts.module.css';
-import { useAreaOpenStore } from '@features/directChat/store/useAreaOpenStore';
+import { useDirectChatStore } from '@features/directChat/store/useDirectChatStore';
 import { useToolIdStore } from '@core/store/useToolIdStore';
 
 interface HeaderItem {
@@ -20,7 +20,7 @@ interface HeaderItem {
 
 function MainHeader() {
   const toolId = useToolIdStore((state) => state.toolId);
-  const toggleAreaOpen = useAreaOpenStore((state) => state.toggleAreaOpen);
+  const toggleAreaOpen = useDirectChatStore((state) => state.toggleAreaOpen);
 
   const [isUploadFileDialogOpen, setIsUploadFileDialogOpen] = useState(false);
   const [isAddScheduleDialogOpen, setIsAddScheduleDialogOpen] = useState(false);
