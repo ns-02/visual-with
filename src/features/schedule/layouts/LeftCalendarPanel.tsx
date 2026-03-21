@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { getDate } from '@shared/utils/dateUtils';
-import Calender from '../ui/Calender';
+import Calendar from '../ui/Calendar';
 import styles from './ScheduleLayout.module.css';
 import { useScheduleStore } from '../store/useScheduleStore';
 
@@ -31,9 +31,9 @@ function LeftCalendarPanel() {
   });
 
   return (
-    <div className={styles.left_calender_panel}>
-      <div className={styles.calender_container}>
-        <Calender selected={selected} setSelected={setSelected} />
+    <div className={styles.left_calendar_panel}>
+      <div className={styles.calendar_container}>
+        <Calendar selected={selected} setSelected={setSelected} />
       </div>
       <br />
       <div>

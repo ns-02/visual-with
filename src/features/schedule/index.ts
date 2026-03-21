@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from 'react';
 
-export interface CalenderProps {
+export interface CalendarProps {
   selected: Date | undefined;
   setSelected: Dispatch<SetStateAction<Date | undefined>>;
 }

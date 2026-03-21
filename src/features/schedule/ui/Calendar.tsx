@@ -1,11 +1,11 @@
 import { DayPicker } from 'react-day-picker';
 import { ko } from 'date-fns/locale';
-import { CalenderProps } from '..';
-import styles from './Calender.module.css';
+import { CalendarProps } from '..';
+import styles from './Calendar.module.css';
 import 'react-day-picker/style.css';
 import '@core/styles/globalDaypicker.css';
 
-const Calender = ({ selected, setSelected }: CalenderProps) => {
+const Calendar = ({ selected, setSelected }: CalendarProps) => {
   return (
     <>
       <DayPicker
@@ -35,4 +35,4 @@ const Calender = ({ selected, setSelected }: CalenderProps) => {
   );
 };
 
-export default Calender;
+export default Calendar;

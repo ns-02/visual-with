@@ -3,7 +3,7 @@
   background-color: var(--color-background-primary);
 }
 
-.left_calender_panel {
+.left_calendar_panel {
   width: 280px;
   height: 100%;
   float: left;
@@ -12,7 +12,7 @@
   background-color: var(--color-background-secondary);
 }
 
-.calender_container {
+.calendar_container {
   width: 100%;
 }
 
