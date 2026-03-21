@@ -13,7 +13,7 @@ const UpdateTodoDialog = ({
   open,
   onOpenChange,
 }: UpdateTodoDialogProps) => {
-  const todoData = useTodoStore((state) => state.todos);
+  const todoData = useTodoStore((state) => state.todoData);
   const updateTodo = useTodoStore((state) => state.updateTodo);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');

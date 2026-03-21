@@ -5,20 +5,21 @@ import getFormattedFileSize from '../utils/getFormattedFileSize';
 import getFormattedFileType from '../utils/getFormattedFileType';
 
 interface FileState {
-  files: FileData[];
+  fileData: FileData[];
   uploadFile: (file: File, formattedDate: string) => void;
   deleteFile: (fileId: number) => void;
 }
 
 export const useFileStore = create<FileState>((set) => ({
-  files: fileDataMocks || [],
+  fileData: fileDataMocks || [],
 
   uploadFile: (file, formattedDate) =>
     set((state) => ({
-      files: [
-        ...state.files,
+      fileData: [
+        ...state.fileData,
         {
-          id: state.files.reduce((max, item) => Math.max(max, item.id), 0) + 1,
+          id:
+            state.fileData.reduce((max, item) => Math.max(max, item.id), 0) + 1,
           fileName: file.name,
           fileSize: getFormattedFileSize(file.size),
           fileType: getFormattedFileType(file.type),
@@ -31,6 +32,6 @@ export const useFileStore = create<FileState>((set) => ({
 
   deleteFile: (fileId) =>
     set((state) => ({
-      files: state.files.filter((item) => item.id !== fileId),
+      fileData: state.fileData.filter((item) => item.id !== fileId),
     })),
 }));

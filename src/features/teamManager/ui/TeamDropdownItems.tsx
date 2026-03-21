@@ -16,7 +16,7 @@ const TeamDropdownItems = ({
   deleteTeamDialogOpen,
   setDeleteTeamData,
 }: TeamDropdownItemsType) => {
-  const teamData = useTeamStore((state) => state.teams);
+  const teamData = useTeamStore((state) => state.teamData);
   const selectTeamId = useTeamStore((state) => state.selectTeamId);
   const { selectTeam } = useTeamManager();
 

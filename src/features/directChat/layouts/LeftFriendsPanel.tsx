@@ -6,8 +6,8 @@ import { useFriendStore } from '@features/friendList/store/useFriendStore';
 import { useDirectChatStore } from '../store/useDirectChatStore';
 
 function LeftFriendsPanel() {
-  const friendData = useFriendStore((state) => state.friends);
-  const selectFriendData = useFriendStore((state) => state.selectFriends);
+  const friendData = useFriendStore((state) => state.friendData);
+  const selectFriendData = useFriendStore((state) => state.selectFriendData);
   const friendIdChatMap = useDirectChatStore((state) => state.friendIdChatMap);
   const updateSelectFriend = useFriendStore(
     (state) => state.updateSelectFriend,

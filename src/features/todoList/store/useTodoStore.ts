@@ -3,7 +3,7 @@ import { todoDataMocks } from '@mocks/TodoDataMocks';
 import { create } from 'zustand';
 
 interface TodoState {
-  todos: TodoData[];
+  todoData: TodoData[];
   addTodo: (title: string, description: string) => void;
   toggleTodo: (todoId: number) => void;
   updateTodo: (title: string, description: string, todoId: number) => void;
@@ -11,14 +11,15 @@ interface TodoState {
 }
 
 export const useTodoStore = create<TodoState>((set) => ({
-  todos: todoDataMocks || [],
+  todoData: todoDataMocks || [],
 
   addTodo: (title, description) =>
     set((state) => ({
-      todos: [
-        ...state.todos,
+      todoData: [
+        ...state.todoData,
         {
-          id: state.todos.reduce((max, item) => Math.max(max, item.id), 0) + 1,
+          id:
+            state.todoData.reduce((max, item) => Math.max(max, item.id), 0) + 1,
           title,
           description,
           checked: false,
@@ -28,20 +29,20 @@ export const useTodoStore = create<TodoState>((set) => ({
 
   toggleTodo: (todoId) =>
     set((state) => ({
-      todos: state.todos.map((item) =>
+      todoData: state.todoData.map((item) =>
         item.id === todoId ? { ...item, checked: !item.checked } : item,
       ),
     })),
 
   updateTodo: (title, description, todoId) =>
     set((state) => ({
-      todos: state.todos.map((item) =>
+      todoData: state.todoData.map((item) =>
         item.id === todoId ? { ...item, title, description } : item,
       ),
     })),
 
   deleteTodo: (todoId) =>
     set((state) => ({
-      todos: state.todos.filter((item) => item.id !== todoId),
+      todoData: state.todoData.filter((item) => item.id !== todoId),
     })),
 }));

@@ -13,7 +13,7 @@ const DeleteTodoDialog = ({
   open,
   onOpenChange,
 }: DeleteTodoDialogProps) => {
-  const todoData = useTodoStore((state) => state.todos);
+  const todoData = useTodoStore((state) => state.todoData);
   const deleteTodo = useTodoStore((state) => state.deleteTodo);
   const currentTodoTitle = todoData?.find((item) => item.id === todoId)?.title;
 

@@ -3,7 +3,7 @@ import { scheduleDataMocks } from '@mocks/ScheduleDataMocks';
 import { create } from 'zustand';
 
 interface ScheduleState {
-  schedules: ScheduleData[];
+  scheduleData: ScheduleData[];
   addSchedule: (
     title: string,
     description: string,
@@ -25,7 +25,7 @@ interface ScheduleState {
 }
 
 export const useScheduleStore = create<ScheduleState>((set) => ({
-  schedules: scheduleDataMocks || [],
+  scheduleData: scheduleDataMocks || [],
 
   addSchedule: (
     title,
@@ -36,12 +36,14 @@ export const useScheduleStore = create<ScheduleState>((set) => ({
     finishTime,
   ) =>
     set((state) => ({
-      schedules: [
-        ...state.schedules,
+      scheduleData: [
+        ...state.scheduleData,
         {
           id:
-            state.schedules.reduce((max, item) => Math.max(max, item.id), 0) +
-            1,
+            state.scheduleData.reduce(
+              (max, item) => Math.max(max, item.id),
+              0,
+            ) + 1,
           title,
           startDate,
           startTime,
@@ -63,7 +65,7 @@ export const useScheduleStore = create<ScheduleState>((set) => ({
     finishTime,
   ) =>
     set((state) => ({
-      schedules: state.schedules.map((item) =>
+      scheduleData: state.scheduleData.map((item) =>
         item.id === scheduleId
           ? {
               ...item,
@@ -80,6 +82,6 @@ export const useScheduleStore = create<ScheduleState>((set) => ({
 
   deleteSchedule: (scheduleId) =>
     set((state) => ({
-      schedules: state.schedules.filter((item) => item.id !== scheduleId),
+      scheduleData: state.scheduleData.filter((item) => item.id !== scheduleId),
     })),
 }));

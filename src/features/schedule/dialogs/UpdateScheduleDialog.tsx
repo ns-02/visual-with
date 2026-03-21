@@ -13,7 +13,7 @@ const UpdateScheduleDialog = ({
   open,
   onOpenChange,
 }: UpdateScheduleDialogProps) => {
-  const scheduleData = useScheduleStore((state) => state.schedules);
+  const scheduleData = useScheduleStore((state) => state.scheduleData);
   const updateSchedule = useScheduleStore((state) => state.updateSchedule);
   const [title, setTitle] = useState('');
   const [startDate, setstartDate] = useState('');

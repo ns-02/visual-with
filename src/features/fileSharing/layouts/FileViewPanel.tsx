@@ -8,7 +8,7 @@ interface FileViewPanelProps {
 }
 
 function FileViewPanel({ fileTypes }: FileViewPanelProps) {
-  const fileData = useFileStore((state) => state.files);
+  const fileData = useFileStore((state) => state.fileData);
 
   return (
     <div className={styles.file_view_panel}>

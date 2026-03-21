@@ -11,7 +11,7 @@ import {
 } from '../store/useDirectChatStore';
 
 const useDirectChatThread = () => {
-  const selectFriendData = useFriendStore((state) => state.selectFriends);
+  const selectFriendData = useFriendStore((state) => state.selectFriendData);
   const setFriendIdChatMap = useDirectChatStore(
     (state) => state.setFriendIdChatMap,
   );

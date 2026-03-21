@@ -7,9 +7,9 @@ import { FriendData } from '@features/friendList/models/Friend';
 import { create } from 'zustand';
 
 interface FriendState {
-  friends: FriendData[];
-  friendRequests: FriendData[];
-  selectFriends: FriendData | null;
+  friendData: FriendData[];
+  friendRequestData: FriendData[];
+  selectFriendData: FriendData | null;
   requestedFriend: () => void;
   acceptFriend: (friend: FriendData) => void;
   rejectFriend: (friend: FriendData) => void;
@@ -18,31 +18,31 @@ interface FriendState {
 }
 
 export const useFriendStore = create<FriendState>((set) => ({
-  friends: friendDataMocks,
-  friendRequests: friendRequestDataMocks,
-  selectFriends: null,
+  friendData: friendDataMocks,
+  friendRequestData: friendRequestDataMocks,
+  selectFriendData: null,
 
   requestedFriend: () =>
     set((state) => {
       const newFriendData = futureRequestDataMocks.shift();
       if (!newFriendData) return {};
 
-      return { friendRequests: [...state.friendRequests, newFriendData] };
+      return { friendRequestData: [...state.friendRequestData, newFriendData] };
     }),
 
   acceptFriend: (friend) => {
     set((state) => ({
-      friendRequests: state.friendRequests.filter(
+      friendRequestData: state.friendRequestData.filter(
         (item) => item.id !== friend.id,
       ),
 
-      friends: [...state.friends, friend],
+      friendData: [...state.friendData, friend],
     }));
   },
 
   rejectFriend: (friend) => {
     set((state) => ({
-      friendRequests: state.friendRequests.filter(
+      friendRequestData: state.friendRequestData.filter(
         (item) => item.id !== friend.id,
       ),
     }));
@@ -50,11 +50,11 @@ export const useFriendStore = create<FriendState>((set) => ({
 
   deleteFriend: (friendId) =>
     set((state) => ({
-      friends: state.friends.filter((item) => item.id !== friendId),
+      friendData: state.friendData.filter((item) => item.id !== friendId),
     })),
 
   updateSelectFriend: (friendId) =>
     set((state) => ({
-      selectFriends: state.friends.find((item) => item.id === friendId),
+      selectFriendData: state.friendData.find((item) => item.id === friendId),
     })),
 }));

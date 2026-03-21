@@ -9,8 +9,8 @@ import { useFriendStore } from '../store/useFriendStore';
 let isInit = false;
 
 function FriendContents() {
-  const friendData = useFriendStore((state) => state.friends);
-  const friendRequestData = useFriendStore((state) => state.friendRequests);
+  const friendData = useFriendStore((state) => state.friendData);
+  const friendRequestData = useFriendStore((state) => state.friendRequestData);
   const requestedFriend = useFriendStore((state) => state.requestedFriend);
   const handleAccept = useFriendStore((state) => state.acceptFriend);
   const handleReject = useFriendStore((state) => state.rejectFriend);

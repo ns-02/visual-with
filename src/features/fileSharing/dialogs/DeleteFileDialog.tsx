@@ -13,7 +13,7 @@ const DeleteFileDialog = ({
   open,
   onOpenChange,
 }: DeleteFileDialogProps) => {
-  const fileData = useFileStore((state) => state.files);
+  const fileData = useFileStore((state) => state.fileData);
   const deleteFile = useFileStore((state) => state.deleteFile);
   const currentFileName = fileData?.find(
     (item) => item.id === fileId,

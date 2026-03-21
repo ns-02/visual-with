@@ -5,7 +5,7 @@ import styles from './ScheduleLayout.module.css';
 import { useScheduleStore } from '../store/useScheduleStore';
 
 function LeftCalendarPanel() {
-  const scheduleData = useScheduleStore((state) => state.schedules);
+  const scheduleData = useScheduleStore((state) => state.scheduleData);
   const [selected, setSelected] = useState<Date>();
   const [selectedYear, setSelectedYear] = useState('');
   const [selectedMonth, setSelectedMonth] = useState('');

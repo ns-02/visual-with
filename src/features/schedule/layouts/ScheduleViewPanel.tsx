@@ -5,7 +5,7 @@ import styles from './ScheduleLayout.module.css';
 import { useScheduleStore } from '../store/useScheduleStore';
 
 function ScheduleViewPanel() {
-  const scheduleData = useScheduleStore((state) => state.schedules);
+  const scheduleData = useScheduleStore((state) => state.scheduleData);
   const [completedData, setCompletedData] = useState<ScheduleData[] | null>(
     null,
   );

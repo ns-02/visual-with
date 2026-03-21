@@ -3,7 +3,7 @@ import { Prop } from '..';
 import styles from './DirectChatLayout.module.css';
 
 function ChatViewPanel({ children }: Prop) {
-  const selectFriendData = useFriendStore((state) => state.selectFriends);
+  const selectFriendData = useFriendStore((state) => state.selectFriendData);
 
   if (!selectFriendData) {
     return (

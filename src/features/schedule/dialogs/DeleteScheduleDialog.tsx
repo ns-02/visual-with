@@ -13,7 +13,7 @@ const DeleteScheduleDialog = ({
   open,
   onOpenChange,
 }: DeleteScheduleDialogProps) => {
-  const scheduleData = useScheduleStore((state) => state.schedules);
+  const scheduleData = useScheduleStore((state) => state.scheduleData);
   const deleteSchedule = useScheduleStore((state) => state.deleteSchedule);
   const currentScheduleTitle = scheduleData?.find(
     (item) => item.id === scheduleId,

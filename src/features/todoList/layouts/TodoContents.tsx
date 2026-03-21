@@ -7,7 +7,7 @@ import styles from './TodoListLayout.module.css';
 import { useTodoStore } from '../store/useTodoStore';
 
 function TodoContents() {
-  const todoData = useTodoStore((state) => state.todos);
+  const todoData = useTodoStore((state) => state.todoData);
   const toggleTodo = useTodoStore((state) => state.toggleTodo);
   const [progressData, setProgressData] = useState<TodoData[]>([]);
   const [completedData, setCompletedData] = useState<TodoData[]>([]);

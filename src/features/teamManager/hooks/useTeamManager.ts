@@ -7,7 +7,7 @@ import { useUserStore } from '@core/store/useUserStore';
 import { useTeamStore } from '@core/store/useTeamStore';
 
 const useTeamManager = () => {
-  const teamData = useTeamStore((state) => state.teams);
+  const teamData = useTeamStore((state) => state.teamData);
   const createTeamInStore = useTeamStore((state) => state.createTeamInStore);
   const deleteTeamFromStore = useTeamStore(
     (state) => state.deleteTeamFromStore,

@@ -13,7 +13,7 @@ const DeleteFriendDialog = ({
   open,
   onOpenChange,
 }: DeleteFriendDialogProps) => {
-  const friendData = useFriendStore((state) => state.friends);
+  const friendData = useFriendStore((state) => state.friendData);
   const deleteFriend = useFriendStore((state) => state.deleteFriend);
   const currentFriendName = friendData?.find(
     (item) => item.id === friendId,

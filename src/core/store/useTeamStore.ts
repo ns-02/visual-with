@@ -3,7 +3,7 @@ import { TeamData, TeamId, TeamName } from '@shared/models/Team';
 import { create } from 'zustand';
 
 interface TeamState {
-  teams: TeamData[];
+  teamData: TeamData[];
   selectTeamId: TeamId;
   selectTeamName: TeamName;
   isTeamMember: boolean;
@@ -15,19 +15,19 @@ interface TeamState {
 }
 
 export const useTeamStore = create<TeamState>((set) => ({
-  teams: teamDataMocks || [],
+  teamData: teamDataMocks || [],
   selectTeamId: '',
   selectTeamName: '',
   isTeamMember: false,
 
   createTeamInStore: (teamId, teamName) =>
     set((state) => ({
-      teams: [...state.teams, { id: teamId, name: teamName }],
+      teamData: [...state.teamData, { id: teamId, name: teamName }],
     })),
 
   deleteTeamFromStore: (teamId) =>
     set((state) => ({
-      teams: [...state.teams.filter((item) => item.id !== teamId)],
+      teamData: [...state.teamData.filter((item) => item.id !== teamId)],
     })),
 
   setSelectTeamId: (teamId) => set({ selectTeamId: teamId }),
