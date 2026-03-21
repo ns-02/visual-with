@@ -1,4 +1,4 @@
-import { ContentButton } from '@shared/components/ui';
+import { CheckBox, ContentButton, type CheckBoxProps } from '@shared/components/ui';
 import { EllipsisVertical } from 'lucide-react';
 import TodoListDropdown from './TodoListDropdown';
 import styles from './TodoListCard.module.css';
@@ -7,8 +7,8 @@ interface TodoListCardProps {
   id?: number;
   title?: string;
   description?: string;
-  checked?: boolean;
-  onChange?: () => void;
+  checked?: CheckBoxProps['checked'];
+  onCheckedChange?: CheckBoxProps['onCheckedChange'];
 }
 
 const TodoListCard = ({
@@ -16,7 +16,7 @@ const TodoListCard = ({
   title,
   description,
   checked,
-  onChange,
+  onCheckedChange,
 }: TodoListCardProps) => {
   const triggerElement = (
     <ContentButton>
@@ -27,7 +27,11 @@ const TodoListCard = ({
   return (
     <div className={styles.container}>
       <div className={styles.info_contents}>
-        <input type='checkbox' checked={checked} onChange={onChange} />
+        <CheckBox
+          id={`${id ?? ''}`}
+          checked={checked ?? false}
+          onCheckedChange={onCheckedChange}
+        />
         <div>
           {checked ? (
             <>

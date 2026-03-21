@@ -16,9 +16,10 @@ const Calendar = ({ selected, setSelected }: CalendarProps) => {
         // 너비 조정 방법 (매우 중요)
         style={
           {
-            '--rdp-day-width': '38px',
-            '--rdp-day_button-width': '36px',
-            '--rdp-day_button-height': '36px',
+            '--rdp-day-width': '46px',
+            '--rdp-day-height': '46px',
+            '--rdp-day_button-width': '44px',
+            '--rdp-day_button-height': '44px',
             '--rdp-today-color': '#6495ED',
             '--rdp-selected-border': '2px solid #6495ED',
           } as React.CSSProperties

@@ -4,7 +4,7 @@
 }
 
 .left_calendar_panel {
-  width: 280px;
+  width: 340px;
   height: 100%;
   float: left;
   padding: 10px;
@@ -17,7 +17,7 @@
 }
 
 .schedule_view_panel {
-  width: calc(100% - 280px);
+  width: calc(100% - 340px);
   height: 100%;
   float: right;
   padding: 0 100px;

@@ -35,7 +35,7 @@ function TodoContents() {
             title={item.title}
             description={item.description}
             checked={item.checked}
-            onChange={() => toggleTodo(item.id)}
+            onCheckedChange={() => toggleTodo(item.id)}
           />
         );
       })}
@@ -50,7 +50,7 @@ function TodoContents() {
             title={item.title}
             description={item.description}
             checked={item.checked}
-            onChange={() => toggleTodo(item.id)}
+            onCheckedChange={() => toggleTodo(item.id)}
           />
         );
       })}
