@@ -1,6 +1,6 @@
 import { useUserStore } from '@core/store/useUserStore';
 import { useFriendStore } from '@features/friendList/store/useFriendStore';
-import useChatThread from '@shared/chat/useChatThread';
+import { useChatThread } from '@shared/chat/useChatThread';
 import { ChatItem } from '@shared/models/Chat';
 import getMaxId from '@shared/utils/getMaxId';
 import { getItem } from '@shared/utils/sessionStorage';
@@ -10,7 +10,7 @@ import {
   useDirectChatStore,
 } from '../store/useDirectChatStore';
 
-const useDirectChatThread = () => {
+export const useDirectChatThread = () => {
   const selectFriendData = useFriendStore((state) => state.selectFriendData);
   const setFriendIdChatMap = useDirectChatStore(
     (state) => state.setFriendIdChatMap,
@@ -60,5 +60,3 @@ const useDirectChatThread = () => {
 
   return { allChat, handleDirectChatSend };
 };
-
-export default useDirectChatThread;

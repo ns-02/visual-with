@@ -1,4 +1,4 @@
-import React from 'react';
+import { memo } from 'react';
 import { ChatItem } from '@shared/models/Chat';
 import { Avatar } from '@shared/components/ui';
 import styles from './MessageList.module.css';
@@ -6,7 +6,7 @@ import styles from './MessageList.module.css';
 interface MessageListProps {
   allChat: ChatItem[];
 }
-const MessageList = React.memo(({ allChat }: MessageListProps) => {
+const MessageList = memo(({ allChat }: MessageListProps) => {
   const formatDate = (createdAt: string): string => {
     const parts = createdAt.split('-');
     const resultFormat = `${parts[0]}년 ${Number(parts[1])}월 ${Number(parts[2])}일`;

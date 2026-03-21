@@ -6,7 +6,7 @@ import { getPathFromToolId, getToolIdFromPath } from '@core/routes/routeMap';
 import { useUserStore } from '@core/store/useUserStore';
 import { useTeamStore } from '@core/store/useTeamStore';
 
-const useTeamManager = () => {
+export const useTeamManager = () => {
   const teamData = useTeamStore((state) => state.teamData);
   const createTeamInStore = useTeamStore((state) => state.createTeamInStore);
   const deleteTeamFromStore = useTeamStore(
@@ -81,5 +81,3 @@ const useTeamManager = () => {
 
   return { onCreateTeam, onDeleteTeam, selectTeam };
 };
-
-export default useTeamManager;

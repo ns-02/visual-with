@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import type { Dispatch, ReactNode, SetStateAction } from 'react';
 
 export { default as AlertDialog } from './AlertDialog';
 export { default as Dialog } from './Dialog/';
@@ -12,11 +12,11 @@ export default interface DialogProps {
   title?: string;
   description?: string;
   viewButton?: boolean;
-  children?: React.ReactNode;
+  children?: ReactNode;
   confirmText?: string;
   onConfirm?: () => void;
 }
 
 export type Prop = {
-  children?: React.ReactNode;
+  children?: ReactNode;
 };

@@ -1,4 +1,4 @@
-import React from 'react';
+import { useEffect, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import AlertDialog from '@shared/components/dialogs/AlertDialog';
 import type DialogProps from '@shared/components/dialogs';
@@ -21,10 +21,10 @@ type Story = StoryObj<typeof AlertDialog>;
 // 2. 렌더링 템플릿: 최소한의 상태 관리 로직과 테스트용 버튼 추가
 const Template = (args: DialogProps) => {
   // Storybook의 Args에서 받은 open 상태를 관리
-  const [isOpen, setIsOpen] = React.useState(args.open ?? false);
+  const [isOpen, setIsOpen] = useState(args.open ?? false);
 
   // Args.open 값이 변경될 때 내부 상태 업데이트
-  React.useEffect(() => {
+  useEffect(() => {
     setIsOpen(args.open ?? false);
   }, [args.open]);
 

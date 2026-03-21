@@ -1,8 +1,8 @@
-import React from 'react';
+import type { ReactNode } from 'react';
 import styles from './FileSharingLayout.module.css';
 
 type Prop = {
-  children: React.ReactNode;
+  children: ReactNode;
 };
 
 function FileSharingRoot({ children }: Prop) {

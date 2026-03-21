@@ -1,8 +1,8 @@
-import React from 'react';
+import type { ReactNode } from 'react';
 import styles from './ScheduleLayout.module.css';
 
 type Prop = {
-  children: React.ReactNode;
+  children: ReactNode;
 };
 
 function ScheduleRoot({ children }: Prop) {

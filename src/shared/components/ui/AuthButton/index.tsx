@@ -1,11 +1,11 @@
-import React from 'react';
+import type { ReactNode } from 'react';
 import styles from './AuthButton.module.css';
 
 type Type = 'button' | 'submit' | 'reset';
 
 type Prop = {
   type?: Type;
-  children?: React.ReactNode;
+  children?: ReactNode;
   onClick?: () => void;
 };
 

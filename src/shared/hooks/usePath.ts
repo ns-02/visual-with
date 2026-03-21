@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigationType } from 'react-router-dom';
 
-const usePath = () => {
+export const usePath = () => {
   const [path, setPath] = useState('');
   const navType = useNavigationType();
   const location = useLocation();
@@ -17,5 +17,3 @@ const usePath = () => {
 
   return [path];
 };
-
-export default usePath;

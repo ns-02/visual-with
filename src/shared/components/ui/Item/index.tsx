@@ -1,4 +1,5 @@
-import React from 'react';
+import { forwardRef } from 'react';
+import type { ComponentPropsWithoutRef, ReactNode } from 'react';
 import { Plus } from 'lucide-react';
 import styles from './Item.module.css';
 
@@ -9,13 +10,13 @@ interface BaseProps {
   type: Type;
   text?: string;
   icon?: typeof Plus;
-  children?: React.ReactNode;
+  children?: ReactNode;
   selected?: boolean;
 }
 
-type ItemProps = BaseProps & React.ComponentPropsWithoutRef<'div'>;
+type ItemProps = BaseProps & ComponentPropsWithoutRef<'div'>;
 
-const Item = React.forwardRef<HTMLDivElement, ItemProps>((props, ref) => {
+const Item = forwardRef<HTMLDivElement, ItemProps>((props, ref) => {
   const {
     className,
     type,

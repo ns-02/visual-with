@@ -1,4 +1,4 @@
-import React from 'react';
+import type { ReactNode } from 'react';
 import { Tooltip as Tooltips } from 'radix-ui';
 import styles from './Tooltip.module.css';
 
@@ -8,8 +8,8 @@ type Side = 'top' | 'right' | 'bottom' | 'left';
 interface TooltipProps {
   align?: Align;
   side?: Side;
-  trigger?: React.ReactNode;
-  items?: React.ReactNode;
+  trigger?: ReactNode;
+  items?: ReactNode;
   onClick?: () => void;
 }
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import type { ReactNode } from 'react';
 import { DropdownMenu } from 'radix-ui';
 import styles from './Dropdown.module.css';
 
@@ -8,8 +8,8 @@ type Side = 'top' | 'right' | 'bottom' | 'left';
 interface DropDownProps {
   align?: Align;
   side?: Side;
-  trigger?: React.ReactNode;
-  items?: React.ReactNode;
+  trigger?: ReactNode;
+  items?: ReactNode;
 }
 
 const Dropdown = (props: DropDownProps) => {

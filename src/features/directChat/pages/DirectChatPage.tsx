@@ -7,7 +7,7 @@ import {
   BottomInputArea,
 } from '../';
 import RightFileListArea from '../layouts/RightFileListArea';
-import useDirectChatThread from '../hooks/useDirectChatThread';
+import { useDirectChatThread } from '../hooks/useDirectChatThread';
 
 function DirectChatPage() {
   const { allChat, handleDirectChatSend } = useDirectChatThread();

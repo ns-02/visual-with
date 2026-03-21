@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import type { Dispatch, ReactNode, SetStateAction } from 'react';
 
 export interface AddFriendDialogProps {
   open: boolean;
@@ -8,5 +8,5 @@ export interface AddFriendDialogProps {
 export interface FriendListLabelProps {
   text?: string;
   count?: number;
-  children?: React.ReactNode;
+  children?: ReactNode;
 }

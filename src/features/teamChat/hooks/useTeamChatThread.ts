@@ -1,4 +1,4 @@
-import useChatThread from '@shared/chat/useChatThread';
+import { useChatThread } from '@shared/chat/useChatThread';
 import { ChatItem } from '@shared/models/Chat';
 import getMaxId from '@shared/utils/getMaxId';
 import { getItem, setItem } from '@shared/utils/sessionStorage';
@@ -7,7 +7,7 @@ import { teamChatMockFactories } from '@mocks/TeamChatMocks';
 import { useUserStore } from '@core/store/useUserStore';
 import { useTeamStore } from '@core/store/useTeamStore';
 
-const useTeamChatThread = () => {
+export const useTeamChatThread = () => {
   const selectTeamId = useTeamStore((state) => state.selectTeamId);
 
   const userId = useUserStore((state) => state.userId);
@@ -54,5 +54,3 @@ const useTeamChatThread = () => {
 
   return { allChat, handleTeamChatSend };
 };
-
-export default useTeamChatThread;

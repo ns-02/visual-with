@@ -1,8 +1,8 @@
-import React from 'react';
+import { ReactNode } from 'react';
 import styles from './DirectChatLayout.module.css';
 
 interface ChatContentAreaProps {
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
 const ChatContentArea = ({ children }: ChatContentAreaProps) => {

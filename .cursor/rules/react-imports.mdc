@@ -1,0 +1,13 @@
+---
+description: React import style (automatic JSX runtime)
+globs: src/**/*.{ts,tsx}
+alwaysApply: false
+---
+
+# React import 규칙
+
+- `import React from 'react'` 또는 `import * as React from 'react'`를 사용하지 말 것. 프로젝트는 `react-jsx`(자동 JSX 런타임)를 사용한다.
+- JSX만 쓰는 파일에는 React 네임스페이스 import가 필요 없다.
+- 값으로 쓰는 API만 named import: 예) `useState`, `useEffect`, `forwardRef`, `memo`.
+- 타입만 쓰는 것은 `import type { … } from 'react'`: 예) `ReactNode`, `MouseEventHandler`, `ComponentPropsWithoutRef`, `Ref`, `Dispatch`, `SetStateAction`.
+- `React.FC` 대신 props 타입을 붙인 함수 선언 또는 `forwardRef` + 제네릭을 사용할 것.

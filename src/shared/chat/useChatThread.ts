@@ -2,7 +2,7 @@ import { useUserStore } from '@core/store/useUserStore';
 import { ChatItem } from '@shared/models/Chat';
 import { setItem } from '@shared/utils/sessionStorage';
 
-const useChatThread = (
+export const useChatThread = (
   allChat: ChatItem[],
   setAllChat: (chat: ChatItem[]) => void,
   currentId: number,
@@ -44,5 +44,3 @@ const useChatThread = (
 
   return { handleSend };
 };
-
-export default useChatThread;
