@@ -25,7 +25,9 @@ function LeftFriendsPanel() {
           };
     });
 
-    nextFriendItems && setFriendItems(nextFriendItems);
+    if (nextFriendItems) {
+      setFriendItems(nextFriendItems);
+    }
   }, [friendData, selectFriendData, friendIdChatMap]);
 
   const handleCardSelect = (id: string) => {

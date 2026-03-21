@@ -25,7 +25,7 @@ function TopFileNavBar({ onSelect }: TopFileNavBarProps) {
     );
 
     setFileNavItems(nextNavItems);
-    onSelect && onSelect(id);
+    onSelect(id);
   };
 
   return (

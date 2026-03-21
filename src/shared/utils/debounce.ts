@@ -1,10 +1,13 @@
-export function debounce(func: (value: any) => void, timeout = 1000) {
+export function debounce<T extends unknown[]>(
+  func: (...args: T) => void,
+  timeout = 1000,
+) {
   let timer: ReturnType<typeof setTimeout> | undefined;
 
-  return function (...args: any[]) {
+  return (...args: T) => {
     if (timer) clearTimeout(timer);
     timer = setTimeout(() => {
-      func(args);
+      func(...args);
     }, timeout);
   };
 }

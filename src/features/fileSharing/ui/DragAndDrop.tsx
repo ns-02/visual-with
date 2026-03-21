@@ -8,7 +8,6 @@ const DragAndDrop = () => {
   const uploadFile = useFileStore((state) => state.uploadFile);
   const inputRef = useRef<HTMLInputElement>(null);
   const [dragging, setDragging] = useState(false);
-  const [file, setFile] = useState<File>();
 
   const containerStyle = dragging
     ? styles.container_dragging
@@ -31,8 +30,9 @@ const DragAndDrop = () => {
 
       const formattedDate = `${year}-${month}-${day}`;
       const selectedFile = e.target.files[0];
-      selectedFile && setFile(selectedFile);
-      selectedFile && uploadFile(selectedFile, formattedDate);
+      if (selectedFile) {
+        uploadFile(selectedFile, formattedDate);
+      }
     }
   };
 
@@ -75,8 +75,9 @@ const DragAndDrop = () => {
     const formattedDate = `${year}-${month}-${day}`;
     // 실제 파일 처리 로직
     const selectedFile = e.dataTransfer.files[0];
-    selectedFile && setFile(selectedFile);
-    selectedFile && uploadFile(selectedFile, formattedDate);
+    if (selectedFile) {
+      uploadFile(selectedFile, formattedDate);
+    }
     setDragging(false);
   };
 

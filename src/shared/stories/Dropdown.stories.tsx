@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Button, Dropdown } from '@shared/components/ui';
-import { fn } from 'storybook/internal/test';
 
 const meta = {
   title: 'Example/Dropdown',

@@ -21,7 +21,7 @@ function FriendContents() {
       requestedFriend();
       isInit = true;
     }, 3000);
-  }, []);
+  }, [requestedFriend]);
 
   return (
     <div className={styles.contents}>

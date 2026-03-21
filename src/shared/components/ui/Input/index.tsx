@@ -25,8 +25,10 @@ function Input({
   onKeyDown,
   children,
 }: InputProps) {
-  const containerStyle = `${styles.container} ${(styles as any)[`container--${sizeMode}`]} ${className}`;
-  const inputStyle = `${styles.input} ${(styles as any)[`input--${sizeMode}`]}`;
+  const containerKey = `container--${sizeMode}` as keyof typeof styles;
+  const inputKey = `input--${sizeMode}` as keyof typeof styles;
+  const containerStyle = `${styles.container} ${styles[containerKey]} ${className ?? ''}`;
+  const inputStyle = `${styles.input} ${styles[inputKey]}`;
 
   return (
     <div className={containerStyle}>

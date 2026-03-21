@@ -31,7 +31,7 @@ export const request = async (url: string, options = {}) => {
     }
 
     return json;
-  } catch (e: any) {
+  } catch (e: unknown) {
     if (e instanceof TypeError) {
       throw new Error('네트워크 오류가 발생했습니다.');
     }

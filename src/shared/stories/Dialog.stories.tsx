@@ -1,6 +1,7 @@
 import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import Dialog from '@shared/components/dialogs/Dialog';
+import type DialogProps from '@shared/components/dialogs';
 
 // 1. 메타데이터 정의: Storybook에 컴포넌트를 등록하고 open 상태 제어판을 설정
 const meta: Meta<typeof Dialog> = {
@@ -18,13 +19,13 @@ export default meta;
 type Story = StoryObj<typeof Dialog>;
 
 // 2. 렌더링 템플릿: 최소한의 상태 관리 로직과 테스트용 버튼 추가
-const Template = (args: any) => {
+const Template = (args: DialogProps) => {
   // Storybook의 Args에서 받은 open 상태를 관리
-  const [isOpen, setIsOpen] = React.useState(args.open);
+  const [isOpen, setIsOpen] = React.useState(args.open ?? false);
 
   // Args.open 값이 변경될 때 내부 상태 업데이트
   React.useEffect(() => {
-    setIsOpen(args.open);
+    setIsOpen(args.open ?? false);
   }, [args.open]);
 
   return (
@@ -38,7 +39,7 @@ const Template = (args: any) => {
         open={isOpen}
         onOpenChange={(newOpen) => {
           setIsOpen(newOpen);
-          args.onOpenChange(newOpen);
+          args.onOpenChange?.(newOpen);
         }}
       >
         {/* Dialog 내부에 들어갈 더미 내용물 (필수) */}

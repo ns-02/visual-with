@@ -16,9 +16,8 @@ const AddScheduleDialog = ({ open, onOpenChange }: AddScheduleDialogProps) => {
   const [finishDate, setFinishDate] = useState('');
   const [finishTime, setFinishTime] = useState('');
   const [description, setDescription] = useState('');
-  const { year, month, day, hour, minute } = getDate();
-
   useEffect(() => {
+    const { year, month, day, hour, minute } = getDate();
     setstartDate(`${year}-${month}-${day}`);
     setStartTime(`${hour}:${minute}`);
   }, []);

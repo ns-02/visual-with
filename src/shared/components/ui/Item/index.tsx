@@ -20,7 +20,7 @@ const Item = React.forwardRef<HTMLDivElement, ItemProps>((props, ref) => {
     className,
     type,
     text,
-    icon: Icon,
+    icon: Icon = Plus,
     children,
     selected = false,
     ...rest
@@ -30,7 +30,7 @@ const Item = React.forwardRef<HTMLDivElement, ItemProps>((props, ref) => {
   if (type === 'add') {
     return (
       <div ref={ref} className={styles.itemadd} {...rest}>
-        <Plus size={16} />
+        <Icon size={16} />
         <span>{text}</span>
       </div>
     );

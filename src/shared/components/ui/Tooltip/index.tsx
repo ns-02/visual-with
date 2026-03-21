@@ -14,7 +14,7 @@ interface TooltipProps {
 }
 
 const Tooltip = (props: TooltipProps) => {
-  const { align = 'start', side, trigger, items, onClick } = props;
+  const { align = 'center', side = 'right', trigger, items, onClick } = props;
 
   return (
     <Tooltips.Root delayDuration={100}>
@@ -24,8 +24,8 @@ const Tooltip = (props: TooltipProps) => {
       <Tooltips.Portal>
         <Tooltips.Content
           className={styles.container}
-          align='center'
-          side='right'
+          align={align}
+          side={side}
           sideOffset={5}
         >
           {items}

@@ -24,7 +24,7 @@ const useTeamManager = () => {
   // 임시로 유저 아이디를 amugae(아무개)로 설정함. 반드시 지울 것
   useEffect(() => {
     setUserId('amugae');
-  }, []);
+  }, [setUserId]);
 
   useEffect(() => {
     if (teamData && teamData.length === 0) {

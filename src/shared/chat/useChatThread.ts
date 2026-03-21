@@ -16,14 +16,14 @@ const useChatThread = (
     if (!userId) return;
     if (!userName) return;
 
-    let today = new Date();
+    const today = new Date();
 
     const year = today.getFullYear();
     const month = String(today.getMonth() + 1).padStart(2, '0');
     const day = String(today.getDate()).padStart(2, '0');
 
     const createdAt = `${year}-${month}-${day}`;
-    let time = today.toLocaleTimeString().slice(0, -3);
+    const time = today.toLocaleTimeString().slice(0, -3);
 
     const nextChat: ChatItem[] = [
       ...allChat,

@@ -5,9 +5,13 @@ import { useAuthStore } from '@core/store/useAuthStore';
 const PrivateRoute = () => {
   const isLoggedin = useAuthStore((state) => state.isLoggedin);
 
-  // if (!isLoggedin) {
-  //   return <GuardPage />;
-  // }
+  if (import.meta.env.DEV) {
+    return <Outlet />;
+  }
+
+  if (!isLoggedin) {
+    return <GuardPage />;
+  }
 
   return <Outlet />;
 };

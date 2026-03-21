@@ -3,15 +3,18 @@ import styles from './ContentButton.module.css';
 
 interface ContentButtonProps {
   children?: React.ReactNode;
+  /** Radix `asChild` 등이 연결하는 네이티브 클릭 */
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  /** 앱 전용 핸들러 — Radix와 네이티브 `onClick`을 분리해 두면 합성이 단순해진다 */
   onCustomClick?: (e: React.MouseEvent) => void;
 }
 
 const ContentButton = React.forwardRef<HTMLButtonElement, ContentButtonProps>(
   (props, ref) => {
-    const { children, onCustomClick, ...rest } = props;
+    const { children, onClick, onCustomClick, ...rest } = props;
 
     const handleClick: React.MouseEventHandler<HTMLButtonElement> = (e) => {
-      if ((props as any).onClick) (props as any).onClick(e);
+      onClick?.(e);
       if (onCustomClick) onCustomClick(e);
     };
 

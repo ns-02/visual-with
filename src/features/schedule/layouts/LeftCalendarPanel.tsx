@@ -10,13 +10,14 @@ function LeftCalendarPanel() {
   const [selectedYear, setSelectedYear] = useState('');
   const [selectedMonth, setSelectedMonth] = useState('');
   const [selectedDay, setSelectedDay] = useState('');
-  const { year, month, day } = getDate();
+  const { day } = getDate();
 
   useEffect(() => {
     if (!selected) {
-      setSelectedYear(year.toString());
-      setSelectedMonth(month.toString());
-      setSelectedDay(day.toString());
+      const { year: y, month: m, day: d } = getDate();
+      setSelectedYear(y.toString());
+      setSelectedMonth(m.toString());
+      setSelectedDay(d.toString());
     } else {
       setSelectedYear(selected.getFullYear().toString());
       setSelectedMonth((selected.getMonth() + 1).toString());
