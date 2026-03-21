@@ -12,6 +12,10 @@ const SelectFriendCard = ({
     ? styles.container_selected
     : styles.container;
 
+  const friendNameStyle = selected
+    ? styles.friendName_selected
+    : styles.friendName;
+
   const handleCardSelect = () => {
     if (onSelect) onSelect();
   };
@@ -20,7 +24,7 @@ const SelectFriendCard = ({
     <div className={containerStyle} onClick={handleCardSelect}>
       <Avatar />
       <div>
-        <p>{name}</p>
+        <p className={friendNameStyle}>{name}</p>
         <p style={{ fontSize: '15px', color: '#555' }}>{chat}</p>
       </div>
     </div>
