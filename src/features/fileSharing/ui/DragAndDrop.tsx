@@ -1,8 +1,9 @@
 import { ChangeEvent, DragEvent, useRef, useState } from 'react';
 import { Upload } from 'lucide-react';
-import { FileInput, FileSelectButton } from '..';
+import { FileSelectButton } from '..';
 import styles from './DragAndDrop.module.css';
 import { useFileStore } from '../store/useFileStore';
+import { FileInput } from '@shared/components/ui';
 
 const DragAndDrop = () => {
   const uploadFile = useFileStore((state) => state.uploadFile);
