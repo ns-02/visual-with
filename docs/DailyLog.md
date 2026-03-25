@@ -11,3 +11,6 @@
 
 ## 260319
   - zustand 라이브러리 도입, 개발 모드에서 성능 점수 58점 기록 (네트리파이에선 100점)
+
+## 260324
+  - e.preventDefault()의 중요성을 체감함. FileUploadDropdown의 Dropdown.Item에서 이것을 적용했더니 input의 변경이 발생하지 않던 문제가 해결됨. 이전에는 자동으로 창이 닫혔기 때문에 input의 변경을 확인할 수 없었음.
