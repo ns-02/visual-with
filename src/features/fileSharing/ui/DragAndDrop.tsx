@@ -4,6 +4,7 @@ import { FileSelectButton } from '..';
 import styles from './DragAndDrop.module.css';
 import { useFileStore } from '../store/useFileStore';
 import { FileInput } from '@shared/components/ui';
+import { formatDate } from '@shared/utils/formatDate';
 
 const DragAndDrop = () => {
   const uploadFile = useFileStore((state) => state.uploadFile);
@@ -24,15 +25,9 @@ const DragAndDrop = () => {
   // 파일 선택 모달이 닫힌 경우(Input 요소에 파일이 추가된 경우) 동작
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
-      const date = new Date();
-      const year = date.getFullYear();
-      const month = String(date.getMonth() + 1).padStart(2, '0');
-      const day = String(date.getDate()).padStart(2, '0');
-
-      const formattedDate = `${year}-${month}-${day}`;
       const selectedFile = e.target.files[0];
       if (selectedFile) {
-        uploadFile(selectedFile, formattedDate);
+        uploadFile(selectedFile, formatDate());
       }
     }
   };
@@ -68,16 +63,10 @@ const DragAndDrop = () => {
     e.preventDefault();
     e.stopPropagation();
 
-    const date = new Date();
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const day = String(date.getDate()).padStart(2, '0');
-
-    const formattedDate = `${year}-${month}-${day}`;
     // 실제 파일 처리 로직
     const selectedFile = e.dataTransfer.files[0];
     if (selectedFile) {
-      uploadFile(selectedFile, formattedDate);
+      uploadFile(selectedFile, formatDate());
     }
     setDragging(false);
   };

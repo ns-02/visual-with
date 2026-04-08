@@ -3,7 +3,8 @@ import { Dropdown, FileInput } from '@shared/components/ui';
 import { Item } from '@shared/components/ui';
 import { DropdownProps } from '..';
 import { ChangeEvent, useRef } from 'react';
-import { useFileStore } from '@features/fileSharing/store/useFileStore';
+import { useFileStore } from '@features/fileSharing';
+import { formatDate } from '@shared/utils/formatDate';
 
 const FileUploadDropdown = ({ triggerElement }: DropdownProps) => {
   const uploadFile = useFileStore((state) => state.uploadFile);
@@ -23,16 +24,10 @@ const FileUploadDropdown = ({ triggerElement }: DropdownProps) => {
 
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
-      const date = new Date();
-      const year = date.getFullYear();
-      const month = String(date.getMonth() + 1).padStart(2, '0');
-      const day = String(date.getDate()).padStart(2, '0');
-
-      const formattedDate = `${year}-${month}-${day}`;
       const selectedFile = e.target.files[0];
 
       if (selectedFile) {
-        uploadFile(selectedFile, formattedDate);
+        uploadFile(selectedFile, formatDate());
       }
     }
   };
