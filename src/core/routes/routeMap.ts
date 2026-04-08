@@ -1,6 +1,7 @@
 import { ToolId } from '@shared/models/ToolId';
 
 const ROUTES: { id: ToolId; path: string }[] = [
+  { id: 'home', path: '' },
   { id: 'team-chat', path: 'teamchat' },
   { id: 'files', path: 'filesharing' },
   { id: 'schedule', path: 'schedule' },

@@ -9,6 +9,7 @@ import {
   MessagesSquare,
   Plus,
   Users,
+  House,
 } from 'lucide-react';
 import { Button, Tooltip } from '@shared/components/ui';
 import { ToolId } from '@shared/models/ToolId';
@@ -36,6 +37,12 @@ function LeftMenu() {
   const [selectItemId, setSelectItemId] = useState<ToolId | null>(null);
 
   const topMenuItems: MenuItem[] = [
+    {
+      id: 'home',
+      text: '홈',
+      icon: House,
+      onTeam: true,
+    },
     {
       id: 'team-chat',
       text: '팀 채팅',
