@@ -1,4 +1,4 @@
-import { userDataMocks } from '@mocks/UserDataMocks';
+// import { userDataMocks } from '@mocks/UserDataMocks';
 import { create } from 'zustand';
 
 interface UserState {
@@ -13,10 +13,14 @@ interface UserState {
 }
 
 export const useUserStore = create<UserState>((set) => ({
-  userId: userDataMocks.userId,
-  userName: userDataMocks.userName,
-  userEmail: userDataMocks.userEmail,
-  nickname: userDataMocks.nickname,
+  // userId: userDataMocks.userId,
+  // userName: userDataMocks.userName,
+  // userEmail: userDataMocks.userEmail,
+  // nickname: userDataMocks.nickname,
+  userId: null,
+  userName: null,
+  userEmail: null,
+  nickname: null,
 
   setUserId: (value) => set({ userId: value }),
 

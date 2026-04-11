@@ -1,9 +1,10 @@
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 import * as Tabs from '@radix-ui/react-tabs';
 import { Copy, Search } from 'lucide-react';
 import { Dialog, Group, DialogInput, Row } from '@shared/components/dialogs';
 import { Button } from '@shared/components/ui';
 import styles from './InviteTeamDialog.module.css';
+import { useTeamManager } from '../hooks/useTeamManager';
 
 interface InviteTeamDialogProps {
   open: boolean;
@@ -12,12 +13,30 @@ interface InviteTeamDialogProps {
 }
 
 const InviteTeamDialog = ({ open, onOpenChange }: InviteTeamDialogProps) => {
+  const { onSearchUser, onInviteTeamByUserId } = useTeamManager();
+  const [invitedUserId, setInvitedUserId] = useState('');
+
+  // 유저 검색
+  const handleSearchUser = async () => {
+    if (!invitedUserId) return;
+    await onSearchUser(invitedUserId);
+  };
+
+  // ID 기반 유저 초대
+  const handleInviteTeamByUserId = async () => {
+    if (!invitedUserId) return;
+    await onInviteTeamByUserId(invitedUserId);
+    setInvitedUserId('');
+    onOpenChange(false);
+  };
+
   return (
     <Dialog
       title='팀 초대'
       open={open}
       onOpenChange={onOpenChange}
-      viewButton={false}
+      confirmText='초대하기'
+      onConfirm={handleInviteTeamByUserId}
     >
       <Tabs.Root>
         <Tabs.List style={{ display: 'flex', width: 360, marginBottom: 12 }}>
@@ -53,8 +72,12 @@ const InviteTeamDialog = ({ open, onOpenChange }: InviteTeamDialogProps) => {
             </p>
           </Group>
           <Row>
-            <DialogInput placeholder='팀원의 ID를 검색하세요' />
-            <Button>
+            <DialogInput
+              placeholder='팀원의 ID를 검색하세요'
+              value={invitedUserId}
+              setValue={(e) => setInvitedUserId(e.target.value)}
+            />
+            <Button onCustomClick={handleSearchUser}>
               <Search size={16} />
             </Button>
           </Row>

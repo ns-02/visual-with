@@ -5,8 +5,12 @@ import {
   CreateTeamResponse,
   DeleteTeamRequest,
   DeleteTeamResponse,
+  InviteTeamByUserIdRequest,
+  InviteTeamByUserIdResponse,
   LoginRequest,
   LoginResponse,
+  SearchUserRequest,
+  SearchUserResponse,
   SignupRequest,
   SignupResponse,
 } from './apiModel';
@@ -93,5 +97,27 @@ export const deleteTeam = async ({
       'X-USER-ID': userId,
     },
     body: JSON.stringify({ teamId }),
+  });
+};
+
+export const searchUser = async ({
+  userId,
+}: SearchUserRequest): Promise<SearchUserResponse> => {
+  return await request(`/api/users/${userId}`, {
+    method: 'GET',
+  });
+};
+
+export const inviteTeamByUserId = async ({
+  userId,
+  invitedUserId,
+  teamId,
+}: InviteTeamByUserIdRequest): Promise<InviteTeamByUserIdResponse> => {
+  return await request(`/api/teams/invitation/${teamId}`, {
+    method: 'POST',
+    headers: {
+      'X-USER-ID': userId,
+    },
+    body: JSON.stringify({ userId: invitedUserId }),
   });
 };

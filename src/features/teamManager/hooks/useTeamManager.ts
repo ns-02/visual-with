@@ -1,13 +1,20 @@
 import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { createTeam, deleteTeam } from '@shared/api/api';
+import {
+  createTeam,
+  deleteTeam,
+  inviteTeamByUserId,
+  searchUser,
+} from '@shared/api/api';
 import { TeamData, TeamId, TeamName } from '@shared/models/Team';
 import { getPathFromToolId, getToolIdFromPath } from '@core/routes/routeMap';
 import { useUserStore } from '@core/store/useUserStore';
 import { useTeamStore } from '@core/store/useTeamStore';
+import { useTeamRuleStore } from '@core/store/useTeamRuleStore';
 
 export const useTeamManager = () => {
   const teamData = useTeamStore((state) => state.teamData);
+  const selectTeamId = useTeamStore((state) => state.selectTeamId);
   const createTeamInStore = useTeamStore((state) => state.createTeamInStore);
   const deleteTeamFromStore = useTeamStore(
     (state) => state.deleteTeamFromStore,
@@ -15,16 +22,12 @@ export const useTeamManager = () => {
   const setIsTeamMember = useTeamStore((state) => state.setIsTeamMember);
   const setSelectTeamId = useTeamStore((state) => state.setSelectTeamId);
   const setSelectTeamName = useTeamStore((state) => state.setSelectTeamName);
+  const addTeamRule = useTeamRuleStore((state) => state.addTeamRule);
+  const deleteTeamRule = useTeamRuleStore((state) => state.deleteTeamRule);
 
   const userId = useUserStore((state) => state.userId);
-  const setUserId = useUserStore((state) => state.setUserId);
   const navigate = useNavigate();
   const { pathname } = useLocation();
-
-  // 임시로 유저 아이디를 amugae(아무개)로 설정함. 반드시 지울 것
-  useEffect(() => {
-    setUserId('amugae');
-  }, [setUserId]);
 
   useEffect(() => {
     if (teamData && teamData.length === 0) {
@@ -39,6 +42,7 @@ export const useTeamManager = () => {
       const res = await createTeam({ userId, teamName });
 
       createTeamInStore(res.id, res.teamName);
+      addTeamRule(res.id, 'ADMIN');
     } catch (e) {
       console.log(e);
     }
@@ -53,6 +57,7 @@ export const useTeamManager = () => {
       // console.log(res.message);
 
       deleteTeamFromStore(teamId);
+      deleteTeamRule(teamId);
     } catch (e) {
       console.log(e);
     }
@@ -79,5 +84,36 @@ export const useTeamManager = () => {
     setSelectTeamName(selectedTeam.name);
   };
 
-  return { onCreateTeam, onDeleteTeam, selectTeam };
+  const onSearchUser = async (userId: string) => {
+    if (!userId) return;
+
+    try {
+      const res = await searchUser({ userId });
+      console.log(res);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  const onInviteTeamByUserId = async (invitedUserId: string) => {
+    if (!userId) return;
+    try {
+      const res = await inviteTeamByUserId({
+        userId,
+        invitedUserId,
+        teamId: selectTeamId,
+      });
+      console.log(res);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  return {
+    onCreateTeam,
+    onDeleteTeam,
+    selectTeam,
+    onSearchUser,
+    onInviteTeamByUserId,
+  };
 };

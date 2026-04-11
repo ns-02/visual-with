@@ -54,3 +54,25 @@ export interface DeleteTeamRequest {
 export interface DeleteTeamResponse {
   message: string;
 }
+
+export interface SearchUserRequest {
+  userId: string; // 검색할 유저 아이디
+}
+
+export interface SearchUserResponse {
+  userId: string;
+  name: string;
+  email: string;
+}
+
+export interface InviteTeamByUserIdRequest {
+  userId: string; // 유저 아이디
+  invitedUserId: string; // 초대받은 유저 아이디
+  teamId: string; // 팀 아이디
+}
+
+export interface InviteTeamByUserIdResponse {
+  invitationId: number;
+  teamId: string;
+  userId: string;
+}
