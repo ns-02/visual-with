@@ -1,3 +1,4 @@
+import { useTeamStore } from '@core/store/useTeamStore';
 import { Dispatch, SetStateAction, useState } from 'react';
 import { Dialog, Group, DialogInput } from '@shared/components/dialogs';
 import { useTodoStore } from '../store/useTodoStore';
@@ -9,13 +10,14 @@ interface AddTodoDialogProps {
 
 const AddTodoDialog = ({ open, onOpenChange }: AddTodoDialogProps) => {
   const addTodo = useTodoStore((state) => state.addTodo);
+  const selectTeamId = useTeamStore((state) => state.selectTeamId);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
 
   const handleAddTodo = () => {
-    if (!title) return;
+    if (!title || !selectTeamId) return;
 
-    addTodo(title, description);
+    addTodo(title, description, selectTeamId);
     setTitle('');
     setDescription('');
     onOpenChange(false);

@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useTeamStore } from '@core/store/useTeamStore';
+import { useEffect, useMemo, useState } from 'react';
 import { Circle, CircleCheckBig } from 'lucide-react';
 import { TodoData } from '@features/todoList/models/Todo';
 import TodoListCard from '../ui/TodoListCard';
@@ -8,19 +9,22 @@ import { useTodoStore } from '../store/useTodoStore';
 
 function TodoContents() {
   const todoData = useTodoStore((state) => state.todoData);
+  const selectTeamId = useTeamStore((state) => state.selectTeamId);
+  const teamTodoData = useMemo(
+    () => todoData.filter((item) => item.teamId === selectTeamId),
+    [todoData, selectTeamId],
+  );
   const toggleTodo = useTodoStore((state) => state.toggleTodo);
   const [progressData, setProgressData] = useState<TodoData[]>([]);
   const [completedData, setCompletedData] = useState<TodoData[]>([]);
 
   useEffect(() => {
-    if (!todoData) return;
-
-    const nextProgressData = todoData.filter((item) => item.checked === false);
-    const nextCompletedData = todoData.filter((item) => item.checked === true);
+    const nextProgressData = teamTodoData.filter((item) => !item.checked);
+    const nextCompletedData = teamTodoData.filter((item) => item.checked);
 
     setProgressData(nextProgressData);
     setCompletedData(nextCompletedData);
-  }, [todoData]);
+  }, [teamTodoData]);
 
   return (
     <div className={styles.contents}>

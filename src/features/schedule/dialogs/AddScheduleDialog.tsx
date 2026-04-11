@@ -1,3 +1,4 @@
+import { useTeamStore } from '@core/store/useTeamStore';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { Dialog, DialogInput, Group, Row } from '@shared/components/dialogs';
 import { getDate } from '@shared/utils/dateUtils';
@@ -10,6 +11,7 @@ export interface AddScheduleDialogProps {
 
 const AddScheduleDialog = ({ open, onOpenChange }: AddScheduleDialogProps) => {
   const addSchedule = useScheduleStore((state) => state.addSchedule);
+  const selectTeamId = useTeamStore((state) => state.selectTeamId);
   const [title, setTitle] = useState('');
   const [startDate, setstartDate] = useState('');
   const [startTime, setStartTime] = useState('');
@@ -23,7 +25,7 @@ const AddScheduleDialog = ({ open, onOpenChange }: AddScheduleDialogProps) => {
   }, []);
 
   const handleAddSchedule = () => {
-    if (!title || !startDate || !startTime) return;
+    if (!title || !startDate || !startTime || !selectTeamId) return;
 
     addSchedule(
       title,
@@ -32,6 +34,7 @@ const AddScheduleDialog = ({ open, onOpenChange }: AddScheduleDialogProps) => {
       startTime,
       finishDate,
       finishTime,
+      selectTeamId,
     );
     setTitle('');
     setstartDate('');

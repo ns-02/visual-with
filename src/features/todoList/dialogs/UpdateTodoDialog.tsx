@@ -1,3 +1,4 @@
+import { useTeamStore } from '@core/store/useTeamStore';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { Dialog, Group, DialogInput } from '@shared/components/dialogs';
 import { useTodoStore } from '../store/useTodoStore';
@@ -15,9 +16,12 @@ const UpdateTodoDialog = ({
 }: UpdateTodoDialogProps) => {
   const todoData = useTodoStore((state) => state.todoData);
   const updateTodo = useTodoStore((state) => state.updateTodo);
+  const selectTeamId = useTeamStore((state) => state.selectTeamId);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const currentTodoData = todoData?.find((item) => item.id === todoId);
+  const currentTodoData = todoData?.find(
+    (item) => item.id === todoId && item.teamId === selectTeamId,
+  );
 
   useEffect(() => {
     setTitle(currentTodoData?.title ?? '');

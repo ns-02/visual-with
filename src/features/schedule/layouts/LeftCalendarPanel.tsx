@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useTeamStore } from '@core/store/useTeamStore';
+import { useEffect, useMemo, useState } from 'react';
 import { getDate } from '@shared/utils/dateUtils';
 import Calendar from '../ui/Calendar';
 import styles from './ScheduleLayout.module.css';
@@ -6,6 +7,11 @@ import { useScheduleStore } from '../store/useScheduleStore';
 
 function LeftCalendarPanel() {
   const scheduleData = useScheduleStore((state) => state.scheduleData);
+  const selectTeamId = useTeamStore((state) => state.selectTeamId);
+  const teamScheduleData = useMemo(
+    () => scheduleData.filter((item) => item.teamId === selectTeamId),
+    [scheduleData, selectTeamId],
+  );
   const [selected, setSelected] = useState<Date>();
   const [selectedYear, setSelectedYear] = useState('');
   const [selectedMonth, setSelectedMonth] = useState('');
@@ -25,7 +31,7 @@ function LeftCalendarPanel() {
     }
   }, [selected]);
 
-  const filteredSchedules = scheduleData.filter((item) => {
+  const filteredSchedules = teamScheduleData.filter((item) => {
     const selectedFormattedDate = `${selectedYear}-${selectedMonth}-${selectedDay}`;
     return item.startDate === selectedFormattedDate;
   });

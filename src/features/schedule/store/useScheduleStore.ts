@@ -1,5 +1,6 @@
 import { ScheduleData } from '@features/schedule/models/Schedule';
 import { scheduleDataMocks } from '@mocks/ScheduleDataMocks';
+import { TeamId } from '@shared/models/Team';
 import { create } from 'zustand';
 
 interface ScheduleState {
@@ -11,6 +12,7 @@ interface ScheduleState {
     startTime: string,
     finishDate: string,
     finishTime: string,
+    teamId: TeamId,
   ) => void;
   updateSchedule: (
     title: string,
@@ -34,6 +36,7 @@ export const useScheduleStore = create<ScheduleState>((set) => ({
     startTime,
     finishDate,
     finishTime,
+    teamId,
   ) =>
     set((state) => ({
       scheduleData: [
@@ -51,6 +54,7 @@ export const useScheduleStore = create<ScheduleState>((set) => ({
           finishTime,
           description,
           state: '예정',
+          teamId,
         },
       ],
     })),

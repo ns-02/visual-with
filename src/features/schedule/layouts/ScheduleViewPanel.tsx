@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useTeamStore } from '@core/store/useTeamStore';
+import { useEffect, useMemo, useState } from 'react';
 import { ScheduleData } from '@features/schedule/models/Schedule';
 import ScheduleCard from '../ui/ScheduleCard';
 import styles from './ScheduleLayout.module.css';
@@ -6,6 +7,11 @@ import { useScheduleStore } from '../store/useScheduleStore';
 
 function ScheduleViewPanel() {
   const scheduleData = useScheduleStore((state) => state.scheduleData);
+  const selectTeamId = useTeamStore((state) => state.selectTeamId);
+  const teamScheduleData = useMemo(
+    () => scheduleData.filter((item) => item.teamId === selectTeamId),
+    [scheduleData, selectTeamId],
+  );
   const [completedData, setCompletedData] = useState<ScheduleData[] | null>(
     null,
   );
@@ -15,22 +21,27 @@ function ScheduleViewPanel() {
   const [upcomingData, setUpcomingData] = useState<ScheduleData[] | null>(null);
 
   useEffect(() => {
-    if (!scheduleData) return;
+    if (!teamScheduleData.length && !selectTeamId) {
+      setCompletedData([]);
+      setInProgressData([]);
+      setUpcomingData([]);
+      return;
+    }
 
-    const nextCompletedData = scheduleData.filter(
+    const nextCompletedData = teamScheduleData.filter(
       (item) => item.state === '완료',
     );
-    const nextInProgressData = scheduleData.filter(
+    const nextInProgressData = teamScheduleData.filter(
       (item) => item.state === '진행중',
     );
-    const nextUpcomingData = scheduleData.filter(
+    const nextUpcomingData = teamScheduleData.filter(
       (item) => item.state === '예정',
     );
 
     setCompletedData(nextCompletedData);
     setInProgressData(nextInProgressData);
     setUpcomingData(nextUpcomingData);
-  }, [scheduleData]);
+  }, [teamScheduleData, selectTeamId]);
 
   return (
     <div className={styles.schedule_view_panel}>
