@@ -16,7 +16,7 @@ export const teamChatMockFactories: Record<string, TeamChatMockFactory> = {
       {
         id: 1,
         authorId: 'lead_01',
-        authorName: '민지(팀장)',
+        authorName: '민지',
         chat: '가나다팀 채팅방 목업이에요. 편하게 테스트해 주세요!',
         time: '오전 9:10',
         createdAt: '2026-03-18',
@@ -43,7 +43,7 @@ export const teamChatMockFactories: Record<string, TeamChatMockFactory> = {
       {
         id: 4,
         authorId: 'design_03',
-        authorName: '수아(디자인)',
+        authorName: '수아',
         chat: '말풍선 간격이랑 아바타 위치도 같이 확인 부탁드려요.',
         time: '오전 9:14',
         createdAt: '2026-03-19',
