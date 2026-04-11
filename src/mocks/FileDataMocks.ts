@@ -9,6 +9,7 @@ export const fileDataMocks: FileData[] = [
     date: '2025-10-15',
     uploader: '김철수',
     timeAgo: '3일 전',
+    teamId: 'f5l8q0h4',
   },
   {
     id: 2,
@@ -18,6 +19,7 @@ export const fileDataMocks: FileData[] = [
     date: '2025-10-12',
     uploader: '김철수',
     timeAgo: '5일 전',
+    teamId: 'f5l8q0h4',
   },
   {
     id: 3,
@@ -27,5 +29,6 @@ export const fileDataMocks: FileData[] = [
     date: '2025-10-10',
     uploader: '이영희',
     timeAgo: '8일 전',
+    teamId: 'b2y1m7j6',
   },
 ];

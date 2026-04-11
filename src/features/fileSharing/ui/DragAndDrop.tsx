@@ -1,3 +1,4 @@
+import { useTeamStore } from '@core/store/useTeamStore';
 import { ChangeEvent, DragEvent, useRef, useState } from 'react';
 import { Upload } from 'lucide-react';
 import { FileSelectButton } from '..';
@@ -8,6 +9,7 @@ import { formatDate } from '@shared/utils/formatDate';
 
 const DragAndDrop = () => {
   const uploadFile = useFileStore((state) => state.uploadFile);
+  const selectTeamId = useTeamStore((state) => state.selectTeamId);
   const inputRef = useRef<HTMLInputElement>(null);
   const [dragging, setDragging] = useState(false);
 
@@ -26,8 +28,8 @@ const DragAndDrop = () => {
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       const selectedFile = e.target.files[0];
-      if (selectedFile) {
-        uploadFile(selectedFile, formatDate());
+      if (selectedFile && selectTeamId) {
+        uploadFile(selectedFile, formatDate(), selectTeamId);
       }
     }
   };
@@ -65,8 +67,8 @@ const DragAndDrop = () => {
 
     // 실제 파일 처리 로직
     const selectedFile = e.dataTransfer.files[0];
-    if (selectedFile) {
-      uploadFile(selectedFile, formatDate());
+    if (selectedFile && selectTeamId) {
+      uploadFile(selectedFile, formatDate(), selectTeamId);
     }
     setDragging(false);
   };

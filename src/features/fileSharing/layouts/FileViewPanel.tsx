@@ -1,3 +1,4 @@
+import { useTeamStore } from '@core/store/useTeamStore';
 import DragAndDrop from '../ui/DragAndDrop';
 import FileListCard from '../ui/FileListCard';
 import styles from './FileSharingLayout.module.css';
@@ -9,12 +10,14 @@ interface FileViewPanelProps {
 
 function FileViewPanel({ fileTypes }: FileViewPanelProps) {
   const fileData = useFileStore((state) => state.fileData);
+  const selectTeamId = useTeamStore((state) => state.selectTeamId);
 
   return (
     <div className={styles.file_view_panel}>
       <DragAndDrop />
       <div style={{ marginTop: '24px', marginBottom: '12px' }}>파일 목록</div>
       {fileData
+        .filter((item) => item.teamId === selectTeamId)
         .filter((item) => {
           return fileTypes === 'all' ? item : item.fileType === fileTypes;
         })

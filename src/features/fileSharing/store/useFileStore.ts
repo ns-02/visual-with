@@ -1,19 +1,20 @@
 import { FileData } from '@features/fileSharing/models/File';
 import { fileDataMocks } from '@mocks/FileDataMocks';
+import { TeamId } from '@shared/models/Team';
 import { create } from 'zustand';
 import getFormattedFileSize from '../utils/getFormattedFileSize';
 import getFormattedFileType from '../utils/getFormattedFileType';
 
 interface FileState {
   fileData: FileData[];
-  uploadFile: (file: File, formattedDate: string) => void;
+  uploadFile: (file: File, formattedDate: string, teamId: TeamId) => void;
   deleteFile: (fileId: number) => void;
 }
 
 export const useFileStore = create<FileState>((set) => ({
   fileData: fileDataMocks || [],
 
-  uploadFile: (file, formattedDate) =>
+  uploadFile: (file, formattedDate, teamId) =>
     set((state) => ({
       fileData: [
         ...state.fileData,
@@ -26,6 +27,7 @@ export const useFileStore = create<FileState>((set) => ({
           date: formattedDate,
           uploader: '아무개',
           timeAgo: '오늘',
+          teamId,
         },
       ],
     })),

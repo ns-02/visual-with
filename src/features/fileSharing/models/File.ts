@@ -1,3 +1,5 @@
+import { TeamId } from '@shared/models/Team';
+
 export interface FileData {
   id: number;
   fileName: string;
@@ -6,4 +8,5 @@ export interface FileData {
   date: string;
   uploader: string;
   timeAgo?: string;
+  teamId: TeamId;
 }
