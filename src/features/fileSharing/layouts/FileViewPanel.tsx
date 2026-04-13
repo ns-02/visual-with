@@ -3,6 +3,7 @@ import DragAndDrop from '../ui/DragAndDrop';
 import FileListCard from '../ui/FileListCard';
 import styles from './FileSharingLayout.module.css';
 import { useFileStore } from '../store/useFileStore';
+import FileUploadCard from '../ui/FileUploadCard';
 
 interface FileViewPanelProps {
   fileTypes: string;
@@ -10,11 +11,17 @@ interface FileViewPanelProps {
 
 function FileViewPanel({ fileTypes }: FileViewPanelProps) {
   const fileData = useFileStore((state) => state.fileData);
+  // const isLoading = useFileStore((state) => state.isLoading);
   const selectTeamId = useTeamStore((state) => state.selectTeamId);
 
   return (
     <div className={styles.file_view_panel}>
       <DragAndDrop />
+      {/* {isLoading && (
+        <div style={{ marginTop: '24px', marginBottom: '12px' }}>업로드 중</div>
+      )} */}
+      <div style={{ marginTop: '24px', marginBottom: '12px' }}>업로드 중</div>
+      <FileUploadCard fileName='파일 A (목업)' fileSize='48KB' />
       <div style={{ marginTop: '24px', marginBottom: '12px' }}>파일 목록</div>
       {fileData
         .filter((item) => item.teamId === selectTeamId)

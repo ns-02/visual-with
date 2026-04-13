@@ -7,12 +7,14 @@ import getFormattedFileType from '../utils/getFormattedFileType';
 
 interface FileState {
   fileData: FileData[];
+  isLoading: boolean;
   uploadFile: (file: File, formattedDate: string, teamId: TeamId) => void;
   deleteFile: (fileId: number) => void;
 }
 
 export const useFileStore = create<FileState>((set) => ({
   fileData: fileDataMocks || [],
+  isLoading: false,
 
   uploadFile: (file, formattedDate, teamId) =>
     set((state) => ({
