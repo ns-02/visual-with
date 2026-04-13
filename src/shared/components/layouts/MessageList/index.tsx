@@ -7,6 +7,7 @@ interface MessageListProps {
   allChat: ChatItem[];
 }
 const MessageList = memo(({ allChat }: MessageListProps) => {
+  console.log(allChat);
   const formatDate = (createdAt: string): string => {
     const parts = createdAt.split('-');
     const resultFormat = `${parts[0]}년 ${Number(parts[1])}월 ${Number(parts[2])}일`;
@@ -19,7 +20,8 @@ const MessageList = memo(({ allChat }: MessageListProps) => {
       <div className={styles.contents}>
         {allChat.map((chatItem, idx) => {
           const prev = allChat[idx - 1];
-          const showDateDivider = !prev || prev.createdAt !== chatItem.createdAt;
+          const showDateDivider =
+            !prev || prev.createdAt !== chatItem.createdAt;
 
           return (
             <div key={chatItem.id}>
