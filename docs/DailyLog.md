@@ -29,3 +29,10 @@
   - 아이디로 팀 초대 api 호출 오류는, 응답에 데이터가 없어서 발생한 문제로 확인됨. (`await response.json()`: 여기서 에러 발생) 문제 발생 시, 개발자 도구의 네트워크 탭을 꼭 확인할 것.
   - 팀 삭제 api 해결됨. 원인은 서버에서 json 형식으로 응답하지 않고 plain text 형식으로 응답해서, api에서 json으로 변환하는 함수에서 오류가 발생했던 것.
   - 역할 데이터(TeamRule) 적용 방법을 고민. -> 팀 아이디, 역할 타입, 역할 이름 3개로 분리하여 저장하고, 별도 스토어를 두어 관리. 이를 TeamManager에서 불러 사용. 역할 이름은 역할 타입에 따라 저장됨. 역할에 따른 이름을 불러오기 위해선, getTeamRuleName()을 사용.
+
+## 260415
+  - FIleUploadCard.tsx
+  - 파일 업로드 프로그래스 구현 중, 코드가 중복으로 호출됨
+  - 원인은 useEffect 내부에서 함수 호출 방식으로 setInterval과 setTimeout을 사용한 것이 문제
+  - useEffect 내부에서, 리턴 문으로 setInterval과 setTimeout을 호출하여, 문제 해결
+  https://gemini.google.com/share/b7f9775e9371
