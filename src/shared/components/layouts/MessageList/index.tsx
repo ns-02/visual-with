@@ -7,7 +7,6 @@ interface MessageListProps {
   allChat: ChatItem[];
 }
 const MessageList = memo(({ allChat }: MessageListProps) => {
-  console.log(allChat);
   const formatDate = (createdAt: string): string => {
     const parts = createdAt.split('-');
     const resultFormat = `${parts[0]}년 ${Number(parts[1])}월 ${Number(parts[2])}일`;
