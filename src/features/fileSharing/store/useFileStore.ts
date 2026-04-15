@@ -9,6 +9,7 @@ interface FileState {
   fileData: FileData[];
   isLoading: boolean;
   currentFile: FileData | null;
+  progress: number;
   uploadFile: (file: File, formattedDate: string, teamId: TeamId) => void;
   deleteFile: (fileId: number) => void;
   setIsLoading: (isLoading: boolean) => void;
@@ -17,12 +18,15 @@ interface FileState {
     formattedDate: string,
     teamId: TeamId,
   ) => void;
+  setProgress: (progress: number) => void;
+  increaseProgress: () => void;
 }
 
 export const useFileStore = create<FileState>((set) => ({
   fileData: fileDataMocks || [],
   isLoading: false,
   currentFile: null,
+  progress: 0,
 
   uploadFile: (file, formattedDate, teamId) =>
     set((state) => ({
@@ -68,4 +72,8 @@ export const useFileStore = create<FileState>((set) => ({
       },
     }));
   },
+
+  setProgress: (nextProgress) => set({ progress: nextProgress }),
+
+  increaseProgress: () => set((state) => ({ progress: state.progress + 10 })),
 }));
