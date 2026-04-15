@@ -11,14 +11,11 @@ export const useFileManager = () => {
   const setProgress = useFileStore((state) => state.setProgress);
   const increaseProgress = useFileStore((state) => state.increaseProgress);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const delayTimerRef = useRef<NodeJS.Timeout | null>(null);
 
-  const delay = (ms: number) =>
-    new Promise((resolve) => setTimeout(resolve, ms));
-
-  const runProgress = () => {
-    if (timerRef.current) {
-      clearInterval(timerRef.current);
-    }
+  const runProgress = async () => {
+    if (timerRef.current) clearInterval(timerRef.current);
+    if (delayTimerRef.current) clearTimeout(delayTimerRef.current);
 
     setProgress(0);
 
@@ -28,12 +25,17 @@ export const useFileManager = () => {
 
     timerRef.current = intervalId;
 
-    setTimeout(() => {
-      clearInterval(intervalId);
-      if (timerRef.current === intervalId) {
-        timerRef.current = null;
-      }
-    }, 3 * 1000);
+    return new Promise<void>((resolve) => {
+      const timeoutId = setTimeout(() => {
+        clearInterval(intervalId);
+        if (timerRef.current === intervalId) timerRef.current = null;
+
+        delayTimerRef.current = null;
+        resolve();
+      }, 3000);
+
+      delayTimerRef.current = timeoutId;
+    });
   };
 
   const loadAndUploadFile = async (file: File | undefined) => {
@@ -41,8 +43,7 @@ export const useFileManager = () => {
 
     setIsLoading(true);
     setCurrentFile(file, formatDate(), selectTeamId);
-    runProgress();
-    await delay(3000);
+    await runProgress();
     setIsLoading(false);
     setCurrentFile(null, formatDate(), selectTeamId);
     uploadFile(file, formatDate(), selectTeamId);
