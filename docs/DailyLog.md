@@ -35,4 +35,7 @@
   - 파일 업로드 프로그래스 구현 중, 코드가 중복으로 호출됨
   - 원인은 useEffect 내부에서 함수 호출 방식으로 setInterval과 setTimeout을 사용한 것이 문제
   - useEffect 내부에서, 리턴 문으로 setInterval과 setTimeout을 호출하여, 문제 해결
+  - (구현 방법을 바꾸어, 현재는 useEffect를 사용하지 않음)
+  - store 내부에서 progress를 관리하고, useFileManager에서 ref를 사용하여 타이머 중복 호출 방지
+  - 기존 delay() 함수를 interval 함수와 통합하여 하나로 관리
   https://gemini.google.com/share/b7f9775e9371
