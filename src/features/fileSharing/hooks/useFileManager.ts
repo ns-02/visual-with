@@ -26,6 +26,8 @@ export const useFileManager = () => {
       increaseProgress();
     }, 0.3 * 1000);
 
+    timerRef.current = intervalId;
+
     setTimeout(() => {
       clearInterval(intervalId);
       if (timerRef.current === intervalId) {
