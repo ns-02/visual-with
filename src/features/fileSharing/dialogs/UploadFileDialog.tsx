@@ -1,8 +1,6 @@
-import { useTeamStore } from '@core/store/useTeamStore';
 import { Dispatch, SetStateAction, useState } from 'react';
 import { Dialog, Group, DialogInput } from '@shared/components/dialogs';
-import { useFileStore } from '../store/useFileStore';
-import { formatDate } from '@shared/utils/formatDate';
+import { useFileManager } from '../hooks/useFileManager';
 
 interface UploadFileDialogProps {
   open: boolean;
@@ -10,15 +8,14 @@ interface UploadFileDialogProps {
 }
 
 const UploadFileDialog = ({ open, onOpenChange }: UploadFileDialogProps) => {
-  const uploadFile = useFileStore((state) => state.uploadFile);
-  const selectTeamId = useTeamStore((state) => state.selectTeamId);
+  const { loadAndUploadFile } = useFileManager();
   const [file, setFile] = useState<File>();
 
   const handleUploadFile = () => {
-    if (!file || !selectTeamId) return;
+    if (!file) return;
 
-    uploadFile(file, formatDate(), selectTeamId);
     onOpenChange(false);
+    loadAndUploadFile(file);
   };
 
   return (

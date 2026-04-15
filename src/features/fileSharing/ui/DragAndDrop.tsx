@@ -1,26 +1,18 @@
-import { useTeamStore } from '@core/store/useTeamStore';
 import { ChangeEvent, DragEvent, useRef, useState } from 'react';
 import { Upload } from 'lucide-react';
 import { FileSelectButton } from '..';
 import styles from './DragAndDrop.module.css';
-import { useFileStore } from '../store/useFileStore';
 import { FileInput } from '@shared/components/ui';
-import { formatDate } from '@shared/utils/formatDate';
+import { useFileManager } from '../hooks/useFileManager';
 
 const DragAndDrop = () => {
-  const uploadFile = useFileStore((state) => state.uploadFile);
-  const setIsLoading = useFileStore((state) => state.setIsLoading);
-  const setCurrentFile = useFileStore((state) => state.setCurrentFile);
-  const selectTeamId = useTeamStore((state) => state.selectTeamId);
   const inputRef = useRef<HTMLInputElement>(null);
   const [dragging, setDragging] = useState(false);
+  const { loadAndUploadFile } = useFileManager();
 
   const containerStyle = dragging
     ? styles.container_dragging
     : styles.container;
-
-  const delay = (ms: number) =>
-    new Promise((resolve) => setTimeout(resolve, ms));
 
   // '파일 선택' 버튼 클릭 시 동작
   const handleSelectFile = () => {
@@ -33,14 +25,7 @@ const DragAndDrop = () => {
   const handleFileChange = async (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       const selectedFile = e.target.files[0];
-      if (selectedFile && selectTeamId) {
-        setIsLoading(true);
-        setCurrentFile(selectedFile, formatDate(), selectTeamId);
-        await delay(3000);
-        setIsLoading(false);
-        setCurrentFile(null, formatDate(), selectTeamId);
-        uploadFile(selectedFile, formatDate(), selectTeamId);
-      }
+      loadAndUploadFile(selectedFile);
     }
   };
 
@@ -77,14 +62,7 @@ const DragAndDrop = () => {
 
     // 실제 파일 처리 로직
     const selectedFile = e.dataTransfer.files[0];
-    if (selectedFile && selectTeamId) {
-      setIsLoading(true);
-      setCurrentFile(selectedFile, formatDate(), selectTeamId);
-      await delay(3000);
-      setIsLoading(false);
-      setCurrentFile(null, formatDate(), selectTeamId);
-      uploadFile(selectedFile, formatDate(), selectTeamId);
-    }
+    loadAndUploadFile(selectedFile);
     setDragging(false);
   };
 

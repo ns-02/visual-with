@@ -1,15 +1,12 @@
-import { useTeamStore } from '@core/store/useTeamStore';
 import { DropdownMenu } from 'radix-ui';
 import { Dropdown, FileInput } from '@shared/components/ui';
 import { Item } from '@shared/components/ui';
 import { DropdownProps } from '..';
 import { ChangeEvent, useRef } from 'react';
-import { useFileStore } from '@features/fileSharing';
-import { formatDate } from '@shared/utils/formatDate';
+import { useFileManager } from '@features/fileSharing/hooks/useFileManager';
 
 const FileUploadDropdown = ({ triggerElement }: DropdownProps) => {
-  const uploadFile = useFileStore((state) => state.uploadFile);
-  const selectTeamId = useTeamStore((state) => state.selectTeamId);
+  const { loadAndUploadFile } = useFileManager();
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleFileUploadClick = (e: Event) => {
@@ -27,10 +24,7 @@ const FileUploadDropdown = ({ triggerElement }: DropdownProps) => {
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       const selectedFile = e.target.files[0];
-
-      if (selectedFile && selectTeamId) {
-        uploadFile(selectedFile, formatDate(), selectTeamId);
-      }
+      loadAndUploadFile(selectedFile);
     }
   };
 
