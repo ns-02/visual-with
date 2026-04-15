@@ -1,23 +1,38 @@
 import { Progress } from '@shared/components/ui';
 import FileIcon from './FileIcon';
 import styles from './FileUploadCard.module.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useFileStore } from '../store/useFileStore';
 
-interface FileUploadCardProps {
-  fileName?: string;
-  fileSize?: string;
-}
+const FileUploadCard = () => {
+  const currentFile = useFileStore((state) => state.currentFile);
+  const [progress, setProgress] = useState(0);
 
-const FileUploadCard = ({ fileName, fileSize }: FileUploadCardProps) => {
-  const [progress] = useState(20);
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setProgress((prev) => prev + 10);
+    }, 0.3 * 1000);
+
+    const timeoutId = setTimeout(() => {
+      clearInterval(intervalId);
+    }, 3 * 1000);
+
+    return () => {
+      clearInterval(intervalId);
+      clearTimeout(timeoutId);
+    };
+  }, []);
+
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>
         <div className={styles.info_contents}>
           <FileIcon />
           <div>
-            <p>{fileName}</p>
-            <p style={{ fontSize: '15px', color: '#555' }}>{`${fileSize}`}</p>
+            <p>{currentFile?.fileName}</p>
+            <p
+              style={{ fontSize: '15px', color: '#555' }}
+            >{`${currentFile?.fileSize}`}</p>
           </div>
         </div>
         <div className={styles.navigation}>

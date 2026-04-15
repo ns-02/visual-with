@@ -11,17 +11,21 @@ interface FileViewPanelProps {
 
 function FileViewPanel({ fileTypes }: FileViewPanelProps) {
   const fileData = useFileStore((state) => state.fileData);
-  // const isLoading = useFileStore((state) => state.isLoading);
+  const isLoading = useFileStore((state) => state.isLoading);
   const selectTeamId = useTeamStore((state) => state.selectTeamId);
 
   return (
     <div className={styles.file_view_panel}>
       <DragAndDrop />
-      {/* {isLoading && (
-        <div style={{ marginTop: '24px', marginBottom: '12px' }}>업로드 중</div>
-      )} */}
-      <div style={{ marginTop: '24px', marginBottom: '12px' }}>업로드 중</div>
-      <FileUploadCard fileName='파일 A (목업)' fileSize='48KB' />
+      {isLoading && (
+        <div>
+          <div style={{ marginTop: '24px', marginBottom: '12px' }}>
+            업로드 중
+          </div>
+          <FileUploadCard />
+        </div>
+      )}
+
       <div style={{ marginTop: '24px', marginBottom: '12px' }}>파일 목록</div>
       {fileData
         .filter((item) => item.teamId === selectTeamId)

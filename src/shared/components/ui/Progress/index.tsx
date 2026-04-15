@@ -10,7 +10,7 @@ const Progress = ({ progress }: { progress: number }) => {
     >
       <RadixProgress.Indicator
         className={styles.progress_indicator}
-        style={{ width: `${progress}%` }}
+        style={{ transform: `scaleX(${progress / 100})` }}
       />
     </RadixProgress.Root>
   );

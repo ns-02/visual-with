@@ -9,6 +9,8 @@ import { formatDate } from '@shared/utils/formatDate';
 
 const DragAndDrop = () => {
   const uploadFile = useFileStore((state) => state.uploadFile);
+  const setIsLoading = useFileStore((state) => state.setIsLoading);
+  const setCurrentFile = useFileStore((state) => state.setCurrentFile);
   const selectTeamId = useTeamStore((state) => state.selectTeamId);
   const inputRef = useRef<HTMLInputElement>(null);
   const [dragging, setDragging] = useState(false);
@@ -16,6 +18,9 @@ const DragAndDrop = () => {
   const containerStyle = dragging
     ? styles.container_dragging
     : styles.container;
+
+  const delay = (ms: number) =>
+    new Promise((resolve) => setTimeout(resolve, ms));
 
   // '파일 선택' 버튼 클릭 시 동작
   const handleSelectFile = () => {
@@ -25,10 +30,15 @@ const DragAndDrop = () => {
   };
 
   // 파일 선택 모달이 닫힌 경우(Input 요소에 파일이 추가된 경우) 동작
-  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = async (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       const selectedFile = e.target.files[0];
       if (selectedFile && selectTeamId) {
+        setIsLoading(true);
+        setCurrentFile(selectedFile, formatDate(), selectTeamId);
+        await delay(3000);
+        setIsLoading(false);
+        setCurrentFile(null, formatDate(), selectTeamId);
         uploadFile(selectedFile, formatDate(), selectTeamId);
       }
     }
@@ -61,13 +71,18 @@ const DragAndDrop = () => {
   };
 
   // 드래그가 영역 안에서 놓았을 시
-  const handleFileDrop = (e: DragEvent<HTMLDivElement>) => {
+  const handleFileDrop = async (e: DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     e.stopPropagation();
 
     // 실제 파일 처리 로직
     const selectedFile = e.dataTransfer.files[0];
     if (selectedFile && selectTeamId) {
+      setIsLoading(true);
+      setCurrentFile(selectedFile, formatDate(), selectTeamId);
+      await delay(3000);
+      setIsLoading(false);
+      setCurrentFile(null, formatDate(), selectTeamId);
       uploadFile(selectedFile, formatDate(), selectTeamId);
     }
     setDragging(false);
