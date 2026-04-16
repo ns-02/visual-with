@@ -12,6 +12,7 @@ function FileInput({ ref, onChange }: FileInputProps) {
       ref={ref}
       type='file'
       onChange={onChange}
+      autoComplete='off'
     />
   );
 }

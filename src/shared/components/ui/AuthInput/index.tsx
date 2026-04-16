@@ -22,6 +22,7 @@ function Input({ type, value, onChange, placeholder }: InputProps) {
       value={value}
       onChange={handleInputChange}
       placeholder={placeholder}
+      autoComplete='off'
     />
   );
 }

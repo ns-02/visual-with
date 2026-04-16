@@ -40,6 +40,7 @@ function Input({
         value={value}
         onChange={(e) => setChat && setChat(e.target.value)}
         onKeyDown={(e) => onKeyDown && onKeyDown(e)}
+        autoComplete='off'
       />
     </div>
   );

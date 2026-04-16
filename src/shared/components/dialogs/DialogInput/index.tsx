@@ -23,6 +23,7 @@ function Input({ type, value, setValue, placeholder, readOnly }: InputProps) {
       onChange={handleInputChange}
       placeholder={placeholder}
       readOnly={readOnly}
+      autoComplete='off'
     />
   );
 }
