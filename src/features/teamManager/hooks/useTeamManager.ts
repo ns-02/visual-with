@@ -20,8 +20,6 @@ export const useTeamManager = () => {
     (state) => state.deleteTeamFromStore,
   );
   const setIsTeamMember = useTeamStore((state) => state.setIsTeamMember);
-  const setSelectTeamId = useTeamStore((state) => state.setSelectTeamId);
-  const setSelectTeamName = useTeamStore((state) => state.setSelectTeamName);
   const addTeamRule = useTeamRuleStore((state) => state.addTeamRule);
   const deleteTeamRule = useTeamRuleStore((state) => state.deleteTeamRule);
 
@@ -30,8 +28,14 @@ export const useTeamManager = () => {
   const { pathname } = useLocation();
 
   useEffect(() => {
+    console.log(selectTeamId);
+  }, [selectTeamId]);
+
+  useEffect(() => {
     if (teamData && teamData.length === 0) {
       setIsTeamMember(false);
+    } else {
+      setIsTeamMember(true);
     }
   }, [teamData, setIsTeamMember]);
 
@@ -79,9 +83,6 @@ export const useTeamManager = () => {
     } else {
       navigate(`${selectedTeam.id}`);
     }
-
-    setSelectTeamId(selectedTeam.id);
-    setSelectTeamName(selectedTeam.name);
   };
 
   const onSearchUser = async (userId: string) => {
@@ -96,7 +97,7 @@ export const useTeamManager = () => {
   };
 
   const onInviteTeamByUserId = async (invitedUserId: string) => {
-    if (!userId) return;
+    if (!userId || !selectTeamId) return;
     try {
       const res = await inviteTeamByUserId({
         userId,

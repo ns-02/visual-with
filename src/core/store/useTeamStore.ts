@@ -4,18 +4,20 @@ import { create } from 'zustand';
 
 interface TeamState {
   teamData: TeamData[];
-  selectTeamId: TeamId;
+  // selectTeamData: TeamData | null; // 현재 선택된 팀 데이터
+  selectTeamId: TeamId | null;
   selectTeamName: TeamName;
   isTeamMember: boolean;
   createTeamInStore: (teamId: TeamId, teamName: TeamName) => void;
   deleteTeamFromStore: (teamId: TeamId) => void;
-  setSelectTeamId: (teamId: TeamId) => void;
-  setSelectTeamName: (teamName: TeamName) => void;
+  // setSelectTeamData: (teamData: TeamData | null) => void;
+  setSelectTeamId: (teamId: TeamId | null) => void;
   setIsTeamMember: (value: boolean) => void;
 }
 
 export const useTeamStore = create<TeamState>((set) => ({
   teamData: teamDataMocks || [],
+  // selectTeamData: null,
   selectTeamId: '',
   selectTeamName: '',
   isTeamMember: false,
@@ -30,9 +32,13 @@ export const useTeamStore = create<TeamState>((set) => ({
       teamData: [...state.teamData.filter((item) => item.id !== teamId)],
     })),
 
-  setSelectTeamId: (teamId) => set({ selectTeamId: teamId }),
+  // setSelectTeamData: (teamData) => set({ selectTeamData: teamData }),
 
-  setSelectTeamName: (teamName) => set({ selectTeamName: teamName }),
+  setSelectTeamId: (teamId) =>
+    set((state) => ({
+      selectTeamId: teamId,
+      selectTeamName: state.teamData.find((item) => item.id === teamId)?.name,
+    })),
 
   setIsTeamMember: (value) => set({ isTeamMember: value }),
 }));

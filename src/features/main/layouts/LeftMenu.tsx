@@ -21,6 +21,7 @@ import styles from './Layouts.module.css';
 import TooltipItem from '../ui/TooltipItem';
 import { getPathFromToolId } from '@core/routes/routeMap';
 import { useTeamStore } from '@core/store/useTeamStore';
+import { useToolIdStore } from '@core/store/useToolIdStore';
 
 interface MenuItem {
   id: ToolId;
@@ -35,6 +36,7 @@ function LeftMenu() {
   const selectTeamName = useTeamStore((state) => state.selectTeamName);
   const isTeamMember = useTeamStore((state) => state.isTeamMember);
   const [selectItemId, setSelectItemId] = useState<ToolId | null>(null);
+  // const toolId = useToolIdStore((state) => state.toolId);
 
   const topMenuItems: MenuItem[] = [
     {

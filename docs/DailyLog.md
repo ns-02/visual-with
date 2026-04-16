@@ -39,3 +39,8 @@
   - store 내부에서 progress를 관리하고, useFileManager에서 ref를 사용하여 타이머 중복 호출 방지
   - 기존 delay() 함수를 interval 함수와 통합하여 하나로 관리
   https://gemini.google.com/share/b7f9775e9371
+
+## 260416
+  - 새로고침 시, url 직접 입력 시 UI가 팀에 속하지 않거나 의도대로 동작하는 문제 발견
+  1) useTeamManager에서 teamData 존재 여부에 따른 else 조건을 추가하여 수정
+  - 생각보다 문제가 심각함 비상 (일단, 라우트 브랜치를 새로 작성)

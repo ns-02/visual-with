@@ -1,3 +1,4 @@
+import { TeamId } from '@shared/models/Team';
 import { ToolId } from '@shared/models/ToolId';
 
 const ROUTES: { id: ToolId; path: string }[] = [
@@ -33,7 +34,7 @@ export function getToolIdFromPath(pathname: string): ToolId | null {
 export interface ConvertPathProps {
   id: ToolId;
   onTeam?: boolean;
-  selectTeamId?: string;
+  selectTeamId?: string | null;
 }
 
 // toolId로 url 만들기
@@ -49,4 +50,20 @@ export function getPathFromToolId(props: ConvertPathProps): string {
   } else {
     return idToPath.get(id) ?? '';
   }
+}
+
+// url로 teamId 추출하기
+export function getTeamIdFromPath(pathname: string): TeamId | null {
+  const parts = pathname.split('/').filter(Boolean);
+
+  // teamId 정규식
+  const teamIdRegex = /^[a-z0-9]{8}$/;
+
+  for (const part of parts) {
+    if (teamIdRegex.test(part)) {
+      return part;
+    }
+  }
+
+  return null;
 }

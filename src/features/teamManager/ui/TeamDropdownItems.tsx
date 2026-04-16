@@ -18,6 +18,7 @@ const TeamDropdownItems = ({
 }: TeamDropdownItemsType) => {
   const teamData = useTeamStore((state) => state.teamData);
   const selectTeamId = useTeamStore((state) => state.selectTeamId);
+  const setSelectTeamId = useTeamStore((state) => state.setSelectTeamId);
   const { selectTeam } = useTeamManager();
 
   const handleItemSelected = (item: TeamData) => {
@@ -32,7 +33,13 @@ const TeamDropdownItems = ({
     <>
       {teamData.map((item) => {
         return (
-          <DropdownMenu.Item key={item.id} onClick={() => selectTeam(item)}>
+          <DropdownMenu.Item
+            key={item.id}
+            onClick={() => {
+              setSelectTeamId(item.id);
+              selectTeam(item);
+            }}
+          >
             <Item
               type='list'
               text={item.name}
