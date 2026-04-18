@@ -34,7 +34,7 @@ function LeftMenu() {
   const [isInviteTeamDialogOpen, setIsInviteTeamDialogOpen] = useState(false);
   const selectTeamId = useTeamStore((state) => state.selectTeamId);
   const teamData = useTeamStore((state) => state.teamData);
-  // const selectTeamName = useTeamStore((state) => state.selectTeamName);
+  const selectTeamName = useTeamStore((state) => state.selectTeamName);
   const [isTeamMember, setIsTeamMember] = useState(false);
   const toolId = useToolIdStore((state) => state.toolId);
   const setToolId = useToolIdStore((state) => state.setToolId);
@@ -106,7 +106,7 @@ function LeftMenu() {
 
   const DropdownTrigger = isTeamMember ? (
     <Button
-      // text={selectTeamName[0]}
+      text={selectTeamName[0]}
       shape='square'
       className={styles.info_button}
     />

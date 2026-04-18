@@ -45,6 +45,7 @@ export const useTeamStore = create<TeamState>()(
       name: 'team',
       partialize: (state) => ({
         selectTeamId: state.selectTeamId,
+        selectTeamName: state.selectTeamName,
       }),
     },
   ),
