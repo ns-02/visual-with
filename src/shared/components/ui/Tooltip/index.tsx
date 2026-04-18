@@ -10,17 +10,14 @@ interface TooltipProps {
   side?: Side;
   trigger?: ReactNode;
   items?: ReactNode;
-  onClick?: () => void;
 }
 
 const Tooltip = (props: TooltipProps) => {
-  const { align = 'center', side = 'right', trigger, items, onClick } = props;
+  const { align = 'center', side = 'right', trigger, items } = props;
 
   return (
     <Tooltips.Root delayDuration={100}>
-      <Tooltips.Trigger asChild onClick={onClick}>
-        {trigger}
-      </Tooltips.Trigger>
+      <Tooltips.Trigger asChild>{trigger}</Tooltips.Trigger>
       <Tooltips.Portal>
         <Tooltips.Content
           className={styles.container}
