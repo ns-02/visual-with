@@ -17,16 +17,14 @@ export const useTeamManager = () => {
   const deleteTeamFromStore = useTeamStore(
     (state) => state.deleteTeamFromStore,
   );
+  const isTeamInit = useTeamStore((state) => state.isTeamInit);
+  const setIsTeamInit = useTeamStore((state) => state.setIsTeamInit);
   const addTeamRule = useTeamRuleStore((state) => state.addTeamRule);
   const deleteTeamRule = useTeamRuleStore((state) => state.deleteTeamRule);
 
   const userId = useUserStore((state) => state.userId);
   const navigate = useNavigate();
   const { pathname } = useLocation();
-
-  // useEffect(() => {
-  //   console.log(selectTeamId);
-  // }, [selectTeamId]);
 
   const onCreateTeam = async (teamName: TeamName) => {
     if (!userId) return;
@@ -36,6 +34,8 @@ export const useTeamManager = () => {
 
       createTeamInStore(res.id, res.teamName);
       addTeamRule(res.id, 'ADMIN');
+
+      if (!isTeamInit) setIsTeamInit(true);
     } catch (e) {
       console.log(e);
     }
@@ -58,6 +58,8 @@ export const useTeamManager = () => {
 
   const selectTeam = (selectedTeam: TeamData) => {
     const toolId = getToolIdFromPath(pathname);
+
+    if (!isTeamInit) setIsTeamInit(true);
 
     if (toolId) {
       const toolPath = getPathFromToolId({ id: toolId });

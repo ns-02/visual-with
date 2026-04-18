@@ -35,16 +35,17 @@ function LeftMenu() {
   const selectTeamId = useTeamStore((state) => state.selectTeamId);
   const teamData = useTeamStore((state) => state.teamData);
   const selectTeamName = useTeamStore((state) => state.selectTeamName);
+  const isTeamInit = useTeamStore((state) => state.isTeamInit);
   const [isTeamMember, setIsTeamMember] = useState(false);
   const toolId = useToolIdStore((state) => state.toolId);
 
   useEffect(() => {
-    if (teamData && teamData.length === 0) {
+    if ((teamData && teamData.length === 0) || !isTeamInit) {
       setIsTeamMember(false);
     } else {
       setIsTeamMember(true);
     }
-  }, [teamData, setIsTeamMember]);
+  }, [teamData, setIsTeamMember, isTeamInit]);
 
   const topMenuItems: MenuItem[] = [
     {
