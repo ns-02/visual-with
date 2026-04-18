@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import {
   createTeam,
@@ -13,13 +12,11 @@ import { useTeamStore } from '@core/store/useTeamStore';
 import { useTeamRuleStore } from '@core/store/useTeamRuleStore';
 
 export const useTeamManager = () => {
-  const teamData = useTeamStore((state) => state.teamData);
   const selectTeamId = useTeamStore((state) => state.selectTeamId);
   const createTeamInStore = useTeamStore((state) => state.createTeamInStore);
   const deleteTeamFromStore = useTeamStore(
     (state) => state.deleteTeamFromStore,
   );
-  const setIsTeamMember = useTeamStore((state) => state.setIsTeamMember);
   const addTeamRule = useTeamRuleStore((state) => state.addTeamRule);
   const deleteTeamRule = useTeamRuleStore((state) => state.deleteTeamRule);
 
@@ -27,17 +24,9 @@ export const useTeamManager = () => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
-  useEffect(() => {
-    console.log(selectTeamId);
-  }, [selectTeamId]);
-
-  useEffect(() => {
-    if (teamData && teamData.length === 0) {
-      setIsTeamMember(false);
-    } else {
-      setIsTeamMember(true);
-    }
-  }, [teamData, setIsTeamMember]);
+  // useEffect(() => {
+  //   console.log(selectTeamId);
+  // }, [selectTeamId]);
 
   const onCreateTeam = async (teamName: TeamName) => {
     if (!userId) return;
@@ -69,8 +58,6 @@ export const useTeamManager = () => {
 
   const selectTeam = (selectedTeam: TeamData) => {
     const toolId = getToolIdFromPath(pathname);
-
-    if (selectedTeam) setIsTeamMember(true);
 
     if (toolId) {
       const toolPath = getPathFromToolId({ id: toolId });
