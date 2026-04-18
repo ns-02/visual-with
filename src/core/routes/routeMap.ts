@@ -28,7 +28,7 @@ export function getToolIdFromPath(pathname: string): ToolId | null {
     if (toolId) return toolId;
   }
 
-  return null;
+  return 'home';
 }
 
 export interface ConvertPathProps {
