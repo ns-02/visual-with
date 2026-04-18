@@ -1,6 +1,7 @@
 import { teamDataMocks } from '@mocks/TeamDataMocks';
 import { TeamData, TeamId, TeamName } from '@shared/models/Team';
 import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
 
 interface TeamState {
   teamData: TeamData[];
@@ -13,27 +14,38 @@ interface TeamState {
   setSelectTeamId: (teamId: TeamId | null) => void;
 }
 
-export const useTeamStore = create<TeamState>((set) => ({
-  teamData: teamDataMocks || [],
-  // selectTeamData: null,
-  selectTeamId: '',
-  selectTeamName: '',
+export const useTeamStore = create<TeamState>()(
+  persist(
+    (set) => ({
+      teamData: teamDataMocks || [],
+      // selectTeamData: null,
+      selectTeamId: '',
+      selectTeamName: '',
 
-  createTeamInStore: (teamId, teamName) =>
-    set((state) => ({
-      teamData: [...state.teamData, { id: teamId, name: teamName }],
-    })),
+      createTeamInStore: (teamId, teamName) =>
+        set((state) => ({
+          teamData: [...state.teamData, { id: teamId, name: teamName }],
+        })),
 
-  deleteTeamFromStore: (teamId) =>
-    set((state) => ({
-      teamData: [...state.teamData.filter((item) => item.id !== teamId)],
-    })),
+      deleteTeamFromStore: (teamId) =>
+        set((state) => ({
+          teamData: [...state.teamData.filter((item) => item.id !== teamId)],
+        })),
 
-  // setSelectTeamData: (teamData) => set({ selectTeamData: teamData }),
+      // setSelectTeamData: (teamData) => set({ selectTeamData: teamData }),
 
-  setSelectTeamId: (teamId) =>
-    set((state) => ({
-      selectTeamId: teamId,
-      selectTeamName: state.teamData.find((item) => item.id === teamId)?.name,
-    })),
-}));
+      setSelectTeamId: (teamId) =>
+        set((state) => ({
+          selectTeamId: teamId,
+          selectTeamName: state.teamData.find((item) => item.id === teamId)
+            ?.name,
+        })),
+    }),
+    {
+      name: 'team',
+      partialize: (state) => ({
+        selectTeamId: state.selectTeamId,
+      }),
+    },
+  ),
+);
