@@ -42,6 +42,8 @@ export function RouteWatcher({
   useEffect(() => {
     const nextTeamId = getTeamIdFromPath(location.pathname);
 
+    if (!nextTeamId) return;
+
     if (nextTeamId !== selectTeamId) setSelectTeamId(nextTeamId);
   }, [location.pathname, selectTeamId, setSelectTeamId]);
 
