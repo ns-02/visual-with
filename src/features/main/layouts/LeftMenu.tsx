@@ -21,7 +21,7 @@ import styles from './Layouts.module.css';
 import TooltipItem from '../ui/TooltipItem';
 import { getPathFromToolId } from '@core/routes/routeMap';
 import { useTeamStore } from '@core/store/useTeamStore';
-// import { useToolIdStore } from '@core/store/useToolIdStore';
+import { useToolIdStore } from '@core/store/useToolIdStore';
 
 interface MenuItem {
   id: ToolId;
@@ -36,8 +36,8 @@ function LeftMenu() {
   const teamData = useTeamStore((state) => state.teamData);
   // const selectTeamName = useTeamStore((state) => state.selectTeamName);
   const [isTeamMember, setIsTeamMember] = useState(false);
-  const [selectItemId, setSelectItemId] = useState<ToolId | null>(null);
-  // const toolId = useToolIdStore((state) => state.toolId);
+  const toolId = useToolIdStore((state) => state.toolId);
+  const setToolId = useToolIdStore((state) => state.setToolId);
 
   useEffect(() => {
     if (teamData && teamData.length === 0) {
@@ -96,11 +96,11 @@ function LeftMenu() {
   ];
 
   const handleMenuClick = (id: ToolId) => {
-    setSelectItemId(id);
+    setToolId(id);
   };
 
   const getMenuStyle = (id: ToolId) => {
-    const isItemSelected = id === selectItemId ? true : false;
+    const isItemSelected = id === toolId ? true : false;
     return `${styles.menu_button} ${isItemSelected && styles.selected}`;
   };
 
