@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, useEffect, useRef } from 'react';
 import { ChatItem } from '@shared/models/Chat';
 import { Avatar } from '@shared/components/ui';
 import styles from './MessageList.module.css';
@@ -7,6 +7,10 @@ interface MessageListProps {
   allChat: ChatItem[];
 }
 const MessageList = memo(({ allChat }: MessageListProps) => {
+  const viewRef = useRef<HTMLDivElement | null>(null);
+  const chatRef = useRef<HTMLDivElement | null>(null);
+  const OFFSET_HEIGHT = 84;
+
   const formatDate = (createdAt: string): string => {
     const parts = createdAt.split('-');
     const resultFormat = `${parts[0]}년 ${Number(parts[1])}월 ${Number(parts[2])}일`;
@@ -14,8 +18,21 @@ const MessageList = memo(({ allChat }: MessageListProps) => {
     return resultFormat;
   };
 
+  const scrollToBottom = () => {
+    chatRef.current?.scrollIntoView({ behavior: 'auto' });
+  };
+
+  useEffect(() => {
+    if (viewRef.current) {
+      const { scrollHeight, scrollTop, clientHeight } = viewRef.current;
+      if (clientHeight > scrollHeight - scrollTop - OFFSET_HEIGHT - 100) {
+        scrollToBottom();
+      }
+    }
+  }, [allChat]);
+
   return (
-    <div className={styles.view}>
+    <div className={styles.view} ref={viewRef}>
       <div className={styles.contents}>
         {allChat.map((chatItem, idx) => {
           const prev = allChat[idx - 1];
@@ -58,6 +75,7 @@ const MessageList = memo(({ allChat }: MessageListProps) => {
             </div>
           );
         })}
+        <div ref={chatRef}></div>
       </div>
     </div>
   );
