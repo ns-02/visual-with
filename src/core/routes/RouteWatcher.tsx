@@ -1,7 +1,8 @@
 import { useEffect, useRef } from 'react';
 import { useLocation, useNavigationType } from 'react-router-dom';
-import { getToolIdFromPath } from './routeMap';
+import { getTeamIdFromPath, getToolIdFromPath } from './routeMap';
 import { useToolIdStore } from '@core/store/useToolIdStore';
+import { useTeamStore } from '@core/store/useTeamStore';
 
 export function RouteWatcher({
   callOnInitial = true,
@@ -12,8 +13,10 @@ export function RouteWatcher({
   const navType = useNavigationType();
 
   // setToolId()가 컴포넌트에 신호를 주는 역할
-  const current = useToolIdStore((state) => state.toolId);
+  const toolId = useToolIdStore((state) => state.toolId);
   const setToolId = useToolIdStore((state) => state.setToolId);
+  const selectTeamId = useTeamStore((state) => state.selectTeamId);
+  const setSelectTeamId = useTeamStore((state) => state.setSelectTeamId);
   const prevRef = useRef<string | null>(null);
 
   useEffect(() => {
@@ -23,7 +26,7 @@ export function RouteWatcher({
     // 초기 진입 시
     if (prevTool === null) {
       prevRef.current = nextTool;
-      if (callOnInitial && nextTool !== current) {
+      if (callOnInitial && nextTool !== toolId) {
         setToolId(nextTool);
       }
     }
@@ -32,9 +35,17 @@ export function RouteWatcher({
     if (prevTool !== nextTool) {
       prevRef.current = nextTool;
       // ToolContext에 저장된 값과 다를 때만
-      if (nextTool !== current) setToolId(nextTool);
+      if (nextTool !== toolId) setToolId(nextTool);
     }
-  }, [location.pathname, navType, setToolId, current, callOnInitial]);
+  }, [location.pathname, navType, setToolId, toolId, callOnInitial]);
+
+  useEffect(() => {
+    const nextTeamId = getTeamIdFromPath(location.pathname);
+
+    if (!nextTeamId) return;
+
+    if (nextTeamId !== selectTeamId) setSelectTeamId(nextTeamId);
+  }, [location.pathname, selectTeamId, setSelectTeamId]);
 
   return null;
 }

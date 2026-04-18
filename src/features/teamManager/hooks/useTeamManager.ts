@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import {
   createTeam,
@@ -13,27 +12,19 @@ import { useTeamStore } from '@core/store/useTeamStore';
 import { useTeamRuleStore } from '@core/store/useTeamRuleStore';
 
 export const useTeamManager = () => {
-  const teamData = useTeamStore((state) => state.teamData);
   const selectTeamId = useTeamStore((state) => state.selectTeamId);
   const createTeamInStore = useTeamStore((state) => state.createTeamInStore);
   const deleteTeamFromStore = useTeamStore(
     (state) => state.deleteTeamFromStore,
   );
-  const setIsTeamMember = useTeamStore((state) => state.setIsTeamMember);
-  const setSelectTeamId = useTeamStore((state) => state.setSelectTeamId);
-  const setSelectTeamName = useTeamStore((state) => state.setSelectTeamName);
+  const isTeamInit = useTeamStore((state) => state.isTeamInit);
+  const setIsTeamInit = useTeamStore((state) => state.setIsTeamInit);
   const addTeamRule = useTeamRuleStore((state) => state.addTeamRule);
   const deleteTeamRule = useTeamRuleStore((state) => state.deleteTeamRule);
 
   const userId = useUserStore((state) => state.userId);
   const navigate = useNavigate();
   const { pathname } = useLocation();
-
-  useEffect(() => {
-    if (teamData && teamData.length === 0) {
-      setIsTeamMember(false);
-    }
-  }, [teamData, setIsTeamMember]);
 
   const onCreateTeam = async (teamName: TeamName) => {
     if (!userId) return;
@@ -43,6 +34,8 @@ export const useTeamManager = () => {
 
       createTeamInStore(res.id, res.teamName);
       addTeamRule(res.id, 'ADMIN');
+
+      if (!isTeamInit) setIsTeamInit(true);
     } catch (e) {
       console.log(e);
     }
@@ -66,7 +59,7 @@ export const useTeamManager = () => {
   const selectTeam = (selectedTeam: TeamData) => {
     const toolId = getToolIdFromPath(pathname);
 
-    if (selectedTeam) setIsTeamMember(true);
+    if (!isTeamInit) setIsTeamInit(true);
 
     if (toolId) {
       const toolPath = getPathFromToolId({ id: toolId });
@@ -79,9 +72,6 @@ export const useTeamManager = () => {
     } else {
       navigate(`${selectedTeam.id}`);
     }
-
-    setSelectTeamId(selectedTeam.id);
-    setSelectTeamName(selectedTeam.name);
   };
 
   const onSearchUser = async (userId: string) => {
@@ -96,7 +86,7 @@ export const useTeamManager = () => {
   };
 
   const onInviteTeamByUserId = async (invitedUserId: string) => {
-    if (!userId) return;
+    if (!userId || !selectTeamId) return;
     try {
       const res = await inviteTeamByUserId({
         userId,

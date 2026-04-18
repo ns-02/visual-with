@@ -27,7 +27,7 @@ function MainHeader() {
   const [isAddTodoDialogOpen, setIsAddTodoDialogOpen] = useState(false);
   const [isAddFriendDialogOpen, setIsAddFriendDialogOpen] = useState(false);
 
-  if (!toolId) {
+  if (!toolId || toolId === 'home') {
     return;
   }
 

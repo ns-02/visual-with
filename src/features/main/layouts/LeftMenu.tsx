@@ -1,4 +1,4 @@
-import { useState, ComponentType } from 'react';
+import { useState, ComponentType, useEffect } from 'react';
 import {
   LucideProps,
   Calendar1,
@@ -21,6 +21,7 @@ import styles from './Layouts.module.css';
 import TooltipItem from '../ui/TooltipItem';
 import { getPathFromToolId } from '@core/routes/routeMap';
 import { useTeamStore } from '@core/store/useTeamStore';
+import { useToolIdStore } from '@core/store/useToolIdStore';
 
 interface MenuItem {
   id: ToolId;
@@ -32,9 +33,19 @@ interface MenuItem {
 function LeftMenu() {
   const [isInviteTeamDialogOpen, setIsInviteTeamDialogOpen] = useState(false);
   const selectTeamId = useTeamStore((state) => state.selectTeamId);
+  const teamData = useTeamStore((state) => state.teamData);
   const selectTeamName = useTeamStore((state) => state.selectTeamName);
-  const isTeamMember = useTeamStore((state) => state.isTeamMember);
-  const [selectItemId, setSelectItemId] = useState<ToolId | null>(null);
+  const isTeamInit = useTeamStore((state) => state.isTeamInit);
+  const [isTeamMember, setIsTeamMember] = useState(false);
+  const toolId = useToolIdStore((state) => state.toolId);
+
+  useEffect(() => {
+    if ((teamData && teamData.length === 0) || !isTeamInit) {
+      setIsTeamMember(false);
+    } else {
+      setIsTeamMember(true);
+    }
+  }, [teamData, setIsTeamMember, isTeamInit]);
 
   const topMenuItems: MenuItem[] = [
     {
@@ -84,12 +95,8 @@ function LeftMenu() {
     },
   ];
 
-  const handleMenuClick = (id: ToolId) => {
-    setSelectItemId(id);
-  };
-
   const getMenuStyle = (id: ToolId) => {
-    const isItemSelected = id === selectItemId ? true : false;
+    const isItemSelected = id === toolId ? true : false;
     return `${styles.menu_button} ${isItemSelected && styles.selected}`;
   };
 
@@ -126,7 +133,6 @@ function LeftMenu() {
         key={item.id}
         trigger={renderMenuItem(item)}
         items={<TooltipItem text={item.text} />}
-        onClick={() => handleMenuClick(item.id)}
       />
     ));
   };
