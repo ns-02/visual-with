@@ -59,4 +59,7 @@
   3) useToolId를 LeftMenu에서 사용
   4) isTeamMember(지역), isTeamInit(스토어) 두 조건으로 에러 대응
   5) url에서 toolId를 찾지 못한 경우, null이 아닌 home을 반환하도록 변경
-  - 교훈: url에서 뽑은 정보를 바탕으로 UI를 업데이트하기. 순수 변수와 UI의 변수를 분리하기. 
+  - 교훈
+  1) url에서 뽑은 정보를 바탕으로 UI를 업데이트하기
+  2) 순수 변수와 UI의 변수를 분리하기
+  3) 예외 처리 잘 하기
