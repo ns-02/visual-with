@@ -1,4 +1,5 @@
 import { useTeamStore } from '@core/store/useTeamStore';
+import { useUserStore } from '@core/store/useUserStore';
 import { Dispatch, SetStateAction, useState } from 'react';
 import { Dialog, Group, DialogInput } from '@shared/components/dialogs';
 import { useTodoStore } from '../store/useTodoStore';
@@ -11,13 +12,21 @@ interface AddTodoDialogProps {
 const AddTodoDialog = ({ open, onOpenChange }: AddTodoDialogProps) => {
   const addTodo = useTodoStore((state) => state.addTodo);
   const selectTeamId = useTeamStore((state) => state.selectTeamId);
+  const userId = useUserStore((state) => state.userId);
+  const userName = useUserStore((state) => state.userName);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
 
   const handleAddTodo = () => {
-    if (!title || !selectTeamId) return;
+    if (!title || !selectTeamId || !userId || !userName) return;
 
-    addTodo(title, description, selectTeamId);
+    addTodo({
+      title,
+      description: description || undefined,
+      teamId: selectTeamId,
+      authorId: userId,
+      authorName: userName,
+    });
     setTitle('');
     setDescription('');
     onOpenChange(false);

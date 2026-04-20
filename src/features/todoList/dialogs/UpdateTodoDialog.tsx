@@ -1,4 +1,5 @@
 import { useTeamStore } from '@core/store/useTeamStore';
+import { useUserStore } from '@core/store/useUserStore';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { Dialog, Group, DialogInput } from '@shared/components/dialogs';
 import { useTodoStore } from '../store/useTodoStore';
@@ -17,8 +18,12 @@ const UpdateTodoDialog = ({
   const todoData = useTodoStore((state) => state.todoData);
   const updateTodo = useTodoStore((state) => state.updateTodo);
   const selectTeamId = useTeamStore((state) => state.selectTeamId);
+  const userId = useUserStore((state) => state.userId);
+  const userName = useUserStore((state) => state.userName);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
+  const [authorId, setAuthorId] = useState('');
+  const [authorName, setAuthorName] = useState('');
   const currentTodoData = todoData?.find(
     (item) => item.id === todoId && item.teamId === selectTeamId,
   );
@@ -26,12 +31,20 @@ const UpdateTodoDialog = ({
   useEffect(() => {
     setTitle(currentTodoData?.title ?? '');
     setDescription(currentTodoData?.description ?? '');
-  }, [currentTodoData]);
+    setAuthorId(currentTodoData?.authorId ?? userId ?? '');
+    setAuthorName(currentTodoData?.authorName ?? userName ?? '');
+  }, [currentTodoData, userId, userName]);
 
   const handleUpdateTodo = () => {
-    if (!title || !todoId) return;
+    if (!title || !todoId || !authorId || !authorName) return;
 
-    updateTodo(title, description, todoId);
+    updateTodo({
+      id: todoId,
+      title,
+      description: description || undefined,
+      authorId,
+      authorName,
+    });
     setTitle('');
     setDescription('');
     onOpenChange(false);

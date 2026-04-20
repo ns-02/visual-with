@@ -38,6 +38,7 @@ function TodoContents() {
             id={item.id}
             title={item.title}
             description={item.description}
+            authorName={item.authorName}
             checked={item.checked}
             onCheckedChange={() => toggleTodo(item.id)}
           />
@@ -53,6 +54,7 @@ function TodoContents() {
             id={item.id}
             title={item.title}
             description={item.description}
+            authorName={item.authorName}
             checked={item.checked}
             onCheckedChange={() => toggleTodo(item.id)}
           />

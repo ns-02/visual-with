@@ -7,6 +7,8 @@ export const todoDataMocks: TodoData[] = [
     description: '클라이언트 미팅 준비',
     checked: false,
     teamId: 'f5l8q0h4',
+    authorId: 'lead_01',
+    authorName: '민지',
   },
   {
     id: 2,
@@ -14,6 +16,8 @@ export const todoDataMocks: TodoData[] = [
     description: '팀원들과 피드백 공유',
     checked: false,
     teamId: 'f5l8q0h4',
+    authorId: 'design_03',
+    authorName: '수아',
   },
   {
     id: 3,
@@ -21,6 +25,17 @@ export const todoDataMocks: TodoData[] = [
     description: 'PR 3건 확인 필요',
     checked: false,
     teamId: 'f5l8q0h4',
+    authorId: 'dev_02',
+    authorName: '준호',
+  },
+  {
+    id: 10,
+    title: '데이터베이스 마이그레이션',
+    description: '스키마 변경 사항 반영',
+    checked: false,
+    teamId: 'f5l8q0h4',
+    authorId: 'dev_02',
+    authorName: '준호',
   },
   {
     id: 4,
@@ -28,6 +43,8 @@ export const todoDataMocks: TodoData[] = [
     description: '스테이징 검증',
     checked: false,
     teamId: 'b2y1m7j6',
+    authorId: 'rama_lead',
+    authorName: '서준',
   },
   {
     id: 5,
@@ -35,6 +52,8 @@ export const todoDataMocks: TodoData[] = [
     description: 'API 명세 업데이트',
     checked: true,
     teamId: 'b2y1m7j6',
+    authorId: 'rama_qa',
+    authorName: '지우',
   },
   {
     id: 6,
@@ -42,6 +61,17 @@ export const todoDataMocks: TodoData[] = [
     description: '백로그 정리',
     checked: false,
     teamId: 'b2y1m7j6',
+    authorId: 'rama_lead',
+    authorName: '서준',
+  },
+  {
+    id: 11,
+    title: '회귀 테스트 수행',
+    description: '배포 전 최종 QA',
+    checked: false,
+    teamId: 'b2y1m7j6',
+    authorId: 'rama_qa',
+    authorName: '지우',
   },
   {
     id: 7,
@@ -49,6 +79,8 @@ export const todoDataMocks: TodoData[] = [
     description: '신규 팀원용',
     checked: false,
     teamId: 'c3h7p9m2',
+    authorId: 'co_lead_01',
+    authorName: '하린',
   },
   {
     id: 8,
@@ -56,6 +88,8 @@ export const todoDataMocks: TodoData[] = [
     description: 'SUB_ADMIN 워크플로',
     checked: true,
     teamId: 'c3h7p9m2',
+    authorId: 'co_lead_02',
+    authorName: '도윤',
   },
   {
     id: 9,
@@ -63,5 +97,16 @@ export const todoDataMocks: TodoData[] = [
     description: '금요일 스탠드업 준비',
     checked: false,
     teamId: 'c3h7p9m2',
+    authorId: 'co_lead_01',
+    authorName: '하린',
+  },
+  {
+    id: 12,
+    title: '분기별 회고 준비',
+    description: 'KPT 기반 피드백 수집',
+    checked: false,
+    teamId: 'c3h7p9m2',
+    authorId: 'co_lead_02',
+    authorName: '도윤',
   },
 ];
