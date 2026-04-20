@@ -10,6 +10,7 @@ import { getPathFromToolId, getToolIdFromPath } from '@core/routes/routeMap';
 import { useUserStore } from '@core/store/useUserStore';
 import { useTeamStore } from '@core/store/useTeamStore';
 import { useTeamRuleStore } from '@core/store/useTeamRuleStore';
+import { useEffect } from 'react';
 
 export const useTeamManager = () => {
   const selectTeamId = useTeamStore((state) => state.selectTeamId);
@@ -19,12 +20,25 @@ export const useTeamManager = () => {
   );
   const isTeamInit = useTeamStore((state) => state.isTeamInit);
   const setIsTeamInit = useTeamStore((state) => state.setIsTeamInit);
+
+  const teamRuleData = useTeamRuleStore((state) => state.teamRuleData);
   const addTeamRule = useTeamRuleStore((state) => state.addTeamRule);
   const deleteTeamRule = useTeamRuleStore((state) => state.deleteTeamRule);
+  const setCurrentRule = useTeamRuleStore((state) => state.setCurrentRule);
 
   const userId = useUserStore((state) => state.userId);
   const navigate = useNavigate();
   const { pathname } = useLocation();
+
+  useEffect(() => {
+    const nextRule = teamRuleData.find(
+      (item) => item.teamId === selectTeamId,
+    )?.rule;
+
+    if (!nextRule) return;
+
+    setCurrentRule(nextRule);
+  }, [selectTeamId, teamRuleData, setCurrentRule]);
 
   const onCreateTeam = async (teamName: TeamName) => {
     if (!userId) return;

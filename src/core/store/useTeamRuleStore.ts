@@ -10,13 +10,16 @@ import { create } from 'zustand';
 
 interface TeamRuleState {
   teamRuleData: TeamMembershipData[];
+  currentRule: TeamRule;
   addTeamRule: (userId: string, teamId: TeamId, rule: TeamRule) => void;
   deleteTeamRule: (teamId: TeamId) => void;
   updateTeamRule: (teamId: TeamId, rule: TeamRule) => void;
+  setCurrentRule: (rule: TeamRule) => void;
 }
 
 export const useTeamRuleStore = create<TeamRuleState>((set) => ({
   teamRuleData: teamRuleDataMocks || [],
+  currentRule: 'MEMBER',
 
   addTeamRule: (userId, teamId, rule) =>
     set((state) => ({
@@ -39,4 +42,6 @@ export const useTeamRuleStore = create<TeamRuleState>((set) => ({
           : item,
       ),
     })),
+
+  setCurrentRule: (rule) => set({ currentRule: rule }),
 }));

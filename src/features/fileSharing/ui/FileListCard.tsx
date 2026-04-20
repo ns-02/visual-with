@@ -42,7 +42,11 @@ const FileListCard = ({
         <ContentButton>
           <Download size={16} />
         </ContentButton>
-        <FileSharingDropdown fileId={id} triggerElement={triggerElement} />
+        <FileSharingDropdown
+          fileId={id}
+          triggerElement={triggerElement}
+          uploader={uploader}
+        />
       </div>
     </div>
   );
