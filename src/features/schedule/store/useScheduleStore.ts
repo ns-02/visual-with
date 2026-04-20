@@ -8,6 +8,7 @@ interface ScheduleState {
   addSchedule: (
     title: string,
     description: string,
+    creatorId: string,
     startDate: string,
     startTime: string,
     finishDate: string,
@@ -17,6 +18,7 @@ interface ScheduleState {
   updateSchedule: (
     title: string,
     description: string,
+    creatorId: string,
     scheduleId: number,
     startDate: string,
     startTime: string,
@@ -32,6 +34,7 @@ export const useScheduleStore = create<ScheduleState>((set) => ({
   addSchedule: (
     title,
     description,
+    creatorId,
     startDate,
     startTime,
     finishDate,
@@ -48,6 +51,7 @@ export const useScheduleStore = create<ScheduleState>((set) => ({
               0,
             ) + 1,
           title,
+          creatorId,
           startDate,
           startTime,
           finishDate,
@@ -62,6 +66,7 @@ export const useScheduleStore = create<ScheduleState>((set) => ({
   updateSchedule: (
     title,
     description,
+    creatorId,
     scheduleId,
     startDate,
     startTime,
@@ -74,6 +79,7 @@ export const useScheduleStore = create<ScheduleState>((set) => ({
           ? {
               ...item,
               title,
+              creatorId,
               startDate,
               startTime,
               finishDate,

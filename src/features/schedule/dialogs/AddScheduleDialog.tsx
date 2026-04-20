@@ -3,6 +3,7 @@ import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { Dialog, DialogInput, Group, Row } from '@shared/components/dialogs';
 import { getDate } from '@shared/utils/dateUtils';
 import { useScheduleStore } from '../store/useScheduleStore';
+import { useUserStore } from '@core/store/useUserStore';
 
 export interface AddScheduleDialogProps {
   open: boolean;
@@ -12,12 +13,14 @@ export interface AddScheduleDialogProps {
 const AddScheduleDialog = ({ open, onOpenChange }: AddScheduleDialogProps) => {
   const addSchedule = useScheduleStore((state) => state.addSchedule);
   const selectTeamId = useTeamStore((state) => state.selectTeamId);
+  const userId = useUserStore((state) => state.userId);
   const [title, setTitle] = useState('');
   const [startDate, setstartDate] = useState('');
   const [startTime, setStartTime] = useState('');
   const [finishDate, setFinishDate] = useState('');
   const [finishTime, setFinishTime] = useState('');
   const [description, setDescription] = useState('');
+
   useEffect(() => {
     const { year, month, day, hour, minute } = getDate();
     setstartDate(`${year}-${month}-${day}`);
@@ -25,11 +28,12 @@ const AddScheduleDialog = ({ open, onOpenChange }: AddScheduleDialogProps) => {
   }, []);
 
   const handleAddSchedule = () => {
-    if (!title || !startDate || !startTime || !selectTeamId) return;
+    if (!title || !startDate || !startTime || !selectTeamId || !userId) return;
 
     addSchedule(
       title,
       description,
+      userId,
       startDate,
       startTime,
       finishDate,

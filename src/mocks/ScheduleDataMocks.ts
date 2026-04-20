@@ -8,6 +8,7 @@ export const scheduleDataMocks: ScheduleData[] = [
     startTime: '09:30',
     state: '완료',
     teamId: 'f5l8q0h4',
+    creatorId: 'user_minji',
   },
   {
     id: 2,
@@ -16,6 +17,7 @@ export const scheduleDataMocks: ScheduleData[] = [
     startTime: '14:00',
     state: '진행중',
     teamId: 'f5l8q0h4',
+    creatorId: 'user_sua',
   },
   {
     id: 3,
@@ -24,6 +26,16 @@ export const scheduleDataMocks: ScheduleData[] = [
     startTime: '16:30',
     state: '진행중',
     teamId: 'f5l8q0h4',
+    creatorId: 'user_junho',
+  },
+  {
+    id: 9,
+    title: 'DB 스키마 최종 확정',
+    startDate: '2025-12-24',
+    startTime: '11:00',
+    state: '예정',
+    teamId: 'f5l8q0h4',
+    creatorId: 'user_minji',
   },
   {
     id: 4,
@@ -32,6 +44,7 @@ export const scheduleDataMocks: ScheduleData[] = [
     startTime: '10:00',
     state: '진행중',
     teamId: 'b2y1m7j6',
+    creatorId: 'user_seojun',
   },
   {
     id: 5,
@@ -40,6 +53,16 @@ export const scheduleDataMocks: ScheduleData[] = [
     startTime: '15:00',
     state: '예정',
     teamId: 'b2y1m7j6',
+    creatorId: 'user_jiwoo',
+  },
+  {
+    id: 10,
+    title: '기능 명세서 검토',
+    startDate: '2025-12-23',
+    startTime: '09:00',
+    state: '예정',
+    teamId: 'b2y1m7j6',
+    creatorId: 'user_seojun',
   },
   {
     id: 6,
@@ -48,6 +71,7 @@ export const scheduleDataMocks: ScheduleData[] = [
     startTime: '11:00',
     state: '완료',
     teamId: 'c3h7p9m2',
+    creatorId: 'user_harin',
   },
   {
     id: 7,
@@ -56,6 +80,7 @@ export const scheduleDataMocks: ScheduleData[] = [
     startTime: '13:30',
     state: '진행중',
     teamId: 'c3h7p9m2',
+    creatorId: 'user_doyun',
   },
   {
     id: 8,
@@ -64,5 +89,15 @@ export const scheduleDataMocks: ScheduleData[] = [
     startTime: '10:00',
     state: '예정',
     teamId: 'c3h7p9m2',
+    creatorId: 'user_harin',
+  },
+  {
+    id: 11,
+    title: '브랜딩 리소스 공유',
+    startDate: '2025-12-24',
+    startTime: '14:00',
+    state: '예정',
+    teamId: 'c3h7p9m2',
+    creatorId: 'user_doyun',
   },
 ];
