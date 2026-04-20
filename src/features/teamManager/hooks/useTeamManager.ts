@@ -33,7 +33,7 @@ export const useTeamManager = () => {
       const res = await createTeam({ userId, teamName });
 
       createTeamInStore(res.id, res.teamName);
-      addTeamRule(res.id, 'ADMIN');
+      addTeamRule(userId, res.id, 'ADMIN');
 
       if (!isTeamInit) setIsTeamInit(true);
     } catch (e) {

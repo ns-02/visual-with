@@ -3,7 +3,7 @@ import styles from './TeamPage.module.css';
 import { Button } from '@shared/components/ui';
 import { useTeamRuleStore } from '@core/store/useTeamRuleStore';
 import { useEffect, useState } from 'react';
-import { TeamRuleName } from '@shared/models/TeamRule';
+import { TeamRuleName } from '@shared/models/TeamMembership';
 
 function TeamPage() {
   const selectTeamId = useTeamStore((state) => state.selectTeamId);
@@ -15,7 +15,7 @@ function TeamPage() {
 
   useEffect(() => {
     const nextRuleName = teamRuleData.find(
-      (item) => item.id === selectTeamId,
+      (item) => item.teamId === selectTeamId,
     )?.name;
 
     if (!nextRuleName) return;

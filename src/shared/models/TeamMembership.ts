@@ -16,16 +16,25 @@ export function getTeamRuleName(rule: TeamRule): TeamRuleName {
   return TEAM_RULE_DISPLAY_NAME[rule];
 }
 
-export interface TeamRuleData {
-  id: TeamId;
+// 추가될 수 있는 속성
+// status: 초대 수락 상태 여부(pending, active)
+// joinedAt: 팀에 언제 들어왔는지
+// nickname: 팀 내 별명
+export interface TeamMembershipData {
+  userId: string;
+  teamId: TeamId;
   rule: TeamRule;
 
   /** `rule`에 1:1로 대응; 변경 시 `getTeamRuleName(rule)`과 동일하게 맞출 것 */
   name: TeamRuleName;
 }
 
-/** `name`을 `rule`에서 채워 일관된 `TeamRuleData`를 만든다. */
+/** `name`을 `rule`에서 채워 일관된 `TeamMembershipData`를 만든다. */
 
-export function createTeamRuleData(id: TeamId, rule: TeamRule): TeamRuleData {
-  return { id, rule, name: getTeamRuleName(rule) };
+export function createTeamMembershipData(
+  userId: string,
+  teamId: TeamId,
+  rule: TeamRule,
+): TeamMembershipData {
+  return { userId, teamId, rule, name: getTeamRuleName(rule) };
 }
