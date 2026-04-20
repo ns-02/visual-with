@@ -4,7 +4,7 @@ import { Dropdown, Item } from '@shared/components/ui';
 import styles from './FileSharingDropdown.module.css';
 import DeleteFileDialog from '../dialogs/DeleteFileDialog';
 import { useUserStore } from '@core/store/useUserStore';
-import { getIsAdmin } from '@shared/utils/getIsAdmin';
+import { getIsPermit } from '@shared/utils/permitUtils';
 import { useTeamMembershipStore } from '@core/store/useTeamMembershipStore';
 
 interface DropdownProps {
@@ -28,23 +28,9 @@ const FileSharingDropdown = ({
 
   const EmptyItems = [{ id: '1', text: '권한 부족' }];
 
-  const checkIsMe = (): boolean => {
-    if (uploader === userId) return true;
-
-    return false;
-  };
-
-  const getIsPermit = () => {
-    if (getIsAdmin(currentRule) || checkIsMe()) {
-      return true;
-    }
-
-    return false;
-  };
-
   const dropdownContent = (
     <>
-      {getIsPermit()
+      {getIsPermit({ authorId: uploader, userId, rule: currentRule })
         ? Items.map((item) => {
             return (
               <DropdownMenu.Item key={item.id} onClick={item.onClick}>

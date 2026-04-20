@@ -11,18 +11,22 @@ interface TodoListCardProps {
   id?: number;
   title?: string;
   description?: string;
+  authorId?: string;
   authorName?: string;
   checked?: CheckBoxProps['checked'];
   onCheckedChange?: CheckBoxProps['onCheckedChange'];
+  isCheckDisabled?: boolean;
 }
 
 const TodoListCard = ({
   id,
   title,
   description,
+  authorId,
   authorName,
   checked,
   onCheckedChange,
+  isCheckDisabled,
 }: TodoListCardProps) => {
   const triggerElement = (
     <ContentButton>
@@ -37,6 +41,7 @@ const TodoListCard = ({
           id={`${id ?? ''}`}
           checked={checked ?? false}
           onCheckedChange={onCheckedChange}
+          disabled={isCheckDisabled}
         />
         <div>
           {checked ? (
@@ -63,7 +68,11 @@ const TodoListCard = ({
         </div>
       </div>
       <div className={styles.navigation}>
-        <TodoListDropdown todoId={id} triggerElement={triggerElement} />
+        <TodoListDropdown
+          todoId={id}
+          authorId={authorId}
+          triggerElement={triggerElement}
+        />
       </div>
     </div>
   );

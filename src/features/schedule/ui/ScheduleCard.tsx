@@ -6,6 +6,7 @@ import ScheduleDropdown from './ScheduleDropdown';
 interface ScheduleCardProps {
   id?: number;
   title?: string;
+  authorId?: string;
   authorName?: string;
   date?: string;
   time?: string;
@@ -15,6 +16,7 @@ interface ScheduleCardProps {
 const ScheduleCard = ({
   id,
   title,
+  authorId,
   authorName,
   date,
   time,
@@ -38,7 +40,11 @@ const ScheduleCard = ({
       </div>
       <div className={styles.navigation}>
         <label className={styles.label}>{state}</label>
-        <ScheduleDropdown scheduleId={id} triggerElement={triggerElement} />
+        <ScheduleDropdown
+          scheduleId={id}
+          authorId={authorId}
+          triggerElement={triggerElement}
+        />
       </div>
     </div>
   );

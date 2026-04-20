@@ -6,10 +6,11 @@ export interface CheckBoxProps {
   checked: boolean;
   onCheckedChange?: (checked: boolean) => void;
   id: string;
+  disabled?: boolean;
 }
 
 const CheckBox = (props: CheckBoxProps) => {
-  const { checked, id, onCheckedChange } = props;
+  const { checked, id, onCheckedChange, disabled } = props;
 
   return (
     <Checkbox.Root
@@ -21,6 +22,7 @@ const CheckBox = (props: CheckBoxProps) => {
         }
       }}
       id={id}
+      disabled={disabled}
     >
       <Checkbox.Indicator className={styles.CheckboxIndicator}>
         <Check size={12} strokeWidth={3} />

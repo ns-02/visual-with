@@ -53,6 +53,7 @@ function ScheduleViewPanel() {
             key={item.id}
             id={item.id}
             title={item.title}
+            authorId={item.authorId}
             authorName={item.authorName}
             date={item.startDate}
             time={item.startTime}
@@ -69,6 +70,7 @@ function ScheduleViewPanel() {
             key={item.id}
             id={item.id}
             title={item.title}
+            authorId={item.authorId}
             authorName={item.authorName}
             date={item.startDate}
             time={item.startTime}
@@ -83,6 +85,7 @@ function ScheduleViewPanel() {
             key={item.id}
             id={item.id}
             title={item.title}
+            authorId={item.authorId}
             authorName={item.authorName}
             date={item.startDate}
             time={item.startTime}

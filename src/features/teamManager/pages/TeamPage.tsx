@@ -3,7 +3,7 @@ import styles from './TeamPage.module.css';
 import { Button } from '@shared/components/ui';
 import { useTeamMembershipStore } from '@core/store/useTeamMembershipStore';
 import { getTeamRuleName } from '@shared/models/TeamMembership';
-import { getIsAdmin } from '@shared/utils/getIsAdmin';
+import { getIsAdmin } from '@shared/utils/permitUtils';
 
 function TeamPage() {
   const selectTeamName = useTeamStore((state) => state.selectTeamName);
