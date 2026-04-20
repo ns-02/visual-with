@@ -18,7 +18,8 @@ const UpdateScheduleDialog = ({
   const updateSchedule = useScheduleStore((state) => state.updateSchedule);
   const selectTeamId = useTeamStore((state) => state.selectTeamId);
   const [title, setTitle] = useState('');
-  const [creatorId, setCreatorId] = useState('');
+  const [authorId, setAuthorId] = useState('');
+  const [authorName, setAuthorName] = useState('');
   const [startDate, setstartDate] = useState('');
   const [startTime, setStartTime] = useState('');
   const [finishDate, setFinishDate] = useState('');
@@ -32,7 +33,8 @@ const UpdateScheduleDialog = ({
     if (!currentScheduleData) return;
 
     setTitle(currentScheduleData.title);
-    setCreatorId(currentScheduleData.creatorId);
+    setAuthorId(currentScheduleData.authorId);
+    setAuthorName(currentScheduleData.authorName);
     setstartDate(currentScheduleData.startDate);
     setStartTime(currentScheduleData.startTime);
     setFinishDate(currentScheduleData.finishDate ?? '');
@@ -43,16 +45,17 @@ const UpdateScheduleDialog = ({
   const handleUpdateSchedule = () => {
     if (!title || !startDate || !startTime || !scheduleId) return;
 
-    updateSchedule(
+    updateSchedule({
+      id: scheduleId,
       title,
       description,
-      creatorId,
-      scheduleId,
+      authorId,
+      authorName,
       startDate,
       startTime,
-      finishDate,
-      finishTime,
-    );
+      finishDate: finishDate || undefined,
+      finishTime: finishTime || undefined,
+    });
     setTitle('');
     setstartDate('');
     setStartTime('');

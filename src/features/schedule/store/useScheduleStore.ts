@@ -1,46 +1,22 @@
-import { ScheduleData } from '@features/schedule/models/Schedule';
+import type {
+  AddScheduleInput,
+  ScheduleData,
+  UpdateScheduleInput,
+} from '@features/schedule/models/Schedule';
 import { scheduleDataMocks } from '@mocks/ScheduleDataMocks';
-import { TeamId } from '@shared/models/Team';
 import { create } from 'zustand';
 
 interface ScheduleState {
   scheduleData: ScheduleData[];
-  addSchedule: (
-    title: string,
-    description: string,
-    creatorId: string,
-    startDate: string,
-    startTime: string,
-    finishDate: string,
-    finishTime: string,
-    teamId: TeamId,
-  ) => void;
-  updateSchedule: (
-    title: string,
-    description: string,
-    creatorId: string,
-    scheduleId: number,
-    startDate: string,
-    startTime: string,
-    finishDate: string,
-    finishTime: string,
-  ) => void;
+  addSchedule: (schedule: AddScheduleInput) => void;
+  updateSchedule: (schedule: UpdateScheduleInput) => void;
   deleteSchedule: (scheduleId: number) => void;
 }
 
 export const useScheduleStore = create<ScheduleState>((set) => ({
   scheduleData: scheduleDataMocks || [],
 
-  addSchedule: (
-    title,
-    description,
-    creatorId,
-    startDate,
-    startTime,
-    finishDate,
-    finishTime,
-    teamId,
-  ) =>
+  addSchedule: (schedule) =>
     set((state) => ({
       scheduleData: [
         ...state.scheduleData,
@@ -50,41 +26,27 @@ export const useScheduleStore = create<ScheduleState>((set) => ({
               (max, item) => Math.max(max, item.id),
               0,
             ) + 1,
-          title,
-          creatorId,
-          startDate,
-          startTime,
-          finishDate,
-          finishTime,
-          description,
+          title: schedule.title,
+          authorId: schedule.authorId,
+          authorName: schedule.authorName,
+          startDate: schedule.startDate,
+          startTime: schedule.startTime,
+          finishDate: schedule.finishDate,
+          finishTime: schedule.finishTime,
+          description: schedule.description,
           state: '예정',
-          teamId,
+          teamId: schedule.teamId,
         },
       ],
     })),
 
-  updateSchedule: (
-    title,
-    description,
-    creatorId,
-    scheduleId,
-    startDate,
-    startTime,
-    finishDate,
-    finishTime,
-  ) =>
+  updateSchedule: (schedule) =>
     set((state) => ({
       scheduleData: state.scheduleData.map((item) =>
-        item.id === scheduleId
+        item.id === schedule.id
           ? {
               ...item,
-              title,
-              creatorId,
-              startDate,
-              startTime,
-              finishDate,
-              finishTime,
-              description,
+              ...schedule,
             }
           : item,
       ),

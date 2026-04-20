@@ -14,6 +14,7 @@ const AddScheduleDialog = ({ open, onOpenChange }: AddScheduleDialogProps) => {
   const addSchedule = useScheduleStore((state) => state.addSchedule);
   const selectTeamId = useTeamStore((state) => state.selectTeamId);
   const userId = useUserStore((state) => state.userId);
+  const userName = useUserStore((state) => state.userName);
   const [title, setTitle] = useState('');
   const [startDate, setstartDate] = useState('');
   const [startTime, setStartTime] = useState('');
@@ -28,18 +29,27 @@ const AddScheduleDialog = ({ open, onOpenChange }: AddScheduleDialogProps) => {
   }, []);
 
   const handleAddSchedule = () => {
-    if (!title || !startDate || !startTime || !selectTeamId || !userId) return;
+    if (
+      !title ||
+      !startDate ||
+      !startTime ||
+      !selectTeamId ||
+      !userId ||
+      !userName
+    )
+      return;
 
-    addSchedule(
+    addSchedule({
       title,
       description,
-      userId,
+      authorId: userId,
+      authorName: userName,
       startDate,
       startTime,
-      finishDate,
-      finishTime,
-      selectTeamId,
-    );
+      finishDate: finishDate || undefined,
+      finishTime: finishTime || undefined,
+      teamId: selectTeamId,
+    });
     setTitle('');
     setstartDate('');
     setStartTime('');
