@@ -6,7 +6,7 @@ import ScheduleDropdown from './ScheduleDropdown';
 interface ScheduleCardProps {
   id?: number;
   title?: string;
-  creatorId?: string;
+  authorName?: string;
   date?: string;
   time?: string;
   state?: string;
@@ -15,7 +15,7 @@ interface ScheduleCardProps {
 const ScheduleCard = ({
   id,
   title,
-  creatorId,
+  authorName,
   date,
   time,
   state,
@@ -31,7 +31,7 @@ const ScheduleCard = ({
       <div className={styles.info_contents}>
         <p>{title}</p>
         <div className={styles.datetime}>
-          <span style={{ fontSize: '15px', color: '#555' }}>{creatorId}</span>
+          <span style={{ fontSize: '15px', color: '#555' }}>{authorName}</span>
           <span style={{ fontSize: '15px', color: '#555' }}>{date}</span>
           <span style={{ fontSize: '15px', color: '#555' }}>{time}</span>
         </div>

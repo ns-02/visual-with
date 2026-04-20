@@ -5,7 +5,8 @@ export type ScheduleState = '완료' | '진행중' | '예정';
 export interface ScheduleData {
   id: number;
   title: string;
-  creatorId: string;
+  authorId: string;
+  authorName: string;
   startDate: string;
   startTime: string;
   finishDate?: string;

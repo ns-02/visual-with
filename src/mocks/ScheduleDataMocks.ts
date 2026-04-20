@@ -8,7 +8,8 @@ export const scheduleDataMocks: ScheduleData[] = [
     startTime: '09:30',
     state: '완료',
     teamId: 'f5l8q0h4',
-    creatorId: 'user_minji',
+    authorId: 'lead_01',
+    authorName: '민지',
   },
   {
     id: 2,
@@ -17,7 +18,8 @@ export const scheduleDataMocks: ScheduleData[] = [
     startTime: '14:00',
     state: '진행중',
     teamId: 'f5l8q0h4',
-    creatorId: 'user_sua',
+    authorId: 'design_03',
+    authorName: '수아',
   },
   {
     id: 3,
@@ -26,7 +28,8 @@ export const scheduleDataMocks: ScheduleData[] = [
     startTime: '16:30',
     state: '진행중',
     teamId: 'f5l8q0h4',
-    creatorId: 'user_junho',
+    authorId: 'dev_02',
+    authorName: '준호',
   },
   {
     id: 9,
@@ -35,7 +38,8 @@ export const scheduleDataMocks: ScheduleData[] = [
     startTime: '11:00',
     state: '예정',
     teamId: 'f5l8q0h4',
-    creatorId: 'user_minji',
+    authorId: 'lead_01',
+    authorName: '민지',
   },
   {
     id: 4,
@@ -44,7 +48,8 @@ export const scheduleDataMocks: ScheduleData[] = [
     startTime: '10:00',
     state: '진행중',
     teamId: 'b2y1m7j6',
-    creatorId: 'user_seojun',
+    authorId: 'rama_lead',
+    authorName: '서준',
   },
   {
     id: 5,
@@ -53,7 +58,8 @@ export const scheduleDataMocks: ScheduleData[] = [
     startTime: '15:00',
     state: '예정',
     teamId: 'b2y1m7j6',
-    creatorId: 'user_jiwoo',
+    authorId: 'rama_qa',
+    authorName: '지우',
   },
   {
     id: 10,
@@ -62,7 +68,8 @@ export const scheduleDataMocks: ScheduleData[] = [
     startTime: '09:00',
     state: '예정',
     teamId: 'b2y1m7j6',
-    creatorId: 'user_seojun',
+    authorId: 'rama_lead',
+    authorName: '서준',
   },
   {
     id: 6,
@@ -71,7 +78,8 @@ export const scheduleDataMocks: ScheduleData[] = [
     startTime: '11:00',
     state: '완료',
     teamId: 'c3h7p9m2',
-    creatorId: 'user_harin',
+    authorId: 'co_lead_01',
+    authorName: '하린',
   },
   {
     id: 7,
@@ -80,7 +88,8 @@ export const scheduleDataMocks: ScheduleData[] = [
     startTime: '13:30',
     state: '진행중',
     teamId: 'c3h7p9m2',
-    creatorId: 'user_doyun',
+    authorId: 'co_lead_02',
+    authorName: '도윤',
   },
   {
     id: 8,
@@ -89,7 +98,8 @@ export const scheduleDataMocks: ScheduleData[] = [
     startTime: '10:00',
     state: '예정',
     teamId: 'c3h7p9m2',
-    creatorId: 'user_harin',
+    authorId: 'co_lead_01',
+    authorName: '하린',
   },
   {
     id: 11,
@@ -98,6 +108,7 @@ export const scheduleDataMocks: ScheduleData[] = [
     startTime: '14:00',
     state: '예정',
     teamId: 'c3h7p9m2',
-    creatorId: 'user_doyun',
+    authorId: 'co_lead_02',
+    authorName: '도윤',
   },
 ];
