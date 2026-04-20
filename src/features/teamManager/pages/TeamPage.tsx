@@ -1,13 +1,13 @@
 import { useTeamStore } from '@core/store/useTeamStore';
 import styles from './TeamPage.module.css';
 import { Button } from '@shared/components/ui';
-import { useTeamRuleStore } from '@core/store/useTeamRuleStore';
+import { useTeamMembershipStore } from '@core/store/useTeamMembershipStore';
 import { getTeamRuleName } from '@shared/models/TeamMembership';
 import { getIsAdmin } from '@shared/utils/getIsAdmin';
 
 function TeamPage() {
   const selectTeamName = useTeamStore((state) => state.selectTeamName);
-  const currentRule = useTeamRuleStore((state) => state.currentRule);
+  const currentRule = useTeamMembershipStore((state) => state.currentRule);
 
   return (
     <div className={styles.page}>

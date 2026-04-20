@@ -1,4 +1,6 @@
-export const userDataMocks = {
+import { UserData } from '@shared/models/User';
+
+export const userDataMocks: UserData = {
   userId: '1',
   userName: '김민수',
   userEmail: 'minsoo@example.com',

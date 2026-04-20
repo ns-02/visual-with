@@ -1,4 +1,4 @@
-import { teamRuleDataMocks } from '@mocks/TeamRuleDataMocks';
+import { teamMembershipMocks } from '@mocks/TeamMembershipDataMocks';
 import { TeamId } from '@shared/models/Team';
 import {
   TeamRule,
@@ -8,7 +8,7 @@ import {
 } from '@shared/models/TeamMembership';
 import { create } from 'zustand';
 
-interface TeamRuleState {
+interface TeamMembershipState {
   teamRuleData: TeamMembershipData[];
   currentRule: TeamRule;
   addTeamRule: (userId: string, teamId: TeamId, rule: TeamRule) => void;
@@ -17,8 +17,8 @@ interface TeamRuleState {
   setCurrentRule: (rule: TeamRule) => void;
 }
 
-export const useTeamRuleStore = create<TeamRuleState>((set) => ({
-  teamRuleData: teamRuleDataMocks || [],
+export const useTeamMembershipStore = create<TeamMembershipState>((set) => ({
+  teamRuleData: teamMembershipMocks || [],
   currentRule: 'MEMBER',
 
   addTeamRule: (userId, teamId, rule) =>

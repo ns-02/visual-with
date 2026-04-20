@@ -5,7 +5,7 @@ import styles from './FileSharingDropdown.module.css';
 import DeleteFileDialog from '../dialogs/DeleteFileDialog';
 import { useUserStore } from '@core/store/useUserStore';
 import { getIsAdmin } from '@shared/utils/getIsAdmin';
-import { useTeamRuleStore } from '@core/store/useTeamRuleStore';
+import { useTeamMembershipStore } from '@core/store/useTeamMembershipStore';
 
 interface DropdownProps {
   fileId?: number;
@@ -20,7 +20,7 @@ const FileSharingDropdown = ({
 }: DropdownProps) => {
   const [isDeleteFileDialogOpen, setIsDeleteFileDialogOpen] = useState(false);
   const userId = useUserStore((state) => state.userId);
-  const currentRule = useTeamRuleStore((state) => state.currentRule);
+  const currentRule = useTeamMembershipStore((state) => state.currentRule);
 
   const Items = [
     { id: '1', text: '삭제', onClick: () => setIsDeleteFileDialogOpen(true) },
