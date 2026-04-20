@@ -6,12 +6,20 @@ import ScheduleDropdown from './ScheduleDropdown';
 interface ScheduleCardProps {
   id?: number;
   title?: string;
+  creatorId?: string;
   date?: string;
   time?: string;
   state?: string;
 }
 
-const ScheduleCard = ({ id, title, date, time, state }: ScheduleCardProps) => {
+const ScheduleCard = ({
+  id,
+  title,
+  creatorId,
+  date,
+  time,
+  state,
+}: ScheduleCardProps) => {
   const triggerElement = (
     <ContentButton>
       <EllipsisVertical size={16} />
@@ -23,6 +31,7 @@ const ScheduleCard = ({ id, title, date, time, state }: ScheduleCardProps) => {
       <div className={styles.info_contents}>
         <p>{title}</p>
         <div className={styles.datetime}>
+          <span style={{ fontSize: '15px', color: '#555' }}>{creatorId}</span>
           <span style={{ fontSize: '15px', color: '#555' }}>{date}</span>
           <span style={{ fontSize: '15px', color: '#555' }}>{time}</span>
         </div>

@@ -21,6 +21,7 @@ function ScheduleViewPanel() {
   const [upcomingData, setUpcomingData] = useState<ScheduleData[] | null>(null);
 
   useEffect(() => {
+    console.log(teamScheduleData);
     if (!teamScheduleData.length && !selectTeamId) {
       setCompletedData([]);
       setInProgressData([]);
@@ -52,6 +53,7 @@ function ScheduleViewPanel() {
             key={item.id}
             id={item.id}
             title={item.title}
+            creatorId={item.creatorId}
             date={item.startDate}
             time={item.startTime}
             state={item.state}
@@ -67,6 +69,7 @@ function ScheduleViewPanel() {
             key={item.id}
             id={item.id}
             title={item.title}
+            creatorId={item.creatorId}
             date={item.startDate}
             time={item.startTime}
             state={item.state}
@@ -80,6 +83,7 @@ function ScheduleViewPanel() {
             key={item.id}
             id={item.id}
             title={item.title}
+            creatorId={item.creatorId}
             date={item.startDate}
             time={item.startTime}
             state={item.state}
