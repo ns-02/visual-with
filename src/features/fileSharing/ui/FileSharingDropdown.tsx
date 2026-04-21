@@ -1,11 +1,10 @@
 import { useState } from 'react';
-import { DropdownMenu } from 'radix-ui';
-import { Dropdown, Item } from '@shared/components/ui';
 import styles from './FileSharingDropdown.module.css';
 import DeleteFileDialog from '../dialogs/DeleteFileDialog';
 import { useUserStore } from '@core/store/useUserStore';
 import { getIsPermit } from '@shared/utils/permitUtils';
 import { useTeamMembershipStore } from '@core/store/useTeamMembershipStore';
+import PermissionDropdown from '@shared/components/ui/PermissionDropdown';
 
 interface DropdownProps {
   fileId?: number;
@@ -22,35 +21,18 @@ const FileSharingDropdown = ({
   const userId = useUserStore((state) => state.userId);
   const currentRule = useTeamMembershipStore((state) => state.currentRule);
 
-  const Items = [
+  const Actions = [
     { id: '1', text: '삭제', onClick: () => setIsDeleteFileDialogOpen(true) },
   ];
 
-  const EmptyItems = [{ id: '1', text: '권한 부족' }];
-
-  const dropdownContent = (
-    <>
-      {getIsPermit({ authorId: uploader, userId, rule: currentRule })
-        ? Items.map((item) => {
-            return (
-              <DropdownMenu.Item key={item.id} onClick={item.onClick}>
-                <Item className={styles.item} type='list' text={item.text} />
-              </DropdownMenu.Item>
-            );
-          })
-        : EmptyItems.map((item) => {
-            return (
-              <DropdownMenu.Item key={item.id}>
-                <Item className={styles.item} type='list' text={item.text} />
-              </DropdownMenu.Item>
-            );
-          })}
-    </>
-  );
-
   return (
     <>
-      <Dropdown trigger={triggerElement} items={dropdownContent} />
+      <PermissionDropdown
+        itemClassName={styles.item}
+        actions={Actions}
+        canEdit={getIsPermit({ authorId: uploader, userId, rule: currentRule })}
+        triggerElement={triggerElement}
+      />
       <DeleteFileDialog
         fileId={fileId}
         open={isDeleteFileDialogOpen}
