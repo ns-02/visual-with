@@ -27,8 +27,8 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
 
   const btnStyle = [
     styles.button,
-    styles[variant],
     variant !== 'content' && styles[shape],
+    styles[variant],
     className,
   ]
     .filter(Boolean)
