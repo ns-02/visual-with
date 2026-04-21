@@ -16,16 +16,6 @@
 }
 
 /* --- Variants (용도/색상) --- */
-.auth {
-  flex: 0 0 30%;
-  width: 100%;
-  padding: 6px 0;
-  border-radius: 12px;
-  font-size: 15px;
-  background-color: var(--color-button-secondary-700);
-  color: white;
-}
-
 .normal {
   background-color: #eee;
   font-size: 14px;
@@ -56,4 +46,13 @@
   width: 48px;
   height: 48px;
   border-radius: 100%;
+}
+
+.auth {
+  flex: 0 0 30%;
+  width: 100%;
+  padding: 6px 0;
+  border-radius: 12px;
+  font-size: 15px;
+  background-color: var(--color-button-secondary-700);
 }
