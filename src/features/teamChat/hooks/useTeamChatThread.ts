@@ -1,18 +1,19 @@
 import { useChatThread } from '@shared/domain/chat/useChatThread';
-import { ChatItem } from '@shared/models/Chat';
+
 import getMaxId from '@shared/utils/getMaxId';
 import { getItem, setItem } from '@shared/utils/sessionStorage';
 import { useEffect, useState } from 'react';
 import { teamChatMockFactories } from '@mocks/TeamChatMocks';
 import { useUserStore } from '@core/store/useUserStore';
 import { useWorkspaceParams } from '@core/hooks/useWorkspaceParams';
+import { ChatData } from '@shared/models/Workspace';
 
 export const useTeamChatThread = () => {
   const { teamId } = useWorkspaceParams();
 
   const userId = useUserStore((state) => state.user?.id);
   const userName = useUserStore((state) => state.user?.name);
-  const [allChat, setAllChat] = useState<ChatItem[]>([]);
+  const [allChat, setAllChat] = useState<ChatData[]>([]);
   const [currentId, setCurrentId] = useState(1);
 
   useEffect(() => {
@@ -28,7 +29,7 @@ export const useTeamChatThread = () => {
       stored = seeded;
     }
 
-    const nextAllChat: ChatItem[] = stored.map((chat: ChatItem) => ({
+    const nextAllChat: ChatData[] = stored.map((chat: ChatData) => ({
       ...chat,
       isMe: chat.authorId === userId,
     }));

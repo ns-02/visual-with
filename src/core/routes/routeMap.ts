@@ -1,5 +1,4 @@
-import { TeamId } from '@shared/models/Team';
-import { ToolId } from '@shared/models/ToolId';
+import { TeamId, ToolId } from '@shared/models/Workspace';
 
 const ROUTES: { id: ToolId; path: string }[] = [
   { id: 'home', path: '' },

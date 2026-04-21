@@ -1,9 +1,9 @@
-import {
-  TeamMembershipData,
-  createTeamMembershipData,
-} from '@shared/models/TeamMembership';
 import { userDataMocks } from './UserDataMocks';
 import { memberDataMocks } from './MemberDataMocks';
+import {
+  createTeamMembershipData,
+  TeamMembershipData,
+} from '@shared/models/Workspace';
 
 export const teamMembershipMocks: TeamMembershipData[] = [
   createTeamMembershipData(userDataMocks.id, 'f5l8q0h4', 'ADMIN'),

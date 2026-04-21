@@ -3,7 +3,7 @@ import { useEffect, useMemo, useState } from 'react';
 import ScheduleCard from '../ui/ScheduleCard';
 import styles from './ScheduleLayout.module.css';
 import { useScheduleStore } from '../store/useScheduleStore';
-import { ScheduleData } from '@shared/models/Schedule';
+import { ScheduleData } from '@shared/models/Workspace';
 
 function ScheduleViewPanel() {
   const scheduleData = useScheduleStore((state) => state.scheduleData);

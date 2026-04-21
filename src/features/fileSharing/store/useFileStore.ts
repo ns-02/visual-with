@@ -1,9 +1,9 @@
-import { FileData } from '@shared/models/File';
 import { fileDataMocks } from '@mocks/FileDataMocks';
-import { TeamId } from '@shared/models/Team';
+
 import { create } from 'zustand';
 import getFormattedFileSize from '../utils/getFormattedFileSize';
 import getFormattedFileType from '../utils/getFormattedFileType';
+import { FileData, TeamId } from '@shared/models/Workspace';
 
 interface FileState {
   fileData: FileData[];

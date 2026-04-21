@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { File, LucideProps, Plus, Search, Upload } from 'lucide-react';
 import { HeaderBar } from '@shared/components';
-import { ToolId } from '@shared/models/ToolId';
+
 import UploadFileDialog from '../../fileSharing/dialogs/UploadFileDialog';
 import AddScheduleDialog from '../../schedule/dialogs/AddScheduleDialog';
 import AddTodoDialog from '../../todoList/dialogs/AddTodoDialog';
@@ -9,6 +9,7 @@ import AddFriendDialog from '../../friendList/dialogs/AddFriendDialog';
 import styles from './Layouts.module.css';
 import { useDirectChatStore } from '@features/directChat/store/useDirectChatStore';
 import { useWorkspaceParams } from '@core/hooks/useWorkspaceParams';
+import { ToolId } from '@shared/models/Workspace';
 
 interface HeaderItem {
   id: ToolId;

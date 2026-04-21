@@ -4,7 +4,7 @@ import { Dropdown, Item } from '@shared/components/ui';
 import CreateTeamDialog from '../dialogs/CreateTeamDialog';
 import DeleteTeamDialog from '../dialogs/DeleteTeamDialog';
 import TeamDropdownItems from './TeamDropdownItems';
-import { TeamData } from '@shared/models/Team';
+import { TeamData } from '@shared/models/Workspace';
 
 interface DropdownProps {
   trigger?: React.ReactNode;

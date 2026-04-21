@@ -1,6 +1,7 @@
 import { userDataMocks } from '@mocks/UserDataMocks';
-import { ToolId } from '@shared/models/ToolId';
+
 import { UserData } from '@shared/models/User';
+import { ToolId } from '@shared/models/Workspace';
 import { create } from 'zustand';
 
 interface UserState {

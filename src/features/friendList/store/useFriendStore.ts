@@ -3,7 +3,8 @@ import {
   friendRequestDataMocks,
   futureRequestDataMocks,
 } from '@mocks/FriendDataMocks';
-import { FriendData } from '@shared/models/Friend';
+import { FriendData } from '@shared/models/User';
+
 import { create } from 'zustand';
 
 interface FriendState {

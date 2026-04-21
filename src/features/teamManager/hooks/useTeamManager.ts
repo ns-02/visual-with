@@ -5,11 +5,11 @@ import {
   inviteTeamByUserId,
   searchUser,
 } from '@shared/api/api';
-import { TeamData, TeamId, TeamName } from '@shared/models/Team';
 import { getPathFromToolId, getToolIdFromPath } from '@core/routes/routeMap';
 import { useUserStore } from '@core/store/useUserStore';
 import { useWorkspaceParams } from '@core/hooks/useWorkspaceParams';
 import { useWorkspaceStore } from '@core/store/useWorkspaceStore';
+import { TeamData, TeamId, TeamName } from '@shared/models/Workspace';
 
 export const useTeamManager = () => {
   const { teamId } = useWorkspaceParams();

@@ -3,7 +3,8 @@ import type {
   UpdateTodoInput,
 } from '@features/todoList/models/TodoType';
 import { todoDataMocks } from '@mocks/TodoDataMocks';
-import { TodoData } from '@shared/models/Todo';
+import { TodoData } from '@shared/models/Workspace';
+
 import { create } from 'zustand';
 
 interface TodoState {

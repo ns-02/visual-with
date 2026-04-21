@@ -1,9 +1,9 @@
-import { ChatItem } from '@shared/models/Chat';
+import { ChatData } from '@shared/models/Workspace';
 import styles from './TeamChatLayout.module.css';
 import MessageList from '@shared/domain/MessageList';
 
 interface TeamChatPanelProps {
-  allChat: ChatItem[];
+  allChat: ChatData[];
 }
 
 const TeamChatPanel = ({ allChat }: TeamChatPanelProps) => {

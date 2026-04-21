@@ -7,8 +7,9 @@ import TodoListCard from '../ui/TodoListCard';
 import TodoListLabel from '../ui/TodoListLabel';
 import styles from './TodoListLayout.module.css';
 import { useTodoStore } from '../store/useTodoStore';
-import { TodoData } from '@shared/models/Todo';
+
 import { useWorkspaceStore } from '@core/store/useWorkspaceStore';
+import { TodoData } from '@shared/models/Workspace';
 
 function TodoContents() {
   const todoData = useTodoStore((state) => state.todoData);

@@ -1,9 +1,9 @@
-import { ChatItem } from '@shared/models/Chat';
+import { ChatData } from '@shared/models/Workspace';
 import styles from './DirectChatLayout.module.css';
 import MessageList from '@shared/domain/MessageList';
 
 interface DirectChatAreaProps {
-  allChat: ChatItem[];
+  allChat: ChatData[];
 }
 
 const DirectChatArea = ({ allChat }: DirectChatAreaProps) => {

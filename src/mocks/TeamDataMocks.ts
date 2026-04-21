@@ -1,4 +1,4 @@
-import { TeamData } from '@shared/models/Team';
+import { TeamData } from '@shared/models/Workspace';
 
 export const teamDataMocks: TeamData[] = [
   {

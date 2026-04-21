@@ -1,7 +1,8 @@
 import { Dispatch, SetStateAction, useState } from 'react';
 import { AlertDialog, DialogInput } from '@shared/components/dialogs';
-import { TeamData } from '@shared/models/Team';
+
 import { useTeamManager } from '../hooks/useTeamManager';
+import { TeamData } from '@shared/models/Workspace';
 
 interface DeleteTeamDialogProps {
   open: boolean;

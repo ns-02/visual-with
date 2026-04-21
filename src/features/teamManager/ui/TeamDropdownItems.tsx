@@ -2,11 +2,12 @@ import type { SetStateAction } from 'react';
 import { DropdownMenu } from 'radix-ui';
 import { Trash2 } from 'lucide-react';
 import { Button, Item } from '@shared/components/ui';
-import { TeamData } from '@shared/models/Team';
+
 import { useTeamManager } from '../hooks/useTeamManager';
 import styles from './TeamDropdownItems.module.css';
 import { useWorkspaceParams } from '@core/hooks/useWorkspaceParams';
 import { useWorkspaceStore } from '@core/store/useWorkspaceStore';
+import { TeamData } from '@shared/models/Workspace';
 
 interface TeamDropdownItemsType {
   deleteTeamDialogOpen: (value: SetStateAction<boolean>) => void;

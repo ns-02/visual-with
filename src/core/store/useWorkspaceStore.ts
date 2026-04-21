@@ -1,12 +1,14 @@
 import { teamDataMocks } from '@mocks/TeamDataMocks';
 import { teamMembershipMocks } from '@mocks/TeamMembershipDataMocks';
-import { TeamData, TeamId, TeamName } from '@shared/models/Team';
 import {
   createTeamMembershipData,
   getTeamRuleName,
+  TeamData,
+  TeamId,
   TeamMembershipData,
+  TeamName,
   TeamRule,
-} from '@shared/models/TeamMembership';
+} from '@shared/models/Workspace';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 

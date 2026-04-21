@@ -12,7 +12,7 @@ import {
   House,
 } from 'lucide-react';
 import { Button, Tooltip } from '@shared/components/ui';
-import { ToolId } from '@shared/models/ToolId';
+
 import TeamDropdown from '@features/teamManager/ui/TeamDropdown';
 import UserDropdown from '@features/userManager/ui/UserDropdown';
 import InviteTeamDialog from '@features/teamManager/dialogs/InviteTeamDialog';
@@ -23,6 +23,7 @@ import { getPathFromToolId } from '@core/routes/routeMap';
 import { useWorkspaceParams } from '@core/hooks/useWorkspaceParams';
 import { Link } from 'react-router-dom';
 import { useWorkspaceStore } from '@core/store/useWorkspaceStore';
+import { ToolId } from '@shared/models/Workspace';
 
 interface MenuItem {
   id: ToolId;

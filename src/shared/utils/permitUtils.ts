@@ -1,4 +1,4 @@
-import { TeamRule } from '@shared/models/TeamMembership';
+import { TeamRule } from '@shared/models/Workspace';
 
 export function getIsAdmin(rule: TeamRule) {
   if (rule === 'ADMIN' || rule === 'SUB_ADMIN') {

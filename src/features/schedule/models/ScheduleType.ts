@@ -1,4 +1,4 @@
-import { ScheduleData } from '@shared/models/Schedule';
+import { ScheduleData } from '@shared/models/Workspace';
 
 export type AddScheduleInput = Pick<
   ScheduleData,

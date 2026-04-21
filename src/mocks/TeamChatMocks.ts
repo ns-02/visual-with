@@ -1,4 +1,4 @@
-import { ChatItem } from '@shared/models/Chat';
+import { ChatData } from '@shared/models/Workspace';
 
 export const GANADA_TEAM_ID = 'f5l8q0h4';
 export const RAMA_TEAM_ID = 'b2y1m7j6';
@@ -7,7 +7,7 @@ export const SAJA_TEAM_ID = 'c3h7p9m2';
 export type TeamChatMockFactory = (params: {
   userId: string | undefined;
   userName: string | undefined;
-}) => ChatItem[];
+}) => ChatData[];
 
 export const teamChatMockFactories: Record<string, TeamChatMockFactory> = {
   [GANADA_TEAM_ID]: ({ userId, userName }) => {

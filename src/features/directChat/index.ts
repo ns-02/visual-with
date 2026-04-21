@@ -1,4 +1,4 @@
-import { FriendData } from '@shared/models/Friend';
+import { FriendData } from '@shared/models/User';
 
 export { default as DirectChatRoot } from './layouts/DirectChatRoot';
 export { default as LeftFriendsPanel } from './layouts/LeftFriendsPanel';

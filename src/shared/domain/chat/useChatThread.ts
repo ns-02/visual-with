@@ -1,11 +1,12 @@
 import { useUserStore } from '@core/store/useUserStore';
-import { ChatItem } from '@shared/models/Chat';
+import { ChatData } from '@shared/models/Workspace';
+
 import { formatDate } from '@shared/utils/formatDate';
 import { setItem } from '@shared/utils/sessionStorage';
 
 export const useChatThread = (
-  allChat: ChatItem[],
-  setAllChat: (chat: ChatItem[]) => void,
+  allChat: ChatData[],
+  setAllChat: (chat: ChatData[]) => void,
   currentId: number,
   setCurrentId: (id: number) => void,
   id: string,
@@ -22,7 +23,7 @@ export const useChatThread = (
     const createdAt = formatDate();
     const time = today.toLocaleTimeString().slice(0, -3);
 
-    const nextChat: ChatItem[] = [
+    const nextChat: ChatData[] = [
       ...allChat,
       {
         id: currentId,

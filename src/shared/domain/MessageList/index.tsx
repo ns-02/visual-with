@@ -1,10 +1,11 @@
 import { memo, useEffect, useRef } from 'react';
-import { ChatItem } from '@shared/models/Chat';
+
 import { Avatar } from '@shared/components/ui';
 import styles from './MessageList.module.css';
+import { ChatData } from '@shared/models/Workspace';
 
 interface MessageListProps {
-  allChat: ChatItem[];
+  allChat: ChatData[];
 }
 const MessageList = memo(({ allChat }: MessageListProps) => {
   const viewRef = useRef<HTMLDivElement | null>(null);

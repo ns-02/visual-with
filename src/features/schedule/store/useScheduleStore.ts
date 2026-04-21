@@ -3,7 +3,8 @@ import type {
   UpdateScheduleInput,
 } from '@features/schedule/models/ScheduleType';
 import { scheduleDataMocks } from '@mocks/ScheduleDataMocks';
-import { ScheduleData } from '@shared/models/Schedule';
+import { ScheduleData } from '@shared/models/Workspace';
+
 import { create } from 'zustand';
 
 interface ScheduleState {
