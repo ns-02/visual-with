@@ -1,9 +1,9 @@
 import type {
   AddScheduleInput,
-  ScheduleData,
   UpdateScheduleInput,
-} from '@features/schedule/models/Schedule';
+} from '@features/schedule/models/ScheduleType';
 import { scheduleDataMocks } from '@mocks/ScheduleDataMocks';
+import { ScheduleData } from '@shared/models/Schedule';
 import { create } from 'zustand';
 
 interface ScheduleState {

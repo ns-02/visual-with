@@ -3,12 +3,12 @@ import { useUserStore } from '@core/store/useUserStore';
 import { useTeamMembershipStore } from '@core/store/useTeamMembershipStore';
 import { useEffect, useMemo, useState } from 'react';
 import { Circle, CircleCheckBig } from 'lucide-react';
-import { TodoData } from '@features/todoList/models/Todo';
 import { getIsPermit } from '@shared/utils/permitUtils';
 import TodoListCard from '../ui/TodoListCard';
 import TodoListLabel from '../ui/TodoListLabel';
 import styles from './TodoListLayout.module.css';
 import { useTodoStore } from '../store/useTodoStore';
+import { TodoData } from '@shared/models/Todo';
 
 function TodoContents() {
   const todoData = useTodoStore((state) => state.todoData);

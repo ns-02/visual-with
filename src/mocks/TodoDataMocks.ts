@@ -1,4 +1,4 @@
-import { TodoData } from '@features/todoList/models/Todo';
+import { TodoData } from '@shared/models/Todo';
 
 export const todoDataMocks: TodoData[] = [
   {

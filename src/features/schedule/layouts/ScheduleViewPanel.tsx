@@ -1,9 +1,9 @@
 import { useTeamStore } from '@core/store/useTeamStore';
 import { useEffect, useMemo, useState } from 'react';
-import { ScheduleData } from '@features/schedule/models/Schedule';
 import ScheduleCard from '../ui/ScheduleCard';
 import styles from './ScheduleLayout.module.css';
 import { useScheduleStore } from '../store/useScheduleStore';
+import { ScheduleData } from '@shared/models/Schedule';
 
 function ScheduleViewPanel() {
   const scheduleData = useScheduleStore((state) => state.scheduleData);

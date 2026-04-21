@@ -1,5 +1,9 @@
-import type { AddTodoInput, TodoData, UpdateTodoInput } from '@features/todoList/models/Todo';
+import type {
+  AddTodoInput,
+  UpdateTodoInput,
+} from '@features/todoList/models/TodoType';
 import { todoDataMocks } from '@mocks/TodoDataMocks';
+import { TodoData } from '@shared/models/Todo';
 import { create } from 'zustand';
 
 interface TodoState {

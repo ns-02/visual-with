@@ -1,4 +1,4 @@
-import { FileData } from '@features/fileSharing/models/File';
+import { FileData } from '@shared/models/File';
 import { fileDataMocks } from '@mocks/FileDataMocks';
 import { TeamId } from '@shared/models/Team';
 import { create } from 'zustand';
