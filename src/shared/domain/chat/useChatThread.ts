@@ -10,8 +10,8 @@ export const useChatThread = (
   setCurrentId: (id: number) => void,
   id: string,
 ) => {
-  const userId = useUserStore((state) => state.userId);
-  const userName = useUserStore((state) => state.userName);
+  const userId = useUserStore((state) => state.user?.id);
+  const userName = useUserStore((state) => state.user?.name);
 
   const handleSend = (chatToSend: string) => {
     if (!userId) return;

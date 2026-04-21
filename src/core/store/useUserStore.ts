@@ -1,32 +1,25 @@
 import { userDataMocks } from '@mocks/UserDataMocks';
+import { UserData } from '@shared/models/User';
 import { create } from 'zustand';
 
 interface UserState {
-  userId: string | null;
-  setUserId: (value: string) => void;
-  userName: string | null;
-  setUserName: (value: string) => void;
-  userEmail: string | null;
-  setUserEmail: (value: string) => void;
-  nickname: string | null;
-  setNickname: (value: string) => void;
+  user: UserData | null;
+  setUser: (user: UserData | null) => void;
+  updateNickname: (nickname: string) => void;
 }
 
 export const useUserStore = create<UserState>((set) => ({
-  userId: userDataMocks.userId,
-  userName: userDataMocks.userName,
-  userEmail: userDataMocks.userEmail,
-  nickname: userDataMocks.nickname,
-  // userId: null,
-  // userName: null,
-  // userEmail: null,
-  // nickname: null,
+  user: {
+    id: userDataMocks.id,
+    name: userDataMocks.name,
+    email: userDataMocks.email,
+    nickname: userDataMocks.nickname,
+  },
 
-  setUserId: (value) => set({ userId: value }),
+  setUser: (user) => set({ user }),
 
-  setUserName: (value) => set({ userName: value }),
-
-  setUserEmail: (value) => set({ userEmail: value }),
-
-  setNickname: (value) => set({ nickname: value }),
+  updateNickname: (nickname) =>
+    set((state) => ({
+      user: state.user ? { ...state.user, nickname } : null,
+    })),
 }));

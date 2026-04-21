@@ -10,8 +10,8 @@ import { useTeamStore } from '@core/store/useTeamStore';
 export const useTeamChatThread = () => {
   const selectTeamId = useTeamStore((state) => state.selectTeamId);
 
-  const userId = useUserStore((state) => state.userId);
-  const userName = useUserStore((state) => state.userName);
+  const userId = useUserStore((state) => state.user?.id);
+  const userName = useUserStore((state) => state.user?.name);
   const [allChat, setAllChat] = useState<ChatItem[]>([]);
   const [currentId, setCurrentId] = useState(1);
 

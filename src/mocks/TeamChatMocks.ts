@@ -5,8 +5,8 @@ export const RAMA_TEAM_ID = 'b2y1m7j6';
 export const SAJA_TEAM_ID = 'c3h7p9m2';
 
 export type TeamChatMockFactory = (params: {
-  userId: string | null;
-  userName: string | null;
+  userId: string | undefined;
+  userName: string | undefined;
 }) => ChatItem[];
 
 export const teamChatMockFactories: Record<string, TeamChatMockFactory> = {

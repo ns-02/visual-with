@@ -13,8 +13,8 @@ export interface AddScheduleDialogProps {
 const AddScheduleDialog = ({ open, onOpenChange }: AddScheduleDialogProps) => {
   const addSchedule = useScheduleStore((state) => state.addSchedule);
   const selectTeamId = useTeamStore((state) => state.selectTeamId);
-  const userId = useUserStore((state) => state.userId);
-  const userName = useUserStore((state) => state.userName);
+  const userId = useUserStore((state) => state.user?.id);
+  const userName = useUserStore((state) => state.user?.name);
   const [title, setTitle] = useState('');
   const [startDate, setstartDate] = useState('');
   const [startTime, setStartTime] = useState('');

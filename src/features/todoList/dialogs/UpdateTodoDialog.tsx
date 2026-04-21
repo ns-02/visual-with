@@ -18,8 +18,8 @@ const UpdateTodoDialog = ({
   const todoData = useTodoStore((state) => state.todoData);
   const updateTodo = useTodoStore((state) => state.updateTodo);
   const selectTeamId = useTeamStore((state) => state.selectTeamId);
-  const userId = useUserStore((state) => state.userId);
-  const userName = useUserStore((state) => state.userName);
+  const userId = useUserStore((state) => state.user?.id);
+  const userName = useUserStore((state) => state.user?.name);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [authorId, setAuthorId] = useState('');

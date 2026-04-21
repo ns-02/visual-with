@@ -18,7 +18,7 @@ const FileSharingDropdown = ({
   uploader,
 }: DropdownProps) => {
   const [isDeleteFileDialogOpen, setIsDeleteFileDialogOpen] = useState(false);
-  const userId = useUserStore((state) => state.userId);
+  const userId = useUserStore((state) => state.user?.id);
   const currentRule = useTeamMembershipStore((state) => state.currentRule);
 
   const Actions = [

@@ -13,7 +13,7 @@ import { TodoData } from '@shared/models/Todo';
 function TodoContents() {
   const todoData = useTodoStore((state) => state.todoData);
   const selectTeamId = useTeamStore((state) => state.selectTeamId);
-  const userId = useUserStore((state) => state.userId);
+  const userId = useUserStore((state) => state.user?.id);
   const currentRule = useTeamMembershipStore((state) => state.currentRule);
   const teamTodoData = useMemo(
     () => todoData.filter((item) => item.teamId === selectTeamId),

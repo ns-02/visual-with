@@ -1,8 +1,8 @@
 import { UserData } from '@shared/models/User';
 
 export const userDataMocks: UserData = {
-  userId: '1',
-  userName: '김민수',
-  userEmail: 'minsoo@example.com',
+  id: '1',
+  name: '김민수',
+  email: 'minsoo@example.com',
   nickname: '민수',
 };

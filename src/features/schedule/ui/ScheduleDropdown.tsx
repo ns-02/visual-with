@@ -22,7 +22,7 @@ const ScheduleDropdown = ({
     useState(false);
   const [isDeleteScheduleDialogOpen, setIsDeleteScheduleDialogOpen] =
     useState(false);
-  const userId = useUserStore((state) => state.userId);
+  const userId = useUserStore((state) => state.user?.id);
   const currentRule = useTeamMembershipStore((state) => state.currentRule);
 
   const Actions = [

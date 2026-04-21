@@ -15,7 +15,7 @@ export const useDirectChatThread = () => {
   const setFriendIdChatMap = useDirectChatStore(
     (state) => state.setFriendIdChatMap,
   );
-  const userId = useUserStore((state) => state.userId);
+  const userId = useUserStore((state) => state.user?.id);
   const [allChat, setAllChat] = useState<ChatItem[]>([]);
   const [currentId, setCurrentId] = useState(1);
 

@@ -19,7 +19,7 @@ export const getIsPermit = ({
   rule,
 }: {
   authorId: string | undefined;
-  userId: string | null;
+  userId: string | null | undefined;
   rule: TeamRule;
 }) => {
   if (!authorId || !userId) return false;

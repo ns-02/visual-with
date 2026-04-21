@@ -20,7 +20,7 @@ const TodoListDropdown = ({
 }: DropdownProps) => {
   const [isUpdateTodoDialogOpen, setIsUpdateTodoDialogOpen] = useState(false);
   const [isDeleteTodoDialogOpen, setIsDeleteTodoDialogOpen] = useState(false);
-  const userId = useUserStore((state) => state.userId);
+  const userId = useUserStore((state) => state.user?.id);
   const currentRule = useTeamMembershipStore((state) => state.currentRule);
 
   const Actions = [

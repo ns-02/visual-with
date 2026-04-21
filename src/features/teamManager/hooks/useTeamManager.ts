@@ -30,7 +30,7 @@ export const useTeamManager = () => {
     (state) => state.setCurrentRule,
   );
 
-  const userId = useUserStore((state) => state.userId);
+  const userId = useUserStore((state) => state.user?.id);
   const navigate = useNavigate();
   const { pathname } = useLocation();
 

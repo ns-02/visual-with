@@ -9,9 +9,7 @@ import { useUserStore } from '@core/store/useUserStore';
 
 function LoginPage() {
   const setIsLoggedin = useAuthStore((state) => state.setIsLoggedin);
-  const setUserId = useUserStore((state) => state.setUserId);
-  const setUserName = useUserStore((state) => state.setUserName);
-  const setUserEmail = useUserStore((state) => state.setUserEmail);
+  const setUser = useUserStore((state) => state.setUser);
 
   const navigate = useNavigate();
   const [id, setId] = useState('');
@@ -33,9 +31,11 @@ function LoginPage() {
       }
 
       setIsLoggedin(true);
-      setUserId(res.userId);
-      setUserName(res.name);
-      setUserEmail(res.userEmail);
+      setUser({
+        id: res.userId,
+        name: res.name,
+        email: res.userEmail,
+      });
 
       navigate('/main');
     } catch (e) {

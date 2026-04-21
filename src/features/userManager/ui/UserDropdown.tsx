@@ -8,7 +8,7 @@ import { useUserStore } from '@core/store/useUserStore';
 const UserDropdown = () => {
   const [isLogoutDialogOpen, setIsLogoutDialogOpen] = useState(false);
   const [triggerText, setTriggerText] = useState<string | undefined>();
-  const userName = useUserStore((state) => state.userName);
+  const userName = useUserStore((state) => state.user?.name);
 
   const renderUserName = () => {
     if (!userName) return '로그인되지 않음';

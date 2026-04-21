@@ -3,7 +3,7 @@ import styles from './HomePage.module.css';
 import { useUserStore } from '@core/store/useUserStore';
 
 function HomePage() {
-  const userId = useUserStore((state) => state.userId);
+  const userId = useUserStore((state) => state.user?.id);
 
   return (
     <div className={styles.home}>
