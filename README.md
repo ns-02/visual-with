@@ -12,7 +12,7 @@ npm run dev
 http://localhost:5173
 
 ## 프로젝트 구조
-- [`src/` : 앱의 실제 코드](src/README.md)
+- [사용자 기능 안내](docs/user-guide-from-src.md)
 
 ## 기술 스택 및 도구
 - React + TypeScript: 컴포넌트 추상화, 타입 안정성
