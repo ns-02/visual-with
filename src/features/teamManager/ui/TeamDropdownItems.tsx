@@ -5,7 +5,7 @@ import { Button, Item } from '@shared/components/ui';
 import { TeamData } from '@shared/models/Team';
 import { useTeamManager } from '../hooks/useTeamManager';
 import styles from './TeamDropdownItems.module.css';
-import { useTeamStore } from '@core/store/useTeamStore';
+import { useWorkspaceStore } from '@core/store/useWorkspaceStore';
 
 interface TeamDropdownItemsType {
   deleteTeamDialogOpen: (value: SetStateAction<boolean>) => void;
@@ -16,9 +16,9 @@ const TeamDropdownItems = ({
   deleteTeamDialogOpen,
   setDeleteTeamData,
 }: TeamDropdownItemsType) => {
-  const teamData = useTeamStore((state) => state.teamData);
-  const selectTeamId = useTeamStore((state) => state.selectTeamId);
-  const setSelectTeamId = useTeamStore((state) => state.setSelectTeamId);
+  const teamData = useWorkspaceStore((state) => state.teamData);
+  const selectTeamId = useWorkspaceStore((state) => state.selectTeamId);
+  const setSelectTeam = useWorkspaceStore((state) => state.setSelectTeam);
   const { selectTeam } = useTeamManager();
 
   const handleItemSelected = (item: TeamData) => {
@@ -36,7 +36,7 @@ const TeamDropdownItems = ({
           <DropdownMenu.Item
             key={item.id}
             onClick={() => {
-              setSelectTeamId(item.id);
+              setSelectTeam(item.id);
               selectTeam(item);
             }}
           >

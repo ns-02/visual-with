@@ -20,7 +20,7 @@ import Divider from '../ui/Divider';
 import styles from './Layouts.module.css';
 import TooltipItem from '../ui/TooltipItem';
 import { getPathFromToolId } from '@core/routes/routeMap';
-import { useTeamStore } from '@core/store/useTeamStore';
+import { useWorkspaceStore } from '@core/store/useWorkspaceStore';
 import { Link } from 'react-router-dom';
 import { useUserStore } from '@core/store/useUserStore';
 
@@ -33,10 +33,10 @@ interface MenuItem {
 
 function LeftMenu() {
   const [isInviteTeamDialogOpen, setIsInviteTeamDialogOpen] = useState(false);
-  const selectTeamId = useTeamStore((state) => state.selectTeamId);
-  const teamData = useTeamStore((state) => state.teamData);
-  const selectTeamName = useTeamStore((state) => state.selectTeamName);
-  const isTeamInit = useTeamStore((state) => state.isTeamInit);
+  const selectTeamId = useWorkspaceStore((state) => state.selectTeamId);
+  const teamData = useWorkspaceStore((state) => state.teamData);
+  const selectTeamName = useWorkspaceStore((state) => state.selectTeamName);
+  const isTeamInit = useWorkspaceStore((state) => state.isTeamInit);
   const [isTeamMember, setIsTeamMember] = useState(false);
   const currentToolId = useUserStore((state) => state.currentToolId);
 

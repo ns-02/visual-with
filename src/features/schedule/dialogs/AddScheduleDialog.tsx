@@ -1,4 +1,4 @@
-import { useTeamStore } from '@core/store/useTeamStore';
+import { useWorkspaceStore } from '@core/store/useWorkspaceStore';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { Dialog, DialogInput, Group, Row } from '@shared/components/dialogs';
 import { getDate } from '@shared/utils/dateUtils';
@@ -12,7 +12,7 @@ export interface AddScheduleDialogProps {
 
 const AddScheduleDialog = ({ open, onOpenChange }: AddScheduleDialogProps) => {
   const addSchedule = useScheduleStore((state) => state.addSchedule);
-  const selectTeamId = useTeamStore((state) => state.selectTeamId);
+  const selectTeamId = useWorkspaceStore((state) => state.selectTeamId);
   const userId = useUserStore((state) => state.user?.id);
   const userName = useUserStore((state) => state.user?.name);
   const [title, setTitle] = useState('');

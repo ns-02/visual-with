@@ -1,4 +1,4 @@
-import { useTeamStore } from '@core/store/useTeamStore';
+import { useWorkspaceStore } from '@core/store/useWorkspaceStore';
 import { Dispatch, SetStateAction } from 'react';
 import { AlertDialog } from '@shared/components/dialogs';
 import { useScheduleStore } from '../store/useScheduleStore';
@@ -16,7 +16,7 @@ const DeleteScheduleDialog = ({
 }: DeleteScheduleDialogProps) => {
   const scheduleData = useScheduleStore((state) => state.scheduleData);
   const deleteSchedule = useScheduleStore((state) => state.deleteSchedule);
-  const selectTeamId = useTeamStore((state) => state.selectTeamId);
+  const selectTeamId = useWorkspaceStore((state) => state.selectTeamId);
   const currentScheduleTitle = scheduleData?.find(
     (item) => item.id === scheduleId && item.teamId === selectTeamId,
   )?.title;

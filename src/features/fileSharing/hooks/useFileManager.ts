@@ -1,10 +1,10 @@
-import { useTeamStore } from '@core/store/useTeamStore';
+import { useWorkspaceStore } from '@core/store/useWorkspaceStore';
 import { useFileStore } from '../store/useFileStore';
 import { formatDate } from '@shared/utils/formatDate';
 import { useRef } from 'react';
 
 export const useFileManager = () => {
-  const selectTeamId = useTeamStore((state) => state.selectTeamId);
+  const selectTeamId = useWorkspaceStore((state) => state.selectTeamId);
   const uploadFile = useFileStore((state) => state.uploadFile);
   const setIsLoading = useFileStore((state) => state.setIsLoading);
   const setCurrentFile = useFileStore((state) => state.setCurrentFile);

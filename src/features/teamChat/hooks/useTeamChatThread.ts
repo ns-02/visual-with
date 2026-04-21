@@ -5,10 +5,10 @@ import { getItem, setItem } from '@shared/utils/sessionStorage';
 import { useEffect, useState } from 'react';
 import { teamChatMockFactories } from '@mocks/TeamChatMocks';
 import { useUserStore } from '@core/store/useUserStore';
-import { useTeamStore } from '@core/store/useTeamStore';
+import { useWorkspaceStore } from '@core/store/useWorkspaceStore';
 
 export const useTeamChatThread = () => {
-  const selectTeamId = useTeamStore((state) => state.selectTeamId);
+  const selectTeamId = useWorkspaceStore((state) => state.selectTeamId);
 
   const userId = useUserStore((state) => state.user?.id);
   const userName = useUserStore((state) => state.user?.name);

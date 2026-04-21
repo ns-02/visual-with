@@ -1,4 +1,4 @@
-import { useTeamStore } from '@core/store/useTeamStore';
+import { useWorkspaceStore } from '@core/store/useWorkspaceStore';
 import { useEffect, useMemo, useState } from 'react';
 import { getDate } from '@shared/utils/dateUtils';
 import Calendar from '../ui/Calendar';
@@ -7,7 +7,7 @@ import { useScheduleStore } from '../store/useScheduleStore';
 
 function LeftCalendarPanel() {
   const scheduleData = useScheduleStore((state) => state.scheduleData);
-  const selectTeamId = useTeamStore((state) => state.selectTeamId);
+  const selectTeamId = useWorkspaceStore((state) => state.selectTeamId);
   const teamScheduleData = useMemo(
     () => scheduleData.filter((item) => item.teamId === selectTeamId),
     [scheduleData, selectTeamId],

@@ -1,4 +1,4 @@
-import { useTeamStore } from '@core/store/useTeamStore';
+import { useWorkspaceStore } from '@core/store/useWorkspaceStore';
 import DragAndDrop from '../ui/DragAndDrop';
 import FileListCard from '../ui/FileListCard';
 import styles from './FileSharingLayout.module.css';
@@ -12,7 +12,7 @@ interface FileViewPanelProps {
 function FileViewPanel({ fileTypes }: FileViewPanelProps) {
   const fileData = useFileStore((state) => state.fileData);
   const isLoading = useFileStore((state) => state.isLoading);
-  const selectTeamId = useTeamStore((state) => state.selectTeamId);
+  const selectTeamId = useWorkspaceStore((state) => state.selectTeamId);
 
   return (
     <div className={styles.file_view_panel}>

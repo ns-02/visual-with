@@ -8,41 +8,25 @@ import {
 import { TeamData, TeamId, TeamName } from '@shared/models/Team';
 import { getPathFromToolId, getToolIdFromPath } from '@core/routes/routeMap';
 import { useUserStore } from '@core/store/useUserStore';
-import { useTeamStore } from '@core/store/useTeamStore';
-import { useTeamMembershipStore } from '@core/store/useTeamMembershipStore';
-import { useEffect } from 'react';
+import { useWorkspaceStore } from '@core/store/useWorkspaceStore';
 
 export const useTeamManager = () => {
-  const selectTeamId = useTeamStore((state) => state.selectTeamId);
-  const createTeamInStore = useTeamStore((state) => state.createTeamInStore);
-  const deleteTeamFromStore = useTeamStore(
+  const selectTeamId = useWorkspaceStore((state) => state.selectTeamId);
+  const createTeamInStore = useWorkspaceStore(
+    (state) => state.createTeamInStore,
+  );
+  const deleteTeamFromStore = useWorkspaceStore(
     (state) => state.deleteTeamFromStore,
   );
-  const isTeamInit = useTeamStore((state) => state.isTeamInit);
-  const setIsTeamInit = useTeamStore((state) => state.setIsTeamInit);
+  const isTeamInit = useWorkspaceStore((state) => state.isTeamInit);
+  const setIsTeamInit = useWorkspaceStore((state) => state.setIsTeamInit);
 
-  const teamRuleData = useTeamMembershipStore((state) => state.teamRuleData);
-  const addTeamRule = useTeamMembershipStore((state) => state.addTeamRule);
-  const deleteTeamRule = useTeamMembershipStore(
-    (state) => state.deleteTeamRule,
-  );
-  const setCurrentRule = useTeamMembershipStore(
-    (state) => state.setCurrentRule,
-  );
+  const addTeamRule = useWorkspaceStore((state) => state.addTeamRule);
+  const deleteTeamRule = useWorkspaceStore((state) => state.deleteTeamRule);
 
   const userId = useUserStore((state) => state.user?.id);
   const navigate = useNavigate();
   const { pathname } = useLocation();
-
-  useEffect(() => {
-    const nextRule = teamRuleData.find(
-      (item) => item.teamId === selectTeamId,
-    )?.rule;
-
-    if (!nextRule) return;
-
-    setCurrentRule(nextRule);
-  }, [selectTeamId, teamRuleData, setCurrentRule]);
 
   const onCreateTeam = async (teamName: TeamName) => {
     if (!userId) return;

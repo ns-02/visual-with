@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { useLocation, useNavigationType } from 'react-router-dom';
 import { getTeamIdFromPath, getToolIdFromPath } from './routeMap';
-import { useTeamStore } from '@core/store/useTeamStore';
+import { useWorkspaceStore } from '@core/store/useWorkspaceStore';
 import { useUserStore } from '@core/store/useUserStore';
 
 export function RouteWatcher({
@@ -15,8 +15,8 @@ export function RouteWatcher({
   // setToolId()가 컴포넌트에 신호를 주는 역할
   const toolId = useUserStore((state) => state.currentToolId);
   const setToolId = useUserStore((state) => state.setToolId);
-  const selectTeamId = useTeamStore((state) => state.selectTeamId);
-  const setSelectTeamId = useTeamStore((state) => state.setSelectTeamId);
+  const selectTeamId = useWorkspaceStore((state) => state.selectTeamId);
+  const setSelectTeam = useWorkspaceStore((state) => state.setSelectTeam);
   const prevRef = useRef<string | null>(null);
 
   useEffect(() => {
@@ -44,8 +44,8 @@ export function RouteWatcher({
 
     if (!nextTeamId) return;
 
-    if (nextTeamId !== selectTeamId) setSelectTeamId(nextTeamId);
-  }, [location.pathname, selectTeamId, setSelectTeamId]);
+    if (nextTeamId !== selectTeamId) setSelectTeam(nextTeamId);
+  }, [location.pathname, selectTeamId, setSelectTeam]);
 
   return null;
 }

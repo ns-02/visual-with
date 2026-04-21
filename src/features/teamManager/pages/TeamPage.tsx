@@ -1,13 +1,12 @@
-import { useTeamStore } from '@core/store/useTeamStore';
+import { useWorkspaceStore } from '@core/store/useWorkspaceStore';
 import styles from './TeamPage.module.css';
 import { Button } from '@shared/components/ui';
-import { useTeamMembershipStore } from '@core/store/useTeamMembershipStore';
 import { getTeamRuleName } from '@shared/models/TeamMembership';
 import { getIsAdmin } from '@shared/utils/permitUtils';
 
 function TeamPage() {
-  const selectTeamName = useTeamStore((state) => state.selectTeamName);
-  const currentRule = useTeamMembershipStore((state) => state.currentRule);
+  const selectTeamName = useWorkspaceStore((state) => state.selectTeamName);
+  const currentRule = useWorkspaceStore((state) => state.currentRule);
 
   return (
     <div className={styles.page}>

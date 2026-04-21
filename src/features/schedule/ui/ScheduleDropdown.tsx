@@ -4,8 +4,8 @@ import DeleteScheduleDialog from '../dialogs/DeleteScheduleDialog';
 import styles from './ScheduleDropdown.module.css';
 import { getIsPermit } from '@shared/utils/permitUtils';
 import { useUserStore } from '@core/store/useUserStore';
-import { useTeamMembershipStore } from '@core/store/useTeamMembershipStore';
 import PermissionDropdown from '@shared/domain/PermissionDropdown';
+import { useWorkspaceStore } from '@core/store/useWorkspaceStore';
 
 interface DropdownProps {
   scheduleId?: number;
@@ -23,7 +23,7 @@ const ScheduleDropdown = ({
   const [isDeleteScheduleDialogOpen, setIsDeleteScheduleDialogOpen] =
     useState(false);
   const userId = useUserStore((state) => state.user?.id);
-  const currentRule = useTeamMembershipStore((state) => state.currentRule);
+  const currentRule = useWorkspaceStore((state) => state.currentRule);
 
   const Actions = [
     {

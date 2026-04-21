@@ -1,4 +1,4 @@
-import { useTeamStore } from '@core/store/useTeamStore';
+import { useWorkspaceStore } from '@core/store/useWorkspaceStore';
 import { Dispatch, SetStateAction } from 'react';
 import { AlertDialog } from '@shared/components/dialogs';
 import { useFileStore } from '../store/useFileStore';
@@ -16,7 +16,7 @@ const DeleteFileDialog = ({
 }: DeleteFileDialogProps) => {
   const fileData = useFileStore((state) => state.fileData);
   const deleteFile = useFileStore((state) => state.deleteFile);
-  const selectTeamId = useTeamStore((state) => state.selectTeamId);
+  const selectTeamId = useWorkspaceStore((state) => state.selectTeamId);
   const currentFileName = fileData?.find(
     (item) => item.id === fileId && item.teamId === selectTeamId,
   )?.fileName;

@@ -23,7 +23,7 @@
   → `isLoggedin` 단일 플래그 중심이라 토큰 만료/권한 범위/세션 복원 같은 실제 규칙이 모델링되지 않았습니다.
 
 - **[중간] 팀 선택 상태 중복으로 불일치 가능**  
-  `src/core/store/useTeamStore.ts`  
+  `src/core/store/useWorkspaceStore.ts`  
   → `selectTeamId`와 `selectTeamName`를 동시 저장해 드리프트 위험이 있습니다.
 
 - **[중간] Todo가 체크박스 수준 모델**  

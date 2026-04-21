@@ -1,4 +1,4 @@
-import { useTeamStore } from '@core/store/useTeamStore';
+import { useWorkspaceStore } from '@core/store/useWorkspaceStore';
 import { useUserStore } from '@core/store/useUserStore';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { Dialog, Group, DialogInput } from '@shared/components/dialogs';
@@ -17,7 +17,7 @@ const UpdateTodoDialog = ({
 }: UpdateTodoDialogProps) => {
   const todoData = useTodoStore((state) => state.todoData);
   const updateTodo = useTodoStore((state) => state.updateTodo);
-  const selectTeamId = useTeamStore((state) => state.selectTeamId);
+  const selectTeamId = useWorkspaceStore((state) => state.selectTeamId);
   const userId = useUserStore((state) => state.user?.id);
   const userName = useUserStore((state) => state.user?.name);
   const [title, setTitle] = useState('');

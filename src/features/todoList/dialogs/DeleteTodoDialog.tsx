@@ -1,4 +1,4 @@
-import { useTeamStore } from '@core/store/useTeamStore';
+import { useWorkspaceStore } from '@core/store/useWorkspaceStore';
 import { Dispatch, SetStateAction } from 'react';
 import { AlertDialog } from '@shared/components/dialogs';
 import { useTodoStore } from '../store/useTodoStore';
@@ -16,7 +16,7 @@ const DeleteTodoDialog = ({
 }: DeleteTodoDialogProps) => {
   const todoData = useTodoStore((state) => state.todoData);
   const deleteTodo = useTodoStore((state) => state.deleteTodo);
-  const selectTeamId = useTeamStore((state) => state.selectTeamId);
+  const selectTeamId = useWorkspaceStore((state) => state.selectTeamId);
   const currentTodoTitle = todoData?.find(
     (item) => item.id === todoId && item.teamId === selectTeamId,
   )?.title;

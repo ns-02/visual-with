@@ -1,6 +1,5 @@
-import { useTeamStore } from '@core/store/useTeamStore';
+import { useWorkspaceStore } from '@core/store/useWorkspaceStore';
 import { useUserStore } from '@core/store/useUserStore';
-import { useTeamMembershipStore } from '@core/store/useTeamMembershipStore';
 import { useEffect, useMemo, useState } from 'react';
 import { Circle, CircleCheckBig } from 'lucide-react';
 import { getIsPermit } from '@shared/utils/permitUtils';
@@ -12,9 +11,9 @@ import { TodoData } from '@shared/models/Todo';
 
 function TodoContents() {
   const todoData = useTodoStore((state) => state.todoData);
-  const selectTeamId = useTeamStore((state) => state.selectTeamId);
+  const selectTeamId = useWorkspaceStore((state) => state.selectTeamId);
   const userId = useUserStore((state) => state.user?.id);
-  const currentRule = useTeamMembershipStore((state) => state.currentRule);
+  const currentRule = useWorkspaceStore((state) => state.currentRule);
   const teamTodoData = useMemo(
     () => todoData.filter((item) => item.teamId === selectTeamId),
     [todoData, selectTeamId],
