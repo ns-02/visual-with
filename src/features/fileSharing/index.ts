@@ -1,6 +1,6 @@
-export { default as DragAndDrop } from './ui/DragAndDrop';
-export { default as FileListCard } from './ui/FileListCard';
-export { default as FileSelectButton } from './ui/FileSelectButton';
+export { default as DragAndDrop } from './components/DragAndDrop';
+export { default as FileListCard } from './components/FileListCard';
+export { default as FileSelectButton } from './components/FileSelectButton';
 export { useFileStore } from './store/useFileStore';
 
 // export type FileType = 'all' | 'images' | 'movies' | 'audios' | 'others';

@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import UpdateScheduleDialog from '../dialogs/UpdateScheduleDialog';
-import DeleteScheduleDialog from '../dialogs/DeleteScheduleDialog';
+import UpdateScheduleDialog from './UpdateScheduleDialog';
+import DeleteScheduleDialog from './DeleteScheduleDialog';
 import styles from './ScheduleDropdown.module.css';
 import { getIsPermit } from '@shared/utils/permitUtils';
 import { useUserStore } from '@core/store/useUserStore';

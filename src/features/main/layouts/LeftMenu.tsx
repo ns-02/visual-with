@@ -13,9 +13,9 @@ import {
 } from 'lucide-react';
 import { Button, Tooltip } from '@shared/components';
 
-import TeamDropdown from '@features/teamManager/ui/TeamDropdown';
-import UserDropdown from '@features/userManager/ui/UserDropdown';
-import InviteTeamDialog from '@features/teamManager/dialogs/InviteTeamDialog';
+import TeamDropdown from '@features/teamManager/components/TeamDropdown';
+import UserDropdown from '@features/userManager/components/UserDropdown';
+import InviteTeamDialog from '@features/teamManager/components/InviteTeamDialog';
 import Divider from '../ui/Divider';
 import styles from './Layouts.module.css';
 import TooltipItem from '../ui/TooltipItem';

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import styles from './FileSharingDropdown.module.css';
-import DeleteFileDialog from '../dialogs/DeleteFileDialog';
+import DeleteFileDialog from './DeleteFileDialog';
 import { useUserStore } from '@core/store/useUserStore';
 import { getIsPermit } from '@shared/utils/permitUtils';
 import PermissionDropdown from '@shared/domain/PermissionDropdown';

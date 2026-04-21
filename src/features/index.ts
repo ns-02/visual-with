@@ -5,7 +5,7 @@ export { default as FileSharingPage } from './fileSharing/pages/FileSharingPage'
 export { default as FriendListPage } from './friendList/pages/FriendListPage';
 export { default as SchedulePage } from './schedule/pages/SchedulePage';
 export { default as TeamChatPage } from './teamChat/pages/TeamChatPage';
-export { default as TeamLayout } from './teamManager/layouts/TeamLayout';
+export { default as TeamLayout } from './teamManager/components/TeamLayout';
 export { default as InviteLinkPage } from './teamManager/pages/InviteLinkPage';
 export { default as TeamPage } from './teamManager/pages/TeamPage';
 export { default as TodoListPage } from './todoList/pages/TodoListPage';

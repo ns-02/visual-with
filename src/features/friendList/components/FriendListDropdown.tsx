@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { DropdownMenu } from 'radix-ui';
 import { Dropdown, Item } from '@shared/components';
 import styles from './FriendListDropdown.module.css';
-import DeleteFriendDialog from '../dialogs/DeleteFriendDialog';
+import DeleteFriendDialog from './DeleteFriendDialog';
 
 interface DropdownProps {
   friendId?: string;

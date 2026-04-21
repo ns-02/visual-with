@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { DropdownMenu } from 'radix-ui';
 import { Button, Dropdown, Item } from '@shared/components';
-import LogoutDialog from '../dialogs/LogoutDialog';
+import LogoutDialog from './LogoutDialog';
 import styles from './UserDropdownItems.module.css';
 import { useUserStore } from '@core/store/useUserStore';
 

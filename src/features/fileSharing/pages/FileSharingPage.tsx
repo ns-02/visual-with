@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import styles from './FileSharingLayout.module.css';
-import DragAndDrop from '../ui/DragAndDrop';
-import FileUploadCard from '../ui/FileUploadCard';
-import FileListCard from '../ui/FileListCard';
+import DragAndDrop from '../components/DragAndDrop';
+import FileUploadCard from '../components/FileUploadCard';
+import FileListCard from '../components/FileListCard';
 import { useFileStore } from '../store/useFileStore';
 import { useWorkspaceParams } from '@core/hooks/useWorkspaceParams';
-import FileNavButton from '../ui/FileNavButton';
+import FileNavButton from '../components/FileNavButton';
 
 function FileSharingPage() {
   const [fileTypes, setFileTypes] = useState<string>('all');

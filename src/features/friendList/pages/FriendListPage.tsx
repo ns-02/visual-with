@@ -1,8 +1,8 @@
 import { User, UserPlus } from 'lucide-react';
-import FriendListLabel from '../ui/FriendListLabel';
+import FriendListLabel from '../components/FriendListLabel';
 import styles from './FriendListLayout.module.css';
-import FriendRequestCard from '../ui/FriendRequestCard';
-import FriendListCard from '../ui/FriendListCard';
+import FriendRequestCard from '../components/FriendRequestCard';
+import FriendListCard from '../components/FriendListCard';
 import { useFriendStore } from '../store/useFriendStore';
 
 function FriendListPage() {

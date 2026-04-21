@@ -1,7 +1,7 @@
 import { Circle, CircleCheckBig } from 'lucide-react';
-import TodoListLabel from '../ui/TodoListLabel';
+import TodoListLabel from '../components/TodoListLabel';
 import styles from './TodoListLayout.module.css';
-import TodoListCard from '../ui/TodoListCard';
+import TodoListCard from '../components/TodoListCard';
 import { useTodoStore } from '../store/useTodoStore';
 import { useWorkspaceParams } from '@core/hooks/useWorkspaceParams';
 import { useUserStore } from '@core/store/useUserStore';

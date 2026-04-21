@@ -1,10 +1,10 @@
 import { useWorkspaceParams } from '@core/hooks/useWorkspaceParams';
 import { useScheduleStore } from '../store/useScheduleStore';
-import ScheduleCard from '../ui/ScheduleCard';
+import ScheduleCard from '../components/ScheduleCard';
 import styles from './ScheduleLayout.module.css';
 import { useEffect, useMemo, useState } from 'react';
 import { ScheduleData } from '@shared/models/Workspace';
-import Calendar from '../ui/Calendar';
+import Calendar from '../components/Calendar';
 import { getDate } from '@shared/utils/dateUtils';
 
 function SchedulePage() {

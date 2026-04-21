@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { DropdownMenu } from 'radix-ui';
 import { Dropdown, Item } from '@shared/components';
-import CreateTeamDialog from '../dialogs/CreateTeamDialog';
-import DeleteTeamDialog from '../dialogs/DeleteTeamDialog';
+import CreateTeamDialog from './CreateTeamDialog';
+import DeleteTeamDialog from './DeleteTeamDialog';
 import TeamDropdownItems from './TeamDropdownItems';
 import { TeamData } from '@shared/models/Workspace';
 

@@ -4,7 +4,7 @@ import MessageList from '@shared/domain/MessageList';
 import { useFriendStore } from '@features/friendList/store/useFriendStore';
 import { useDirectChatStore } from '../store/useDirectChatStore';
 import ChatInputArea from '@shared/domain/chat/ChatInputArea';
-import SelectFriendCard from '../ui/SelectFriendCard';
+import SelectFriendCard from '../components/SelectFriendCard';
 import { useEffect, useState } from 'react';
 import { FriendData } from '@shared/models/User';
 

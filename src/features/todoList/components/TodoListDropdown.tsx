@@ -1,7 +1,7 @@
 import styles from './TodoListDropdown.module.css';
 import { useState } from 'react';
-import UpdateTodoDialog from '../dialogs/UpdateTodoDialog';
-import DeleteTodoDialog from '../dialogs/DeleteTodoDialog';
+import UpdateTodoDialog from './UpdateTodoDialog';
+import DeleteTodoDialog from './DeleteTodoDialog';
 import { getIsPermit } from '@shared/utils/permitUtils';
 import { useUserStore } from '@core/store/useUserStore';
 import PermissionDropdown from '@shared/domain/PermissionDropdown';
