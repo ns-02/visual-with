@@ -1,6 +1,6 @@
 import * as RadixDialog from '@radix-ui/react-dialog';
 import { X } from 'lucide-react';
-import Button from '../../ui/Button';
+import Button from '../Button';
 import DialogProps from '..';
 import styles from './Dialog.module.css';
 

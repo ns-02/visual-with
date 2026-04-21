@@ -1,5 +1,5 @@
 import styles from './SelectFriendCard.module.css';
-import Avatar from '@shared/components/ui/Avatar';
+import Avatar from '@shared/components/Avatar';
 
 const SelectFriendCard = ({
   name,

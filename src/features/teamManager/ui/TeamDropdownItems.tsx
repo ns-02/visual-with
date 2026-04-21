@@ -1,7 +1,7 @@
 import type { SetStateAction } from 'react';
 import { DropdownMenu } from 'radix-ui';
 import { Trash2 } from 'lucide-react';
-import { Button, Item } from '@shared/components/ui';
+import { Button, Item } from '@shared/components';
 
 import { useTeamManager } from '../hooks/useTeamManager';
 import styles from './TeamDropdownItems.module.css';

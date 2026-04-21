@@ -1,8 +1,8 @@
-import { Button, Input } from '@shared/components/ui';
+import { Button, Input } from '@shared/components';
 import { Plus, Send } from 'lucide-react';
 import { KeyboardEvent, useState } from 'react';
 import styles from './ChatInputArea.module.css';
-import FileUploadDropdown from '../FileUploadDropdown';
+import FileUploadDropdown from '../../FileUploadDropdown';
 
 function ChatInputArea({
   itemClassName,

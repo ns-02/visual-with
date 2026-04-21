@@ -2,8 +2,8 @@ import { ChangeEvent, DragEvent, useRef, useState } from 'react';
 import { Upload } from 'lucide-react';
 import { FileSelectButton } from '..';
 import styles from './DragAndDrop.module.css';
-import { FileInput } from '@shared/components/ui';
 import { useFileManager } from '../hooks/useFileManager';
+import { FileInput } from '@shared/components';
 
 const DragAndDrop = () => {
   const inputRef = useRef<HTMLInputElement>(null);

@@ -1,6 +1,6 @@
 import { useWorkspaceParams } from '@core/hooks/useWorkspaceParams';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
-import { Dialog, DialogInput, Group, Row } from '@shared/components/dialogs';
+import { Dialog, DialogInput, Group, Row } from '@shared/components';
 import { getDate } from '@shared/utils/dateUtils';
 import { useScheduleStore } from '../store/useScheduleStore';
 import { useUserStore } from '@core/store/useUserStore';

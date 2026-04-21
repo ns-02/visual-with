@@ -1,4 +1,4 @@
-import { CheckBox, Button, type CheckBoxProps } from '@shared/components/ui';
+import { CheckBox, Button, type CheckBoxProps } from '@shared/components';
 import { EllipsisVertical } from 'lucide-react';
 import TodoListDropdown from './TodoListDropdown';
 import styles from './TodoListCard.module.css';

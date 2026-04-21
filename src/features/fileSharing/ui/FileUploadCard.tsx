@@ -1,7 +1,7 @@
-import { Progress } from '@shared/components/ui';
 import FileIcon from './FileIcon';
 import styles from './FileUploadCard.module.css';
 import { useFileStore } from '../store/useFileStore';
+import { Progress } from '@shared/components';
 
 const FileUploadCard = () => {
   const currentFile = useFileStore((state) => state.currentFile);

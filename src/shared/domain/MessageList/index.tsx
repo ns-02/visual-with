@@ -1,8 +1,8 @@
 import { memo, useEffect, useRef } from 'react';
 
-import { Avatar } from '@shared/components/ui';
 import styles from './MessageList.module.css';
 import { ChatData } from '@shared/models/Workspace';
+import { Avatar } from '@shared/components';
 
 interface MessageListProps {
   allChat: ChatData[];

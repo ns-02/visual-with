@@ -1,8 +1,8 @@
 import { Dispatch, SetStateAction, useState } from 'react';
 import * as Tabs from '@radix-ui/react-tabs';
 import { Copy, Search } from 'lucide-react';
-import { Dialog, Group, DialogInput, Row } from '@shared/components/dialogs';
-import { Button } from '@shared/components/ui';
+import { Dialog, Group, DialogInput, Row } from '@shared/components';
+import { Button } from '@shared/components';
 import styles from './InviteTeamDialog.module.css';
 import { useTeamManager } from '../hooks/useTeamManager';
 

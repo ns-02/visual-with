@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction, useState } from 'react';
-import { Dialog, Group, DialogInput } from '@shared/components/dialogs';
+import { Dialog, Group, DialogInput } from '@shared/components';
 import { useFileManager } from '../hooks/useFileManager';
 
 interface UploadFileDialogProps {

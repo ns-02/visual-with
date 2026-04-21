@@ -1,5 +1,5 @@
 import { useTeamChatThread } from '../hooks/useTeamChatThread';
-import ChatInputArea from '@shared/domain/ChatInputArea';
+import ChatInputArea from '@shared/domain/chat/ChatInputArea';
 import styles from './TeamChatLayout.module.css';
 import MessageList from '@shared/domain/MessageList';
 

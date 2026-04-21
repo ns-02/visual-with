@@ -1,6 +1,5 @@
 import { DropdownMenu } from 'radix-ui';
-import { FileInput, Item } from '@shared/components/ui';
-import { Dropdown } from '@shared/components/ui';
+import { FileInput, Item, Dropdown } from '@shared/components';
 import { ChangeEvent, ReactNode, useRef } from 'react';
 import { useFileManager } from '@features/fileSharing/hooks/useFileManager';
 

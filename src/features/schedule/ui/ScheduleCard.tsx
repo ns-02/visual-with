@@ -1,4 +1,4 @@
-import { Button } from '@shared/components/ui';
+import { Button } from '@shared/components';
 import styles from './ScheduleCard.module.css';
 import { EllipsisVertical } from 'lucide-react';
 import ScheduleDropdown from './ScheduleDropdown';

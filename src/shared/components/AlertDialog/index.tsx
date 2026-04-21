@@ -1,5 +1,5 @@
 import * as RadixAlertDialog from '@radix-ui/react-alert-dialog';
-import Button from '../../ui/Button';
+import Button from '../Button';
 import DialogProps from '..';
 import styles from './AlertDialog.module.css';
 

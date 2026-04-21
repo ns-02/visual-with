@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction, useState } from 'react';
-import { Dialog, DialogInput } from '@shared/components/dialogs';
+import { Dialog, DialogInput } from '@shared/components';
 import { useTeamManager } from '../hooks/useTeamManager';
 
 interface CreateTeamDialogProps {

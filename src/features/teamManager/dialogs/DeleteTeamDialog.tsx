@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction, useState } from 'react';
-import { AlertDialog, DialogInput } from '@shared/components/dialogs';
+import { AlertDialog, DialogInput } from '@shared/components';
 
 import { useTeamManager } from '../hooks/useTeamManager';
 import { TeamData } from '@shared/models/Workspace';

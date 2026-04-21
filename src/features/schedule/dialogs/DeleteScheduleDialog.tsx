@@ -1,6 +1,6 @@
 import { useWorkspaceParams } from '@core/hooks/useWorkspaceParams';
 import { Dispatch, SetStateAction } from 'react';
-import { AlertDialog } from '@shared/components/dialogs';
+import { AlertDialog } from '@shared/components';
 import { useScheduleStore } from '../store/useScheduleStore';
 
 interface DeleteScheduleDialogProps {

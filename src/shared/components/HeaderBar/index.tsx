@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
-import Button from '@shared/components/ui/Button';
-import Input from '@shared/components/ui/Input';
+import Button from '@shared/components/Button';
+import Input from '@shared/components/Input';
 import styles from './HeaderBar.module.css';
 
 interface HeaderBarProps {

@@ -1,5 +1,5 @@
 import styles from './TeamPage.module.css';
-import { Button } from '@shared/components/ui';
+import { Button } from '@shared/components';
 import { getIsAdmin } from '@shared/utils/permitUtils';
 import { useWorkspaceStore } from '@core/store/useWorkspaceStore';
 import { getTeamRuleName } from '@shared/models/Workspace';

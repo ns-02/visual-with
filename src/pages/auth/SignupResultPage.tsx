@@ -1,7 +1,7 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Container } from '@shared/components';
 import styles from './Auth.module.css';
-import { Button } from '@shared/components/ui';
+import { Button } from '@shared/components';
 
 function SignupResultPage() {
   const navigate = useNavigate();

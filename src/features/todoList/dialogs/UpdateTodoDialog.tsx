@@ -1,7 +1,7 @@
 import { useWorkspaceParams } from '@core/hooks/useWorkspaceParams';
 import { useUserStore } from '@core/store/useUserStore';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
-import { Dialog, Group, DialogInput } from '@shared/components/dialogs';
+import { Dialog, Group, DialogInput } from '@shared/components';
 import { useTodoStore } from '../store/useTodoStore';
 
 interface UpdateTodoDialogProps {

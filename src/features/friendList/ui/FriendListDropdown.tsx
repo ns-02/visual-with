@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { DropdownMenu } from 'radix-ui';
-import { Dropdown, Item } from '@shared/components/ui';
+import { Dropdown, Item } from '@shared/components';
 import styles from './FriendListDropdown.module.css';
 import DeleteFriendDialog from '../dialogs/DeleteFriendDialog';
 

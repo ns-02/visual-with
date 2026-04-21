@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { CircleUser } from 'lucide-react';
 import { Container } from '@shared/components';
-import { Button } from '@shared/components/ui';
+import { Button } from '@shared/components';
 
 const InviteLinkPage = () => {
   const { id } = useParams<{ id: string }>();

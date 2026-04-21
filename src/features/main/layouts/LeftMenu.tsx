@@ -11,7 +11,7 @@ import {
   Users,
   House,
 } from 'lucide-react';
-import { Button, Tooltip } from '@shared/components/ui';
+import { Button, Tooltip } from '@shared/components';
 
 import TeamDropdown from '@features/teamManager/ui/TeamDropdown';
 import UserDropdown from '@features/userManager/ui/UserDropdown';

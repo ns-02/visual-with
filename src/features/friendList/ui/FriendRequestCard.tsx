@@ -1,7 +1,7 @@
 import { Check, X } from 'lucide-react';
-import Button from '@shared/components/ui/Button';
+import Button from '@shared/components/Button';
 import styles from './FriendRequestCard.module.css';
-import Avatar from '@shared/components/ui/Avatar';
+import Avatar from '@shared/components/Avatar';
 
 interface FriendRequestCardProps {
   name?: string;
