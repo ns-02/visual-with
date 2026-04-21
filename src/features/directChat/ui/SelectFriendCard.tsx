@@ -1,4 +1,3 @@
-import { SelectFriendCardProps } from '..';
 import styles from './SelectFriendCard.module.css';
 import Avatar from '@shared/components/ui/Avatar';
 
@@ -7,7 +6,12 @@ const SelectFriendCard = ({
   chat,
   selected,
   onSelect,
-}: SelectFriendCardProps) => {
+}: {
+  name?: string;
+  chat?: string;
+  selected?: boolean;
+  onSelect?: () => void;
+}) => {
   const containerStyle = selected
     ? styles.container_selected
     : styles.container;

@@ -1,11 +1,16 @@
-import { KeyboardEvent, useState } from 'react';
-import { Plus, Send } from 'lucide-react';
 import { Button, Input } from '@shared/components/ui';
-import FileUploadDropdown from '../ui/FileUploadDropdown';
-import { BottomInputAreaProps } from '..';
-import styles from './DirectChatLayout.module.css';
+import { Plus, Send } from 'lucide-react';
+import { KeyboardEvent, useState } from 'react';
+import styles from './ChatInputArea.module.css';
+import FileUploadDropdown from '../FileUploadDropdown';
 
-function BottomInputArea({ onSend }: BottomInputAreaProps) {
+function ChatInputArea({
+  itemClassName,
+  onSend,
+}: {
+  itemClassName: string;
+  onSend: (chat: string) => void;
+}) {
   const [chat, setChat] = useState('');
 
   const handleSend = () => {
@@ -25,7 +30,7 @@ function BottomInputArea({ onSend }: BottomInputAreaProps) {
   );
 
   return (
-    <div className={styles.bottom_input_area}>
+    <div className={itemClassName}>
       <FileUploadDropdown triggerElement={triggerElement} />
       <Input
         className={styles.input}
@@ -45,4 +50,4 @@ function BottomInputArea({ onSend }: BottomInputAreaProps) {
   );
 }
 
-export default BottomInputArea;
+export default ChatInputArea;

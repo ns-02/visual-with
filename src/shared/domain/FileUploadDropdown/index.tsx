@@ -1,11 +1,15 @@
 import { DropdownMenu } from 'radix-ui';
-import { Dropdown, FileInput } from '@shared/components/ui';
-import { Item } from '@shared/components/ui';
-import { DropdownProps } from '..';
-import { ChangeEvent, useRef } from 'react';
+import { FileInput, Item } from '@shared/components/ui';
+import { Dropdown } from '@shared/components/ui';
+import { ChangeEvent, ReactNode, useRef } from 'react';
 import { useFileManager } from '@features/fileSharing/hooks/useFileManager';
 
-const FileUploadDropdown = ({ triggerElement }: DropdownProps) => {
+const FileUploadDropdown = ({
+  triggerElement,
+}: {
+  triggerElement: ReactNode;
+}) => {
+  // directChat의 파일도 팀 파일 공간으로 업로드되니, 수정 필요
   const { loadAndUploadFile } = useFileManager();
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -34,7 +38,7 @@ const FileUploadDropdown = ({ triggerElement }: DropdownProps) => {
       {Items.map((item) => {
         return (
           <DropdownMenu.Item key={item.id} onSelect={item.handler}>
-            <Item type='list' text={item.text}></Item>
+            <Item type='list' text={item.text} />
           </DropdownMenu.Item>
         );
       })}

@@ -1,0 +1,17 @@
+.team_chat_root {
+  height: 100%;
+  background-color: var(--color-background-primary);
+}
+
+.team_chat_panel {
+  height: calc(100% - 96px);
+}
+
+.bottom {
+  display: flex;
+  height: 96px;
+  padding: 0 24px;
+  align-items: center;
+  gap: 16px;
+  background-color: var(--color-background-secondary);
+}
