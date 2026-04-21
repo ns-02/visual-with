@@ -4,7 +4,7 @@ import DeleteFileDialog from '../dialogs/DeleteFileDialog';
 import { useUserStore } from '@core/store/useUserStore';
 import { getIsPermit } from '@shared/utils/permitUtils';
 import { useTeamMembershipStore } from '@core/store/useTeamMembershipStore';
-import PermissionDropdown from '@shared/components/ui/PermissionDropdown';
+import PermissionDropdown from '@shared/domain/PermissionDropdown';
 
 interface DropdownProps {
   fileId?: number;

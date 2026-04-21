@@ -1,7 +1,7 @@
 import { DropdownMenu } from 'radix-ui';
-import Item from '../Item';
+import Item from '../../components/ui/Item';
 import { ReactNode } from 'react';
-import Dropdown from '../Dropdown';
+import Dropdown from '../../components/ui/Dropdown';
 
 type PermissionAction = {
   id: string;

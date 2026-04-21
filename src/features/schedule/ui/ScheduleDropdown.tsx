@@ -5,7 +5,7 @@ import styles from './ScheduleDropdown.module.css';
 import { getIsPermit } from '@shared/utils/permitUtils';
 import { useUserStore } from '@core/store/useUserStore';
 import { useTeamMembershipStore } from '@core/store/useTeamMembershipStore';
-import PermissionDropdown from '@shared/components/ui/PermissionDropdown';
+import PermissionDropdown from '@shared/domain/PermissionDropdown';
 
 interface DropdownProps {
   scheduleId?: number;
