@@ -46,7 +46,7 @@ const TeamDropdownItems = ({
               selected={handleItemSelected(item)}
             >
               <ContentButton
-                onCustomClick={() => {
+                onClick={() => {
                   setDeleteTeamData(item);
                   deleteTeamDialogOpen(true);
                 }}

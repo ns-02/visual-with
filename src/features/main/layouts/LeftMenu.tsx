@@ -22,6 +22,7 @@ import TooltipItem from '../ui/TooltipItem';
 import { getPathFromToolId } from '@core/routes/routeMap';
 import { useTeamStore } from '@core/store/useTeamStore';
 import { useToolIdStore } from '@core/store/useToolIdStore';
+import { Link } from 'react-router-dom';
 
 interface MenuItem {
   id: ToolId;
@@ -115,16 +116,20 @@ function LeftMenu() {
   const renderMenuItems = (items: MenuItem[]) => {
     const renderMenuItem = (item: MenuItem) => (
       <Button
+        asChild
         key={item.id}
-        to={getPathFromToolId({
-          id: item.id,
-          onTeam: item.onTeam,
-          selectTeamId,
-        })}
         shape='circle'
         className={getMenuStyle(item.id)}
       >
-        <item.icon size={24} />
+        <Link
+          to={getPathFromToolId({
+            id: item.id,
+            onTeam: item.onTeam,
+            selectTeamId,
+          })}
+        >
+          <item.icon size={24} />
+        </Link>
       </Button>
     );
 
@@ -143,7 +148,7 @@ function LeftMenu() {
         <Button
           shape='circle'
           className={styles.link_button}
-          onCustomClick={() => setIsInviteTeamDialogOpen(true)}
+          onClick={() => setIsInviteTeamDialogOpen(true)}
         >
           <Link2 size={20} />
         </Button>

@@ -37,7 +37,7 @@ function BottomInputArea({ onSend }: BottomInputAreaProps) {
       />
       <Button
         className={`${styles.button} ${styles.button_primary}`}
-        onCustomClick={handleSend}
+        onClick={handleSend}
       >
         <Send size={20} />
       </Button>

@@ -77,7 +77,7 @@ const InviteTeamDialog = ({ open, onOpenChange }: InviteTeamDialogProps) => {
               value={invitedUserId}
               setValue={(e) => setInvitedUserId(e.target.value)}
             />
-            <Button onCustomClick={handleSearchUser}>
+            <Button onClick={handleSearchUser}>
               <Search size={16} />
             </Button>
           </Row>

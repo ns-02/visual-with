@@ -30,7 +30,7 @@ const AlertDialog = ({
             </RadixAlertDialog.Cancel>
             <Button
               text={confirmText}
-              onCustomClick={onConfirm}
+              onClick={onConfirm}
               className={styles.button_primary}
             ></Button>
           </div>

@@ -58,7 +58,7 @@ const AddFriendDialog = ({ open, onOpenChange }: AddFriendDialogProps) => {
             setFriendId(e.target.value);
           }}
         />
-        <Button onCustomClick={handleSearchFriend}>
+        <Button onClick={handleSearchFriend}>
           <Search size={16} />
         </Button>
       </Row>

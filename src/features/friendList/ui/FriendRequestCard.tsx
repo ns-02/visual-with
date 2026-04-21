@@ -29,14 +29,14 @@ const FriendRequestCard = ({
         <Button
           text='수락'
           className={styles.button_secondary_600}
-          onCustomClick={onAccept}
+          onClick={onAccept}
         >
           <Check size={16} />
         </Button>
         <Button
           text='거절'
           className={styles.button_secondary_400}
-          onCustomClick={onReject}
+          onClick={onReject}
         >
           <X size={16} />
         </Button>

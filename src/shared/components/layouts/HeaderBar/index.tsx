@@ -31,7 +31,7 @@ function HeaderBar({
           <Button
             text={button}
             className={styles.button_primary}
-            onCustomClick={onClick}
+            onClick={onClick}
           >
             {children}
           </Button>

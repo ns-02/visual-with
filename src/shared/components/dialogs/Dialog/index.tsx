@@ -30,7 +30,7 @@ const Dialog = ({
               </RadixDialog.Close>
               <Button
                 text={confirmText}
-                onCustomClick={onConfirm}
+                onClick={onConfirm}
                 className={styles.button_primary}
               ></Button>
             </div>
