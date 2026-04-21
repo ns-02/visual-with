@@ -38,7 +38,7 @@ function LeftMenu() {
   const selectTeamName = useWorkspaceStore((state) => state.selectTeamName);
   const isTeamInit = useWorkspaceStore((state) => state.isTeamInit);
   const [isTeamMember, setIsTeamMember] = useState(false);
-  const currentToolId = useUserStore((state) => state.currentToolId);
+  const toolId = useUserStore((state) => state.currentToolId);
 
   useEffect(() => {
     if ((teamData && teamData.length === 0) || !isTeamInit) {
@@ -97,7 +97,7 @@ function LeftMenu() {
   ];
 
   const getMenuStyle = (id: ToolId) => {
-    const isItemSelected = id === currentToolId ? true : false;
+    const isItemSelected = id === toolId ? true : false;
     return `${styles.menu_button} ${isItemSelected && styles.selected}`;
   };
 
