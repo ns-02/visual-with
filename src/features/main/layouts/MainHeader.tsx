@@ -8,7 +8,7 @@ import AddTodoDialog from '../../todoList/dialogs/AddTodoDialog';
 import AddFriendDialog from '../../friendList/dialogs/AddFriendDialog';
 import styles from './Layouts.module.css';
 import { useDirectChatStore } from '@features/directChat/store/useDirectChatStore';
-import { useUserStore } from '@core/store/useUserStore';
+import { useWorkspaceParams } from '@core/hooks/useWorkspaceParams';
 
 interface HeaderItem {
   id: ToolId;
@@ -19,7 +19,7 @@ interface HeaderItem {
 }
 
 function MainHeader() {
-  const currentToolId = useUserStore((state) => state.currentToolId);
+  const { toolId } = useWorkspaceParams();
   const toggleAreaOpen = useDirectChatStore((state) => state.toggleAreaOpen);
 
   const [isUploadFileDialogOpen, setIsUploadFileDialogOpen] = useState(false);
@@ -27,7 +27,7 @@ function MainHeader() {
   const [isAddTodoDialogOpen, setIsAddTodoDialogOpen] = useState(false);
   const [isAddFriendDialogOpen, setIsAddFriendDialogOpen] = useState(false);
 
-  if (!currentToolId || currentToolId === 'home') {
+  if (!toolId || toolId === 'home') {
     return;
   }
 
@@ -70,7 +70,7 @@ function MainHeader() {
     },
   ];
 
-  const headerItem = headerItems.filter(({ id }) => id === currentToolId);
+  const headerItem = headerItems.filter(({ id }) => id === toolId);
   const inputIcon = <Search size={16}></Search>;
 
   return (
