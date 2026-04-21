@@ -5,6 +5,7 @@ import { Button, Item } from '@shared/components/ui';
 import { TeamData } from '@shared/models/Team';
 import { useTeamManager } from '../hooks/useTeamManager';
 import styles from './TeamDropdownItems.module.css';
+import { useWorkspaceParams } from '@core/hooks/useWorkspaceParams';
 import { useWorkspaceStore } from '@core/store/useWorkspaceStore';
 
 interface TeamDropdownItemsType {
@@ -17,12 +18,12 @@ const TeamDropdownItems = ({
   setDeleteTeamData,
 }: TeamDropdownItemsType) => {
   const teamData = useWorkspaceStore((state) => state.teamData);
-  const selectTeamId = useWorkspaceStore((state) => state.selectTeamId);
+  const { teamId } = useWorkspaceParams();
   const setSelectTeam = useWorkspaceStore((state) => state.setSelectTeam);
   const { selectTeam } = useTeamManager();
 
   const handleItemSelected = (item: TeamData) => {
-    return item.id === selectTeamId ? true : false;
+    return item.id === teamId ? true : false;
   };
 
   if (teamData.length === 0) {

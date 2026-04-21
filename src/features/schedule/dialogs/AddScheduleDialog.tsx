@@ -1,4 +1,4 @@
-import { useWorkspaceStore } from '@core/store/useWorkspaceStore';
+import { useWorkspaceParams } from '@core/hooks/useWorkspaceParams';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { Dialog, DialogInput, Group, Row } from '@shared/components/dialogs';
 import { getDate } from '@shared/utils/dateUtils';
@@ -12,7 +12,7 @@ export interface AddScheduleDialogProps {
 
 const AddScheduleDialog = ({ open, onOpenChange }: AddScheduleDialogProps) => {
   const addSchedule = useScheduleStore((state) => state.addSchedule);
-  const selectTeamId = useWorkspaceStore((state) => state.selectTeamId);
+  const { teamId } = useWorkspaceParams();
   const userId = useUserStore((state) => state.user?.id);
   const userName = useUserStore((state) => state.user?.name);
   const [title, setTitle] = useState('');
@@ -29,14 +29,7 @@ const AddScheduleDialog = ({ open, onOpenChange }: AddScheduleDialogProps) => {
   }, []);
 
   const handleAddSchedule = () => {
-    if (
-      !title ||
-      !startDate ||
-      !startTime ||
-      !selectTeamId ||
-      !userId ||
-      !userName
-    )
+    if (!title || !startDate || !startTime || !teamId || !userId || !userName)
       return;
 
     addSchedule({
@@ -48,7 +41,7 @@ const AddScheduleDialog = ({ open, onOpenChange }: AddScheduleDialogProps) => {
       startTime,
       finishDate: finishDate || undefined,
       finishTime: finishTime || undefined,
-      teamId: selectTeamId,
+      teamId: teamId,
     });
     setTitle('');
     setstartDate('');

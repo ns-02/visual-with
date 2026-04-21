@@ -1,10 +1,10 @@
-import { useWorkspaceStore } from '@core/store/useWorkspaceStore';
+import { useWorkspaceParams } from '@core/hooks/useWorkspaceParams';
 import { useFileStore } from '../store/useFileStore';
 import { formatDate } from '@shared/utils/formatDate';
 import { useRef } from 'react';
 
 export const useFileManager = () => {
-  const selectTeamId = useWorkspaceStore((state) => state.selectTeamId);
+  const { teamId } = useWorkspaceParams();
   const uploadFile = useFileStore((state) => state.uploadFile);
   const setIsLoading = useFileStore((state) => state.setIsLoading);
   const setCurrentFile = useFileStore((state) => state.setCurrentFile);
@@ -39,14 +39,14 @@ export const useFileManager = () => {
   };
 
   const loadAndUploadFile = async (file: File | undefined) => {
-    if (!file || !selectTeamId) return;
+    if (!file || !teamId) return;
 
     setIsLoading(true);
-    setCurrentFile(file, formatDate(), selectTeamId);
+    setCurrentFile(file, formatDate(), teamId);
     await runProgress();
     setIsLoading(false);
-    setCurrentFile(null, formatDate(), selectTeamId);
-    uploadFile(file, formatDate(), selectTeamId);
+    setCurrentFile(null, formatDate(), teamId);
+    uploadFile(file, formatDate(), teamId);
   };
 
   return { loadAndUploadFile };

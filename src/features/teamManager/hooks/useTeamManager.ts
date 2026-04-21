@@ -8,10 +8,11 @@ import {
 import { TeamData, TeamId, TeamName } from '@shared/models/Team';
 import { getPathFromToolId, getToolIdFromPath } from '@core/routes/routeMap';
 import { useUserStore } from '@core/store/useUserStore';
+import { useWorkspaceParams } from '@core/hooks/useWorkspaceParams';
 import { useWorkspaceStore } from '@core/store/useWorkspaceStore';
 
 export const useTeamManager = () => {
-  const selectTeamId = useWorkspaceStore((state) => state.selectTeamId);
+  const { teamId } = useWorkspaceParams();
   const createTeamInStore = useWorkspaceStore(
     (state) => state.createTeamInStore,
   );
@@ -88,12 +89,12 @@ export const useTeamManager = () => {
   };
 
   const onInviteTeamByUserId = async (invitedUserId: string) => {
-    if (!userId || !selectTeamId) return;
+    if (!userId || !teamId) return;
     try {
       const res = await inviteTeamByUserId({
         userId,
         invitedUserId,
-        teamId: selectTeamId,
+        teamId,
       });
       console.log(res);
     } catch (e) {

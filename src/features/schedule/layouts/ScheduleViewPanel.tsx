@@ -1,4 +1,4 @@
-import { useWorkspaceStore } from '@core/store/useWorkspaceStore';
+import { useWorkspaceParams } from '@core/hooks/useWorkspaceParams';
 import { useEffect, useMemo, useState } from 'react';
 import ScheduleCard from '../ui/ScheduleCard';
 import styles from './ScheduleLayout.module.css';
@@ -7,10 +7,10 @@ import { ScheduleData } from '@shared/models/Schedule';
 
 function ScheduleViewPanel() {
   const scheduleData = useScheduleStore((state) => state.scheduleData);
-  const selectTeamId = useWorkspaceStore((state) => state.selectTeamId);
+  const { teamId } = useWorkspaceParams();
   const teamScheduleData = useMemo(
-    () => scheduleData.filter((item) => item.teamId === selectTeamId),
-    [scheduleData, selectTeamId],
+    () => scheduleData.filter((item) => item.teamId === teamId),
+    [scheduleData, teamId],
   );
   const [completedData, setCompletedData] = useState<ScheduleData[] | null>(
     null,
@@ -21,7 +21,7 @@ function ScheduleViewPanel() {
   const [upcomingData, setUpcomingData] = useState<ScheduleData[] | null>(null);
 
   useEffect(() => {
-    if (!teamScheduleData.length && !selectTeamId) {
+    if (!teamScheduleData.length && !teamId) {
       setCompletedData([]);
       setInProgressData([]);
       setUpcomingData([]);
@@ -41,7 +41,7 @@ function ScheduleViewPanel() {
     setCompletedData(nextCompletedData);
     setInProgressData(nextInProgressData);
     setUpcomingData(nextUpcomingData);
-  }, [teamScheduleData, selectTeamId]);
+  }, [teamScheduleData, teamId]);
 
   return (
     <div className={styles.schedule_view_panel}>

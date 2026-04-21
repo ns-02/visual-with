@@ -1,9 +1,9 @@
-import { useWorkspaceStore } from '@core/store/useWorkspaceStore';
 import DragAndDrop from '../ui/DragAndDrop';
 import FileListCard from '../ui/FileListCard';
 import styles from './FileSharingLayout.module.css';
 import { useFileStore } from '../store/useFileStore';
 import FileUploadCard from '../ui/FileUploadCard';
+import { useWorkspaceParams } from '@core/hooks/useWorkspaceParams';
 
 interface FileViewPanelProps {
   fileTypes: string;
@@ -12,7 +12,7 @@ interface FileViewPanelProps {
 function FileViewPanel({ fileTypes }: FileViewPanelProps) {
   const fileData = useFileStore((state) => state.fileData);
   const isLoading = useFileStore((state) => state.isLoading);
-  const selectTeamId = useWorkspaceStore((state) => state.selectTeamId);
+  const { teamId } = useWorkspaceParams();
 
   return (
     <div className={styles.file_view_panel}>
@@ -28,7 +28,7 @@ function FileViewPanel({ fileTypes }: FileViewPanelProps) {
 
       <div style={{ marginTop: '24px', marginBottom: '12px' }}>파일 목록</div>
       {fileData
-        .filter((item) => item.teamId === selectTeamId)
+        .filter((item) => item.teamId === teamId)
         .filter((item) => {
           return fileTypes === 'all' ? item : item.fileType === fileTypes;
         })

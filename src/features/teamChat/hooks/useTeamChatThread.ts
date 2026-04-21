@@ -5,10 +5,10 @@ import { getItem, setItem } from '@shared/utils/sessionStorage';
 import { useEffect, useState } from 'react';
 import { teamChatMockFactories } from '@mocks/TeamChatMocks';
 import { useUserStore } from '@core/store/useUserStore';
-import { useWorkspaceStore } from '@core/store/useWorkspaceStore';
+import { useWorkspaceParams } from '@core/hooks/useWorkspaceParams';
 
 export const useTeamChatThread = () => {
-  const selectTeamId = useWorkspaceStore((state) => state.selectTeamId);
+  const { teamId } = useWorkspaceParams();
 
   const userId = useUserStore((state) => state.user?.id);
   const userName = useUserStore((state) => state.user?.name);
@@ -16,12 +16,12 @@ export const useTeamChatThread = () => {
   const [currentId, setCurrentId] = useState(1);
 
   useEffect(() => {
-    if (!selectTeamId) return;
+    if (!teamId) return;
 
-    const storageKey = `teamChats_${selectTeamId}`;
+    const storageKey = `teamChats_${teamId}`;
     let stored = getItem(storageKey, '') || [];
 
-    const createMocks = teamChatMockFactories[selectTeamId];
+    const createMocks = teamChatMockFactories[teamId];
     if (Array.isArray(stored) && stored.length === 0 && createMocks) {
       const seeded = createMocks({ userId, userName });
       setItem(storageKey, JSON.stringify(seeded));
@@ -37,18 +37,18 @@ export const useTeamChatThread = () => {
 
     const maxId = getMaxId(nextAllChat);
     setCurrentId(maxId + 1);
-  }, [selectTeamId, userId, userName]);
+  }, [teamId, userId, userName]);
 
   const { handleSend } = useChatThread(
     allChat,
     setAllChat,
     currentId,
     setCurrentId,
-    `teamChats_${selectTeamId}`,
+    `teamChats_${teamId}`,
   );
 
   const handleTeamChatSend = (chatToSend: string) => {
-    if (!selectTeamId) return;
+    if (!teamId) return;
     handleSend(chatToSend);
   };
 

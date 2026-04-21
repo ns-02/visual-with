@@ -1,4 +1,4 @@
-import { useWorkspaceStore } from '@core/store/useWorkspaceStore';
+import { useWorkspaceParams } from '@core/hooks/useWorkspaceParams';
 import { useUserStore } from '@core/store/useUserStore';
 import { useEffect, useMemo, useState } from 'react';
 import { Circle, CircleCheckBig } from 'lucide-react';
@@ -8,15 +8,16 @@ import TodoListLabel from '../ui/TodoListLabel';
 import styles from './TodoListLayout.module.css';
 import { useTodoStore } from '../store/useTodoStore';
 import { TodoData } from '@shared/models/Todo';
+import { useWorkspaceStore } from '@core/store/useWorkspaceStore';
 
 function TodoContents() {
   const todoData = useTodoStore((state) => state.todoData);
-  const selectTeamId = useWorkspaceStore((state) => state.selectTeamId);
+  const { teamId } = useWorkspaceParams();
   const userId = useUserStore((state) => state.user?.id);
   const currentRule = useWorkspaceStore((state) => state.currentRule);
   const teamTodoData = useMemo(
-    () => todoData.filter((item) => item.teamId === selectTeamId),
-    [todoData, selectTeamId],
+    () => todoData.filter((item) => item.teamId === teamId),
+    [todoData, teamId],
   );
   const toggleTodo = useTodoStore((state) => state.toggleTodo);
   const [progressData, setProgressData] = useState<TodoData[]>([]);

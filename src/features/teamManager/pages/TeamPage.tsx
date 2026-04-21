@@ -1,8 +1,8 @@
-import { useWorkspaceStore } from '@core/store/useWorkspaceStore';
 import styles from './TeamPage.module.css';
 import { Button } from '@shared/components/ui';
 import { getTeamRuleName } from '@shared/models/TeamMembership';
 import { getIsAdmin } from '@shared/utils/permitUtils';
+import { useWorkspaceStore } from '@core/store/useWorkspaceStore';
 
 function TeamPage() {
   const selectTeamName = useWorkspaceStore((state) => state.selectTeamName);

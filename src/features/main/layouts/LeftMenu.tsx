@@ -20,9 +20,9 @@ import Divider from '../ui/Divider';
 import styles from './Layouts.module.css';
 import TooltipItem from '../ui/TooltipItem';
 import { getPathFromToolId } from '@core/routes/routeMap';
-import { useWorkspaceStore } from '@core/store/useWorkspaceStore';
+import { useWorkspaceParams } from '@core/hooks/useWorkspaceParams';
 import { Link } from 'react-router-dom';
-import { useUserStore } from '@core/store/useUserStore';
+import { useWorkspaceStore } from '@core/store/useWorkspaceStore';
 
 interface MenuItem {
   id: ToolId;
@@ -33,12 +33,11 @@ interface MenuItem {
 
 function LeftMenu() {
   const [isInviteTeamDialogOpen, setIsInviteTeamDialogOpen] = useState(false);
-  const selectTeamId = useWorkspaceStore((state) => state.selectTeamId);
+  const { teamId, toolId } = useWorkspaceParams();
   const teamData = useWorkspaceStore((state) => state.teamData);
   const selectTeamName = useWorkspaceStore((state) => state.selectTeamName);
   const isTeamInit = useWorkspaceStore((state) => state.isTeamInit);
   const [isTeamMember, setIsTeamMember] = useState(false);
-  const toolId = useUserStore((state) => state.currentToolId);
 
   useEffect(() => {
     if ((teamData && teamData.length === 0) || !isTeamInit) {
@@ -125,7 +124,7 @@ function LeftMenu() {
           to={getPathFromToolId({
             id: item.id,
             onTeam: item.onTeam,
-            selectTeamId,
+            selectTeamId: teamId,
           })}
         >
           <item.icon size={24} />

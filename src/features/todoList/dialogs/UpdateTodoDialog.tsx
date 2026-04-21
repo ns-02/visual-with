@@ -1,4 +1,4 @@
-import { useWorkspaceStore } from '@core/store/useWorkspaceStore';
+import { useWorkspaceParams } from '@core/hooks/useWorkspaceParams';
 import { useUserStore } from '@core/store/useUserStore';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { Dialog, Group, DialogInput } from '@shared/components/dialogs';
@@ -17,7 +17,7 @@ const UpdateTodoDialog = ({
 }: UpdateTodoDialogProps) => {
   const todoData = useTodoStore((state) => state.todoData);
   const updateTodo = useTodoStore((state) => state.updateTodo);
-  const selectTeamId = useWorkspaceStore((state) => state.selectTeamId);
+  const { teamId } = useWorkspaceParams();
   const userId = useUserStore((state) => state.user?.id);
   const userName = useUserStore((state) => state.user?.name);
   const [title, setTitle] = useState('');
@@ -25,7 +25,7 @@ const UpdateTodoDialog = ({
   const [authorId, setAuthorId] = useState('');
   const [authorName, setAuthorName] = useState('');
   const currentTodoData = todoData?.find(
-    (item) => item.id === todoId && item.teamId === selectTeamId,
+    (item) => item.id === todoId && item.teamId === teamId,
   );
 
   useEffect(() => {

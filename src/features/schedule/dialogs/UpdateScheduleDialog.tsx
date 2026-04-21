@@ -1,4 +1,4 @@
-import { useWorkspaceStore } from '@core/store/useWorkspaceStore';
+import { useWorkspaceParams } from '@core/hooks/useWorkspaceParams';
 import { Dialog, DialogInput, Group, Row } from '@shared/components/dialogs';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { useScheduleStore } from '../store/useScheduleStore';
@@ -16,7 +16,7 @@ const UpdateScheduleDialog = ({
 }: UpdateScheduleDialogProps) => {
   const scheduleData = useScheduleStore((state) => state.scheduleData);
   const updateSchedule = useScheduleStore((state) => state.updateSchedule);
-  const selectTeamId = useWorkspaceStore((state) => state.selectTeamId);
+  const { teamId } = useWorkspaceParams();
   const [title, setTitle] = useState('');
   const [authorId, setAuthorId] = useState('');
   const [authorName, setAuthorName] = useState('');
@@ -26,7 +26,7 @@ const UpdateScheduleDialog = ({
   const [finishTime, setFinishTime] = useState('');
   const [description, setDescription] = useState('');
   const currentScheduleData = scheduleData?.find(
-    (item) => item.id === scheduleId && item.teamId === selectTeamId,
+    (item) => item.id === scheduleId && item.teamId === teamId,
   );
 
   useEffect(() => {

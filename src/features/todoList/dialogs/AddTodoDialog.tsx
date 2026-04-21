@@ -1,8 +1,8 @@
-import { useWorkspaceStore } from '@core/store/useWorkspaceStore';
 import { useUserStore } from '@core/store/useUserStore';
 import { Dispatch, SetStateAction, useState } from 'react';
 import { Dialog, Group, DialogInput } from '@shared/components/dialogs';
 import { useTodoStore } from '../store/useTodoStore';
+import { useWorkspaceParams } from '@core/hooks/useWorkspaceParams';
 
 interface AddTodoDialogProps {
   open: boolean;
@@ -11,19 +11,19 @@ interface AddTodoDialogProps {
 
 const AddTodoDialog = ({ open, onOpenChange }: AddTodoDialogProps) => {
   const addTodo = useTodoStore((state) => state.addTodo);
-  const selectTeamId = useWorkspaceStore((state) => state.selectTeamId);
+  const { teamId } = useWorkspaceParams();
   const userId = useUserStore((state) => state.user?.id);
   const userName = useUserStore((state) => state.user?.name);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
 
   const handleAddTodo = () => {
-    if (!title || !selectTeamId || !userId || !userName) return;
+    if (!title || !teamId || !userId || !userName) return;
 
     addTodo({
       title,
       description: description || undefined,
-      teamId: selectTeamId,
+      teamId: teamId,
       authorId: userId,
       authorName: userName,
     });
