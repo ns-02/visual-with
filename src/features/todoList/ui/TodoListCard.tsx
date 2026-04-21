@@ -1,8 +1,4 @@
-import {
-  CheckBox,
-  ContentButton,
-  type CheckBoxProps,
-} from '@shared/components/ui';
+import { CheckBox, Button, type CheckBoxProps } from '@shared/components/ui';
 import { EllipsisVertical } from 'lucide-react';
 import TodoListDropdown from './TodoListDropdown';
 import styles from './TodoListCard.module.css';
@@ -29,9 +25,9 @@ const TodoListCard = ({
   isCheckDisabled,
 }: TodoListCardProps) => {
   const triggerElement = (
-    <ContentButton>
+    <Button variant='content'>
       <EllipsisVertical size={16} />
-    </ContentButton>
+    </Button>
   );
 
   return (

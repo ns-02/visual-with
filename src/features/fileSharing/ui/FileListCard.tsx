@@ -1,5 +1,5 @@
 import { Download, EllipsisVertical } from 'lucide-react';
-import { ContentButton } from '@shared/components/ui';
+import { Button } from '@shared/components/ui';
 import FileSharingDropdown from './FileSharingDropdown';
 import FileIcon from './FileIcon';
 import styles from './FileListCard.module.css';
@@ -22,9 +22,9 @@ const FileListCard = ({
   uploader,
 }: FileListCardProps) => {
   const triggerElement = (
-    <ContentButton>
+    <Button variant='content'>
       <EllipsisVertical size={16} />
-    </ContentButton>
+    </Button>
   );
 
   return (
@@ -39,9 +39,9 @@ const FileListCard = ({
         </div>
       </div>
       <div className={styles.navigation}>
-        <ContentButton>
+        <Button variant='content'>
           <Download size={16} />
-        </ContentButton>
+        </Button>
         <FileSharingDropdown
           fileId={id}
           triggerElement={triggerElement}

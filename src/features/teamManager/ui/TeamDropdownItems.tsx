@@ -1,7 +1,7 @@
 import type { SetStateAction } from 'react';
 import { DropdownMenu } from 'radix-ui';
 import { Trash2 } from 'lucide-react';
-import { ContentButton, Item } from '@shared/components/ui';
+import { Button, Item } from '@shared/components/ui';
 import { TeamData } from '@shared/models/Team';
 import { useTeamManager } from '../hooks/useTeamManager';
 import styles from './TeamDropdownItems.module.css';
@@ -45,14 +45,15 @@ const TeamDropdownItems = ({
               text={item.name}
               selected={handleItemSelected(item)}
             >
-              <ContentButton
+              <Button
+                variant='content'
                 onClick={() => {
                   setDeleteTeamData(item);
                   deleteTeamDialogOpen(true);
                 }}
               >
                 <Trash2 size={16} />
-              </ContentButton>
+              </Button>
             </Item>
           </DropdownMenu.Item>
         );

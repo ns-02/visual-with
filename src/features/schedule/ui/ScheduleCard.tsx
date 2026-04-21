@@ -1,4 +1,4 @@
-import { ContentButton } from '@shared/components/ui';
+import { Button } from '@shared/components/ui';
 import styles from './ScheduleCard.module.css';
 import { EllipsisVertical } from 'lucide-react';
 import ScheduleDropdown from './ScheduleDropdown';
@@ -23,9 +23,9 @@ const ScheduleCard = ({
   state,
 }: ScheduleCardProps) => {
   const triggerElement = (
-    <ContentButton>
+    <Button variant='content'>
       <EllipsisVertical size={16} />
-    </ContentButton>
+    </Button>
   );
 
   return (

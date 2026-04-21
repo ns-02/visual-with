@@ -21,7 +21,6 @@ function ScheduleViewPanel() {
   const [upcomingData, setUpcomingData] = useState<ScheduleData[] | null>(null);
 
   useEffect(() => {
-    console.log(teamScheduleData);
     if (!teamScheduleData.length && !selectTeamId) {
       setCompletedData([]);
       setInProgressData([]);

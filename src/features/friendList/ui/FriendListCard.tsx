@@ -1,5 +1,5 @@
 import { EllipsisVertical } from 'lucide-react';
-import { ContentButton } from '@shared/components/ui';
+import { Button } from '@shared/components/ui';
 import FriendListDropdown from './FriendListDropdown';
 import styles from './FriendListCard.module.css';
 import Avatar from '@shared/components/ui/Avatar';
@@ -12,9 +12,9 @@ interface FriendListCardProps {
 
 const FriendListCard = ({ id, name, description }: FriendListCardProps) => {
   const triggerElement = (
-    <ContentButton>
+    <Button variant='content'>
       <EllipsisVertical size={16} />
-    </ContentButton>
+    </Button>
   );
 
   return (
