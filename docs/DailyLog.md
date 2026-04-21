@@ -67,7 +67,7 @@
 ## 260421
   - Button에서 isLoading 관리를 없애버림. 추후 기능 구현 시 더 상위 컴포넌트에서 isLoading을 넘겨줄 것.
   - fileUploadDropdown은 팀 채팅 기준으로 만들어졌으며, 추후 친구 채팅에서 파일 업로드 시 이를 수정해야 함.
-  - 오버엔지니어링을 인식. 과한 추상화와 분리를 줄이고자 파일을 통합함. (기존 250개 -> 현재 220개)
+  - 오버엔지니어링을 인식. 과한 추상화와 분리를 줄이고자 파일을 통합함. (기존 250개 -> 현재 200개)
   - store, models 통합, features의 레이아웃을 모두 page로 통합.
   - RouteWatcher를 삭제하고 teamId와 toolId를 url 단위로 관리. 로컬스토리지 이용.
   - 분리된 button, authButton, contentButton을 하나의 button으로 통합.
