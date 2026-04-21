@@ -1,8 +1,8 @@
 import { useEffect, useRef } from 'react';
 import { useLocation, useNavigationType } from 'react-router-dom';
 import { getTeamIdFromPath, getToolIdFromPath } from './routeMap';
-import { useToolIdStore } from '@core/store/useToolIdStore';
 import { useTeamStore } from '@core/store/useTeamStore';
+import { useUserStore } from '@core/store/useUserStore';
 
 export function RouteWatcher({
   callOnInitial = true,
@@ -13,8 +13,8 @@ export function RouteWatcher({
   const navType = useNavigationType();
 
   // setToolId()가 컴포넌트에 신호를 주는 역할
-  const toolId = useToolIdStore((state) => state.toolId);
-  const setToolId = useToolIdStore((state) => state.setToolId);
+  const toolId = useUserStore((state) => state.currentToolId);
+  const setToolId = useUserStore((state) => state.setToolId);
   const selectTeamId = useTeamStore((state) => state.selectTeamId);
   const setSelectTeamId = useTeamStore((state) => state.setSelectTeamId);
   const prevRef = useRef<string | null>(null);

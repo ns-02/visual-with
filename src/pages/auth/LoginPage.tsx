@@ -4,11 +4,9 @@ import { Container } from '@shared/components';
 import { loginUser } from '@shared/api/api';
 import { Button, AuthInput } from '@shared/components/ui';
 import styles from './Auth.module.css';
-import { useAuthStore } from '@core/store/useAuthStore';
 import { useUserStore } from '@core/store/useUserStore';
 
 function LoginPage() {
-  const setIsLoggedin = useAuthStore((state) => state.setIsLoggedin);
   const setUser = useUserStore((state) => state.setUser);
 
   const navigate = useNavigate();
@@ -30,7 +28,6 @@ function LoginPage() {
         return;
       }
 
-      setIsLoggedin(true);
       setUser({
         id: res.userId,
         name: res.name,

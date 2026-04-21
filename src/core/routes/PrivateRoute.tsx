@@ -1,15 +1,15 @@
 import { Outlet } from 'react-router-dom';
 import GuardPage from '../../pages/auth/GuardPage';
-import { useAuthStore } from '@core/store/useAuthStore';
+import { useUserStore } from '@core/store/useUserStore';
 
 const PrivateRoute = () => {
-  const isLoggedin = useAuthStore((state) => state.isLoggedin);
+  const user = useUserStore((state) => state.user);
 
   if (import.meta.env.DEV) {
     return <Outlet />;
   }
 
-  if (!isLoggedin) {
+  if (!user) {
     return <GuardPage />;
   }
 
