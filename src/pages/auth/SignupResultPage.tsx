@@ -1,7 +1,7 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Container } from '@shared/components';
 import styles from './Auth.module.css';
-import { AuthButton } from '@shared/components/ui';
+import { Button } from '@shared/components/ui';
 
 function SignupResultPage() {
   const navigate = useNavigate();
@@ -21,7 +21,9 @@ function SignupResultPage() {
           <h1 className={styles.title}>회원가입 완료</h1>
         </div>
         <p>{`${userId}님의 회원가입을 환영합니다!`}</p>
-        <AuthButton onClick={() => navigate('/login')}>로그인</AuthButton>
+        <Button onClick={() => navigate('/login')} variant='auth'>
+          로그인
+        </Button>
       </div>
     </Container>
   );

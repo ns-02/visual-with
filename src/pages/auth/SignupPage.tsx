@@ -2,7 +2,7 @@ import { FormEvent, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Container } from '@shared/components';
 import { checkId, signupUser } from '@shared/api/api';
-import { AuthButton, AuthInput } from '@shared/components/ui';
+import { Button, AuthInput } from '@shared/components/ui';
 import styles from './Auth.module.css';
 
 function SignupPage() {
@@ -97,9 +97,9 @@ function SignupPage() {
             }}
             placeholder='아이디를 입력하세요'
           />
-          <AuthButton type='button' onClick={handleIdCheck}>
+          <Button type='button' onClick={handleIdCheck} variant='auth'>
             중복확인
-          </AuthButton>
+          </Button>
         </div>
         <AuthInput
           name='email'
@@ -122,7 +122,9 @@ function SignupPage() {
           onChange={(e) => setCheckPassword(e.target.value)}
           placeholder='비밀번호를 다시 입력하세요'
         />
-        <AuthButton type='submit'>회원가입</AuthButton>
+        <Button type='submit' variant='auth'>
+          회원가입
+        </Button>
 
         <div className={styles.bottom_field}>
           <p>이미 계정이 있으신가요?</p>

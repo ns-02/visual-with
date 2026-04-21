@@ -2,7 +2,7 @@ import { FormEvent, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Container } from '@shared/components';
 import { loginUser } from '@shared/api/api';
-import { AuthButton, AuthInput } from '@shared/components/ui';
+import { Button, AuthInput } from '@shared/components/ui';
 import styles from './Auth.module.css';
 import { useAuthStore } from '@core/store/useAuthStore';
 import { useUserStore } from '@core/store/useUserStore';
@@ -73,7 +73,9 @@ function LoginPage() {
           onChange={(e) => setPassword(e.target.value)}
           placeholder='비밀번호를 입력하세요'
         />
-        <AuthButton type='submit'>로그인</AuthButton>
+        <Button type='submit' variant='auth'>
+          로그인
+        </Button>
 
         <div className={styles.bottom_field}>
           <p>계정이 없으신가요?</p>
