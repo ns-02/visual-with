@@ -16,46 +16,12 @@ interface FriendItem extends FriendData {
 function DirectChatPage() {
   const selectFriendData = useFriendStore((state) => state.selectFriendData);
   const isAreaOpen = useDirectChatStore((state) => state.isAreaOpen);
-  const { allChat, handleDirectChatSend } = useDirectChatThread();
-
-  return (
-    <div className={styles.direct_chat_root}>
-      <LeftFriendsPanel />
-
-      {!selectFriendData ? (
-        <div className={styles.chat_view_panel}>
-          <div className={styles.overview}>준비 중인 화면입니다</div>
-        </div>
-      ) : (
-        <div className={styles.chat_view_panel}>
-          <div className={styles.chat_content_area}>
-            <div className={styles.direct_chat_area}>
-              <MessageList allChat={allChat} />
-            </div>
-
-            {!isAreaOpen ? null : (
-              <div className={styles.right_file_list_area}>
-                <div>파일 목록 영역입니다.</div>
-              </div>
-            )}
-          </div>
-          <ChatInputArea
-            itemClassName={styles.bottom_input_area}
-            onSend={handleDirectChatSend}
-          />
-        </div>
-      )}
-    </div>
-  );
-}
-
-function LeftFriendsPanel() {
   const friendData = useFriendStore((state) => state.friendData);
-  const selectFriendData = useFriendStore((state) => state.selectFriendData);
-  const friendIdChatMap = useDirectChatStore((state) => state.friendIdChatMap);
   const updateSelectFriend = useFriendStore(
     (state) => state.updateSelectFriend,
   );
+  const friendIdChatMap = useDirectChatStore((state) => state.friendIdChatMap);
+  const { allChat, handleDirectChatSend } = useDirectChatThread();
   const [friendItems, setFriendItems] = useState<FriendItem[]>([]);
 
   useEffect(() => {
@@ -86,18 +52,44 @@ function LeftFriendsPanel() {
   };
 
   return (
-    <div className={styles.left_friends_panel}>
-      {friendItems.map((item) => {
-        return (
-          <SelectFriendCard
-            key={item.id}
-            name={item.name}
-            chat={item.chat}
-            selected={item.selected}
-            onSelect={() => handleCardSelect(item.id)}
+    <div className={styles.direct_chat_root}>
+      <div className={styles.left_friends_panel}>
+        {friendItems.map((item) => {
+          return (
+            <SelectFriendCard
+              key={item.id}
+              name={item.name}
+              chat={item.chat}
+              selected={item.selected}
+              onSelect={() => handleCardSelect(item.id)}
+            />
+          );
+        })}
+      </div>
+
+      {!selectFriendData ? (
+        <div className={styles.chat_view_panel}>
+          <div className={styles.overview}>준비 중인 화면입니다</div>
+        </div>
+      ) : (
+        <div className={styles.chat_view_panel}>
+          <div className={styles.chat_content_area}>
+            <div className={styles.direct_chat_area}>
+              <MessageList allChat={allChat} />
+            </div>
+
+            {!isAreaOpen ? null : (
+              <div className={styles.right_file_list_area}>
+                <div>파일 목록 영역입니다.</div>
+              </div>
+            )}
+          </div>
+          <ChatInputArea
+            itemClassName={styles.bottom_input_area}
+            onSend={handleDirectChatSend}
           />
-        );
-      })}
+        </div>
+      )}
     </div>
   );
 }
