@@ -29,7 +29,6 @@ const Calendar = memo(
     selected: Date | undefined;
     setSelected: Dispatch<SetStateAction<Date | undefined>>;
   }) => {
-    console.log('렌더링됨! selected:', selected);
     return (
       <>
         <DayPicker
