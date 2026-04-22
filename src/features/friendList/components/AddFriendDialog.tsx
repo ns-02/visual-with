@@ -1,11 +1,16 @@
 import { Search } from 'lucide-react';
 import { Dialog, Group, DialogInput, Row } from '@shared/components';
 import { Button } from '@shared/components';
-import { AddFriendDialogProps } from '..';
-import { useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 import { notFriendDataMocks } from '@mocks/FriendDataMocks';
 
-const AddFriendDialog = ({ open, onOpenChange }: AddFriendDialogProps) => {
+const AddFriendDialog = ({
+  open,
+  onOpenChange,
+}: {
+  open: boolean;
+  onOpenChange: Dispatch<SetStateAction<boolean>>;
+}) => {
   const [friendId, setFriendId] = useState('');
   const [isFriendPresent, setIsFriendPresent] = useState(false);
   const [requestFriendName, setRequestFriendName] = useState('');

@@ -1,7 +1,15 @@
-import { FriendListLabelProps } from '..';
+import { ReactNode } from 'react';
 import styles from './FriendListLabel.module.css';
 
-const FriendListLabel = ({ text, count, children }: FriendListLabelProps) => {
+const FriendListLabel = ({
+  text,
+  count,
+  children,
+}: {
+  text?: string;
+  count?: number;
+  children?: ReactNode;
+}) => {
   if (text === '친구 요청' && !count) {
     return null;
   }
