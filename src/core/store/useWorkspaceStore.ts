@@ -31,7 +31,6 @@ interface WorkspaceState {
   updateTeamRule: (teamId: TeamId, rule: TeamRule) => void;
 
   setCurrentRule: (rule: TeamRule) => void;
-  setIsTeamInit: (init: boolean) => void;
 }
 
 export const useWorkspaceStore = create<WorkspaceState>()(
@@ -50,6 +49,9 @@ export const useWorkspaceStore = create<WorkspaceState>()(
         const membership = get().membershipData.find(
           (m) => m.teamId === teamId,
         );
+        const { isTeamInit } = get();
+
+        if (!isTeamInit) set({ isTeamInit: true });
 
         set({
           selectTeamId: teamId,
@@ -58,10 +60,15 @@ export const useWorkspaceStore = create<WorkspaceState>()(
         });
       },
 
-      createTeamInStore: (teamId, teamName) =>
+      createTeamInStore: (teamId, teamName) => {
+        const { isTeamInit } = get();
+
+        if (!isTeamInit) set({ isTeamInit: true });
+
         set((state) => ({
           teamData: [...state.teamData, { id: teamId, name: teamName }],
-        })),
+        }));
+      },
 
       deleteTeamFromStore: (teamId) =>
         set((state) => ({
@@ -93,8 +100,6 @@ export const useWorkspaceStore = create<WorkspaceState>()(
         })),
 
       setCurrentRule: (rule) => set({ currentRule: rule }),
-
-      setIsTeamInit: (init) => set({ isTeamInit: init }),
     }),
     {
       name: 'workspace-storage',

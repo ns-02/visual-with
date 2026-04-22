@@ -1,15 +1,13 @@
-import { useLocation, useNavigate } from 'react-router-dom';
 import {
   createTeam,
   deleteTeam,
   inviteTeamByUserId,
   searchUser,
 } from '@shared/api/api';
-import { getPathFromToolId, getToolIdFromPath } from '@core/routes/routeMap';
 import { useUserStore } from '@core/store/useUserStore';
 import { useWorkspaceParams } from '@core/hooks/useWorkspaceParams';
 import { useWorkspaceStore } from '@core/store/useWorkspaceStore';
-import { TeamData, TeamId, TeamName } from '@shared/models/Workspace';
+import { TeamId, TeamName } from '@shared/models/Workspace';
 
 export const useTeamManager = () => {
   const { teamId } = useWorkspaceParams();
@@ -19,15 +17,11 @@ export const useTeamManager = () => {
   const deleteTeamFromStore = useWorkspaceStore(
     (state) => state.deleteTeamFromStore,
   );
-  const isTeamInit = useWorkspaceStore((state) => state.isTeamInit);
-  const setIsTeamInit = useWorkspaceStore((state) => state.setIsTeamInit);
 
   const addTeamRule = useWorkspaceStore((state) => state.addTeamRule);
   const deleteTeamRule = useWorkspaceStore((state) => state.deleteTeamRule);
 
   const userId = useUserStore((state) => state.user?.id);
-  const navigate = useNavigate();
-  const { pathname } = useLocation();
 
   const onCreateTeam = async (teamName: TeamName) => {
     if (!userId) return;
@@ -37,8 +31,6 @@ export const useTeamManager = () => {
 
       createTeamInStore(res.id, res.teamName);
       addTeamRule(userId, res.id, 'ADMIN');
-
-      if (!isTeamInit) setIsTeamInit(true);
     } catch (e) {
       console.log(e);
     }
@@ -50,30 +42,11 @@ export const useTeamManager = () => {
     try {
       const res = await deleteTeam({ userId, teamId });
       console.log(res);
-      // console.log(res.message);
 
       deleteTeamFromStore(teamId);
       deleteTeamRule(teamId);
     } catch (e) {
       console.log(e);
-    }
-  };
-
-  const selectTeam = (selectedTeam: TeamData) => {
-    const toolId = getToolIdFromPath(pathname);
-
-    if (!isTeamInit) setIsTeamInit(true);
-
-    if (toolId) {
-      const toolPath = getPathFromToolId({ id: toolId });
-
-      if (toolPath !== 'directchat' && toolPath !== 'friendlist') {
-        navigate(`${selectedTeam.id}/${toolPath}`);
-      } else {
-        navigate(`${toolPath}`);
-      }
-    } else {
-      navigate(`${selectedTeam.id}`);
     }
   };
 
@@ -105,7 +78,6 @@ export const useTeamManager = () => {
   return {
     onCreateTeam,
     onDeleteTeam,
-    selectTeam,
     onSearchUser,
     onInviteTeamByUserId,
   };

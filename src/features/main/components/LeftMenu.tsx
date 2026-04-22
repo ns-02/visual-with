@@ -24,6 +24,7 @@ import { useTeamId, useToolId } from '@core/hooks/useWorkspaceParams';
 import { Link } from 'react-router-dom';
 import { useWorkspaceStore } from '@core/store/useWorkspaceStore';
 import { ToolId } from '@shared/models/Workspace';
+import { useRouteManager } from '@core/routes/useRouteManager';
 
 interface MenuItem {
   id: ToolId;
@@ -40,6 +41,7 @@ function LeftMenu() {
   const selectTeamName = useWorkspaceStore((state) => state.selectTeamName);
   const isTeamInit = useWorkspaceStore((state) => state.isTeamInit);
   const [isTeamMember, setIsTeamMember] = useState(false);
+  const { switchTeamWithTool } = useRouteManager();
 
   useEffect(() => {
     if ((teamData && teamData.length === 0) || !isTeamInit) {
@@ -161,7 +163,10 @@ function LeftMenu() {
 
   return (
     <section className={styles.leftmenu}>
-      <TeamDropdown trigger={DropdownTrigger} />
+      <TeamDropdown
+        trigger={DropdownTrigger}
+        onTeamSwitch={switchTeamWithTool}
+      />
       {renderTeamMemberContainer}
       <Divider />
       <div className={styles.middle_menu_container}>
