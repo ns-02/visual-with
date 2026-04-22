@@ -6,8 +6,7 @@ import { useTodoStore } from '../store/useTodoStore';
 import { useWorkspaceParams } from '@core/hooks/useWorkspaceParams';
 import { useUserStore } from '@core/store/useUserStore';
 import { useWorkspaceStore } from '@core/store/useWorkspaceStore';
-import { useEffect, useMemo, useState } from 'react';
-import { TodoData } from '@shared/models/Workspace';
+import { useMemo } from 'react';
 import { getIsPermit } from '@shared/utils/permitUtils';
 
 function TodoListPage() {
@@ -15,23 +14,18 @@ function TodoListPage() {
   const { teamId } = useWorkspaceParams();
   const userId = useUserStore((state) => state.user?.id);
   const currentRule = useWorkspaceStore((state) => state.currentRule);
-  const teamTodoData = useMemo(
-    () => todoData.filter((item) => item.teamId === teamId),
+  const progressData = useMemo(
+    () => todoData.filter((item) => item.teamId === teamId && !item.checked),
     [todoData, teamId],
   );
+  const completedData = useMemo(
+    () => todoData.filter((item) => item.teamId === teamId && item.checked),
+    [todoData, teamId],
+  );
+
   const toggleTodo = useTodoStore((state) => state.toggleTodo);
-  const [progressData, setProgressData] = useState<TodoData[]>([]);
-  const [completedData, setCompletedData] = useState<TodoData[]>([]);
   const getCanToggle = (authorId: string) =>
     getIsPermit({ authorId, userId, rule: currentRule });
-
-  useEffect(() => {
-    const nextProgressData = teamTodoData.filter((item) => !item.checked);
-    const nextCompletedData = teamTodoData.filter((item) => item.checked);
-
-    setProgressData(nextProgressData);
-    setCompletedData(nextCompletedData);
-  }, [teamTodoData]);
 
   return (
     <div className={styles.todo_list_root}>

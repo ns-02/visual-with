@@ -3,16 +3,11 @@ import { useEffect, useMemo } from 'react';
 import { getToolIdFromPath } from '@core/routes/routeMap';
 import { useWorkspaceStore } from '@core/store/useWorkspaceStore';
 
-export function useWorkspaceParams() {
+// teamId만 필요할 때
+export function useTeamId() {
   const { teamId: urlTeamId } = useParams();
-  const { pathname } = useLocation();
-
   const selectTeamId = useWorkspaceStore((state) => state.selectTeamId);
   const setSelectTeam = useWorkspaceStore((state) => state.setSelectTeam);
-
-  const activeTeamId = urlTeamId || selectTeamId;
-
-  const activeToolId = useMemo(() => getToolIdFromPath(pathname), [pathname]);
 
   useEffect(() => {
     if (urlTeamId && urlTeamId !== selectTeamId) {
@@ -20,9 +15,27 @@ export function useWorkspaceParams() {
     }
   }, [urlTeamId, selectTeamId, setSelectTeam]);
 
-  return {
-    teamId: activeTeamId,
-    toolId: activeToolId,
-    isWorkspaceView: !!urlTeamId,
-  };
+  return urlTeamId || selectTeamId;
+}
+
+// toolId만 필요할 때
+export function useToolId() {
+  const { pathname } = useLocation();
+  return useMemo(() => getToolIdFromPath(pathname), [pathname]);
+}
+
+// 둘 다 필요할 때
+export function useWorkspaceParams() {
+  const teamId = useTeamId();
+  const toolId = useToolId();
+  const { teamId: urlTeamId } = useParams();
+
+  return useMemo(
+    () => ({
+      teamId,
+      toolId,
+      isWorkspaceView: !!urlTeamId,
+    }),
+    [teamId, toolId, urlTeamId],
+  );
 }

@@ -1,53 +1,37 @@
-import { useWorkspaceParams } from '@core/hooks/useWorkspaceParams';
+import { useTeamId } from '@core/hooks/useWorkspaceParams';
 import { useScheduleStore } from '../store/useScheduleStore';
 import ScheduleCard from '../components/ScheduleCard';
 import styles from './ScheduleLayout.module.css';
-import { useEffect, useMemo, useState } from 'react';
-import { ScheduleData } from '@shared/models/Workspace';
+import { useMemo, useState } from 'react';
 import Calendar from '../components/Calendar';
 import { formatDate } from '@shared/utils/formatDate';
 
 function SchedulePage() {
   const scheduleData = useScheduleStore((state) => state.scheduleData);
-  const { teamId } = useWorkspaceParams();
+  const teamId = useTeamId();
+
   const teamScheduleData = useMemo(
     () => scheduleData.filter((item) => item.teamId === teamId),
     [scheduleData, teamId],
   );
 
+  const completedData = useMemo(
+    () => teamScheduleData.filter((item) => item.state === '완료'),
+    [teamScheduleData],
+  );
+
+  const inProgressData = useMemo(
+    () => teamScheduleData.filter((item) => item.state === '진행중'),
+    [teamScheduleData],
+  );
+
+  const upcomingData = useMemo(
+    () => teamScheduleData.filter((item) => item.state === '예정'),
+    [teamScheduleData],
+  );
+
   const [selected, setSelected] = useState<Date>();
   const day = new Date().getDate();
-
-  const [completedData, setCompletedData] = useState<ScheduleData[] | null>(
-    null,
-  );
-  const [inProgressData, setInProgressData] = useState<ScheduleData[] | null>(
-    null,
-  );
-  const [upcomingData, setUpcomingData] = useState<ScheduleData[] | null>(null);
-
-  useEffect(() => {
-    if (!teamScheduleData.length && !teamId) {
-      setCompletedData([]);
-      setInProgressData([]);
-      setUpcomingData([]);
-      return;
-    }
-
-    const nextCompletedData = teamScheduleData.filter(
-      (item) => item.state === '완료',
-    );
-    const nextInProgressData = teamScheduleData.filter(
-      (item) => item.state === '진행중',
-    );
-    const nextUpcomingData = teamScheduleData.filter(
-      (item) => item.state === '예정',
-    );
-
-    setCompletedData(nextCompletedData);
-    setInProgressData(nextInProgressData);
-    setUpcomingData(nextUpcomingData);
-  }, [teamScheduleData, teamId]);
 
   const filteredSchedules = teamScheduleData.filter((item) => {
     const selectedFormattedDate = selected

@@ -8,7 +8,7 @@ import AddTodoDialog from '../../todoList/components/AddTodoDialog';
 import AddFriendDialog from '../../friendList/components/AddFriendDialog';
 import styles from './Layouts.module.css';
 import { useDirectChatStore } from '@features/directChat/store/useDirectChatStore';
-import { useWorkspaceParams } from '@core/hooks/useWorkspaceParams';
+import { useToolId } from '@core/hooks/useWorkspaceParams';
 import { ToolId } from '@shared/models/Workspace';
 
 interface HeaderItem {
@@ -20,7 +20,7 @@ interface HeaderItem {
 }
 
 function MainHeader() {
-  const { toolId } = useWorkspaceParams();
+  const toolId = useToolId();
   const toggleAreaOpen = useDirectChatStore((state) => state.toggleAreaOpen);
 
   const [isUploadFileDialogOpen, setIsUploadFileDialogOpen] = useState(false);
