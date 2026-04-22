@@ -66,3 +66,7 @@ export function getTeamIdFromPath(pathname: string): TeamId | null {
 
   return null;
 }
+
+export function getPathFromFriendId(friendId: string) {
+  return `/main/directchat/${friendId}`;
+}

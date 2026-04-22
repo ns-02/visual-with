@@ -7,6 +7,8 @@ import SelectFriendCard from '../components/SelectFriendCard';
 import { useEffect, useState } from 'react';
 import { FriendData } from '@shared/models/User';
 import ChatInputArea from '@shared/components/ChatInputArea';
+import { useNavigate } from 'react-router-dom';
+import { getPathFromFriendId } from '@core/routes/routeMap';
 
 interface FriendItem extends FriendData {
   chat: string;
@@ -23,6 +25,7 @@ function DirectChatPage() {
   const friendIdChatMap = useDirectChatStore((state) => state.friendIdChatMap);
   const { allChat, handleDirectChatSend } = useDirectChatThread();
   const [friendItems, setFriendItems] = useState<FriendItem[]>([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const nextFriendItems = friendData?.map((data) => {
@@ -49,6 +52,7 @@ function DirectChatPage() {
 
     setFriendItems(nextFriendItems);
     updateSelectFriend(id);
+    navigate(getPathFromFriendId(id));
   };
 
   return (
