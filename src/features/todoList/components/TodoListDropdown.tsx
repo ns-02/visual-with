@@ -4,7 +4,7 @@ import UpdateTodoDialog from './UpdateTodoDialog';
 import DeleteTodoDialog from './DeleteTodoDialog';
 import { getIsPermit } from '@shared/utils/permitUtils';
 import { useUserStore } from '@core/store/useUserStore';
-import PermissionDropdown from '@shared/domain/PermissionDropdown';
+import PermissionDropdown from '@shared/components/PermissionDropdown';
 import { useWorkspaceStore } from '@core/store/useWorkspaceStore';
 
 interface DropdownProps {

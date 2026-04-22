@@ -1,7 +1,7 @@
+import ChatInputArea from '@shared/components/ChatInputArea';
 import { useTeamChatThread } from '../hooks/useTeamChatThread';
-import ChatInputArea from '@shared/domain/chat/ChatInputArea';
 import styles from './TeamChatLayout.module.css';
-import MessageList from '@shared/domain/MessageList';
+import MessageList from '@shared/components/MessageList';
 
 function TeamChatPage() {
   const { allChat, handleTeamChatSend } = useTeamChatThread();

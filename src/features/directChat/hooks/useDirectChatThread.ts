@@ -1,6 +1,6 @@
 import { useUserStore } from '@core/store/useUserStore';
 import { useFriendStore } from '@features/friendList/store/useFriendStore';
-import { useChatThread } from '@shared/domain/chat/useChatThread';
+import { useChatThread } from '@shared/hooks/useChatThread';
 import getMaxId from '@shared/utils/getMaxId';
 import { getItem } from '@shared/utils/sessionStorage';
 import { useEffect, useState } from 'react';

@@ -1,4 +1,4 @@
-import { useChatThread } from '@shared/domain/chat/useChatThread';
+import { useChatThread } from '@shared/hooks/useChatThread';
 
 import getMaxId from '@shared/utils/getMaxId';
 import { getItem, setItem } from '@shared/utils/sessionStorage';

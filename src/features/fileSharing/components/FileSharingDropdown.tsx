@@ -3,7 +3,7 @@ import styles from './FileSharingDropdown.module.css';
 import DeleteFileDialog from './DeleteFileDialog';
 import { useUserStore } from '@core/store/useUserStore';
 import { getIsPermit } from '@shared/utils/permitUtils';
-import PermissionDropdown from '@shared/domain/PermissionDropdown';
+import PermissionDropdown from '@shared/components/PermissionDropdown';
 import { useWorkspaceStore } from '@core/store/useWorkspaceStore';
 
 interface DropdownProps {

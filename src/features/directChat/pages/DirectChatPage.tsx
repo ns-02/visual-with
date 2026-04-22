@@ -1,12 +1,12 @@
 import { useDirectChatThread } from '../hooks/useDirectChatThread';
 import styles from './DirectChatLayout.module.css';
-import MessageList from '@shared/domain/MessageList';
+import MessageList from '@shared/components/MessageList';
 import { useFriendStore } from '@features/friendList/store/useFriendStore';
 import { useDirectChatStore } from '../store/useDirectChatStore';
-import ChatInputArea from '@shared/domain/chat/ChatInputArea';
 import SelectFriendCard from '../components/SelectFriendCard';
 import { useEffect, useState } from 'react';
 import { FriendData } from '@shared/models/User';
+import ChatInputArea from '@shared/components/ChatInputArea';
 
 interface FriendItem extends FriendData {
   chat: string;
