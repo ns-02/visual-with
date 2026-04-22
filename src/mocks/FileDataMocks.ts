@@ -1,6 +1,6 @@
-import { FileData } from '@shared/models/Workspace';
+import { TeamFileData } from '@shared/models/Workspace';
 
-export const fileDataMocks: FileData[] = [
+export const fileDataMocks: TeamFileData[] = [
   {
     id: 1,
     fileName: '이미지.png',

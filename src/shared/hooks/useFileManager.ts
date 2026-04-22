@@ -1,15 +1,25 @@
-import { useWorkspaceParams } from '@core/hooks/useWorkspaceParams';
-import { useFileStore } from '../store/useFileStore';
 import { formatDate } from '@shared/utils/formatDate';
 import { useRef } from 'react';
 
-export const useFileManager = () => {
-  const { teamId } = useWorkspaceParams();
-  const uploadFile = useFileStore((state) => state.uploadFile);
-  const setIsLoading = useFileStore((state) => state.setIsLoading);
-  const setCurrentFile = useFileStore((state) => state.setCurrentFile);
-  const setProgress = useFileStore((state) => state.setProgress);
-  const increaseProgress = useFileStore((state) => state.increaseProgress);
+interface FileManagerActions {
+  uploadFile: (file: File, date: string, id: string) => void;
+  setIsLoading: (isLoading: boolean) => void;
+  setCurrentFile: (file: File | null, date: string, id: string) => void;
+  setProgress: (progress: number) => void;
+  increaseProgress: () => void;
+}
+
+export const useFileManager = (
+  id: string | null,
+  actions: FileManagerActions,
+) => {
+  const {
+    uploadFile,
+    setIsLoading,
+    setCurrentFile,
+    setProgress,
+    increaseProgress,
+  } = actions;
   const timerRef = useRef<NodeJS.Timeout | null>(null);
   const delayTimerRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -39,14 +49,14 @@ export const useFileManager = () => {
   };
 
   const loadAndUploadFile = async (file: File | undefined) => {
-    if (!file || !teamId) return;
+    if (!file || !id) return;
 
     setIsLoading(true);
-    setCurrentFile(file, formatDate(), teamId);
+    setCurrentFile(file, formatDate(), id);
     await runProgress();
     setIsLoading(false);
-    setCurrentFile(null, formatDate(), teamId);
-    uploadFile(file, formatDate(), teamId);
+    setCurrentFile(null, formatDate(), id);
+    uploadFile(file, formatDate(), id);
   };
 
   return { loadAndUploadFile };

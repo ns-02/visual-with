@@ -84,10 +84,10 @@ function DirectChatPage() {
               </div>
             )}
           </div>
-          <ChatInputArea
+          {/* <ChatInputArea
             itemClassName={styles.bottom_input_area}
             onSend={handleDirectChatSend}
-          />
+          /> */}
         </div>
       )}
     </div>

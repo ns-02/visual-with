@@ -7,9 +7,11 @@ import FileUploadDropdown from '../FileUploadDropdown';
 function ChatInputArea({
   itemClassName,
   onSend,
+  onUpload,
 }: {
   itemClassName: string;
   onSend: (chat: string) => void;
+  onUpload: (file: File | undefined) => Promise<void>;
 }) {
   const [chat, setChat] = useState('');
 
@@ -31,7 +33,7 @@ function ChatInputArea({
 
   return (
     <div className={itemClassName}>
-      <FileUploadDropdown triggerElement={triggerElement} />
+      <FileUploadDropdown triggerElement={triggerElement} onUpload={onUpload} />
       <Input
         className={styles.input}
         value={chat}

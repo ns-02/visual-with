@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction, useState } from 'react';
 import { Dialog, Group, DialogInput } from '@shared/components';
-import { useFileManager } from '../hooks/useFileManager';
+import { useTeamFileManager } from '../hooks/useTeamFileManager';
 
 interface UploadFileDialogProps {
   open: boolean;
@@ -8,7 +8,7 @@ interface UploadFileDialogProps {
 }
 
 const UploadFileDialog = ({ open, onOpenChange }: UploadFileDialogProps) => {
-  const { loadAndUploadFile } = useFileManager();
+  const { loadAndUploadFile } = useTeamFileManager();
   const [file, setFile] = useState<File>();
 
   const handleUploadFile = () => {

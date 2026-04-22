@@ -1,36 +1,34 @@
-import { fileDataMocks } from '@mocks/FileDataMocks';
-
 import { create } from 'zustand';
-import { FileData, TeamId } from '@shared/models/Workspace';
 import {
   getFormattedFileSize,
   getFormattedFileType,
-} from '../utils/formatFile';
+} from '@shared/utils/formatFile';
+import { DirectFileData } from '@shared/models/Workspace';
 
-interface FileState {
-  fileData: FileData[];
+interface DirectFileState {
+  fileData: DirectFileData[];
   isLoading: boolean;
-  currentFile: FileData | null;
+  currentFile: DirectFileData | null;
   progress: number;
-  uploadFile: (file: File, formattedDate: string, teamId: TeamId) => void;
+  uploadFile: (file: File, formattedDate: string, friendId: string) => void;
   deleteFile: (fileId: number) => void;
   setIsLoading: (isLoading: boolean) => void;
   setCurrentFile: (
     file: File | null,
     formattedDate: string,
-    teamId: TeamId,
+    friendId: string,
   ) => void;
   setProgress: (progress: number) => void;
   increaseProgress: () => void;
 }
 
-export const useFileStore = create<FileState>((set) => ({
-  fileData: fileDataMocks || [],
+export const useDirectFileStore = create<DirectFileState>((set) => ({
+  fileData: [],
   isLoading: false,
   currentFile: null,
   progress: 0,
 
-  uploadFile: (file, formattedDate, teamId) =>
+  uploadFile: (file, formattedDate, friendId) =>
     set((state) => ({
       fileData: [
         ...state.fileData,
@@ -43,7 +41,7 @@ export const useFileStore = create<FileState>((set) => ({
           date: formattedDate,
           uploader: '아무개',
           timeAgo: '오늘',
-          teamId,
+          friendId,
         },
       ],
     })),
@@ -55,7 +53,7 @@ export const useFileStore = create<FileState>((set) => ({
 
   setIsLoading: (value) => set({ isLoading: value }),
 
-  setCurrentFile: (file, formattedDate, teamId) => {
+  setCurrentFile: (file, formattedDate, friendId) => {
     if (!file) {
       set({ currentFile: null });
       return;
@@ -70,7 +68,7 @@ export const useFileStore = create<FileState>((set) => ({
         date: formattedDate,
         uploader: '아무개',
         timeAgo: '오늘',
-        teamId,
+        friendId,
       },
     }));
   },

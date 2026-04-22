@@ -52,7 +52,7 @@ export interface ChatData {
   isMe: boolean;
 }
 
-export interface FileData {
+export interface BaseFileData {
   id: number;
   fileName: string;
   fileSize: string;
@@ -60,7 +60,16 @@ export interface FileData {
   date: string;
   uploader: string;
   timeAgo?: string;
+}
+
+// 팀 파일
+export interface TeamFileData extends BaseFileData {
   teamId: TeamId;
+}
+
+// 친구 간 파일
+export interface DirectFileData extends BaseFileData {
+  friendId: string;
 }
 
 export type ScheduleState = '완료' | '진행중' | '예정';

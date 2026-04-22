@@ -1,11 +1,11 @@
 import FileIcon from './FileIcon';
 import styles from './FileUploadCard.module.css';
-import { useFileStore } from '../store/useFileStore';
+import { useTeamFileStore } from '../store/useTeamFileStore';
 import { Progress } from '@shared/components';
 
 const FileUploadCard = () => {
-  const currentFile = useFileStore((state) => state.currentFile);
-  const progress = useFileStore((state) => state.progress);
+  const currentFile = useTeamFileStore((state) => state.currentFile);
+  const progress = useTeamFileStore((state) => state.progress);
 
   return (
     <div className={styles.container}>

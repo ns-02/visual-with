@@ -1,14 +1,14 @@
 import { ChangeEvent, DragEvent, useRef, useState } from 'react';
 import { Upload } from 'lucide-react';
 import styles from './DragAndDrop.module.css';
-import { useFileManager } from '../hooks/useFileManager';
 import { FileInput } from '@shared/components';
 import FileSelectButton from './FileSelectButton';
+import { useTeamFileManager } from '../hooks/useTeamFileManager';
 
 const DragAndDrop = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   const [dragging, setDragging] = useState(false);
-  const { loadAndUploadFile } = useFileManager();
+  const { loadAndUploadFile } = useTeamFileManager();
 
   const containerStyle = dragging
     ? styles.container_dragging

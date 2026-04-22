@@ -3,14 +3,14 @@ import styles from './FileSharingLayout.module.css';
 import DragAndDrop from '../components/DragAndDrop';
 import FileUploadCard from '../components/FileUploadCard';
 import FileListCard from '../components/FileListCard';
-import { useFileStore } from '../store/useFileStore';
+import { useTeamFileStore } from '../store/useTeamFileStore';
 import { useWorkspaceParams } from '@core/hooks/useWorkspaceParams';
 import FileNavButton from '../components/FileNavButton';
 
 function FileSharingPage() {
   const [fileTypes, setFileTypes] = useState<string>('all');
-  const fileData = useFileStore((state) => state.fileData);
-  const isLoading = useFileStore((state) => state.isLoading);
+  const fileData = useTeamFileStore((state) => state.fileData);
+  const isLoading = useTeamFileStore((state) => state.isLoading);
   const { teamId } = useWorkspaceParams();
 
   const fileNavItemsInit = [
