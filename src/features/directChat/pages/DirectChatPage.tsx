@@ -9,6 +9,7 @@ import { FriendData } from '@shared/models/User';
 import ChatInputArea from '@shared/components/ChatInputArea';
 import { useNavigate } from 'react-router-dom';
 import { getPathFromFriendId } from '@core/routes/routeMap';
+import { useDirectFileManager } from '../hooks/useDirectFileManager';
 
 interface FriendItem extends FriendData {
   chat: string;
@@ -16,20 +17,18 @@ interface FriendItem extends FriendData {
 }
 
 function DirectChatPage() {
-  const selectFriendData = useFriendStore((state) => state.selectFriendData);
+  const selectFriendId = useFriendStore((state) => state.selectFriendId);
   const isAreaOpen = useDirectChatStore((state) => state.isAreaOpen);
   const friendData = useFriendStore((state) => state.friendData);
-  const updateSelectFriend = useFriendStore(
-    (state) => state.updateSelectFriend,
-  );
   const friendIdChatMap = useDirectChatStore((state) => state.friendIdChatMap);
   const { allChat, handleDirectChatSend } = useDirectChatThread();
+  const { loadAndUploadFile } = useDirectFileManager();
   const [friendItems, setFriendItems] = useState<FriendItem[]>([]);
   const navigate = useNavigate();
 
   useEffect(() => {
     const nextFriendItems = friendData?.map((data) => {
-      return data.id === selectFriendData?.id
+      return data.id === selectFriendId
         ? { ...data, chat: friendIdChatMap.get(data.id) || '', selected: true }
         : {
             ...data,
@@ -41,7 +40,7 @@ function DirectChatPage() {
     if (nextFriendItems) {
       setFriendItems(nextFriendItems);
     }
-  }, [friendData, selectFriendData, friendIdChatMap]);
+  }, [friendData, selectFriendId, friendIdChatMap]);
 
   const handleCardSelect = (id: string) => {
     const nextFriendItems = friendItems.map((item) =>
@@ -51,7 +50,6 @@ function DirectChatPage() {
     );
 
     setFriendItems(nextFriendItems);
-    updateSelectFriend(id);
     navigate(getPathFromFriendId(id));
   };
 
@@ -71,7 +69,7 @@ function DirectChatPage() {
         })}
       </div>
 
-      {!selectFriendData ? (
+      {!selectFriendId ? (
         <div className={styles.chat_view_panel}>
           <div className={styles.overview}>준비 중인 화면입니다</div>
         </div>
@@ -88,10 +86,11 @@ function DirectChatPage() {
               </div>
             )}
           </div>
-          {/* <ChatInputArea
+          <ChatInputArea
             itemClassName={styles.bottom_input_area}
             onSend={handleDirectChatSend}
-          /> */}
+            onUpload={loadAndUploadFile}
+          />
         </div>
       )}
     </div>

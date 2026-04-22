@@ -11,7 +11,7 @@ import {
 import { ChatData } from '@shared/models/Workspace';
 
 export const useDirectChatThread = () => {
-  const selectFriendData = useFriendStore((state) => state.selectFriendData);
+  const selectFriendId = useFriendStore((state) => state.selectFriendId);
   const setFriendIdChatMap = useDirectChatStore(
     (state) => state.setFriendIdChatMap,
   );
@@ -20,10 +20,9 @@ export const useDirectChatThread = () => {
   const [currentId, setCurrentId] = useState(1);
 
   useEffect(() => {
-    if (!selectFriendData?.id) return;
+    if (!selectFriendId) return;
 
-    const stored =
-      getItem(`directChats_${selectFriendData?.id || ''}`, '') || [];
+    const stored = getItem(`directChats_${selectFriendId || ''}`, '') || [];
 
     const nextAllChat: ChatData[] = stored.map((chat: ChatData) => ({
       ...chat,
@@ -34,20 +33,20 @@ export const useDirectChatThread = () => {
 
     const maxId = getMaxId(nextAllChat);
     setCurrentId(maxId + 1);
-  }, [selectFriendData?.id, userId]);
+  }, [selectFriendId, userId]);
 
   const { handleSend } = useChatThread(
     allChat,
     setAllChat,
     currentId,
     setCurrentId,
-    `directChats_${selectFriendData?.id || ''}`,
+    `directChats_${selectFriendId || ''}`,
   );
 
   const handleDirectChatSend = (chatToSend: string) => {
-    if (!selectFriendData?.id) return;
+    if (!selectFriendId) return;
     handleSend(chatToSend);
-    handleAddLastChat(selectFriendData?.id, chatToSend);
+    handleAddLastChat(selectFriendId, chatToSend);
   };
 
   const handleAddLastChat = (id: string, chat: string) => {
