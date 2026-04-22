@@ -1,11 +1,15 @@
-import type {
-  AddTodoInput,
-  UpdateTodoInput,
-} from '@features/todoList/models/TodoType';
 import { todoDataMocks } from '@mocks/TodoDataMocks';
 import { TodoData } from '@shared/models/Workspace';
 
 import { create } from 'zustand';
+
+export type AddTodoInput = Pick<
+  TodoData,
+  'title' | 'description' | 'teamId' | 'authorId' | 'authorName'
+>;
+
+export type UpdateTodoInput = Pick<TodoData, 'id'> &
+  Partial<Pick<TodoData, 'title' | 'description' | 'authorId' | 'authorName'>>;
 
 interface TodoState {
   todoData: TodoData[];

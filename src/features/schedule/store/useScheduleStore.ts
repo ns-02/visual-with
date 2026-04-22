@@ -1,11 +1,35 @@
-import type {
-  AddScheduleInput,
-  UpdateScheduleInput,
-} from '@features/schedule/models/ScheduleType';
 import { scheduleDataMocks } from '@mocks/ScheduleDataMocks';
 import { ScheduleData } from '@shared/models/Workspace';
 
 import { create } from 'zustand';
+
+export type AddScheduleInput = Pick<
+  ScheduleData,
+  | 'title'
+  | 'authorId'
+  | 'authorName'
+  | 'startDate'
+  | 'startTime'
+  | 'finishDate'
+  | 'finishTime'
+  | 'description'
+  | 'teamId'
+>;
+
+export type UpdateScheduleInput = Pick<ScheduleData, 'id'> &
+  Partial<
+    Pick<
+      ScheduleData,
+      | 'title'
+      | 'authorId'
+      | 'authorName'
+      | 'startDate'
+      | 'startTime'
+      | 'finishDate'
+      | 'finishTime'
+      | 'description'
+    >
+  >;
 
 interface ScheduleState {
   scheduleData: ScheduleData[];
