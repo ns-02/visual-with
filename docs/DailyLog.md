@@ -71,3 +71,8 @@
   - store, models 통합, features의 레이아웃을 모두 page로 통합.
   - RouteWatcher를 삭제하고 teamId와 toolId를 url 단위로 관리. 로컬스토리지 이용.
   - 분리된 button, authButton, contentButton을 하나의 button으로 통합.
+
+## 260422
+  - 뭔가 많은 일이 있었음
+  - 라우팅 로직을 한곳에 몰아넣어야 함.
+  - 친구채팅 라우팅 로직 보완 필요. 다른 메뉴에서 친구 채팅으로 옮길 때, 저장된 친구 ID가 있다면 해당 url로, 없으면 기본값.
