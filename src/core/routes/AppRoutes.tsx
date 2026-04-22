@@ -17,7 +17,10 @@ export default function AppRoutes() {
         <Route path='/main' element={<Feat.MainLayout />}>
           <Route index element={<Feat.MainPage />} />
           <Route path='friendlist' element={<Feat.FriendListPage />} />
-          <Route path='directchat' element={<Feat.DirectChatPage />} />
+          <Route
+            path='directchat/:friendId?'
+            element={<Feat.DirectChatPage />}
+          />
 
           <Route path=':teamId' element={<Feat.TeamLayout />}>
             <Route index element={<Feat.TeamPage />} />
