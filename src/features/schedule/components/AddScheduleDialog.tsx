@@ -1,9 +1,9 @@
 import { useWorkspaceParams } from '@core/hooks/useWorkspaceParams';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { Dialog, DialogInput, Group, Row } from '@shared/components';
-import { getDate } from '@shared/utils/dateUtils';
 import { useScheduleStore } from '../store/useScheduleStore';
 import { useUserStore } from '@core/store/useUserStore';
+import { formatDate, formatTime } from '@shared/utils/formatDate';
 
 export interface AddScheduleDialogProps {
   open: boolean;
@@ -23,9 +23,8 @@ const AddScheduleDialog = ({ open, onOpenChange }: AddScheduleDialogProps) => {
   const [description, setDescription] = useState('');
 
   useEffect(() => {
-    const { year, month, day, hour, minute } = getDate();
-    setstartDate(`${year}-${month}-${day}`);
-    setStartTime(`${hour}:${minute}`);
+    setstartDate(formatDate());
+    setStartTime(formatTime());
   }, []);
 
   const handleAddSchedule = () => {

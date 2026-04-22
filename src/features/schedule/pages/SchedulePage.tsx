@@ -5,7 +5,7 @@ import styles from './ScheduleLayout.module.css';
 import { useEffect, useMemo, useState } from 'react';
 import { ScheduleData } from '@shared/models/Workspace';
 import Calendar from '../components/Calendar';
-import { getDate } from '@shared/utils/dateUtils';
+import { formatDate } from '@shared/utils/formatDate';
 
 function SchedulePage() {
   const scheduleData = useScheduleStore((state) => state.scheduleData);
@@ -16,10 +16,7 @@ function SchedulePage() {
   );
 
   const [selected, setSelected] = useState<Date>();
-  const [selectedYear, setSelectedYear] = useState('');
-  const [selectedMonth, setSelectedMonth] = useState('');
-  const [selectedDay, setSelectedDay] = useState('');
-  const { day } = getDate();
+  const day = new Date().getDate();
 
   const [completedData, setCompletedData] = useState<ScheduleData[] | null>(
     null,
@@ -52,21 +49,10 @@ function SchedulePage() {
     setUpcomingData(nextUpcomingData);
   }, [teamScheduleData, teamId]);
 
-  useEffect(() => {
-    if (!selected) {
-      const { year: y, month: m, day: d } = getDate();
-      setSelectedYear(y.toString());
-      setSelectedMonth(m.toString());
-      setSelectedDay(d.toString());
-    } else {
-      setSelectedYear(selected.getFullYear().toString());
-      setSelectedMonth((selected.getMonth() + 1).toString());
-      setSelectedDay(selected.getDate().toString());
-    }
-  }, [selected]);
-
   const filteredSchedules = teamScheduleData.filter((item) => {
-    const selectedFormattedDate = `${selectedYear}-${selectedMonth}-${selectedDay}`;
+    const selectedFormattedDate = selected
+      ? formatDate(selected)
+      : formatDate();
     return item.startDate === selectedFormattedDate;
   });
 
