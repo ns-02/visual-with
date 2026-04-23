@@ -1,4 +1,4 @@
-import styles from './FileNavButton.module.css';
+import styles from './FileSharingUI.module.css';
 
 const FileNavButton = ({
   text,
@@ -11,7 +11,7 @@ const FileNavButton = ({
 }) => {
   return (
     <button
-      className={`${styles.button} ${selected && styles.selected}`}
+      className={`${styles.nav_button} ${selected && styles.selected}`}
       onClick={onClick}
     >
       {text}

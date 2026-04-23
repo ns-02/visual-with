@@ -1,7 +1,7 @@
 import { EllipsisVertical } from 'lucide-react';
 import { Button } from '@shared/components';
 import FriendListDropdown from './FriendListDropdown';
-import styles from './FriendListCard.module.css';
+import styles from './FriendListUI.module.css';
 import Avatar from '@shared/components/Avatar';
 
 interface FriendListCardProps {

@@ -1,9 +1,9 @@
 import { FileText } from 'lucide-react';
-import styles from './FileIcon.module.css';
+import styles from './FileSharingUI.module.css';
 
 const FileIcon = () => {
   return (
-    <div className={styles.container}>
+    <div className={styles.file_icon}>
       <FileText size={24} />
     </div>
   );

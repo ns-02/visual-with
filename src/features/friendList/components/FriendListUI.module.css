@@ -8,13 +8,7 @@
 
 .info_contents {
   display: flex;
-  flex-direction: column;
   padding: 16px;
-  gap: 4px;
-}
-
-.datetime {
-  display: flex;
   gap: 12px;
 }
 
@@ -23,11 +17,25 @@
   align-items: center;
   padding: 14px;
   gap: 8px;
-  font-size: 13px;
+}
+
+.button_secondary_400 {
+  background-color: var(--color-button-secondary-400);
+}
+
+.button_secondary_600 {
+  background-color: var(--color-button-secondary-600);
 }
 
 .label {
-  padding: 2px 10px;
-  border-radius: 6px;
-  background-color: var(--color-button-secondary-500);
+  display: flex;
+  margin-top: 24px;
+  margin-bottom: 12px;
+  gap: 12px;
+  align-items: center;
+}
+
+.count {
+  font-size: 10pt;
+  color: #777;
 }

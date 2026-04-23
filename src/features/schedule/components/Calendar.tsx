@@ -1,6 +1,6 @@
 import { DayPicker } from 'react-day-picker';
 import { ko } from 'date-fns/locale';
-import styles from './Calendar.module.css';
+import styles from './ScheduleUI.module.css';
 import 'react-day-picker/style.css';
 import '@core/styles/globalDaypicker.css';
 import { Dispatch, memo, SetStateAction } from 'react';

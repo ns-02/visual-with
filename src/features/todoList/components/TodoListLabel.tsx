@@ -1,4 +1,4 @@
-import styles from './TodoListLabel.module.css';
+import styles from './TodoListUI.module.css';
 
 export interface TodoListLabelProps {
   text?: string;

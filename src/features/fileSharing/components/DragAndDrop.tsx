@@ -1,6 +1,6 @@
 import { ChangeEvent, DragEvent, useRef, useState } from 'react';
 import { Upload } from 'lucide-react';
-import styles from './DragAndDrop.module.css';
+import styles from './FileSharingUI.module.css';
 import { FileInput } from '@shared/components';
 import FileSelectButton from './FileSelectButton';
 import { useTeamFileManager } from '../hooks/useTeamFileManager';
@@ -11,8 +11,8 @@ const DragAndDrop = () => {
   const { loadAndUploadFile } = useTeamFileManager();
 
   const containerStyle = dragging
-    ? styles.container_dragging
-    : styles.container;
+    ? styles.drop_zone_dragging
+    : styles.drop_zone;
 
   // '파일 선택' 버튼 클릭 시 동작
   const handleSelectFile = () => {

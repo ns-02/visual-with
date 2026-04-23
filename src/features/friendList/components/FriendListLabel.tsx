@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import styles from './FriendListLabel.module.css';
+import styles from './FriendListUI.module.css';
 
 const FriendListLabel = ({
   text,

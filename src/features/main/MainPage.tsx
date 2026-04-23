@@ -1,4 +1,4 @@
-import styles from './MainPage.module.css';
+import styles from './Layouts.module.css';
 
 function MainPage() {
   return (

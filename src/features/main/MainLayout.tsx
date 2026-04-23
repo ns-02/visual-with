@@ -1,19 +1,18 @@
 import { Outlet } from 'react-router-dom';
-import LeftMenu from './components/LeftMenu';
-import RightSection from './components/RightSection';
-import MainHeader from './components/MainHeader';
-import MainBody from './components/MainBody';
+import LeftMenu from './LeftMenu';
+import MainHeader from './MainHeader';
+import styles from './Layouts.module.css';
 
 function MainLayout() {
   return (
     <>
       <LeftMenu />
-      <RightSection>
+      <section className={styles.rightsection}>
         <MainHeader />
-        <MainBody>
+        <div className={styles.body}>
           <Outlet />
-        </MainBody>
-      </RightSection>
+        </div>
+      </section>
     </>
   );
 }
