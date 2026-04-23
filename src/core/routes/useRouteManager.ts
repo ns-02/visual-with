@@ -1,7 +1,8 @@
 import { useLocation, useNavigate } from 'react-router-dom';
-import { idToPath, pathToId } from './routeMap';
+import { idToPath } from './routeMap';
 import { ToolId } from '@shared/models/Workspace';
 import { useTeamId } from '@core/hooks/useWorkspaceParams';
+import { getToolIdFromPath } from './routeUtils';
 
 export const useRouteManager = () => {
   const navigate = useNavigate();
@@ -49,16 +50,3 @@ export const useRouteManager = () => {
     switchFriend,
   };
 };
-
-// url로 toolId 추출하기
-export function getToolIdFromPath(pathname: string): ToolId | null {
-  const parts = pathname.split('/').filter(Boolean);
-
-  // url에서 features 찾기
-  for (const part of parts) {
-    const toolId = pathToId.get(part);
-    if (toolId) return toolId;
-  }
-
-  return 'home';
-}
