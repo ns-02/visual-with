@@ -1,5 +1,5 @@
 import { useParams, useLocation } from 'react-router-dom';
-import { useEffect, useMemo } from 'react';
+import { useMemo } from 'react';
 import { useWorkspaceStore } from '@core/store/useWorkspaceStore';
 import { useFriendStore } from '@features/friendList/store/useFriendStore';
 import { getToolIdFromPath } from '@core/routes/routeUtils';
@@ -7,13 +7,6 @@ import { getToolIdFromPath } from '@core/routes/routeUtils';
 export function useFriendId() {
   const { friendId: urlFriendId } = useParams();
   const selectFriendId = useFriendStore((state) => state.selectFriendId);
-  const setSelectFriendId = useFriendStore((state) => state.setSelectFriendId);
-
-  useEffect(() => {
-    if (urlFriendId && urlFriendId !== selectFriendId) {
-      setSelectFriendId(urlFriendId);
-    }
-  }, [urlFriendId, selectFriendId, setSelectFriendId]);
 
   return urlFriendId || selectFriendId;
 }
@@ -21,13 +14,6 @@ export function useFriendId() {
 export function useTeamId() {
   const { teamId: urlTeamId } = useParams();
   const selectTeamId = useWorkspaceStore((state) => state.selectTeamId);
-  const setSelectTeam = useWorkspaceStore((state) => state.setSelectTeam);
-
-  useEffect(() => {
-    if (urlTeamId && urlTeamId !== selectTeamId) {
-      setSelectTeam(urlTeamId);
-    }
-  }, [urlTeamId, selectTeamId, setSelectTeam]);
 
   return urlTeamId || selectTeamId;
 }

@@ -4,7 +4,7 @@ import DeleteFileDialog from './DeleteFileDialog';
 import { useUserStore } from '@core/store/useUserStore';
 import { getIsPermit } from '@shared/utils/permitUtils';
 import PermissionDropdown from '@shared/components/PermissionDropdown';
-import { useWorkspaceStore } from '@core/store/useWorkspaceStore';
+import { useCurrentWorkspace } from '@core/hooks/useCurrentWorkspace';
 
 interface DropdownProps {
   fileId?: number;
@@ -19,7 +19,7 @@ const FileSharingDropdown = ({
 }: DropdownProps) => {
   const [isDeleteFileDialogOpen, setIsDeleteFileDialogOpen] = useState(false);
   const userId = useUserStore((state) => state.user?.id);
-  const currentRule = useWorkspaceStore((state) => state.currentRule);
+  const { currentRule } = useCurrentWorkspace();
 
   const Actions = [
     { id: '1', text: '삭제', onClick: () => setIsDeleteFileDialogOpen(true) },

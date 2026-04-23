@@ -5,7 +5,7 @@ import DeleteTodoDialog from './DeleteTodoDialog';
 import { getIsPermit } from '@shared/utils/permitUtils';
 import { useUserStore } from '@core/store/useUserStore';
 import PermissionDropdown from '@shared/components/PermissionDropdown';
-import { useWorkspaceStore } from '@core/store/useWorkspaceStore';
+import { useCurrentWorkspace } from '@core/hooks/useCurrentWorkspace';
 
 interface DropdownProps {
   todoId?: number;
@@ -21,7 +21,7 @@ const TodoListDropdown = ({
   const [isUpdateTodoDialogOpen, setIsUpdateTodoDialogOpen] = useState(false);
   const [isDeleteTodoDialogOpen, setIsDeleteTodoDialogOpen] = useState(false);
   const userId = useUserStore((state) => state.user?.id);
-  const currentRule = useWorkspaceStore((state) => state.currentRule);
+  const { currentRule } = useCurrentWorkspace();
 
   const Actions = [
     { id: '1', text: '수정', onClick: () => setIsUpdateTodoDialogOpen(true) },

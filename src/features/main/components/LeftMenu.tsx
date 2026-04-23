@@ -20,10 +20,10 @@ import Divider from './Divider';
 import styles from './Layouts.module.css';
 import TooltipItem from './TooltipItem';
 import { useToolId } from '@core/hooks/useWorkspaceParams';
-import { useWorkspaceStore } from '@core/store/useWorkspaceStore';
 import { ToolId } from '@shared/models/Workspace';
 import { useRouteManager } from '@core/routes/useRouteManager';
 import { useTeamManager } from '@features/teamManager/hooks/useTeamManager';
+import { useCurrentWorkspace } from '@core/hooks/useCurrentWorkspace';
 
 interface MenuItem {
   id: ToolId;
@@ -34,9 +34,9 @@ interface MenuItem {
 function LeftMenu() {
   const [isInviteTeamDialogOpen, setIsInviteTeamDialogOpen] = useState(false);
   const toolId = useToolId();
-  const selectTeamName = useWorkspaceStore((state) => state.selectTeamName);
   const { switchTeamWithTool, switchTool } = useRouteManager();
   const { isTeamMember } = useTeamManager();
+  const { selectTeamName } = useCurrentWorkspace();
 
   const topMenuItems: MenuItem[] = [
     {

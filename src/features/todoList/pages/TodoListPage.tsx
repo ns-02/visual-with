@@ -5,15 +5,15 @@ import TodoListCard from '../components/TodoListCard';
 import { useTodoStore } from '../store/useTodoStore';
 import { useWorkspaceParams } from '@core/hooks/useWorkspaceParams';
 import { useUserStore } from '@core/store/useUserStore';
-import { useWorkspaceStore } from '@core/store/useWorkspaceStore';
 import { useMemo } from 'react';
 import { getIsPermit } from '@shared/utils/permitUtils';
+import { useCurrentWorkspace } from '@core/hooks/useCurrentWorkspace';
 
 function TodoListPage() {
   const todoData = useTodoStore((state) => state.todoData);
   const { teamId } = useWorkspaceParams();
   const userId = useUserStore((state) => state.user?.id);
-  const currentRule = useWorkspaceStore((state) => state.currentRule);
+  const { currentRule } = useCurrentWorkspace();
   const progressData = useMemo(
     () => todoData.filter((item) => item.teamId === teamId && !item.checked),
     [todoData, teamId],

@@ -5,7 +5,7 @@ import styles from './ScheduleDropdown.module.css';
 import { getIsPermit } from '@shared/utils/permitUtils';
 import { useUserStore } from '@core/store/useUserStore';
 import PermissionDropdown from '@shared/components/PermissionDropdown';
-import { useWorkspaceStore } from '@core/store/useWorkspaceStore';
+import { useCurrentWorkspace } from '@core/hooks/useCurrentWorkspace';
 
 interface DropdownProps {
   scheduleId?: number;
@@ -23,7 +23,7 @@ const ScheduleDropdown = ({
   const [isDeleteScheduleDialogOpen, setIsDeleteScheduleDialogOpen] =
     useState(false);
   const userId = useUserStore((state) => state.user?.id);
-  const currentRule = useWorkspaceStore((state) => state.currentRule);
+  const { currentRule } = useCurrentWorkspace();
 
   const Actions = [
     {

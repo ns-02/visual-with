@@ -17,9 +17,6 @@ interface WorkspaceState {
   membershipData: TeamMembershipData[];
 
   selectTeamId: TeamId | null;
-  selectTeamName: TeamName;
-  currentRule: TeamRule;
-
   isTeamInit: boolean;
 
   setSelectTeam: (teamId: TeamId | null) => void;
@@ -29,8 +26,6 @@ interface WorkspaceState {
   addTeamRule: (userId: string, teamId: TeamId, rule: TeamRule) => void;
   deleteTeamRule: (teamId: TeamId) => void;
   updateTeamRule: (teamId: TeamId, rule: TeamRule) => void;
-
-  setCurrentRule: (rule: TeamRule) => void;
 }
 
 export const useWorkspaceStore = create<WorkspaceState>()(
@@ -45,18 +40,12 @@ export const useWorkspaceStore = create<WorkspaceState>()(
       isTeamInit: false,
 
       setSelectTeam: (teamId) => {
-        const team = get().teamData.find((t) => t.id === teamId);
-        const membership = get().membershipData.find(
-          (m) => m.teamId === teamId,
-        );
         const { isTeamInit } = get();
 
         if (!isTeamInit) set({ isTeamInit: true });
 
         set({
           selectTeamId: teamId,
-          selectTeamName: team?.name || '',
-          currentRule: membership?.rule || 'MEMBER',
         });
       },
 
@@ -98,15 +87,11 @@ export const useWorkspaceStore = create<WorkspaceState>()(
               : item,
           ),
         })),
-
-      setCurrentRule: (rule) => set({ currentRule: rule }),
     }),
     {
       name: 'workspace-storage',
       partialize: (state) => ({
         selectTeamId: state.selectTeamId,
-        selectTeamName: state.selectTeamName,
-        currentRule: state.currentRule,
         isTeamInit: state.isTeamInit,
       }),
     },

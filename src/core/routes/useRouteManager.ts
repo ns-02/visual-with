@@ -3,14 +3,19 @@ import { idToPath } from './routeMap';
 import { ToolId } from '@shared/models/Workspace';
 import { useTeamId } from '@core/hooks/useWorkspaceParams';
 import { getToolIdFromPath } from './routeUtils';
+import { useWorkspaceStore } from '@core/store/useWorkspaceStore';
+import { useFriendStore } from '@features/friendList/store/useFriendStore';
 
 export const useRouteManager = () => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const teamId = useTeamId();
+  const setSelectTeam = useWorkspaceStore((state) => state.setSelectTeam);
+  const setSelectFriendId = useFriendStore((state) => state.setSelectFriendId);
 
   const switchTeamWithTool = (nextTeamId: string) => {
     const toolId = getToolIdFromPath(pathname);
+    setSelectTeam(nextTeamId);
 
     if (toolId) {
       const toolPath = idToPath.get(toolId) || '';
@@ -41,6 +46,7 @@ export const useRouteManager = () => {
   };
 
   const switchFriend = (friendId: string) => {
+    setSelectFriendId(friendId);
     navigate(`/main/directchat/${friendId}`);
   };
 
