@@ -64,15 +64,105 @@
   2) 순수 변수와 UI의 변수를 분리하기
   3) 예외 처리 잘 하기
 
+## 260420
+  - TeamRuleData -> TeamMemberShipData 변경, TeamId 뿐만 아니라 UserId도 함께 받도록 변경 (1:N 관계 데이터)
+  - (공동)리더만 팀 관리 버튼을 클릭할 수 있도록 함
+  - schedule, todo에 authorId가 출력되도록 변경
+  - 권한에 따른 명령 구분: 리더와 공동리더는 다른 사람의 생성물을 삭제, 수정 가능. 멤버는 자신의 것만 가능 불가능.
+
+### 코멘트
+  - 파일공유가 하드코딩인지 실제 프론트엔드 내 데이터를 전달하는지 확인 필요
+
 ## 260421
-  - Button에서 isLoading 관리를 없애버림. 추후 기능 구현 시 더 상위 컴포넌트에서 isLoading을 넘겨줄 것.
-  - fileUploadDropdown은 팀 채팅 기준으로 만들어졌으며, 추후 친구 채팅에서 파일 업로드 시 이를 수정해야 함.
-  - 오버엔지니어링을 인식. 과한 추상화와 분리를 줄이고자 파일을 통합함. (기존 250개 -> 현재 200개)
+  - 오버엔지니어링을 인식. 과한 추상화와 분리를 줄이고자 파일을 통합함. (기존 250개 -> 200개)
   - store, models 통합, features의 레이아웃을 모두 page로 통합.
-  - RouteWatcher를 삭제하고 teamId와 toolId를 url 단위로 관리. 로컬스토리지 이용.
-  - 분리된 button, authButton, contentButton을 하나의 button으로 통합.
+  - teamId와 toolId를 url 단위로 관리 (persist 로컬스토리지 이용) 
+  - 버튼 형식 통합
+
+### 오버엔지니어링 축소 변경사항
+  - 드롭다운 추상화 (PermissionDropdown 사용)
+  - 과도하게 큰 로직을 사용하던 버튼 로직을 제거 (isLoading)
+  - 분리된 button, authButton, contentButton을 하나의 button으로 통합
+  - shared에 domain 폴더 도입 
+  - 개별 feature에 존재했던 models의 위치를 shared로 변경
+  - useAuthStore, useToolIdStore를 useUserStore에 통합
+  - useTeamStore, useTeamMemberShipStore를 useWorkSpaceStore로 통합
+  - useWorkSpaceParams 도입, RouteWatcher 삭제
+  - 여러 개의 models를 User.ts, WorkSpace.ts 2개의 파일로 통합 (Friend.ts도 User.ts에 포함)
+  - feature 내부 layouts을 page에 전부 통합
+  - shared 폴더의 `ui`, `/dialogs`, `/dialogs/ui`, `/layouts`를 전부 `/components` 폴더로 통합 
+  - feature 내부의 `/ui`, `/dialogs`를 `/components` 폴더로 통합하여 평탄화
+  - 각 폴더에 존재하던 26개의 세부 리드미 삭제
+
+### 코멘트
+ - Button에서 isLoading 관리를 없애버림. 추후 기능 구현 시 더 상위 컴포넌트에서 isLoading을 넘겨줄 것
+ - fileUploadDropdown은 팀 채팅 기준으로 만들어졌으며, 추후 친구 채팅에서 파일 업로드 시 이를 수정해야 함 (완료)
 
 ## 260422
-  - 뭔가 많은 일이 있었음
+
+### 핵심 변경사항
+  - 친구 id에 따른 라우팅 로직 추가
+  - 팀 파일, 다이렉트 파일 구분
+  - 재랜더링 최적화
+  - 오버엔지니어링 축소
+
+### 코멘트
+  - 라우팅에서 친구 id를 추가했더니 directchat이 teamId로 인식하는 버그 발생
+  - AppRoute에서 친구 id에 옵셔널 연산자를 추가했더니 버그가 해결됨.
   - 라우팅 로직을 한곳에 몰아넣어야 함.
   - 친구채팅 라우팅 로직 보완 필요. 다른 메뉴에서 친구 채팅으로 옮길 때, 저장된 친구 ID가 있다면 해당 url로, 없으면 기본값.
+
+### 오버엔지니어링 축소 변경사항
+  - 불필요한 index.ts 제거 (6개)
+  - `shared/domain` 폴더 삭제. 각각 공용 components, 공용 hooks에 통합 
+  - usePath 삭제 (초창기 함수 파일인데, 이 역할을 useWorkSpaceParams가 물려받음)
+  - 기존 dateUtils을 삭제하고 formatDate 통합
+  - 불필요 타입 파일, testPage 제거
+  - 파일 관련 유틸 함수 합치기 (파일 사이즈, 파일 타입 포멧)
+
+### 기타 세부 변경사항
+  - 일정 페이지에서 formatDate를 사용하도록 변경
+  - todo, schedule의 상태에 따른 데이터 관리를 useEffect에서 원본 배열 필터링 & useMemo로 변경
+  - leftMenu, MainHeader 최적화
+  - 파일 데이터를 팀 파일 데이터, 다이렉트 파일 데이터로 분리
+  - 기존 파일 업로드 드롭다운에서 직접 호출하던 파일 업로드 로직을 페이지(상위)에 위임
+  - useFileStore를 useTeamFileStore, useDirectFileStore로 복제
+  - useFileManager를 useTeamFileManager, useDirectFileManager로 복제하고 기존 useFileManager는 추상화
+  - 불필요한 updateSelectFriend 제거
+  - selectFriendData를 제거하고 id로 교체, 로컬스토리지 등록
+
+## 260423
+
+### 핵심 변경사항
+  - 라우팅 로직을 한 곳에 몰아넣음. directPage & leftMenu => useRouteManager.
+  - 현재 url과 저장된 값을 바탕으로, 선택된 팀 이름과 역할을 계산하도록 변경
+  - useWorkSpaceParams(url에서 teamId 추출) => useCurrentWorkspace(selectTeamName, currentRule)
+  - 프로젝트 경량화
+  - feature 내부 컴포넌트 css는 파일 하나로 통합
+  - 최신 데이터를 store가 아닌 url에서 직접 받아오도록 변경
+  - 기능 변경사항: 친구 채팅 접근 시, 이전 친구 아이디를 바탕으로 라우팅
+  - 라우팅 시 상대경로가 아닌 절대경로를 사용하도록 변경
+  - - 기존엔 상대경로로 잘 동작했는데, friendid를 도입한 후 예측할 수가 없게 되어 변경하게 됨
+  
+###  기타 세부 변경사항
+  - useTeamManager의 navigate 로직을 useRouteManager로 분리
+  - isTeamInit 처리를 useTeamManager가 아닌 store 내부에서 처리
+  - 팀 전환 라우트 로직을 dropdown이 아닌 leftMenu에서 호출하여 전달
+  - useWorkSpaceParams의 각 use 훅에서, useEffect 제거
+  - - 이에 따라 store에선 최신의 값을 보장할 수 없게 됨
+  - - url은 유일한 진실의 원천
+  - 스토어의 값을 맞추기 위해, useRouteManager에서 라우팅 시 스토어의 값도 같이 바뀌도록 변경
+  - 스토어에선 선택된 팀 이름, 현재 룰과 관련된 데이터와 로직 제거
+  - 툴 아이디를 추출하는 함수 getToolIdFromPath()를 제외한 나머지 함수 3개를 전부 없애버림
+  - - getPathFromToolId()는 라우팅 로직으로 변경
+  - routeMap의 util 함수를 useRouteManager에 별도 배치
+  - directChatPage와 leftMenu의 라우팅 로직을 useRouteManager에 통합
+  - leftMenu의 isTeamMember를 useTeamManager에 위임
+  - leftMenu 직관화
+  - 코드 수가 적은 css 파일은 global.css에서 작은 클래스 단위로 관리
+  - features의 컴포넌트 폴더에 각각 존재했던 css 파일을 하나의 `-UI.module.css` 파일로 통합
+
+### 코멘트
+  - 오버엔지니어링 축소 결과: 기존 파일 250개, 폴더 100개 => 파일 160개, 폴더 70개
+  - > 아직 친구 채팅에 파일 보이는 기능이 만들어지지 않음
+
