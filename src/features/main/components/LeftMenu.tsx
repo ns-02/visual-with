@@ -1,4 +1,4 @@
-import { useState, ComponentType, useEffect } from 'react';
+import { useState, ComponentType } from 'react';
 import {
   LucideProps,
   Calendar1,
@@ -19,68 +19,50 @@ import InviteTeamDialog from '@features/teamManager/components/InviteTeamDialog'
 import Divider from './Divider';
 import styles from './Layouts.module.css';
 import TooltipItem from './TooltipItem';
-import { getPathFromToolId } from '@core/routes/routeMap';
-import { useTeamId, useToolId } from '@core/hooks/useWorkspaceParams';
-import { Link } from 'react-router-dom';
+import { useToolId } from '@core/hooks/useWorkspaceParams';
 import { useWorkspaceStore } from '@core/store/useWorkspaceStore';
 import { ToolId } from '@shared/models/Workspace';
 import { useRouteManager } from '@core/routes/useRouteManager';
+import { useTeamManager } from '@features/teamManager/hooks/useTeamManager';
 
 interface MenuItem {
   id: ToolId;
   text: string;
   icon: ComponentType<LucideProps>;
-  onTeam: boolean;
 }
 
 function LeftMenu() {
   const [isInviteTeamDialogOpen, setIsInviteTeamDialogOpen] = useState(false);
-  const teamId = useTeamId();
   const toolId = useToolId();
-  const teamData = useWorkspaceStore((state) => state.teamData);
   const selectTeamName = useWorkspaceStore((state) => state.selectTeamName);
-  const isTeamInit = useWorkspaceStore((state) => state.isTeamInit);
-  const [isTeamMember, setIsTeamMember] = useState(false);
-  const { switchTeamWithTool } = useRouteManager();
-
-  useEffect(() => {
-    if ((teamData && teamData.length === 0) || !isTeamInit) {
-      setIsTeamMember(false);
-    } else {
-      setIsTeamMember(true);
-    }
-  }, [teamData, setIsTeamMember, isTeamInit]);
+  const { switchTeamWithTool, switchTool } = useRouteManager();
+  const { isTeamMember } = useTeamManager();
 
   const topMenuItems: MenuItem[] = [
     {
       id: 'home',
       text: '홈',
       icon: House,
-      onTeam: true,
     },
     {
       id: 'team-chat',
       text: '팀 채팅',
       icon: MessagesSquare,
-      onTeam: true,
     },
     {
       id: 'files',
       text: '파일 공유',
       icon: FileText,
-      onTeam: true,
     },
     {
       id: 'schedule',
       text: '일정 관리',
       icon: Calendar1,
-      onTeam: true,
     },
     {
       id: 'todos',
       text: '할 일 목록',
       icon: ListTodo,
-      onTeam: true,
     },
   ];
 
@@ -89,88 +71,84 @@ function LeftMenu() {
       id: 'friends',
       text: '친구 목록',
       icon: Users,
-      onTeam: false,
     },
     {
       id: 'direct-chat',
       text: '친구 채팅',
       icon: MessageSquare,
-      onTeam: false,
     },
   ];
 
-  const getMenuStyle = (id: ToolId) => {
-    const isItemSelected = id === toolId ? true : false;
-    return `${styles.menu_button} ${isItemSelected && styles.selected}`;
-  };
-
-  const DropdownTrigger = isTeamMember ? (
-    <Button
-      text={selectTeamName[0]}
-      shape='square'
-      className={styles.info_button}
-    />
-  ) : (
-    <Button shape='square' className={styles.info_button}>
-      <Plus size={24} />
-    </Button>
-  );
-
-  const renderMenuItems = (items: MenuItem[]) => {
-    const renderMenuItem = (item: MenuItem) => (
-      <Button
-        asChild
-        key={item.id}
-        shape='circle'
-        className={getMenuStyle(item.id)}
-      >
-        <Link
-          to={getPathFromToolId({
-            id: item.id,
-            onTeam: item.onTeam,
-            selectTeamId: teamId,
-          })}
-        >
-          <item.icon size={24} />
-        </Link>
-      </Button>
-    );
-
-    return items.map((item) => (
-      <Tooltip
-        key={item.id}
-        trigger={renderMenuItem(item)}
-        items={<TooltipItem text={item.text} />}
-      />
-    ));
-  };
-
-  const renderTeamMemberContainer = isTeamMember && (
-    <>
-      <div>
-        <Button
-          shape='circle'
-          className={styles.link_button}
-          onClick={() => setIsInviteTeamDialogOpen(true)}
-        >
-          <Link2 size={20} />
-        </Button>
-      </div>
-      <Divider />
-      {renderMenuItems(topMenuItems)}
-    </>
-  );
+  const getMenuStyle = (id: ToolId) =>
+    `${styles.menu_button} ${id === toolId ? styles.selected : ''}`;
 
   return (
     <section className={styles.leftmenu}>
       <TeamDropdown
-        trigger={DropdownTrigger}
+        trigger={
+          isTeamMember ? (
+            <Button
+              text={selectTeamName[0]}
+              shape='square'
+              className={styles.info_button}
+            />
+          ) : (
+            <Button shape='square' className={styles.info_button}>
+              <Plus size={24} />
+            </Button>
+          )
+        }
         onTeamSwitch={switchTeamWithTool}
       />
-      {renderTeamMemberContainer}
+      {isTeamMember && (
+        <>
+          <div>
+            <Button
+              shape='circle'
+              className={styles.link_button}
+              onClick={() => setIsInviteTeamDialogOpen(true)}
+            >
+              <Link2 size={20} />
+            </Button>
+          </div>
+          <Divider />
+          {topMenuItems.map((item) => (
+            <Tooltip
+              key={item.id}
+              trigger={
+                <Button
+                  key={item.id}
+                  shape='circle'
+                  className={getMenuStyle(item.id)}
+                  onClick={() => switchTool(item.id)}
+                >
+                  <item.icon size={24} />
+                </Button>
+              }
+              items={<TooltipItem text={item.text} />}
+            />
+          ))}
+        </>
+      )}
+
       <Divider />
       <div className={styles.middle_menu_container}>
-        {renderMenuItems(middleMenuItems)}
+        {middleMenuItems.map((item) => (
+          <Tooltip
+            key={item.id}
+            trigger={
+              <Button
+                key={item.id}
+                shape='circle'
+                className={getMenuStyle(item.id)}
+                onClick={() => switchTool(item.id)}
+              >
+                <item.icon size={24} />
+              </Button>
+            }
+            items={<TooltipItem text={item.text} />}
+          />
+        ))}
       </div>
       <Divider />
       <UserDropdown />

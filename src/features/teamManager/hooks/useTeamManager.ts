@@ -8,6 +8,7 @@ import { useUserStore } from '@core/store/useUserStore';
 import { useWorkspaceParams } from '@core/hooks/useWorkspaceParams';
 import { useWorkspaceStore } from '@core/store/useWorkspaceStore';
 import { TeamId, TeamName } from '@shared/models/Workspace';
+import { useEffect, useState } from 'react';
 
 export const useTeamManager = () => {
   const { teamId } = useWorkspaceParams();
@@ -17,11 +18,21 @@ export const useTeamManager = () => {
   const deleteTeamFromStore = useWorkspaceStore(
     (state) => state.deleteTeamFromStore,
   );
-
   const addTeamRule = useWorkspaceStore((state) => state.addTeamRule);
   const deleteTeamRule = useWorkspaceStore((state) => state.deleteTeamRule);
+  const teamData = useWorkspaceStore((state) => state.teamData);
+  const isTeamInit = useWorkspaceStore((state) => state.isTeamInit);
 
   const userId = useUserStore((state) => state.user?.id);
+  const [isTeamMember, setIsTeamMember] = useState(false);
+
+  useEffect(() => {
+    if ((teamData && teamData.length === 0) || !isTeamInit) {
+      setIsTeamMember(false);
+    } else {
+      setIsTeamMember(true);
+    }
+  }, [teamData, setIsTeamMember, isTeamInit]);
 
   const onCreateTeam = async (teamName: TeamName) => {
     if (!userId) return;
@@ -80,5 +91,6 @@ export const useTeamManager = () => {
     onDeleteTeam,
     onSearchUser,
     onInviteTeamByUserId,
+    isTeamMember,
   };
 };

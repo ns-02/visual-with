@@ -1,6 +1,6 @@
 import { useParams, useLocation } from 'react-router-dom';
 import { useEffect, useMemo } from 'react';
-import { getToolIdFromPath } from '@core/routes/routeMap';
+import { getToolIdFromPath } from '@core/routes/useRouteManager';
 import { useWorkspaceStore } from '@core/store/useWorkspaceStore';
 import { useFriendStore } from '@features/friendList/store/useFriendStore';
 
