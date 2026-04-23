@@ -4,11 +4,14 @@ import MessageList from '@shared/components/MessageList';
 import { useFriendStore } from '@features/friendList/store/useFriendStore';
 import { useDirectChatStore } from '../store/useDirectChatStore';
 import SelectFriendCard from '../components/SelectFriendCard';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { FriendData } from '@shared/models/User';
 import ChatInputArea from '@shared/components/ChatInputArea';
 import { useDirectFileManager } from '../hooks/useDirectFileManager';
 import { useRouteManager } from '@core/routes/useRouteManager';
+import { useFriendId } from '@core/hooks/useWorkspaceParams';
+import { useDirectFileStore } from '../store/useDirectFileStore';
+import FileListCard from '../components/FileListCard';
 
 interface FriendItem extends FriendData {
   chat: string;
@@ -16,10 +19,15 @@ interface FriendItem extends FriendData {
 }
 
 function DirectChatPage() {
-  const selectFriendId = useFriendStore((state) => state.selectFriendId);
+  const friendId = useFriendId();
   const isAreaOpen = useDirectChatStore((state) => state.isAreaOpen);
   const friendData = useFriendStore((state) => state.friendData);
   const friendIdChatMap = useDirectChatStore((state) => state.friendIdChatMap);
+  const fileData = useDirectFileStore((state) => state.fileData);
+  const selectFriendFileData = useMemo(
+    () => fileData.filter((item) => item.friendId === friendId),
+    [fileData, friendId],
+  );
   const { allChat, handleDirectChatSend } = useDirectChatThread();
   const { loadAndUploadFile } = useDirectFileManager();
   const [friendItems, setFriendItems] = useState<FriendItem[]>([]);
@@ -27,7 +35,7 @@ function DirectChatPage() {
 
   useEffect(() => {
     const nextFriendItems = friendData?.map((data) => {
-      return data.id === selectFriendId
+      return data.id === friendId
         ? { ...data, chat: friendIdChatMap.get(data.id) || '', selected: true }
         : {
             ...data,
@@ -39,7 +47,7 @@ function DirectChatPage() {
     if (nextFriendItems) {
       setFriendItems(nextFriendItems);
     }
-  }, [friendData, selectFriendId, friendIdChatMap]);
+  }, [friendData, friendId, friendIdChatMap]);
 
   const handleCardSelect = (id: string) => {
     const nextFriendItems = friendItems.map((item) =>
@@ -68,7 +76,7 @@ function DirectChatPage() {
         })}
       </div>
 
-      {!selectFriendId ? (
+      {!friendId ? (
         <div className={styles.chat_view_panel}>
           <div className={styles.overview}>준비 중인 화면입니다</div>
         </div>
@@ -81,7 +89,21 @@ function DirectChatPage() {
 
             {!isAreaOpen ? null : (
               <div className={styles.right_file_list_area}>
-                <div>파일 목록 영역입니다.</div>
+                <div style={{ marginTop: '24px', marginBottom: '12px' }}>
+                  파일 목록
+                </div>
+
+                {selectFriendFileData?.map((item) => (
+                  <FileListCard
+                    key={item.id}
+                    id={item.id}
+                    fileName={item.fileName}
+                    date={item.date}
+                    fileSize={item.fileSize}
+                    timeAgo={item.timeAgo}
+                    uploader={item.uploader}
+                  />
+                ))}
               </div>
             )}
           </div>
