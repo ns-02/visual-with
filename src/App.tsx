@@ -1,13 +1,13 @@
-import AppProviders from '@core/providers/AppProviders';
 import AppRoutes from '@core/routes/AppRoutes';
 import '@core/styles/globalVariables.css';
 import '@core/styles/global.css';
+import { Tooltip } from '@shared/components';
 
 const App: React.FC = () => {
   return (
-    <AppProviders>
+    <Tooltip.Provider>
       <AppRoutes />
-    </AppProviders>
+    </Tooltip.Provider>
   );
 };
 
