@@ -1,7 +1,7 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import { idToPath } from './routeMap';
 import { ToolId } from '@shared/models/Workspace';
-import { useTeamId } from '@core/hooks/useWorkspaceParams';
+import { useFriendId, useTeamId } from '@core/hooks/useWorkspaceParams';
 import { getToolIdFromPath } from './routeUtils';
 import { useWorkspaceStore } from '@core/store/useWorkspaceStore';
 import { useFriendStore } from '@features/friendList/store/useFriendStore';
@@ -10,6 +10,7 @@ export const useRouteManager = () => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const teamId = useTeamId();
+  const friendId = useFriendId();
   const setSelectTeam = useWorkspaceStore((state) => state.setSelectTeam);
   const setSelectFriendId = useFriendStore((state) => state.setSelectFriendId);
 
@@ -20,10 +21,12 @@ export const useRouteManager = () => {
     if (toolId) {
       const toolPath = idToPath.get(toolId) || '';
 
-      if (toolPath !== 'directchat' && toolPath !== 'friendlist') {
-        navigate(`/main/${nextTeamId}/${toolPath}`);
-      } else {
+      if (toolPath === 'directchat') {
+        navigate(`/main/${toolPath}/${friendId}`);
+      } else if (toolPath === 'friendlist') {
         navigate(`/main/${toolPath}`);
+      } else {
+        navigate(`/main/${nextTeamId}/${toolPath}`);
       }
     } else {
       navigate(`/main/${nextTeamId}`);
@@ -38,16 +41,18 @@ export const useRouteManager = () => {
 
     const toolPath = idToPath.get(toolId) || '';
 
-    if (toolPath !== 'directchat' && toolPath !== 'friendlist') {
-      navigate(`/main/${teamId}/${toolPath}`);
-    } else {
+    if (toolPath === 'directchat') {
+      navigate(`/main/${toolPath}/${friendId}`);
+    } else if (toolPath === 'friendlist') {
       navigate(`/main/${toolPath}`);
+    } else {
+      navigate(`/main/${teamId}/${toolPath}`);
     }
   };
 
-  const switchFriend = (friendId: string) => {
-    setSelectFriendId(friendId);
-    navigate(`/main/directchat/${friendId}`);
+  const switchFriend = (nextFriendId: string) => {
+    setSelectFriendId(nextFriendId);
+    navigate(`/main/directchat/${nextFriendId}`);
   };
 
   return {
