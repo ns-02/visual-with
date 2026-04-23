@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import UpdateScheduleDialog from './UpdateScheduleDialog';
 import DeleteScheduleDialog from './DeleteScheduleDialog';
-import styles from './ScheduleDropdown.module.css';
 import { getIsPermit } from '@shared/utils/permitUtils';
 import { useUserStore } from '@core/store/useUserStore';
 import PermissionDropdown from '@shared/components/PermissionDropdown';
@@ -41,7 +40,7 @@ const ScheduleDropdown = ({
   return (
     <>
       <PermissionDropdown
-        itemClassName={styles.item}
+        itemClassName='w_100 fs_14'
         actions={Actions}
         canEdit={getIsPermit({ authorId, userId, rule: currentRule })}
         triggerElement={triggerElement}

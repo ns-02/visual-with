@@ -1,8 +1,7 @@
 import { Prop } from '..';
-import styles from './Row.module.css';
 
 function Row({ children }: Prop) {
-  return <div className={styles.row}>{children}</div>;
+  return <div className='d_flex gap_6'>{children}</div>;
 }
 
 export default Row;

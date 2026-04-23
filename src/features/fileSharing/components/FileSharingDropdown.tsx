@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import styles from './FileSharingDropdown.module.css';
 import DeleteFileDialog from './DeleteFileDialog';
 import { useUserStore } from '@core/store/useUserStore';
 import { getIsPermit } from '@shared/utils/permitUtils';
@@ -28,7 +27,7 @@ const FileSharingDropdown = ({
   return (
     <>
       <PermissionDropdown
-        itemClassName={styles.item}
+        itemClassName='w_100 fs_14'
         actions={Actions}
         canEdit={getIsPermit({ authorId: uploader, userId, rule: currentRule })}
         triggerElement={triggerElement}

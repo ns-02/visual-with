@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { DropdownMenu } from 'radix-ui';
 import { Dropdown, Item } from '@shared/components';
-import styles from './FriendListDropdown.module.css';
 import DeleteFriendDialog from './DeleteFriendDialog';
 
 interface DropdownProps {
@@ -22,7 +21,7 @@ const FriendListDropdown = ({ friendId, triggerElement }: DropdownProps) => {
       {Items.map((item) => {
         return (
           <DropdownMenu.Item key={item.id} onClick={item.onClick}>
-            <Item className={styles.item} type='list' text={item.text} />
+            <Item className='w_100 fs_14' type='list' text={item.text} />
           </DropdownMenu.Item>
         );
       })}

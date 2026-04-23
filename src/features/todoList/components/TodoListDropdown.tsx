@@ -1,4 +1,3 @@
-import styles from './TodoListDropdown.module.css';
 import { useState } from 'react';
 import UpdateTodoDialog from './UpdateTodoDialog';
 import DeleteTodoDialog from './DeleteTodoDialog';
@@ -31,7 +30,7 @@ const TodoListDropdown = ({
   return (
     <>
       <PermissionDropdown
-        itemClassName={styles.item}
+        itemClassName='w_100 fs_14'
         actions={Actions}
         canEdit={getIsPermit({ authorId, userId, rule: currentRule })}
         triggerElement={triggerElement}

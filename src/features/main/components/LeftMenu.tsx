@@ -16,9 +16,7 @@ import { Button, Tooltip } from '@shared/components';
 import TeamDropdown from '@features/teamManager/components/TeamDropdown';
 import UserDropdown from '@features/userManager/components/UserDropdown';
 import InviteTeamDialog from '@features/teamManager/components/InviteTeamDialog';
-import Divider from './Divider';
 import styles from './Layouts.module.css';
-import TooltipItem from './TooltipItem';
 import { useToolId } from '@core/hooks/useWorkspaceParams';
 import { ToolId } from '@shared/models/Workspace';
 import { useRouteManager } from '@core/routes/useRouteManager';
@@ -111,7 +109,7 @@ function LeftMenu() {
               <Link2 size={20} />
             </Button>
           </div>
-          <Divider />
+          <hr className='w_full mt_8 mb_8'></hr>
           {topMenuItems.map((item) => (
             <Tooltip
               key={item.id}
@@ -125,13 +123,13 @@ function LeftMenu() {
                   <item.icon size={24} />
                 </Button>
               }
-              items={<TooltipItem text={item.text} />}
+              items={<span className='fs_13'>{item.text}</span>}
             />
           ))}
         </>
       )}
 
-      <Divider />
+      <hr className='w_full mt_8 mb_8'></hr>
       <div className={styles.middle_menu_container}>
         {middleMenuItems.map((item) => (
           <Tooltip
@@ -146,11 +144,11 @@ function LeftMenu() {
                 <item.icon size={24} />
               </Button>
             }
-            items={<TooltipItem text={item.text} />}
+            items={<span className='fs_13'>{item.text}</span>}
           />
         ))}
       </div>
-      <Divider />
+      <hr className='w_full mt_8 mb_8'></hr>
       <UserDropdown />
       <InviteTeamDialog
         open={isInviteTeamDialogOpen}
