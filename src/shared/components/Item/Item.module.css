@@ -1,0 +1,21 @@
+.itemadd {
+  display: flex;
+  width: 200px;
+  padding: 5px 10px;
+  gap: 12px;
+  align-items: center;
+  cursor: pointer;
+}
+
+.itemlist {
+  display: flex;
+  width: 200px;
+  padding: 5px 10px;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.selected {
+  background-color: var(--color-component-focus);
+}

@@ -1,16 +1,16 @@
-import React from 'react';
-import type { Preview } from '@storybook/react-vite'
-import { Theme } from "@radix-ui/themes";
+import type { Preview } from '@storybook/react-vite';
+import { Theme } from '@radix-ui/themes';
+import { createElement } from 'react';
 
 const preview: Preview = {
   decorators: [
-    (Story) => React.createElement(Theme, null, React.createElement(Story, null))
+    (Story) => createElement(Theme, null, createElement(Story, null)),
   ],
   parameters: {
     controls: {
       matchers: {
-       color: /(background|color)$/i,
-       date: /Date$/i,
+        color: /(background|color)$/i,
+        date: /Date$/i,
       },
     },
 
@@ -18,8 +18,8 @@ const preview: Preview = {
       // 'todo' - show a11y violations in the test UI only
       // 'error' - fail CI on a11y violations
       // 'off' - skip a11y checks entirely
-      test: 'todo'
-    }
+      test: 'todo',
+    },
   },
 };
 

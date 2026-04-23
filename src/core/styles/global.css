@@ -1,0 +1,60 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100vh;
+  height: 100%;
+  width: 100%;
+}
+
+#root {
+  height: 100%;
+  min-height: 100%;
+}
+
+/* 레이아웃 */
+.d_flex {
+  display: flex;
+}
+
+/* 사이즈 */
+.w_100 {
+  width: 100px;
+}
+
+.w_full {
+  width: 100%;
+}
+
+/* 여백 */
+.gap_6 {
+  gap: 6px;
+}
+
+.mt_8 {
+  margin-top: 8px;
+}
+
+.mb_8 {
+  margin-bottom: 8px;
+}
+
+.mb_10 {
+  margin-bottom: 10px;
+}
+
+/* 폰트 */
+.fs_13 {
+  font-size: 13px;
+}
+
+.fs_14 {
+  font-size: 14px;
+}

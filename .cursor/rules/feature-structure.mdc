@@ -1,0 +1,14 @@
+---
+description: Feature module boundaries and file placement
+globs: src/features/**/*
+alwaysApply: false
+---
+
+# 기능 구조 규칙 (Feature Structure)
+
+- 기능별 진입 UI는 `src/features/<feature>/pages/*Page.tsx`에 위치시킬 것.
+- 상태 로직(Stateful logic)은 `src/features/<feature>/hooks/use*.ts`에 작성할 것.
+- 기능 전용 UI 부품들은 `src/features/<feature>/(layouts|ui)/**`에 보관할 것.
+- 여러 기능이 공유하는 UI는 `src/shared/components/**`로 이동하되, 오직 출력용(Presentation-only)으로만 유지할 것.
+- 로직 공유는 `src/shared/**`를 고려하되, 기능별 컨텍스트(feature contexts)를 임포트하지 않는 경우에만 허용함.
+- 상대 경로(`../../../`) 대신 `@shared/*`, `@core/*`, `@features/*` 등의 별칭(Alias) 사용을 선호함.

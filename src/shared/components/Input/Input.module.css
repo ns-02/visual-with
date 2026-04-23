@@ -1,0 +1,33 @@
+.container {
+  display: flex;
+  height: 36px;
+  padding: 0 12px;
+  gap: 6px;
+  align-items: center;
+  border: 2px solid var(--color-component-border);
+  border-radius: 6px;
+  background-color: var(--color-component-default);
+}
+
+.container--fixed {
+  width: min-content;
+}
+
+.container--flexible {
+  width: calc(100% - 20px);
+}
+
+.input {
+  font-size: 15px;
+  border: none;
+  outline: none;
+  background-color: var(--color-component-default);
+}
+
+.input--fixed {
+  width: 240px;
+}
+
+.input--flexible {
+  width: 100%;
+}

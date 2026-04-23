@@ -1,6 +1,6 @@
-import { FileData } from '@models/File';
+import { TeamFileData } from '@shared/models/Workspace';
 
-export const fileDataMocks: FileData[] = [
+export const fileDataMocks: TeamFileData[] = [
   {
     id: 1,
     fileName: '이미지.png',
@@ -9,6 +9,7 @@ export const fileDataMocks: FileData[] = [
     date: '2025-10-15',
     uploader: '김철수',
     timeAgo: '3일 전',
+    teamId: 'f5l8q0h4',
   },
   {
     id: 2,
@@ -18,6 +19,7 @@ export const fileDataMocks: FileData[] = [
     date: '2025-10-12',
     uploader: '김철수',
     timeAgo: '5일 전',
+    teamId: 'f5l8q0h4',
   },
   {
     id: 3,
@@ -27,5 +29,36 @@ export const fileDataMocks: FileData[] = [
     date: '2025-10-10',
     uploader: '이영희',
     timeAgo: '8일 전',
+    teamId: 'b2y1m7j6',
+  },
+  {
+    id: 4,
+    fileName: '라마바_스프린트.xlsx',
+    fileSize: '320KB',
+    fileType: 'others',
+    date: '2025-10-11',
+    uploader: '박민수',
+    timeAgo: '6일 전',
+    teamId: 'b2y1m7j6',
+  },
+  {
+    id: 5,
+    fileName: '사아자_로드맵.pdf',
+    fileSize: '890KB',
+    fileType: 'others',
+    date: '2025-10-14',
+    uploader: '최윤',
+    timeAgo: '4일 전',
+    teamId: 'c3h7p9m2',
+  },
+  {
+    id: 6,
+    fileName: '공동리더_노트.md',
+    fileSize: '12KB',
+    fileType: 'others',
+    date: '2025-10-16',
+    uploader: '정하은',
+    timeAgo: '2일 전',
+    teamId: 'c3h7p9m2',
   },
 ];

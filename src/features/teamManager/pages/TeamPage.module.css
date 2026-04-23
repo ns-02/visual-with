@@ -1,0 +1,36 @@
+.page {
+  height: 100%;
+  background-color: var(--color-background-primary);
+}
+
+.contents {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 0 32px;
+}
+
+.team_header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.team_info {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0;
+}
+
+.team_button_area {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dashboard_area {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #555;
+}

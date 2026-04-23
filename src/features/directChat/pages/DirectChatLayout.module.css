@@ -1,0 +1,53 @@
+.direct_chat_root {
+  height: 100%;
+}
+
+.left_friends_panel {
+  width: 280px;
+  height: 100%;
+  float: left;
+  border-top: 1px solid var(--color-background-primary);
+  border-right: 1px solid var(--color-background-primary);
+  background-color: var(--color-background-secondary);
+}
+
+.chat_view_panel {
+  width: calc(100% - 280px);
+  height: 100%;
+  float: right;
+}
+
+.chat_content_area {
+  display: flex;
+  height: calc(100% - 96px);
+}
+
+.direct_chat_area {
+  flex: 1;
+  background-color: var(--color-background-primary);
+}
+
+.right_file_list_area {
+  display: flex;
+  flex: 0 0 500px;
+  padding: 0 16px;
+  flex-direction: column;
+  background-color: #e0f4ff;
+}
+
+.bottom_input_area {
+  display: flex;
+  height: 96px;
+  padding: 0 24px;
+  align-items: center;
+  gap: 16px;
+  background-color: var(--color-background-secondary);
+}
+
+.overview {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-background-primary);
+}

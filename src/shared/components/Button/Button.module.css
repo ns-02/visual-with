@@ -1,0 +1,61 @@
+/* 기본 초기화 및 공통 레이아웃 */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  gap: 20px;
+  padding: 0;
+  background: none;
+}
+
+.button:disabled {
+  cursor: wait;
+  opacity: 0.6;
+}
+
+/* --- Variants (용도/색상) --- */
+.normal {
+  background-color: #eee;
+  font-size: 14px;
+  color: #333;
+}
+
+.content {
+  background: none;
+  padding: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+}
+
+/* --- Shapes (외형) --- */
+/* variant와 관계없이 조합 가능 */
+.round {
+  height: 36px;
+  padding: 0 12px;
+  border-radius: 6px;
+}
+
+.square {
+  width: 48px;
+  height: 48px;
+  border-radius: 6px;
+  font-size: 16pt;
+}
+
+.circle {
+  width: 48px;
+  height: 48px;
+  border-radius: 100%;
+}
+
+.auth {
+  flex: 0 0 30%;
+  width: 100%;
+  padding: 6px 0;
+  border-radius: 12px;
+  font-size: 15px;
+  background-color: var(--color-button-secondary-700);
+}
