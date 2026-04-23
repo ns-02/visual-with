@@ -5,13 +5,13 @@ import {
   searchUser,
 } from '@shared/api/api';
 import { useUserStore } from '@core/store/useUserStore';
-import { useWorkspaceParams } from '@core/hooks/useWorkspaceParams';
+import { useTeamId } from '@core/hooks/useWorkspaceParams';
 import { useWorkspaceStore } from '@core/store/useWorkspaceStore';
 import { TeamId, TeamName } from '@shared/models/Workspace';
 import { useEffect, useState } from 'react';
 
 export const useTeamManager = () => {
-  const { teamId } = useWorkspaceParams();
+  const teamId = useTeamId();
   const createTeamInStore = useWorkspaceStore(
     (state) => state.createTeamInStore,
   );

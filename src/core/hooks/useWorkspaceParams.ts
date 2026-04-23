@@ -1,8 +1,8 @@
 import { useParams, useLocation } from 'react-router-dom';
 import { useEffect, useMemo } from 'react';
-import { getToolIdFromPath } from '@core/routes/routeUtils';
 import { useWorkspaceStore } from '@core/store/useWorkspaceStore';
 import { useFriendStore } from '@features/friendList/store/useFriendStore';
+import { getToolIdFromPath } from '@core/routes/routeUtils';
 
 export function useFriendId() {
   const { friendId: urlFriendId } = useParams();

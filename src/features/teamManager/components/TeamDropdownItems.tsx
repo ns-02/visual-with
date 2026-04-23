@@ -20,7 +20,6 @@ const TeamDropdownItems = ({
 }: TeamDropdownItemsType) => {
   const teamData = useWorkspaceStore((state) => state.teamData);
   const { teamId } = useWorkspaceParams();
-  const setSelectTeam = useWorkspaceStore((state) => state.setSelectTeam);
 
   const handleItemSelected = (item: TeamData) => {
     return item.id === teamId ? true : false;
@@ -37,7 +36,6 @@ const TeamDropdownItems = ({
           <DropdownMenu.Item
             key={item.id}
             onClick={() => {
-              setSelectTeam(item.id);
               onTeamSwitch(item.id);
             }}
           >
