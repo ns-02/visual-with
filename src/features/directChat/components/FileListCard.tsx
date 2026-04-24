@@ -1,8 +1,8 @@
 import { Download, EllipsisVertical } from 'lucide-react';
-// import FileSharingDropdown from './FileSharingDropdown';
 import styles from './directChatUI.module.css';
 import { Button } from '@shared/components';
 import FileIcon from './FileIcon';
+import FileSharingDropdown from './FileSharingDropdown';
 
 interface FileListCardProps {
   id?: number;
@@ -15,12 +15,12 @@ interface FileListCardProps {
 }
 
 const FileListCard = ({
-  // id,
+  id,
   fileName,
   date,
   fileSize,
   // timeAgo,
-  // authorId,
+  authorId,
   authorName,
 }: FileListCardProps) => {
   const triggerElement = (
@@ -44,12 +44,11 @@ const FileListCard = ({
         <Button variant='content'>
           <Download size={16} />
         </Button>
-        {/* <FileSharingDropdown
+        <FileSharingDropdown
           fileId={id}
           triggerElement={triggerElement}
-          uploader={uploader}
-        /> */}
-        {triggerElement}
+          authorId={authorId}
+        />
       </div>
     </div>
   );
