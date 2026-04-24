@@ -10,7 +10,8 @@ interface FileListCardProps {
   date?: string;
   fileSize?: string;
   timeAgo?: string;
-  uploader?: string;
+  authorId?: string;
+  authorName?: string;
 }
 
 const FileListCard = ({
@@ -18,8 +19,9 @@ const FileListCard = ({
   fileName,
   date,
   fileSize,
-  timeAgo,
-  uploader,
+  // timeAgo,
+  authorId,
+  authorName,
 }: FileListCardProps) => {
   const triggerElement = (
     <Button variant='content'>
@@ -34,7 +36,7 @@ const FileListCard = ({
         <div>
           <p>{fileName}</p>
           <p style={{ fontSize: '15px', color: '#555' }}>
-            {`${date} · ${fileSize} · ${timeAgo} · ${uploader}`}
+            {`${date} · ${fileSize} · ${authorName}`}
           </p>
         </div>
       </div>
@@ -45,7 +47,7 @@ const FileListCard = ({
         <FileSharingDropdown
           fileId={id}
           triggerElement={triggerElement}
-          uploader={uploader}
+          authorId={authorId}
         />
       </div>
     </div>

@@ -1,10 +1,16 @@
+import { useUserStore } from '@core/store/useUserStore';
+import { BaseFileData } from '@shared/models/Workspace';
 import { formatDate } from '@shared/utils/formatDate';
+import {
+  getFormattedFileSize,
+  getFormattedFileType,
+} from '@shared/utils/formatFile';
 import { useRef } from 'react';
 
 interface FileManagerActions {
-  uploadFile: (file: File, date: string, id: string) => void;
+  uploadFile: () => void;
   setIsLoading: (isLoading: boolean) => void;
-  setCurrentFile: (file: File | null, date: string, id: string) => void;
+  setCurrentFile: (fileData: BaseFileData | null, id: string) => void;
   setProgress: (progress: number) => void;
   increaseProgress: () => void;
 }
@@ -20,6 +26,8 @@ export const useFileManager = (
     setProgress,
     increaseProgress,
   } = actions;
+  const userId = useUserStore((state) => state.user?.id);
+  const userName = useUserStore((state) => state.user?.name);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
   const delayTimerRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -49,14 +57,25 @@ export const useFileManager = (
   };
 
   const loadAndUploadFile = async (file: File | undefined) => {
-    if (!file || !id) return;
+    if (!file || !id || !userId || !userName) return;
 
     setIsLoading(true);
-    setCurrentFile(file, formatDate(), id);
+    setCurrentFile(
+      {
+        id: 0,
+        fileName: file.name,
+        fileSize: getFormattedFileSize(file.size),
+        fileType: getFormattedFileType(file.type),
+        date: formatDate(),
+        authorId: userId,
+        authorName: userName,
+        timeAgo: '오늘',
+      },
+      id,
+    );
     await runProgress();
     setIsLoading(false);
-    setCurrentFile(null, formatDate(), id);
-    uploadFile(file, formatDate(), id);
+    uploadFile();
   };
 
   return { loadAndUploadFile };

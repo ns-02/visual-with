@@ -101,7 +101,8 @@ function DirectChatPage() {
                     date={item.date}
                     fileSize={item.fileSize}
                     timeAgo={item.timeAgo}
-                    uploader={item.uploader}
+                    authorId={item.authorId}
+                    authorName={item.authorName}
                   />
                 ))}
               </div>

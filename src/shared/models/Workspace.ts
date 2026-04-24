@@ -54,11 +54,12 @@ export interface ChatData {
 
 export interface BaseFileData {
   id: number;
+  authorId: string;
+  authorName: string;
   fileName: string;
   fileSize: string;
   fileType: string;
   date: string;
-  uploader: string;
   timeAgo?: string;
 }
 
