@@ -4,6 +4,7 @@ import { useUserStore } from '@core/store/useUserStore';
 
 function HomePage() {
   const userId = useUserStore((state) => state.user?.id);
+  const logout = useUserStore((state) => state.logout);
 
   return (
     <div className={styles.home}>
@@ -17,6 +18,7 @@ function HomePage() {
             <>
               <label>{`${userId}님`}</label>
               <Link to={'/main'}>시작하기</Link>
+              <button onClick={() => logout()}>로그아웃</button>
             </>
           ) : (
             <>

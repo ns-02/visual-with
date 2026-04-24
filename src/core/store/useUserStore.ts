@@ -10,6 +10,7 @@ interface UserState {
   setUser: (user: UserData | null) => void;
   updateNickname: (nickname: string) => void;
   setToolId: (id: ToolId | null) => void;
+  logout: () => void;
 }
 
 export const useUserStore = create<UserState>((set) => ({
@@ -30,4 +31,6 @@ export const useUserStore = create<UserState>((set) => ({
     })),
 
   setToolId: (id) => set({ currentToolId: id }),
+
+  logout: () => set({ user: null }),
 }));

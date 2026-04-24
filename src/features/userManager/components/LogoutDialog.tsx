@@ -1,17 +1,18 @@
 import { Dispatch, SetStateAction } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AlertDialog from '@shared/components/AlertDialog';
+import { useUserStore } from '@core/store/useUserStore';
 interface Props {
   open: boolean;
   onOpenChange: Dispatch<SetStateAction<boolean>>;
 }
 
 const LogoutDialog = ({ open, onOpenChange }: Props) => {
+  const logout = useUserStore((state) => state.logout);
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    // 로그아웃 처리
-
+    logout();
     navigate('/');
   };
 
