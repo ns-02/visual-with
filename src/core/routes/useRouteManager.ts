@@ -34,12 +34,12 @@ export const useRouteManager = () => {
   };
 
   const switchTool = (toolId: ToolId) => {
-    if (!teamId) {
+    const toolPath = idToPath.get(toolId) || '';
+
+    if (!teamId && toolPath !== 'directchat' && toolPath !== 'friendlist') {
       console.error('선택된 팀 아이디가 존재하지 않음');
       return;
     }
-
-    const toolPath = idToPath.get(toolId) || '';
 
     if (toolPath === 'directchat') {
       navigate(`/main/${toolPath}/${friendId}`);
