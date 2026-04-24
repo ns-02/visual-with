@@ -18,13 +18,19 @@ const InviteTeamDialog = ({ open, onOpenChange }: InviteTeamDialogProps) => {
 
   // 유저 검색
   const handleSearchUser = async () => {
-    if (!invitedUserId) return;
+    if (!invitedUserId) {
+      alert('유저 아이디를 입력해주세요.');
+      return;
+    }
     await onSearchUser(invitedUserId);
   };
 
   // ID 기반 유저 초대
   const handleInviteTeamByUserId = async () => {
-    if (!invitedUserId) return;
+    if (!invitedUserId) {
+      alert('유저 아이디를 입력해주세요.');
+      return;
+    }
     await onInviteTeamByUserId(invitedUserId);
     setInvitedUserId('');
     onOpenChange(false);
