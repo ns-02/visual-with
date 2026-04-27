@@ -23,7 +23,8 @@ export default interface DialogProps {
   onOpenChange?: Dispatch<SetStateAction<boolean>>;
   title?: string;
   description?: string;
-  viewButton?: boolean;
+  viewCansel?: boolean;
+  viewConfirm?: boolean;
   children?: ReactNode;
   confirmText?: string;
   onConfirm?: () => void;

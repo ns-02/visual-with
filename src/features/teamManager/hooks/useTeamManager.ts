@@ -41,7 +41,7 @@ export const useTeamManager = () => {
       const res = await createTeam({ userId, teamName });
 
       createTeamInStore(res.id, res.teamName);
-      addTeamRule(userId, res.id, 'ADMIN');
+      addTeamRule(userId, res.id, 'ADMIN', 'ACCEPTED');
     } catch (e) {
       console.log(e);
     }
@@ -80,9 +80,18 @@ export const useTeamManager = () => {
         invitedUserId,
         teamId,
       });
+      addTeamRule(invitedUserId, teamId, 'MEMBER', 'PENDING');
       console.log(res);
     } catch (e) {
       console.error(e);
+    }
+  };
+
+  const onTeamInvitationByUserId = async (accepted: boolean) => {
+    if (accepted) {
+      alert('수락');
+    } else {
+      alert('거절');
     }
   };
 
@@ -91,6 +100,7 @@ export const useTeamManager = () => {
     onDeleteTeam,
     onSearchUser,
     onInviteTeamByUserId,
+    onTeamInvitationByUserId,
     isTeamMember,
   };
 };

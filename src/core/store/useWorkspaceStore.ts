@@ -3,6 +3,7 @@ import { teamMembershipMocks } from '@mocks/TeamMembershipDataMocks';
 import {
   createTeamMembershipData,
   getTeamRuleName,
+  MembershipStatus,
   TeamData,
   TeamId,
   TeamMembershipData,
@@ -23,7 +24,12 @@ interface WorkspaceState {
   createTeamInStore: (teamId: TeamId, teamName: TeamName) => void;
   deleteTeamFromStore: (teamId: TeamId) => void;
 
-  addTeamRule: (userId: string, teamId: TeamId, rule: TeamRule) => void;
+  addTeamRule: (
+    userId: string,
+    teamId: TeamId,
+    rule: TeamRule,
+    status: MembershipStatus,
+  ) => void;
   deleteTeamRule: (teamId: TeamId) => void;
   updateTeamRule: (teamId: TeamId, rule: TeamRule) => void;
 }
@@ -64,11 +70,11 @@ export const useWorkspaceStore = create<WorkspaceState>()(
           teamData: [...state.teamData.filter((item) => item.id !== teamId)],
         })),
 
-      addTeamRule: (userId, teamId, rule) =>
+      addTeamRule: (userId, teamId, rule, status) =>
         set((state) => ({
           membershipData: [
             ...state.membershipData,
-            createTeamMembershipData(userId, teamId, rule),
+            createTeamMembershipData(userId, teamId, rule, status),
           ],
         })),
 
