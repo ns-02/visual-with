@@ -1,14 +1,10 @@
 import { teamDataMocks } from '@mocks/TeamDataMocks';
 import { teamMembershipMocks } from '@mocks/TeamMembershipDataMocks';
 import {
-  createTeamMembershipData,
-  getTeamRuleName,
-  MembershipStatus,
   TeamData,
   TeamId,
   TeamMembershipData,
   TeamName,
-  TeamRule,
 } from '@shared/models/Workspace';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
@@ -24,14 +20,9 @@ interface WorkspaceState {
   createTeamInStore: (teamId: TeamId, teamName: TeamName) => void;
   deleteTeamFromStore: (teamId: TeamId) => void;
 
-  addTeamRule: (
-    userId: string,
-    teamId: TeamId,
-    rule: TeamRule,
-    status: MembershipStatus,
-  ) => void;
+  addTeamRule: (membership: TeamMembershipData) => void;
+  updateTeamRule: (membership: TeamMembershipData) => void;
   deleteTeamRule: (teamId: TeamId) => void;
-  updateTeamRule: (teamId: TeamId, rule: TeamRule) => void;
 }
 
 export const useWorkspaceStore = create<WorkspaceState>()(
@@ -70,12 +61,9 @@ export const useWorkspaceStore = create<WorkspaceState>()(
           teamData: [...state.teamData.filter((item) => item.id !== teamId)],
         })),
 
-      addTeamRule: (userId, teamId, rule, status) =>
+      addTeamRule: (membership) =>
         set((state) => ({
-          membershipData: [
-            ...state.membershipData,
-            createTeamMembershipData(userId, teamId, rule, status),
-          ],
+          membershipData: [...state.membershipData, membership],
         })),
 
       deleteTeamRule: (teamId) =>
@@ -85,14 +73,17 @@ export const useWorkspaceStore = create<WorkspaceState>()(
           ),
         })),
 
-      updateTeamRule: (teamId, rule) =>
+      updateTeamRule: (membership) => {
+        const { teamId, userId } = membership;
+
         set((state) => ({
           membershipData: state.membershipData.map((item) =>
-            item.teamId === teamId
-              ? { ...item, rule, name: getTeamRuleName(rule) }
+            item.teamId === teamId && item.userId === userId
+              ? { ...item, membership }
               : item,
           ),
-        })),
+        }));
+      },
     }),
     {
       name: 'workspace-storage',

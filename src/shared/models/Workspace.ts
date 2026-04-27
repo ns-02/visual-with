@@ -33,17 +33,17 @@ export interface TeamMembershipData {
   userId: string;
   teamId: TeamId;
   rule: TeamRule;
-  name: TeamRuleName;
+  ruleName: TeamRuleName;
   status: MembershipStatus;
 }
 
-export function createTeamMembershipData(
+export function createMembership(
   userId: string,
   teamId: TeamId,
   rule: TeamRule,
   status: MembershipStatus,
 ): TeamMembershipData {
-  return { userId, teamId, rule, name: getTeamRuleName(rule), status };
+  return { userId, teamId, rule, ruleName: getTeamRuleName(rule), status };
 }
 
 export interface ChatData {

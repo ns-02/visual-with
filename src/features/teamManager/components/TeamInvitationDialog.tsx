@@ -45,8 +45,12 @@ const TeamInvitationDialog = ({
             <p>초대를 수락할까요?</p>
           </Group>
           <Row>
-            <Button onClick={() => onTeamInvitationByUserId(true)}>수락</Button>
-            <Button onClick={() => onTeamInvitationByUserId(false)}>
+            <Button onClick={() => onTeamInvitationByUserId(item.teamId, true)}>
+              수락
+            </Button>
+            <Button
+              onClick={() => onTeamInvitationByUserId(item.teamId, false)}
+            >
               거절
             </Button>
           </Row>
