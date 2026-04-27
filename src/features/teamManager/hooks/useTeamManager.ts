@@ -99,7 +99,9 @@ export const useTeamManager = () => {
         createMembership(userId, currentTeamId, 'MEMBER', 'ACCEPTED'),
       );
     } else {
-      alert('거절');
+      updateTeamRule(
+        createMembership(userId, currentTeamId, 'MEMBER', 'DECLINED'),
+      );
     }
   };
 

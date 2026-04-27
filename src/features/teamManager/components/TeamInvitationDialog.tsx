@@ -41,8 +41,10 @@ const TeamInvitationDialog = ({
       {invitationData.map((item) => (
         <div key={item.teamId}>
           <Group>
-            <h4>"{item.teamName}"팀에서 초대 받음:</h4>
-            <p>초대를 수락할까요?</p>
+            <h4>초대 받음</h4>
+          </Group>
+          <Group>
+            <p>"{item.teamName}"팀의 초대를 수락할까요?</p>
           </Group>
           <Row>
             <Button onClick={() => onTeamInvitationByUserId(item.teamId, true)}>
@@ -56,6 +58,11 @@ const TeamInvitationDialog = ({
           </Row>
         </div>
       ))}
+      {invitationData.length === 0 && (
+        <Group>
+          <p>현재 초대받은 팀이 없습니다.</p>
+        </Group>
+      )}
     </Dialog>
   );
 };

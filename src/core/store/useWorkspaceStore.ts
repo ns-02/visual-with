@@ -32,8 +32,6 @@ export const useWorkspaceStore = create<WorkspaceState>()(
       membershipData: teamMembershipMocks || [],
 
       selectTeamId: '',
-      selectTeamName: '',
-      currentRule: 'MEMBER',
       isTeamInit: false,
 
       setSelectTeam: (teamId) => {
@@ -79,7 +77,7 @@ export const useWorkspaceStore = create<WorkspaceState>()(
         set((state) => ({
           membershipData: state.membershipData.map((item) =>
             item.teamId === teamId && item.userId === userId
-              ? { ...item, membership }
+              ? { ...item, ...membership }
               : item,
           ),
         }));
