@@ -55,9 +55,14 @@ export const useRouteManager = () => {
     navigate(`/main/directchat/${nextFriendId}`);
   };
 
+  const MapsToSettings = () => {
+    navigate(`/main/settings`);
+  };
+
   return {
     switchTeamWithTool,
     switchTool,
     switchFriend,
+    MapsToSettings,
   };
 };

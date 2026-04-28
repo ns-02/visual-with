@@ -5,7 +5,7 @@ import LogoutDialog from './LogoutDialog';
 import styles from './UserDropdownItems.module.css';
 import { useUserStore } from '@core/store/useUserStore';
 
-const UserDropdown = () => {
+const UserDropdown = ({ onSettingsClick }: { onSettingsClick: () => void }) => {
   const [isLogoutDialogOpen, setIsLogoutDialogOpen] = useState(false);
   const [triggerText, setTriggerText] = useState<string | undefined>();
   const userName = useUserStore((state) => state.user?.name);
@@ -38,7 +38,7 @@ const UserDropdown = () => {
       <DropdownMenu.Item asChild>
         <Item type='list' text='내 프로필' />
       </DropdownMenu.Item>
-      <DropdownMenu.Item asChild>
+      <DropdownMenu.Item asChild onClick={onSettingsClick}>
         <Item type='list' text='설정' />
       </DropdownMenu.Item>
       <DropdownMenu.Separator className={styles.separator} />

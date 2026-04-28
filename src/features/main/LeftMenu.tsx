@@ -36,7 +36,7 @@ function LeftMenu() {
   const [isTeamInvitationDialogOpen, setIsTeamInvitationDialogOpen] =
     useState(false);
   const toolId = useToolId();
-  const { switchTeamWithTool, switchTool } = useRouteManager();
+  const { switchTeamWithTool, switchTool, MapsToSettings } = useRouteManager();
   const { isTeamMember } = useTeamManager();
   const { selectTeamName } = useCurrentWorkspace();
 
@@ -164,7 +164,7 @@ function LeftMenu() {
         ))}
       </div>
       <hr className='w_full mt_8 mb_8'></hr>
-      <UserDropdown />
+      <UserDropdown onSettingsClick={MapsToSettings} />
       <InviteTeamDialog
         open={isInviteTeamDialogOpen}
         onOpenChange={setIsInviteTeamDialogOpen}
