@@ -3,12 +3,12 @@ import { PUSH_ITEMS, type PushKey } from '@features/settings/consts/pushItems';
 import { persist } from 'zustand/middleware';
 
 interface SettingsState {
-  theme: 'light' | 'dark' | 'system';
+  theme: string;
   fontSize: 'small' | 'medium' | 'large';
   layoutSize: 'small' | 'medium' | 'large';
   layoutDensity: 'narrow' | 'medium' | 'wide';
   pushSettings: Record<PushKey, boolean>;
-  setTheme: (theme: 'light' | 'dark' | 'system') => void;
+  setTheme: (theme: string) => void;
   setFontSize: (fontSize: 'small' | 'medium' | 'large') => void;
   setLayoutSize: (layoutSize: 'small' | 'medium' | 'large') => void;
   setLayoutDensity: (layoutDensity: 'narrow' | 'medium' | 'wide') => void;

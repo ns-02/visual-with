@@ -10,6 +10,8 @@ import {
 import styles from './SettingsLayout.module.css';
 import { useUserStore } from '@core/store/useUserStore';
 import { PUSH_ITEMS, type PushKey } from '@features/settings/consts/pushItems';
+import { useSettingsStore } from '../store/useSettingsStore';
+import { useSettingsManager } from '../hooks/useSettingsManager';
 
 const THEME_OPTIONS: LabeledRadioGroupOption[] = [
   { value: 'light', label: '라이트' },
@@ -39,7 +41,9 @@ type PushSettings = Record<PushKey, boolean>;
 
 function SettingsPage() {
   const user = useUserStore((state) => state.user);
-  const [theme, setTheme] = useState('light');
+  const theme = useSettingsStore((state) => state.theme);
+  useSettingsManager();
+  const setTheme = useSettingsStore((state) => state.setTheme);
   const [fontSize, setFontSize] = useState('medium');
   const [layoutSize, setLayoutSize] = useState('medium');
   const [layoutDensity, setLayoutDensity] = useState('medium');
@@ -57,23 +61,35 @@ function SettingsPage() {
   return (
     <div className={styles.setting_root}>
       <div className={styles.setting_header}>
-        <h3>설정</h3>
-        <p>앱의 전반적인 설정을 관리합니다.</p>
+        <h3 className={styles.text_color}>설정</h3>
+        <p className={styles.text_color}>앱의 전반적인 설정을 관리합니다.</p>
       </div>
 
       <Tabs.Root defaultValue='pushes'>
         <Tabs.List className={styles.setting_nav_container}>
           <div className={styles.setting_nav}>
-            <Tabs.Trigger value='pushes' className={styles.trigger}>
+            <Tabs.Trigger
+              value='pushes'
+              className={styles.trigger + ' ' + styles.text_color}
+            >
               알림
             </Tabs.Trigger>
-            <Tabs.Trigger value='theme' className={styles.trigger}>
+            <Tabs.Trigger
+              value='theme'
+              className={styles.trigger + ' ' + styles.text_color}
+            >
               테마
             </Tabs.Trigger>
-            <Tabs.Trigger value='account' className={styles.trigger}>
+            <Tabs.Trigger
+              value='account'
+              className={styles.trigger + ' ' + styles.text_color}
+            >
               계정
             </Tabs.Trigger>
-            <Tabs.Trigger value='profiles' className={styles.trigger}>
+            <Tabs.Trigger
+              value='profiles'
+              className={styles.trigger + ' ' + styles.text_color}
+            >
               프로필
             </Tabs.Trigger>
           </div>
@@ -82,7 +98,9 @@ function SettingsPage() {
           <div className={styles.setting_content}>
             {PUSH_ITEMS.map(({ key, label }) => (
               <div key={key} className={styles.setting_item}>
-                <label htmlFor={`push-${key}`}>{label}</label>
+                <label htmlFor={`push-${key}`} className={styles.text_color}>
+                  {label}
+                </label>
                 <Switch
                   id={`push-${key}`}
                   checked={pushSettings[key]}
@@ -95,7 +113,7 @@ function SettingsPage() {
         <Tabs.Content value='theme' className={styles.setting_view}>
           <div className={styles.setting_content}>
             <div className={styles.setting_items_row}>
-              <p>테마</p>
+              <p className={styles.text_color}>테마</p>
               <LabeledRadioGroup
                 value={theme}
                 onValueChange={setTheme}
@@ -103,7 +121,7 @@ function SettingsPage() {
               />
             </div>
             <div className={styles.setting_items_row}>
-              <p>폰트 크기</p>
+              <p className={styles.text_color}>폰트 크기</p>
               <LabeledRadioGroup
                 value={fontSize}
                 onValueChange={setFontSize}
@@ -111,7 +129,7 @@ function SettingsPage() {
               />
             </div>
             <div className={styles.setting_items_row}>
-              <p>레이아웃 크기</p>
+              <p className={styles.text_color}>레이아웃 크기</p>
               <LabeledRadioGroup
                 value={layoutSize}
                 onValueChange={setLayoutSize}
@@ -119,7 +137,7 @@ function SettingsPage() {
               />
             </div>
             <div className={styles.setting_items_row}>
-              <p>레이아웃 밀도</p>
+              <p className={styles.text_color}>레이아웃 밀도</p>
               <LabeledRadioGroup
                 value={layoutDensity}
                 onValueChange={setLayoutDensity}
@@ -152,19 +170,19 @@ function SettingsPage() {
               <Button style={{ backgroundColor: '#e0f4ff' }}>바꾸기</Button>
             </div>
             <div className={styles.setting_item}>
-              <p>이름</p>
-              {user?.name}
+              <p className={styles.text_color}>이름</p>
+              <p className={styles.text_color}>{user?.name}</p>
             </div>
             <div className={styles.setting_item}>
-              <p>이메일</p>
-              {user?.email}
+              <p className={styles.text_color}>이메일</p>
+              <p className={styles.text_color}>{user?.email}</p>
             </div>
             <div className={styles.setting_item}>
-              <p>닉네임</p>
-              {user?.nickname}
+              <p className={styles.text_color}>닉네임</p>
+              <p className={styles.text_color}>{user?.nickname}</p>
             </div>
             <div className={styles.setting_item}>
-              <p>상태 메시지</p>
+              <p className={styles.text_color}>상태 메시지</p>
               <p style={{ color: '#777' }}>구현 예정</p>
             </div>
           </div>
