@@ -17,6 +17,12 @@ export { default as Dialog } from './Dialog/';
 export { default as Group } from './Group';
 export { default as DialogInput } from './DialogInput';
 export { default as Row } from './Row';
+export { default as Switch } from './Switch';
+export {
+  default as LabeledRadioGroup,
+  type LabeledRadioGroupOption,
+  type LabeledRadioGroupProps,
+} from './LabeledRadioGroup';
 
 export default interface DialogProps {
   open?: boolean;
