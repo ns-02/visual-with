@@ -1,20 +1,21 @@
 .setting_root {
   height: 100%;
   background-color: var(--color-background-primary);
+  overflow-y: auto;
 }
 
 .setting_header {
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding: 32px 120px 16px;
+  padding: 32px 240px 16px;
   gap: 8px;
 }
 
 .setting_nav_container {
   display: flex;
   width: 100%;
-  padding: 16px 120px 16px;
+  padding: 16px 240px 16px;
 }
 
 .setting_nav {
@@ -28,16 +29,37 @@
 
 .setting_view {
   width: 100%;
-  padding: 0 120px;
+  padding: 0 240px;
 }
 
 .setting_content {
   background-color: white;
   border-radius: 16px;
-  padding: 16px;
+  padding: 0 20px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+}
+
+.setting_item {
+  display: flex;
+  padding: 16px 0;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.setting_item + .setting_item {
+  border-top: 1px solid #ddd;
+}
+
+.setting_items_row {
+  padding: 16px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.setting_items_row + .setting_items_row {
+  border-top: 1px solid #ddd;
 }
 
 .trigger {
