@@ -1,6 +1,6 @@
 .setting_root {
   height: 100%;
-  background-color: var(--color-background-primary);
+  background-color: var(--bg-main);
   overflow-y: auto;
 }
 
@@ -24,7 +24,7 @@
   padding: 4px;
   gap: 8px;
   border-radius: 100px;
-  background-color: #c5e5ff;
+  background-color: var(--color-blue-300);
 }
 
 .setting_view {
@@ -33,7 +33,7 @@
 }
 
 .setting_content {
-  background-color: white;
+  background-color: var(--bg-card);
   border-radius: 16px;
   padding: 0 20px;
   display: flex;
@@ -58,6 +58,10 @@
   gap: 8px;
 }
 
+.text_color {
+  color: var(--text-color);
+}
+
 .setting_items_row + .setting_items_row {
   border-top: 1px solid #ddd;
 }
@@ -72,5 +76,5 @@
 }
 
 .trigger[data-state='active'] {
-  background-color: white;
+  background-color: var(--bg-card);
 }
