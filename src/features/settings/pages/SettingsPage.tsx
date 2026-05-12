@@ -1,5 +1,5 @@
 import * as Tabs from '@radix-ui/react-tabs';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import {
   Avatar,
   Button,
@@ -34,12 +34,37 @@ const LAYOUT_DENSITY_OPTIONS: LabeledRadioGroupOption[] = [
   { value: 'wide', label: '넓게' },
 ];
 
+const PUSH_ITEMS = [
+  { key: 'teamChat', label: '팀 채팅 알림', defaultEnabled: true },
+  { key: 'directChat', label: '친구 채팅 알림', defaultEnabled: true },
+  { key: 'fileShare', label: '파일 공유 알림', defaultEnabled: true },
+  { key: 'todo', label: '할 일 목록 알림', defaultEnabled: false },
+  { key: 'calendarCreated', label: '일정 등록 알림', defaultEnabled: true },
+  { key: 'calendarReminder', label: '남은 일정 알림', defaultEnabled: true },
+  { key: 'teamInvite', label: '팀 초대 알림', defaultEnabled: true },
+  { key: 'friendRequest', label: '친구 요청 알림', defaultEnabled: true },
+] as const;
+
+type PushKey = (typeof PUSH_ITEMS)[number]['key'];
+
+type PushSettings = Record<PushKey, boolean>;
+
 function SettingsPage() {
   const user = useUserStore((state) => state.user);
   const [theme, setTheme] = useState('light');
   const [fontSize, setFontSize] = useState('medium');
   const [layoutSize, setLayoutSize] = useState('medium');
   const [layoutDensity, setLayoutDensity] = useState('medium');
+  const [pushSettings, setPushSettings] = useState<PushSettings>(
+    PUSH_ITEMS.reduce((acc, { key, defaultEnabled }) => {
+      acc[key] = defaultEnabled;
+      return acc;
+    }, {} as PushSettings),
+  );
+
+  const setPush = useCallback((key: PushKey, enabled: boolean) => {
+    setPushSettings((prev) => ({ ...prev, [key]: enabled }));
+  }, []);
 
   return (
     <div className={styles.setting_root}>
@@ -48,10 +73,10 @@ function SettingsPage() {
         <p>앱의 전반적인 설정을 관리합니다.</p>
       </div>
 
-      <Tabs.Root defaultValue='notifications'>
+      <Tabs.Root defaultValue='pushes'>
         <Tabs.List className={styles.setting_nav_container}>
           <div className={styles.setting_nav}>
-            <Tabs.Trigger value='notifications' className={styles.trigger}>
+            <Tabs.Trigger value='pushes' className={styles.trigger}>
               알림
             </Tabs.Trigger>
             <Tabs.Trigger value='theme' className={styles.trigger}>
@@ -65,40 +90,18 @@ function SettingsPage() {
             </Tabs.Trigger>
           </div>
         </Tabs.List>
-        <Tabs.Content value='notifications' className={styles.setting_view}>
+        <Tabs.Content value='pushes' className={styles.setting_view}>
           <div className={styles.setting_content}>
-            <div className={styles.setting_item}>
-              <p>팀 채팅 알림</p>
-              <Switch />
-            </div>
-            <div className={styles.setting_item}>
-              <p>개인 채팅 알림</p>
-              <Switch />
-            </div>
-            <div className={styles.setting_item}>
-              <p>파일 공유 알림</p>
-              <Switch />
-            </div>
-            <div className={styles.setting_item}>
-              <p>할 일 목록 알림</p>
-              <Switch />
-            </div>
-            <div className={styles.setting_item}>
-              <p>일정 등록 알림</p>
-              <Switch />
-            </div>
-            <div className={styles.setting_item}>
-              <p>남은 일정 알림</p>
-              <Switch />
-            </div>
-            <div className={styles.setting_item}>
-              <p>팀 초대 알림</p>
-              <Switch />
-            </div>
-            <div className={styles.setting_item}>
-              <p>친구 요청 알림</p>
-              <Switch />
-            </div>
+            {PUSH_ITEMS.map(({ key, label }) => (
+              <div key={key} className={styles.setting_item}>
+                <label htmlFor={`push-${key}`}>{label}</label>
+                <Switch
+                  id={`push-${key}`}
+                  checked={pushSettings[key]}
+                  onCheckedChange={(checked) => setPush(key, checked)}
+                />
+              </div>
+            ))}
           </div>
         </Tabs.Content>
         <Tabs.Content value='theme' className={styles.setting_view}>
