@@ -9,6 +9,7 @@ import {
 } from '@shared/components';
 import styles from './SettingsLayout.module.css';
 import { useUserStore } from '@core/store/useUserStore';
+import { PUSH_ITEMS, type PushKey } from '@features/settings/consts/pushItems';
 
 const THEME_OPTIONS: LabeledRadioGroupOption[] = [
   { value: 'light', label: '라이트' },
@@ -33,19 +34,6 @@ const LAYOUT_DENSITY_OPTIONS: LabeledRadioGroupOption[] = [
   { value: 'medium', label: '보통' },
   { value: 'wide', label: '넓게' },
 ];
-
-const PUSH_ITEMS = [
-  { key: 'teamChat', label: '팀 채팅 알림', defaultEnabled: true },
-  { key: 'directChat', label: '친구 채팅 알림', defaultEnabled: true },
-  { key: 'fileShare', label: '파일 공유 알림', defaultEnabled: true },
-  { key: 'todo', label: '할 일 목록 알림', defaultEnabled: false },
-  { key: 'calendarCreated', label: '일정 등록 알림', defaultEnabled: true },
-  { key: 'calendarReminder', label: '남은 일정 알림', defaultEnabled: true },
-  { key: 'teamInvite', label: '팀 초대 알림', defaultEnabled: true },
-  { key: 'friendRequest', label: '친구 요청 알림', defaultEnabled: true },
-] as const;
-
-type PushKey = (typeof PUSH_ITEMS)[number]['key'];
 
 type PushSettings = Record<PushKey, boolean>;
 
