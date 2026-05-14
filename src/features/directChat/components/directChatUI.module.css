@@ -3,7 +3,7 @@
   margin-bottom: 10px;
   justify-content: space-between;
   border-radius: 12px;
-  background-color: var(--color-component-default);
+  background-color: var(--color-blue-100);
 }
 
 .info_contents {

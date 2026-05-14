@@ -24,31 +24,6 @@
   --color-pink-700: #ff7aa8;
   --color-pink-800: #ff679b;
   --color-pink-900: #ff548e;
-
-  /* 단계별 삭제 예정 */
-  --color-background-primary: aliceblue;
-  --color-background-secondary: white;
-  --color-component-primary: #c5e5ff;
-  --color-component-secondary: #e0f4ff;
-  --color-component-default: white;
-  --color-component-another: #ffb6d9;
-  --color-component-another-300: #ffecf5;
-  --color-component-focus: aliceblue;
-  --color-component-border: #e0f4ff;
-  --color-menu-button-primary: #c5e5ff;
-  --color-menu-button-secondary: #e0f4ff;
-  --color-button-primary: #ffb6d9;
-  --color-button-secondary-400: aliceblue;
-  --color-button-secondary-500: #e0f4ff;
-  --color-button-secondary-600: #c5e5ff;
-  --color-button-secondary-700: #82c3f8;
-  --color-button-secondary-800: #5caef2;
-  --color-button-border: #aaa;
-  --color-button-info: #c5e5ff;
-  --color-button-focus: #c5e5ff;
-  --color-button-default: white;
-  --color-content-default: black;
-  --color-content-light: white;
 }
 
 [data-theme='dark'] {

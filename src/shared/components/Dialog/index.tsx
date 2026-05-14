@@ -46,23 +46,7 @@ const Dialog = ({
           )}
 
           <RadixDialog.Close asChild>
-            <button
-              style={{
-                position: 'absolute',
-                top: '8px',
-                right: '8px',
-                display: 'inline-flex',
-                width: 24,
-                height: 24,
-                margin: 0,
-                padding: 0,
-                justifyContent: 'center',
-                alignItems: 'center',
-                border: 'none',
-                backgroundColor: 'white',
-                cursor: 'pointer',
-              }}
-            >
+            <button className={styles.button_x}>
               <X size={14} />
             </button>
           </RadixDialog.Close>

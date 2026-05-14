@@ -2,7 +2,8 @@
   display: flex;
   z-index: 2;
   padding: 4px 12px;
-  background-color: var(--color-component-primary);
+  background-color: var(--color-blue-400);
+  color: var(--text-color);
   border-radius: 6px;
   transform-origin: var(--radix-tooltip-content-transform-origin);
   animation-duration: 150ms;
@@ -45,5 +46,5 @@
 }
 
 .arrow {
-  fill: var(--color-component-primary);
+  fill: var(--color-blue-400);
 }

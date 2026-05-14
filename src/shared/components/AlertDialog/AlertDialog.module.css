@@ -12,7 +12,7 @@
   padding: 18px 20px;
   border-radius: 6px;
   box-shadow: 0px 3px 6px 1px rgba(0, 0, 0, 0.2);
-  background-color: var(--color-component-default);
+  background-color: var(--color-blue-100);
 
   &:focus {
     outline: none;
@@ -37,10 +37,10 @@
 }
 
 .button_primary {
-  background-color: var(--color-button-primary);
+  background-color: var(--color-pink-400);
 }
 
 .button_default {
-  border: 1px solid var(--color-button-border);
-  background-color: var(--color-button-default);
+  border: 1px solid #aaa;
+  background-color: var(--color-blue-100);
 }

@@ -46,7 +46,7 @@
 
 .link {
   text-decoration: none;
-  color: var(--color-content-default);
+  color: black;
 
   &:hover {
     text-decoration: underline;
@@ -54,5 +54,5 @@
 }
 
 .link_auth {
-  color: var(--color-button-secondary-800);
+  color: #5caef2;
 }
