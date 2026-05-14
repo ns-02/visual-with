@@ -147,17 +147,13 @@ function SettingsPage() {
         <Tabs.Content value='account' className={styles.setting_view}>
           <div className={styles.setting_content}>
             <div className={styles.setting_item}>
-              <Button style={{ backgroundColor: '#e0f4ff' }}>
-                비밀번호 변경
-              </Button>
+              <Button className={styles.normal_button}>비밀번호 변경</Button>
             </div>
             <div className={styles.setting_item}>
-              <Button style={{ backgroundColor: '#e0f4ff' }}>로그아웃</Button>
+              <Button className={styles.normal_button}>로그아웃</Button>
             </div>
             <div className={styles.setting_item}>
-              <Button style={{ backgroundColor: '#ffecf5', color: '#d4183d' }}>
-                회원 탈퇴
-              </Button>
+              <Button className={styles.pink_button}>회원 탈퇴</Button>
             </div>
           </div>
         </Tabs.Content>
@@ -165,7 +161,7 @@ function SettingsPage() {
           <div className={styles.setting_content}>
             <div className={styles.setting_item}>
               <Avatar />
-              <Button style={{ backgroundColor: '#e0f4ff' }}>바꾸기</Button>
+              <Button className={styles.normal_button}>바꾸기</Button>
             </div>
             <div className={styles.setting_item}>
               <p className={styles.text_color}>이름</p>

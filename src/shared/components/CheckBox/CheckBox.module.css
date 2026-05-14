@@ -1,10 +1,10 @@
 .CheckboxRoot {
   all: unset; /* 브라우저 기본 스타일 제거 */
-  background-color: white;
+  background-color: var(--bg-sub);
   width: 16px;
   height: 16px;
   border-radius: 4px;
-  border: 2px solid #ddd;
+  border: 2px solid var(--border-color);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -13,8 +13,8 @@
 }
 
 .CheckboxRoot[data-state='checked'] {
-  background-color: var(--primary-color); /* 프로젝트 메인 컬러 */
-  border-color: var(--primary-color);
+  background-color: var(--bg-sub); /* 프로젝트 메인 컬러 */
+  border-color: var(--border-color);
 }
 
 .CheckboxIndicator {

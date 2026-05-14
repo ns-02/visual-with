@@ -26,6 +26,10 @@ button {
   box-sizing: border-box;
 }
 
+div[role*='dialog'] {
+  color: var(--text-color);
+}
+
 /* 레이아웃 */
 .d_flex {
   display: flex;

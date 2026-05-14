@@ -79,3 +79,12 @@
 .trigger[data-state='active'] {
   background-color: var(--color-blue-100);
 }
+
+.normal_button {
+  background-color: var(--color-blue-300);
+}
+
+.pink_button {
+  background-color: var(--color-pink-100);
+  color: #d4183d;
+}

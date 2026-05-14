@@ -6,10 +6,9 @@
   font-size: 14px;
   text-align: center;
   border: none;
-  background-color: var(--color-blue-100);
   cursor: pointer;
 }
 
 .trigger[data-state='active'] {
-  border-bottom: 1px solid #000;
+  border-bottom: 1px solid var(--border-color);
 }
