@@ -10,11 +10,10 @@
 }
 
 .item {
-  background-color: white;
   width: 25px;
   height: 25px;
   border-radius: 100%;
-  border: 2px solid #eee;
+  border: 2px solid var(--border-100);
 }
 
 .indicator {

@@ -10,5 +10,5 @@
 }
 
 .trigger[data-state='active'] {
-  border-bottom: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-900);
 }

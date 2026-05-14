@@ -4,7 +4,7 @@
   width: 16px;
   height: 16px;
   border-radius: 4px;
-  border: 2px solid var(--border-color);
+  border: 2px solid var(--border-900);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -14,7 +14,7 @@
 
 .CheckboxRoot[data-state='checked'] {
   background-color: var(--bg-sub); /* 프로젝트 메인 컬러 */
-  border-color: var(--border-color);
+  border-color: var(--border-900);
 }
 
 .CheckboxIndicator {

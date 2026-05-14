@@ -3,7 +3,8 @@
   --bg-sub: white;
   --text-color: black;
   --icon-color: black;
-  --border-color: black;
+  --border-100: #eee;
+  --border-900: black;
 
   --color-blue-100: white;
   --color-blue-200: aliceblue;
@@ -32,7 +33,8 @@
   --bg-sub: #161b22;
   --text-color: #f0f6fc;
   --icon-color: #f0f6fc;
-  --border-color: #f0f6fc;
+  --border-100: #2d333b;
+  --border-900: #f0f6fc;
 
   --color-blue-100: #2d333b;
   --color-blue-200: #3d444d;
