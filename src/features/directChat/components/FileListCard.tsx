@@ -1,7 +1,6 @@
 import { Download, EllipsisVertical } from 'lucide-react';
 import styles from './directChatUI.module.css';
-import { Button } from '@shared/components';
-import FileIcon from './FileIcon';
+import { Button, FileIcon } from '@shared/components';
 import FileSharingDropdown from './FileSharingDropdown';
 
 interface FileListCardProps {

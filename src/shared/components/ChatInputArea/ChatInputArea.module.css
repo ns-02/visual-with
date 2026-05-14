@@ -10,9 +10,10 @@
 }
 
 .button_primary {
-  background-color: var(--color-button-primary);
+  background-color: var(--color-pink-400);
 }
 
 .button_secondary {
-  background-color: var(--color-button-secondary-500);
+  background-color: var(--color-blue-300);
+  color: var(--icon-color);
 }

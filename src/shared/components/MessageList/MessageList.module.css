@@ -58,7 +58,6 @@
 .receiver {
   display: inline-block;
   font-size: 16px;
-  color: #000;
 }
 
 .chat_time {
@@ -72,7 +71,7 @@
   padding: 8px 12px;
   margin-bottom: 20px;
   border-radius: 10px;
-  background-color: var(--color-component-default);
+  background-color: var(--color-blue-100);
 }
 
 .chat_bubble_sender {
@@ -80,7 +79,7 @@
   padding: 8px 12px;
   margin-bottom: 20px;
   border-radius: 10px;
-  background-color: var(--color-component-another);
+  background-color: var(--color-pink-400);
 }
 
 .chat_text {

@@ -1,17 +1,19 @@
 :root {
   --bg-main: aliceblue;
-  --bg-card: white;
+  --bg-sub: white;
   --text-color: black;
+  --icon-color: black;
 
-  --color-blue-100: aliceblue;
-  --color-blue-200: #e0f4ff;
-  --color-blue-300: #c5e5ff;
-  --color-blue-400: #82c3f8;
-  --color-blue-500: #5caef2;
-  --color-blue-600: #4299e4;
-  --color-blue-700: #2d84d6;
-  --color-blue-800: #1d6fc8;
-  --color-blue-900: #125baa;
+  --color-blue-100: white;
+  --color-blue-200: aliceblue;
+  --color-blue-300: #e0f4ff;
+  --color-blue-400: #c5e5ff;
+  --color-blue-500: #82c3f8;
+  --color-blue-600: #5caef2;
+  --color-blue-700: #4299e4;
+  --color-blue-800: #2d84d6;
+  --color-blue-900: #1d6fc8;
+  /* --color-blue-1000: #125baa; */
 
   --color-pink-100: #ffecf5;
   --color-pink-200: #ffd9e9;
@@ -51,8 +53,9 @@
 
 [data-theme='dark'] {
   --bg-main: #0d1117;
-  --bg-card: #161b22;
+  --bg-sub: #161b22;
   --text-color: #f0f6fc;
+  --icon-color: #f0f6fc;
 
   --color-blue-100: #0d1117;
   --color-blue-200: #161b22;

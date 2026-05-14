@@ -4,9 +4,9 @@
   padding: 0 12px;
   gap: 6px;
   align-items: center;
-  border: 2px solid var(--color-component-border);
+  border: 2px solid var(--color-blue-300);
   border-radius: 6px;
-  background-color: var(--color-component-default);
+  background-color: var(--color-blue-100);
 }
 
 .container--fixed {
@@ -21,7 +21,8 @@
   font-size: 15px;
   border: none;
   outline: none;
-  background-color: var(--color-component-default);
+  background: none;
+  color: var(--text-color);
 }
 
 .input--fixed {

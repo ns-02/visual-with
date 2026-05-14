@@ -8,7 +8,9 @@
   padding: 10px;
   align-items: center;
   gap: 10px;
-  border-right: 1px solid var(--color-background-primary);
+  border-right: 1px solid var(--bg-main);
+  background-color: var(--bg-sub);
+  color: var(--text-color);
 }
 
 .rightsection {
@@ -17,17 +19,21 @@
   width: calc(100% - 80px);
   height: 100%;
   float: right;
+  background-color: var(--bg-main);
 }
 
 .header {
   display: flex;
   flex: 0 0 64px;
   padding: 12px 16px;
+  background-color: var(--bg-sub);
+  color: var(--text-color);
 }
 
 .body {
   flex: 1;
   height: calc(100% - 64px);
+  color: var(--text-color);
 }
 
 /* area */
@@ -40,28 +46,29 @@
 
 /* ui */
 .info_button {
-  background-color: var(--color-button-info);
+  background-color: var(--color-blue-400);
+  color: var(--text-color);
 }
 
 .menu_button {
-  background-color: var(--color-menu-button-secondary);
-  color: var(--color-content-default);
+  background-color: var(--color-blue-300);
+  color: var(--icon-color);
 }
 
 .selected {
-  background-color: var(--color-menu-button-primary);
+  background-color: var(--color-blue-400);
 }
 
 .link_button {
   width: 36px;
   height: 36px;
-  background-color: var(--color-button-default);
+  background: none;
+  color: var(--icon-color);
 }
 
 /* 메인 페이지 */
-.page {
+.main_page {
   height: 100%;
-  background-color: var(--color-background-primary);
 }
 
 .contents {

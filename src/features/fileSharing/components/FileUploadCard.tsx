@@ -1,7 +1,6 @@
-import FileIcon from './FileIcon';
 import styles from './FileSharingUI.module.css';
 import { useTeamFileStore } from '../store/useTeamFileStore';
-import { Progress } from '@shared/components';
+import { FileIcon, Progress } from '@shared/components';
 
 const FileUploadCard = () => {
   const currentFile = useTeamFileStore((state) => state.currentFile);

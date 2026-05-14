@@ -3,7 +3,7 @@
   margin-bottom: 10px;
   justify-content: space-between;
   border-radius: 12px;
-  background-color: var(--color-component-default);
+  background-color: var(--color-blue-100);
 }
 
 .info_contents {
@@ -20,11 +20,11 @@
 }
 
 .button_secondary_400 {
-  background-color: var(--color-button-secondary-400);
+  background-color: var(--color-blue-200);
 }
 
 .button_secondary_600 {
-  background-color: var(--color-button-secondary-600);
+  background-color: var(--color-blue-400);
 }
 
 .label {

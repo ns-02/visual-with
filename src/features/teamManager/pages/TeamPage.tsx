@@ -8,7 +8,7 @@ function TeamPage() {
   const { selectTeamName, currentRule } = useCurrentWorkspace();
 
   return (
-    <div className={styles.page}>
+    <div className={styles.team_page}>
       <div className={styles.contents}>
         <div className={styles.team_header}>
           <div className={styles.team_info}>

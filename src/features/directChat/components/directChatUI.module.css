@@ -1,13 +1,3 @@
-.file_icon {
-  display: flex;
-  width: 48px;
-  height: 48px;
-  border-radius: 6px;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--color-component-secondary);
-}
-
 .list_card {
   display: flex;
   margin-bottom: 10px;

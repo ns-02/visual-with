@@ -1,8 +1,7 @@
 import { Download, EllipsisVertical } from 'lucide-react';
 import FileSharingDropdown from './FileSharingDropdown';
-import FileIcon from './FileIcon';
 import styles from './FileSharingUI.module.css';
-import { Button } from '@shared/components';
+import { Button, FileIcon } from '@shared/components';
 
 interface FileListCardProps {
   id?: number;

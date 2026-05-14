@@ -6,6 +6,7 @@ export { default as AuthInput } from './AuthInput';
 export { default as Avatar } from './Avatar';
 export { default as Button } from './Button';
 export { default as CheckBox, type CheckBoxProps } from './CheckBox';
+export { default as FileIcon } from './FileIcon';
 export { default as FileInput } from './FileInput';
 export { default as Input } from './Input';
 export { default as Item } from './Item';

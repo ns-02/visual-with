@@ -20,7 +20,6 @@ const ScheduleCard = ({
   authorName,
   date,
   time,
-  state,
 }: ScheduleCardProps) => {
   const triggerElement = (
     <Button variant='content'>
@@ -39,7 +38,6 @@ const ScheduleCard = ({
         </div>
       </div>
       <div className={styles.navigation}>
-        <label className={styles.label}>{state}</label>
         <ScheduleDropdown
           scheduleId={id}
           authorId={authorId}

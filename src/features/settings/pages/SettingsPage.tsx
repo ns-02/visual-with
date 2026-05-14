@@ -11,7 +11,6 @@ import styles from './SettingsLayout.module.css';
 import { useUserStore } from '@core/store/useUserStore';
 import { PUSH_ITEMS, type PushKey } from '@features/settings/consts/pushItems';
 import { useSettingsStore } from '../store/useSettingsStore';
-import { useSettingsManager } from '../hooks/useSettingsManager';
 
 const THEME_OPTIONS: LabeledRadioGroupOption[] = [
   { value: 'light', label: '라이트' },
@@ -42,7 +41,6 @@ type PushSettings = Record<PushKey, boolean>;
 function SettingsPage() {
   const user = useUserStore((state) => state.user);
   const theme = useSettingsStore((state) => state.theme);
-  useSettingsManager();
   const setTheme = useSettingsStore((state) => state.setTheme);
   const [fontSize, setFontSize] = useState('medium');
   const [layoutSize, setLayoutSize] = useState('medium');

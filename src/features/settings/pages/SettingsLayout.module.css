@@ -24,7 +24,7 @@
   padding: 4px;
   gap: 8px;
   border-radius: 100px;
-  background-color: var(--color-blue-300);
+  background-color: var(--color-blue-400);
 }
 
 .setting_view {
@@ -33,7 +33,7 @@
 }
 
 .setting_content {
-  background-color: var(--bg-card);
+  background-color: var(--bg-sub);
   border-radius: 16px;
   padding: 0 20px;
   display: flex;
@@ -67,6 +67,7 @@
 }
 
 .trigger {
+  text-align: center;
   border-radius: 100px;
   border: none;
   font-size: 14px;
@@ -76,5 +77,5 @@
 }
 
 .trigger[data-state='active'] {
-  background-color: var(--bg-card);
+  background-color: var(--color-blue-100);
 }
