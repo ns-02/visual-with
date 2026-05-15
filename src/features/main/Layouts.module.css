@@ -10,7 +10,7 @@
   gap: 10px;
   border-right: 1px solid var(--bg-main);
   background-color: var(--bg-sub);
-  color: var(--text-color);
+  color: var(--text-main);
 }
 
 .rightsection {
@@ -27,13 +27,13 @@
   flex: 0 0 64px;
   padding: 12px 16px;
   background-color: var(--bg-sub);
-  color: var(--text-color);
+  color: var(--text-main);
 }
 
 .body {
   flex: 1;
   height: calc(100% - 64px);
-  color: var(--text-color);
+  color: var(--text-main);
 }
 
 /* area */
@@ -47,7 +47,7 @@
 /* ui */
 .info_button {
   background-color: var(--color-blue-400);
-  color: var(--text-color);
+  color: var(--text-main);
 }
 
 .menu_button {

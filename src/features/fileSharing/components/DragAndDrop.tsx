@@ -76,8 +76,10 @@ const DragAndDrop = () => {
     >
       <FileInput ref={inputRef} onChange={handleFileChange} />
       <Upload size={48} color='#aaa' />
-      <p style={{ color: '#555' }}>파일을 여기에 드래그하여 업로드하세요</p>
-      <p style={{ fontSize: '14px', color: '#777' }}>또는</p>
+      <p className={styles.info_sub_text}>
+        파일을 여기에 드래그하여 업로드하세요
+      </p>
+      <p className={styles.info_third_text}>또는</p>
       <FileSelectButton text='파일 선택' onClick={handleSelectFile} />
     </div>
   );

@@ -14,9 +14,9 @@
 .date_divider {
   text-align: center;
   margin: 8px 0;
-  font-size: 13px;
+  font-size: var(--font-size-xs);
   font-weight: 500;
-  color: #888;
+  color: var(--text-sub-200);
 }
 
 .chat_item_receiver {
@@ -62,8 +62,8 @@
 
 .chat_time {
   display: inline-block;
-  font-size: 13px;
-  color: #aaa;
+  font-size: var(--font-size-xs);
+  color: var(--text-sub-300);
 }
 
 .chat_bubble_receiver {
@@ -84,4 +84,5 @@
 
 .chat_text {
   display: inline-block;
+  font-size: var(--font-size-md);
 }

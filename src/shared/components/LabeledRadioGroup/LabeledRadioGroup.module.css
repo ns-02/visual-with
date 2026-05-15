@@ -35,7 +35,7 @@
 }
 
 .label {
-  font-size: 14px;
+  font-size: var(--font-size-sm);
   padding-left: 8px;
-  color: var(--text-color);
+  color: var(--text-main);
 }

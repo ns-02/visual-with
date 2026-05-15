@@ -34,7 +34,7 @@ const FileListCard = ({
         <FileIcon />
         <div>
           <p>{fileName}</p>
-          <p style={{ fontSize: '15px', color: '#555' }}>
+          <p className={styles.info_sub_text}>
             {`${date} · ${fileSize} · ${authorName}`}
           </p>
         </div>

@@ -22,7 +22,7 @@ const FriendRequestCard = ({
         <Avatar />
         <div>
           <p>{name}</p>
-          <p style={{ fontSize: '15px', color: '#555' }}>{description}</p>
+          <p className={styles.info_sub_text}>{description}</p>
         </div>
       </div>
       <div className={styles.navigation}>

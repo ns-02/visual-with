@@ -15,9 +15,11 @@
 }
 
 .friendName {
-  color: #555;
+  color: var(--text-sub-100);
+  font-size: var(--font-size-md);
 }
 
 .friendName_selected {
   font-weight: 500;
+  font-size: var(--font-size-md);
 }

@@ -44,10 +44,9 @@ const TodoListCard = ({
             <>
               <p style={{ textDecoration: 'line-through' }}>{title}</p>
               <p
+                className={styles.info_sub_text}
                 style={{
                   textDecoration: 'line-through',
-                  fontSize: '15px',
-                  color: '#555',
                 }}
               >
                 {`${authorName} - ${description}`}
@@ -57,7 +56,7 @@ const TodoListCard = ({
             <>
               <p>{title}</p>
               <p
-                style={{ fontSize: '15px', color: '#555' }}
+                className={styles.info_sub_text}
               >{`${authorName} - ${description}`}</p>
             </>
           )}

@@ -31,10 +31,10 @@ const ScheduleCard = ({
     <div className={styles.container}>
       <div className={styles.info_contents}>
         <p>{title}</p>
-        <div className={styles.datetime}>
-          <span style={{ fontSize: '15px', color: '#555' }}>{authorName}</span>
-          <span style={{ fontSize: '15px', color: '#555' }}>{date}</span>
-          <span style={{ fontSize: '15px', color: '#555' }}>{time}</span>
+        <div className={styles.info_sub_text}>
+          <span>{authorName}</span>
+          <span>{date}</span>
+          <span>{time}</span>
         </div>
       </div>
       <div className={styles.navigation}>

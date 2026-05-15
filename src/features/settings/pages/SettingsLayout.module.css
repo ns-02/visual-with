@@ -59,7 +59,7 @@
 }
 
 .text_color {
-  color: var(--text-color);
+  color: var(--text-main);
 }
 
 .setting_items_row + .setting_items_row {
@@ -70,7 +70,7 @@
   text-align: center;
   border-radius: 100px;
   border: none;
-  font-size: 14px;
+  font-size: var(--font-size-sm);
   padding: 6px 0;
   flex: 1;
   background: none;

@@ -18,11 +18,11 @@
 }
 
 .input {
-  font-size: 15px;
+  font-size: var(--font-size-sm);
   border: none;
   outline: none;
   background: none;
-  color: var(--text-color);
+  color: var(--text-main);
 }
 
 .input--fixed {

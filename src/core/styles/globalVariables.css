@@ -1,7 +1,10 @@
 :root {
   --bg-main: aliceblue;
   --bg-sub: white;
-  --text-color: black;
+  --text-main: black;
+  --text-sub-100: #555;
+  --text-sub-200: #777;
+  --text-sub-300: #aaa;
   --icon-color: black;
   --border-100: #eee;
   --border-900: black;
@@ -31,7 +34,10 @@
 [data-theme='dark'] {
   --bg-main: #0d1117;
   --bg-sub: #161b22;
-  --text-color: #f0f6fc;
+  --text-main: #f0f6fc;
+  --text-sub-100: #aaa;
+  --text-sub-200: #888;
+  --text-sub-300: #555;
   --icon-color: #f0f6fc;
   --border-100: #2d333b;
   --border-900: #f0f6fc;
@@ -58,25 +64,31 @@
 }
 
 [data-font-size='large'] {
+  --font-size-2xl: 28px;
   --font-size-xl: 24px;
   --font-size-lg: 20px;
   --font-size-md: 18px;
   --font-size-sm: 16px;
   --font-size-xs: 14px;
+  --font-size-2xs: 12px;
 }
 
 [data-font-size='medium'] {
+  --font-size-2xl: 24px;
   --font-size-xl: 20px;
   --font-size-lg: 18px;
   --font-size-md: 16px;
   --font-size-sm: 14px;
   --font-size-xs: 12px;
+  --font-size-2xs: 11px;
 }
 
-[data-font-size='small'] {
+[data-font-size='smail'] {
+  --font-size-2xl: 20px;
   --font-size-xl: 16px;
   --font-size-lg: 14px;
   --font-size-md: 13px;
   --font-size-sm: 12px;
   --font-size-xs: 11px;
+  --font-size-2xs: 10px;
 }

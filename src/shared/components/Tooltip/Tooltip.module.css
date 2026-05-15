@@ -3,7 +3,8 @@
   z-index: 2;
   padding: 4px 12px;
   background-color: var(--color-blue-400);
-  color: var(--text-color);
+  color: var(--text-main);
+  font-size: var(--font-size-sm);
   border-radius: 6px;
   transform-origin: var(--radix-tooltip-content-transform-origin);
   animation-duration: 150ms;
