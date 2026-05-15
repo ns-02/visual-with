@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction, useState } from 'react';
-import { Dialog, Group, DialogInput } from '@shared/components';
+import { Dialog, DialogInput } from '@shared/components';
 import { useTeamFileManager } from '../hooks/useTeamFileManager';
 
 interface UploadFileDialogProps {
@@ -26,9 +26,9 @@ const UploadFileDialog = ({ open, onOpenChange }: UploadFileDialogProps) => {
       confirmText='업로드'
       onConfirm={handleUploadFile}
     >
-      <Group>
+      <div className='mb_10'>
         <p>파일 선택</p>
-      </Group>
+      </div>
       <DialogInput
         type='file'
         setValue={(e) => e.target.files && setFile(e.target.files[0])}

@@ -1,6 +1,6 @@
 import { useUserStore } from '@core/store/useUserStore';
 import { Dispatch, SetStateAction, useState } from 'react';
-import { Dialog, Group, DialogInput } from '@shared/components';
+import { Dialog, DialogInput } from '@shared/components';
 import { useTodoStore } from '../store/useTodoStore';
 import { useWorkspaceParams } from '@core/hooks/useWorkspaceParams';
 
@@ -40,22 +40,22 @@ const AddTodoDialog = ({ open, onOpenChange }: AddTodoDialogProps) => {
       confirmText='추가'
       onConfirm={handleAddTodo}
     >
-      <Group>
+      <div className='mb_10'>
         <label>제목</label>
         <DialogInput
           placeholder='할 일 제목을 입력하세요'
           value={title}
           setValue={(e) => setTitle(e.target.value)}
         />
-      </Group>
-      <Group>
+      </div>
+      <div className='mb_10'>
         <label>내용</label>
         <DialogInput
           placeholder='할 일을 입력하세요'
           value={description}
           setValue={(e) => setDescription(e.target.value)}
         />
-      </Group>
+      </div>
     </Dialog>
   );
 };

@@ -1,5 +1,5 @@
 import { useWorkspaceParams } from '@core/hooks/useWorkspaceParams';
-import { Dialog, DialogInput, Group, Row } from '@shared/components';
+import { Dialog, DialogInput } from '@shared/components';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { useScheduleStore } from '../store/useScheduleStore';
 
@@ -73,63 +73,63 @@ const UpdateScheduleDialog = ({
       confirmText='수정'
       onConfirm={handleUpdateSchedule}
     >
-      <Group>
+      <div className='mb_10'>
         <label>제목</label>
         <DialogInput
           placeholder='일정 제목을 입력하세요'
           value={title}
           setValue={(e) => setTitle(e.target.value)}
         />
-      </Group>
+      </div>
 
-      <Row>
-        <Group>
+      <div className='d_flex gap_6'>
+        <div className='mb_10'>
           <label>시작 날짜</label>
           <DialogInput
             type='date'
             value={startDate}
             setValue={(e) => setstartDate(e.target.value)}
           />
-        </Group>
-        <Group>
+        </div>
+        <div className='mb_10'>
           <label>시작 시간</label>
           <DialogInput
             type='time'
             value={startTime}
             setValue={(e) => setStartTime(e.target.value)}
           />
-        </Group>
-      </Row>
-      <Row>
-        <Group>
+        </div>
+      </div>
+      <div className='d_flex gap_6'>
+        <div className='mb_10'>
           <label>종료 날짜</label>
           <DialogInput
             type='date'
             value={finishDate}
             setValue={(e) => setFinishDate(e.target.value)}
           />
-        </Group>
-        <Group>
+        </div>
+        <div className='mb_10'>
           <label>종료 시간</label>
           <DialogInput
             type='time'
             value={finishTime}
             setValue={(e) => setFinishTime(e.target.value)}
           />
-        </Group>
-      </Row>
-      <Group>
+        </div>
+      </div>
+      <div className='mb_10'>
         <label>카테고리</label>
         <DialogInput placeholder='일정' />
-      </Group>
-      <Group>
+      </div>
+      <div className='mb_10'>
         <label>설명</label>
         <DialogInput
           placeholder='일정 설명을 입력하세요 (선택사항)'
           value={description}
           setValue={(e) => setDescription(e.target.value)}
         />
-      </Group>
+      </div>
     </Dialog>
   );
 };

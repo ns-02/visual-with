@@ -1,7 +1,7 @@
 import { useWorkspaceParams } from '@core/hooks/useWorkspaceParams';
 import { useUserStore } from '@core/store/useUserStore';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
-import { Dialog, Group, DialogInput } from '@shared/components';
+import { Dialog, DialogInput } from '@shared/components';
 import { useTodoStore } from '../store/useTodoStore';
 
 interface UpdateTodoDialogProps {
@@ -58,22 +58,22 @@ const UpdateTodoDialog = ({
       confirmText='수정'
       onConfirm={handleUpdateTodo}
     >
-      <Group>
+      <div className='mb_10'>
         <label>제목</label>
         <DialogInput
           placeholder='할 일 제목을 입력하세요'
           value={title}
           setValue={(e) => setTitle(e.target.value)}
         />
-      </Group>
-      <Group>
+      </div>
+      <div className='mb_10'>
         <label>내용</label>
         <DialogInput
           placeholder='할 일을 입력하세요'
           value={description}
           setValue={(e) => setDescription(e.target.value)}
         />
-      </Group>
+      </div>
     </Dialog>
   );
 };

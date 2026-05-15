@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from 'react';
-import { Dialog, Group, Row } from '@shared/components';
+import { Dialog } from '@shared/components';
 import { Button } from '@shared/components';
 import { useTeamManager } from '../hooks/useTeamManager';
 import { useWorkspaceStore } from '@core/store/useWorkspaceStore';
@@ -40,13 +40,13 @@ const TeamInvitationDialog = ({
     >
       {invitationData.map((item) => (
         <div key={item.teamId}>
-          <Group>
+          <div className='mb_10'>
             <h4>초대 받음</h4>
-          </Group>
-          <Group>
+          </div>
+          <div className='mb_10'>
             <p>"{item.teamName}"팀의 초대를 수락할까요?</p>
-          </Group>
-          <Row>
+          </div>
+          <div className='d_flex gap_6'>
             <Button onClick={() => onTeamInvitationByUserId(item.teamId, true)}>
               수락
             </Button>
@@ -55,13 +55,13 @@ const TeamInvitationDialog = ({
             >
               거절
             </Button>
-          </Row>
+          </div>
         </div>
       ))}
       {invitationData.length === 0 && (
-        <Group>
+        <div className='mb_10'>
           <p>현재 초대받은 팀이 없습니다.</p>
-        </Group>
+        </div>
       )}
     </Dialog>
   );

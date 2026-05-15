@@ -15,9 +15,7 @@ export { default as Progress } from './Progress';
 export { default as Tooltip } from './Tooltip';
 export { default as AlertDialog } from './AlertDialog';
 export { default as Dialog } from './Dialog/';
-export { default as Group } from './Group';
 export { default as DialogInput } from './DialogInput';
-export { default as Row } from './Row';
 export { default as Switch } from './Switch';
 export {
   default as LabeledRadioGroup,

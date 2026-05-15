@@ -1,5 +1,5 @@
 import { Search } from 'lucide-react';
-import { Dialog, Group, DialogInput, Row } from '@shared/components';
+import { Dialog, DialogInput } from '@shared/components';
 import { Button } from '@shared/components';
 import { Dispatch, SetStateAction, useState } from 'react';
 import { notFriendDataMocks } from '@mocks/FriendDataMocks';
@@ -51,10 +51,10 @@ const AddFriendDialog = ({
       confirmText='친구 추가'
       onConfirm={handleRequestFriend}
     >
-      <Group>
+      <div className='mb_10'>
         <p>친구 ID 검색</p>
-      </Group>
-      <Row>
+      </div>
+      <div className='d_flex gap_6'>
         <DialogInput
           placeholder='친구의 ID를 검색하세요'
           value={friendId}
@@ -66,7 +66,7 @@ const AddFriendDialog = ({
         <Button onClick={handleSearchFriend}>
           <Search size={16} />
         </Button>
-      </Row>
+      </div>
     </Dialog>
   );
 };
