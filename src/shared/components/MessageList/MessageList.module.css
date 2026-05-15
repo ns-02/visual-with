@@ -57,7 +57,7 @@
 
 .receiver {
   display: inline-block;
-  font-size: 16px;
+  font-size: var(--font-size-md);
 }
 
 .chat_time {

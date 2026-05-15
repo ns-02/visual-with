@@ -56,3 +56,27 @@
   --color-pink-800: #ffd1e7;
   --color-pink-900: #fff0f7;
 }
+
+[data-font-size='large'] {
+  --font-size-xl: 24px;
+  --font-size-lg: 20px;
+  --font-size-md: 18px;
+  --font-size-sm: 16px;
+  --font-size-xs: 14px;
+}
+
+[data-font-size='medium'] {
+  --font-size-xl: 20px;
+  --font-size-lg: 18px;
+  --font-size-md: 16px;
+  --font-size-sm: 14px;
+  --font-size-xs: 12px;
+}
+
+[data-font-size='small'] {
+  --font-size-xl: 16px;
+  --font-size-lg: 14px;
+  --font-size-md: 13px;
+  --font-size-sm: 12px;
+  --font-size-xs: 11px;
+}

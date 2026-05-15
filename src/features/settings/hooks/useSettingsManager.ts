@@ -27,5 +27,15 @@ export const useSettingsManager = () => {
     }
   }, [theme]);
 
+  useEffect(() => {
+    const root = window.document.documentElement;
+
+    const applyFontSize = () => {
+      root.setAttribute('data-font-size', fontSize);
+    };
+
+    applyFontSize();
+  }, [fontSize]);
+
   return { theme, fontSize, layoutSize, layoutDensity, pushSettings };
 };

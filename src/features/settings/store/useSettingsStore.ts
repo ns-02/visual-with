@@ -4,12 +4,12 @@ import { persist } from 'zustand/middleware';
 
 interface SettingsState {
   theme: string;
-  fontSize: 'small' | 'medium' | 'large';
+  fontSize: string;
   layoutSize: 'small' | 'medium' | 'large';
   layoutDensity: 'narrow' | 'medium' | 'wide';
   pushSettings: Record<PushKey, boolean>;
   setTheme: (theme: string) => void;
-  setFontSize: (fontSize: 'small' | 'medium' | 'large') => void;
+  setFontSize: (fontSize: string) => void;
   setLayoutSize: (layoutSize: 'small' | 'medium' | 'large') => void;
   setLayoutDensity: (layoutDensity: 'narrow' | 'medium' | 'wide') => void;
   setPushSettings: (pushSettings: Record<PushKey, boolean>) => void;

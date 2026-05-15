@@ -42,7 +42,8 @@ function SettingsPage() {
   const user = useUserStore((state) => state.user);
   const theme = useSettingsStore((state) => state.theme);
   const setTheme = useSettingsStore((state) => state.setTheme);
-  const [fontSize, setFontSize] = useState('medium');
+  const fontSize = useSettingsStore((state) => state.fontSize);
+  const setFontSize = useSettingsStore((state) => state.setFontSize);
   const [layoutSize, setLayoutSize] = useState('medium');
   const [layoutDensity, setLayoutDensity] = useState('medium');
   const [pushSettings, setPushSettings] = useState<PushSettings>(
