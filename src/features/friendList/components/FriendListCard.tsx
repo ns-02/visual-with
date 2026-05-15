@@ -18,8 +18,8 @@ const FriendListCard = ({ id, name, description }: FriendListCardProps) => {
   );
 
   return (
-    <div className={styles.container}>
-      <div className={styles.info_contents}>
+    <div className='common_card'>
+      <div className='common_card_info'>
         <Avatar />
         <div>
           <p>{name}</p>

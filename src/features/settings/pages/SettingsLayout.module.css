@@ -1,6 +1,5 @@
 .setting_root {
   height: 100%;
-  background-color: var(--bg-main);
   overflow-y: auto;
 }
 

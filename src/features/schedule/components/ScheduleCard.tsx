@@ -28,8 +28,8 @@ const ScheduleCard = ({
   );
 
   return (
-    <div className={styles.container}>
-      <div className={styles.info_contents}>
+    <div className='common_card'>
+      <div className='common_card_info gap_4 flex_col'>
         <p>{title}</p>
         <div className={styles.info_sub_text}>
           <span>{authorName}</span>

@@ -31,10 +31,36 @@ div[role*='dialog'] {
 }
 
 /* 공통 전역 스타일 */
+.common_card {
+  display: flex;
+  margin-bottom: 10px;
+  justify-content: space-between;
+  border-radius: 12px;
+  background-color: var(--color-blue-100);
+}
+
+.common_card_info {
+  display: flex;
+  padding: 16px;
+  gap: 12px;
+  font-size: var(--font-size-md);
+}
 
 /* 레이아웃 */
 .d_flex {
   display: flex;
+}
+
+.flex_col {
+  flex-direction: column;
+}
+
+.content_nm {
+  justify-content: normal;
+}
+
+.item_center {
+  align-items: center;
 }
 
 /* 사이즈 */
@@ -47,6 +73,10 @@ div[role*='dialog'] {
 }
 
 /* 여백 */
+.gap_4 {
+  gap: 4px;
+}
+
 .gap_6 {
   gap: 6px;
 }

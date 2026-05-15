@@ -29,8 +29,8 @@ const FileListCard = ({
   );
 
   return (
-    <div className={styles.list_card}>
-      <div className={styles.info_contents}>
+    <div className='common_card'>
+      <div className='common_card_info'>
         <FileIcon />
         <div>
           <p>{fileName}</p>

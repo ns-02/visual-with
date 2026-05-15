@@ -11,7 +11,7 @@ const DragAndDrop = () => {
   const { loadAndUploadFile } = useTeamFileManager();
 
   const containerStyle = dragging
-    ? styles.drop_zone_dragging
+    ? `${styles.drop_zone} ${styles.dragging}`
     : styles.drop_zone;
 
   // '파일 선택' 버튼 클릭 시 동작

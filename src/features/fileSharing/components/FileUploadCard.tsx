@@ -7,9 +7,9 @@ const FileUploadCard = () => {
   const progress = useTeamFileStore((state) => state.progress);
 
   return (
-    <div className={styles.upload_card}>
+    <div className='common_card flex_col content_nm'>
       <div className={styles.wrapper}>
-        <div className={styles.info_contents}>
+        <div className='common_card_info'>
           <FileIcon />
           <div>
             <p>{currentFile?.fileName}</p>

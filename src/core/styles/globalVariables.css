@@ -83,7 +83,7 @@
   --font-size-2xs: 11px;
 }
 
-[data-font-size='smail'] {
+[data-font-size='small'] {
   --font-size-2xl: 20px;
   --font-size-xl: 16px;
   --font-size-lg: 14px;

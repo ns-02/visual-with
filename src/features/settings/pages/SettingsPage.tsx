@@ -19,13 +19,13 @@ const THEME_OPTIONS: LabeledRadioGroupOption[] = [
 ];
 
 const FONT_SIZE_OPTIONS: LabeledRadioGroupOption[] = [
-  { value: 'smail', label: '작게' },
+  { value: 'small', label: '작게' },
   { value: 'medium', label: '보통' },
   { value: 'large', label: '크게' },
 ];
 
 const LAYOUT_SIZE_OPTIONS: LabeledRadioGroupOption[] = [
-  { value: 'smail', label: '작게' },
+  { value: 'small', label: '작게' },
   { value: 'medium', label: '보통' },
   { value: 'large', label: '크게' },
 ];
