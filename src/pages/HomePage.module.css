@@ -2,7 +2,7 @@
   width: 100%;
   height: 100%;
   margin: auto;
-  background-color: aliceblue;
+  background-color: var(--bg-main);
 }
 
 .header {
@@ -30,7 +30,7 @@
   height: calc(100% - 120px);
   justify-content: center;
   align-items: center;
-  font-size: 24px;
+  font-size: var(--font-size-2xl);
   /* background-color: aqua; */
 }
 

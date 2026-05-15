@@ -32,5 +32,5 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #555;
+  color: var(--text-sub-100);
 }

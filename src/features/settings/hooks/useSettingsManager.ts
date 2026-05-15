@@ -31,11 +31,18 @@ export const useSettingsManager = () => {
     const root = window.document.documentElement;
 
     const applyFontSize = () => {
-      root.setAttribute('data-font-size', fontSize);
+      const normalizedFontSize = fontSize === 'smail' ? 'small' : fontSize;
+      root.setAttribute('data-font-size', normalizedFontSize);
     };
 
     applyFontSize();
   }, [fontSize]);
+
+  useEffect(() => {
+    const root = window.document.documentElement;
+    root.setAttribute('data-layout-size', layoutSize);
+    root.setAttribute('data-layout-density', layoutDensity);
+  }, [layoutSize, layoutDensity]);
 
   return { theme, fontSize, layoutSize, layoutDensity, pushSettings };
 };

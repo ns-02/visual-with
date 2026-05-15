@@ -42,7 +42,7 @@
 
 .separator {
   height: 0.5px;
-  background-color: #666;
+  background-color: var(--surface-hover);
   margin: 4px 0;
 }
 

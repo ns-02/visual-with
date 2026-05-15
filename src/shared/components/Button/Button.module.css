@@ -55,6 +55,6 @@
   width: 100%;
   padding: 6px 0;
   border-radius: 12px;
-  font-size: 15px;
+  font-size: var(--font-size-sm);
   background-color: var(--color-blue-500);
 }

@@ -44,8 +44,12 @@ function SettingsPage() {
   const setTheme = useSettingsStore((state) => state.setTheme);
   const fontSize = useSettingsStore((state) => state.fontSize);
   const setFontSize = useSettingsStore((state) => state.setFontSize);
-  const [layoutSize, setLayoutSize] = useState('medium');
-  const [layoutDensity, setLayoutDensity] = useState('medium');
+  const layoutSize = useSettingsStore((state) => state.layoutSize);
+  const setLayoutSize = useSettingsStore((state) => state.setLayoutSize);
+  const layoutDensity = useSettingsStore((state) => state.layoutDensity);
+  const setLayoutDensity = useSettingsStore(
+    (state) => state.setLayoutDensity,
+  );
   const [pushSettings, setPushSettings] = useState<PushSettings>(
     PUSH_ITEMS.reduce((acc, { key, defaultEnabled }) => {
       acc[key] = defaultEnabled;
@@ -131,7 +135,9 @@ function SettingsPage() {
               <p className={styles.text_color}>레이아웃 크기</p>
               <LabeledRadioGroup
                 value={layoutSize}
-                onValueChange={setLayoutSize}
+                onValueChange={(value) =>
+                  setLayoutSize(value as typeof layoutSize)
+                }
                 options={LAYOUT_SIZE_OPTIONS}
               />
             </div>
@@ -139,7 +145,9 @@ function SettingsPage() {
               <p className={styles.text_color}>레이아웃 밀도</p>
               <LabeledRadioGroup
                 value={layoutDensity}
-                onValueChange={setLayoutDensity}
+                onValueChange={(value) =>
+                  setLayoutDensity(value as typeof layoutDensity)
+                }
                 options={LAYOUT_DENSITY_OPTIONS}
               />
             </div>

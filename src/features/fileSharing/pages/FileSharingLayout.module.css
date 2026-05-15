@@ -5,11 +5,11 @@
 .top_files {
   display: flex;
   width: 100%;
-  padding: 32px 120px 16px;
+  padding: var(--space-8) var(--space-page-x) var(--space-4);
   gap: 8px;
 }
 
 .file_view_panel {
   width: 100%;
-  padding: 0 120px;
+  padding: 0 var(--space-page-x);
 }

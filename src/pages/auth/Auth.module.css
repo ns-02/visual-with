@@ -21,7 +21,7 @@
 }
 
 .title {
-  font-size: 28px;
+  font-size: var(--font-size-2xl);
   font-weight: normal;
 }
 
@@ -46,7 +46,7 @@
 
 .link {
   text-decoration: none;
-  color: black;
+  color: var(--text-main);
 
   &:hover {
     text-decoration: underline;
@@ -54,5 +54,5 @@
 }
 
 .link_auth {
-  color: #5caef2;
+  color: var(--color-link);
 }

@@ -47,7 +47,7 @@
 }
 
 .setting_item + .setting_item {
-  border-top: 1px solid #ddd;
+  border-top: 1px solid var(--border-200);
 }
 
 .setting_items_row {
@@ -62,7 +62,7 @@
 }
 
 .setting_items_row + .setting_items_row {
-  border-top: 1px solid #ddd;
+  border-top: 1px solid var(--border-200);
 }
 
 .trigger {
@@ -85,5 +85,5 @@
 
 .pink_button {
   background-color: var(--color-pink-100);
-  color: #d4183d;
+  color: var(--color-danger);
 }
