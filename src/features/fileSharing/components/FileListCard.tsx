@@ -1,6 +1,5 @@
 import { Download, EllipsisVertical } from 'lucide-react';
 import FileSharingDropdown from './FileSharingDropdown';
-import styles from './FileSharingUI.module.css';
 import { Button, FileIcon } from '@shared/components';
 
 interface FileListCardProps {
@@ -34,12 +33,12 @@ const FileListCard = ({
         <FileIcon />
         <div>
           <p>{fileName}</p>
-          <p className={styles.info_sub_text}>
+          <p className='text_sec_100'>
             {`${date} · ${fileSize} · ${authorName}`}
           </p>
         </div>
       </div>
-      <div className={styles.list_nav}>
+      <div className='common_card_nav'>
         <Button variant='content'>
           <Download size={16} />
         </Button>

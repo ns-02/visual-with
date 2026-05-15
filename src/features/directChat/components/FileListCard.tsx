@@ -1,5 +1,4 @@
 import { Download, EllipsisVertical } from 'lucide-react';
-import styles from './directChatUI.module.css';
 import { Button, FileIcon } from '@shared/components';
 import FileSharingDropdown from './FileSharingDropdown';
 
@@ -39,7 +38,7 @@ const FileListCard = ({
           </p>
         </div>
       </div>
-      <div className={styles.list_nav}>
+      <div className='common_card_nav'>
         <Button variant='content'>
           <Download size={16} />
         </Button>

@@ -1,7 +1,6 @@
 import { CheckBox, Button, type CheckBoxProps } from '@shared/components';
 import { EllipsisVertical } from 'lucide-react';
 import TodoListDropdown from './TodoListDropdown';
-import styles from './TodoListUI.module.css';
 
 interface TodoListCardProps {
   id?: number;
@@ -40,29 +39,20 @@ const TodoListCard = ({
           disabled={isCheckDisabled}
         />
         <div>
-          {checked ? (
-            <>
-              <p style={{ textDecoration: 'line-through' }}>{title}</p>
-              <p
-                className={styles.info_sub_text}
-                style={{
-                  textDecoration: 'line-through',
-                }}
-              >
-                {`${authorName} - ${description}`}
-              </p>
-            </>
-          ) : (
-            <>
-              <p>{title}</p>
-              <p
-                className={styles.info_sub_text}
-              >{`${authorName} - ${description}`}</p>
-            </>
-          )}
+          <p style={{ textDecoration: `${checked ? 'line-through' : ''}` }}>
+            {title}
+          </p>
+          <p
+            className='text_sec_100'
+            style={{
+              textDecoration: `${checked ? 'line-through' : ''}`,
+            }}
+          >
+            {`${authorName} - ${description}`}
+          </p>
         </div>
       </div>
-      <div className={styles.navigation}>
+      <div className='common_card_nav'>
         <TodoListDropdown
           todoId={id}
           authorId={authorId}

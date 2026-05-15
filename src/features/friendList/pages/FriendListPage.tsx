@@ -1,5 +1,5 @@
+import { ReactNode } from 'react';
 import { User, UserPlus } from 'lucide-react';
-import FriendListLabel from '../components/FriendListLabel';
 import styles from './FriendListLayout.module.css';
 import FriendRequestCard from '../components/FriendRequestCard';
 import FriendListCard from '../components/FriendListCard';
@@ -48,5 +48,27 @@ function FriendListPage() {
     </div>
   );
 }
+
+const FriendListLabel = ({
+  text,
+  count,
+  children,
+}: {
+  text?: string;
+  count?: number;
+  children?: ReactNode;
+}) => {
+  if (text === '친구 요청' && !count) {
+    return null;
+  }
+
+  return (
+    <div className='common_card_label'>
+      {children}
+      <span>{text}</span>
+      <span className='text_sec_200'>{count}</span>
+    </div>
+  );
+};
 
 export default FriendListPage;

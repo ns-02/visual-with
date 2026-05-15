@@ -46,6 +46,43 @@ div[role*='dialog'] {
   font-size: var(--font-size-md);
 }
 
+.common_card_nav {
+  display: flex;
+  align-items: center;
+  padding: 14px;
+  gap: 8px;
+}
+
+.common_card_label {
+  display: flex;
+  margin-top: 24px;
+  margin-bottom: 12px;
+  gap: 12px;
+  align-items: center;
+}
+
+/* 텍스트 */
+.text_pri_50 {
+  font-size: var(--font-size-md);
+  font-weight: 500;
+  color: var(--text-main);
+}
+
+.text_sec_50 {
+  font-size: var(--font-size-md);
+  color: var(--text-sub-100);
+}
+
+.text_sec_100 {
+  font-size: var(--font-size-sm);
+  color: var(--text-sub-100);
+}
+
+.text_sec_200 {
+  font-size: var(--font-size-xs);
+  color: var(--text-sub-200);
+}
+
 /* 레이아웃 */
 .d_flex {
   display: flex;
@@ -81,6 +118,10 @@ div[role*='dialog'] {
   gap: 6px;
 }
 
+.gap_12 {
+  gap: 12px;
+}
+
 .mt_8 {
   margin-top: 8px;
 }
@@ -93,6 +134,11 @@ div[role*='dialog'] {
   margin-bottom: 10px;
 }
 
+.px_20 {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
 /* 폰트 */
 .fs_13 {
   font-size: var(--font-size-md);
@@ -100,4 +146,26 @@ div[role*='dialog'] {
 
 .fs_14 {
   font-size: var(--font-size-sm);
+}
+
+/* 색상 */
+.bg_sub {
+  background-color: var(--bg-sub);
+}
+
+.bg_blue_200 {
+  background-color: var(--color-blue-200);
+}
+
+.bg_blue_400 {
+  background-color: var(--color-blue-400);
+}
+
+.bg_pink_200 {
+  background-color: var(--color-pink-200);
+}
+
+/* 커서 */
+.cursor_pointer {
+  cursor: pointer;
 }

@@ -1,5 +1,4 @@
 import { Button } from '@shared/components';
-import styles from './ScheduleUI.module.css';
 import { EllipsisVertical } from 'lucide-react';
 import ScheduleDropdown from './ScheduleDropdown';
 
@@ -31,13 +30,13 @@ const ScheduleCard = ({
     <div className='common_card'>
       <div className='common_card_info gap_4 flex_col'>
         <p>{title}</p>
-        <div className={styles.info_sub_text}>
+        <div className='text_sec_100 d_flex gap_12'>
           <span>{authorName}</span>
           <span>{date}</span>
           <span>{time}</span>
         </div>
       </div>
-      <div className={styles.navigation}>
+      <div className='common_card_nav'>
         <ScheduleDropdown
           scheduleId={id}
           authorId={authorId}

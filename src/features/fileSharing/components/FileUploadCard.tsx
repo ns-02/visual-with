@@ -18,7 +18,7 @@ const FileUploadCard = () => {
             >{`${currentFile?.fileSize}`}</p>
           </div>
         </div>
-        <div className={styles.upload_nav}>
+        <div className='common_card_nav px_20'>
           <p>{`${progress}%`}</p>
         </div>
       </div>
