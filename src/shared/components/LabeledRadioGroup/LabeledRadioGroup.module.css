@@ -30,7 +30,7 @@
   display: block;
   width: 11px;
   height: 11px;
-  background-color: #82c3f8;
+  background-color: var(--color-blue-500);
   border-radius: 50%;
 }
 
