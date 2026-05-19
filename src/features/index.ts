@@ -8,5 +8,5 @@ export { default as SettingsPage } from './settings/pages/SettingsPage';
 export { default as TeamChatPage } from './teamChat/pages/TeamChatPage';
 export { default as TeamLayout } from './teamManager/components/TeamLayout';
 export { default as InviteLinkPage } from './teamManager/pages/InviteLinkPage';
-export { default as TeamPage } from './teamManager/pages/TeamPage';
+export { default as DashboardPage } from './dashboard/pages/DashboardPage';
 export { default as TodoListPage } from './todoList/pages/TodoListPage';
