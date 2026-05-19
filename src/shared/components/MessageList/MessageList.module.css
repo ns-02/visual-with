@@ -14,9 +14,9 @@
 .date_divider {
   text-align: center;
   margin: 8px 0;
-  font-size: 13px;
+  font-size: var(--font-size-xs);
   font-weight: 500;
-  color: #888;
+  color: var(--text-sub-200);
 }
 
 .chat_item_receiver {
@@ -57,14 +57,13 @@
 
 .receiver {
   display: inline-block;
-  font-size: 16px;
-  color: #000;
+  font-size: var(--font-size-md);
 }
 
 .chat_time {
   display: inline-block;
-  font-size: 13px;
-  color: #aaa;
+  font-size: var(--font-size-xs);
+  color: var(--text-sub-300);
 }
 
 .chat_bubble_receiver {
@@ -72,7 +71,7 @@
   padding: 8px 12px;
   margin-bottom: 20px;
   border-radius: 10px;
-  background-color: var(--color-component-default);
+  background-color: var(--color-blue-100);
 }
 
 .chat_bubble_sender {
@@ -80,9 +79,10 @@
   padding: 8px 12px;
   margin-bottom: 20px;
   border-radius: 10px;
-  background-color: var(--color-component-another);
+  background-color: var(--color-pink-400);
 }
 
 .chat_text {
   display: inline-block;
+  font-size: var(--font-size-md);
 }

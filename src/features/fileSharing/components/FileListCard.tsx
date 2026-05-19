@@ -1,8 +1,6 @@
 import { Download, EllipsisVertical } from 'lucide-react';
 import FileSharingDropdown from './FileSharingDropdown';
-import FileIcon from './FileIcon';
-import styles from './FileSharingUI.module.css';
-import { Button } from '@shared/components';
+import { Button, FileIcon } from '@shared/components';
 
 interface FileListCardProps {
   id?: number;
@@ -10,7 +8,8 @@ interface FileListCardProps {
   date?: string;
   fileSize?: string;
   timeAgo?: string;
-  uploader?: string;
+  authorId?: string;
+  authorName?: string;
 }
 
 const FileListCard = ({
@@ -18,8 +17,9 @@ const FileListCard = ({
   fileName,
   date,
   fileSize,
-  timeAgo,
-  uploader,
+  // timeAgo,
+  authorId,
+  authorName,
 }: FileListCardProps) => {
   const triggerElement = (
     <Button variant='content'>
@@ -28,24 +28,24 @@ const FileListCard = ({
   );
 
   return (
-    <div className={styles.list_card}>
-      <div className={styles.info_contents}>
+    <div className='common_card'>
+      <div className='common_card_info'>
         <FileIcon />
         <div>
           <p>{fileName}</p>
-          <p style={{ fontSize: '15px', color: '#555' }}>
-            {`${date} · ${fileSize} · ${timeAgo} · ${uploader}`}
+          <p className='text_sec_100'>
+            {`${date} · ${fileSize} · ${authorName}`}
           </p>
         </div>
       </div>
-      <div className={styles.list_nav}>
+      <div className='common_card_nav'>
         <Button variant='content'>
           <Download size={16} />
         </Button>
         <FileSharingDropdown
           fileId={id}
           triggerElement={triggerElement}
-          uploader={uploader}
+          authorId={authorId}
         />
       </div>
     </div>

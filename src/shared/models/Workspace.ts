@@ -27,19 +27,23 @@ export interface TeamData {
   name: TeamName;
 }
 
+export type MembershipStatus = 'PENDING' | 'ACCEPTED' | 'DECLINED';
+
 export interface TeamMembershipData {
   userId: string;
   teamId: TeamId;
   rule: TeamRule;
-  name: TeamRuleName;
+  ruleName: TeamRuleName;
+  status: MembershipStatus;
 }
 
-export function createTeamMembershipData(
+export function createMembership(
   userId: string,
   teamId: TeamId,
   rule: TeamRule,
+  status: MembershipStatus,
 ): TeamMembershipData {
-  return { userId, teamId, rule, name: getTeamRuleName(rule) };
+  return { userId, teamId, rule, ruleName: getTeamRuleName(rule), status };
 }
 
 export interface ChatData {
@@ -54,11 +58,12 @@ export interface ChatData {
 
 export interface BaseFileData {
   id: number;
+  authorId: string;
+  authorName: string;
   fileName: string;
   fileSize: string;
   fileType: string;
   date: string;
-  uploader: string;
   timeAgo?: string;
 }
 

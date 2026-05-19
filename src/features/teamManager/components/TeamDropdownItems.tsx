@@ -6,6 +6,7 @@ import styles from './TeamDropdownItems.module.css';
 import { useWorkspaceParams } from '@core/hooks/useWorkspaceParams';
 import { useWorkspaceStore } from '@core/store/useWorkspaceStore';
 import { TeamData } from '@shared/models/Workspace';
+import { useUserStore } from '@core/store/useUserStore';
 
 interface TeamDropdownItemsType {
   deleteTeamDialogOpen: (value: SetStateAction<boolean>) => void;
@@ -18,20 +19,30 @@ const TeamDropdownItems = ({
   setDeleteTeamData,
   onTeamSwitch,
 }: TeamDropdownItemsType) => {
+  const userId = useUserStore((state) => state.user?.id);
   const teamData = useWorkspaceStore((state) => state.teamData);
+  const membershipData = useWorkspaceStore((state) => state.membershipData);
   const { teamId } = useWorkspaceParams();
+
+  const joinedTeamIds = membershipData
+    .filter((m) => m.status === 'ACCEPTED' && m.userId === userId)
+    .map((m) => m.teamId);
+
+  const displayTeamData = teamData.filter((team) =>
+    joinedTeamIds.includes(team.id),
+  );
 
   const handleItemSelected = (item: TeamData) => {
     return item.id === teamId ? true : false;
   };
 
-  if (teamData.length === 0) {
+  if (displayTeamData.length === 0) {
     return null;
   }
 
   return (
     <>
-      {teamData.map((item) => {
+      {displayTeamData.map((item) => {
         return (
           <DropdownMenu.Item
             key={item.id}

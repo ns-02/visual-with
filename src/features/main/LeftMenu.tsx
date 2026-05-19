@@ -10,6 +10,7 @@ import {
   Plus,
   Users,
   House,
+  Mail,
 } from 'lucide-react';
 import { Button, Tooltip } from '@shared/components';
 
@@ -22,6 +23,7 @@ import { ToolId } from '@shared/models/Workspace';
 import { useRouteManager } from '@core/routes/useRouteManager';
 import { useTeamManager } from '@features/teamManager/hooks/useTeamManager';
 import { useCurrentWorkspace } from '@core/hooks/useCurrentWorkspace';
+import TeamInvitationDialog from '@features/teamManager/components/TeamInvitationDialog';
 
 interface MenuItem {
   id: ToolId;
@@ -31,8 +33,10 @@ interface MenuItem {
 
 function LeftMenu() {
   const [isInviteTeamDialogOpen, setIsInviteTeamDialogOpen] = useState(false);
+  const [isTeamInvitationDialogOpen, setIsTeamInvitationDialogOpen] =
+    useState(false);
   const toolId = useToolId();
-  const { switchTeamWithTool, switchTool } = useRouteManager();
+  const { switchTeamWithTool, switchTool, MapsToSettings } = useRouteManager();
   const { isTeamMember } = useTeamManager();
   const { selectTeamName } = useCurrentWorkspace();
 
@@ -98,6 +102,17 @@ function LeftMenu() {
         }
         onTeamSwitch={switchTeamWithTool}
       />
+
+      <div>
+        <Button
+          shape='circle'
+          className={styles.link_button}
+          onClick={() => setIsTeamInvitationDialogOpen(true)}
+        >
+          <Mail size={20} />
+        </Button>
+      </div>
+
       {isTeamMember && (
         <>
           <div>
@@ -149,10 +164,14 @@ function LeftMenu() {
         ))}
       </div>
       <hr className='w_full mt_8 mb_8'></hr>
-      <UserDropdown />
+      <UserDropdown onSettingsClick={MapsToSettings} />
       <InviteTeamDialog
         open={isInviteTeamDialogOpen}
         onOpenChange={setIsInviteTeamDialogOpen}
+      />
+      <TeamInvitationDialog
+        open={isTeamInvitationDialogOpen}
+        onOpenChange={setIsTeamInvitationDialogOpen}
       />
     </section>
   );

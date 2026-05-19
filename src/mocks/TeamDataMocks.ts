@@ -13,4 +13,8 @@ export const teamDataMocks: TeamData[] = [
     id: 'c3h7p9m2',
     name: '사아자팀',
   },
+  {
+    id: 'd5h8q9n3',
+    name: '테스트팀',
+  },
 ];

@@ -17,5 +17,5 @@
 }
 
 .selected {
-  background-color: var(--color-component-focus);
+  background-color: var(--color-blue-300);
 }

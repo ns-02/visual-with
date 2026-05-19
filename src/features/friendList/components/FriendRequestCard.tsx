@@ -1,6 +1,5 @@
 import { Check, X } from 'lucide-react';
 import Button from '@shared/components/Button';
-import styles from './FriendListUI.module.css';
 import Avatar from '@shared/components/Avatar';
 
 interface FriendRequestCardProps {
@@ -17,27 +16,19 @@ const FriendRequestCard = ({
   onReject,
 }: FriendRequestCardProps) => {
   return (
-    <div className={styles.container}>
-      <div className={styles.info_contents}>
+    <div className='common_card'>
+      <div className='common_card_info'>
         <Avatar />
         <div>
           <p>{name}</p>
-          <p style={{ fontSize: '15px', color: '#555' }}>{description}</p>
+          <p className='text_sec_100'>{description}</p>
         </div>
       </div>
-      <div className={styles.navigation}>
-        <Button
-          text='수락'
-          className={styles.button_secondary_600}
-          onClick={onAccept}
-        >
+      <div className='common_card_nav'>
+        <Button text='수락' className='bg_blue_400' onClick={onAccept}>
           <Check size={16} />
         </Button>
-        <Button
-          text='거절'
-          className={styles.button_secondary_400}
-          onClick={onReject}
-        >
+        <Button text='거절' className='bg_blue_200' onClick={onReject}>
           <X size={16} />
         </Button>
       </div>

@@ -8,13 +8,13 @@ import { useCurrentWorkspace } from '@core/hooks/useCurrentWorkspace';
 interface DropdownProps {
   fileId?: number;
   triggerElement?: React.ReactNode;
-  uploader?: string;
+  authorId?: string;
 }
 
 const FileSharingDropdown = ({
   fileId,
   triggerElement,
-  uploader,
+  authorId,
 }: DropdownProps) => {
   const [isDeleteFileDialogOpen, setIsDeleteFileDialogOpen] = useState(false);
   const userId = useUserStore((state) => state.user?.id);
@@ -29,7 +29,11 @@ const FileSharingDropdown = ({
       <PermissionDropdown
         itemClassName='w_100 fs_14'
         actions={Actions}
-        canEdit={getIsPermit({ authorId: uploader, userId, rule: currentRule })}
+        canEdit={getIsPermit({
+          authorId,
+          userId,
+          rule: currentRule,
+        })}
         triggerElement={triggerElement}
       />
       <DeleteFileDialog

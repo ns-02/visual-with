@@ -1,23 +1,15 @@
 import { create } from 'zustand';
-import {
-  getFormattedFileSize,
-  getFormattedFileType,
-} from '@shared/utils/formatFile';
-import { DirectFileData } from '@shared/models/Workspace';
+import { BaseFileData, DirectFileData } from '@shared/models/Workspace';
 
 interface DirectFileState {
   fileData: DirectFileData[];
   isLoading: boolean;
   currentFile: DirectFileData | null;
   progress: number;
-  uploadFile: (file: File, formattedDate: string, friendId: string) => void;
+  uploadFile: () => void;
   deleteFile: (fileId: number) => void;
   setIsLoading: (isLoading: boolean) => void;
-  setCurrentFile: (
-    file: File | null,
-    formattedDate: string,
-    friendId: string,
-  ) => void;
+  setCurrentFile: (fileData: BaseFileData | null, friendId: string) => void;
   setProgress: (progress: number) => void;
   increaseProgress: () => void;
 }
@@ -28,23 +20,15 @@ export const useDirectFileStore = create<DirectFileState>((set) => ({
   currentFile: null,
   progress: 0,
 
-  uploadFile: (file, formattedDate, friendId) =>
-    set((state) => ({
-      fileData: [
-        ...state.fileData,
-        {
-          id:
-            state.fileData.reduce((max, item) => Math.max(max, item.id), 0) + 1,
-          fileName: file.name,
-          fileSize: getFormattedFileSize(file.size),
-          fileType: getFormattedFileType(file.type),
-          date: formattedDate,
-          uploader: '아무개',
-          timeAgo: '오늘',
-          friendId,
-        },
-      ],
-    })),
+  uploadFile: () =>
+    set((state) => {
+      if (!state.currentFile) return state;
+
+      return {
+        fileData: [...state.fileData, state.currentFile],
+        currentFile: null,
+      };
+    }),
 
   deleteFile: (fileId) =>
     set((state) => ({
@@ -53,21 +37,16 @@ export const useDirectFileStore = create<DirectFileState>((set) => ({
 
   setIsLoading: (value) => set({ isLoading: value }),
 
-  setCurrentFile: (file, formattedDate, friendId) => {
-    if (!file) {
+  setCurrentFile: (fileData, friendId) => {
+    if (!fileData) {
       set({ currentFile: null });
       return;
     }
 
     set((state) => ({
       currentFile: {
+        ...fileData,
         id: state.fileData.reduce((max, item) => Math.max(max, item.id), 0) + 1,
-        fileName: file.name,
-        fileSize: getFormattedFileSize(file.size),
-        fileType: getFormattedFileType(file.type),
-        date: formattedDate,
-        uploader: '아무개',
-        timeAgo: '오늘',
         friendId,
       },
     }));

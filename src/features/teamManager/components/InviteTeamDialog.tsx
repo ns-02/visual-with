@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction, useState } from 'react';
 import * as Tabs from '@radix-ui/react-tabs';
 import { Copy, Search } from 'lucide-react';
-import { Dialog, Group, DialogInput, Row } from '@shared/components';
+import { Dialog, DialogInput } from '@shared/components';
 import { Button } from '@shared/components';
 import styles from './InviteTeamDialog.module.css';
 import { useTeamManager } from '../hooks/useTeamManager';
@@ -18,13 +18,19 @@ const InviteTeamDialog = ({ open, onOpenChange }: InviteTeamDialogProps) => {
 
   // 유저 검색
   const handleSearchUser = async () => {
-    if (!invitedUserId) return;
+    if (!invitedUserId) {
+      alert('유저 아이디를 입력해주세요.');
+      return;
+    }
     await onSearchUser(invitedUserId);
   };
 
   // ID 기반 유저 초대
   const handleInviteTeamByUserId = async () => {
-    if (!invitedUserId) return;
+    if (!invitedUserId) {
+      alert('유저 아이디를 입력해주세요.');
+      return;
+    }
     await onInviteTeamByUserId(invitedUserId);
     setInvitedUserId('');
     onOpenChange(false);
@@ -48,13 +54,13 @@ const InviteTeamDialog = ({ open, onOpenChange }: InviteTeamDialogProps) => {
           </Tabs.Trigger>
         </Tabs.List>
         <Tabs.Content value='tab1'>
-          <Group>
+          <div className='mb_10'>
             <p>초대 링크</p>
             <p style={{ color: '#666' }}>
               아래 링크를 복사하여 팀원을 초대하세요.
             </p>
-          </Group>
-          <Row>
+          </div>
+          <div className='d_flex gap_6'>
             <DialogInput
               value='https://example.com/invite/개발팀/abc123'
               readOnly={true}
@@ -62,16 +68,16 @@ const InviteTeamDialog = ({ open, onOpenChange }: InviteTeamDialogProps) => {
             <Button>
               <Copy size={16} />
             </Button>
-          </Row>
+          </div>
         </Tabs.Content>
         <Tabs.Content value='tab2'>
-          <Group>
+          <div className='mb_10'>
             <p>팀원 ID 검색</p>
             <p style={{ color: '#666' }}>
               아이디를 입력하여 팀원을 초대하세요.
             </p>
-          </Group>
-          <Row>
+          </div>
+          <div className='d_flex gap_6'>
             <DialogInput
               placeholder='팀원의 ID를 검색하세요'
               value={invitedUserId}
@@ -80,7 +86,7 @@ const InviteTeamDialog = ({ open, onOpenChange }: InviteTeamDialogProps) => {
             <Button onClick={handleSearchUser}>
               <Search size={16} />
             </Button>
-          </Row>
+          </div>
         </Tabs.Content>
       </Tabs.Root>
     </Dialog>

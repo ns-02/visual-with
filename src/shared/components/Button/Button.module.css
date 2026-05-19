@@ -17,9 +17,8 @@
 
 /* --- Variants (용도/색상) --- */
 .normal {
-  background-color: #eee;
-  font-size: 14px;
-  color: #333;
+  background-color: var(--color-blue-100);
+  font-size: var(--font-size-sm);
 }
 
 .content {
@@ -42,7 +41,7 @@
   width: 48px;
   height: 48px;
   border-radius: 6px;
-  font-size: 16pt;
+  font-size: var(--font-size-xl);
 }
 
 .circle {
@@ -56,6 +55,6 @@
   width: 100%;
   padding: 6px 0;
   border-radius: 12px;
-  font-size: 15px;
-  background-color: var(--color-button-secondary-700);
+  font-size: var(--font-size-sm);
+  background-color: var(--color-blue-500);
 }

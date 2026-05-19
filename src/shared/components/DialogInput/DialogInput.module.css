@@ -3,6 +3,7 @@
   padding: 8px 12px;
   border: none;
   border-radius: 6px;
-  font-size: 14px;
-  background-color: #eee;
+  font-size: var(--font-size-sm);
+  background-color: var(--color-blue-100);
+  color: var(--text-main);
 }

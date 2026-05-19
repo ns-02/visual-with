@@ -1,7 +1,6 @@
 import { EllipsisVertical } from 'lucide-react';
 import { Button } from '@shared/components';
 import FriendListDropdown from './FriendListDropdown';
-import styles from './FriendListUI.module.css';
 import Avatar from '@shared/components/Avatar';
 
 interface FriendListCardProps {
@@ -18,15 +17,15 @@ const FriendListCard = ({ id, name, description }: FriendListCardProps) => {
   );
 
   return (
-    <div className={styles.container}>
-      <div className={styles.info_contents}>
+    <div className='common_card'>
+      <div className='common_card_info'>
         <Avatar />
         <div>
           <p>{name}</p>
-          <p style={{ fontSize: '15px', color: '#555' }}>{description}</p>
+          <p className='text_sec_100'>{description}</p>
         </div>
       </div>
-      <div className={styles.navigation}>
+      <div className='common_card_nav'>
         <FriendListDropdown friendId={id} triggerElement={triggerElement} />
       </div>
     </div>

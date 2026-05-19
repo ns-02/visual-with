@@ -2,7 +2,9 @@
   display: flex;
   z-index: 2;
   padding: 4px 12px;
-  background-color: var(--color-component-primary);
+  background-color: var(--color-blue-400);
+  color: var(--text-main);
+  font-size: var(--font-size-sm);
   border-radius: 6px;
   transform-origin: var(--radix-tooltip-content-transform-origin);
   animation-duration: 150ms;
@@ -40,10 +42,10 @@
 
 .separator {
   height: 0.5px;
-  background-color: #666;
+  background-color: var(--surface-hover);
   margin: 4px 0;
 }
 
 .arrow {
-  fill: var(--color-component-primary);
+  fill: var(--color-blue-400);
 }

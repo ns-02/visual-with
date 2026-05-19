@@ -1,4 +1,3 @@
-import styles from './SelectFriendCard.module.css';
 import Avatar from '@shared/components/Avatar';
 
 const SelectFriendCard = ({
@@ -12,13 +11,9 @@ const SelectFriendCard = ({
   selected?: boolean;
   onSelect?: () => void;
 }) => {
-  const containerStyle = selected
-    ? styles.container_selected
-    : styles.container;
+  const containerStyle = `common_card_info cursor_pointer ${selected ? 'bg_pink_200' : 'bg_sub'}`;
 
-  const friendNameStyle = selected
-    ? styles.friendName_selected
-    : styles.friendName;
+  const friendNameStyle = selected ? 'text_pri_50' : 'text_sec_50';
 
   const handleCardSelect = () => {
     if (onSelect) onSelect();

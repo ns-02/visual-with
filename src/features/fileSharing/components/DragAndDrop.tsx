@@ -10,9 +10,7 @@ const DragAndDrop = () => {
   const [dragging, setDragging] = useState(false);
   const { loadAndUploadFile } = useTeamFileManager();
 
-  const containerStyle = dragging
-    ? styles.drop_zone_dragging
-    : styles.drop_zone;
+  const containerStyle = `${styles.drop_zone} ${dragging ? styles.dragging : ''}`;
 
   // '파일 선택' 버튼 클릭 시 동작
   const handleSelectFile = () => {
@@ -76,8 +74,8 @@ const DragAndDrop = () => {
     >
       <FileInput ref={inputRef} onChange={handleFileChange} />
       <Upload size={48} color='#aaa' />
-      <p style={{ color: '#555' }}>파일을 여기에 드래그하여 업로드하세요</p>
-      <p style={{ fontSize: '14px', color: '#777' }}>또는</p>
+      <p className='text_sec_100'>파일을 여기에 드래그하여 업로드하세요</p>
+      <p className='text_sec_200'>또는</p>
       <FileSelectButton text='파일 선택' onClick={handleSelectFile} />
     </div>
   );

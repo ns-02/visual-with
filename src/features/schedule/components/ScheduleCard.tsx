@@ -1,5 +1,4 @@
 import { Button } from '@shared/components';
-import styles from './ScheduleUI.module.css';
 import { EllipsisVertical } from 'lucide-react';
 import ScheduleDropdown from './ScheduleDropdown';
 
@@ -20,7 +19,6 @@ const ScheduleCard = ({
   authorName,
   date,
   time,
-  state,
 }: ScheduleCardProps) => {
   const triggerElement = (
     <Button variant='content'>
@@ -29,17 +27,16 @@ const ScheduleCard = ({
   );
 
   return (
-    <div className={styles.container}>
-      <div className={styles.info_contents}>
+    <div className='common_card'>
+      <div className='common_card_info gap_4 flex_col'>
         <p>{title}</p>
-        <div className={styles.datetime}>
-          <span style={{ fontSize: '15px', color: '#555' }}>{authorName}</span>
-          <span style={{ fontSize: '15px', color: '#555' }}>{date}</span>
-          <span style={{ fontSize: '15px', color: '#555' }}>{time}</span>
+        <div className='text_sec_100 d_flex gap_12'>
+          <span>{authorName}</span>
+          <span>{date}</span>
+          <span>{time}</span>
         </div>
       </div>
-      <div className={styles.navigation}>
-        <label className={styles.label}>{state}</label>
+      <div className='common_card_nav'>
         <ScheduleDropdown
           scheduleId={id}
           authorId={authorId}

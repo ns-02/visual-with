@@ -6,9 +6,9 @@
   width: 280px;
   height: 100%;
   float: left;
-  border-top: 1px solid var(--color-background-primary);
-  border-right: 1px solid var(--color-background-primary);
-  background-color: var(--color-background-secondary);
+  border-top: 1px solid var(--bg-main);
+  border-right: 1px solid var(--bg-main);
+  background-color: var(--bg-sub);
 }
 
 .chat_view_panel {
@@ -24,15 +24,14 @@
 
 .direct_chat_area {
   flex: 1;
-  background-color: var(--color-background-primary);
 }
 
 .right_file_list_area {
   display: flex;
-  flex: 0 0 500px;
+  flex: 0 0 460px;
   padding: 0 16px;
   flex-direction: column;
-  background-color: #e0f4ff;
+  background-color: var(--color-blue-300);
 }
 
 .bottom_input_area {
@@ -41,7 +40,7 @@
   padding: 0 24px;
   align-items: center;
   gap: 16px;
-  background-color: var(--color-background-secondary);
+  background-color: var(--bg-sub);
 }
 
 .overview {
@@ -49,5 +48,5 @@
   height: 100%;
   align-items: center;
   justify-content: center;
-  background-color: var(--color-background-primary);
+  background-color: var(--bg-main);
 }

@@ -7,7 +7,7 @@ import {
 import { useUserStore } from '@core/store/useUserStore';
 import { useTeamId } from '@core/hooks/useWorkspaceParams';
 import { useWorkspaceStore } from '@core/store/useWorkspaceStore';
-import { TeamId, TeamName } from '@shared/models/Workspace';
+import { createMembership, TeamId, TeamName } from '@shared/models/Workspace';
 import { useEffect, useState } from 'react';
 
 export const useTeamManager = () => {
@@ -19,6 +19,7 @@ export const useTeamManager = () => {
     (state) => state.deleteTeamFromStore,
   );
   const addTeamRule = useWorkspaceStore((state) => state.addTeamRule);
+  const updateTeamRule = useWorkspaceStore((state) => state.updateTeamRule);
   const deleteTeamRule = useWorkspaceStore((state) => state.deleteTeamRule);
   const teamData = useWorkspaceStore((state) => state.teamData);
   const isTeamInit = useWorkspaceStore((state) => state.isTeamInit);
@@ -41,7 +42,7 @@ export const useTeamManager = () => {
       const res = await createTeam({ userId, teamName });
 
       createTeamInStore(res.id, res.teamName);
-      addTeamRule(userId, res.id, 'ADMIN');
+      addTeamRule(createMembership(userId, res.id, 'ADMIN', 'ACCEPTED'));
     } catch (e) {
       console.log(e);
     }
@@ -80,9 +81,27 @@ export const useTeamManager = () => {
         invitedUserId,
         teamId,
       });
+      addTeamRule(createMembership(invitedUserId, teamId, 'MEMBER', 'PENDING'));
       console.log(res);
     } catch (e) {
       console.error(e);
+    }
+  };
+
+  const onTeamInvitationByUserId = async (
+    currentTeamId: TeamId,
+    accepted: boolean,
+  ) => {
+    if (!userId) return;
+
+    if (accepted) {
+      updateTeamRule(
+        createMembership(userId, currentTeamId, 'MEMBER', 'ACCEPTED'),
+      );
+    } else {
+      updateTeamRule(
+        createMembership(userId, currentTeamId, 'MEMBER', 'DECLINED'),
+      );
     }
   };
 
@@ -91,6 +110,7 @@ export const useTeamManager = () => {
     onDeleteTeam,
     onSearchUser,
     onInviteTeamByUserId,
+    onTeamInvitationByUserId,
     isTeamMember,
   };
 };

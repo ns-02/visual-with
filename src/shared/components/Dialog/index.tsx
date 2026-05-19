@@ -8,7 +8,8 @@ const Dialog = ({
   open,
   onOpenChange,
   title = '제목',
-  viewButton = true,
+  viewCansel = true,
+  viewConfirm = true,
   children,
   confirmText,
   onConfirm,
@@ -23,37 +24,29 @@ const Dialog = ({
           </RadixDialog.Title>
           <RadixDialog.Description className={styles.description} />
           {children}
-          {viewButton && (
+          {(viewCansel || viewConfirm) && (
             <div className={styles.btnfield}>
-              <RadixDialog.Close asChild>
-                <Button text='취소' className={styles.button_default}></Button>
-              </RadixDialog.Close>
-              <Button
-                text={confirmText}
-                onClick={onConfirm}
-                className={styles.button_primary}
-              ></Button>
+              {viewCansel && (
+                <RadixDialog.Close asChild>
+                  <Button
+                    text='취소'
+                    className={styles.button_default}
+                  ></Button>
+                </RadixDialog.Close>
+              )}
+
+              {viewConfirm && (
+                <Button
+                  text={confirmText}
+                  onClick={onConfirm}
+                  className={styles.button_primary}
+                ></Button>
+              )}
             </div>
           )}
 
           <RadixDialog.Close asChild>
-            <button
-              style={{
-                position: 'absolute',
-                top: '8px',
-                right: '8px',
-                display: 'inline-flex',
-                width: 24,
-                height: 24,
-                margin: 0,
-                padding: 0,
-                justifyContent: 'center',
-                alignItems: 'center',
-                border: 'none',
-                backgroundColor: 'white',
-                cursor: 'pointer',
-              }}
-            >
+            <button className={styles.button_x}>
               <X size={14} />
             </button>
           </RadixDialog.Close>

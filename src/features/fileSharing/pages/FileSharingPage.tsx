@@ -76,7 +76,8 @@ function FileSharingPage() {
                 date={item.date}
                 fileSize={item.fileSize}
                 timeAgo={item.timeAgo}
-                uploader={item.uploader}
+                authorId={item.authorId}
+                authorName={item.authorName}
               />
             );
           })}

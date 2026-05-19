@@ -1,16 +1,15 @@
-import FileIcon from './FileIcon';
 import styles from './FileSharingUI.module.css';
 import { useTeamFileStore } from '../store/useTeamFileStore';
-import { Progress } from '@shared/components';
+import { FileIcon, Progress } from '@shared/components';
 
 const FileUploadCard = () => {
   const currentFile = useTeamFileStore((state) => state.currentFile);
   const progress = useTeamFileStore((state) => state.progress);
 
   return (
-    <div className={styles.upload_card}>
+    <div className='common_card flex_col content_nm'>
       <div className={styles.wrapper}>
-        <div className={styles.info_contents}>
+        <div className='common_card_info'>
           <FileIcon />
           <div>
             <p>{currentFile?.fileName}</p>
@@ -19,7 +18,7 @@ const FileUploadCard = () => {
             >{`${currentFile?.fileSize}`}</p>
           </div>
         </div>
-        <div className={styles.upload_nav}>
+        <div className='common_card_nav px_20'>
           <p>{`${progress}%`}</p>
         </div>
       </div>

@@ -1,11 +1,10 @@
 import { Circle, CircleCheckBig } from 'lucide-react';
-import TodoListLabel from '../components/TodoListLabel';
 import styles from './TodoListLayout.module.css';
 import TodoListCard from '../components/TodoListCard';
 import { useTodoStore } from '../store/useTodoStore';
 import { useWorkspaceParams } from '@core/hooks/useWorkspaceParams';
 import { useUserStore } from '@core/store/useUserStore';
-import { useMemo } from 'react';
+import { ReactNode, useMemo } from 'react';
 import { getIsPermit } from '@shared/utils/permitUtils';
 import { useCurrentWorkspace } from '@core/hooks/useCurrentWorkspace';
 
@@ -78,5 +77,23 @@ function TodoListPage() {
     </div>
   );
 }
+
+const TodoListLabel = ({
+  text,
+  count,
+  children,
+}: {
+  text?: string;
+  count?: number;
+  children?: ReactNode;
+}) => {
+  return (
+    <div className='common_card_label'>
+      {children}
+      <span>{text}</span>
+      <span className='text_sec_200'>{count}</span>
+    </div>
+  );
+};
 
 export default TodoListPage;
