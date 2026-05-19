@@ -6,7 +6,6 @@ import { useCurrentWorkspace } from '@core/hooks/useCurrentWorkspace';
 import {
   Bar,
   BarChart,
-  Legend,
   Line,
   LineChart,
   Pie,
@@ -159,58 +158,78 @@ function DashboardPage() {
             </div>
           )}
         </div>
-        <div className={styles.dashboard_area}>
-          <ResponsiveContainer height={300}>
-            <PieChart>
-              <Pie
-                // innerRadius={160}
-                // outerRadius={200}
-                data={todoStatusData}
-                dataKey='value'
-                shape={renderPieShape}
-              />
-              <Tooltip />
-            </PieChart>
-          </ResponsiveContainer>
-          <ResponsiveContainer>
-            <PieChart>
-              <Pie
-                // innerRadius={160}
-                // outerRadius={200}
-                data={fileTypeData}
-                dataKey='value'
-                shape={renderPieShape}
-              />
-              <Tooltip />
-            </PieChart>
-          </ResponsiveContainer>
+
+        <div className={styles.dashboard_label}>
+          <div>할 일 완료 현황</div>
+          <div>파일 유형별 현황</div>
         </div>
         <div className={styles.dashboard_area}>
-          <ResponsiveContainer height={300}>
-            <LineChart data={monthlyTodoTrends}>
-              <XAxis dataKey='month' />
-              <YAxis dataKey='todos' />
-              <Tooltip />
-              <Legend />
-              <Line dataKey='todos' />
-            </LineChart>
-          </ResponsiveContainer>
+          <div className='common_card p_8 w_full'>
+            <ResponsiveContainer height={300}>
+              <PieChart>
+                <Pie
+                  // innerRadius={160}
+                  // outerRadius={200}
+                  data={todoStatusData}
+                  dataKey='value'
+                  shape={renderPieShape}
+                />
+                <Tooltip />
+              </PieChart>
+            </ResponsiveContainer>
+          </div>
+          <div className='common_card p_8 w_full'>
+            <ResponsiveContainer height={300}>
+              <PieChart>
+                <Pie
+                  // innerRadius={160}
+                  // outerRadius={200}
+                  data={fileTypeData}
+                  dataKey='value'
+                  shape={renderPieShape}
+                />
+                <Tooltip />
+              </PieChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+
+        <div className={styles.dashboard_label}>
+          <div>월별 할 일 완료 추이</div>
+          <div>시간별 채팅 활성화</div>
         </div>
         <div className={styles.dashboard_area}>
-          <ResponsiveContainer height={300}>
-            <BarChart data={chatActivityByTime}>
-              <XAxis dataKey='time' />
-              <YAxis dataKey='chats' />
-              <Tooltip />
-              <Legend />
-              <Bar dataKey='chats' />
-            </BarChart>
-          </ResponsiveContainer>
+          <div className='common_card p_8 w_full'>
+            <ResponsiveContainer height={300}>
+              <LineChart data={monthlyTodoTrends}>
+                <XAxis dataKey='month' />
+                <YAxis dataKey='todos' />
+                <Tooltip />
+                <Line dataKey='todos' />
+              </LineChart>
+            </ResponsiveContainer>
+          </div>
+          <div className='common_card p_8 w_full'>
+            <ResponsiveContainer height={300}>
+              <BarChart data={chatActivityByTime}>
+                <XAxis dataKey='time' />
+                <YAxis dataKey='chats' />
+                <Tooltip />
+                <Bar dataKey='chats' />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+
+        <div className={styles.dashboard_label}>
+          <div>다가오는 일정</div>
+          <div>최근 파일</div>
+          <div>최근 할 일</div>
         </div>
         <div style={{ display: 'flex', gap: 12 }}>
           <div style={{ flex: 1 }}>
             {dDaySchedules.map((item) => (
-              <div className='common_card'>
+              <div key={item.scheduleId} className='common_card'>
                 <div className='common_card_info flex_col'>
                   <p>{item.scheduleTitle}</p>
                   <div className='text_sec_100 d_flex gap_12'>
@@ -222,7 +241,7 @@ function DashboardPage() {
           </div>
           <div style={{ flex: 1 }}>
             {recentlyUploadedFiles.map((item) => (
-              <div className='common_card'>
+              <div key={item.fileId} className='common_card'>
                 <div className='common_card_info flex_col'>
                   <p>{item.fileName}</p>
                   <div className='text_sec_100 d_flex gap_12'>
@@ -234,7 +253,7 @@ function DashboardPage() {
           </div>
           <div style={{ flex: 1 }}>
             {recentlyUploadedTodos.map((item) => (
-              <div className='common_card'>
+              <div key={item.todoId} className='common_card'>
                 <div className='common_card_info flex_col'>
                   <p>{item.todoTitle}</p>
                   <div className='text_sec_100 d_flex gap_12'>
