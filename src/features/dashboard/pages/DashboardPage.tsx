@@ -107,12 +107,12 @@ function DashboardPage() {
   const dDaySchedules: DDaySchedules[] = [
     {
       scheduleId: '1',
-      scheduleTitle: '1번 일정',
+      scheduleTitle: '기획팀 주간 정기 회의',
       remainingDays: 2,
     },
     {
       scheduleId: '2',
-      scheduleTitle: '2번 일정',
+      scheduleTitle: '디자인 피드백 세션',
       remainingDays: 3,
     },
   ];
@@ -120,12 +120,12 @@ function DashboardPage() {
   const recentlyUploadedFiles: RecentlyUploadedFiles[] = [
     {
       fileId: '1',
-      fileName: '1번 파일',
+      fileName: '서비스_기획서_v1.2.pdf',
       timeAgo: 2,
     },
     {
       fileId: '2',
-      fileName: '2번 파일',
+      fileName: '메인_레이아웃_시안.fig',
       timeAgo: 3,
     },
   ];
@@ -133,12 +133,12 @@ function DashboardPage() {
   const recentlyUploadedTodos: RecentlyUploadedTodos[] = [
     {
       todoId: '1',
-      todoTitle: '1번 할 일',
+      todoTitle: '헤더 컴포넌트 스타일 수정',
       timeAgo: 2,
     },
     {
       todoId: '2',
-      todoTitle: '2번 할 일',
+      todoTitle: '사이드바 전역 상태 연동',
       timeAgo: 3,
     },
   ];
