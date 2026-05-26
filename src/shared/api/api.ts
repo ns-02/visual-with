@@ -1,4 +1,6 @@
 import {
+  AddTodoRequest,
+  AddTodoResponse,
   checkIdRequest,
   checkIdResponse,
   CreateTeamRequest,
@@ -13,6 +15,8 @@ import {
   SearchUserResponse,
   SignupRequest,
   SignupResponse,
+  ViewTodoRequest,
+  ViewTodoResponse,
 } from './apiModel';
 
 export const request = async (url: string, options = {}) => {
@@ -119,5 +123,22 @@ export const inviteTeamByUserId = async ({
       'X-USER-ID': userId,
     },
     body: JSON.stringify({ userId: invitedUserId }),
+  });
+};
+
+export const viewTodo = async ({
+  teamId,
+}: ViewTodoRequest): Promise<ViewTodoResponse> => {
+  return await request(`/api/todo/${teamId}`, {
+    method: 'GET',
+  });
+};
+
+export const addTodoFetch = async (
+  addRequest: AddTodoRequest,
+): Promise<AddTodoResponse> => {
+  return await request(`/api/todo`, {
+    method: 'POST',
+    body: JSON.stringify(addRequest),
   });
 };

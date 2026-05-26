@@ -3,6 +3,7 @@ import { Dispatch, SetStateAction, useState } from 'react';
 import { Dialog, DialogInput } from '@shared/components';
 import { useTodoStore } from '../store/useTodoStore';
 import { useWorkspaceParams } from '@core/hooks/useWorkspaceParams';
+import { addTodoFetch } from '@shared/api/api';
 
 interface AddTodoDialogProps {
   open: boolean;
@@ -17,8 +18,19 @@ const AddTodoDialog = ({ open, onOpenChange }: AddTodoDialogProps) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
 
-  const handleAddTodo = () => {
+  const handleAddTodo = async () => {
     if (!title || !teamId || !userId || !userName) return;
+
+    const res = await addTodoFetch({
+      title,
+      content: description || '',
+      teamId: teamId,
+      userId: userId,
+      createdDate: '날짜',
+      createdTime: '시간',
+    });
+
+    console.log(res);
 
     addTodo({
       title,
