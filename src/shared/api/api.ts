@@ -132,7 +132,7 @@ export const inviteTeamByUserId = async ({
 
 export const viewTodo = async ({
   teamId,
-}: ViewTodoRequest): Promise<ViewTodoResponse> => {
+}: ViewTodoRequest): Promise<ViewTodoResponse[]> => {
   return await request(`/api/todo/${teamId}`, {
     method: 'GET',
   });
