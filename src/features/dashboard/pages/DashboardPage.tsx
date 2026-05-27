@@ -17,6 +17,8 @@ import {
   XAxis,
   YAxis,
 } from 'recharts';
+import { useDashboardStore } from '../store/useDashboardStore';
+import { useEffect } from 'react';
 
 const COLORS = ['#3b82f6', '#10b981', '#f59e0b', '#ef4444'];
 
@@ -27,11 +29,6 @@ interface RenderShapeProps extends PieSectorDataItem {
 interface MonthlyTodoTrends {
   month: string;
   todos: number;
-}
-
-interface TodoStatusData {
-  name: string;
-  value: number;
 }
 
 interface FileTypeData {
@@ -68,12 +65,13 @@ const renderPieShape = (props: RenderShapeProps) => {
 };
 
 function DashboardPage() {
-  const { selectTeamName, currentRule } = useCurrentWorkspace();
+  const { selectTeamName, currentRule, teamId } = useCurrentWorkspace();
+  const dashboardData = useDashboardStore((state) => state.dashboardData).find(
+    (d) => d.teamId === teamId,
+  );
+  const updateDashboard = useDashboardStore((state) => state.updateDashboard);
 
-  const todoStatusData: TodoStatusData[] = [
-    { name: '완료된 할 일', value: 50 },
-    { name: '남은 할 일', value: 250 },
-  ];
+  const todoStatusData = dashboardData?.todoStatusData || [];
 
   const fileTypeData: FileTypeData[] = [
     { name: '이미지', value: 100 },
@@ -142,6 +140,15 @@ function DashboardPage() {
       timeAgo: 3,
     },
   ];
+
+  useEffect(() => {
+    if (!teamId) {
+      console.error('팀 아이디가 존재하지 않음');
+      return;
+    }
+
+    updateDashboard(teamId);
+  }, [updateDashboard, teamId]);
 
   return (
     <div className={styles.dashboard_page}>
