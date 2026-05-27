@@ -1,11 +1,11 @@
-import { todoDataMocks } from '@mocks/TodoDataMocks';
+// import { todoDataMocks } from '@mocks/TodoDataMocks';
 import { TodoData } from '@shared/models/Workspace';
 
 import { create } from 'zustand';
 
 export type AddTodoInput = Pick<
   TodoData,
-  'title' | 'description' | 'teamId' | 'authorId' | 'authorName'
+  'id' | 'title' | 'description' | 'teamId' | 'authorId' | 'authorName'
 >;
 
 export type UpdateTodoInput = Pick<TodoData, 'id'> &
@@ -20,7 +20,8 @@ interface TodoState {
 }
 
 export const useTodoStore = create<TodoState>((set) => ({
-  todoData: todoDataMocks || [],
+  // todoData: todoDataMocks || [],
+  todoData: [],
 
   addTodo: (todo) =>
     set((state) => ({
@@ -28,6 +29,7 @@ export const useTodoStore = create<TodoState>((set) => ({
         ...state.todoData,
         {
           id:
+            todo.id ||
             state.todoData.reduce((max, item) => Math.max(max, item.id), 0) + 1,
           title: todo.title,
           description: todo.description,

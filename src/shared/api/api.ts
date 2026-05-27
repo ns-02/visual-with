@@ -7,6 +7,7 @@ import {
   CreateTeamResponse,
   DeleteTeamRequest,
   DeleteTeamResponse,
+  DeleteTodoRequest,
   InviteTeamByUserIdRequest,
   InviteTeamByUserIdResponse,
   LoginRequest,
@@ -15,6 +16,8 @@ import {
   SearchUserResponse,
   SignupRequest,
   SignupResponse,
+  UpdateTodoCompleteRequest,
+  UpdateTodoContentRequest,
   ViewTodoRequest,
   ViewTodoResponse,
 } from './apiModel';
@@ -32,13 +35,14 @@ export const request = async (url: string, options = {}) => {
         ...headers,
       },
     });
-    const json = await response.json();
+    const text = await response.text();
+    const data = text ? JSON.parse(text) : null;
 
     if (!response.ok) {
-      throw new Error(json.message || 'API 호출 오류');
+      throw new Error(data?.message || 'API 호출 오류');
     }
 
-    return json;
+    return data;
   } catch (e: unknown) {
     if (e instanceof TypeError) {
       throw new Error('네트워크 오류가 발생했습니다.');
@@ -140,5 +144,32 @@ export const addTodoFetch = async (
   return await request(`/api/todo`, {
     method: 'POST',
     body: JSON.stringify(addRequest),
+  });
+};
+
+export const updateTodoContentFetch = async (
+  updateRequest: UpdateTodoContentRequest,
+): Promise<void> => {
+  return await request(`/api/todo/update`, {
+    method: 'PUT',
+    body: JSON.stringify(updateRequest),
+  });
+};
+
+export const updateTodoCompleteFetch = async (
+  updateRequest: UpdateTodoCompleteRequest,
+): Promise<void> => {
+  return await request(`/api/todo/complete`, {
+    method: 'PUT',
+    body: JSON.stringify(updateRequest),
+  });
+};
+
+export const deleteTodoFetch = async (
+  deleteRequest: DeleteTodoRequest,
+): Promise<void> => {
+  return await request(`/api/todo/delete`, {
+    method: 'DELETE',
+    body: JSON.stringify(deleteRequest),
   });
 };

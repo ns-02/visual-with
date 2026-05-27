@@ -33,6 +33,7 @@ const AddTodoDialog = ({ open, onOpenChange }: AddTodoDialogProps) => {
     console.log(res);
 
     addTodo({
+      id: res.id,
       title,
       description: description || undefined,
       teamId: teamId,

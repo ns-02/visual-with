@@ -7,6 +7,7 @@ import { useUserStore } from '@core/store/useUserStore';
 import { ReactNode, useMemo } from 'react';
 import { getIsPermit } from '@shared/utils/permitUtils';
 import { useCurrentWorkspace } from '@core/hooks/useCurrentWorkspace';
+import { updateTodoCompleteFetch, viewTodo } from '@shared/api/api';
 
 function TodoListPage() {
   const todoData = useTodoStore((state) => state.todoData);
@@ -29,6 +30,16 @@ function TodoListPage() {
   return (
     <div className={styles.todo_list_root}>
       <div className={styles.contents}>
+        <button
+          onClick={async () => {
+            if (!teamId) return;
+
+            const res = await viewTodo({ teamId });
+            console.log(res);
+          }}
+        >
+          테스트용 현재 투두 확인 버튼
+        </button>
         <TodoListLabel text='진행 중' count={progressData.length}>
           <Circle size={16} />
         </TodoListLabel>
@@ -46,7 +57,23 @@ function TodoListPage() {
               checked={item.checked}
               isCheckDisabled={!canToggle}
               onCheckedChange={
-                canToggle ? () => toggleTodo(item.id) : undefined
+                canToggle
+                  ? async () => {
+                      if (!teamId) return;
+
+                      await updateTodoCompleteFetch({
+                        id: item.id,
+                        teamId,
+                        userId: item.authorId,
+                        complete: !item.checked,
+                        completeDate: '날짜',
+                        completeTime: '시간',
+                        userTeamRole: 'MEMBER',
+                      });
+
+                      toggleTodo(item.id);
+                    }
+                  : undefined
               }
             />
           );
@@ -68,7 +95,23 @@ function TodoListPage() {
               checked={item.checked}
               isCheckDisabled={!canToggle}
               onCheckedChange={
-                canToggle ? () => toggleTodo(item.id) : undefined
+                canToggle
+                  ? async () => {
+                      if (!teamId) return;
+
+                      await updateTodoCompleteFetch({
+                        id: item.id,
+                        teamId,
+                        userId: item.authorId,
+                        complete: !item.checked,
+                        completeDate: '날짜',
+                        completeTime: '시간',
+                        userTeamRole: 'MEMBER',
+                      });
+
+                      toggleTodo(item.id);
+                    }
+                  : undefined
               }
             />
           );

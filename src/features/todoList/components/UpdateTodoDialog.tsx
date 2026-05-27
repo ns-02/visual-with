@@ -3,6 +3,7 @@ import { useUserStore } from '@core/store/useUserStore';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { Dialog, DialogInput } from '@shared/components';
 import { useTodoStore } from '../store/useTodoStore';
+import { updateTodoContentFetch } from '@shared/api/api';
 
 interface UpdateTodoDialogProps {
   todoId?: number;
@@ -35,8 +36,17 @@ const UpdateTodoDialog = ({
     setAuthorName(currentTodoData?.authorName ?? userName ?? '');
   }, [currentTodoData, userId, userName]);
 
-  const handleUpdateTodo = () => {
-    if (!title || !todoId || !authorId || !authorName) return;
+  const handleUpdateTodo = async () => {
+    if (!title || !todoId || !authorId || !authorName || !teamId) return;
+
+    await updateTodoContentFetch({
+      id: todoId,
+      title,
+      content: description || '',
+      teamId,
+      userId: authorId,
+      userTeamRole: 'MEMBER',
+    });
 
     updateTodo({
       id: todoId,
