@@ -26,11 +26,6 @@ interface RenderShapeProps extends PieSectorDataItem {
   index: number;
 }
 
-interface MonthlyTodoTrends {
-  month: string;
-  todos: number;
-}
-
 interface ChatActivityByTime {
   time: string;
   chats: number;
@@ -69,13 +64,7 @@ function DashboardPage() {
 
   const todoStatusData = dashboardData?.todoStatusData || [];
   const fileTypeData = dashboardData?.fileTypeData || [];
-
-  const monthlyTodoTrends: MonthlyTodoTrends[] = [
-    { month: '1월', todos: 22 },
-    { month: '2월', todos: 25 },
-    { month: '3월', todos: 30 },
-    { month: '4월', todos: 33 },
-  ];
+  const monthlyTodoTrends = dashboardData?.monthlyTodoTrends || [];
 
   const chatActivityByTime: ChatActivityByTime[] = [
     { time: '00-02', chats: 23 },
