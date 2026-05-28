@@ -1,11 +1,11 @@
-import { todoDataMocks } from '@mocks/TodoDataMocks';
-import { TodoData } from '@shared/models/Workspace';
+// import { todoDataMocks } from '@mocks/TodoDataMocks';
+import { TeamId, TodoData } from '@shared/models/Workspace';
 
 import { create } from 'zustand';
 
 export type AddTodoInput = Pick<
   TodoData,
-  'title' | 'description' | 'teamId' | 'authorId' | 'authorName'
+  'id' | 'title' | 'description' | 'teamId' | 'authorId' | 'authorName'
 >;
 
 export type UpdateTodoInput = Pick<TodoData, 'id'> &
@@ -17,10 +17,12 @@ interface TodoState {
   toggleTodo: (todoId: number) => void;
   updateTodo: (todo: UpdateTodoInput) => void;
   deleteTodo: (todoId: number) => void;
+  loadTodo: (todoData: TodoData[], teamId: TeamId) => void;
 }
 
 export const useTodoStore = create<TodoState>((set) => ({
-  todoData: todoDataMocks || [],
+  // todoData: todoDataMocks || [],
+  todoData: [],
 
   addTodo: (todo) =>
     set((state) => ({
@@ -28,6 +30,7 @@ export const useTodoStore = create<TodoState>((set) => ({
         ...state.todoData,
         {
           id:
+            todo.id ||
             state.todoData.reduce((max, item) => Math.max(max, item.id), 0) + 1,
           title: todo.title,
           description: todo.description,
@@ -56,5 +59,13 @@ export const useTodoStore = create<TodoState>((set) => ({
   deleteTodo: (todoId) =>
     set((state) => ({
       todoData: state.todoData.filter((item) => item.id !== todoId),
+    })),
+
+  loadTodo: (todoData, teamId) =>
+    set((state) => ({
+      todoData: [
+        ...state.todoData.filter((item) => item.teamId !== teamId),
+        ...todoData,
+      ],
     })),
 }));

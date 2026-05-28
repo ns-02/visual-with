@@ -2,6 +2,7 @@ import { useWorkspaceParams } from '@core/hooks/useWorkspaceParams';
 import { Dispatch, SetStateAction } from 'react';
 import { AlertDialog } from '@shared/components';
 import { useTodoStore } from '../store/useTodoStore';
+import { useTodoManager } from '../hooks/useTodoManager';
 
 interface DeleteTodoDialogProps {
   todoId?: number;
@@ -14,17 +15,16 @@ const DeleteTodoDialog = ({
   open,
   onOpenChange,
 }: DeleteTodoDialogProps) => {
+  const { deleteTodoInManager } = useTodoManager();
+
   const todoData = useTodoStore((state) => state.todoData);
-  const deleteTodo = useTodoStore((state) => state.deleteTodo);
   const { teamId } = useWorkspaceParams();
   const currentTodoTitle = todoData?.find(
     (item) => item.id === todoId && item.teamId === teamId,
   )?.title;
 
   const handleDeleteTodo = () => {
-    if (!todoData || !todoId) return;
-
-    deleteTodo(todoId);
+    deleteTodoInManager(todoId);
     onOpenChange(false);
   };
 
