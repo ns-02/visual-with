@@ -24,7 +24,7 @@ export default function AppRoutes() {
           />
 
           <Route path=':teamId' element={<Feat.TeamLayout />}>
-            <Route index element={<Feat.TeamPage />} />
+            <Route index element={<Feat.DashboardPage />} />
             <Route path='teamchat' element={<Feat.TeamChatPage />} />
             <Route path='filesharing' element={<Feat.FileSharingPage />} />
             <Route path='schedule' element={<Feat.SchedulePage />} />
