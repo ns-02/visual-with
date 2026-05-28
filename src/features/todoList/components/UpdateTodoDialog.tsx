@@ -1,9 +1,8 @@
 import { useWorkspaceParams } from '@core/hooks/useWorkspaceParams';
-import { useUserStore } from '@core/store/useUserStore';
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 import { Dialog, DialogInput } from '@shared/components';
 import { useTodoStore } from '../store/useTodoStore';
-import { updateTodoContentFetch } from '@shared/api/api';
+import { useTodoManager } from '../hooks/useTodoManager';
 
 interface UpdateTodoDialogProps {
   todoId?: number;
@@ -16,45 +15,30 @@ const UpdateTodoDialog = ({
   open,
   onOpenChange,
 }: UpdateTodoDialogProps) => {
+  const { updateTodoInManager } = useTodoManager();
   const todoData = useTodoStore((state) => state.todoData);
-  const updateTodo = useTodoStore((state) => state.updateTodo);
   const { teamId } = useWorkspaceParams();
-  const userId = useUserStore((state) => state.user?.id);
-  const userName = useUserStore((state) => state.user?.name);
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-  const [authorId, setAuthorId] = useState('');
-  const [authorName, setAuthorName] = useState('');
+
   const currentTodoData = todoData?.find(
     (item) => item.id === todoId && item.teamId === teamId,
   );
 
-  useEffect(() => {
-    setTitle(currentTodoData?.title ?? '');
-    setDescription(currentTodoData?.description ?? '');
-    setAuthorId(currentTodoData?.authorId ?? userId ?? '');
-    setAuthorName(currentTodoData?.authorName ?? userName ?? '');
-  }, [currentTodoData, userId, userName]);
+  const [title, setTitle] = useState(currentTodoData?.title ?? '');
+  const [description, setDescription] = useState(
+    currentTodoData?.description ?? '',
+  );
 
   const handleUpdateTodo = async () => {
-    if (!title || !todoId || !authorId || !authorName || !teamId) return;
+    if (!title.trim()) return;
 
-    await updateTodoContentFetch({
-      id: todoId,
+    updateTodoInManager({
       title,
-      content: description || '',
-      teamId,
-      userId: authorId,
-      userTeamRole: 'MEMBER',
+      description,
+      todoId,
+      authorId: currentTodoData?.authorId,
+      authorName: currentTodoData?.authorName,
     });
 
-    updateTodo({
-      id: todoId,
-      title,
-      description: description || undefined,
-      authorId,
-      authorName,
-    });
     setTitle('');
     setDescription('');
     onOpenChange(false);

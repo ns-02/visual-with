@@ -1,9 +1,6 @@
-import { useUserStore } from '@core/store/useUserStore';
 import { Dispatch, SetStateAction, useState } from 'react';
 import { Dialog, DialogInput } from '@shared/components';
-import { useTodoStore } from '../store/useTodoStore';
-import { useWorkspaceParams } from '@core/hooks/useWorkspaceParams';
-import { addTodoFetch } from '@shared/api/api';
+import { useTodoManager } from '../hooks/useTodoManager';
 
 interface AddTodoDialogProps {
   open: boolean;
@@ -11,35 +8,16 @@ interface AddTodoDialogProps {
 }
 
 const AddTodoDialog = ({ open, onOpenChange }: AddTodoDialogProps) => {
-  const addTodo = useTodoStore((state) => state.addTodo);
-  const { teamId } = useWorkspaceParams();
-  const userId = useUserStore((state) => state.user?.id);
-  const userName = useUserStore((state) => state.user?.name);
+  const { addTodoInManager } = useTodoManager();
+
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
 
   const handleAddTodo = async () => {
-    if (!title || !teamId || !userId || !userName) return;
+    if (!title.trim()) return;
 
-    const res = await addTodoFetch({
-      title,
-      content: description || '',
-      teamId: teamId,
-      userId: userId,
-      createdDate: '날짜',
-      createdTime: '시간',
-    });
+    await addTodoInManager(title, description);
 
-    console.log(res);
-
-    addTodo({
-      id: res.id,
-      title,
-      description: description || undefined,
-      teamId: teamId,
-      authorId: userId,
-      authorName: userName,
-    });
     setTitle('');
     setDescription('');
     onOpenChange(false);
