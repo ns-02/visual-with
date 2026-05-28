@@ -147,7 +147,7 @@ export const useTodoManager = () => {
       id: todoId,
       teamId,
       userId,
-      userTeamRole: 'MEMBER',
+      userTeamRole: currentRule,
     });
 
     deleteTodo(todoId);
