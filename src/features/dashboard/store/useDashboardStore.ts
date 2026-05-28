@@ -30,6 +30,18 @@ interface DDaySchedules {
   remainingDays: number;
 }
 
+interface RecentlyUploadedFiles {
+  fileId: number;
+  fileName: string;
+  timeAgo: string;
+}
+
+interface RecentlyUploadedTodos {
+  todoId: number;
+  todoTitle: string;
+  timeAgo: string;
+}
+
 interface DashboardData {
   teamId: TeamId;
   todoStatusData?: TodoStatusData[];
@@ -37,6 +49,8 @@ interface DashboardData {
   monthlyTodoTrends?: MonthlyTodoTrends[];
   chatActivityByTime?: ChatActivityByTime[];
   dDaySchedules?: DDaySchedules[];
+  recentlyUploadedFiles?: RecentlyUploadedFiles[];
+  recentlyUploadedTodos?: RecentlyUploadedTodos[];
 }
 
 interface DashboardState {
@@ -46,6 +60,8 @@ interface DashboardState {
   updateTodoTrends: (teamId: TeamId) => void;
   updateChatActivity: (teamId: TeamId) => void;
   updateDDaySchedules: (teamId: TeamId) => void;
+  updateUploadedFiles: (teamId: TeamId) => void;
+  updateUploadedTodos: (teamId: TeamId) => void;
 }
 
 const calculateTodoStatus = (teamId: TeamId): TodoStatusData[] => {
@@ -138,141 +154,127 @@ const calculateDDaySchedules = (teamId: TeamId): DDaySchedules[] => {
   }));
 };
 
+const calculateUploadedFiles = (teamId: TeamId): RecentlyUploadedFiles[] => {
+  const fileData = useTeamFileStore
+    .getState()
+    .fileData.filter((t) => t.teamId === teamId);
+
+  // 정렬, 개수 제한 필요
+  return fileData.map((item) => ({
+    fileId: item.id,
+    fileName: item.fileName,
+    timeAgo: item.timeAgo || '알 수 없음',
+  }));
+};
+
+const calculateUploadedTodos = (teamId: TeamId): RecentlyUploadedTodos[] => {
+  const todoData = useTodoStore
+    .getState()
+    .todoData.filter((t) => t.teamId === teamId);
+
+  // todo의 timeAgo 계산 로직 필요
+  // 정렬, 개수 제한 필요
+  return todoData.map((item) => ({
+    todoId: item.id,
+    todoTitle: item.title,
+    timeAgo: '알 수 없음',
+  }));
+};
+
+const updateDashboardField = <K extends keyof Omit<DashboardData, 'teamId'>>(
+  data: DashboardData[],
+  teamId: TeamId,
+  fieldKey: K,
+  fieldValue: DashboardData[K],
+): DashboardData[] => {
+  const isExist = data.some((item) => item.teamId === teamId);
+
+  if (isExist) {
+    return data.map((item) =>
+      item.teamId === teamId ? { ...item, [fieldKey]: fieldValue } : item,
+    );
+  }
+
+  return [...data, { teamId, [fieldKey]: fieldValue }];
+};
+
 export const useDashboardStore = create<DashboardState>((set) => ({
   dashboardData: [],
 
   updateTodoStatus: (teamId) => {
-    const newTodoStatusData = calculateTodoStatus(teamId);
-
-    set((state) => {
-      const isExist = state.dashboardData.some(
-        (item) => item.teamId === teamId,
-      );
-
-      if (isExist) {
-        return {
-          dashboardData: state.dashboardData.map((item) =>
-            item.teamId === teamId
-              ? { ...item, todoStatusData: newTodoStatusData }
-              : item,
-          ),
-        };
-      }
-
-      return {
-        dashboardData: [
-          ...state.dashboardData,
-          { teamId, todoStatusData: newTodoStatusData },
-        ],
-      };
-    });
+    set((state) => ({
+      dashboardData: updateDashboardField(
+        state.dashboardData,
+        teamId,
+        'todoStatusData',
+        calculateTodoStatus(teamId),
+      ),
+    }));
   },
 
   updateFileType: (teamId) => {
-    const newFileTypeData = calculateFileType(teamId);
-
-    set((state) => {
-      const isExist = state.dashboardData.some(
-        (item) => item.teamId === teamId,
-      );
-
-      if (isExist) {
-        return {
-          dashboardData: state.dashboardData.map((item) =>
-            item.teamId === teamId
-              ? { ...item, fileTypeData: newFileTypeData }
-              : item,
-          ),
-        };
-      }
-
-      return {
-        dashboardData: [
-          ...state.dashboardData,
-          { teamId, fileTypeData: newFileTypeData },
-        ],
-      };
-    });
+    set((state) => ({
+      dashboardData: updateDashboardField(
+        state.dashboardData,
+        teamId,
+        'fileTypeData',
+        calculateFileType(teamId),
+      ),
+    }));
   },
 
   updateTodoTrends: (teamId) => {
-    const newMonthlyTodoTrends = calculateTodoTrends(teamId);
-
-    set((state) => {
-      const isExist = state.dashboardData.some(
-        (item) => item.teamId === teamId,
-      );
-
-      if (isExist) {
-        return {
-          dashboardData: state.dashboardData.map((item) =>
-            item.teamId === teamId
-              ? { ...item, monthlyTodoTrends: newMonthlyTodoTrends }
-              : item,
-          ),
-        };
-      }
-
-      return {
-        dashboardData: [
-          ...state.dashboardData,
-          { teamId, monthlyTodoTrends: newMonthlyTodoTrends },
-        ],
-      };
-    });
+    set((state) => ({
+      dashboardData: updateDashboardField(
+        state.dashboardData,
+        teamId,
+        'monthlyTodoTrends',
+        calculateTodoTrends(teamId),
+      ),
+    }));
   },
 
   updateChatActivity: (teamId) => {
-    const newChatActivity = calculateChatActivity(teamId);
-
-    set((state) => {
-      const isExist = state.dashboardData.some(
-        (item) => item.teamId === teamId,
-      );
-
-      if (isExist) {
-        return {
-          dashboardData: state.dashboardData.map((item) =>
-            item.teamId === teamId
-              ? { ...item, chatActivityByTime: newChatActivity }
-              : item,
-          ),
-        };
-      }
-
-      return {
-        dashboardData: [
-          ...state.dashboardData,
-          { teamId, chatActivityByTime: newChatActivity },
-        ],
-      };
-    });
+    set((state) => ({
+      dashboardData: updateDashboardField(
+        state.dashboardData,
+        teamId,
+        'chatActivityByTime',
+        calculateChatActivity(teamId),
+      ),
+    }));
   },
 
   updateDDaySchedules: (teamId) => {
-    const newDDaySchedules = calculateDDaySchedules(teamId);
+    set((state) => ({
+      dashboardData: updateDashboardField(
+        state.dashboardData,
+        teamId,
+        'dDaySchedules',
+        calculateDDaySchedules(teamId),
+      ),
+    }));
+  },
 
-    set((state) => {
-      const isExist = state.dashboardData.some(
-        (item) => item.teamId === teamId,
-      );
+  updateUploadedFiles: (teamId) => {
+    set((state) => ({
+      dashboardData: updateDashboardField(
+        state.dashboardData,
+        teamId,
+        'recentlyUploadedFiles',
+        calculateUploadedFiles(teamId),
+      ),
+    }));
+  },
 
-      if (isExist) {
-        return {
-          dashboardData: state.dashboardData.map((item) =>
-            item.teamId === teamId
-              ? { ...item, dDaySchedules: newDDaySchedules }
-              : item,
-          ),
-        };
-      }
-
-      return {
-        dashboardData: [
-          ...state.dashboardData,
-          { teamId, dDaySchedules: newDDaySchedules },
-        ],
-      };
-    });
+  updateUploadedTodos: (teamId) => {
+    set((state) => ({
+      dashboardData: updateDashboardField(
+        state.dashboardData,
+        teamId,
+        'recentlyUploadedTodos',
+        calculateUploadedTodos(teamId),
+      ),
+    }));
   },
 }));

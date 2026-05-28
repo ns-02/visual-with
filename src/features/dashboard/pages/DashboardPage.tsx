@@ -26,18 +26,6 @@ interface RenderShapeProps extends PieSectorDataItem {
   index: number;
 }
 
-interface RecentlyUploadedFiles {
-  fileId: string;
-  fileName: string;
-  timeAgo: number;
-}
-
-interface RecentlyUploadedTodos {
-  todoId: string;
-  todoTitle: string;
-  timeAgo: number;
-}
-
 const renderPieShape = (props: RenderShapeProps) => {
   const { index } = props;
   return <Sector {...props} fill={COLORS[index % COLORS.length]} />;
@@ -53,38 +41,20 @@ function DashboardPage() {
   const updateDDaySchedules = useDashboardStore(
     (state) => state.updateDDaySchedules,
   );
+  const updateUploadedFiles = useDashboardStore(
+    (state) => state.updateUploadedFiles,
+  );
+  const updateUploadedTodos = useDashboardStore(
+    (state) => state.updateUploadedTodos,
+  );
 
   const todoStatusData = dashboardData?.todoStatusData || [];
   const fileTypeData = dashboardData?.fileTypeData || [];
   const monthlyTodoTrends = dashboardData?.monthlyTodoTrends || [];
   const chatActivityByTime = dashboardData?.chatActivityByTime || [];
   const dDaySchedules = dashboardData?.dDaySchedules || [];
-
-  const recentlyUploadedFiles: RecentlyUploadedFiles[] = [
-    {
-      fileId: '1',
-      fileName: '서비스_기획서_v1.2.pdf',
-      timeAgo: 2,
-    },
-    {
-      fileId: '2',
-      fileName: '메인_레이아웃_시안.fig',
-      timeAgo: 3,
-    },
-  ];
-
-  const recentlyUploadedTodos: RecentlyUploadedTodos[] = [
-    {
-      todoId: '1',
-      todoTitle: '헤더 컴포넌트 스타일 수정',
-      timeAgo: 2,
-    },
-    {
-      todoId: '2',
-      todoTitle: '사이드바 전역 상태 연동',
-      timeAgo: 3,
-    },
-  ];
+  const recentlyUploadedFiles = dashboardData?.recentlyUploadedFiles || [];
+  const recentlyUploadedTodos = dashboardData?.recentlyUploadedTodos || [];
 
   useEffect(() => {
     if (!teamId) {
@@ -95,7 +65,16 @@ function DashboardPage() {
     updateTodoStatus(teamId);
     updateFileType(teamId);
     updateDDaySchedules(teamId);
-  }, [updateTodoStatus, updateFileType, updateDDaySchedules, teamId]);
+    updateUploadedFiles(teamId);
+    updateUploadedTodos(teamId);
+  }, [
+    updateTodoStatus,
+    updateFileType,
+    updateDDaySchedules,
+    updateUploadedFiles,
+    updateUploadedTodos,
+    teamId,
+  ]);
 
   return (
     <div className={styles.dashboard_page}>
@@ -199,7 +178,7 @@ function DashboardPage() {
                 <div className='common_card_info flex_col'>
                   <p>{item.fileName}</p>
                   <div className='text_sec_100 d_flex gap_12'>
-                    <div>{`${item.timeAgo}일 전`}</div>
+                    <div>{item.timeAgo}</div>
                   </div>
                 </div>
               </div>
@@ -211,7 +190,7 @@ function DashboardPage() {
                 <div className='common_card_info flex_col'>
                   <p>{item.todoTitle}</p>
                   <div className='text_sec_100 d_flex gap_12'>
-                    <div>{`${item.timeAgo}일 전`}</div>
+                    <div>{item.timeAgo}</div>
                   </div>
                 </div>
               </div>
