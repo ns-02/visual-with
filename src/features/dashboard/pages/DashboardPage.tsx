@@ -26,11 +26,6 @@ interface RenderShapeProps extends PieSectorDataItem {
   index: number;
 }
 
-interface ChatActivityByTime {
-  time: string;
-  chats: number;
-}
-
 interface DDaySchedules {
   scheduleId: string;
   scheduleTitle: string;
@@ -65,21 +60,7 @@ function DashboardPage() {
   const todoStatusData = dashboardData?.todoStatusData || [];
   const fileTypeData = dashboardData?.fileTypeData || [];
   const monthlyTodoTrends = dashboardData?.monthlyTodoTrends || [];
-
-  const chatActivityByTime: ChatActivityByTime[] = [
-    { time: '00-02', chats: 23 },
-    { time: '02-04', chats: 7 },
-    { time: '04-06', chats: 4 },
-    { time: '06-08', chats: 5 },
-    { time: '08-10', chats: 41 },
-    { time: '10-12', chats: 78 },
-    { time: '12-14', chats: 91 },
-    { time: '14-16', chats: 105 },
-    { time: '16-18', chats: 121 },
-    { time: '18-20', chats: 77 },
-    { time: '20-22', chats: 45 },
-    { time: '22-00', chats: 30 },
-  ];
+  const chatActivityByTime = dashboardData?.chatActivityByTime || [];
 
   const dDaySchedules: DDaySchedules[] = [
     {

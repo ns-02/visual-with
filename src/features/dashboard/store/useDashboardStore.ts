@@ -18,11 +18,17 @@ interface MonthlyTodoTrends {
   todos: number;
 }
 
+interface ChatActivityByTime {
+  time: string;
+  chats: number;
+}
+
 interface DashboardData {
   teamId: TeamId;
   todoStatusData?: TodoStatusData[];
   fileTypeData?: FileTypeData[];
   monthlyTodoTrends?: MonthlyTodoTrends[];
+  chatActivityByTime?: ChatActivityByTime[];
 }
 
 interface DashboardState {
@@ -30,6 +36,7 @@ interface DashboardState {
   updateTodoStatus: (teamId: TeamId) => void;
   updateFileType: (teamId: TeamId) => void;
   updateTodoTrends: (teamId: TeamId) => void;
+  updateChatActivity: (teamId: TeamId) => void;
 }
 
 const calculateTodoStatus = (teamId: TeamId): TodoStatusData[] => {
@@ -78,6 +85,27 @@ const calculateTodoTrends = (teamId: TeamId): MonthlyTodoTrends[] => {
     { month: '2월', todos: 25 },
     { month: '3월', todos: 30 },
     { month: '4월', todos: 33 },
+  ];
+};
+
+const calculateChatActivity = (teamId: TeamId): ChatActivityByTime[] => {
+  // 채팅 스토어가 존재하지 않음...
+  console.log(teamId);
+
+  // 실제 유효한 데이터가 아님
+  return [
+    { time: '00-02', chats: 23 },
+    { time: '02-04', chats: 7 },
+    { time: '04-06', chats: 4 },
+    { time: '06-08', chats: 5 },
+    { time: '08-10', chats: 41 },
+    { time: '10-12', chats: 78 },
+    { time: '12-14', chats: 91 },
+    { time: '14-16', chats: 105 },
+    { time: '16-18', chats: 121 },
+    { time: '18-20', chats: 77 },
+    { time: '20-22', chats: 45 },
+    { time: '22-00', chats: 30 },
   ];
 };
 
@@ -160,6 +188,33 @@ export const useDashboardStore = create<DashboardState>((set) => ({
         dashboardData: [
           ...state.dashboardData,
           { teamId, monthlyTodoTrends: newMonthlyTodoTrends },
+        ],
+      };
+    });
+  },
+
+  updateChatActivity: (teamId) => {
+    const newChatActivity = calculateChatActivity(teamId);
+
+    set((state) => {
+      const isExist = state.dashboardData.some(
+        (item) => item.teamId === teamId,
+      );
+
+      if (isExist) {
+        return {
+          dashboardData: state.dashboardData.map((item) =>
+            item.teamId === teamId
+              ? { ...item, chatActivityByTime: newChatActivity }
+              : item,
+          ),
+        };
+      }
+
+      return {
+        dashboardData: [
+          ...state.dashboardData,
+          { teamId, chatActivityByTime: newChatActivity },
         ],
       };
     });
