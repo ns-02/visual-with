@@ -134,6 +134,10 @@ div[role*='dialog'] {
   margin-bottom: 10px;
 }
 
+.p_8 {
+  padding: 12px;
+}
+
 .px_20 {
   padding-left: 20px;
   padding-right: 20px;

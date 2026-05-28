@@ -1,0 +1,205 @@
+import styles from './DashboardPage.module.css';
+import { Button } from '@shared/components';
+import { getIsAdmin } from '@shared/utils/permitUtils';
+import { getTeamRuleName } from '@shared/models/Workspace';
+import { useCurrentWorkspace } from '@core/hooks/useCurrentWorkspace';
+import {
+  Bar,
+  BarChart,
+  Line,
+  LineChart,
+  Pie,
+  PieChart,
+  PieSectorDataItem,
+  ResponsiveContainer,
+  Sector,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from 'recharts';
+import { useDashboardStore } from '../store/useDashboardStore';
+import { useEffect } from 'react';
+
+const COLORS = ['#3b82f6', '#10b981', '#f59e0b', '#ef4444'];
+
+interface RenderShapeProps extends PieSectorDataItem {
+  index: number;
+}
+
+const renderPieShape = (props: RenderShapeProps) => {
+  const { index } = props;
+  return <Sector {...props} fill={COLORS[index % COLORS.length]} />;
+};
+
+function DashboardPage() {
+  const { selectTeamName, currentRule, teamId } = useCurrentWorkspace();
+  const dashboardData = useDashboardStore((state) => state.dashboardData).find(
+    (d) => d.teamId === teamId,
+  );
+  const updateTodoStatus = useDashboardStore((state) => state.updateTodoStatus);
+  const updateFileType = useDashboardStore((state) => state.updateFileType);
+  const updateDDaySchedules = useDashboardStore(
+    (state) => state.updateDDaySchedules,
+  );
+  const updateUploadedFiles = useDashboardStore(
+    (state) => state.updateUploadedFiles,
+  );
+  const updateUploadedTodos = useDashboardStore(
+    (state) => state.updateUploadedTodos,
+  );
+
+  const todoStatusData = dashboardData?.todoStatusData || [];
+  const fileTypeData = dashboardData?.fileTypeData || [];
+  const monthlyTodoTrends = dashboardData?.monthlyTodoTrends || [];
+  const chatActivityByTime = dashboardData?.chatActivityByTime || [];
+  const dDaySchedules = dashboardData?.dDaySchedules || [];
+  const recentlyUploadedFiles = dashboardData?.recentlyUploadedFiles || [];
+  const recentlyUploadedTodos = dashboardData?.recentlyUploadedTodos || [];
+
+  useEffect(() => {
+    if (!teamId) {
+      console.error('팀 아이디가 존재하지 않음');
+      return;
+    }
+
+    updateTodoStatus(teamId);
+    updateFileType(teamId);
+    updateDDaySchedules(teamId);
+    updateUploadedFiles(teamId);
+    updateUploadedTodos(teamId);
+  }, [
+    updateTodoStatus,
+    updateFileType,
+    updateDDaySchedules,
+    updateUploadedFiles,
+    updateUploadedTodos,
+    teamId,
+  ]);
+
+  return (
+    <div className={styles.dashboard_page}>
+      <div className={styles.contents}>
+        <div className={styles.team_header}>
+          <div className={styles.team_info}>
+            <h2>{`${selectTeamName}`}</h2>
+            <p>역할: {getTeamRuleName(currentRule)}</p>
+            <p>멤버 수: 미구현</p>
+          </div>
+          {currentRule && getIsAdmin(currentRule) && (
+            <div className={styles.team_button_area}>
+              <Button>팀 관리</Button>
+            </div>
+          )}
+        </div>
+
+        <div className={styles.dashboard_label}>
+          <div>할 일 완료 현황</div>
+          <div>파일 유형별 현황</div>
+        </div>
+        <div className={styles.dashboard_area}>
+          <div className='common_card p_8 w_full'>
+            <ResponsiveContainer height={300}>
+              <PieChart>
+                <Pie
+                  // innerRadius={160}
+                  // outerRadius={200}
+                  data={todoStatusData}
+                  dataKey='value'
+                  shape={renderPieShape}
+                />
+                <Tooltip />
+              </PieChart>
+            </ResponsiveContainer>
+          </div>
+          <div className='common_card p_8 w_full'>
+            <ResponsiveContainer height={300}>
+              <PieChart>
+                <Pie
+                  // innerRadius={160}
+                  // outerRadius={200}
+                  data={fileTypeData}
+                  dataKey='value'
+                  shape={renderPieShape}
+                />
+                <Tooltip />
+              </PieChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+
+        <div className={styles.dashboard_label}>
+          <div>월별 할 일 완료 추이</div>
+          <div>시간별 채팅 활성화</div>
+        </div>
+        <div className={styles.dashboard_area}>
+          <div className='common_card p_8 w_full'>
+            <ResponsiveContainer height={300}>
+              <LineChart data={monthlyTodoTrends}>
+                <XAxis dataKey='month' />
+                <YAxis dataKey='todos' />
+                <Tooltip />
+                <Line dataKey='todos' />
+              </LineChart>
+            </ResponsiveContainer>
+          </div>
+          <div className='common_card p_8 w_full'>
+            <ResponsiveContainer height={300}>
+              <BarChart data={chatActivityByTime}>
+                <XAxis dataKey='time' />
+                <YAxis dataKey='chats' />
+                <Tooltip />
+                <Bar dataKey='chats' />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+
+        <div className={styles.dashboard_label}>
+          <div>다가오는 일정</div>
+          <div>최근 파일</div>
+          <div>최근 할 일</div>
+        </div>
+        <div style={{ display: 'flex', gap: 12 }}>
+          <div style={{ flex: 1 }}>
+            {dDaySchedules.map((item) => (
+              <div key={item.scheduleId} className='common_card'>
+                <div className='common_card_info flex_col'>
+                  <p>{item.scheduleTitle}</p>
+                  <div className='text_sec_100 d_flex gap_12'>
+                    <div>{`${item.remainingDays}일 남음`}</div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div style={{ flex: 1 }}>
+            {recentlyUploadedFiles.map((item) => (
+              <div key={item.fileId} className='common_card'>
+                <div className='common_card_info flex_col'>
+                  <p>{item.fileName}</p>
+                  <div className='text_sec_100 d_flex gap_12'>
+                    <div>{item.timeAgo}</div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div style={{ flex: 1 }}>
+            {recentlyUploadedTodos.map((item) => (
+              <div key={item.todoId} className='common_card'>
+                <div className='common_card_info flex_col'>
+                  <p>{item.todoTitle}</p>
+                  <div className='text_sec_100 d_flex gap_12'>
+                    <div>{item.timeAgo}</div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default DashboardPage;

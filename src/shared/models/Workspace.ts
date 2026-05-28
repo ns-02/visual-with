@@ -62,7 +62,7 @@ export interface BaseFileData {
   authorName: string;
   fileName: string;
   fileSize: string;
-  fileType: string;
+  fileType: 'images' | 'videos' | 'audios' | 'others';
   date: string;
   timeAgo?: string;
 }
