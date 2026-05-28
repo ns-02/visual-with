@@ -31,11 +31,6 @@ interface MonthlyTodoTrends {
   todos: number;
 }
 
-interface FileTypeData {
-  name: string;
-  value: number;
-}
-
 interface ChatActivityByTime {
   time: string;
   chats: number;
@@ -69,16 +64,11 @@ function DashboardPage() {
   const dashboardData = useDashboardStore((state) => state.dashboardData).find(
     (d) => d.teamId === teamId,
   );
-  const updateDashboard = useDashboardStore((state) => state.updateDashboard);
+  const updateTodoStatus = useDashboardStore((state) => state.updateTodoStatus);
+  const updateFileType = useDashboardStore((state) => state.updateFileType);
 
   const todoStatusData = dashboardData?.todoStatusData || [];
-
-  const fileTypeData: FileTypeData[] = [
-    { name: '이미지', value: 100 },
-    { name: '비디오', value: 30 },
-    { name: '오디오', value: 50 },
-    { name: '기타', value: 250 },
-  ];
+  const fileTypeData = dashboardData?.fileTypeData || [];
 
   const monthlyTodoTrends: MonthlyTodoTrends[] = [
     { month: '1월', todos: 22 },
@@ -147,8 +137,9 @@ function DashboardPage() {
       return;
     }
 
-    updateDashboard(teamId);
-  }, [updateDashboard, teamId]);
+    updateTodoStatus(teamId);
+    updateFileType(teamId);
+  }, [updateTodoStatus, updateFileType, teamId]);
 
   return (
     <div className={styles.dashboard_page}>
