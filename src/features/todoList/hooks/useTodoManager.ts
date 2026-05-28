@@ -11,6 +11,7 @@ import {
   updateTodoContentFetch,
   viewTodo,
 } from '@shared/api/api';
+import { formatDate, formatTime } from '@shared/utils/formatDate';
 
 export const useTodoManager = () => {
   const userId = useUserStore((state) => state.user?.id);
@@ -77,8 +78,8 @@ export const useTodoManager = () => {
       teamId,
       userId: item.authorId,
       complete: !item.checked,
-      completeDate: '날짜',
-      completeTime: '시간',
+      completeDate: formatDate(),
+      completeTime: formatTime(),
       userTeamRole: currentRule,
     });
 
@@ -93,8 +94,8 @@ export const useTodoManager = () => {
       content: description || '',
       teamId: teamId,
       userId: userId,
-      createdDate: '날짜',
-      createdTime: '시간',
+      createdDate: formatDate(),
+      createdTime: formatTime(),
     });
 
     addTodo({
