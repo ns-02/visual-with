@@ -1,7 +1,6 @@
 import { useTeamFileStore } from '@features/fileSharing/store/useTeamFileStore';
 import { useTodoStore } from '@features/todoList/store/useTodoStore';
 import { TeamId } from '@shared/models/Workspace';
-import { getFormattedFileType } from '@shared/utils/formatFile';
 import { create } from 'zustand';
 
 interface TodoStatusData {
@@ -47,15 +46,9 @@ const calculateFileType = (teamId: TeamId): FileTypeData[] => {
 
   console.log(fileData);
 
-  const imageFileCount = fileData.filter(
-    (f) => getFormattedFileType(f.fileType) === 'images',
-  ).length;
-  const videoFileCount = fileData.filter(
-    (f) => getFormattedFileType(f.fileType) === 'videos',
-  ).length;
-  const audioFileCount = fileData.filter(
-    (f) => getFormattedFileType(f.fileType) === 'audios',
-  ).length;
+  const imageFileCount = fileData.filter((f) => f.fileType === 'images').length;
+  const videoFileCount = fileData.filter((f) => f.fileType === 'videos').length;
+  const audioFileCount = fileData.filter((f) => f.fileType === 'audios').length;
   const otherFileCount =
     fileData.length - (imageFileCount + videoFileCount + audioFileCount);
 
