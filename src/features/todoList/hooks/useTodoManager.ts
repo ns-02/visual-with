@@ -36,7 +36,7 @@ export const useTodoManager = () => {
         id: item.id,
         title: item.title,
         description: item.content,
-        checked: false, // 필요함
+        checked: item.completed,
         teamId,
         authorId: item.userId,
         authorName: '아무개',
