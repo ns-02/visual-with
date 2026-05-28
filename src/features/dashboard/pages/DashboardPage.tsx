@@ -166,7 +166,11 @@ function DashboardPage() {
                 <div className='common_card_info flex_col'>
                   <p>{item.scheduleTitle}</p>
                   <div className='text_sec_100 d_flex gap_12'>
-                    <div>{`${item.remainingDays}일 남음`}</div>
+                    <div>
+                      {item.remainingDays > 0
+                        ? `${item.remainingDays}일 남음`
+                        : `${Math.abs(item.remainingDays)}일 지남`}
+                    </div>
                   </div>
                 </div>
               </div>

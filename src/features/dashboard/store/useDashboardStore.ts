@@ -2,7 +2,9 @@ import { useTeamFileStore } from '@features/fileSharing/store/useTeamFileStore';
 import { useScheduleStore } from '@features/schedule/store/useScheduleStore';
 import { useTodoStore } from '@features/todoList/store/useTodoStore';
 import { TeamId } from '@shared/models/Workspace';
+import { parseDate } from '@shared/utils/formatDate';
 import { create } from 'zustand';
+import { differenceInDays } from 'date-fns';
 
 interface TodoStatusData {
   name: '완료된 할 일' | '남은 할 일';
@@ -105,6 +107,7 @@ const calculateTodoTrends = (teamId: TeamId): MonthlyTodoTrends[] => {
   console.log(todoData);
 
   // 실제 유효한 데이터가 아님
+  // TodoData에 완료 시점의 날짜가 포함되어야 하며, API 응답 역시 포함되어야 함
   return [
     { month: '1월', todos: 22 },
     { month: '2월', todos: 25 },
@@ -138,7 +141,7 @@ const calculateDDaySchedules = (teamId: TeamId): DDaySchedules[] => {
   /**
    * 필요한 것
    *
-   * 1. remainingDays 계산
+   * 1. remainingDays 계산 (완료)
    * 2. 최대 개수 제한
    * 3. 정렬
    */
@@ -147,11 +150,22 @@ const calculateDDaySchedules = (teamId: TeamId): DDaySchedules[] => {
     .getState()
     .scheduleData.filter((s) => s.teamId === teamId);
 
-  return scheduleData.map((item) => ({
-    scheduleId: item.id,
-    scheduleTitle: item.title,
-    remainingDays: 0,
-  }));
+  return scheduleData.map((item) => {
+    const { startDate, finishDate } = item;
+
+    const referenceDate = finishDate
+      ? parseDate(finishDate)
+      : parseDate(startDate);
+    const nowDate = new Date();
+
+    const dateDifference = differenceInDays(referenceDate, nowDate);
+
+    return {
+      scheduleId: item.id,
+      scheduleTitle: item.title,
+      remainingDays: dateDifference,
+    };
+  });
 };
 
 const calculateUploadedFiles = (teamId: TeamId): RecentlyUploadedFiles[] => {

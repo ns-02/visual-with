@@ -13,6 +13,10 @@ export const formatDate = (currentDate?: Date) => {
   return formattedDate;
 };
 
+export const parseDate = (dateString: string) => {
+  return new Date(dateString);
+};
+
 /**
  *
  * @returns hh:mm
