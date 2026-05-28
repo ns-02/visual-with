@@ -26,12 +26,6 @@ interface RenderShapeProps extends PieSectorDataItem {
   index: number;
 }
 
-interface DDaySchedules {
-  scheduleId: string;
-  scheduleTitle: string;
-  remainingDays: number;
-}
-
 interface RecentlyUploadedFiles {
   fileId: string;
   fileName: string;
@@ -56,24 +50,15 @@ function DashboardPage() {
   );
   const updateTodoStatus = useDashboardStore((state) => state.updateTodoStatus);
   const updateFileType = useDashboardStore((state) => state.updateFileType);
+  const updateDDaySchedules = useDashboardStore(
+    (state) => state.updateDDaySchedules,
+  );
 
   const todoStatusData = dashboardData?.todoStatusData || [];
   const fileTypeData = dashboardData?.fileTypeData || [];
   const monthlyTodoTrends = dashboardData?.monthlyTodoTrends || [];
   const chatActivityByTime = dashboardData?.chatActivityByTime || [];
-
-  const dDaySchedules: DDaySchedules[] = [
-    {
-      scheduleId: '1',
-      scheduleTitle: '기획팀 주간 정기 회의',
-      remainingDays: 2,
-    },
-    {
-      scheduleId: '2',
-      scheduleTitle: '디자인 피드백 세션',
-      remainingDays: 3,
-    },
-  ];
+  const dDaySchedules = dashboardData?.dDaySchedules || [];
 
   const recentlyUploadedFiles: RecentlyUploadedFiles[] = [
     {
@@ -109,7 +94,8 @@ function DashboardPage() {
 
     updateTodoStatus(teamId);
     updateFileType(teamId);
-  }, [updateTodoStatus, updateFileType, teamId]);
+    updateDDaySchedules(teamId);
+  }, [updateTodoStatus, updateFileType, updateDDaySchedules, teamId]);
 
   return (
     <div className={styles.dashboard_page}>

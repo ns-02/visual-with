@@ -1,4 +1,5 @@
 import { useTeamFileStore } from '@features/fileSharing/store/useTeamFileStore';
+import { useScheduleStore } from '@features/schedule/store/useScheduleStore';
 import { useTodoStore } from '@features/todoList/store/useTodoStore';
 import { TeamId } from '@shared/models/Workspace';
 import { create } from 'zustand';
@@ -23,12 +24,19 @@ interface ChatActivityByTime {
   chats: number;
 }
 
+interface DDaySchedules {
+  scheduleId: number;
+  scheduleTitle: string;
+  remainingDays: number;
+}
+
 interface DashboardData {
   teamId: TeamId;
   todoStatusData?: TodoStatusData[];
   fileTypeData?: FileTypeData[];
   monthlyTodoTrends?: MonthlyTodoTrends[];
   chatActivityByTime?: ChatActivityByTime[];
+  dDaySchedules?: DDaySchedules[];
 }
 
 interface DashboardState {
@@ -37,6 +45,7 @@ interface DashboardState {
   updateFileType: (teamId: TeamId) => void;
   updateTodoTrends: (teamId: TeamId) => void;
   updateChatActivity: (teamId: TeamId) => void;
+  updateDDaySchedules: (teamId: TeamId) => void;
 }
 
 const calculateTodoStatus = (teamId: TeamId): TodoStatusData[] => {
@@ -107,6 +116,26 @@ const calculateChatActivity = (teamId: TeamId): ChatActivityByTime[] => {
     { time: '20-22', chats: 45 },
     { time: '22-00', chats: 30 },
   ];
+};
+
+const calculateDDaySchedules = (teamId: TeamId): DDaySchedules[] => {
+  /**
+   * 필요한 것
+   *
+   * 1. remainingDays 계산
+   * 2. 최대 개수 제한
+   * 3. 정렬
+   */
+  //
+  const scheduleData = useScheduleStore
+    .getState()
+    .scheduleData.filter((s) => s.teamId === teamId);
+
+  return scheduleData.map((item) => ({
+    scheduleId: item.id,
+    scheduleTitle: item.title,
+    remainingDays: 0,
+  }));
 };
 
 export const useDashboardStore = create<DashboardState>((set) => ({
@@ -215,6 +244,33 @@ export const useDashboardStore = create<DashboardState>((set) => ({
         dashboardData: [
           ...state.dashboardData,
           { teamId, chatActivityByTime: newChatActivity },
+        ],
+      };
+    });
+  },
+
+  updateDDaySchedules: (teamId) => {
+    const newDDaySchedules = calculateDDaySchedules(teamId);
+
+    set((state) => {
+      const isExist = state.dashboardData.some(
+        (item) => item.teamId === teamId,
+      );
+
+      if (isExist) {
+        return {
+          dashboardData: state.dashboardData.map((item) =>
+            item.teamId === teamId
+              ? { ...item, dDaySchedules: newDDaySchedules }
+              : item,
+          ),
+        };
+      }
+
+      return {
+        dashboardData: [
+          ...state.dashboardData,
+          { teamId, dDaySchedules: newDDaySchedules },
         ],
       };
     });
