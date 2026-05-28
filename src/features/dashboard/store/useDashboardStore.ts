@@ -71,16 +71,21 @@ export const useDashboardStore = create<DashboardState>((set) => ({
         (item) => item.teamId === teamId,
       );
 
-      const currentData = isExist
-        ? state.dashboardData
-        : [...state.dashboardData, { teamId }];
+      if (isExist) {
+        return {
+          dashboardData: state.dashboardData.map((item) =>
+            item.teamId === teamId
+              ? { ...item, todoStatusData: newTodoStatusData }
+              : item,
+          ),
+        };
+      }
 
       return {
-        dashboardData: currentData.map((item) =>
-          item.teamId === teamId
-            ? { ...item, todoStatusData: newTodoStatusData }
-            : item,
-        ),
+        dashboardData: [
+          ...state.dashboardData,
+          { teamId, todoStatusData: newTodoStatusData },
+        ],
       };
     });
   },
@@ -93,16 +98,21 @@ export const useDashboardStore = create<DashboardState>((set) => ({
         (item) => item.teamId === teamId,
       );
 
-      const currentData = isExist
-        ? state.dashboardData
-        : [...state.dashboardData, { teamId }];
+      if (isExist) {
+        return {
+          dashboardData: state.dashboardData.map((item) =>
+            item.teamId === teamId
+              ? { ...item, fileTypeData: newFileTypeData }
+              : item,
+          ),
+        };
+      }
 
       return {
-        dashboardData: currentData.map((item) =>
-          item.teamId === teamId
-            ? { ...item, fileTypeData: newFileTypeData }
-            : item,
-        ),
+        dashboardData: [
+          ...state.dashboardData,
+          { teamId, fileTypeData: newFileTypeData },
+        ],
       };
     });
   },
