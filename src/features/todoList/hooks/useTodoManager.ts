@@ -39,7 +39,6 @@ export const useTodoManager = () => {
       if (!teamId) return;
 
       const fetchData = await viewTodo({ teamId });
-      console.log(fetchData);
 
       if (!fetchData || fetchData.length === 0) return;
 
