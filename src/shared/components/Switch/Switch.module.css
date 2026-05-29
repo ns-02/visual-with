@@ -9,7 +9,6 @@
   cursor: pointer;
   display: flex;
   align-items: center;
-  box-shadow: var(--shadow-md);
 }
 .SwitchRoot[data-state='checked'] {
   background-color: var(--color-blue-400);
