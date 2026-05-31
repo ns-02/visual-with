@@ -1,10 +1,13 @@
 import {
+  AddScheduleRequest,
+  AddScheduleResponse,
   AddTodoRequest,
   AddTodoResponse,
   checkIdRequest,
   checkIdResponse,
   CreateTeamRequest,
   CreateTeamResponse,
+  DeleteScheduleRequest,
   DeleteTeamRequest,
   DeleteTeamResponse,
   DeleteTodoRequest,
@@ -16,8 +19,11 @@ import {
   SearchUserResponse,
   SignupRequest,
   SignupResponse,
+  UpdateScheduleRequest,
   UpdateTodoCompleteRequest,
   UpdateTodoContentRequest,
+  ViewScheduleRequest,
+  ViewScheduleResponse,
   ViewTodoRequest,
   ViewTodoResponse,
 } from './apiModel';
@@ -169,6 +175,41 @@ export const deleteTodoFetch = async (
   deleteRequest: DeleteTodoRequest,
 ): Promise<void> => {
   return await request(`/api/todo/delete`, {
+    method: 'DELETE',
+    body: JSON.stringify(deleteRequest),
+  });
+};
+
+export const viewSchedule = async ({
+  teamId,
+}: ViewScheduleRequest): Promise<ViewScheduleResponse[]> => {
+  return await request(`/api/cal/${teamId}`, {
+    method: 'GET',
+  });
+};
+
+export const addScheduleFetch = async (
+  addRequest: AddScheduleRequest,
+): Promise<AddScheduleResponse> => {
+  return await request(`/api/cal`, {
+    method: 'POST',
+    body: JSON.stringify(addRequest),
+  });
+};
+
+export const updateScheduleFetch = async (
+  updateRequest: UpdateScheduleRequest,
+): Promise<void> => {
+  return await request(`/api/cal`, {
+    method: 'PUT',
+    body: JSON.stringify(updateRequest),
+  });
+};
+
+export const deleteScheduleFetch = async (
+  deleteRequest: DeleteScheduleRequest,
+): Promise<void> => {
+  return await request(`/api/cal`, {
     method: 'DELETE',
     body: JSON.stringify(deleteRequest),
   });
