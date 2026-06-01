@@ -88,6 +88,7 @@ export interface ScheduleData {
   finishTime?: string;
   description?: string;
   teamId: TeamId;
+  // isAllDay: boolean;
 }
 
 export interface TodoData {
