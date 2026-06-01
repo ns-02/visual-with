@@ -31,11 +31,13 @@ const FriendListDropdown = ({ friendId, triggerElement }: DropdownProps) => {
   return (
     <>
       <Dropdown trigger={triggerElement} items={dropdownContent} />
-      <DeleteFriendDialog
-        friendId={friendId}
-        open={isDeleteFriendDialogOpen}
-        onOpenChange={setIsDeleteFriendDialogOpen}
-      />
+      {isDeleteFriendDialogOpen && (
+        <DeleteFriendDialog
+          friendId={friendId}
+          open={isDeleteFriendDialogOpen}
+          onOpenChange={setIsDeleteFriendDialogOpen}
+        />
+      )}
     </>
   );
 };

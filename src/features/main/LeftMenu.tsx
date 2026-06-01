@@ -165,14 +165,18 @@ function LeftMenu() {
       </div>
       <hr className='w_full mt_8 mb_8'></hr>
       <UserDropdown onSettingsClick={MapsToSettings} />
-      <InviteTeamDialog
-        open={isInviteTeamDialogOpen}
-        onOpenChange={setIsInviteTeamDialogOpen}
-      />
-      <TeamInvitationDialog
-        open={isTeamInvitationDialogOpen}
-        onOpenChange={setIsTeamInvitationDialogOpen}
-      />
+      {isInviteTeamDialogOpen && (
+        <InviteTeamDialog
+          open={isInviteTeamDialogOpen}
+          onOpenChange={setIsInviteTeamDialogOpen}
+        />
+      )}
+      {isTeamInvitationDialogOpen && (
+        <TeamInvitationDialog
+          open={isTeamInvitationDialogOpen}
+          onOpenChange={setIsTeamInvitationDialogOpen}
+        />
+      )}
     </section>
   );
 }

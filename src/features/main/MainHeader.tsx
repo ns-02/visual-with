@@ -91,22 +91,30 @@ function MainHeader() {
           </HeaderBar>
         );
       })}
-      <UploadFileDialog
-        open={isUploadFileDialogOpen}
-        onOpenChange={setIsUploadFileDialogOpen}
-      />
-      <AddScheduleDialog
-        open={isAddScheduleDialogOpen}
-        onOpenChange={setIsAddScheduleDialogOpen}
-      />
-      <AddTodoDialog
-        open={isAddTodoDialogOpen}
-        onOpenChange={setIsAddTodoDialogOpen}
-      />
-      <AddFriendDialog
-        open={isAddFriendDialogOpen}
-        onOpenChange={setIsAddFriendDialogOpen}
-      />
+      {isUploadFileDialogOpen && (
+        <UploadFileDialog
+          open={isUploadFileDialogOpen}
+          onOpenChange={setIsUploadFileDialogOpen}
+        />
+      )}
+      {isAddScheduleDialogOpen && (
+        <AddScheduleDialog
+          open={isAddScheduleDialogOpen}
+          onOpenChange={setIsAddScheduleDialogOpen}
+        />
+      )}
+      {isAddTodoDialogOpen && (
+        <AddTodoDialog
+          open={isAddTodoDialogOpen}
+          onOpenChange={setIsAddTodoDialogOpen}
+        />
+      )}
+      {isAddFriendDialogOpen && (
+        <AddFriendDialog
+          open={isAddFriendDialogOpen}
+          onOpenChange={setIsAddFriendDialogOpen}
+        />
+      )}
     </div>
   );
 }

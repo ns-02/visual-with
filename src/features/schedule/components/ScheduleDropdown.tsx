@@ -45,16 +45,20 @@ const ScheduleDropdown = ({
         canEdit={getIsPermit({ authorId, userId, rule: currentRule })}
         triggerElement={triggerElement}
       />
-      <UpdateScheduleDialog
-        scheduleId={scheduleId}
-        open={isUpdateScheduleDialogOpen}
-        onOpenChange={setIsUpdateScheduleDialogOpen}
-      />
-      <DeleteScheduleDialog
-        scheduleId={scheduleId}
-        open={isDeleteScheduleDialogOpen}
-        onOpenChange={setIsDeleteScheduleDialogOpen}
-      />
+      {isUpdateScheduleDialogOpen && (
+        <UpdateScheduleDialog
+          scheduleId={scheduleId}
+          open={isUpdateScheduleDialogOpen}
+          onOpenChange={setIsUpdateScheduleDialogOpen}
+        />
+      )}
+      {isDeleteScheduleDialogOpen && (
+        <DeleteScheduleDialog
+          scheduleId={scheduleId}
+          open={isDeleteScheduleDialogOpen}
+          onOpenChange={setIsDeleteScheduleDialogOpen}
+        />
+      )}
     </>
   );
 };

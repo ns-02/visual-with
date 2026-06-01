@@ -35,16 +35,20 @@ const TodoListDropdown = ({
         canEdit={getIsPermit({ authorId, userId, rule: currentRule })}
         triggerElement={triggerElement}
       />
-      <UpdateTodoDialog
-        todoId={todoId}
-        open={isUpdateTodoDialogOpen}
-        onOpenChange={setIsUpdateTodoDialogOpen}
-      />
-      <DeleteTodoDialog
-        todoId={todoId}
-        open={isDeleteTodoDialogOpen}
-        onOpenChange={setIsDeleteTodoDialogOpen}
-      />
+      {isUpdateTodoDialogOpen && (
+        <UpdateTodoDialog
+          todoId={todoId}
+          open={isUpdateTodoDialogOpen}
+          onOpenChange={setIsUpdateTodoDialogOpen}
+        />
+      )}
+      {isDeleteTodoDialogOpen && (
+        <DeleteTodoDialog
+          todoId={todoId}
+          open={isDeleteTodoDialogOpen}
+          onOpenChange={setIsDeleteTodoDialogOpen}
+        />
+      )}
     </>
   );
 };

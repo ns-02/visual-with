@@ -36,11 +36,13 @@ const FileSharingDropdown = ({
         })}
         triggerElement={triggerElement}
       />
-      <DeleteFileDialog
-        fileId={fileId}
-        open={isDeleteFileDialogOpen}
-        onOpenChange={setIsDeleteFileDialogOpen}
-      />
+      {isDeleteFileDialogOpen && (
+        <DeleteFileDialog
+          fileId={fileId}
+          open={isDeleteFileDialogOpen}
+          onOpenChange={setIsDeleteFileDialogOpen}
+        />
+      )}
     </>
   );
 };

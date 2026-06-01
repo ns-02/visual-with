@@ -35,15 +35,19 @@ const TeamDropdown = ({ trigger, onTeamSwitch }: DropdownProps) => {
   return (
     <>
       <Dropdown trigger={trigger} items={dropdownItems} />
-      <CreateTeamDialog
-        open={isCreateTeamDialogOpen}
-        onOpenChange={setIsCreateTeamDialogOpen}
-      />
-      <DeleteTeamDialog
-        deleteTeamData={deleteTeamData}
-        open={isDeleteTeamDialogOpen}
-        onOpenChange={setIsDeleteTeamDialogOpen}
-      />
+      {isCreateTeamDialogOpen && (
+        <CreateTeamDialog
+          open={isCreateTeamDialogOpen}
+          onOpenChange={setIsCreateTeamDialogOpen}
+        />
+      )}
+      {isDeleteTeamDialogOpen && (
+        <DeleteTeamDialog
+          deleteTeamData={deleteTeamData}
+          open={isDeleteTeamDialogOpen}
+          onOpenChange={setIsDeleteTeamDialogOpen}
+        />
+      )}
     </>
   );
 };

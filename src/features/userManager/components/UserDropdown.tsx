@@ -56,10 +56,12 @@ const UserDropdown = ({ onSettingsClick }: { onSettingsClick: () => void }) => {
         trigger={trigger}
         items={dropdownItems}
       />
-      <LogoutDialog
-        open={isLogoutDialogOpen}
-        onOpenChange={setIsLogoutDialogOpen}
-      />
+      {isLogoutDialogOpen && (
+        <LogoutDialog
+          open={isLogoutDialogOpen}
+          onOpenChange={setIsLogoutDialogOpen}
+        />
+      )}
     </>
   );
 };
