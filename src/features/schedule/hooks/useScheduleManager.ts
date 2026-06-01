@@ -7,7 +7,9 @@ import {
   addScheduleFetch,
   deleteScheduleFetch,
   updateScheduleFetch,
+  viewSchedule,
 } from '@shared/api/api';
+import { ScheduleData } from '@shared/models/Workspace';
 
 export const useScheduleManager = () => {
   const userId = useUserStore((state) => state.user?.id);
@@ -21,6 +23,7 @@ export const useScheduleManager = () => {
     [scheduleData, teamId],
   );
 
+  const loadSchedule = useScheduleStore((state) => state.loadSchedule);
   const addSchedule = useScheduleStore((state) => state.addSchedule);
   const updateSchedule = useScheduleStore((state) => state.updateSchedule);
   const deleteSchedule = useScheduleStore((state) => state.deleteSchedule);
@@ -30,25 +33,28 @@ export const useScheduleManager = () => {
     const loadScheduleData = async () => {
       if (!teamId) return;
 
-      // const fetchData = await viewTodo({ teamId });
+      const fetchData = await viewSchedule({ teamId });
 
-      // if (!fetchData || fetchData.length === 0) return;
+      if (!fetchData || fetchData.length === 0) return;
 
-      // const newTodoData: TodoData[] = fetchData.map((item) => ({
-      //   id: item.id,
-      //   title: item.title,
-      //   description: item.content,
-      //   checked: item.completed,
-      //   teamId,
-      //   authorId: item.userId,
-      //   authorName: '아무개',
-      // }));
+      const newScheduleData: ScheduleData[] = fetchData.map((item) => ({
+        id: item.id,
+        title: item.title,
+        description: item.content,
+        startDate: item.startDate,
+        startTime: item.startTime,
+        finishDate: item.completeDate,
+        finishTime: item.completeTime,
+        teamId,
+        authorId: item.userId,
+        authorName: '아무개',
+      }));
 
-      // loadTodo(newTodoData, teamId);
+      loadSchedule(newScheduleData, teamId);
     };
 
     loadScheduleData();
-  }, [teamId]);
+  }, [teamId, loadSchedule]);
 
   const addScheduleInManager = async ({
     title,
@@ -70,7 +76,7 @@ export const useScheduleManager = () => {
     if (!title || !startDate || !startTime || !teamId || !userId || !userName)
       return;
 
-    await addScheduleFetch({
+    const fetchData = await addScheduleFetch({
       title,
       content: description || '',
       teamId: teamId,
@@ -85,7 +91,7 @@ export const useScheduleManager = () => {
     });
 
     addSchedule({
-      // id: fetchData.id,
+      id: fetchData.id,
       teamId: teamId,
       title,
       description: description || undefined,

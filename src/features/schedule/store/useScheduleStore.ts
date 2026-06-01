@@ -1,10 +1,11 @@
 import { scheduleDataMocks } from '@mocks/ScheduleDataMocks';
-import { ScheduleData } from '@shared/models/Workspace';
+import { ScheduleData, TeamId } from '@shared/models/Workspace';
 
 import { create } from 'zustand';
 
 export type AddScheduleInput = Pick<
   ScheduleData,
+  | 'id'
   | 'title'
   | 'authorId'
   | 'authorName'
@@ -36,6 +37,7 @@ interface ScheduleState {
   addSchedule: (schedule: AddScheduleInput) => void;
   updateSchedule: (schedule: UpdateScheduleInput) => void;
   deleteSchedule: (scheduleId: number) => void;
+  loadSchedule: (scheduleData: ScheduleData[], teamId: TeamId) => void;
 }
 
 export const useScheduleStore = create<ScheduleState>((set) => ({
@@ -80,5 +82,13 @@ export const useScheduleStore = create<ScheduleState>((set) => ({
   deleteSchedule: (scheduleId) =>
     set((state) => ({
       scheduleData: state.scheduleData.filter((item) => item.id !== scheduleId),
+    })),
+
+  loadSchedule: (scheduleData, teamId) =>
+    set((state) => ({
+      scheduleData: [
+        ...state.scheduleData.filter((item) => item.teamId !== teamId),
+        ...scheduleData,
+      ],
     })),
 }));
