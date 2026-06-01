@@ -102,10 +102,6 @@ const AddScheduleDialog = ({ open, onOpenChange }: AddScheduleDialogProps) => {
         />
       </div>
       <div className='mb_10'>
-        <label>카테고리</label>
-        <DialogInput placeholder='일정' />
-      </div>
-      <div className='mb_10'>
         <label>설명</label>
         <DialogInput
           placeholder='일정 설명을 입력하세요 (선택사항)'

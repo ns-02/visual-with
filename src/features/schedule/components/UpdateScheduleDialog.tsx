@@ -1,7 +1,8 @@
 import { useWorkspaceParams } from '@core/hooks/useWorkspaceParams';
-import { Dialog, DialogInput } from '@shared/components';
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { Dialog, DialogInput, Switch } from '@shared/components';
+import { Dispatch, SetStateAction, useState } from 'react';
 import { useScheduleStore } from '../store/useScheduleStore';
+import { useScheduleManager } from '../hooks/useScheduleManager';
 
 export interface UpdateScheduleDialogProps {
   scheduleId?: number;
@@ -14,48 +15,40 @@ const UpdateScheduleDialog = ({
   open,
   onOpenChange,
 }: UpdateScheduleDialogProps) => {
+  const { updateScheduleInManager } = useScheduleManager();
   const scheduleData = useScheduleStore((state) => state.scheduleData);
-  const updateSchedule = useScheduleStore((state) => state.updateSchedule);
   const { teamId } = useWorkspaceParams();
-  const [title, setTitle] = useState('');
-  const [authorId, setAuthorId] = useState('');
-  const [authorName, setAuthorName] = useState('');
-  const [startDate, setstartDate] = useState('');
-  const [startTime, setStartTime] = useState('');
-  const [finishDate, setFinishDate] = useState('');
-  const [finishTime, setFinishTime] = useState('');
-  const [description, setDescription] = useState('');
-  const currentScheduleData = scheduleData?.find(
+
+  const currentData = scheduleData?.find(
     (item) => item.id === scheduleId && item.teamId === teamId,
   );
 
-  useEffect(() => {
-    if (!currentScheduleData) return;
+  const [title, setTitle] = useState(currentData?.title ?? '');
+  const [startDate, setstartDate] = useState(currentData?.startDate ?? '');
+  const [startTime, setStartTime] = useState(currentData?.startTime ?? '');
+  const [finishDate, setFinishDate] = useState(currentData?.finishDate ?? '');
+  const [finishTime, setFinishTime] = useState(currentData?.finishTime ?? '');
+  const [description, setDescription] = useState(
+    currentData?.description ?? '',
+  );
+  const [isAllDay, setIsAllDay] = useState(false);
 
-    setTitle(currentScheduleData.title);
-    setAuthorId(currentScheduleData.authorId);
-    setAuthorName(currentScheduleData.authorName);
-    setstartDate(currentScheduleData.startDate);
-    setStartTime(currentScheduleData.startTime);
-    setFinishDate(currentScheduleData.finishDate ?? '');
-    setFinishTime(currentScheduleData.finishTime ?? '');
-    setDescription(currentScheduleData.description ?? '');
-  }, [currentScheduleData]);
+  const handleUpdateSchedule = async () => {
+    if (!title.trim()) return;
 
-  const handleUpdateSchedule = () => {
-    if (!title || !startDate || !startTime || !scheduleId) return;
-
-    updateSchedule({
-      id: scheduleId,
+    await updateScheduleInManager({
+      scheduleId,
       title,
       description,
-      authorId,
-      authorName,
+      authorId: currentData?.authorId ?? '',
+      authorName: currentData?.authorName ?? '',
       startDate,
       startTime,
-      finishDate: finishDate || undefined,
-      finishTime: finishTime || undefined,
+      finishDate,
+      finishTime,
+      isAllDay,
     });
+
     setTitle('');
     setstartDate('');
     setStartTime('');
@@ -119,8 +112,11 @@ const UpdateScheduleDialog = ({
         </div>
       </div>
       <div className='mb_10'>
-        <label>카테고리</label>
-        <DialogInput placeholder='일정' />
+        <label>종일 여부</label>
+        <Switch
+          checked={isAllDay}
+          onCheckedChange={(checked) => setIsAllDay(checked)}
+        />
       </div>
       <div className='mb_10'>
         <label>설명</label>
