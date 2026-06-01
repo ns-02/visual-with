@@ -2,6 +2,7 @@ import { useWorkspaceParams } from '@core/hooks/useWorkspaceParams';
 import { Dispatch, SetStateAction } from 'react';
 import { AlertDialog } from '@shared/components';
 import { useScheduleStore } from '../store/useScheduleStore';
+import { useScheduleManager } from '../hooks/useScheduleManager';
 
 interface DeleteScheduleDialogProps {
   scheduleId?: number;
@@ -14,17 +15,16 @@ const DeleteScheduleDialog = ({
   open,
   onOpenChange,
 }: DeleteScheduleDialogProps) => {
+  const { deleteScheduleInManager } = useScheduleManager();
+
   const scheduleData = useScheduleStore((state) => state.scheduleData);
-  const deleteSchedule = useScheduleStore((state) => state.deleteSchedule);
   const { teamId } = useWorkspaceParams();
   const currentScheduleTitle = scheduleData?.find(
     (item) => item.id === scheduleId && item.teamId === teamId,
   )?.title;
 
   const handleDeleteSchedule = () => {
-    if (!scheduleData || !scheduleId) return;
-
-    deleteSchedule(scheduleId);
+    deleteScheduleInManager(scheduleId);
     onOpenChange(false);
   };
 
