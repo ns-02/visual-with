@@ -77,8 +77,6 @@ export interface DirectFileData extends BaseFileData {
   friendId: string;
 }
 
-export type ScheduleState = '완료' | '진행중' | '예정';
-
 export interface ScheduleData {
   id: number;
   title: string;
@@ -89,7 +87,6 @@ export interface ScheduleData {
   finishDate?: string;
   finishTime?: string;
   description?: string;
-  state: ScheduleState;
   teamId: TeamId;
 }
 

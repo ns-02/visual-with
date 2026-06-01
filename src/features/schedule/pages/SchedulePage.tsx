@@ -49,7 +49,6 @@ function SchedulePage() {
               authorName={item.authorName}
               date={item.startDate}
               time={item.startTime}
-              state={item.state}
             />
           );
         })}

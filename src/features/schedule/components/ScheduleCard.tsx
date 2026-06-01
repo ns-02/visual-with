@@ -9,7 +9,6 @@ interface ScheduleCardProps {
   authorName?: string;
   date?: string;
   time?: string;
-  state?: string;
 }
 
 const ScheduleCard = ({
