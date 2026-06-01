@@ -1,9 +1,7 @@
-import { useWorkspaceParams } from '@core/hooks/useWorkspaceParams';
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
-import { Dialog, DialogInput } from '@shared/components';
-import { useScheduleStore } from '../store/useScheduleStore';
-import { useUserStore } from '@core/store/useUserStore';
+import { Dispatch, SetStateAction, useState } from 'react';
+import { Dialog, DialogInput, Switch } from '@shared/components';
 import { formatDate, formatTime } from '@shared/utils/formatDate';
+import { useScheduleManager } from '../hooks/useScheduleManager';
 
 export interface AddScheduleDialogProps {
   open: boolean;
@@ -11,37 +9,29 @@ export interface AddScheduleDialogProps {
 }
 
 const AddScheduleDialog = ({ open, onOpenChange }: AddScheduleDialogProps) => {
-  const addSchedule = useScheduleStore((state) => state.addSchedule);
-  const { teamId } = useWorkspaceParams();
-  const userId = useUserStore((state) => state.user?.id);
-  const userName = useUserStore((state) => state.user?.name);
+  const { addScheduleInManager } = useScheduleManager();
+
   const [title, setTitle] = useState('');
-  const [startDate, setstartDate] = useState('');
-  const [startTime, setStartTime] = useState('');
+  const [startDate, setstartDate] = useState(formatDate());
+  const [startTime, setStartTime] = useState(formatTime());
   const [finishDate, setFinishDate] = useState('');
   const [finishTime, setFinishTime] = useState('');
   const [description, setDescription] = useState('');
+  const [isAllDay, setIsAllDay] = useState(false);
 
-  useEffect(() => {
-    setstartDate(formatDate());
-    setStartTime(formatTime());
-  }, []);
+  const handleAddSchedule = async () => {
+    if (!title.trim()) return;
 
-  const handleAddSchedule = () => {
-    if (!title || !startDate || !startTime || !teamId || !userId || !userName)
-      return;
-
-    addSchedule({
+    await addScheduleInManager({
       title,
       description,
-      authorId: userId,
-      authorName: userName,
       startDate,
       startTime,
-      finishDate: finishDate || undefined,
-      finishTime: finishTime || undefined,
-      teamId: teamId,
+      finishDate,
+      finishTime,
+      isAllDay,
     });
+
     setTitle('');
     setstartDate('');
     setStartTime('');
@@ -103,6 +93,13 @@ const AddScheduleDialog = ({ open, onOpenChange }: AddScheduleDialogProps) => {
             setValue={(e) => setFinishTime(e.target.value)}
           />
         </div>
+      </div>
+      <div className='mb_10'>
+        <label>종일 여부</label>
+        <Switch
+          checked={isAllDay}
+          onCheckedChange={(checked) => setIsAllDay(checked)}
+        />
       </div>
       <div className='mb_10'>
         <label>카테고리</label>

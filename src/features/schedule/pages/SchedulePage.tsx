@@ -1,34 +1,12 @@
-import { useTeamId } from '@core/hooks/useWorkspaceParams';
-import { useScheduleStore } from '../store/useScheduleStore';
 import ScheduleCard from '../components/ScheduleCard';
 import styles from './ScheduleLayout.module.css';
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 import Calendar from '../components/Calendar';
 import { formatDate } from '@shared/utils/formatDate';
+import { useScheduleManager } from '../hooks/useScheduleManager';
 
 function SchedulePage() {
-  const scheduleData = useScheduleStore((state) => state.scheduleData);
-  const teamId = useTeamId();
-
-  const teamScheduleData = useMemo(
-    () => scheduleData.filter((item) => item.teamId === teamId),
-    [scheduleData, teamId],
-  );
-
-  const completedData = useMemo(
-    () => teamScheduleData.filter((item) => item.state === '완료'),
-    [teamScheduleData],
-  );
-
-  const inProgressData = useMemo(
-    () => teamScheduleData.filter((item) => item.state === '진행중'),
-    [teamScheduleData],
-  );
-
-  const upcomingData = useMemo(
-    () => teamScheduleData.filter((item) => item.state === '예정'),
-    [teamScheduleData],
-  );
+  const { teamScheduleData } = useScheduleManager();
 
   const [selected, setSelected] = useState<Date>();
   const day = new Date().getDate();
@@ -60,44 +38,8 @@ function SchedulePage() {
       </div>
 
       <div className={styles.schedule_view_panel}>
-        <div style={{ marginTop: '24px', marginBottom: '12px' }}>
-          완료된 일정
-        </div>
-        {completedData?.map((item) => {
-          return (
-            <ScheduleCard
-              key={item.id}
-              id={item.id}
-              title={item.title}
-              authorId={item.authorId}
-              authorName={item.authorName}
-              date={item.startDate}
-              time={item.startTime}
-              state={item.state}
-            />
-          );
-        })}
-        <div style={{ marginTop: '24px', marginBottom: '12px' }}>
-          진행 중인 일정
-        </div>
-        {inProgressData?.map((item) => {
-          return (
-            <ScheduleCard
-              key={item.id}
-              id={item.id}
-              title={item.title}
-              authorId={item.authorId}
-              authorName={item.authorName}
-              date={item.startDate}
-              time={item.startTime}
-              state={item.state}
-            />
-          );
-        })}
-        <div style={{ marginTop: '24px', marginBottom: '12px' }}>
-          예정된 일정
-        </div>
-        {upcomingData?.map((item) => {
+        <div style={{ marginTop: '24px', marginBottom: '12px' }}>일정 목록</div>
+        {teamScheduleData.map((item) => {
           return (
             <ScheduleCard
               key={item.id}
