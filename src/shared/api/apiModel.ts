@@ -170,7 +170,7 @@ export interface AddScheduleResponse {
 }
 
 export interface UpdateScheduleRequest {
-  id: string;
+  id: number;
   teamId: string;
   userId: string;
   userTeamRole: UserTeamRule;
@@ -184,7 +184,7 @@ export interface UpdateScheduleRequest {
 }
 
 export interface DeleteScheduleRequest {
-  id: string;
+  id: number;
   teamId: string;
   userId: string;
   userTeamRole: UserTeamRule;
