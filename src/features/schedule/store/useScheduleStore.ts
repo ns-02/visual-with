@@ -1,4 +1,4 @@
-import { scheduleDataMocks } from '@mocks/ScheduleDataMocks';
+// import { scheduleDataMocks } from '@mocks/ScheduleDataMocks';
 import { ScheduleData, TeamId } from '@shared/models/Workspace';
 
 import { create } from 'zustand';
@@ -41,7 +41,8 @@ interface ScheduleState {
 }
 
 export const useScheduleStore = create<ScheduleState>((set) => ({
-  scheduleData: scheduleDataMocks || [],
+  // scheduleData: scheduleDataMocks || [],
+  scheduleData: [],
 
   addSchedule: (schedule) =>
     set((state) => ({
