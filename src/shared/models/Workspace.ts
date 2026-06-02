@@ -1,5 +1,3 @@
-export type TeamId = string;
-export type TeamName = string;
 export type TeamRule = 'ADMIN' | 'SUB_ADMIN' | 'MEMBER';
 export type ToolId =
   | 'home'
@@ -23,15 +21,15 @@ export function getTeamRuleName(rule: TeamRule): TeamRuleName {
 }
 
 export interface TeamData {
-  id: TeamId;
-  name: TeamName;
+  id: string;
+  name: string;
 }
 
 export type MembershipStatus = 'PENDING' | 'ACCEPTED' | 'DECLINED';
 
 export interface TeamMembershipData {
   userId: string;
-  teamId: TeamId;
+  teamId: string;
   rule: TeamRule;
   ruleName: TeamRuleName;
   status: MembershipStatus;
@@ -39,7 +37,7 @@ export interface TeamMembershipData {
 
 export function createMembership(
   userId: string,
-  teamId: TeamId,
+  teamId: string,
   rule: TeamRule,
   status: MembershipStatus,
 ): TeamMembershipData {
@@ -69,7 +67,7 @@ export interface BaseFileData {
 
 // 팀 파일
 export interface TeamFileData extends BaseFileData {
-  teamId: TeamId;
+  teamId: string;
 }
 
 // 친구 간 파일
@@ -87,7 +85,7 @@ export interface ScheduleData {
   finishDate?: string;
   finishTime?: string;
   description?: string;
-  teamId: TeamId;
+  teamId: string;
   // isAllDay: boolean;
 }
 
@@ -96,7 +94,7 @@ export interface TodoData {
   title: string;
   description?: string;
   checked: boolean;
-  teamId: TeamId;
+  teamId: string;
   authorId: string;
   authorName: string;
 }

@@ -1,6 +1,6 @@
 import { fileDataMocks } from '@mocks/FileDataMocks';
 import { create } from 'zustand';
-import { BaseFileData, TeamFileData, TeamId } from '@shared/models/Workspace';
+import { BaseFileData, TeamFileData } from '@shared/models/Workspace';
 
 interface TeamFileState {
   fileData: TeamFileData[];
@@ -10,7 +10,7 @@ interface TeamFileState {
   uploadFile: () => void;
   deleteFile: (fileId: number) => void;
   setIsLoading: (isLoading: boolean) => void;
-  setCurrentFile: (fileData: BaseFileData | null, teamId: TeamId) => void;
+  setCurrentFile: (fileData: BaseFileData | null, teamId: string) => void;
   setProgress: (progress: number) => void;
   increaseProgress: () => void;
 }

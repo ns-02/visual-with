@@ -7,7 +7,7 @@ import {
 import { useUserStore } from '@core/store/useUserStore';
 import { useTeamId } from '@core/hooks/useWorkspaceParams';
 import { useWorkspaceStore } from '@core/store/useWorkspaceStore';
-import { createMembership, TeamId, TeamName } from '@shared/models/Workspace';
+import { createMembership } from '@shared/models/Workspace';
 import { useEffect, useState } from 'react';
 
 export const useTeamManager = () => {
@@ -35,7 +35,7 @@ export const useTeamManager = () => {
     }
   }, [teamData, setIsTeamMember, isTeamInit]);
 
-  const onCreateTeam = async (teamName: TeamName) => {
+  const onCreateTeam = async (teamName: string) => {
     if (!userId) return;
 
     try {
@@ -48,7 +48,7 @@ export const useTeamManager = () => {
     }
   };
 
-  const onDeleteTeam = async (teamId: TeamId) => {
+  const onDeleteTeam = async (teamId: string) => {
     if (!userId) return;
 
     try {
@@ -89,7 +89,7 @@ export const useTeamManager = () => {
   };
 
   const onTeamInvitationByUserId = async (
-    currentTeamId: TeamId,
+    currentTeamId: string,
     accepted: boolean,
   ) => {
     if (!userId) return;

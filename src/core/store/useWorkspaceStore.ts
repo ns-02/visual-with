@@ -1,11 +1,6 @@
 import { teamDataMocks } from '@mocks/TeamDataMocks';
 import { teamMembershipMocks } from '@mocks/TeamMembershipDataMocks';
-import {
-  TeamData,
-  TeamId,
-  TeamMembershipData,
-  TeamName,
-} from '@shared/models/Workspace';
+import { TeamData, TeamMembershipData } from '@shared/models/Workspace';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
@@ -13,16 +8,16 @@ interface WorkspaceState {
   teamData: TeamData[];
   membershipData: TeamMembershipData[];
 
-  selectTeamId: TeamId | null;
+  selectTeamId: string | null;
   isTeamInit: boolean;
 
-  setSelectTeam: (teamId: TeamId | null) => void;
-  createTeamInStore: (teamId: TeamId, teamName: TeamName) => void;
-  deleteTeamFromStore: (teamId: TeamId) => void;
+  setSelectTeam: (teamId: string | null) => void;
+  createTeamInStore: (teamId: string, teamName: string) => void;
+  deleteTeamFromStore: (teamId: string) => void;
 
   addTeamRule: (membership: TeamMembershipData) => void;
   updateTeamRule: (membership: TeamMembershipData) => void;
-  deleteTeamRule: (teamId: TeamId) => void;
+  deleteTeamRule: (teamId: string) => void;
 }
 
 export const useWorkspaceStore = create<WorkspaceState>()(

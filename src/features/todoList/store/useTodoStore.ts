@@ -1,5 +1,5 @@
 // import { todoDataMocks } from '@mocks/TodoDataMocks';
-import { TeamId, TodoData } from '@shared/models/Workspace';
+import { TodoData } from '@shared/models/Workspace';
 
 import { create } from 'zustand';
 
@@ -17,7 +17,7 @@ interface TodoState {
   toggleTodo: (todoId: number) => void;
   updateTodo: (todo: UpdateTodoInput) => void;
   deleteTodo: (todoId: number) => void;
-  loadTodo: (todoData: TodoData[], teamId: TeamId) => void;
+  loadTodo: (todoData: TodoData[], teamId: string) => void;
 }
 
 export const useTodoStore = create<TodoState>((set) => ({

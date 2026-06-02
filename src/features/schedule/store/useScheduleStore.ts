@@ -1,5 +1,5 @@
 // import { scheduleDataMocks } from '@mocks/ScheduleDataMocks';
-import { ScheduleData, TeamId } from '@shared/models/Workspace';
+import { ScheduleData } from '@shared/models/Workspace';
 
 import { create } from 'zustand';
 
@@ -37,7 +37,7 @@ interface ScheduleState {
   addSchedule: (schedule: AddScheduleInput) => void;
   updateSchedule: (schedule: UpdateScheduleInput) => void;
   deleteSchedule: (scheduleId: number) => void;
-  loadSchedule: (scheduleData: ScheduleData[], teamId: TeamId) => void;
+  loadSchedule: (scheduleData: ScheduleData[], teamId: string) => void;
 }
 
 export const useScheduleStore = create<ScheduleState>((set) => ({

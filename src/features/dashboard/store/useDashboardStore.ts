@@ -1,7 +1,6 @@
 import { useTeamFileStore } from '@features/fileSharing/store/useTeamFileStore';
 import { useScheduleStore } from '@features/schedule/store/useScheduleStore';
 import { useTodoStore } from '@features/todoList/store/useTodoStore';
-import { TeamId } from '@shared/models/Workspace';
 import { parseDate } from '@shared/utils/formatDate';
 import { create } from 'zustand';
 import { differenceInDays } from 'date-fns';
@@ -45,7 +44,7 @@ interface RecentlyUploadedTodos {
 }
 
 interface DashboardData {
-  teamId: TeamId;
+  teamId: string;
   todoStatusData?: TodoStatusData[];
   fileTypeData?: FileTypeData[];
   monthlyTodoTrends?: MonthlyTodoTrends[];
@@ -57,16 +56,16 @@ interface DashboardData {
 
 interface DashboardState {
   dashboardData: DashboardData[];
-  updateTodoStatus: (teamId: TeamId) => void;
-  updateFileType: (teamId: TeamId) => void;
-  updateTodoTrends: (teamId: TeamId) => void;
-  updateChatActivity: (teamId: TeamId) => void;
-  updateDDaySchedules: (teamId: TeamId) => void;
-  updateUploadedFiles: (teamId: TeamId) => void;
-  updateUploadedTodos: (teamId: TeamId) => void;
+  updateTodoStatus: (teamId: string) => void;
+  updateFileType: (teamId: string) => void;
+  updateTodoTrends: (teamId: string) => void;
+  updateChatActivity: (teamId: string) => void;
+  updateDDaySchedules: (teamId: string) => void;
+  updateUploadedFiles: (teamId: string) => void;
+  updateUploadedTodos: (teamId: string) => void;
 }
 
-const calculateTodoStatus = (teamId: TeamId): TodoStatusData[] => {
+const calculateTodoStatus = (teamId: string): TodoStatusData[] => {
   const todoData = useTodoStore
     .getState()
     .todoData.filter((t) => t.teamId === teamId);
@@ -80,7 +79,7 @@ const calculateTodoStatus = (teamId: TeamId): TodoStatusData[] => {
   ];
 };
 
-const calculateFileType = (teamId: TeamId): FileTypeData[] => {
+const calculateFileType = (teamId: string): FileTypeData[] => {
   const fileData = useTeamFileStore
     .getState()
     .fileData.filter((t) => t.teamId === teamId);
@@ -99,7 +98,7 @@ const calculateFileType = (teamId: TeamId): FileTypeData[] => {
   ];
 };
 
-const calculateTodoTrends = (teamId: TeamId): MonthlyTodoTrends[] => {
+const calculateTodoTrends = (teamId: string): MonthlyTodoTrends[] => {
   const todoData = useTodoStore
     .getState()
     .todoData.filter((t) => t.teamId === teamId);
@@ -116,7 +115,7 @@ const calculateTodoTrends = (teamId: TeamId): MonthlyTodoTrends[] => {
   ];
 };
 
-const calculateChatActivity = (teamId: TeamId): ChatActivityByTime[] => {
+const calculateChatActivity = (teamId: string): ChatActivityByTime[] => {
   // 채팅 스토어가 존재하지 않음...
   console.log(teamId);
 
@@ -137,7 +136,7 @@ const calculateChatActivity = (teamId: TeamId): ChatActivityByTime[] => {
   ];
 };
 
-const calculateDDaySchedules = (teamId: TeamId): DDaySchedules[] => {
+const calculateDDaySchedules = (teamId: string): DDaySchedules[] => {
   /**
    * 필요한 것
    *
@@ -168,7 +167,7 @@ const calculateDDaySchedules = (teamId: TeamId): DDaySchedules[] => {
   });
 };
 
-const calculateUploadedFiles = (teamId: TeamId): RecentlyUploadedFiles[] => {
+const calculateUploadedFiles = (teamId: string): RecentlyUploadedFiles[] => {
   const fileData = useTeamFileStore
     .getState()
     .fileData.filter((t) => t.teamId === teamId);
@@ -181,7 +180,7 @@ const calculateUploadedFiles = (teamId: TeamId): RecentlyUploadedFiles[] => {
   }));
 };
 
-const calculateUploadedTodos = (teamId: TeamId): RecentlyUploadedTodos[] => {
+const calculateUploadedTodos = (teamId: string): RecentlyUploadedTodos[] => {
   const todoData = useTodoStore
     .getState()
     .todoData.filter((t) => t.teamId === teamId);
@@ -197,7 +196,7 @@ const calculateUploadedTodos = (teamId: TeamId): RecentlyUploadedTodos[] => {
 
 const updateDashboardField = <K extends keyof Omit<DashboardData, 'teamId'>>(
   data: DashboardData[],
-  teamId: TeamId,
+  teamId: string,
   fieldKey: K,
   fieldValue: DashboardData[K],
 ): DashboardData[] => {
