@@ -1,8 +1,10 @@
 import { teamChatMockFactories } from '@mocks/TeamChatMocks';
-import { ChatData, TeamId } from '@shared/models/Workspace';
+import { ChatData } from '@shared/models/Workspace';
 import { formatDate } from '@shared/utils/formatDate';
 import getMaxId from '@shared/utils/getMaxId';
 import { create } from 'zustand';
+import { Client } from '@stomp/stompjs';
+import SockJS from 'sockjs-client';
 
 interface TeamChatThread {
   allChat: ChatData[];
@@ -10,14 +12,17 @@ interface TeamChatThread {
 }
 
 interface TeamChatState {
-  threadsByTeamId: Map<TeamId, TeamChatThread>;
+  stompClient: Client | null;
+  isConnected: boolean;
+
+  threadsByTeamId: Map<string, TeamChatThread>;
   initThread: (
-    teamId: TeamId,
+    teamId: string,
     userId: string | undefined,
     userName: string | undefined,
   ) => void;
   sendMessage: (
-    teamId: TeamId,
+    teamId: string,
     chatToSend: string,
     userId: string,
     userName: string,
@@ -30,7 +35,9 @@ const withIsMe = (chats: ChatData[], userId: string | undefined) =>
     isMe: chat.authorId === userId,
   }));
 
-export const useTeamChatStore = create<TeamChatState>((set) => ({
+export const useTeamChatStore = create<TeamChatState>((set, get) => ({
+  stompClient: null as Client | null,
+  isConnected: false,
   threadsByTeamId: new Map(),
 
   initThread: (teamId, userId, userName) =>
@@ -89,4 +96,28 @@ export const useTeamChatStore = create<TeamChatState>((set) => ({
 
       return { threadsByTeamId: nextMap };
     }),
+
+  connectSocket: () => {
+    const client = new Client({
+      webSocketFactory: () => new SockJS('/ws-stomp'),
+      reconnectDelay: 5000, // 재연결 시도
+      onConnect: () => {
+        set({ isConnected: true });
+      },
+      onDisconnect: () => {
+        set({ isConnected: false });
+      },
+    });
+
+    client.activate();
+    set({ stompClient: client });
+  },
+
+  disconnectSocket: () => {
+    const { stompClient } = get();
+
+    stompClient?.deactivate();
+
+    set({ stompClient: null, isConnected: false });
+  },
 }));
