@@ -11,6 +11,17 @@ interface TeamChatThread {
   currentId: number;
 }
 
+const EMPTY_TEAM_CHAT: ChatData[] = [];
+
+const getTeamAllChat = (
+  threadsByTeamId: Map<string, TeamChatThread>,
+  teamId: string | null | undefined,
+): ChatData[] => {
+  if (!teamId) return EMPTY_TEAM_CHAT;
+
+  return threadsByTeamId.get(teamId)?.allChat ?? EMPTY_TEAM_CHAT;
+};
+
 interface TeamChatState {
   stompClient: Client | null;
   isConnected: boolean;
@@ -30,6 +41,10 @@ interface TeamChatState {
   connectSocket: () => void;
   disconnectSocket: () => void;
 }
+
+export const selectTeamAllChat =
+  (teamId: string | null | undefined) => (state: TeamChatState) =>
+    getTeamAllChat(state.threadsByTeamId, teamId);
 
 const withIsMe = (chats: ChatData[], userId: string | undefined) =>
   chats.map((chat) => ({
