@@ -1,56 +1,29 @@
-import { useChatThread } from '@shared/hooks/useChatThread';
-
-import getMaxId from '@shared/utils/getMaxId';
-import { getItem, setItem } from '@shared/utils/sessionStorage';
-import { useEffect, useState } from 'react';
-import { teamChatMockFactories } from '@mocks/TeamChatMocks';
 import { useUserStore } from '@core/store/useUserStore';
 import { useWorkspaceParams } from '@core/hooks/useWorkspaceParams';
-import { ChatData } from '@shared/models/Workspace';
+import { useEffect } from 'react';
+import { useTeamChatStore } from '../store/useTeamChatStore';
 
 export const useTeamChatThread = () => {
   const { teamId } = useWorkspaceParams();
 
   const userId = useUserStore((state) => state.user?.id);
   const userName = useUserStore((state) => state.user?.name);
-  const [allChat, setAllChat] = useState<ChatData[]>([]);
-  const [currentId, setCurrentId] = useState(1);
+  const allChat = useTeamChatStore((state) =>
+    teamId ? (state.threadsByTeamId.get(teamId)?.allChat ?? []) : [],
+  );
+  const initThread = useTeamChatStore((state) => state.initThread);
+  const sendMessage = useTeamChatStore((state) => state.sendMessage);
 
   useEffect(() => {
     if (!teamId) return;
 
-    const storageKey = `teamChats_${teamId}`;
-    let stored = getItem(storageKey, '') || [];
-
-    const createMocks = teamChatMockFactories[teamId];
-    if (Array.isArray(stored) && stored.length === 0 && createMocks) {
-      const seeded = createMocks({ userId, userName });
-      setItem(storageKey, JSON.stringify(seeded));
-      stored = seeded;
-    }
-
-    const nextAllChat: ChatData[] = stored.map((chat: ChatData) => ({
-      ...chat,
-      isMe: chat.authorId === userId,
-    }));
-
-    setAllChat(nextAllChat);
-
-    const maxId = getMaxId(nextAllChat);
-    setCurrentId(maxId + 1);
-  }, [teamId, userId, userName]);
-
-  const { handleSend } = useChatThread(
-    allChat,
-    setAllChat,
-    currentId,
-    setCurrentId,
-    `teamChats_${teamId}`,
-  );
+    initThread(teamId, userId, userName);
+  }, [teamId, userId, userName, initThread]);
 
   const handleTeamChatSend = (chatToSend: string) => {
-    if (!teamId) return;
-    handleSend(chatToSend);
+    if (!teamId || !userId || !userName) return;
+
+    sendMessage(teamId, chatToSend, userId, userName);
   };
 
   return { allChat, handleTeamChatSend };
