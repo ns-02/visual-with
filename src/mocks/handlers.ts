@@ -1,9 +1,18 @@
 // src/mocks/handlers.ts
-import { ws } from 'msw';
+import { ws, http, HttpResponse } from 'msw';
 
-const chatLink = ws.link('ws://localhost:5173/ws-stomp/*');
+const chatLink = ws.link(/^ws:\/\/localhost:\d+\/ws-stomp\/.+/);
 
 export const handlers = [
+  http.get('http://localhost:5173/ws-stomp/info', () => {
+    return HttpResponse.json({
+      websocket: true,
+      origins: ['*:*'],
+      cookie_needed: false,
+      entropy: Date.now(),
+    });
+  }),
+
   chatLink.addEventListener('connection', ({ client }) => {
     client.addEventListener('message', (event) => {
       const messageData = event.data as string;
