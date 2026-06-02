@@ -2,7 +2,10 @@
 const WebSocket = require('ws');
 const wss = new WebSocket.Server({ port: 8080 });
 
+const clients = new Set();
+
 wss.on('connection', (ws) => {
+  clients.add(ws);
   console.log('클라이언트 연결됨');
 
   ws.on('message', (data) => {
@@ -15,7 +18,11 @@ wss.on('connection', (ws) => {
     }
 
     if (msg.startsWith('SUBSCRIBE')) {
-      // 구독하면 1초 뒤 mock 메시지 전송
+      const match = msg.match(/^id:(.+)$/m);
+      const subscriptionId = match ? match[1].trim() : 'sub-0';
+
+      ws.subscriptionId = subscriptionId;
+
       setTimeout(() => {
         const frame =
           'MESSAGE\n' +
@@ -28,9 +35,29 @@ wss.on('connection', (ws) => {
         console.log('mock 메시지 전송');
       }, 1000);
     }
+
+    if (msg.startsWith('SEND')) {
+      const body = msg.split('\n\n')[1]?.replace('\x00', '');
+
+      clients.forEach((client) => {
+        if (client.readyState === WebSocket.OPEN) {
+          const frame =
+            'MESSAGE\n' +
+            `subscription:${client.subscriptionId ?? 'sub-0'}\n` + // 각 클라이언트 ID 사용
+            'destination:/topic/chat/1\n' +
+            '\n' +
+            body +
+            '\x00';
+          client.send(frame);
+        }
+      });
+    }
   });
 
-  ws.on('close', () => console.log('연결 끊김'));
+  ws.on('close', () => {
+    clients.delete(ws);
+    console.log(`연결 끊김 (현재 ${clients.size}명)`);
+  });
 });
 
 console.log('mock STOMP 서버 실행 중 → ws://localhost:8080');
