@@ -4,11 +4,16 @@ import { formatDate } from '@shared/utils/formatDate';
 import getMaxId from '@shared/utils/getMaxId';
 import { create } from 'zustand';
 import { Client } from '@stomp/stompjs';
-import SockJS from 'sockjs-client';
+// import SockJS from 'sockjs-client';
 
 interface TeamChatThread {
   allChat: ChatData[];
   currentId: number;
+}
+
+interface ChatMessage {
+  senderId: string;
+  content: string;
 }
 
 const EMPTY_TEAM_CHAT: ChatData[] = [];
@@ -25,6 +30,11 @@ const getTeamAllChat = (
 interface TeamChatState {
   stompClient: Client | null;
   isConnected: boolean;
+
+  // 테스트용
+  messages: ChatMessage[];
+  sendTestMessage: (content: string, teamId: string) => void;
+  subscribeToTeam: (teamId: string) => void;
 
   threadsByTeamId: Map<string, TeamChatThread>;
   initThread: (
@@ -56,6 +66,7 @@ export const useTeamChatStore = create<TeamChatState>((set, get) => ({
   stompClient: null as Client | null,
   isConnected: false,
   threadsByTeamId: new Map(),
+  messages: [],
 
   initThread: (teamId, userId, userName) =>
     set((state) => {
@@ -114,16 +125,45 @@ export const useTeamChatStore = create<TeamChatState>((set, get) => ({
       return { threadsByTeamId: nextMap };
     }),
 
+  sendTestMessage: (content, teamId) => {
+    const { stompClient } = get();
+
+    stompClient?.publish({
+      destination: `/app/chat/${teamId}`,
+      body: JSON.stringify({ senderId: 'me', content }),
+    });
+  },
+
+  subscribeToTeam: (teamId) => {
+    const { stompClient } = get();
+
+    if (!stompClient?.connected) return;
+
+    stompClient.subscribe(`/topic/chat/${teamId}`, (message) => {
+      const body = JSON.parse(message.body) as ChatMessage;
+
+      set((state) => ({ messages: [...state.messages, body] }));
+    });
+  },
+
   connectSocket: () => {
     const client = new Client({
-      webSocketFactory: () => new SockJS('/ws-stomp'),
+      // 백엔드 연결 시 brokerURL 대신 webSocketFactory로 변경, SockJS 사용
+      // webSocketFactory: () => new SockJS('/ws-stomp'),
+      brokerURL: 'ws://localhost:8080',
       reconnectDelay: 5000, // 재연결 시도
+
       onConnect: () => {
+        console.log('STOMP 연결됨');
         set({ isConnected: true });
       },
+
       onDisconnect: () => {
+        console.log('STOMP 연결 끊김');
         set({ isConnected: false });
       },
+
+      onStompError: (frame) => console.error('STOMP 오류:', frame),
     });
 
     client.activate();

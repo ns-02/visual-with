@@ -3,61 +3,24 @@ import { useTeamChatThread } from '../hooks/useTeamChatThread';
 import styles from './TeamChatLayout.module.css';
 import MessageList from '@shared/components/MessageList';
 import { useTeamFileManager } from '@features/fileSharing/hooks/useTeamFileManager';
-
-import { useEffect, useRef, useState } from 'react';
-import { Client } from '@stomp/stompjs';
+import { useTeamChatStore } from '../store/useTeamChatStore';
+import { useEffect, useState } from 'react';
 import { useTeamId } from '@core/hooks/useWorkspaceParams';
-
-interface ChatMessage {
-  senderId: string;
-  content: string;
-}
-
-const useMockChat = (teamId: string) => {
-  const [messages, setMessages] = useState<ChatMessage[]>([]);
-  const clientRef = useRef<Client | null>(null);
-
-  useEffect(() => {
-    const client = new Client({
-      brokerURL: 'ws://localhost:8080',
-
-      onConnect: () => {
-        console.log('STOMP 연결됨');
-
-        client.subscribe(`/topic/chat/${teamId}`, (message) => {
-          const body = JSON.parse(message.body) as ChatMessage;
-          setMessages((prev) => [...prev, body]);
-        });
-      },
-
-      onDisconnect: () => console.log('STOMP 연결 끊김'),
-      onStompError: (frame) => console.error('STOMP 오류:', frame),
-    });
-
-    client.activate();
-    clientRef.current = client;
-
-    return () => {
-      client.deactivate();
-    };
-  }, [teamId]);
-
-  const sendMessage = (content: string) => {
-    clientRef.current?.publish({
-      destination: `/app/chat/${teamId}`,
-      body: JSON.stringify({ senderId: 'me', content }),
-    });
-  };
-
-  return { messages, sendMessage };
-};
 
 function TeamChatPage() {
   const { allChat, handleTeamChatSend } = useTeamChatThread();
   const { loadAndUploadFile } = useTeamFileManager();
-  const teamId = useTeamId();
-  const { messages, sendMessage } = useMockChat(teamId ?? '');
+  const messages = useTeamChatStore((state) => state.messages);
+  const sendTestMessage = useTeamChatStore((state) => state.sendTestMessage);
+  const subscribeToTeam = useTeamChatStore((state) => state.subscribeToTeam);
   const [value, setValue] = useState('');
+  const teamId = useTeamId();
+
+  useEffect(() => {
+    if (!teamId) return;
+
+    subscribeToTeam(teamId);
+  }, [subscribeToTeam, teamId]);
 
   return (
     <div className={styles.team_chat_root}>
@@ -74,7 +37,7 @@ function TeamChatPage() {
       <input value={value} onChange={(e) => setValue(e.target.value)} />
       <button
         onClick={() => {
-          sendMessage(value);
+          sendTestMessage(value, teamId ?? '');
           setValue('');
         }}
       >
