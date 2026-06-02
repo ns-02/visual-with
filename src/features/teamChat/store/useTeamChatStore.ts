@@ -27,6 +27,8 @@ interface TeamChatState {
     userId: string,
     userName: string,
   ) => void;
+  connectSocket: () => void;
+  disconnectSocket: () => void;
 }
 
 const withIsMe = (chats: ChatData[], userId: string | undefined) =>
