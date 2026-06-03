@@ -116,18 +116,24 @@ export const useTeamChatStore = create<TeamChatState>((set, get) => ({
         body: JSON.stringify(newMessage),
       });
 
-      const nextAllChat: ChatData[] = [...thread.allChat, newMessage];
+      // const nextAllChat: ChatData[] = [...thread.allChat, newMessage];
 
-      const nextMap = new Map(state.threadsByTeamId);
-      nextMap.set(teamId, {
-        allChat: nextAllChat,
-        currentId: thread.currentId + 1,
-      });
+      // console.log('sendMessage 내부');
+      // console.log(nextAllChat);
 
-      return { threadsByTeamId: nextMap };
+      // const nextMap = new Map(state.threadsByTeamId);
+      // nextMap.set(teamId, {
+      //   allChat: nextAllChat,
+      //   currentId: thread.currentId + 1,
+      // });
+
+      // return { threadsByTeamId: nextMap };
+
+      return {};
     }),
 
   subscribeToTeam: (teamId) => {
+    console.log('이건 한번만 호출되어야 함');
     const { stompClient, threadsByTeamId } = get();
 
     if (!stompClient?.connected) return;
@@ -140,17 +146,23 @@ export const useTeamChatStore = create<TeamChatState>((set, get) => ({
       (message) => {
         const body = JSON.parse(message.body) as ChatData;
 
-        const nextAllChat: ChatData[] = [...thread.allChat, body];
+        set((state) => {
+          const currentThreadsByTeamId = state.threadsByTeamId;
+          const currentThread = currentThreadsByTeamId.get(teamId);
 
-        console.log(nextAllChat);
+          if (!currentThread) return {};
 
-        const nextMap = new Map(threadsByTeamId);
-        nextMap.set(teamId, {
-          allChat: nextAllChat,
-          currentId: thread.currentId + 1,
+          const nextAllChat: ChatData[] = [...currentThread.allChat, body];
+
+          const nextMap = new Map(currentThreadsByTeamId);
+
+          nextMap.set(teamId, {
+            allChat: nextAllChat,
+            currentId: currentThread.currentId + 1,
+          });
+
+          return { threadsByTeamId: nextMap };
         });
-
-        set({ threadsByTeamId: nextMap });
       },
     );
 
