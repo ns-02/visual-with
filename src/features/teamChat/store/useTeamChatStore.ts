@@ -3,7 +3,7 @@ import { ChatData } from '@shared/models/Workspace';
 import { formatDate } from '@shared/utils/formatDate';
 import getMaxId from '@shared/utils/getMaxId';
 import { create } from 'zustand';
-import { Client } from '@stomp/stompjs';
+import { Client, StompSubscription } from '@stomp/stompjs';
 // import SockJS from 'sockjs-client';
 
 interface TeamChatThread {
@@ -30,11 +30,13 @@ const getTeamAllChat = (
 interface TeamChatState {
   stompClient: Client | null;
   isConnected: boolean;
+  stompSub: StompSubscription | null;
 
   // 테스트용
   messages: ChatMessage[];
   sendTestMessage: (content: string, teamId: string) => void;
   subscribeToTeam: (teamId: string) => void;
+  unsubscribeFromTeam: () => void;
 
   threadsByTeamId: Map<string, TeamChatThread>;
   initThread: (
@@ -65,6 +67,7 @@ const withIsMe = (chats: ChatData[], userId: string | undefined) =>
 export const useTeamChatStore = create<TeamChatState>((set, get) => ({
   stompClient: null as Client | null,
   isConnected: false,
+  stompSub: null as StompSubscription | null,
   threadsByTeamId: new Map(),
   messages: [],
 
@@ -139,11 +142,26 @@ export const useTeamChatStore = create<TeamChatState>((set, get) => ({
 
     if (!stompClient?.connected) return;
 
-    stompClient.subscribe(`/topic/chat/${teamId}`, (message) => {
-      const body = JSON.parse(message.body) as ChatMessage;
+    const newStompSub = stompClient.subscribe(
+      `/topic/chat/${teamId}`,
+      (message) => {
+        const body = JSON.parse(message.body) as ChatMessage;
 
-      set((state) => ({ messages: [...state.messages, body] }));
-    });
+        set((state) => ({ messages: [...state.messages, body] }));
+      },
+    );
+
+    set({ stompSub: newStompSub });
+  },
+
+  unsubscribeFromTeam: () => {
+    const { stompSub } = get();
+
+    if (!stompSub) return;
+
+    stompSub.unsubscribe();
+
+    set({ stompSub: null });
   },
 
   connectSocket: () => {

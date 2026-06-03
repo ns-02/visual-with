@@ -14,6 +14,9 @@ function TeamChatPage() {
   const isConnected = useTeamChatStore((state) => state.isConnected);
   const sendTestMessage = useTeamChatStore((state) => state.sendTestMessage);
   const subscribeToTeam = useTeamChatStore((state) => state.subscribeToTeam);
+  const unsubscribeFromTeam = useTeamChatStore(
+    (state) => state.unsubscribeFromTeam,
+  );
   const [value, setValue] = useState('');
   const teamId = useTeamId();
 
@@ -23,7 +26,11 @@ function TeamChatPage() {
     if (isConnected) {
       subscribeToTeam(teamId);
     }
-  }, [subscribeToTeam, teamId, isConnected]);
+
+    return () => {
+      unsubscribeFromTeam();
+    };
+  }, [subscribeToTeam, unsubscribeFromTeam, teamId, isConnected]);
 
   return (
     <div className={styles.team_chat_root}>
