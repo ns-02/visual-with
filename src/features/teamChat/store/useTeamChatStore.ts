@@ -128,16 +128,29 @@ export const useTeamChatStore = create<TeamChatState>((set, get) => ({
     }),
 
   subscribeToTeam: (teamId) => {
-    const { stompClient } = get();
+    const { stompClient, threadsByTeamId } = get();
 
     if (!stompClient?.connected) return;
+
+    const thread = threadsByTeamId.get(teamId);
+    if (!thread) return;
 
     const newStompSub = stompClient.subscribe(
       `/topic/chat/${teamId}`,
       (message) => {
         const body = JSON.parse(message.body) as ChatData;
 
-        set((state) => ({ messages: [...state.messages, body] }));
+        const nextAllChat: ChatData[] = [...thread.allChat, body];
+
+        console.log(nextAllChat);
+
+        const nextMap = new Map(threadsByTeamId);
+        nextMap.set(teamId, {
+          allChat: nextAllChat,
+          currentId: thread.currentId + 1,
+        });
+
+        set({ threadsByTeamId: nextMap });
       },
     );
 

@@ -33,12 +33,10 @@ function TeamChatPage() {
 
   return (
     <div className={styles.team_chat_root}>
-      {/* <div className={styles.team_chat_panel}>
+      <div className={styles.team_chat_panel}>
         <MessageList allChat={allChat} />
       </div>
 
-       */}
-      <div>{JSON.stringify(messages)};</div>
       <ChatInputArea
         itemClassName={styles.bottom}
         onSend={handleTeamChatSend}
