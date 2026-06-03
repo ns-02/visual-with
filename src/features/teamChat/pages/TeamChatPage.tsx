@@ -12,12 +12,11 @@ function TeamChatPage() {
   const { loadAndUploadFile } = useTeamFileManager();
   const messages = useTeamChatStore((state) => state.messages);
   const isConnected = useTeamChatStore((state) => state.isConnected);
-  const sendTestMessage = useTeamChatStore((state) => state.sendTestMessage);
   const subscribeToTeam = useTeamChatStore((state) => state.subscribeToTeam);
   const unsubscribeFromTeam = useTeamChatStore(
     (state) => state.unsubscribeFromTeam,
   );
-  const [value, setValue] = useState('');
+
   const teamId = useTeamId();
 
   useEffect(() => {
@@ -38,21 +37,13 @@ function TeamChatPage() {
         <MessageList allChat={allChat} />
       </div>
 
+       */}
+      <div>{JSON.stringify(messages)};</div>
       <ChatInputArea
         itemClassName={styles.bottom}
         onSend={handleTeamChatSend}
         onUpload={loadAndUploadFile}
-      /> */}
-      <div>{JSON.stringify(messages)};</div>
-      <input value={value} onChange={(e) => setValue(e.target.value)} />
-      <button
-        onClick={() => {
-          sendTestMessage(value, teamId ?? '');
-          setValue('');
-        }}
-      >
-        전송
-      </button>
+      />
     </div>
   );
 }

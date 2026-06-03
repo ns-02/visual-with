@@ -11,11 +11,6 @@ interface TeamChatThread {
   currentId: number;
 }
 
-interface ChatMessage {
-  senderId: string;
-  content: string;
-}
-
 const EMPTY_TEAM_CHAT: ChatData[] = [];
 
 const getTeamAllChat = (
@@ -33,8 +28,7 @@ interface TeamChatState {
   stompSub: StompSubscription | null;
 
   // 테스트용
-  messages: ChatMessage[];
-  sendTestMessage: (content: string, teamId: string) => void;
+  messages: ChatData[];
   subscribeToTeam: (teamId: string) => void;
   unsubscribeFromTeam: () => void;
 
@@ -99,6 +93,7 @@ export const useTeamChatStore = create<TeamChatState>((set, get) => ({
 
   sendMessage: (teamId, chatToSend, userId, userName) =>
     set((state) => {
+      const { stompClient } = state;
       const thread = state.threadsByTeamId.get(teamId);
       if (!thread) return state;
 
@@ -106,18 +101,22 @@ export const useTeamChatStore = create<TeamChatState>((set, get) => ({
       const createdAt = formatDate();
       const time = today.toLocaleTimeString().slice(0, -3);
 
-      const nextAllChat: ChatData[] = [
-        ...thread.allChat,
-        {
-          id: thread.currentId,
-          chat: chatToSend,
-          time,
-          authorId: userId,
-          authorName: userName,
-          isMe: true,
-          createdAt,
-        },
-      ];
+      const newMessage: ChatData = {
+        id: thread.currentId,
+        chat: chatToSend,
+        time,
+        authorId: userId,
+        authorName: userName,
+        isMe: true,
+        createdAt,
+      };
+
+      stompClient?.publish({
+        destination: `/app/chat/${teamId}`,
+        body: JSON.stringify(newMessage),
+      });
+
+      const nextAllChat: ChatData[] = [...thread.allChat, newMessage];
 
       const nextMap = new Map(state.threadsByTeamId);
       nextMap.set(teamId, {
@@ -128,15 +127,6 @@ export const useTeamChatStore = create<TeamChatState>((set, get) => ({
       return { threadsByTeamId: nextMap };
     }),
 
-  sendTestMessage: (content, teamId) => {
-    const { stompClient } = get();
-
-    stompClient?.publish({
-      destination: `/app/chat/${teamId}`,
-      body: JSON.stringify({ senderId: 'me', content }),
-    });
-  },
-
   subscribeToTeam: (teamId) => {
     const { stompClient } = get();
 
@@ -145,7 +135,7 @@ export const useTeamChatStore = create<TeamChatState>((set, get) => ({
     const newStompSub = stompClient.subscribe(
       `/topic/chat/${teamId}`,
       (message) => {
-        const body = JSON.parse(message.body) as ChatMessage;
+        const body = JSON.parse(message.body) as ChatData;
 
         set((state) => ({ messages: [...state.messages, body] }));
       },
