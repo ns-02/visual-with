@@ -133,7 +133,6 @@ export const useTeamChatStore = create<TeamChatState>((set, get) => ({
     }),
 
   subscribeToTeam: (teamId) => {
-    console.log('이건 한번만 호출되어야 함');
     const { stompClient, threadsByTeamId } = get();
 
     if (!stompClient?.connected) return;
