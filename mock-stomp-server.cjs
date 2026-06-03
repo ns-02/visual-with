@@ -23,17 +23,17 @@ wss.on('connection', (ws) => {
 
       ws.subscriptionId = subscriptionId;
 
-      setTimeout(() => {
-        const frame =
-          'MESSAGE\n' +
-          'subscription:sub-0\n' +
-          'destination:/topic/chat/1\n' +
-          '\n' +
-          JSON.stringify({ senderId: 'mock', content: '안녕하세요!' }) +
-          '\x00';
-        ws.send(frame);
-        console.log('mock 메시지 전송');
-      }, 1000);
+      // setTimeout(() => {
+      //   const frame =
+      //     'MESSAGE\n' +
+      //     'subscription:sub-0\n' +
+      //     'destination:/topic/chat/1\n' +
+      //     '\n' +
+      //     JSON.stringify({ senderId: 'mock', content: '안녕하세요!' }) +
+      //     '\x00';
+      //   ws.send(frame);
+      //   console.log('mock 메시지 전송');
+      // }, 1000);
     }
 
     if (msg.startsWith('SEND')) {
