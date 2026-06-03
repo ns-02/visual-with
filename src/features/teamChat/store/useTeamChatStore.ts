@@ -135,9 +135,12 @@ export const useTeamChatStore = create<TeamChatState>((set, get) => ({
   },
 
   subscribeToTeam: (teamId) => {
+    console.log('호출됨');
     const { stompClient } = get();
 
     if (!stompClient?.connected) return;
+
+    console.log('구독 요청');
 
     stompClient.subscribe(`/topic/chat/${teamId}`, (message) => {
       const body = JSON.parse(message.body) as ChatMessage;

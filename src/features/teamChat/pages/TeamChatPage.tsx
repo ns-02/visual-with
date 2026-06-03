@@ -11,6 +11,7 @@ function TeamChatPage() {
   const { allChat, handleTeamChatSend } = useTeamChatThread();
   const { loadAndUploadFile } = useTeamFileManager();
   const messages = useTeamChatStore((state) => state.messages);
+  const isConnected = useTeamChatStore((state) => state.isConnected);
   const sendTestMessage = useTeamChatStore((state) => state.sendTestMessage);
   const subscribeToTeam = useTeamChatStore((state) => state.subscribeToTeam);
   const [value, setValue] = useState('');
@@ -19,8 +20,10 @@ function TeamChatPage() {
   useEffect(() => {
     if (!teamId) return;
 
-    subscribeToTeam(teamId);
-  }, [subscribeToTeam, teamId]);
+    if (isConnected) {
+      subscribeToTeam(teamId);
+    }
+  }, [subscribeToTeam, teamId, isConnected]);
 
   return (
     <div className={styles.team_chat_root}>
