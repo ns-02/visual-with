@@ -135,12 +135,9 @@ export const useTeamChatStore = create<TeamChatState>((set, get) => ({
   },
 
   subscribeToTeam: (teamId) => {
-    console.log('호출됨');
     const { stompClient } = get();
 
     if (!stompClient?.connected) return;
-
-    console.log('구독 요청');
 
     stompClient.subscribe(`/topic/chat/${teamId}`, (message) => {
       const body = JSON.parse(message.body) as ChatMessage;
@@ -157,12 +154,10 @@ export const useTeamChatStore = create<TeamChatState>((set, get) => ({
       reconnectDelay: 5000, // 재연결 시도
 
       onConnect: () => {
-        console.log('STOMP 연결됨');
         set({ isConnected: true });
       },
 
       onDisconnect: () => {
-        console.log('STOMP 연결 끊김');
         set({ isConnected: false });
       },
 
