@@ -1,4 +1,5 @@
 import {
+  acceptTeamInvitationByUserId,
   createTeam,
   deleteTeam,
   inviteTeamByUserId,
@@ -95,6 +96,8 @@ export const useTeamManager = () => {
     if (!userId) return;
 
     if (accepted) {
+      await acceptTeamInvitationByUserId({ teamId: currentTeamId, userId });
+
       updateTeamRule(
         createMembership(userId, currentTeamId, 'MEMBER', 'ACCEPTED'),
       );
