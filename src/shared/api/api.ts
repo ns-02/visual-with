@@ -152,34 +152,20 @@ export const acceptTeamInvitationByUserId = async ({
 };
 
 export const inviteTeamByURL = async ({
-  userId,
   teamId,
-}: InviteTeamByURLRequest & { userId: string }): Promise<InviteTeamByURLResponse> => {
-  return await request(`/api/teams/invitation/url/${teamId}`, {
-    method: 'POST',
-    headers: {
-      'X-USER-ID': userId,
-    },
-    body: JSON.stringify({ teamId }),
+}: InviteTeamByURLRequest): Promise<InviteTeamByURLResponse> => {
+  return await request(`/api/teams/invitation/${teamId}/geturl`, {
+    method: 'GET',
   });
 };
 
 export const acceptTeamInvitationByURL = async ({
-  userId,
   teamId,
   invitationCode,
-}: AcceptTeamInvitationByURLRequest & {
-  userId: string;
-}): Promise<AcceptTeamInvitationByURLResponse> => {
-  return await request(
-    `/api/teams/invitation/url/${teamId}/${invitationCode}`,
-    {
-      method: 'PUT',
-      headers: {
-        'X-USER-ID': userId,
-      },
-    },
-  );
+}: AcceptTeamInvitationByURLRequest): Promise<AcceptTeamInvitationByURLResponse> => {
+  return await request(`/api/teams/invitation/${teamId}/${invitationCode}`, {
+    method: 'POST',
+  });
 };
 
 export const viewTodo = async ({
