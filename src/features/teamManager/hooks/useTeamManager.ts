@@ -2,6 +2,7 @@ import {
   acceptTeamInvitationByUserId,
   createTeam,
   deleteTeam,
+  inviteTeamByURL,
   inviteTeamByUserId,
   searchUser,
 } from '@shared/api/api';
@@ -9,7 +10,7 @@ import { useUserStore } from '@core/store/useUserStore';
 import { useTeamId } from '@core/hooks/useWorkspaceParams';
 import { useWorkspaceStore } from '@core/store/useWorkspaceStore';
 import { createMembership } from '@shared/models/Workspace';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 export const useTeamManager = () => {
   const teamId = useTeamId();
@@ -89,6 +90,17 @@ export const useTeamManager = () => {
     }
   };
 
+  const onInviteTeamByURL = useCallback(async (): Promise<string | null> => {
+    if (!userId || !teamId) return null;
+    try {
+      const res = await inviteTeamByURL({ userId, teamId });
+      return res.url;
+    } catch (e) {
+      console.error(e);
+      return null;
+    }
+  }, [userId, teamId]);
+
   const onTeamInvitationByUserId = async (
     currentTeamId: string,
     accepted: boolean,
@@ -113,6 +125,7 @@ export const useTeamManager = () => {
     onDeleteTeam,
     onSearchUser,
     onInviteTeamByUserId,
+    onInviteTeamByURL,
     onTeamInvitationByUserId,
     isTeamMember,
   };

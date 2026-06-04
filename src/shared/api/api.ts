@@ -1,6 +1,10 @@
 import {
   AcceptTeamInvitationByUserIdRequest,
   AcceptTeamInvitationByUserIdResponse,
+  AcceptTeamInvitationByURLRequest,
+  AcceptTeamInvitationByURLResponse,
+  InviteTeamByURLRequest,
+  InviteTeamByURLResponse,
   AddScheduleRequest,
   AddScheduleResponse,
   AddTodoRequest,
@@ -145,6 +149,37 @@ export const acceptTeamInvitationByUserId = async ({
   return await request(`/api/teams/invitation/${teamId}/${userId}`, {
     method: 'PUT',
   });
+};
+
+export const inviteTeamByURL = async ({
+  userId,
+  teamId,
+}: InviteTeamByURLRequest & { userId: string }): Promise<InviteTeamByURLResponse> => {
+  return await request(`/api/teams/invitation/url/${teamId}`, {
+    method: 'POST',
+    headers: {
+      'X-USER-ID': userId,
+    },
+    body: JSON.stringify({ teamId }),
+  });
+};
+
+export const acceptTeamInvitationByURL = async ({
+  userId,
+  teamId,
+  invitationCode,
+}: AcceptTeamInvitationByURLRequest & {
+  userId: string;
+}): Promise<AcceptTeamInvitationByURLResponse> => {
+  return await request(
+    `/api/teams/invitation/url/${teamId}/${invitationCode}`,
+    {
+      method: 'PUT',
+      headers: {
+        'X-USER-ID': userId,
+      },
+    },
+  );
 };
 
 export const viewTodo = async ({

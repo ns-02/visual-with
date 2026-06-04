@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import * as Tabs from '@radix-ui/react-tabs';
 import { Copy, Search } from 'lucide-react';
 import { Dialog, DialogInput } from '@shared/components';
@@ -13,8 +13,22 @@ interface InviteTeamDialogProps {
 }
 
 const InviteTeamDialog = ({ open, onOpenChange }: InviteTeamDialogProps) => {
-  const { onSearchUser, onInviteTeamByUserId } = useTeamManager();
+  const { onSearchUser, onInviteTeamByUserId, onInviteTeamByURL } =
+    useTeamManager();
   const [invitedUserId, setInvitedUserId] = useState('');
+  const [inviteUrl, setInviteUrl] = useState('');
+  const [activeTab, setActiveTab] = useState('tab1');
+
+  useEffect(() => {
+    if (!open) return;
+
+    const loadInviteUrl = async () => {
+      const url = await onInviteTeamByURL();
+      setInviteUrl(url ?? '');
+    };
+
+    void loadInviteUrl();
+  }, [open, onInviteTeamByURL]);
 
   // 유저 검색
   const handleSearchUser = async () => {
@@ -23,6 +37,14 @@ const InviteTeamDialog = ({ open, onOpenChange }: InviteTeamDialogProps) => {
       return;
     }
     await onSearchUser(invitedUserId);
+  };
+
+  const handleCopyInviteUrl = async () => {
+    if (!inviteUrl) {
+      alert('초대 링크를 불러오지 못했습니다.');
+      return;
+    }
+    await navigator.clipboard.writeText(inviteUrl);
   };
 
   // ID 기반 유저 초대
@@ -42,9 +64,10 @@ const InviteTeamDialog = ({ open, onOpenChange }: InviteTeamDialogProps) => {
       open={open}
       onOpenChange={onOpenChange}
       confirmText='초대하기'
+      viewConfirm={activeTab === 'tab2'}
       onConfirm={handleInviteTeamByUserId}
     >
-      <Tabs.Root>
+      <Tabs.Root value={activeTab} onValueChange={setActiveTab}>
         <Tabs.List style={{ display: 'flex', width: 360, marginBottom: 12 }}>
           <Tabs.Trigger className={styles.trigger} value='tab1' asChild>
             <Button text='초대 링크' />
@@ -61,11 +84,8 @@ const InviteTeamDialog = ({ open, onOpenChange }: InviteTeamDialogProps) => {
             </p>
           </div>
           <div className='d_flex gap_6'>
-            <DialogInput
-              value='https://example.com/invite/개발팀/abc123'
-              readOnly={true}
-            />
-            <Button>
+            <DialogInput value={inviteUrl} readOnly={true} />
+            <Button onClick={handleCopyInviteUrl}>
               <Copy size={16} />
             </Button>
           </div>
