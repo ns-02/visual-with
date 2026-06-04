@@ -27,11 +27,6 @@ interface TeamChatState {
   isConnected: boolean;
   stompSub: StompSubscription | null;
 
-  // 테스트용
-  messages: ChatData[];
-  subscribeToTeam: (teamId: string) => void;
-  unsubscribeFromTeam: () => void;
-
   threadsByTeamId: Map<string, TeamChatThread>;
   initThread: (
     teamId: string,
@@ -44,8 +39,11 @@ interface TeamChatState {
     userId: string,
     userName: string,
   ) => void;
+
   connectSocket: () => void;
   disconnectSocket: () => void;
+  subscribeToTeam: (teamId: string) => void;
+  unsubscribeFromTeam: () => void;
 }
 
 export const selectTeamAllChat =
@@ -63,7 +61,6 @@ export const useTeamChatStore = create<TeamChatState>((set, get) => ({
   isConnected: false,
   stompSub: null as StompSubscription | null,
   threadsByTeamId: new Map(),
-  messages: [],
 
   initThread: (teamId, userId, userName) =>
     set((state) => {
@@ -116,67 +113,15 @@ export const useTeamChatStore = create<TeamChatState>((set, get) => ({
         body: JSON.stringify(newMessage),
       });
 
-      // const nextAllChat: ChatData[] = [...thread.allChat, newMessage];
+      const nextAllChat: ChatData[] = [...thread.allChat, newMessage];
+      const nextMap = new Map(state.threadsByTeamId);
+      nextMap.set(teamId, {
+        allChat: nextAllChat,
+        currentId: thread.currentId + 1,
+      });
 
-      // console.log('sendMessage 내부');
-      // console.log(nextAllChat);
-
-      // const nextMap = new Map(state.threadsByTeamId);
-      // nextMap.set(teamId, {
-      //   allChat: nextAllChat,
-      //   currentId: thread.currentId + 1,
-      // });
-
-      // return { threadsByTeamId: nextMap };
-
-      return {};
+      return { threadsByTeamId: nextMap };
     }),
-
-  subscribeToTeam: (teamId) => {
-    const { stompClient, threadsByTeamId } = get();
-
-    if (!stompClient?.connected) return;
-
-    const thread = threadsByTeamId.get(teamId);
-    if (!thread) return;
-
-    const newStompSub = stompClient.subscribe(
-      `/topic/chat/${teamId}`,
-      (message) => {
-        const body = JSON.parse(message.body) as ChatData;
-
-        set((state) => {
-          const currentThreadsByTeamId = state.threadsByTeamId;
-          const currentThread = currentThreadsByTeamId.get(teamId);
-
-          if (!currentThread) return {};
-
-          const nextAllChat: ChatData[] = [...currentThread.allChat, body];
-
-          const nextMap = new Map(currentThreadsByTeamId);
-
-          nextMap.set(teamId, {
-            allChat: nextAllChat,
-            currentId: currentThread.currentId + 1,
-          });
-
-          return { threadsByTeamId: nextMap };
-        });
-      },
-    );
-
-    set({ stompSub: newStompSub });
-  },
-
-  unsubscribeFromTeam: () => {
-    const { stompSub } = get();
-
-    if (!stompSub) return;
-
-    stompSub.unsubscribe();
-
-    set({ stompSub: null });
-  },
 
   connectSocket: () => {
     const client = new Client({
@@ -206,5 +151,62 @@ export const useTeamChatStore = create<TeamChatState>((set, get) => ({
     stompClient?.deactivate();
 
     set({ stompClient: null, isConnected: false });
+  },
+
+  subscribeToTeam: (teamId) => {
+    const { stompClient, stompSub, threadsByTeamId } = get();
+
+    if (!stompClient?.connected) return;
+
+    const thread = threadsByTeamId.get(teamId);
+    if (!thread) return;
+
+    stompSub?.unsubscribe();
+
+    const topicDestination = `/topic/chat/${teamId}`;
+
+    const newStompSub = stompClient.subscribe(
+      topicDestination,
+      (message) => {
+        const destination = message.headers.destination;
+        if (destination && destination !== topicDestination) return;
+
+        const body = JSON.parse(message.body) as ChatData;
+
+        set((state) => {
+          const currentThreadsByTeamId = state.threadsByTeamId;
+          const currentThread = currentThreadsByTeamId.get(teamId);
+
+          if (!currentThread) return {};
+
+          if (currentThread.allChat.some((chat) => chat.id === body.id)) {
+            return {};
+          }
+
+          const nextAllChat: ChatData[] = [...currentThread.allChat, body];
+
+          const nextMap = new Map(currentThreadsByTeamId);
+
+          nextMap.set(teamId, {
+            allChat: nextAllChat,
+            currentId: currentThread.currentId + 1,
+          });
+
+          return { threadsByTeamId: nextMap };
+        });
+      },
+    );
+
+    set({ stompSub: newStompSub });
+  },
+
+  unsubscribeFromTeam: () => {
+    const { stompSub } = get();
+
+    if (!stompSub) return;
+
+    stompSub.unsubscribe();
+
+    set({ stompSub: null });
   },
 }));

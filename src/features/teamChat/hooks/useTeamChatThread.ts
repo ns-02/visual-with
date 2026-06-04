@@ -1,6 +1,6 @@
 import { useUserStore } from '@core/store/useUserStore';
 import { useWorkspaceParams } from '@core/hooks/useWorkspaceParams';
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import {
   selectTeamAllChat,
   useTeamChatStore,
@@ -11,7 +11,8 @@ export const useTeamChatThread = () => {
 
   const userId = useUserStore((state) => state.user?.id);
   const userName = useUserStore((state) => state.user?.name);
-  const allChat = useTeamChatStore(selectTeamAllChat(teamId));
+  const selectAllChat = useMemo(() => selectTeamAllChat(teamId), [teamId]);
+  const allChat = useTeamChatStore(selectAllChat);
   const initThread = useTeamChatStore((state) => state.initThread);
   const sendMessage = useTeamChatStore((state) => state.sendMessage);
 

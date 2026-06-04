@@ -4,13 +4,12 @@ import styles from './TeamChatLayout.module.css';
 import MessageList from '@shared/components/MessageList';
 import { useTeamFileManager } from '@features/fileSharing/hooks/useTeamFileManager';
 import { useTeamChatStore } from '../store/useTeamChatStore';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useTeamId } from '@core/hooks/useWorkspaceParams';
 
 function TeamChatPage() {
   const { allChat, handleTeamChatSend } = useTeamChatThread();
   const { loadAndUploadFile } = useTeamFileManager();
-  const messages = useTeamChatStore((state) => state.messages);
   const isConnected = useTeamChatStore((state) => state.isConnected);
   const subscribeToTeam = useTeamChatStore((state) => state.subscribeToTeam);
   const unsubscribeFromTeam = useTeamChatStore(

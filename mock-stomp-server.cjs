@@ -18,38 +18,43 @@ wss.on('connection', (ws) => {
     }
 
     if (msg.startsWith('SUBSCRIBE')) {
-      const match = msg.match(/^id:(.+)$/m);
-      const subscriptionId = match ? match[1].trim() : 'sub-0';
+      const idMatch = msg.match(/^id:(.+)$/m);
+      const destMatch = msg.match(/^destination:(.+)$/m);
+      const subscriptionId = idMatch ? idMatch[1].trim() : 'sub-0';
+      const destination = destMatch ? destMatch[1].trim() : null;
 
-      ws.subscriptionId = subscriptionId;
+      if (!ws.subscriptions) {
+        ws.subscriptions = new Map();
+      }
 
-      // setTimeout(() => {
-      //   const frame =
-      //     'MESSAGE\n' +
-      //     'subscription:sub-0\n' +
-      //     'destination:/topic/chat/1\n' +
-      //     '\n' +
-      //     JSON.stringify({ senderId: 'mock', content: '안녕하세요!' }) +
-      //     '\x00';
-      //   ws.send(frame);
-      //   console.log('mock 메시지 전송');
-      // }, 1000);
+      if (destination) {
+        ws.subscriptions.set(destination, subscriptionId);
+      }
     }
 
     if (msg.startsWith('SEND')) {
+      const destMatch = msg.match(/^destination:(.+)$/m);
+      const sendDestination = destMatch ? destMatch[1].trim() : '';
+      const teamMatch = sendDestination.match(/\/app\/chat\/(.+)$/);
+      const teamId = teamMatch ? teamMatch[1] : null;
+      const topicDestination = teamId
+        ? `/topic/chat/${teamId}`
+        : '/topic/chat/unknown';
       const body = msg.split('\n\n')[1]?.replace('\x00', '');
 
       clients.forEach((client) => {
-        if (client.readyState === WebSocket.OPEN) {
-          const frame =
-            'MESSAGE\n' +
-            `subscription:${client.subscriptionId ?? 'sub-0'}\n` + // 각 클라이언트 ID 사용
-            'destination:/topic/chat/1\n' +
-            '\n' +
-            body +
-            '\x00';
-          client.send(frame);
-        }
+        if (client.readyState !== WebSocket.OPEN) return;
+        if (!client.subscriptions?.has(topicDestination)) return;
+
+        const subscriptionId = client.subscriptions.get(topicDestination);
+        const frame =
+          'MESSAGE\n' +
+          `subscription:${subscriptionId}\n` +
+          `destination:${topicDestination}\n` +
+          '\n' +
+          body +
+          '\x00';
+        client.send(frame);
       });
     }
   });
