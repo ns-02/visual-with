@@ -1,4 +1,6 @@
 import {
+  AcceptTeamInvitationByUserIdRequest,
+  AcceptTeamInvitationByUserIdResponse,
   AddScheduleRequest,
   AddScheduleResponse,
   AddTodoRequest,
@@ -133,6 +135,15 @@ export const inviteTeamByUserId = async ({
       'X-USER-ID': userId,
     },
     body: JSON.stringify({ userId: invitedUserId }),
+  });
+};
+
+export const acceptTeamInvitationByUserId = async ({
+  teamId,
+  userId,
+}: AcceptTeamInvitationByUserIdRequest): Promise<AcceptTeamInvitationByUserIdResponse> => {
+  return await request(`/api/teams/invitation/${teamId}/${userId}`, {
+    method: 'PUT',
   });
 };
 

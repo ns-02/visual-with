@@ -65,6 +65,9 @@ export interface SearchUserResponse {
   email: string;
 }
 
+type InviteStatus = 'PENDING' | 'ACCEPT' | 'REJECT';
+
+// 팀 ID 초대
 export interface InviteTeamByUserIdRequest {
   userId: string; // 유저 아이디
   invitedUserId: string; // 초대받은 유저 아이디
@@ -75,6 +78,36 @@ export interface InviteTeamByUserIdResponse {
   invitationId: number;
   teamId: string;
   userId: string;
+  status: InviteStatus;
+}
+
+// 팀 ID 초대 수락
+export interface AcceptTeamInvitationByUserIdRequest {
+  teamId: string;
+  userId: string;
+}
+
+export interface AcceptTeamInvitationByUserIdResponse {
+  message: string;
+}
+
+// 팀 URL 초대
+export interface InviteTeamByURLRequest {
+  teamId: string; // 팀 아이디
+}
+
+export interface InviteTeamByURLResponse {
+  url: string;
+}
+
+// 팀 URL 초대 수락
+export interface AcceptTeamInvitationByURLRequest {
+  teamId: string;
+  invitationCode: string;
+}
+
+export interface AcceptTeamInvitationByURLResponse {
+  message: string;
 }
 
 // 할 일 관련 API
