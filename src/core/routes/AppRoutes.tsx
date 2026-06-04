@@ -34,7 +34,10 @@ export default function AppRoutes() {
       </Route>
 
       <Route path='/invite'>
-        <Route path=':id' element={<Feat.InviteLinkPage />} />
+        <Route
+          path=':teamId/:invitationCode'
+          element={<Feat.InviteLinkPage />}
+        />
       </Route>
 
       <Route path='*' element={<Auth.NotFoundPage />} />

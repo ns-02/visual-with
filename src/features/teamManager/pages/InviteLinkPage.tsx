@@ -4,7 +4,10 @@ import { Container } from '@shared/components';
 import { Button } from '@shared/components';
 
 const InviteLinkPage = () => {
-  const { id } = useParams<{ id: string }>();
+  const { teamId, invitationCode } = useParams<{
+    teamId: string;
+    invitationCode: string;
+  }>();
 
   return (
     <Container>
@@ -26,7 +29,9 @@ const InviteLinkPage = () => {
             <p style={{ fontSize: '15px', color: '#555' }}>{`리더: ㅇㅇㅇ`}</p>
           </div>
         </div>
-        <p style={{ textAlign: 'center' }}>{`url: ${id}`}</p>
+        <p style={{ textAlign: 'center' }}>
+          {`team: ${teamId}, code: ${invitationCode}`}
+        </p>
         <button>초대 수락하기</button>
       </div>
     </Container>

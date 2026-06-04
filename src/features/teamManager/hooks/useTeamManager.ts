@@ -8,6 +8,7 @@ import {
 } from '@shared/api/api';
 import { useUserStore } from '@core/store/useUserStore';
 import { useTeamId } from '@core/hooks/useWorkspaceParams';
+import { buildTeamInviteLink } from '@core/routes/routeUtils';
 import { useWorkspaceStore } from '@core/store/useWorkspaceStore';
 import { createMembership } from '@shared/models/Workspace';
 import { useCallback, useEffect, useState } from 'react';
@@ -94,7 +95,7 @@ export const useTeamManager = () => {
     if (!userId || !teamId) return null;
     try {
       const res = await inviteTeamByURL({ teamId });
-      return res.url;
+      return buildTeamInviteLink(res.url);
     } catch (e) {
       console.error(e);
       return null;
