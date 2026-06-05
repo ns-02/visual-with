@@ -113,6 +113,7 @@ export const useTeamManager = () => {
       await acceptTeamInvitationByURL({
         teamId: currentTeamId,
         invitationCode,
+        userId,
       });
 
       const existing = useWorkspaceStore

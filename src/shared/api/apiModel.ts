@@ -104,6 +104,7 @@ export interface InviteTeamByURLResponse {
 export interface AcceptTeamInvitationByURLRequest {
   teamId: string;
   invitationCode: string;
+  userId: string;
 }
 
 export interface AcceptTeamInvitationByURLResponse {

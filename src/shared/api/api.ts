@@ -162,9 +162,11 @@ export const inviteTeamByURL = async ({
 export const acceptTeamInvitationByURL = async ({
   teamId,
   invitationCode,
+  userId,
 }: AcceptTeamInvitationByURLRequest): Promise<AcceptTeamInvitationByURLResponse> => {
   return await request(`/api/teams/invitation/${teamId}/${invitationCode}`, {
     method: 'POST',
+    body: JSON.stringify({ userId }),
   });
 };
 

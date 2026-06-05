@@ -9,6 +9,7 @@ import { useTeamManager } from '../hooks/useTeamManager';
 const InviteLinkPage = () => {
   const navigate = useNavigate();
   const userId = useUserStore((state) => state.user?.id);
+  const userName = useUserStore((state) => state.user?.name);
   const { onAcceptTeamInvitationByURL } = useTeamManager();
   const [isAccepting, setIsAccepting] = useState(false);
   const { teamId, invitationCode } = useParams<{
@@ -61,6 +62,9 @@ const InviteLinkPage = () => {
           <div>
             <p>{`ㅇㅇ팀`}</p>
             <p style={{ fontSize: '15px', color: '#555' }}>{`리더: ㅇㅇㅇ`}</p>
+            <p style={{ fontSize: '15px', color: '#555' }}>
+              {`접속중인 유저: ` + userId + `, ` + userName}
+            </p>
           </div>
         </div>
         <p style={{ textAlign: 'center' }}>
