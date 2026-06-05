@@ -1,4 +1,5 @@
 import {
+  acceptTeamInvitationByURL,
   acceptTeamInvitationByUserId,
   createTeam,
   deleteTeam,
@@ -102,6 +103,44 @@ export const useTeamManager = () => {
     }
   }, [userId, teamId]);
 
+  const onAcceptTeamInvitationByURL = async (
+    currentTeamId: string,
+    invitationCode: string,
+  ): Promise<boolean> => {
+    if (!userId) return false;
+
+    try {
+      await acceptTeamInvitationByURL({
+        teamId: currentTeamId,
+        invitationCode,
+      });
+
+      const existing = useWorkspaceStore
+        .getState()
+        .membershipData.some(
+          (item) => item.teamId === currentTeamId && item.userId === userId,
+        );
+
+      const membership = createMembership(
+        userId,
+        currentTeamId,
+        'MEMBER',
+        'ACCEPTED',
+      );
+
+      if (existing) {
+        updateTeamRule(membership);
+      } else {
+        addTeamRule(membership);
+      }
+
+      return true;
+    } catch (e) {
+      console.error(e);
+      return false;
+    }
+  };
+
   const onTeamInvitationByUserId = async (
     currentTeamId: string,
     accepted: boolean,
@@ -127,6 +166,7 @@ export const useTeamManager = () => {
     onSearchUser,
     onInviteTeamByUserId,
     onInviteTeamByURL,
+    onAcceptTeamInvitationByURL,
     onTeamInvitationByUserId,
     isTeamMember,
   };
