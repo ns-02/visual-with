@@ -109,7 +109,8 @@ export const useTeamChatStore = create<TeamChatState>((set, get) => ({
       };
 
       stompClient?.publish({
-        destination: `/app/chat/${teamId}`,
+        // destination: `/app/chat/${teamId}`,
+        destination: `/pub/message`,
         body: JSON.stringify(newMessage),
       });
 
@@ -125,9 +126,7 @@ export const useTeamChatStore = create<TeamChatState>((set, get) => ({
 
   connectSocket: () => {
     const client = new Client({
-      // 백엔드 연결 시 brokerURL 대신 webSocketFactory로 변경, SockJS 사용
-      // webSocketFactory: () => new SockJS('/ws-stomp'),
-      brokerURL: 'ws://localhost:8080',
+      brokerURL: 'ws://localhost:8080/ws',
       reconnectDelay: 5000, // 재연결 시도
 
       onConnect: () => {
@@ -163,39 +162,39 @@ export const useTeamChatStore = create<TeamChatState>((set, get) => ({
 
     stompSub?.unsubscribe();
 
-    const topicDestination = `/topic/chat/${teamId}`;
+    const topicDestination = `/sub/chatroom/1`;
+    // const topicDestination = `/topic/chat/${teamId}`;
 
-    const newStompSub = stompClient.subscribe(
-      topicDestination,
-      (message) => {
-        const destination = message.headers.destination;
-        if (destination && destination !== topicDestination) return;
+    const newStompSub = stompClient.subscribe(topicDestination, (message) => {
+      const destination = message.headers.destination;
+      if (destination && destination !== topicDestination) return;
 
-        const body = JSON.parse(message.body) as ChatData;
+      const body = JSON.parse(message.body) as ChatData;
 
-        set((state) => {
-          const currentThreadsByTeamId = state.threadsByTeamId;
-          const currentThread = currentThreadsByTeamId.get(teamId);
+      console.log('받음', body);
 
-          if (!currentThread) return {};
+      set((state) => {
+        const currentThreadsByTeamId = state.threadsByTeamId;
+        const currentThread = currentThreadsByTeamId.get(teamId);
 
-          if (currentThread.allChat.some((chat) => chat.id === body.id)) {
-            return {};
-          }
+        if (!currentThread) return {};
 
-          const nextAllChat: ChatData[] = [...currentThread.allChat, body];
+        if (currentThread.allChat.some((chat) => chat.id === body.id)) {
+          return {};
+        }
 
-          const nextMap = new Map(currentThreadsByTeamId);
+        const nextAllChat: ChatData[] = [...currentThread.allChat, body];
 
-          nextMap.set(teamId, {
-            allChat: nextAllChat,
-            currentId: currentThread.currentId + 1,
-          });
+        const nextMap = new Map(currentThreadsByTeamId);
 
-          return { threadsByTeamId: nextMap };
+        nextMap.set(teamId, {
+          allChat: nextAllChat,
+          currentId: currentThread.currentId + 1,
         });
-      },
-    );
+
+        return { threadsByTeamId: nextMap };
+      });
+    });
 
     set({ stompSub: newStompSub });
   },
