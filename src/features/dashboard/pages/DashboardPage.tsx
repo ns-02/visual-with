@@ -32,7 +32,8 @@ const renderPieShape = (props: RenderShapeProps) => {
 };
 
 function DashboardPage() {
-  const { selectTeamName, currentRule, teamId } = useCurrentWorkspace();
+  const { selectTeamName, currentRule, memberCount, teamId } =
+    useCurrentWorkspace();
   const dashboardData = useDashboardStore((state) => state.dashboardData).find(
     (d) => d.teamId === teamId,
   );
@@ -83,7 +84,7 @@ function DashboardPage() {
           <div className={styles.team_info}>
             <h2>{`${selectTeamName}`}</h2>
             <p>역할: {getTeamRuleName(currentRule)}</p>
-            <p>멤버 수: 미구현</p>
+            <p>멤버 수: {memberCount}</p>
           </div>
           {currentRule && getIsAdmin(currentRule) && (
             <div className={styles.team_button_area}>
