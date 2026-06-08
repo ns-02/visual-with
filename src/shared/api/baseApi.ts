@@ -13,6 +13,10 @@ import {
   InviteTeamByUserIdResponse,
   SearchUserRequest,
   SearchUserResponse,
+  SelectTeamMemberListRequest,
+  SelectTeamMemberListResponse,
+  SelectTeamListRequest,
+  SelectTeamListResponse,
 } from './baseModel';
 
 export const request = async (url: string, options = {}) => {
@@ -117,5 +121,21 @@ export const acceptTeamInvitationByURL = async ({
   return await request(`/api/teams/invitation/${teamId}/${invitationCode}`, {
     method: 'POST',
     body: JSON.stringify({ userId }),
+  });
+};
+
+export const selectTeamMemberList = async ({
+  teamId,
+}: SelectTeamMemberListRequest): Promise<SelectTeamMemberListResponse> => {
+  return await request(`/api/${teamId}/memberlist`, {
+    method: 'GET',
+  });
+};
+
+export const selectTeamList = async ({
+  userId,
+}: SelectTeamListRequest): Promise<SelectTeamListResponse> => {
+  return await request(`/api/users/${userId}/teamList`, {
+    method: 'GET',
   });
 };

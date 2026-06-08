@@ -30,7 +30,7 @@ export interface SearchUserResponse {
   email: string;
 }
 
-type InviteStatus = 'PENDING' | 'ACCEPT' | 'REJECT';
+type InvitationStatus = 'PENDING' | 'ACCEPTED' | 'REJECTED';
 
 // 팀 ID 초대
 export interface InviteTeamByUserIdRequest {
@@ -43,7 +43,7 @@ export interface InviteTeamByUserIdResponse {
   invitationId: number;
   teamId: string;
   userId: string;
-  status: InviteStatus;
+  status: InvitationStatus;
 }
 
 // 팀 ID 초대 수락
@@ -74,4 +74,25 @@ export interface AcceptTeamInvitationByURLRequest {
 
 export interface AcceptTeamInvitationByURLResponse {
   message: string;
+}
+
+export interface SelectTeamMemberListRequest {
+  teamId: string;
+}
+
+export interface SelectTeamMemberListResponse {
+  userId: string;
+  teamId: string;
+  userTeamRole: UserTeamRule;
+  invitationStatus: InvitationStatus;
+}
+
+export interface SelectTeamListRequest {
+  userId: string;
+}
+
+export interface SelectTeamListResponse {
+  userId: string;
+  teamId: string;
+  userTeamRole: UserTeamRule;
 }
