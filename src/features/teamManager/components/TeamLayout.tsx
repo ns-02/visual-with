@@ -1,6 +1,7 @@
 import { useTeamId } from '@core/hooks/useWorkspaceParams';
 import { useUserStore } from '@core/store/useUserStore';
 import { useWorkspaceStore } from '@core/store/useWorkspaceStore';
+import { useTeamMembersBootstrap } from '@core/hooks/useTeamMembersBootstrap';
 import { useEffect } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 
@@ -9,6 +10,8 @@ function TeamLayout() {
   const navigate = useNavigate();
   const membershipData = useWorkspaceStore((state) => state.membershipData);
   const userId = useUserStore((state) => state.user?.id);
+
+  useTeamMembersBootstrap();
 
   const isMember = membershipData.some(
     (item) =>

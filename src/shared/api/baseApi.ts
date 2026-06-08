@@ -126,7 +126,7 @@ export const acceptTeamInvitationByURL = async ({
 
 export const selectTeamMemberList = async ({
   teamId,
-}: SelectTeamMemberListRequest): Promise<SelectTeamMemberListResponse> => {
+}: SelectTeamMemberListRequest): Promise<SelectTeamMemberListResponse[]> => {
   return await request(`/api/${teamId}/memberlist`, {
     method: 'GET',
   });
