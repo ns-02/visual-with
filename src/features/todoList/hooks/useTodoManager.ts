@@ -10,7 +10,7 @@ import {
   updateTodoCompleteFetch,
   updateTodoContentFetch,
   viewTodo,
-} from '@shared/api/api';
+} from '@shared/api/Todo/TodoApi';
 import { formatDate, formatTime } from '@shared/utils/formatDate';
 
 export const useTodoManager = () => {

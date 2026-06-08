@@ -6,7 +6,7 @@ import {
   inviteTeamByURL,
   inviteTeamByUserId,
   searchUser,
-} from '@shared/api/api';
+} from '@shared/api/baseApi';
 import { useUserStore } from '@core/store/useUserStore';
 import { useTeamId } from '@core/hooks/useWorkspaceParams';
 import { buildTeamInviteLink } from '@core/routes/routeUtils';
