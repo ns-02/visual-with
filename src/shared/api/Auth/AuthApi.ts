@@ -6,7 +6,7 @@ import {
   checkIdResponse,
   SignupRequest,
   SignupResponse,
-} from './apiModel';
+} from './AuthModel';
 
 export const loginUser = async ({
   userId,
