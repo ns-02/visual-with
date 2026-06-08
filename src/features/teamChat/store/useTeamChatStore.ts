@@ -108,10 +108,17 @@ export const useTeamChatStore = create<TeamChatState>((set, get) => ({
         createdAt,
       };
 
+      const newTestMsg = {
+        id: thread.currentId,
+        name: userName,
+        message: chatToSend,
+      };
+
       stompClient?.publish({
         // destination: `/app/chat/${teamId}`,
         destination: `/pub/message`,
-        body: JSON.stringify(newMessage),
+        // body: JSON.stringify(newMessage),
+        body: JSON.stringify(newTestMsg),
       });
 
       const nextAllChat: ChatData[] = [...thread.allChat, newMessage];

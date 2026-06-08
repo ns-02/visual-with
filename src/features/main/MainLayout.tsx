@@ -11,12 +11,12 @@ function MainLayout() {
   const connectSocket = useTeamChatStore((state) => state.connectSocket);
   const disconnectSocket = useTeamChatStore((state) => state.disconnectSocket);
 
-  // useEffect(() => {
-  //   connectSocket();
-  //   return () => {
-  //     disconnectSocket();
-  //   };
-  // }, [connectSocket, disconnectSocket]);
+  useEffect(() => {
+    connectSocket();
+    return () => {
+      disconnectSocket();
+    };
+  }, [connectSocket, disconnectSocket]);
 
   return (
     <>
