@@ -94,5 +94,6 @@ export interface SelectTeamListRequest {
 export interface SelectTeamListResponse {
   userId: string;
   teamId: string;
+  teamName: string;
   userTeamRole: UserTeamRule;
 }

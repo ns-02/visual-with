@@ -12,6 +12,11 @@ interface WorkspaceState {
   isTeamInit: boolean;
 
   setSelectTeam: (teamId: string | null) => void;
+  setTeamList: (
+    userId: string,
+    teams: TeamData[],
+    memberships: TeamMembershipData[],
+  ) => void;
   createTeamInStore: (teamId: string, teamName: string) => void;
   deleteTeamFromStore: (teamId: string) => void;
 
@@ -36,6 +41,23 @@ export const useWorkspaceStore = create<WorkspaceState>()(
 
         set({
           selectTeamId: teamId,
+        });
+      },
+
+      setTeamList: (userId, teams, memberships) => {
+        set((state) => {
+          const teamMap = new Map(state.teamData.map((item) => [item.id, item]));
+          teams.forEach((team) => teamMap.set(team.id, team));
+
+          const otherMemberships = state.membershipData.filter(
+            (item) => item.userId !== userId,
+          );
+
+          return {
+            teamData: Array.from(teamMap.values()),
+            membershipData: [...otherMemberships, ...memberships],
+            isTeamInit: true,
+          };
         });
       },
 

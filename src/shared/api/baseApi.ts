@@ -134,7 +134,7 @@ export const selectTeamMemberList = async ({
 
 export const selectTeamList = async ({
   userId,
-}: SelectTeamListRequest): Promise<SelectTeamListResponse> => {
+}: SelectTeamListRequest): Promise<SelectTeamListResponse[]> => {
   return await request(`/api/users/${userId}/teamList`, {
     method: 'GET',
   });
