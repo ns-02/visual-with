@@ -1,7 +1,7 @@
 import { FormEvent, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Container } from '@shared/components';
-import { loginUser } from '@shared/api/Auth/AuthApi';
+import { loginUser } from '@shared/api/auth/AuthApi';
 import { Button, AuthInput } from '@shared/components';
 import styles from './Auth.module.css';
 import { useUserStore } from '@core/store/useUserStore';

@@ -1,7 +1,7 @@
 import { FormEvent, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Container } from '@shared/components';
-import { checkId, signupUser } from '@shared/api/Auth/AuthApi';
+import { checkId, signupUser } from '@shared/api/auth/AuthApi';
 import { Button, AuthInput } from '@shared/components';
 import styles from './Auth.module.css';
 

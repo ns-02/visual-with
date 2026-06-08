@@ -8,7 +8,7 @@ import {
   deleteScheduleFetch,
   updateScheduleFetch,
   viewSchedule,
-} from '@shared/api/Schedule/ScheduleApi';
+} from '@shared/api/schedule/ScheduleApi';
 import { ScheduleData } from '@shared/models/Workspace';
 
 export const useScheduleManager = () => {
