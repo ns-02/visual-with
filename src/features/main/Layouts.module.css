@@ -30,6 +30,24 @@
   color: var(--text-main);
 }
 
+.content_column {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  flex: 1;
+}
+
+.team_workspace {
+  display: flex;
+  height: 100%;
+}
+
+.team_aside {
+  flex: 0 0 320px;
+  background-color: var(--color-blue-300);
+  padding: 0 16px;
+}
+
 .body {
   flex: 1;
   height: calc(100% - 64px);
