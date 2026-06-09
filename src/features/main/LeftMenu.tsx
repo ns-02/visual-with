@@ -21,7 +21,7 @@ import styles from './Layouts.module.css';
 import { useToolId } from '@core/hooks/useWorkspaceParams';
 import { ToolId } from '@shared/models/Workspace';
 import { useRouteManager } from '@core/routes/useRouteManager';
-import { useTeamManager } from '@features/teamManager/hooks/useTeamManager';
+import { useTeamWorkspaceAccess } from '@features/teamManager/hooks/useTeamWorkspaceAccess';
 import { useCurrentWorkspace } from '@core/hooks/useCurrentWorkspace';
 import TeamInvitationDialog from '@features/teamManager/components/TeamInvitationDialog';
 
@@ -37,7 +37,7 @@ function LeftMenu() {
     useState(false);
   const toolId = useToolId();
   const { switchTeamWithTool, switchTool, MapsToSettings } = useRouteManager();
-  const { isTeamMember } = useTeamManager();
+  const { showTeamMenu } = useTeamWorkspaceAccess();
   const { selectTeamName } = useCurrentWorkspace();
 
   const topMenuItems: MenuItem[] = [
@@ -88,7 +88,7 @@ function LeftMenu() {
     <section className={styles.leftmenu}>
       <TeamDropdown
         trigger={
-          isTeamMember ? (
+          showTeamMenu ? (
             <Button
               text={selectTeamName[0]}
               shape='square'
@@ -113,7 +113,7 @@ function LeftMenu() {
         </Button>
       </div>
 
-      {isTeamMember && (
+      {showTeamMenu && (
         <>
           <div>
             <Button

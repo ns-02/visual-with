@@ -6,13 +6,12 @@ import { create } from 'zustand';
 interface WorkspaceState {
   teamData: TeamData[];
   membershipData: TeamMembershipData[];
-
   selectTeamId: string | null;
-  isTeamInit: boolean;
   isWorkspaceBootstrapped: boolean;
 
   setSelectTeam: (teamId: string | null) => void;
   setWorkspaceBootstrapped: (value: boolean) => void;
+
   setTeamList: (
     userId: string,
     teams: TeamData[],
@@ -27,23 +26,15 @@ interface WorkspaceState {
   setTeamMembers: (teamId: string, memberships: TeamMembershipData[]) => void;
 }
 
-export const useWorkspaceStore = create<WorkspaceState>()((set, get) => ({
+export const useWorkspaceStore = create<WorkspaceState>()((set) => ({
   teamData: teamDataMocks || [],
   membershipData: teamMembershipMocks || [],
 
   selectTeamId: null,
-  isTeamInit: false,
+
   isWorkspaceBootstrapped: false,
 
-  setSelectTeam: (teamId) => {
-    const { isTeamInit } = get();
-
-    if (!isTeamInit) set({ isTeamInit: true });
-
-    set({
-      selectTeamId: teamId,
-    });
-  },
+  setSelectTeam: (teamId) => set({ selectTeamId: teamId }),
 
   setWorkspaceBootstrapped: (value) => set({ isWorkspaceBootstrapped: value }),
 
@@ -63,19 +54,15 @@ export const useWorkspaceStore = create<WorkspaceState>()((set, get) => ({
     });
   },
 
-  createTeamInStore: (teamId, teamName) => {
-    const { isTeamInit } = get();
-
-    if (!isTeamInit) set({ isTeamInit: true });
-
+  createTeamInStore: (teamId, teamName) =>
     set((state) => ({
       teamData: [...state.teamData, { id: teamId, name: teamName }],
-    }));
-  },
+    })),
 
   deleteTeamFromStore: (teamId) =>
     set((state) => ({
-      teamData: [...state.teamData.filter((item) => item.id !== teamId)],
+      teamData: state.teamData.filter((item) => item.id !== teamId),
+      selectTeamId: state.selectTeamId === teamId ? null : state.selectTeamId,
     })),
 
   addTeamRule: (membership) =>

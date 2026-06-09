@@ -12,32 +12,26 @@ import { useTeamId } from '@core/hooks/useWorkspaceParams';
 import { buildTeamInviteLink } from '@core/routes/routeUtils';
 import { useWorkspaceStore } from '@core/store/useWorkspaceStore';
 import { createMembership } from '@shared/models/Workspace';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export const useTeamManager = () => {
   const teamId = useTeamId();
+  const navigate = useNavigate();
+
   const createTeamInStore = useWorkspaceStore(
     (state) => state.createTeamInStore,
   );
   const deleteTeamFromStore = useWorkspaceStore(
     (state) => state.deleteTeamFromStore,
   );
+
+  const setSelectTeam = useWorkspaceStore((state) => state.setSelectTeam);
   const addTeamRule = useWorkspaceStore((state) => state.addTeamRule);
   const updateTeamRule = useWorkspaceStore((state) => state.updateTeamRule);
   const deleteTeamRule = useWorkspaceStore((state) => state.deleteTeamRule);
-  const teamData = useWorkspaceStore((state) => state.teamData);
-  const isTeamInit = useWorkspaceStore((state) => state.isTeamInit);
 
   const userId = useUserStore((state) => state.user?.id);
-  const [isTeamMember, setIsTeamMember] = useState(false);
-
-  useEffect(() => {
-    if ((teamData && teamData.length === 0) || !isTeamInit) {
-      setIsTeamMember(false);
-    } else {
-      setIsTeamMember(true);
-    }
-  }, [teamData, setIsTeamMember, isTeamInit]);
 
   const onCreateTeam = async (teamName: string) => {
     if (!userId) return;
@@ -47,6 +41,8 @@ export const useTeamManager = () => {
 
       createTeamInStore(res.id, res.teamName);
       addTeamRule(createMembership(userId, res.id, 'ADMIN', 'ACCEPTED'));
+      setSelectTeam(res.id);
+      navigate(`/main/${res.id}`);
     } catch (e) {
       console.log(e);
     }
@@ -70,8 +66,7 @@ export const useTeamManager = () => {
     if (!userId) return;
 
     try {
-      const res = await searchUser({ userId });
-      console.log(res);
+      await searchUser({ userId });
     } catch (e) {
       console.error(e);
     }
@@ -169,6 +164,5 @@ export const useTeamManager = () => {
     onInviteTeamByURL,
     onAcceptTeamInvitationByURL,
     onTeamInvitationByUserId,
-    isTeamMember,
   };
 };
