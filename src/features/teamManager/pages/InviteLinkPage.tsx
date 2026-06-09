@@ -5,8 +5,11 @@ import { useUserStore } from '@core/store/useUserStore';
 import { Container } from '@shared/components';
 import { Button } from '@shared/components';
 import { useTeamManager } from '../hooks/useTeamManager';
+import { useUserBootstrap } from '@core/hooks/useUserBootstrap';
 
 const InviteLinkPage = () => {
+  useUserBootstrap();
+
   const navigate = useNavigate();
   const userId = useUserStore((state) => state.user?.id);
   const userName = useUserStore((state) => state.user?.name);
