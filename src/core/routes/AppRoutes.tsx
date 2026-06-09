@@ -3,6 +3,7 @@ import * as Auth from '@pages/auth';
 import HomePage from '@pages/HomePage';
 import PrivateRoute from './PrivateRoute';
 import * as Feat from '@features';
+import { ApiTestPage } from '@features/tests/ApiTestPage';
 
 export default function AppRoutes() {
   return (
@@ -12,6 +13,8 @@ export default function AppRoutes() {
       <Route path='/login' element={<Auth.LoginPage />} />
       <Route path='/signup' element={<Auth.SignupPage />} />
       <Route path='/signup-result' element={<Auth.SignupResultPage />} />
+
+      <Route path='/dev/api-test' element={<ApiTestPage />} />
 
       <Route element={<PrivateRoute />}>
         <Route path='/main' element={<Feat.MainLayout />}>
