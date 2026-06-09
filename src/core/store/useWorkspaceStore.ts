@@ -10,8 +10,10 @@ interface WorkspaceState {
 
   selectTeamId: string | null;
   isTeamInit: boolean;
+  isWorkspaceBootstrapped: boolean;
 
   setSelectTeam: (teamId: string | null) => void;
+  setWorkspaceBootstrapped: (value: boolean) => void;
   setTeamList: (
     userId: string,
     teams: TeamData[],
@@ -34,6 +36,7 @@ export const useWorkspaceStore = create<WorkspaceState>()(
 
       selectTeamId: '',
       isTeamInit: false,
+      isWorkspaceBootstrapped: false,
 
       setSelectTeam: (teamId) => {
         const { isTeamInit } = get();
@@ -44,6 +47,8 @@ export const useWorkspaceStore = create<WorkspaceState>()(
           selectTeamId: teamId,
         });
       },
+
+      setWorkspaceBootstrapped: (value) => set({ isWorkspaceBootstrapped: value }),
 
       setTeamList: (userId, teams, memberships) => {
         set((state) => {

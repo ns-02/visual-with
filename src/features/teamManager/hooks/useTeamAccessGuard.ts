@@ -9,6 +9,12 @@ export const useTeamAccessGuard = () => {
   const navigate = useNavigate();
   const membershipData = useWorkspaceStore((state) => state.membershipData);
   const userId = useUserStore((state) => state.user?.id);
+  const isUserBootstrapped = useUserStore((state) => state.isUserBootstrapped);
+  const isWorkspaceBootstrapped = useWorkspaceStore(
+    (state) => state.isWorkspaceBootstrapped,
+  );
+
+  const isReady = isUserBootstrapped && isWorkspaceBootstrapped;
 
   const isMember = membershipData.some(
     (item) =>
@@ -18,6 +24,8 @@ export const useTeamAccessGuard = () => {
   );
 
   useEffect(() => {
+    if (!isReady) return;
+
     if (!isMember) {
       alert('잘못된 접근입니다.');
 
@@ -27,5 +35,5 @@ export const useTeamAccessGuard = () => {
         navigate('/main', { replace: true });
       }
     }
-  }, [isMember, navigate]);
+  }, [isReady, isMember, navigate]);
 };

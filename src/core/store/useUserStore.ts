@@ -7,7 +7,9 @@ import { create } from 'zustand';
 interface UserState {
   user: UserData | null;
   currentToolId: ToolId | null;
+  isUserBootstrapped: boolean;
   setUser: (user: UserData | null) => void;
+  setUserBootstrapped: (value: boolean) => void;
   updateNickname: (nickname: string) => void;
   setToolId: (id: ToolId | null) => void;
   logout: () => void;
@@ -22,8 +24,11 @@ export const useUserStore = create<UserState>((set) => ({
   },
 
   currentToolId: null,
+  isUserBootstrapped: false,
 
   setUser: (user) => set({ user }),
+
+  setUserBootstrapped: (value) => set({ isUserBootstrapped: value }),
 
   updateNickname: (nickname) =>
     set((state) => ({
@@ -32,5 +37,5 @@ export const useUserStore = create<UserState>((set) => ({
 
   setToolId: (id) => set({ currentToolId: id }),
 
-  logout: () => set({ user: null }),
+  logout: () => set({ user: null, isUserBootstrapped: false }),
 }));

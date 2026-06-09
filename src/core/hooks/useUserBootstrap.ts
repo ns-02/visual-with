@@ -4,20 +4,33 @@ import { useEffect } from 'react';
 
 export const useUserBootstrap = () => {
   const setUser = useUserStore((state) => state.setUser);
+  const setUserBootstrapped = useUserStore((state) => state.setUserBootstrapped);
 
   useEffect(() => {
+    let cancelled = false;
+
     const loadUser = async () => {
+      setUserBootstrapped(false);
+
       try {
         const res = await getMe();
 
-        setUser({ id: res.userId, name: res.name, email: '' });
-
-        console.log(res);
+        if (!cancelled) {
+          setUser({ id: res.userId, name: res.name, email: '' });
+        }
       } catch (e) {
         console.error(e);
+      } finally {
+        if (!cancelled) {
+          setUserBootstrapped(true);
+        }
       }
     };
 
     loadUser();
-  }, [setUser]);
+
+    return () => {
+      cancelled = true;
+    };
+  }, [setUser, setUserBootstrapped]);
 };
