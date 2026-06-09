@@ -23,10 +23,7 @@ interface WorkspaceState {
   addTeamRule: (membership: TeamMembershipData) => void;
   updateTeamRule: (membership: TeamMembershipData) => void;
   deleteTeamRule: (teamId: string) => void;
-  setTeamMembers: (
-    teamId: string,
-    memberships: TeamMembershipData[],
-  ) => void;
+  setTeamMembers: (teamId: string, memberships: TeamMembershipData[]) => void;
 }
 
 export const useWorkspaceStore = create<WorkspaceState>()(
@@ -50,7 +47,9 @@ export const useWorkspaceStore = create<WorkspaceState>()(
 
       setTeamList: (userId, teams, memberships) => {
         set((state) => {
-          const teamMap = new Map(state.teamData.map((item) => [item.id, item]));
+          const teamMap = new Map(
+            state.teamData.map((item) => [item.id, item]),
+          );
           teams.forEach((team) => teamMap.set(team.id, team));
 
           const otherMemberships = state.membershipData.filter(

@@ -6,6 +6,7 @@ import {
   checkIdResponse,
   SignupRequest,
   SignupResponse,
+  GetMeResponse,
 } from './AuthModel';
 
 export const loginUser = async ({
@@ -36,5 +37,11 @@ export const signupUser = async ({
   return await request('/api/register', {
     method: 'POST',
     body: JSON.stringify({ userId, password, email, name }),
+  });
+};
+
+export const getMe = async (): Promise<GetMeResponse> => {
+  return await request('/api/users/me', {
+    method: 'GET',
   });
 };

@@ -34,3 +34,8 @@ export interface LoginResponse {
   token: string;
   message: string;
 }
+
+export interface GetMeResponse {
+  userId: string;
+  name: string;
+}

@@ -5,10 +5,12 @@ import { useSettingsManager } from '@features/settings/hooks/useSettingsManager'
 import { useTeamChatStore } from '@features/teamChat/store/useTeamChatStore';
 import { useWorkspaceBootstrap } from '@core/hooks/useWorkspaceBootstrap';
 import { useEffect } from 'react';
+import { useUserBootstrap } from '@core/hooks/useUserBootstrap';
 
 function MainLayout() {
-  useSettingsManager();
+  useUserBootstrap();
   useWorkspaceBootstrap();
+  useSettingsManager();
   const connectSocket = useTeamChatStore((state) => state.connectSocket);
   const disconnectSocket = useTeamChatStore((state) => state.disconnectSocket);
 
