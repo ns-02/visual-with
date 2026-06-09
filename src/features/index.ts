@@ -1,4 +1,6 @@
 export { default as MainLayout } from './main/MainLayout';
+export { default as StandardLayout } from './main/StandardLayout';
+export { default as TeamLayout } from './main/TeamLayout';
 export { default as MainPage } from './main/MainPage';
 export { default as DirectChatPage } from './directChat/pages/DirectChatPage';
 export { default as FileSharingPage } from './fileSharing/pages/FileSharingPage';
@@ -6,7 +8,6 @@ export { default as FriendListPage } from './friendList/pages/FriendListPage';
 export { default as SchedulePage } from './schedule/pages/SchedulePage';
 export { default as SettingsPage } from './settings/pages/SettingsPage';
 export { default as TeamChatPage } from './teamChat/pages/TeamChatPage';
-export { default as TeamLayout } from './teamManager/components/TeamLayout';
 export { default as InviteLinkPage } from './teamManager/pages/InviteLinkPage';
 export { default as DashboardPage } from './dashboard/pages/DashboardPage';
 export { default as TodoListPage } from './todoList/pages/TodoListPage';

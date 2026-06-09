@@ -15,13 +15,15 @@ export default function AppRoutes() {
 
       <Route element={<PrivateRoute />}>
         <Route path='/main' element={<Feat.MainLayout />}>
-          <Route index element={<Feat.MainPage />} />
-          <Route path='settings' element={<Feat.SettingsPage />} />
-          <Route path='friendlist' element={<Feat.FriendListPage />} />
-          <Route
-            path='directchat/:friendId?'
-            element={<Feat.DirectChatPage />}
-          />
+          <Route element={<Feat.StandardLayout />}>
+            <Route index element={<Feat.MainPage />} />
+            <Route path='settings' element={<Feat.SettingsPage />} />
+            <Route path='friendlist' element={<Feat.FriendListPage />} />
+            <Route
+              path='directchat/:friendId?'
+              element={<Feat.DirectChatPage />}
+            />
+          </Route>
 
           <Route path=':teamId' element={<Feat.TeamLayout />}>
             <Route index element={<Feat.DashboardPage />} />
