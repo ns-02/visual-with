@@ -35,7 +35,9 @@ export const useWorkspaceBootstrap = () => {
             item.userId,
             item.teamId,
             item.userTeamRole,
-            'ACCEPTED',
+            item.invitationStatus === 'REJECTED'
+              ? 'DECLINED'
+              : item.invitationStatus,
           ),
         );
 

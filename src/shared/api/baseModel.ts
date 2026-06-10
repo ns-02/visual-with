@@ -96,4 +96,5 @@ export interface SelectTeamListResponse {
   teamId: string;
   teamName: string;
   userTeamRole: UserTeamRule;
+  invitationStatus: InvitationStatus;
 }
