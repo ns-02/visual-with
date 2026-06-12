@@ -12,7 +12,7 @@ const InviteLinkPage = () => {
 
   const navigate = useNavigate();
   const userId = useUserStore((state) => state.user?.id);
-  const userName = useUserStore((state) => state.user?.name);
+  // const userName = useUserStore((state) => state.user?.name);
   const { onAcceptTeamInvitationByURL } = useTeamManager();
   const [isAccepting, setIsAccepting] = useState(false);
   const { teamId, invitationCode } = useParams<{
@@ -49,10 +49,17 @@ const InviteLinkPage = () => {
 
   return (
     <Container>
-      <div style={{ display: 'flex', flexDirection: 'column' }}>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          padding: '16px',
+          gap: '8px',
+        }}
+      >
         <div
           style={{
-            backgroundColor: '#f9f9f9',
+            backgroundColor: '#f5f5f5',
             width: '280px',
             display: 'flex',
             padding: '16px',
@@ -63,17 +70,13 @@ const InviteLinkPage = () => {
             <CircleUser size={24} />
           </Button>
           <div>
-            <p>{`ㅇㅇ팀`}</p>
-            <p style={{ fontSize: '15px', color: '#555' }}>{`리더: ㅇㅇㅇ`}</p>
-            <p style={{ fontSize: '15px', color: '#555' }}>
-              {`접속중인 유저: ` + userId + `, ` + userName}
-            </p>
+            <p>{`팀 ID: ${teamId}`}</p>
+            <p style={{ fontSize: '15px', color: '#555' }}>{`리더: `}</p>
           </div>
         </div>
-        <p style={{ textAlign: 'center' }}>
-          {`team: ${teamId}, code: ${invitationCode}`}
-        </p>
+        <p style={{ textAlign: 'center' }}>{`접속중인 유저 ID: ${userId}`}</p>
         <Button
+          style={{ backgroundColor: 'aliceblue' }}
           text={isAccepting ? '수락 중...' : '초대 수락하기'}
           onClick={handleAcceptInvitation}
           disabled={isAccepting}
