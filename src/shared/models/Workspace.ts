@@ -29,6 +29,7 @@ export type MembershipStatus = 'PENDING' | 'ACCEPTED' | 'DECLINED';
 
 export interface TeamMembershipData {
   userId: string;
+  userName: string;
   teamId: string;
   rule: TeamRule;
   ruleName: TeamRuleName;
@@ -37,11 +38,19 @@ export interface TeamMembershipData {
 
 export function createMembership(
   userId: string,
+  userName: string,
   teamId: string,
   rule: TeamRule,
   status: MembershipStatus,
 ): TeamMembershipData {
-  return { userId, teamId, rule, ruleName: getTeamRuleName(rule), status };
+  return {
+    userId,
+    userName,
+    teamId,
+    rule,
+    ruleName: getTeamRuleName(rule),
+    status,
+  };
 }
 
 export interface ChatData {

@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 
 export const useWorkspaceBootstrap = () => {
   const userId = useUserStore((state) => state.user?.id);
+  const userName = useUserStore((state) => state.user?.name);
   const isUserBootstrapped = useUserStore((state) => state.isUserBootstrapped);
   const setTeamList = useWorkspaceStore((state) => state.setTeamList);
   const setWorkspaceBootstrapped = useWorkspaceStore(
@@ -13,7 +14,7 @@ export const useWorkspaceBootstrap = () => {
   );
 
   useEffect(() => {
-    if (!userId || !isUserBootstrapped) {
+    if (!userId || !userName || !isUserBootstrapped) {
       setWorkspaceBootstrapped(false);
       return;
     }
@@ -32,7 +33,8 @@ export const useWorkspaceBootstrap = () => {
         }));
         const memberships = res.map((item) =>
           createMembership(
-            item.userId,
+            userId,
+            userName,
             item.teamId,
             item.userTeamRole,
             item.invitationStatus === 'REJECTED'
@@ -58,5 +60,11 @@ export const useWorkspaceBootstrap = () => {
     return () => {
       cancelled = true;
     };
-  }, [userId, isUserBootstrapped, setTeamList, setWorkspaceBootstrapped]);
+  }, [
+    userId,
+    userName,
+    isUserBootstrapped,
+    setTeamList,
+    setWorkspaceBootstrapped,
+  ]);
 };

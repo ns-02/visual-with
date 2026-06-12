@@ -82,6 +82,7 @@ export interface SelectTeamMemberListRequest {
 
 export interface SelectTeamMemberListResponse {
   userId: string;
+  userName: string;
   teamId: string;
   userTeamRole: UserTeamRule;
   invitationStatus: InvitationStatus;

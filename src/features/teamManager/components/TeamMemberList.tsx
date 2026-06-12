@@ -19,7 +19,7 @@ const TeamMemberList = () => {
         <MemberListCard
           key={item.userId}
           id={item.userId}
-          name={item.userId}
+          name={item.userName}
           description={item.ruleName}
         />
       ))}

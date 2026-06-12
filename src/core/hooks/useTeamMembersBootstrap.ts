@@ -18,6 +18,7 @@ export const useTeamMembersBootstrap = () => {
         const memberships = res.map((item) =>
           createMembership(
             item.userId,
+            item.userName,
             item.teamId,
             item.userTeamRole,
             item.invitationStatus === 'REJECTED'

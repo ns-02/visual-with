@@ -32,15 +32,18 @@ export const useTeamManager = () => {
   const deleteTeamRule = useWorkspaceStore((state) => state.deleteTeamRule);
 
   const userId = useUserStore((state) => state.user?.id);
+  const userName = useUserStore((state) => state.user?.name);
 
   const onCreateTeam = async (teamName: string) => {
-    if (!userId) return;
+    if (!userId || !userName) return;
 
     try {
       const res = await createTeam({ userId, teamName });
 
       createTeamInStore(res.id, res.teamName);
-      addTeamRule(createMembership(userId, res.id, 'ADMIN', 'ACCEPTED'));
+      addTeamRule(
+        createMembership(userId, userName, res.id, 'ADMIN', 'ACCEPTED'),
+      );
       setSelectTeam(res.id);
       navigate(`/main/${res.id}`);
     } catch (e) {
@@ -73,14 +76,16 @@ export const useTeamManager = () => {
   };
 
   const onInviteTeamByUserId = async (invitedUserId: string) => {
-    if (!userId || !teamId) return;
+    if (!userId || !userName || !teamId) return;
     try {
       const res = await inviteTeamByUserId({
         userId,
         invitedUserId,
         teamId,
       });
-      addTeamRule(createMembership(invitedUserId, teamId, 'MEMBER', 'PENDING'));
+      addTeamRule(
+        createMembership(invitedUserId, userName, teamId, 'MEMBER', 'PENDING'),
+      );
       console.log(res);
     } catch (e) {
       console.error(e);
@@ -102,7 +107,7 @@ export const useTeamManager = () => {
     currentTeamId: string,
     invitationCode: string,
   ): Promise<boolean> => {
-    if (!userId) return false;
+    if (!userId || !userName) return false;
 
     try {
       await acceptTeamInvitationByURL({
@@ -119,6 +124,7 @@ export const useTeamManager = () => {
 
       const membership = createMembership(
         userId,
+        userName,
         currentTeamId,
         'MEMBER',
         'ACCEPTED',
@@ -141,17 +147,17 @@ export const useTeamManager = () => {
     currentTeamId: string,
     accepted: boolean,
   ) => {
-    if (!userId) return;
+    if (!userId || !userName) return;
 
     if (accepted) {
       await acceptTeamInvitationByUserId({ teamId: currentTeamId, userId });
 
       updateTeamRule(
-        createMembership(userId, currentTeamId, 'MEMBER', 'ACCEPTED'),
+        createMembership(userId, userName, currentTeamId, 'MEMBER', 'ACCEPTED'),
       );
     } else {
       updateTeamRule(
-        createMembership(userId, currentTeamId, 'MEMBER', 'DECLINED'),
+        createMembership(userId, userName, currentTeamId, 'MEMBER', 'DECLINED'),
       );
     }
   };
