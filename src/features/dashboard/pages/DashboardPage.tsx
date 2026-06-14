@@ -40,6 +40,9 @@ function DashboardPage() {
   const updateTodoStatus = useDashboardStore((state) => state.updateTodoStatus);
   const updateFileType = useDashboardStore((state) => state.updateFileType);
   const updateTodoTrends = useDashboardStore((state) => state.updateTodoTrends);
+  const updateChatActivity = useDashboardStore(
+    (state) => state.updateChatActivity,
+  );
   const updateDDaySchedules = useDashboardStore(
     (state) => state.updateDDaySchedules,
   );
@@ -67,6 +70,7 @@ function DashboardPage() {
     updateTodoStatus(teamId);
     updateFileType(teamId);
     updateTodoTrends(teamId);
+    updateChatActivity(teamId);
     updateDDaySchedules(teamId);
     updateUploadedFiles(teamId);
     updateUploadedTodos(teamId);
@@ -74,6 +78,7 @@ function DashboardPage() {
     updateTodoStatus,
     updateFileType,
     updateTodoTrends,
+    updateChatActivity,
     updateDDaySchedules,
     updateUploadedFiles,
     updateUploadedTodos,

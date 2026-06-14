@@ -4,6 +4,10 @@ import { useTodoStore } from '@features/todoList/store/useTodoStore';
 import { parseDate } from '@shared/utils/formatDate';
 import { create } from 'zustand';
 import { differenceInDays } from 'date-fns';
+import {
+  selectTeamAllChat,
+  useTeamChatStore,
+} from '@features/teamChat/store/useTeamChatStore';
 
 interface TodoStatusData {
   name: '완료된 할 일' | '남은 할 일';
@@ -120,25 +124,57 @@ const calculateTodoTrends = (teamId: string): MonthlyTodoTrends[] => {
     }));
 };
 
-const calculateChatActivity = (teamId: string): ChatActivityByTime[] => {
-  // 채팅 스토어가 존재하지 않음...
-  console.log(teamId);
+const CHAT_ACTIVITY_TIME_SLOTS = [
+  '00-02',
+  '02-04',
+  '04-06',
+  '06-08',
+  '08-10',
+  '10-12',
+  '12-14',
+  '14-16',
+  '16-18',
+  '18-20',
+  '20-22',
+  '22-00',
+] as const;
 
-  // 실제 유효한 데이터가 아님
-  return [
-    { time: '00-02', chats: 23 },
-    { time: '02-04', chats: 7 },
-    { time: '04-06', chats: 4 },
-    { time: '06-08', chats: 5 },
-    { time: '08-10', chats: 41 },
-    { time: '10-12', chats: 78 },
-    { time: '12-14', chats: 91 },
-    { time: '14-16', chats: 105 },
-    { time: '16-18', chats: 121 },
-    { time: '18-20', chats: 77 },
-    { time: '20-22', chats: 45 },
-    { time: '22-00', chats: 30 },
-  ];
+const parseChatHour = (time: string): number | null => {
+  const match = time.match(/^(오전|오후)\s*(\d{1,2}):/);
+  if (!match) return null;
+
+  const [, period, hourStr] = match;
+  const hour12 = Number(hourStr);
+  if (Number.isNaN(hour12) || hour12 < 1 || hour12 > 12) return null;
+
+  if (period === '오전') {
+    return hour12 === 12 ? 0 : hour12;
+  }
+
+  return hour12 === 12 ? 12 : hour12 + 12;
+};
+
+const calculateChatActivity = (teamId: string): ChatActivityByTime[] => {
+  const chatData = selectTeamAllChat(teamId)(useTeamChatStore.getState());
+
+  const countBySlot = new Map<string, number>(
+    CHAT_ACTIVITY_TIME_SLOTS.map((time) => [time, 0]),
+  );
+
+  for (const chat of chatData) {
+    const hour = parseChatHour(chat.time);
+    if (hour === null) continue;
+
+    const slot = CHAT_ACTIVITY_TIME_SLOTS[Math.floor(hour / 2)];
+    if (!slot) continue;
+
+    countBySlot.set(slot, (countBySlot.get(slot) ?? 0) + 1);
+  }
+
+  return CHAT_ACTIVITY_TIME_SLOTS.map((time) => ({
+    time,
+    chats: countBySlot.get(time) ?? 0,
+  }));
 };
 
 const calculateDDaySchedules = (teamId: string): DDaySchedules[] => {
