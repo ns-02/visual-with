@@ -12,6 +12,7 @@ import {
   viewTodo,
 } from '@shared/api/todo/TodoApi';
 import { formatDate, formatTime } from '@shared/utils/formatDate';
+import { useWorkspaceStore } from '@core/store/useWorkspaceStore';
 
 export const useTodoManager = () => {
   const userId = useUserStore((state) => state.user?.id);
@@ -33,12 +34,16 @@ export const useTodoManager = () => {
   const addTodo = useTodoStore((state) => state.addTodo);
   const updateTodo = useTodoStore((state) => state.updateTodo);
   const deleteTodo = useTodoStore((state) => state.deleteTodo);
+  const membershipData = useWorkspaceStore((state) => state.membershipData);
 
   useEffect(() => {
     const loadTodoData = async () => {
       if (!teamId) return;
 
       const fetchData = await viewTodo({ teamId });
+      const currentMembershipData = membershipData.filter(
+        (m) => m.teamId === teamId,
+      );
 
       if (!fetchData || fetchData.length === 0) return;
 
@@ -49,7 +54,9 @@ export const useTodoManager = () => {
         checked: item.completed,
         teamId,
         authorId: item.userId,
-        authorName: '아무개',
+        authorName:
+          currentMembershipData.find((m) => m.userId === item.userId)
+            ?.userName ?? '',
         completeDate: item.completeDate,
         completeTime: item.completeTime,
       }));
@@ -58,7 +65,7 @@ export const useTodoManager = () => {
     };
 
     loadTodoData();
-  }, [teamId, loadTodo]);
+  }, [teamId, loadTodo, membershipData]);
 
   const getCanToggle = (authorId: string) =>
     getIsPermit({
