@@ -5,7 +5,14 @@ import { create } from 'zustand';
 
 export type AddTodoInput = Pick<
   TodoData,
-  'id' | 'title' | 'description' | 'teamId' | 'authorId' | 'authorName'
+  | 'id'
+  | 'title'
+  | 'description'
+  | 'teamId'
+  | 'authorId'
+  | 'authorName'
+  | 'createdDate'
+  | 'createdTime'
 >;
 
 export type UpdateTodoInput = Pick<TodoData, 'id'> &
@@ -38,6 +45,8 @@ export const useTodoStore = create<TodoState>((set) => ({
           teamId: todo.teamId,
           authorId: todo.authorId,
           authorName: todo.authorName,
+          createdDate: todo.createdDate,
+          createdTime: todo.createdTime,
         },
       ],
     })),

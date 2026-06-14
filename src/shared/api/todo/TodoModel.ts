@@ -12,6 +12,8 @@ export interface ViewTodoResponse {
   title: string;
   content: string;
   completed: boolean;
+  createdDate?: string;
+  createdTime?: string;
   completeDate: string;
   completeTime: string;
 }

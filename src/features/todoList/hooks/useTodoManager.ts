@@ -57,6 +57,8 @@ export const useTodoManager = () => {
         authorName:
           currentMembershipData.find((m) => m.userId === item.userId)
             ?.userName ?? '',
+        createdDate: item.createdDate,
+        createdTime: item.createdTime,
         completeDate: item.completeDate,
         completeTime: item.completeTime,
       }));
@@ -97,13 +99,16 @@ export const useTodoManager = () => {
   const addTodoInManager = async (title: string, description: string) => {
     if (!title || !teamId || !userId || !userName) return;
 
+    const createdDate = formatDate();
+    const createdTime = formatTime();
+
     const fetchData = await addTodoFetch({
       title,
       content: description || '',
       teamId: teamId,
       userId: userId,
-      createdDate: formatDate(),
-      createdTime: formatTime(),
+      createdDate,
+      createdTime,
     });
 
     addTodo({
@@ -113,6 +118,8 @@ export const useTodoManager = () => {
       teamId: teamId,
       authorId: userId,
       authorName: userName,
+      createdDate,
+      createdTime,
     });
   };
 

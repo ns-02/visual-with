@@ -1,7 +1,7 @@
 import { useTeamFileStore } from '@features/fileSharing/store/useTeamFileStore';
 import { useScheduleStore } from '@features/schedule/store/useScheduleStore';
 import { useTodoStore } from '@features/todoList/store/useTodoStore';
-import { parseDate } from '@shared/utils/formatDate';
+import { parseDate, formatTimeAgo } from '@shared/utils/formatDate';
 import { create } from 'zustand';
 import { differenceInDays } from 'date-fns';
 import {
@@ -177,35 +177,33 @@ const calculateChatActivity = (teamId: string): ChatActivityByTime[] => {
   }));
 };
 
+const DASHBOARD_LIST_LIMIT = 5;
+
 const calculateDDaySchedules = (teamId: string): DDaySchedules[] => {
-  /**
-   * 필요한 것
-   *
-   * 1. remainingDays 계산 (완료)
-   * 2. 최대 개수 제한
-   * 3. 정렬
-   */
-  //
   const scheduleData = useScheduleStore
     .getState()
     .scheduleData.filter((s) => s.teamId === teamId);
 
-  return scheduleData.map((item) => {
-    const { startDate, finishDate } = item;
+  const nowDate = new Date();
 
-    const referenceDate = finishDate
-      ? parseDate(finishDate)
-      : parseDate(startDate);
-    const nowDate = new Date();
+  return scheduleData
+    .map((item) => {
+      const { startDate, finishDate } = item;
 
-    const dateDifference = differenceInDays(referenceDate, nowDate);
+      const referenceDate = finishDate
+        ? parseDate(finishDate)
+        : parseDate(startDate);
 
-    return {
-      scheduleId: item.id,
-      scheduleTitle: item.title,
-      remainingDays: dateDifference,
-    };
-  });
+      const dateDifference = differenceInDays(referenceDate, nowDate);
+
+      return {
+        scheduleId: item.id,
+        scheduleTitle: item.title,
+        remainingDays: dateDifference,
+      };
+    })
+    .sort((a, b) => a.remainingDays - b.remainingDays)
+    .slice(0, DASHBOARD_LIST_LIMIT);
 };
 
 const calculateUploadedFiles = (teamId: string): RecentlyUploadedFiles[] => {
@@ -213,12 +211,30 @@ const calculateUploadedFiles = (teamId: string): RecentlyUploadedFiles[] => {
     .getState()
     .fileData.filter((t) => t.teamId === teamId);
 
-  // 정렬, 개수 제한 필요
-  return fileData.map((item) => ({
-    fileId: item.id,
-    fileName: item.fileName,
-    timeAgo: item.timeAgo || '알 수 없음',
-  }));
+  return fileData
+    .sort(
+      (a, b) => parseDate(b.date).getTime() - parseDate(a.date).getTime(),
+    )
+    .slice(0, DASHBOARD_LIST_LIMIT)
+    .map((item) => ({
+      fileId: item.id,
+      fileName: item.fileName,
+      timeAgo: formatTimeAgo(item.date),
+    }));
+};
+
+const getTodoCreatedTimestamp = (todo: {
+  id: number;
+  createdDate?: string;
+  createdTime?: string;
+}): number => {
+  if (!todo.createdDate) return todo.id;
+
+  const createdAt = todo.createdTime
+    ? parseDate(`${todo.createdDate}T${todo.createdTime}`)
+    : parseDate(todo.createdDate);
+
+  return createdAt.getTime();
 };
 
 const calculateUploadedTodos = (teamId: string): RecentlyUploadedTodos[] => {
@@ -226,13 +242,16 @@ const calculateUploadedTodos = (teamId: string): RecentlyUploadedTodos[] => {
     .getState()
     .todoData.filter((t) => t.teamId === teamId);
 
-  // todo의 timeAgo 계산 로직 필요
-  // 정렬, 개수 제한 필요
-  return todoData.map((item) => ({
-    todoId: item.id,
-    todoTitle: item.title,
-    timeAgo: '알 수 없음',
-  }));
+  return todoData
+    .sort(
+      (a, b) => getTodoCreatedTimestamp(b) - getTodoCreatedTimestamp(a),
+    )
+    .slice(0, DASHBOARD_LIST_LIMIT)
+    .map((item) => ({
+      todoId: item.id,
+      todoTitle: item.title,
+      timeAgo: formatTimeAgo(item.createdDate, item.createdTime),
+    }));
 };
 
 const updateDashboardField = <K extends keyof Omit<DashboardData, 'teamId'>>(
