@@ -50,6 +50,8 @@ export const useTodoManager = () => {
         teamId,
         authorId: item.userId,
         authorName: '아무개',
+        completeDate: item.completeDate,
+        completeTime: item.completeTime,
       }));
 
       loadTodo(newTodoData, teamId);

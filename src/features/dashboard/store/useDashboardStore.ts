@@ -99,20 +99,25 @@ const calculateFileType = (teamId: string): FileTypeData[] => {
 };
 
 const calculateTodoTrends = (teamId: string): MonthlyTodoTrends[] => {
-  const todoData = useTodoStore
+  const completedTodoData = useTodoStore
     .getState()
-    .todoData.filter((t) => t.teamId === teamId);
+    .todoData.filter(
+      (t) => t.teamId === teamId && t.checked === true && t.completeDate,
+    );
 
-  console.log(todoData);
+  const countByYearMonth = new Map<string, number>();
 
-  // 실제 유효한 데이터가 아님
-  // TodoData에 완료 시점의 날짜가 포함되어야 하며, API 응답 역시 포함되어야 함
-  return [
-    { month: '1월', todos: 22 },
-    { month: '2월', todos: 25 },
-    { month: '3월', todos: 30 },
-    { month: '4월', todos: 33 },
-  ];
+  for (const todo of completedTodoData) {
+    const yearMonth = todo.completeDate!.slice(0, 7);
+    countByYearMonth.set(yearMonth, (countByYearMonth.get(yearMonth) ?? 0) + 1);
+  }
+
+  return [...countByYearMonth.entries()]
+    .sort(([a], [b]) => a.localeCompare(b))
+    .map(([yearMonth, todos]) => ({
+      month: `${parseInt(yearMonth.slice(5, 7), 10)}월`,
+      todos,
+    }));
 };
 
 const calculateChatActivity = (teamId: string): ChatActivityByTime[] => {

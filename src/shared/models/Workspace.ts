@@ -106,4 +106,6 @@ export interface TodoData {
   teamId: string;
   authorId: string;
   authorName: string;
+  completeDate?: string;
+  completeTime?: string;
 }
