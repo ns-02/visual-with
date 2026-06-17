@@ -3,6 +3,7 @@ import { AlertDialog, DialogInput } from '@shared/components';
 
 import { useTeamManager } from '../hooks/useTeamManager';
 import { TeamData } from '@shared/models/Workspace';
+import { toast } from '@core/store/useToastStore';
 
 interface DeleteTeamDialogProps {
   open: boolean;
@@ -19,7 +20,16 @@ const DeleteTeamDialog = ({
   const [confirmText, setConFirmText] = useState('');
 
   const handleDeleteTeam = () => {
-    if (confirmText !== '삭제') return;
+    if (!confirmText.trim()) {
+      toast.error('값이 입력되지 않았습니다.');
+      return;
+    }
+
+    if (confirmText !== '삭제') {
+      toast.error('삭제를 입력해주세요.');
+      return;
+    }
+
     if (deleteTeamData) onDeleteTeam(deleteTeamData.id);
     setConFirmText('');
     onOpenChange(false);
