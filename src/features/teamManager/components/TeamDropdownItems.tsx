@@ -3,10 +3,10 @@ import { DropdownMenu } from 'radix-ui';
 import { Trash2 } from 'lucide-react';
 import { Button, Item } from '@shared/components';
 import styles from './TeamDropdownItems.module.css';
-import { useWorkspaceParams } from '@core/hooks/useWorkspaceParams';
 import { useWorkspaceStore } from '@core/store/useWorkspaceStore';
 import { TeamData } from '@shared/models/Workspace';
 import { useUserStore } from '@core/store/useUserStore';
+import { useCurrentWorkspace } from '@core/hooks/useCurrentWorkspace';
 
 interface TeamDropdownItemsType {
   deleteTeamDialogOpen: (value: SetStateAction<boolean>) => void;
@@ -22,7 +22,7 @@ const TeamDropdownItems = ({
   const userId = useUserStore((state) => state.user?.id);
   const teamData = useWorkspaceStore((state) => state.teamData);
   const membershipData = useWorkspaceStore((state) => state.membershipData);
-  const { teamId } = useWorkspaceParams();
+  const { teamId, currentRule } = useCurrentWorkspace();
 
   const joinedTeamIds = membershipData
     .filter((m) => m.status === 'ACCEPTED' && m.userId === userId)
@@ -55,15 +55,17 @@ const TeamDropdownItems = ({
               text={item.name}
               selected={handleItemSelected(item)}
             >
-              <Button
-                variant='content'
-                onClick={() => {
-                  setDeleteTeamData(item);
-                  deleteTeamDialogOpen(true);
-                }}
-              >
-                <Trash2 size={16} />
-              </Button>
+              {currentRule === 'ADMIN' && (
+                <Button
+                  variant='content'
+                  onClick={() => {
+                    setDeleteTeamData(item);
+                    deleteTeamDialogOpen(true);
+                  }}
+                >
+                  <Trash2 size={16} />
+                </Button>
+              )}
             </Item>
           </DropdownMenu.Item>
         );
