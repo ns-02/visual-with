@@ -56,3 +56,20 @@
 .link_auth {
   color: var(--color-link);
 }
+
+.terms_field {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.terms_link {
+  background: none;
+  border: none;
+  color: #6b7280;
+  font-size: 12px;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 0;
+}

@@ -1,8 +1,9 @@
 import * as Checkbox from '@radix-ui/react-checkbox';
 import { Check } from 'lucide-react';
 import styles from './CheckBox.module.css';
+import { ButtonHTMLAttributes } from 'react';
 
-export interface CheckBoxProps {
+export interface CheckBoxProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   checked: boolean;
   onCheckedChange?: (checked: boolean) => void;
   id: string;
@@ -10,7 +11,7 @@ export interface CheckBoxProps {
 }
 
 const CheckBox = (props: CheckBoxProps) => {
-  const { checked, id, onCheckedChange, disabled } = props;
+  const { checked, id, onCheckedChange, disabled, ...rest } = props;
 
   return (
     <Checkbox.Root
@@ -21,6 +22,7 @@ const CheckBox = (props: CheckBoxProps) => {
           onCheckedChange?.(state);
         }
       }}
+      {...rest}
       id={id}
       disabled={disabled}
     >

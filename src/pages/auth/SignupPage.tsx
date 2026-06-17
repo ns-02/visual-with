@@ -1,9 +1,10 @@
 import { FormEvent, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Container } from '@shared/components';
+import { CheckBox, Container } from '@shared/components';
 import { checkId, signupUser } from '@shared/api/auth/AuthApi';
 import { Button, AuthInput } from '@shared/components';
 import styles from './Auth.module.css';
+import PrivacyPolicyModal from './PrivacyPolicyModal';
 
 function SignupPage() {
   const navigate = useNavigate();
@@ -13,6 +14,8 @@ function SignupPage() {
   const [password, setPassword] = useState('');
   const [checkPassword, setCheckPassword] = useState('');
   const [isValid, setIsValid] = useState(false);
+  const [agreedToTerms, setAgreedToTerms] = useState(false);
+  const [showPrivacyModal, setShowPrivacyModal] = useState(false);
 
   const handleSignUp = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -29,6 +32,11 @@ function SignupPage() {
 
     if (!isValid) {
       alert('사용 가능한 아이디인지 확인해주세요.');
+      return;
+    }
+
+    if (!agreedToTerms) {
+      alert('개인정보 처리방침에 동의해주세요.');
       return;
     }
 
@@ -57,7 +65,6 @@ function SignupPage() {
 
     const res = await checkId({ userId: id });
 
-    // true: 사용가능, false: 사용불가능
     if (res.available) {
       alert('사용 가능한 아이디입니다.');
       setIsValid(true);
@@ -122,6 +129,25 @@ function SignupPage() {
           onChange={(e) => setCheckPassword(e.target.value)}
           placeholder='비밀번호를 다시 입력하세요'
         />
+
+        <div className={styles.terms_field}>
+          <CheckBox
+            id='terms'
+            checked={agreedToTerms}
+            onCheckedChange={() => setAgreedToTerms(!agreedToTerms)}
+            style={{ width: '12px', height: '12px' }}
+          />
+          <label htmlFor='terms'>개인정보 처리방침에 동의합니다</label>
+
+          <button
+            type='button'
+            className={styles.terms_link}
+            onClick={() => setShowPrivacyModal(true)}
+          >
+            내용 보기
+          </button>
+        </div>
+
         <Button type='submit' variant='auth'>
           회원가입
         </Button>
@@ -133,6 +159,10 @@ function SignupPage() {
           </Link>
         </div>
       </form>
+
+      {showPrivacyModal && (
+        <PrivacyPolicyModal onClose={() => setShowPrivacyModal(false)} />
+      )}
     </Container>
   );
 }
