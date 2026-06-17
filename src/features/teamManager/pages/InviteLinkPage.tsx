@@ -6,13 +6,13 @@ import { Container } from '@shared/components';
 import { Button } from '@shared/components';
 import { useTeamManager } from '../hooks/useTeamManager';
 import { useUserBootstrap } from '@core/hooks/useUserBootstrap';
+import { toast } from '@core/store/useToastStore';
 
 const InviteLinkPage = () => {
   useUserBootstrap();
 
   const navigate = useNavigate();
   const userId = useUserStore((state) => state.user?.id);
-  // const userName = useUserStore((state) => state.user?.name);
   const { onAcceptTeamInvitationByURL } = useTeamManager();
   const [isAccepting, setIsAccepting] = useState(false);
   const { teamId, invitationCode } = useParams<{
@@ -24,7 +24,7 @@ const InviteLinkPage = () => {
     if (!teamId || !invitationCode) return;
 
     if (!userId) {
-      alert('로그인 후 초대를 수락할 수 있습니다.');
+      toast.error('로그인 후 초대를 수락할 수 있습니다.');
       navigate('/login');
       return;
     }
@@ -41,7 +41,7 @@ const InviteLinkPage = () => {
         return;
       }
 
-      alert('초대 수락에 실패했습니다.');
+      toast.error('초대 수락에 실패했습니다.');
     } finally {
       setIsAccepting(false);
     }

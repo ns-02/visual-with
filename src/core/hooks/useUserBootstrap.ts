@@ -1,10 +1,13 @@
+import { toast } from '@core/store/useToastStore';
 import { useUserStore } from '@core/store/useUserStore';
 import { getMe } from '@shared/api/auth/AuthApi';
 import { useEffect } from 'react';
 
 export const useUserBootstrap = () => {
   const setUser = useUserStore((state) => state.setUser);
-  const setUserBootstrapped = useUserStore((state) => state.setUserBootstrapped);
+  const setUserBootstrapped = useUserStore(
+    (state) => state.setUserBootstrapped,
+  );
 
   useEffect(() => {
     let cancelled = false;
@@ -19,7 +22,7 @@ export const useUserBootstrap = () => {
           setUser({ id: res.userId, name: res.name, email: '' });
         }
       } catch (e) {
-        console.error(e);
+        toast.error(`${e}`);
       } finally {
         if (!cancelled) {
           setUserBootstrapped(true);

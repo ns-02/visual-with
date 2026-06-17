@@ -6,6 +6,7 @@ import { Button } from '@shared/components';
 import styles from './InviteTeamDialog.module.css';
 import { useTeamManager } from '../hooks/useTeamManager';
 import InviteMemberCard from './InviteMemberCard';
+import { toast } from '@core/store/useToastStore';
 
 interface InviteTeamDialogProps {
   open: boolean;
@@ -41,7 +42,7 @@ const InviteTeamDialog = ({ open, onOpenChange }: InviteTeamDialogProps) => {
   // 유저 검색
   const handleSearchUser = async () => {
     if (!invitedUserId) {
-      alert('유저 아이디를 입력해주세요.');
+      toast.error('유저 ID를 입력해주세요.');
       return;
     }
     const nextUserResult = await onSearchUser(invitedUserId);
@@ -50,7 +51,7 @@ const InviteTeamDialog = ({ open, onOpenChange }: InviteTeamDialogProps) => {
 
   const handleCopyInviteUrl = async () => {
     if (!inviteUrl) {
-      alert('초대 링크를 불러오지 못했습니다.');
+      toast.error('초대 링크를 불러오지 못했습니다.');
       return;
     }
     await navigator.clipboard.writeText(inviteUrl);
@@ -59,7 +60,7 @@ const InviteTeamDialog = ({ open, onOpenChange }: InviteTeamDialogProps) => {
   // ID 기반 유저 초대
   const handleInviteTeamByUserId = async () => {
     if (!invitedUserId) {
-      alert('유저 아이디를 입력해주세요.');
+      toast.error('유저 ID를 입력해주세요.');
       return;
     }
     await onInviteTeamByUserId(invitedUserId);

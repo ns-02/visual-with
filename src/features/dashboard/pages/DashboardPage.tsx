@@ -19,6 +19,7 @@ import {
 } from 'recharts';
 import { useDashboardStore } from '../store/useDashboardStore';
 import { useEffect } from 'react';
+import { toast } from '@core/store/useToastStore';
 
 const COLORS = ['#3b82f6', '#10b981', '#f59e0b', '#ef4444'];
 
@@ -63,7 +64,7 @@ function DashboardPage() {
 
   useEffect(() => {
     if (!teamId) {
-      console.error('팀 아이디가 존재하지 않음');
+      toast.error('팀 ID가 존재하지 않습니다.');
       return;
     }
 

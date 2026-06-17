@@ -3,6 +3,7 @@ import { Dialog, DialogInput } from '@shared/components';
 import { Button } from '@shared/components';
 import { Dispatch, SetStateAction, useState } from 'react';
 import { notFriendDataMocks } from '@mocks/FriendDataMocks';
+import { toast } from '@core/store/useToastStore';
 
 const AddFriendDialog = ({
   open,
@@ -17,15 +18,15 @@ const AddFriendDialog = ({
 
   const handleRequestFriend = () => {
     if (!friendId) {
-      alert('ID가 입력되지 않았습니다.');
+      toast.error('ID가 입력되지 않았습니다.');
       return;
     }
     if (!isFriendPresent) {
-      alert('잘못된 ID이거나, ID를 검색하지 않았습니다.');
+      toast.error('잘못된 ID이거나, ID를 검색하지 않았습니다.');
       return;
     }
 
-    alert(`${requestFriendName}님께 성공적으로 요청을 보냈습니다.`);
+    toast.success(`${requestFriendName}님께 성공적으로 요청을 보냈습니다.`);
 
     setFriendId('');
     onOpenChange(false);

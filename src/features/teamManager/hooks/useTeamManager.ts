@@ -14,6 +14,7 @@ import { useWorkspaceStore } from '@core/store/useWorkspaceStore';
 import { createMembership } from '@shared/models/Workspace';
 import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from '@core/store/useToastStore';
 
 export const useTeamManager = () => {
   const teamId = useTeamId();
@@ -47,7 +48,7 @@ export const useTeamManager = () => {
       setSelectTeam(res.id);
       navigate(`/main/${res.id}`);
     } catch (e) {
-      console.log(e);
+      toast.error(`${e}`);
     }
   };
 
@@ -61,7 +62,7 @@ export const useTeamManager = () => {
       deleteTeamFromStore(teamId);
       deleteTeamRule(teamId);
     } catch (e) {
-      console.log(e);
+      toast.error(`${e}`);
     }
   };
 
@@ -77,7 +78,7 @@ export const useTeamManager = () => {
         userEmail: res.email,
       };
     } catch (e) {
-      console.error(e);
+      toast.error(`${e}`);
       return null;
     }
   };
@@ -95,7 +96,7 @@ export const useTeamManager = () => {
       );
       console.log(res);
     } catch (e) {
-      console.error(e);
+      toast.error(`${e}`);
     }
   };
 
@@ -105,7 +106,7 @@ export const useTeamManager = () => {
       const res = await inviteTeamByURL({ teamId });
       return buildTeamInviteLink(res.url);
     } catch (e) {
-      console.error(e);
+      toast.error(`${e}`);
       return null;
     }
   }, [userId, teamId]);
@@ -145,7 +146,7 @@ export const useTeamManager = () => {
 
       return true;
     } catch (e) {
-      console.error(e);
+      toast.error(`${e}`);
       return false;
     }
   };

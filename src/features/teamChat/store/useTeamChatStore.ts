@@ -4,6 +4,7 @@ import { formatDate } from '@shared/utils/formatDate';
 import getMaxId from '@shared/utils/getMaxId';
 import { create } from 'zustand';
 import { Client, StompSubscription } from '@stomp/stompjs';
+import { toast } from '@core/store/useToastStore';
 // import SockJS from 'sockjs-client';
 
 interface TeamChatThread {
@@ -144,7 +145,7 @@ export const useTeamChatStore = create<TeamChatState>((set, get) => ({
         set({ isConnected: false });
       },
 
-      onStompError: (frame) => console.error('STOMP 오류:', frame),
+      onStompError: (frame) => toast.error(`STOMP 오류: ${frame}`),
     });
 
     client.activate();

@@ -5,6 +5,7 @@ import { useFriendId, useTeamId } from '@core/hooks/useWorkspaceParams';
 import { getToolIdFromPath } from './routeUtils';
 import { useWorkspaceStore } from '@core/store/useWorkspaceStore';
 import { useFriendStore } from '@features/friendList/store/useFriendStore';
+import { toast } from '@core/store/useToastStore';
 
 export const useRouteManager = () => {
   const navigate = useNavigate();
@@ -37,7 +38,7 @@ export const useRouteManager = () => {
     const toolPath = idToPath.get(toolId) || '';
 
     if (!teamId && toolPath !== 'directchat' && toolPath !== 'friendlist') {
-      console.error('선택된 팀 아이디가 존재하지 않음');
+      toast.error('팀 ID가 존재하지 않습니다.');
       return;
     }
 

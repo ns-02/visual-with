@@ -3,6 +3,7 @@ import { createMembership } from '@shared/models/Workspace';
 import { useUserStore } from '@core/store/useUserStore';
 import { useWorkspaceStore } from '@core/store/useWorkspaceStore';
 import { useEffect } from 'react';
+import { toast } from '@core/store/useToastStore';
 
 export const useWorkspaceBootstrap = () => {
   const userId = useUserStore((state) => state.user?.id);
@@ -47,7 +48,7 @@ export const useWorkspaceBootstrap = () => {
           setTeamList(userId, teams, memberships);
         }
       } catch (e) {
-        console.error(e);
+        toast.error(`${e}`);
       } finally {
         if (!cancelled) {
           setWorkspaceBootstrapped(true);

@@ -5,6 +5,7 @@ import { loginUser } from '@shared/api/auth/AuthApi';
 import { Button, AuthInput } from '@shared/components';
 import styles from './Auth.module.css';
 import { useUserStore } from '@core/store/useUserStore';
+import { toast } from '@core/store/useToastStore';
 
 function LoginPage() {
   const setUser = useUserStore((state) => state.setUser);
@@ -17,7 +18,7 @@ function LoginPage() {
     e.preventDefault();
 
     if (!id || !password) {
-      alert('양식이 입력되지 않았습니다.');
+      toast.error('양식이 입력되지 않았습니다.');
       return;
     }
 
@@ -37,9 +38,9 @@ function LoginPage() {
       navigate('/main');
     } catch (e) {
       if (e instanceof Error) {
-        alert(e.message);
+        toast.error(e.message);
       } else {
-        alert('알 수 없는 오류가 발생했습니다.');
+        toast.error('알 수 없는 오류가 발생했습니다.');
       }
     }
   };

@@ -3,6 +3,7 @@ import { createMembership } from '@shared/models/Workspace';
 import { useWorkspaceStore } from '@core/store/useWorkspaceStore';
 import { useTeamId } from '@core/hooks/useWorkspaceParams';
 import { useEffect } from 'react';
+import { toast } from '@core/store/useToastStore';
 
 export const useTeamMembersBootstrap = () => {
   const teamId = useTeamId();
@@ -29,7 +30,7 @@ export const useTeamMembersBootstrap = () => {
 
         setTeamMembers(teamId, memberships);
       } catch (e) {
-        console.error(e);
+        toast.error(`${e}`);
       }
     };
 
