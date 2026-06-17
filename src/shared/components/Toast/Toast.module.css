@@ -25,15 +25,19 @@
 }
 
 .root.error {
-  background: #dc2626;
+  background: #b45757;
 }
 
 .root.success {
-  background: #16a34a;
+  background: #4f9d6e;
+}
+
+.root.warning {
+  background: #c99a4a;
 }
 
 .root.info {
-  background: #1f2937;
+  background: #4b5563;
 }
 
 .description {

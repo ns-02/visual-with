@@ -22,22 +22,22 @@ function SignupPage() {
     e.preventDefault();
 
     if (!id || !password || !checkPassword || !name || !email) {
-      alert('양식이 입력되지 않았습니다.');
+      toast.error('양식이 입력되지 않았습니다.');
       return;
     }
 
     if (password !== checkPassword) {
-      alert('비밀번호가 일치하지 않습니다.');
+      toast.error('비밀번호가 일치하지 않습니다.');
       return;
     }
 
     if (!isValid) {
-      alert('사용 가능한 아이디인지 확인해주세요.');
+      toast.error('사용 가능한 아이디인지 확인해주세요.');
       return;
     }
 
     if (!agreedToTerms) {
-      alert('개인정보 처리방침에 동의해주세요.');
+      toast.error('개인정보 처리방침에 동의해주세요.');
       return;
     }
 
@@ -51,16 +51,15 @@ function SignupPage() {
       navigate('/signup-result', { state: { userId: res.user_id } });
     } catch (e) {
       if (e instanceof Error) {
-        alert(e.message);
+        toast.error(e.message);
       } else {
-        alert('알 수 없는 오류가 발생했습니다.');
+        toast.error('알 수 없는 오류가 발생했습니다.');
       }
     }
   };
 
   const handleIdCheck = async () => {
     if (!id) {
-      // alert('아이디를 입력해주세요.');
       toast.error('아이디를 입력해주세요.');
       return;
     }
@@ -68,10 +67,10 @@ function SignupPage() {
     const res = await checkId({ userId: id });
 
     if (res.available) {
-      alert('사용 가능한 아이디입니다.');
+      toast.success('사용 가능한 아이디입니다.');
       setIsValid(true);
     } else {
-      alert('현재 사용 중인 아이디입니다.');
+      toast.error('현재 사용 중인 아이디입니다.');
       setIsValid(false);
     }
   };
