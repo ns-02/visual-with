@@ -23,7 +23,7 @@ const Dialog = ({
     <RadixDialog.Root open={open} onOpenChange={onOpenChange}>
       <RadixDialog.Portal>
         <RadixDialog.Overlay className={styles.overlay} />
-        <RadixDialog.Content className={styles.content} asChild>
+        <RadixDialog.Content className={styles.content}>
           <form onSubmit={handleSubmit}>
             <RadixDialog.Title className={styles.title}>
               {title}

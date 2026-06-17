@@ -21,7 +21,7 @@ const AlertDialog = ({
     <RadixAlertDialog.Root open={open} onOpenChange={onOpenChange}>
       <RadixAlertDialog.Portal>
         <RadixAlertDialog.Overlay className={styles.overlay} />
-        <RadixAlertDialog.Content className={styles.content} asChild>
+        <RadixAlertDialog.Content className={styles.content}>
           <form onSubmit={handleSubmit}>
             <RadixAlertDialog.Title className={styles.title}>
               {title}
