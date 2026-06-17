@@ -2,11 +2,24 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Container } from '@shared/components';
 import styles from './Auth.module.css';
 import { Button } from '@shared/components';
+import { toast } from '@core/store/useToastStore';
+import { useEffect } from 'react';
 
 function SignupResultPage() {
   const navigate = useNavigate();
   const location = useLocation();
-  const { userId } = location.state;
+  const userId = (location.state as { userId?: string } | null)?.userId ?? null;
+
+  useEffect(() => {
+    if (!userId) {
+      toast.error('잘못된 접근입니다.');
+      navigate('/', { replace: true });
+    }
+  }, [userId, navigate]);
+
+  if (!userId) {
+    return null;
+  }
 
   return (
     <Container
