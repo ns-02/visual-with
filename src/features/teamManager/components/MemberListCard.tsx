@@ -1,6 +1,3 @@
-// import { EllipsisVertical } from 'lucide-react';
-// import { Button } from '@shared/components';
-// import FriendListDropdown from './FriendListDropdown';
 import Avatar from '@shared/components/Avatar';
 
 interface MemberListCardProps {
@@ -9,13 +6,7 @@ interface MemberListCardProps {
   description?: string;
 }
 
-const MemberListCard = ({ id, name, description }: MemberListCardProps) => {
-  // const triggerElement = (
-  //   <Button variant='content'>
-  //     <EllipsisVertical size={16} />
-  //   </Button>
-  // );
-
+const MemberListCard = ({ name, description }: MemberListCardProps) => {
   return (
     <div className='common_card'>
       <div className='common_card_info'>
@@ -25,9 +16,6 @@ const MemberListCard = ({ id, name, description }: MemberListCardProps) => {
           <p className='text_sec_100'>{description}</p>
         </div>
       </div>
-      {/* <div className='common_card_nav'>
-        <FriendListDropdown friendId={id} triggerElement={triggerElement} />
-      </div> */}
     </div>
   );
 };
