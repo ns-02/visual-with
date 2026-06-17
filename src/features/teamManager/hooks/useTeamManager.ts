@@ -66,12 +66,19 @@ export const useTeamManager = () => {
   };
 
   const onSearchUser = async (userId: string) => {
-    if (!userId) return;
+    if (!userId) return null;
 
     try {
-      await searchUser({ userId });
+      const res = await searchUser({ userId });
+
+      return {
+        userId: res.userId,
+        userName: res.name,
+        userEmail: res.email,
+      };
     } catch (e) {
       console.error(e);
+      return null;
     }
   };
 

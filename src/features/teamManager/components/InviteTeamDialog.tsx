@@ -1,15 +1,22 @@
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import * as Tabs from '@radix-ui/react-tabs';
-import { Copy, Search } from 'lucide-react';
+import { Copy, MailPlus, Search } from 'lucide-react';
 import { Dialog, DialogInput } from '@shared/components';
 import { Button } from '@shared/components';
 import styles from './InviteTeamDialog.module.css';
 import { useTeamManager } from '../hooks/useTeamManager';
+import InviteMemberCard from './InviteMemberCard';
 
 interface InviteTeamDialogProps {
   open: boolean;
   onOpenChange: Dispatch<SetStateAction<boolean>>;
   onCreate?: (value: string) => void;
+}
+
+interface UserResult {
+  userId: string;
+  userName: string;
+  userEmail: string;
 }
 
 const InviteTeamDialog = ({ open, onOpenChange }: InviteTeamDialogProps) => {
@@ -18,6 +25,7 @@ const InviteTeamDialog = ({ open, onOpenChange }: InviteTeamDialogProps) => {
   const [invitedUserId, setInvitedUserId] = useState('');
   const [inviteUrl, setInviteUrl] = useState('');
   const [activeTab, setActiveTab] = useState('tab1');
+  const [userResult, setUserResult] = useState<UserResult | null>(null);
 
   useEffect(() => {
     if (!open) return;
@@ -36,7 +44,8 @@ const InviteTeamDialog = ({ open, onOpenChange }: InviteTeamDialogProps) => {
       alert('유저 아이디를 입력해주세요.');
       return;
     }
-    await onSearchUser(invitedUserId);
+    const nextUserResult = await onSearchUser(invitedUserId);
+    setUserResult(nextUserResult);
   };
 
   const handleCopyInviteUrl = async () => {
@@ -63,9 +72,8 @@ const InviteTeamDialog = ({ open, onOpenChange }: InviteTeamDialogProps) => {
       title='팀 초대'
       open={open}
       onOpenChange={onOpenChange}
-      confirmText='초대하기'
-      viewConfirm={activeTab === 'tab2'}
-      onConfirm={handleInviteTeamByUserId}
+      viewCansel={false}
+      viewConfirm={false}
     >
       <Tabs.Root value={activeTab} onValueChange={setActiveTab}>
         <Tabs.List style={{ display: 'flex', width: 360, marginBottom: 12 }}>
@@ -97,6 +105,7 @@ const InviteTeamDialog = ({ open, onOpenChange }: InviteTeamDialogProps) => {
               아이디를 입력하여 팀원을 초대하세요.
             </p>
           </div>
+
           <div className='d_flex gap_6'>
             <DialogInput
               placeholder='팀원의 ID를 검색하세요'
@@ -107,6 +116,31 @@ const InviteTeamDialog = ({ open, onOpenChange }: InviteTeamDialogProps) => {
               <Search size={16} />
             </Button>
           </div>
+
+          {userResult && (
+            <div
+              className='gap_6 mt_8'
+              style={{
+                backgroundColor: 'aliceblue',
+                borderRadius: '12px',
+                padding: '8px',
+                justifyContent: 'center',
+              }}
+            >
+              <InviteMemberCard
+                name={userResult.userName}
+                description={userResult.userEmail}
+              >
+                <Button
+                  text='초대'
+                  className='bg_blue_400'
+                  onClick={handleInviteTeamByUserId}
+                >
+                  <MailPlus size={16} />
+                </Button>
+              </InviteMemberCard>
+            </div>
+          )}
         </Tabs.Content>
       </Tabs.Root>
     </Dialog>
