@@ -5,6 +5,7 @@ import { checkId, signupUser } from '@shared/api/auth/AuthApi';
 import { Button, AuthInput } from '@shared/components';
 import styles from './Auth.module.css';
 import PrivacyPolicyModal from './PrivacyPolicyModal';
+import { toast } from '@core/store/useToastStore';
 
 function SignupPage() {
   const navigate = useNavigate();
@@ -59,7 +60,8 @@ function SignupPage() {
 
   const handleIdCheck = async () => {
     if (!id) {
-      alert('아이디를 입력해주세요.');
+      // alert('아이디를 입력해주세요.');
+      toast.error('아이디를 입력해주세요.');
       return;
     }
 

@@ -12,6 +12,7 @@ export { default as Input } from './Input';
 export { default as Item } from './Item';
 export { default as Dropdown } from './Dropdown';
 export { default as Progress } from './Progress';
+export { default as Toast } from './Toast';
 export { default as Tooltip } from './Tooltip';
 export { default as AlertDialog } from './AlertDialog';
 export { default as Dialog } from './Dialog/';
