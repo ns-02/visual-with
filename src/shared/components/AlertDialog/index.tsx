@@ -12,28 +12,44 @@ const AlertDialog = ({
   confirmText,
   onConfirm,
 }: DialogProps) => {
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (onConfirm) onConfirm();
+  };
+
   return (
     <RadixAlertDialog.Root open={open} onOpenChange={onOpenChange}>
       <RadixAlertDialog.Portal>
         <RadixAlertDialog.Overlay className={styles.overlay} />
-        <RadixAlertDialog.Content className={styles.content}>
-          <RadixAlertDialog.Title className={styles.title}>
-            {title}
-          </RadixAlertDialog.Title>
-          <RadixAlertDialog.Description className={styles.description}>
-            {description}
-          </RadixAlertDialog.Description>
-          {children}
-          <div className={styles.btnfield}>
-            <RadixAlertDialog.Cancel asChild>
-              <Button text='취소' className={styles.button_default}></Button>
-            </RadixAlertDialog.Cancel>
-            <Button
-              text={confirmText}
-              onClick={onConfirm}
-              className={styles.button_primary}
-            ></Button>
-          </div>
+        <RadixAlertDialog.Content className={styles.content} asChild>
+          <form onSubmit={handleSubmit}>
+            <RadixAlertDialog.Title className={styles.title}>
+              {title}
+            </RadixAlertDialog.Title>
+            <RadixAlertDialog.Description className={styles.description}>
+              {description}
+            </RadixAlertDialog.Description>
+
+            {children}
+
+            <div className={styles.btnfield}>
+              <RadixAlertDialog.Cancel asChild>
+                <Button
+                  type='button'
+                  text='취소'
+                  className={styles.button_default}
+                />
+              </RadixAlertDialog.Cancel>
+
+              <RadixAlertDialog.Action asChild>
+                <Button
+                  type='submit'
+                  text={confirmText}
+                  className={styles.button_primary}
+                />
+              </RadixAlertDialog.Action>
+            </div>
+          </form>
         </RadixAlertDialog.Content>
       </RadixAlertDialog.Portal>
     </RadixAlertDialog.Root>
