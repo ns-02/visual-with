@@ -24,15 +24,26 @@ export function parseInvitePath(apiUrl: string): InvitePathParams | null {
 
   const inviteMatch = pathname.match(/\/invite\/([^/]+)\/([^/?#]+)/);
   if (inviteMatch) {
-    return { teamId: inviteMatch[1], invitationCode: inviteMatch[2] };
+    const [, teamId, invitationCode] = inviteMatch;
+    if (teamId && invitationCode) {
+      return { teamId, invitationCode };
+    }
   }
 
   const segments = pathname.replace(/^\/+/, '').split('/').filter(Boolean);
   if (segments[0] === 'invite' && segments.length >= 3) {
-    return { teamId: segments[1], invitationCode: segments[2] };
+    const teamId = segments[1];
+    const invitationCode = segments[2];
+    if (teamId && invitationCode) {
+      return { teamId, invitationCode };
+    }
   }
   if (segments.length >= 2) {
-    return { teamId: segments[0], invitationCode: segments[1] };
+    const teamId = segments[0];
+    const invitationCode = segments[1];
+    if (teamId && invitationCode) {
+      return { teamId, invitationCode };
+    }
   }
 
   return null;
