@@ -3,6 +3,7 @@ import { useTeamId } from '@core/hooks/useWorkspaceParams';
 import { useUserStore } from '@core/store/useUserStore';
 import { useWorkspaceStore } from '@core/store/useWorkspaceStore';
 import { useNavigate } from 'react-router-dom';
+import { toast } from '@core/store/useToastStore';
 
 export const useTeamAccessGuard = () => {
   const teamId = useTeamId();
@@ -27,13 +28,9 @@ export const useTeamAccessGuard = () => {
     if (!isReady) return;
 
     if (!isMember) {
-      alert('잘못된 접근입니다.');
+      toast.error('잘못된 접근입니다.');
 
-      if (window.history.length > 1) {
-        navigate(-1);
-      } else {
-        navigate('/main', { replace: true });
-      }
+      navigate('/', { replace: true });
     }
   }, [isReady, isMember, navigate]);
 };
