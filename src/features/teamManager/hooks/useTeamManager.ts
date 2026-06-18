@@ -61,8 +61,12 @@ export const useTeamManager = () => {
 
       deleteTeamFromStore(teamId);
       deleteTeamRule(teamId);
+
+      toast.success('팀이 삭제되었습니다.');
+      navigate('/main', { replace: true });
     } catch (e) {
-      toast.error(`${e}`);
+      console.error(e);
+      toast.error('팀 삭제에 실패했습니다.');
     }
   };
 
