@@ -129,8 +129,8 @@ const InviteTeamDialog = ({ open, onOpenChange }: InviteTeamDialogProps) => {
               }}
             >
               <InviteMemberCard
-                name={userResult.userId}
-                // description={userResult.userEmail}
+                name={userResult.userName}
+                description={userResult.userEmail}
               >
                 <Button
                   text='초대'
