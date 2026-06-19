@@ -1,4 +1,4 @@
-import { userDataMocks } from '@mocks/UserDataMocks';
+// import { userDataMocks } from '@mocks/UserDataMocks';
 
 import { UserData } from '@shared/models/User';
 import { ToolId } from '@shared/models/Workspace';
@@ -16,12 +16,13 @@ interface UserState {
 }
 
 export const useUserStore = create<UserState>((set) => ({
-  user: {
-    id: userDataMocks.id,
-    name: userDataMocks.name,
-    email: userDataMocks.email,
-    nickname: userDataMocks.nickname,
-  },
+  // user: {
+  //   id: userDataMocks.id,
+  //   name: userDataMocks.name,
+  //   email: userDataMocks.email,
+  //   nickname: userDataMocks.nickname,
+  // },
+  user: null,
 
   currentToolId: null,
   isUserBootstrapped: false,

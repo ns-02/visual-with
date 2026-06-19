@@ -1,5 +1,5 @@
-import { teamDataMocks } from '@mocks/TeamDataMocks';
-import { teamMembershipMocks } from '@mocks/TeamMembershipDataMocks';
+// import { teamDataMocks } from '@mocks/TeamDataMocks';
+// import { teamMembershipMocks } from '@mocks/TeamMembershipDataMocks';
 import { TeamData, TeamMembershipData } from '@shared/models/Workspace';
 import { create } from 'zustand';
 
@@ -27,8 +27,10 @@ interface WorkspaceState {
 }
 
 export const useWorkspaceStore = create<WorkspaceState>()((set) => ({
-  teamData: teamDataMocks || [],
-  membershipData: teamMembershipMocks || [],
+  // teamData: teamDataMocks || [],
+  // membershipData: teamMembershipMocks || [],
+  teamData: [],
+  membershipData: [],
 
   selectTeamId: null,
 

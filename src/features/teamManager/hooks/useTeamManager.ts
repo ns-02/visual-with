@@ -77,7 +77,7 @@ export const useTeamManager = () => {
       const res = await searchUser({ userId });
 
       return {
-        userId: res.userId,
+        userId: res.user_id,
         userName: res.name,
         userEmail: res.email,
       };
