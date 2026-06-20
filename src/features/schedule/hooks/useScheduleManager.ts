@@ -47,7 +47,7 @@ export const useScheduleManager = () => {
         finishTime: item.completeTime,
         teamId,
         authorId: item.userId,
-        authorName: '아무개',
+        authorName: item.userName ?? '아무개',
       }));
 
       loadSchedule(newScheduleData, teamId);

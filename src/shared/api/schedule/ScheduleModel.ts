@@ -7,6 +7,7 @@ export interface ViewScheduleRequest {
 export interface ViewScheduleResponse {
   id: number;
   userId: string;
+  userName: string;
   title: string;
   content: string;
   startDate: string;
