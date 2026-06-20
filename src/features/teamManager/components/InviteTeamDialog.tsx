@@ -1,11 +1,10 @@
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import * as Tabs from '@radix-ui/react-tabs';
 import { Copy, MailPlus, Search } from 'lucide-react';
-import { Dialog, DialogInput } from '@shared/components';
+import { Avatar, Card, Dialog, DialogInput } from '@shared/components';
 import { Button } from '@shared/components';
 import styles from './InviteTeamDialog.module.css';
 import { useTeamManager } from '../hooks/useTeamManager';
-import InviteMemberCard from './InviteMemberCard';
 import { toast } from '@core/store/useToastStore';
 
 interface InviteTeamDialogProps {
@@ -128,9 +127,10 @@ const InviteTeamDialog = ({ open, onOpenChange }: InviteTeamDialogProps) => {
                 justifyContent: 'center',
               }}
             >
-              <InviteMemberCard
-                name={userResult.userName}
-                description={userResult.userEmail}
+              <Card
+                title={userResult.userName}
+                content={userResult.userEmail}
+                iconElement={<Avatar />}
               >
                 <Button
                   text='초대'
@@ -139,7 +139,7 @@ const InviteTeamDialog = ({ open, onOpenChange }: InviteTeamDialogProps) => {
                 >
                   <MailPlus size={16} />
                 </Button>
-              </InviteMemberCard>
+              </Card>
             </div>
           )}
         </Tabs.Content>
