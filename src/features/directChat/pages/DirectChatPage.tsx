@@ -93,18 +93,20 @@ function DirectChatPage() {
                   파일 목록
                 </div>
 
-                {selectFriendFileData?.map((item) => (
-                  <FileListCard
-                    key={item.id}
-                    id={item.id}
-                    fileName={item.fileName}
-                    date={item.date}
-                    fileSize={item.fileSize}
-                    timeAgo={item.timeAgo}
-                    authorId={item.authorId}
-                    authorName={item.authorName}
-                  />
-                ))}
+                <div className='card_list'>
+                  {selectFriendFileData?.map((item) => (
+                    <FileListCard
+                      key={item.id}
+                      id={item.id}
+                      fileName={item.fileName}
+                      date={item.date}
+                      fileSize={item.fileSize}
+                      timeAgo={item.timeAgo}
+                      authorId={item.authorId}
+                      authorName={item.authorName}
+                    />
+                  ))}
+                </div>
               </div>
             )}
           </div>

@@ -18,32 +18,36 @@ function FriendListPage() {
           <UserPlus size={16} />
         </FriendListLabel>
 
-        {friendRequestData?.map((item) => {
-          return (
-            <FriendRequestCard
-              key={item.id}
-              name={item.name}
-              description={item.description}
-              onAccept={() => handleAccept(item)}
-              onReject={() => handleReject(item)}
-            />
-          );
-        })}
+        <div className='card_list'>
+          {friendRequestData?.map((item) => {
+            return (
+              <FriendRequestCard
+                key={item.id}
+                name={item.name}
+                description={item.description}
+                onAccept={() => handleAccept(item)}
+                onReject={() => handleReject(item)}
+              />
+            );
+          })}
+        </div>
 
         <FriendListLabel text='친구 목록' count={friendData?.length}>
           <User size={16} />
         </FriendListLabel>
 
-        {friendData?.map((item) => {
-          return (
-            <FriendListCard
-              key={item.id}
-              id={item.id}
-              name={item.name}
-              description={item.description}
-            />
-          );
-        })}
+        <div className='card_list'>
+          {friendData?.map((item) => {
+            return (
+              <FriendListCard
+                key={item.id}
+                id={item.id}
+                name={item.name}
+                description={item.description}
+              />
+            );
+          })}
+        </div>
       </div>
     </div>
   );

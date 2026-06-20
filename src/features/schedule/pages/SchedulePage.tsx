@@ -39,19 +39,22 @@ function SchedulePage() {
 
       <div className={styles.schedule_view_panel}>
         <div style={{ marginTop: '24px', marginBottom: '12px' }}>일정 목록</div>
-        {teamScheduleData.map((item) => {
-          return (
-            <ScheduleCard
-              key={item.id}
-              id={item.id}
-              title={item.title}
-              authorId={item.authorId}
-              authorName={item.authorName}
-              date={item.startDate}
-              time={item.startTime}
-            />
-          );
-        })}
+
+        <div className='card_list'>
+          {teamScheduleData.map((item) => {
+            return (
+              <ScheduleCard
+                key={item.id}
+                id={item.id}
+                title={item.title}
+                authorId={item.authorId}
+                authorName={item.authorName}
+                date={item.startDate}
+                time={item.startTime}
+              />
+            );
+          })}
+        </div>
       </div>
     </div>
   );

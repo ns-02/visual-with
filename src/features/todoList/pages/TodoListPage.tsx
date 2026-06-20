@@ -15,37 +15,41 @@ function TodoListPage() {
           <Circle size={16} />
         </TodoListLabel>
 
-        {progressData.map((item) => (
-          <TodoListCard
-            key={item.id}
-            id={item.id}
-            title={item.title}
-            description={item.description}
-            authorId={item.authorId}
-            authorName={item.authorName}
-            checked={item.checked}
-            isCheckDisabled={!getCanToggle(item.authorId)}
-            onCheckedChange={async () => await updateTodoComplete(item)}
-          />
-        ))}
+        <div className='card_list'>
+          {progressData.map((item) => (
+            <TodoListCard
+              key={item.id}
+              id={item.id}
+              title={item.title}
+              description={item.description}
+              authorId={item.authorId}
+              authorName={item.authorName}
+              checked={item.checked}
+              isCheckDisabled={!getCanToggle(item.authorId)}
+              onCheckedChange={async () => await updateTodoComplete(item)}
+            />
+          ))}
+        </div>
 
         <TodoListLabel text='완료' count={completedData.length}>
           <CircleCheckBig size={16} />
         </TodoListLabel>
 
-        {completedData.map((item) => (
-          <TodoListCard
-            key={item.id}
-            id={item.id}
-            title={item.title}
-            description={item.description}
-            authorId={item.authorId}
-            authorName={item.authorName}
-            checked={item.checked}
-            isCheckDisabled={!getCanToggle(item.authorId)}
-            onCheckedChange={async () => await updateTodoComplete(item)}
-          />
-        ))}
+        <div className='card_list'>
+          {completedData.map((item) => (
+            <TodoListCard
+              key={item.id}
+              id={item.id}
+              title={item.title}
+              description={item.description}
+              authorId={item.authorId}
+              authorName={item.authorName}
+              checked={item.checked}
+              isCheckDisabled={!getCanToggle(item.authorId)}
+              onCheckedChange={async () => await updateTodoComplete(item)}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );

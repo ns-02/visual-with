@@ -15,14 +15,16 @@ const TeamMemberList = () => {
     <div>
       <MemberListLabel text='멤버 목록' count={currentMembershipData.length} />
 
-      {currentMembershipData.map((item) => (
-        <MemberListCard
-          key={item.userId}
-          id={item.userId}
-          name={item.userName}
-          description={item.ruleName}
-        />
-      ))}
+      <div className='card_list'>
+        {currentMembershipData.map((item) => (
+          <MemberListCard
+            key={item.userId}
+            id={item.userId}
+            name={item.userName}
+            description={item.ruleName}
+          />
+        ))}
+      </div>
     </div>
   );
 };

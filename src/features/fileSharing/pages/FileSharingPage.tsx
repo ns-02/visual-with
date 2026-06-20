@@ -62,25 +62,27 @@ function FileSharingPage() {
 
         <div style={{ marginTop: '24px', marginBottom: '12px' }}>파일 목록</div>
 
-        {fileData
-          .filter((item) => item.teamId === teamId)
-          .filter((item) => {
-            return fileTypes === 'all' ? item : item.fileType === fileTypes;
-          })
-          .map((item) => {
-            return (
-              <FileListCard
-                key={item.id}
-                id={item.id}
-                fileName={item.fileName}
-                date={item.date}
-                fileSize={item.fileSize}
-                timeAgo={item.timeAgo}
-                authorId={item.authorId}
-                authorName={item.authorName}
-              />
-            );
-          })}
+        <div className='card_list'>
+          {fileData
+            .filter((item) => item.teamId === teamId)
+            .filter((item) => {
+              return fileTypes === 'all' ? item : item.fileType === fileTypes;
+            })
+            .map((item) => {
+              return (
+                <FileListCard
+                  key={item.id}
+                  id={item.id}
+                  fileName={item.fileName}
+                  date={item.date}
+                  fileSize={item.fileSize}
+                  timeAgo={item.timeAgo}
+                  authorId={item.authorId}
+                  authorName={item.authorName}
+                />
+              );
+            })}
+        </div>
       </div>
     </div>
   );
