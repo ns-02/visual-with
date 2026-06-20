@@ -2,10 +2,12 @@ import { useState } from 'react';
 import styles from './FileSharingLayout.module.css';
 import DragAndDrop from '../components/DragAndDrop';
 import FileUploadCard from '../components/FileUploadCard';
-import FileListCard from '../components/FileListCard';
 import { useTeamFileStore } from '../store/useTeamFileStore';
 import { useWorkspaceParams } from '@core/hooks/useWorkspaceParams';
 import FileNavButton from '../components/FileNavButton';
+import { Button, Card, DropdownTrigger, FileIcon } from '@shared/components';
+import { Download } from 'lucide-react';
+import FileSharingDropdown from '../components/FileSharingDropdown';
 
 function FileSharingPage() {
   const [fileTypes, setFileTypes] = useState<string>('all');
@@ -61,7 +63,6 @@ function FileSharingPage() {
         )}
 
         <div style={{ marginTop: '24px', marginBottom: '12px' }}>파일 목록</div>
-
         <div className='card_list'>
           {fileData
             .filter((item) => item.teamId === teamId)
@@ -70,16 +71,21 @@ function FileSharingPage() {
             })
             .map((item) => {
               return (
-                <FileListCard
+                <Card
                   key={item.id}
-                  id={item.id}
-                  fileName={item.fileName}
-                  date={item.date}
-                  fileSize={item.fileSize}
-                  timeAgo={item.timeAgo}
-                  authorId={item.authorId}
-                  authorName={item.authorName}
-                />
+                  title={item.fileName}
+                  content={`${item.date} · ${item.fileSize} · ${item.authorName}`}
+                  iconElement={<FileIcon />}
+                >
+                  <Button variant='content'>
+                    <Download size={16} />
+                  </Button>
+                  <FileSharingDropdown
+                    fileId={item.id}
+                    triggerElement={<DropdownTrigger />}
+                    authorId={item.authorId}
+                  />
+                </Card>
               );
             })}
         </div>

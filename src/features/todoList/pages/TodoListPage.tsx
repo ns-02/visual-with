@@ -1,8 +1,9 @@
 import { Circle, CircleCheckBig } from 'lucide-react';
 import styles from './TodoListLayout.module.css';
-import TodoListCard from '../components/TodoListCard';
 import { ReactNode } from 'react';
 import { useTodoManager } from '../hooks/useTodoManager';
+import { Card, CheckBox, DropdownTrigger } from '@shared/components';
+import TodoListDropdown from '../components/TodoListDropdown';
 
 function TodoListPage() {
   const { progressData, completedData, updateTodoComplete, getCanToggle } =
@@ -17,17 +18,36 @@ function TodoListPage() {
 
         <div className='card_list'>
           {progressData.map((item) => (
-            <TodoListCard
+            <Card
               key={item.id}
-              id={item.id}
               title={item.title}
-              description={item.description}
-              authorId={item.authorId}
-              authorName={item.authorName}
-              checked={item.checked}
-              isCheckDisabled={!getCanToggle(item.authorId)}
-              onCheckedChange={async () => await updateTodoComplete(item)}
-            />
+              content={`${item.authorName} · ${item.description}`}
+              iconElement={
+                <div
+                  style={{
+                    display: 'flex',
+                    flex: '1',
+                    alignItems: 'center',
+                  }}
+                >
+                  <CheckBox
+                    id={`${item.id ?? ''}`}
+                    checked={item.checked ?? false}
+                    onCheckedChange={async () => await updateTodoComplete(item)}
+                    disabled={!getCanToggle(item.authorId)}
+                  />
+                </div>
+              }
+              infoStyle={{
+                textDecoration: `${item.checked ? 'line-through' : ''}`,
+              }}
+            >
+              <TodoListDropdown
+                todoId={item.id}
+                authorId={item.authorId}
+                triggerElement={<DropdownTrigger />}
+              />
+            </Card>
           ))}
         </div>
 
@@ -37,17 +57,36 @@ function TodoListPage() {
 
         <div className='card_list'>
           {completedData.map((item) => (
-            <TodoListCard
+            <Card
               key={item.id}
-              id={item.id}
               title={item.title}
-              description={item.description}
-              authorId={item.authorId}
-              authorName={item.authorName}
-              checked={item.checked}
-              isCheckDisabled={!getCanToggle(item.authorId)}
-              onCheckedChange={async () => await updateTodoComplete(item)}
-            />
+              content={`${item.authorName} · ${item.description}`}
+              iconElement={
+                <div
+                  style={{
+                    display: 'flex',
+                    flex: '1',
+                    alignItems: 'center',
+                  }}
+                >
+                  <CheckBox
+                    id={`${item.id ?? ''}`}
+                    checked={item.checked ?? false}
+                    onCheckedChange={async () => await updateTodoComplete(item)}
+                    disabled={!getCanToggle(item.authorId)}
+                  />
+                </div>
+              }
+              infoStyle={{
+                textDecoration: `${item.checked ? 'line-through' : ''}`,
+              }}
+            >
+              <TodoListDropdown
+                todoId={item.id}
+                authorId={item.authorId}
+                triggerElement={<DropdownTrigger />}
+              />
+            </Card>
           ))}
         </div>
       </div>

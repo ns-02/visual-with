@@ -1,9 +1,10 @@
-import ScheduleCard from '../components/ScheduleCard';
 import styles from './ScheduleLayout.module.css';
 import { useState } from 'react';
 import Calendar from '../components/Calendar';
 import { formatDate } from '@shared/utils/formatDate';
 import { useScheduleManager } from '../hooks/useScheduleManager';
+import { Card, DropdownTrigger } from '@shared/components';
+import ScheduleDropdown from '../components/ScheduleDropdown';
 
 function SchedulePage() {
   const { teamScheduleData } = useScheduleManager();
@@ -43,15 +44,21 @@ function SchedulePage() {
         <div className='card_list'>
           {teamScheduleData.map((item) => {
             return (
-              <ScheduleCard
+              <Card
                 key={item.id}
-                id={item.id}
                 title={item.title}
-                authorId={item.authorId}
-                authorName={item.authorName}
-                date={item.startDate}
-                time={item.startTime}
-              />
+                content={
+                  item.description
+                    ? `${item.authorName} · ${item.startDate} · ${item.startTime} · ${item.description}`
+                    : `${item.authorName} · ${item.startDate} · ${item.startTime}`
+                }
+              >
+                <ScheduleDropdown
+                  scheduleId={item.id}
+                  authorId={item.authorId}
+                  triggerElement={<DropdownTrigger />}
+                />
+              </Card>
             );
           })}
         </div>

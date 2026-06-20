@@ -1,10 +1,8 @@
 import { ReactNode } from 'react';
-import { User, UserPlus } from 'lucide-react';
+import { Check, User, UserPlus, X } from 'lucide-react';
 import styles from './FriendListLayout.module.css';
-import FriendRequestCard from '../components/FriendRequestCard';
-import FriendListCard from '../components/FriendListCard';
 import { useFriendStore } from '../store/useFriendStore';
-import { Avatar, Card, DropdownTrigger } from '@shared/components';
+import { Avatar, Button, Card, DropdownTrigger } from '@shared/components';
 import FriendListDropdown from '../components/FriendListDropdown';
 
 function FriendListPage() {
@@ -23,13 +21,27 @@ function FriendListPage() {
         <div className='card_list'>
           {friendRequestData?.map((item) => {
             return (
-              <FriendRequestCard
+              <Card
                 key={item.id}
-                name={item.name}
-                description={item.description}
-                onAccept={() => handleAccept(item)}
-                onReject={() => handleReject(item)}
-              />
+                title={item.name}
+                content={item.description}
+                iconElement={<Avatar />}
+              >
+                <Button
+                  text='수락'
+                  className='bg_blue_400'
+                  onClick={() => handleAccept(item)}
+                >
+                  <Check size={16} />
+                </Button>
+                <Button
+                  text='거절'
+                  className='bg_blue_200'
+                  onClick={() => handleReject(item)}
+                >
+                  <X size={16} />
+                </Button>
+              </Card>
             );
           })}
         </div>
@@ -38,18 +50,6 @@ function FriendListPage() {
           <User size={16} />
         </FriendListLabel>
 
-        <div className='card_list'>
-          {friendData?.map((item) => {
-            return (
-              <FriendListCard
-                key={item.id}
-                id={item.id}
-                name={item.name}
-                description={item.description}
-              />
-            );
-          })}
-        </div>
         <div className='card_list'>
           {friendData?.map((item) => {
             return (
