@@ -4,6 +4,8 @@ import styles from './FriendListLayout.module.css';
 import FriendRequestCard from '../components/FriendRequestCard';
 import FriendListCard from '../components/FriendListCard';
 import { useFriendStore } from '../store/useFriendStore';
+import { Avatar, Card, DropdownTrigger } from '@shared/components';
+import FriendListDropdown from '../components/FriendListDropdown';
 
 function FriendListPage() {
   const friendData = useFriendStore((state) => state.friendData);
@@ -45,6 +47,23 @@ function FriendListPage() {
                 name={item.name}
                 description={item.description}
               />
+            );
+          })}
+        </div>
+        <div className='card_list'>
+          {friendData?.map((item) => {
+            return (
+              <Card
+                key={item.id}
+                title={item.name}
+                content={item.description}
+                iconElement={<Avatar />}
+              >
+                <FriendListDropdown
+                  friendId={item.id}
+                  triggerElement={<DropdownTrigger />}
+                />
+              </Card>
             );
           })}
         </div>
