@@ -2,7 +2,7 @@ import { Button, Input } from '@shared/components';
 import { Plus, Send } from 'lucide-react';
 import { KeyboardEvent, useState } from 'react';
 import styles from './ChatInputArea.module.css';
-import FileUploadDropdown from '../../../shared/components/FileUploadDropdown';
+import { FileUploadDropdown } from '@features/file';
 
 function ChatInputArea({
   itemClassName,
