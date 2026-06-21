@@ -1,8 +1,8 @@
 import { FormEvent, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { CheckBox, Container } from '@shared/components';
+import { CheckBox } from '@shared/components';
 import { checkId, signupUser } from '@shared/api/auth/AuthApi';
-import { Button, AuthInput } from '@shared/components';
+import { Button } from '@shared/components';
 import styles from './Auth.module.css';
 import PrivacyPolicyModal from './PrivacyPolicyModal';
 import { toast } from '@core/store/useToastStore';
@@ -76,59 +76,61 @@ function SignupPage() {
   };
 
   return (
-    <Container
-      outerButton={
-        <Link className={styles.link} to={'/'}>
-          ← 홈으로 돌아가기
-        </Link>
-      }
-    >
+    <>
       <form className={styles.signup_form} onSubmit={(e) => handleSignUp(e)}>
         <div className={styles.title_container}>
           <h1 className={styles.title}>회원가입</h1>
         </div>
-        <AuthInput
+        <input
           name='name'
-          type='text'
+          className={styles.auth_input}
           value={name}
           onChange={(e) => setName(e.target.value)}
           placeholder='이름을 입력하세요'
+          autoComplete='off'
         />
         <div className={styles.id_field}>
-          <AuthInput
+          <input
             name='userId'
-            type='text'
+            className={styles.auth_input}
             value={id}
             onChange={(e) => {
               setId(e.target.value);
               setIsValid(false);
             }}
             placeholder='아이디를 입력하세요'
+            autoComplete='off'
           />
           <Button type='button' onClick={handleIdCheck} variant='auth'>
             중복확인
           </Button>
         </div>
-        <AuthInput
+        <input
           name='email'
           type='email'
+          className={styles.auth_input}
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder='이메일을 입력하세요'
+          autoComplete='off'
         />
-        <AuthInput
+        <input
           name='password'
           type='password'
+          className={styles.auth_input}
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder='비밀번호를 입력하세요'
+          autoComplete='off'
         />
-        <AuthInput
+        <input
           name='passwordConfirm'
           type='password'
+          className={styles.auth_input}
           value={checkPassword}
           onChange={(e) => setCheckPassword(e.target.value)}
           placeholder='비밀번호를 다시 입력하세요'
+          autoComplete='off'
         />
 
         <div className={styles.terms_field}>
@@ -164,7 +166,7 @@ function SignupPage() {
       {showPrivacyModal && (
         <PrivacyPolicyModal onClose={() => setShowPrivacyModal(false)} />
       )}
-    </Container>
+    </>
   );
 }
 

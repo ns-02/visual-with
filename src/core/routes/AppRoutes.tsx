@@ -10,9 +10,20 @@ export default function AppRoutes() {
     <Routes>
       <Route path='/' element={<HomePage />} />
 
-      <Route path='/login' element={<Auth.LoginPage />} />
-      <Route path='/signup' element={<Auth.SignupPage />} />
-      <Route path='/signup-result' element={<Auth.SignupResultPage />} />
+      <Route element={<Auth.AuthPageLayout />}>
+        <Route path='/login' element={<Auth.LoginPage />} />
+        <Route path='/signup' element={<Auth.SignupPage />} />
+        <Route path='/signup-result' element={<Auth.SignupResultPage />} />
+
+        <Route path='/invite'>
+          <Route
+            path=':teamId/:invitationCode'
+            element={<Feat.InviteLinkPage />}
+          />
+        </Route>
+
+        <Route path='*' element={<Auth.NotFoundPage />} />
+      </Route>
 
       <Route path='/dev/api-test' element={<ApiTestPage />} />
 
@@ -37,15 +48,6 @@ export default function AppRoutes() {
           </Route>
         </Route>
       </Route>
-
-      <Route path='/invite'>
-        <Route
-          path=':teamId/:invitationCode'
-          element={<Feat.InviteLinkPage />}
-        />
-      </Route>
-
-      <Route path='*' element={<Auth.NotFoundPage />} />
     </Routes>
   );
 }

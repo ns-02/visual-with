@@ -5,9 +5,9 @@ import { useUserStore } from '@core/store/useUserStore';
 const PrivateRoute = () => {
   const user = useUserStore((state) => state.user);
 
-  if (import.meta.env.DEV) {
-    return <Outlet />;
-  }
+  // if (import.meta.env.DEV) {
+  //   return <Outlet />;
+  // }
 
   if (!user) {
     return <GuardPage />;

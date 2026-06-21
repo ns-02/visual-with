@@ -1,7 +1,5 @@
 import type { Dispatch, ReactNode, SetStateAction } from 'react';
 
-export { default as Container } from './Container';
-export { default as AuthInput } from './AuthInput';
 export { default as Avatar } from './Avatar';
 export { default as Button } from './Button';
 export { default as Card } from './Card';

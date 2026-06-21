@@ -1,8 +1,7 @@
 import { FormEvent, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Container } from '@shared/components';
 import { loginUser } from '@shared/api/auth/AuthApi';
-import { Button, AuthInput } from '@shared/components';
+import { Button } from '@shared/components';
 import styles from './Auth.module.css';
 import { useUserStore } from '@core/store/useUserStore';
 import { toast } from '@core/store/useToastStore';
@@ -46,43 +45,38 @@ function LoginPage() {
   };
 
   return (
-    <Container
-      outerButton={
-        <Link className={styles.link} to={'/'}>
-          ← 홈으로 돌아가기
-        </Link>
-      }
-    >
-      <form className={styles.login_form} onSubmit={(e) => handleLogin(e)}>
-        <div className={styles.title_container}>
-          <h1 className={styles.title}>로그인</h1>
-        </div>
-        <AuthInput
-          name='userId'
-          type='text'
-          value={id}
-          onChange={(e) => setId(e.target.value)}
-          placeholder='아이디를 입력하세요'
-        />
-        <AuthInput
-          name='password'
-          type='password'
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder='비밀번호를 입력하세요'
-        />
-        <Button type='submit' variant='auth'>
-          로그인
-        </Button>
+    <form className={styles.login_form} onSubmit={(e) => handleLogin(e)}>
+      <div className={styles.title_container}>
+        <h1 className={styles.title}>로그인</h1>
+      </div>
+      <input
+        name='userId'
+        className={styles.auth_input}
+        value={id}
+        onChange={(e) => setId(e.target.value)}
+        placeholder='아이디를 입력하세요'
+        autoComplete='off'
+      />
+      <input
+        name='password'
+        type='password'
+        className={styles.auth_input}
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        placeholder='비밀번호를 입력하세요'
+        autoComplete='off'
+      />
+      <Button type='submit' variant='auth'>
+        로그인
+      </Button>
 
-        <div className={styles.bottom_field}>
-          <p>계정이 없으신가요?</p>
-          <Link className={`${styles.link} ${styles.link_auth}`} to={'/signup'}>
-            회원가입
-          </Link>
-        </div>
-      </form>
-    </Container>
+      <div className={styles.bottom_field}>
+        <p>계정이 없으신가요?</p>
+        <Link className={`${styles.link} ${styles.link_auth}`} to={'/signup'}>
+          회원가입
+        </Link>
+      </div>
+    </form>
   );
 }
 
