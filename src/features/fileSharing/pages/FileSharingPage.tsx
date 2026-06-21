@@ -5,7 +5,7 @@ import FileUploadCard from '../components/FileUploadCard';
 import { useTeamFileStore } from '../store/useTeamFileStore';
 import { useWorkspaceParams } from '@core/hooks/useWorkspaceParams';
 import FileNavButton from '../components/FileNavButton';
-import { Button, Card, DropdownTrigger } from '@shared/components';
+import { Button, InfoCard, DropdownTrigger } from '@shared/components';
 import { Download, FileText } from 'lucide-react';
 import FileSharingDropdown from '../components/FileSharingDropdown';
 
@@ -71,7 +71,7 @@ function FileSharingPage() {
             })
             .map((item) => {
               return (
-                <Card
+                <InfoCard
                   key={item.id}
                   title={item.fileName}
                   content={`${item.date} · ${item.fileSize} · ${item.authorName}`}
@@ -89,7 +89,7 @@ function FileSharingPage() {
                     triggerElement={<DropdownTrigger />}
                     authorId={item.authorId}
                   />
-                </Card>
+                </InfoCard>
               );
             })}
         </div>

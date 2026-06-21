@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 import { Check, User, UserPlus, X } from 'lucide-react';
 import styles from './FriendListLayout.module.css';
 import { useFriendStore } from '../store/useFriendStore';
-import { Avatar, Button, Card, DropdownTrigger } from '@shared/components';
+import { Avatar, Button, InfoCard, DropdownTrigger } from '@shared/components';
 import FriendListDropdown from '../components/FriendListDropdown';
 
 function FriendListPage() {
@@ -21,7 +21,7 @@ function FriendListPage() {
         <div className='card_list'>
           {friendRequestData?.map((item) => {
             return (
-              <Card
+              <InfoCard
                 key={item.id}
                 title={item.name}
                 content={item.description}
@@ -41,7 +41,7 @@ function FriendListPage() {
                 >
                   <X size={16} />
                 </Button>
-              </Card>
+              </InfoCard>
             );
           })}
         </div>
@@ -53,7 +53,7 @@ function FriendListPage() {
         <div className='card_list'>
           {friendData?.map((item) => {
             return (
-              <Card
+              <InfoCard
                 key={item.id}
                 title={item.name}
                 content={item.description}
@@ -63,7 +63,7 @@ function FriendListPage() {
                   friendId={item.id}
                   triggerElement={<DropdownTrigger />}
                 />
-              </Card>
+              </InfoCard>
             );
           })}
         </div>

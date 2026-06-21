@@ -39,7 +39,7 @@ function ChatInputArea({
         value={chat}
         placeholder='채팅 입력'
         sizeMode='flexible'
-        setChat={setChat}
+        onChange={setChat}
         onKeyDown={(e) => handleKeyDown(e)}
       />
       <Button

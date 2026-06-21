@@ -11,7 +11,7 @@ import { useDirectFileManager } from '../hooks/useDirectFileManager';
 import { useRouteManager } from '@core/routes/useRouteManager';
 import { useFriendId } from '@core/hooks/useWorkspaceParams';
 import { useDirectFileStore } from '../store/useDirectFileStore';
-import { Button, Card, DropdownTrigger } from '@shared/components';
+import { Button, InfoCard, DropdownTrigger } from '@shared/components';
 import { Download, FileText } from 'lucide-react';
 import FileSharingDropdown from '../components/FileSharingDropdown';
 
@@ -97,7 +97,7 @@ function DirectChatPage() {
 
                 <div className='card_list'>
                   {selectFriendFileData?.map((item) => (
-                    <Card
+                    <InfoCard
                       key={item.id}
                       title={item.fileName}
                       content={`${item.date} · ${item.fileSize} · ${item.authorName}`}
@@ -115,7 +115,7 @@ function DirectChatPage() {
                         triggerElement={<DropdownTrigger />}
                         authorId={item.authorId}
                       />
-                    </Card>
+                    </InfoCard>
                   ))}
                 </div>
               </div>

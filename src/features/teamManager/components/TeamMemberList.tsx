@@ -1,7 +1,7 @@
 import { useWorkspaceStore } from '@core/store/useWorkspaceStore';
 import { useCurrentWorkspace } from '@core/hooks/useCurrentWorkspace';
 import { ReactNode } from 'react';
-import { Avatar, Card } from '@shared/components';
+import { Avatar, InfoCard } from '@shared/components';
 
 const TeamMemberList = () => {
   const { teamId } = useCurrentWorkspace();
@@ -17,7 +17,7 @@ const TeamMemberList = () => {
 
       <div className='card_list'>
         {currentMembershipData.map((item) => (
-          <Card
+          <InfoCard
             key={item.userId}
             title={item.userName}
             content={item.ruleName}

@@ -9,9 +9,8 @@ interface InputProps {
   placeholder?: string;
   sizeMode: SizeMode;
   name?: string;
-  setChat?: Dispatch<SetStateAction<string>>;
+  onChange?: Dispatch<SetStateAction<string>>;
   onKeyDown?: (e: KeyboardEvent<HTMLInputElement>) => void;
-  clearId?: number;
   children?: React.ReactNode;
 }
 
@@ -21,7 +20,7 @@ function Input({
   placeholder,
   sizeMode,
   name,
-  setChat,
+  onChange,
   onKeyDown,
   children,
 }: InputProps) {
@@ -38,7 +37,7 @@ function Input({
         name={name ?? 'input'}
         placeholder={placeholder}
         value={value}
-        onChange={(e) => setChat && setChat(e.target.value)}
+        onChange={(e) => onChange && onChange(e.target.value)}
         onKeyDown={(e) => onKeyDown && onKeyDown(e)}
         autoComplete='off'
       />

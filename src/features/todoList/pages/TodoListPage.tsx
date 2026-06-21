@@ -2,7 +2,7 @@ import { Circle, CircleCheckBig } from 'lucide-react';
 import styles from './TodoListLayout.module.css';
 import { ReactNode } from 'react';
 import { useTodoManager } from '../hooks/useTodoManager';
-import { Card, CheckBox, DropdownTrigger } from '@shared/components';
+import { InfoCard, CheckBox, DropdownTrigger } from '@shared/components';
 import TodoListDropdown from '../components/TodoListDropdown';
 
 function TodoListPage() {
@@ -18,7 +18,7 @@ function TodoListPage() {
 
         <div className='card_list'>
           {progressData.map((item) => (
-            <Card
+            <InfoCard
               key={item.id}
               title={item.title}
               content={`${item.authorName} · ${item.description}`}
@@ -47,7 +47,7 @@ function TodoListPage() {
                 authorId={item.authorId}
                 triggerElement={<DropdownTrigger />}
               />
-            </Card>
+            </InfoCard>
           ))}
         </div>
 
@@ -57,7 +57,7 @@ function TodoListPage() {
 
         <div className='card_list'>
           {completedData.map((item) => (
-            <Card
+            <InfoCard
               key={item.id}
               title={item.title}
               content={`${item.authorName} · ${item.description}`}
@@ -86,7 +86,7 @@ function TodoListPage() {
                 authorId={item.authorId}
                 triggerElement={<DropdownTrigger />}
               />
-            </Card>
+            </InfoCard>
           ))}
         </div>
       </div>

@@ -27,13 +27,13 @@ export function ApiTestPage() {
     <>
       <Input
         value={userId}
-        setChat={setUserId}
+        onChange={setUserId}
         placeholder='userId'
         sizeMode='flexible'
       />
       <Input
         value={teamId}
-        setChat={setTeamId}
+        onChange={setTeamId}
         placeholder='teamId'
         sizeMode='flexible'
       />

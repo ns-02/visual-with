@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import * as Tabs from '@radix-ui/react-tabs';
 import { Copy, MailPlus, Search } from 'lucide-react';
-import { Avatar, Card, Dialog } from '@shared/components';
+import { Avatar, InfoCard, Dialog } from '@shared/components';
 import { Button } from '@shared/components';
 import styles from './InviteTeamDialog.module.css';
 import { useTeamManager } from '../hooks/useTeamManager';
@@ -136,7 +136,7 @@ const InviteTeamDialog = ({ open, onOpenChange }: InviteTeamDialogProps) => {
                 justifyContent: 'center',
               }}
             >
-              <Card
+              <InfoCard
                 title={userResult.userName}
                 content={userResult.userEmail}
                 iconElement={<Avatar />}
@@ -148,7 +148,7 @@ const InviteTeamDialog = ({ open, onOpenChange }: InviteTeamDialogProps) => {
                 >
                   <MailPlus size={16} />
                 </Button>
-              </Card>
+              </InfoCard>
             </div>
           )}
         </Tabs.Content>

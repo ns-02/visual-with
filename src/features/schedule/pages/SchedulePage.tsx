@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Calendar from '../components/Calendar';
 import { formatDate } from '@shared/utils/formatDate';
 import { useScheduleManager } from '../hooks/useScheduleManager';
-import { Card, DropdownTrigger } from '@shared/components';
+import { InfoCard, DropdownTrigger } from '@shared/components';
 import ScheduleDropdown from '../components/ScheduleDropdown';
 
 function SchedulePage() {
@@ -44,7 +44,7 @@ function SchedulePage() {
         <div className='card_list'>
           {teamScheduleData.map((item) => {
             return (
-              <Card
+              <InfoCard
                 key={item.id}
                 title={item.title}
                 content={
@@ -58,7 +58,7 @@ function SchedulePage() {
                   authorId={item.authorId}
                   triggerElement={<DropdownTrigger />}
                 />
-              </Card>
+              </InfoCard>
             );
           })}
         </div>

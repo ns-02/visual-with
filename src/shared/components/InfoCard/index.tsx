@@ -1,6 +1,6 @@
 import { CSSProperties, ReactNode } from 'react';
 
-const Card = ({
+const InfoCard = ({
   iconElement,
   title,
   content,
@@ -27,4 +27,4 @@ const Card = ({
   );
 };
 
-export default Card;
+export default InfoCard;
