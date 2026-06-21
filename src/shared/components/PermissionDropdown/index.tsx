@@ -1,7 +1,7 @@
 import { DropdownMenu } from 'radix-ui';
-import Item from '../Item';
 import { ReactNode } from 'react';
 import Dropdown from '../Dropdown';
+import { ListItem } from '..';
 
 type PermissionAction = {
   id: string;
@@ -31,12 +31,12 @@ const PermissionDropdown = (props: PermissionDropdownProps) => {
       {canEdit ? (
         actions.map((action) => (
           <DropdownMenu.Item key={action.id} onClick={action.onClick}>
-            <Item className={itemClassName} type='list' text={action.text} />
+            <ListItem className={itemClassName} text={action.text} />
           </DropdownMenu.Item>
         ))
       ) : (
         <DropdownMenu.Item>
-          <Item className={itemClassName} type='list' text={deniedText} />
+          <ListItem className={itemClassName} text={deniedText} />
         </DropdownMenu.Item>
       )}
     </>

@@ -1,5 +1,5 @@
 import { DropdownMenu } from 'radix-ui';
-import { Item, Dropdown } from '@shared/components';
+import { Dropdown, ListItem } from '@shared/components';
 import { ChangeEvent, ReactNode, useRef } from 'react';
 
 const FileUploadDropdown = ({
@@ -43,7 +43,7 @@ const FileUploadDropdown = ({
       {Items.map((item) => {
         return (
           <DropdownMenu.Item key={item.id} onSelect={item.handler}>
-            <Item type='list' text={item.text} />
+            <ListItem text={item.text} />
           </DropdownMenu.Item>
         );
       })}

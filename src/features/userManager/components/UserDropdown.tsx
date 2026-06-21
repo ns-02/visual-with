@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { DropdownMenu } from 'radix-ui';
-import { Button, Dropdown, Item } from '@shared/components';
+import { Button, Dropdown, ListItem } from '@shared/components';
 import LogoutDialog from './LogoutDialog';
 import styles from './UserDropdownItems.module.css';
 import { useUserStore } from '@core/store/useUserStore';
@@ -32,18 +32,18 @@ const UserDropdown = ({ onSettingsClick }: { onSettingsClick: () => void }) => {
   const dropdownItems = (
     <>
       <DropdownMenu.Item asChild>
-        <Item type='list' text={renderUserName()} />
+        <ListItem text={renderUserName()} />
       </DropdownMenu.Item>
       <DropdownMenu.Separator className={styles.separator} />
       <DropdownMenu.Item asChild>
-        <Item type='list' text='내 프로필' />
+        <ListItem text='내 프로필' />
       </DropdownMenu.Item>
       <DropdownMenu.Item asChild onClick={onSettingsClick}>
-        <Item type='list' text='설정' />
+        <ListItem text='설정' />
       </DropdownMenu.Item>
       <DropdownMenu.Separator className={styles.separator} />
       <DropdownMenu.Item onSelect={() => setIsLogoutDialogOpen(true)} asChild>
-        <Item type='list' text='로그아웃' />
+        <ListItem text='로그아웃' />
       </DropdownMenu.Item>
     </>
   );

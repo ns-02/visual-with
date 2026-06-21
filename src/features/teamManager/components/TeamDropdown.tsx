@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { DropdownMenu } from 'radix-ui';
-import { Dropdown, Item } from '@shared/components';
+import { AddItem, Dropdown } from '@shared/components';
 import CreateTeamDialog from './CreateTeamDialog';
 import DeleteTeamDialog from './DeleteTeamDialog';
 import TeamDropdownItems from './TeamDropdownItems';
@@ -27,7 +27,7 @@ const TeamDropdown = ({ trigger, onTeamSwitch }: DropdownProps) => {
         onSelect={() => setIsCreateTeamDialogOpen(true)}
         asChild
       >
-        <Item type='add' text='팀 생성' />
+        <AddItem text='팀 생성' />
       </DropdownMenu.Item>
     </>
   );

@@ -1,7 +1,7 @@
 import type { SetStateAction } from 'react';
 import { DropdownMenu } from 'radix-ui';
 import { Trash2 } from 'lucide-react';
-import { Button, Item } from '@shared/components';
+import { Button, ListItem } from '@shared/components';
 import styles from './TeamDropdownItems.module.css';
 import { useWorkspaceStore } from '@core/store/useWorkspaceStore';
 import { TeamData } from '@shared/models/Workspace';
@@ -50,11 +50,7 @@ const TeamDropdownItems = ({
               onTeamSwitch(item.id);
             }}
           >
-            <Item
-              type='list'
-              text={item.name}
-              selected={handleItemSelected(item)}
-            >
+            <ListItem text={item.name} selected={handleItemSelected(item)}>
               {currentRule === 'ADMIN' && (
                 <Button
                   variant='content'
@@ -66,7 +62,7 @@ const TeamDropdownItems = ({
                   <Trash2 size={16} />
                 </Button>
               )}
-            </Item>
+            </ListItem>
           </DropdownMenu.Item>
         );
       })}

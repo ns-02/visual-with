@@ -1,13 +1,4 @@
-.itemadd {
-  display: flex;
-  width: 200px;
-  padding: 5px 10px;
-  gap: 12px;
-  align-items: center;
-  cursor: pointer;
-}
-
-.itemlist {
+.list_item {
   display: flex;
   width: 200px;
   padding: 5px 10px;
