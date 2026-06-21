@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction, useState } from 'react';
-import { Dialog, DialogInput, Switch } from '@shared/components';
+import { Dialog, Switch } from '@shared/components';
 import { formatDate, formatTime } from '@shared/utils/formatDate';
 import { useScheduleManager } from '../hooks/useScheduleManager';
 
@@ -51,46 +51,61 @@ const AddScheduleDialog = ({ open, onOpenChange }: AddScheduleDialogProps) => {
     >
       <div className='mb_10'>
         <label>제목</label>
-        <DialogInput
+        <input
+          name='input'
+          autoComplete='off'
+          className='dialog_input'
           placeholder='일정 제목을 입력하세요'
           value={title}
-          setValue={(e) => setTitle(e.target.value)}
+          onChange={(e) => setTitle(e.target.value)}
         />
       </div>
 
       <div className='d_flex gap_6'>
         <div className='mb_10'>
           <label>시작 날짜</label>
-          <DialogInput
+          <input
             type='date'
+            name='input'
+            autoComplete='off'
+            className='dialog_input'
             value={startDate}
-            setValue={(e) => setstartDate(e.target.value)}
+            onChange={(e) => setstartDate(e.target.value)}
           />
         </div>
         <div className='mb_10'>
           <label>시작 시간</label>
-          <DialogInput
+          <input
             type='time'
+            name='input'
+            autoComplete='off'
+            className='dialog_input'
             value={startTime}
-            setValue={(e) => setStartTime(e.target.value)}
+            onChange={(e) => setStartTime(e.target.value)}
           />
         </div>
       </div>
       <div className='d_flex gap_6'>
         <div className='mb_10'>
           <label>종료 날짜</label>
-          <DialogInput
+          <input
             type='date'
+            name='input'
+            autoComplete='off'
+            className='dialog_input'
             value={finishDate}
-            setValue={(e) => setFinishDate(e.target.value)}
+            onChange={(e) => setFinishDate(e.target.value)}
           />
         </div>
         <div className='mb_10'>
           <label>종료 시간</label>
-          <DialogInput
+          <input
             type='time'
+            name='input'
+            autoComplete='off'
+            className='dialog_input'
             value={finishTime}
-            setValue={(e) => setFinishTime(e.target.value)}
+            onChange={(e) => setFinishTime(e.target.value)}
           />
         </div>
       </div>
@@ -103,10 +118,13 @@ const AddScheduleDialog = ({ open, onOpenChange }: AddScheduleDialogProps) => {
       </div>
       <div className='mb_10'>
         <label>설명</label>
-        <DialogInput
+        <input
+          name='input'
+          autoComplete='off'
+          className='dialog_input'
           placeholder='일정 설명을 입력하세요 (선택사항)'
           value={description}
-          setValue={(e) => setDescription(e.target.value)}
+          onChange={(e) => setDescription(e.target.value)}
         />
       </div>
     </Dialog>

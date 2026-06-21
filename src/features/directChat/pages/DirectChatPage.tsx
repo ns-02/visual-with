@@ -11,8 +11,8 @@ import { useDirectFileManager } from '../hooks/useDirectFileManager';
 import { useRouteManager } from '@core/routes/useRouteManager';
 import { useFriendId } from '@core/hooks/useWorkspaceParams';
 import { useDirectFileStore } from '../store/useDirectFileStore';
-import { Button, Card, DropdownTrigger, FileIcon } from '@shared/components';
-import { Download } from 'lucide-react';
+import { Button, Card, DropdownTrigger } from '@shared/components';
+import { Download, FileText } from 'lucide-react';
 import FileSharingDropdown from '../components/FileSharingDropdown';
 
 interface FriendItem extends FriendData {
@@ -101,7 +101,11 @@ function DirectChatPage() {
                       key={item.id}
                       title={item.fileName}
                       content={`${item.date} · ${item.fileSize} · ${item.authorName}`}
-                      iconElement={<FileIcon />}
+                      iconElement={
+                        <div className='file_icon'>
+                          <FileText size={24} />
+                        </div>
+                      }
                     >
                       <Button variant='content'>
                         <Download size={16} />

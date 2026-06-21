@@ -66,6 +66,27 @@ div[role*='dialog'] {
   gap: 10px;
 }
 
+.file_icon {
+  display: flex;
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  border-radius: 6px;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-blue-300);
+}
+
+.dialog_input {
+  width: 100%;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: var(--font-size-sm);
+  background-color: var(--color-blue-100);
+  color: var(--text-main);
+}
+
 /* 텍스트 */
 .text_pri_50 {
   font-size: var(--font-size-md);

@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import * as Tabs from '@radix-ui/react-tabs';
 import { Copy, MailPlus, Search } from 'lucide-react';
-import { Avatar, Card, Dialog, DialogInput } from '@shared/components';
+import { Avatar, Card, Dialog } from '@shared/components';
 import { Button } from '@shared/components';
 import styles from './InviteTeamDialog.module.css';
 import { useTeamManager } from '../hooks/useTeamManager';
@@ -92,7 +92,13 @@ const InviteTeamDialog = ({ open, onOpenChange }: InviteTeamDialogProps) => {
             </p>
           </div>
           <div className='d_flex gap_6'>
-            <DialogInput value={inviteUrl} readOnly={true} />
+            <input
+              name='input'
+              autoComplete='off'
+              className='dialog_input'
+              value={inviteUrl}
+              readOnly
+            />
             <Button onClick={handleCopyInviteUrl}>
               <Copy size={16} />
             </Button>
@@ -107,10 +113,13 @@ const InviteTeamDialog = ({ open, onOpenChange }: InviteTeamDialogProps) => {
           </div>
 
           <div className='d_flex gap_6'>
-            <DialogInput
+            <input
+              name='input'
+              autoComplete='off'
+              className='dialog_input'
               placeholder='팀원의 ID를 검색하세요'
               value={invitedUserId}
-              setValue={(e) => setInvitedUserId(e.target.value)}
+              onChange={(e) => setInvitedUserId(e.target.value)}
             />
             <Button onClick={handleSearchUser}>
               <Search size={16} />

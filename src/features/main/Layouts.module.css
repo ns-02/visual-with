@@ -97,3 +97,27 @@
   align-items: center;
   color: var(--text-sub-100);
 }
+
+/* Header 내부 스타일 */
+.header_inner {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  font-size: var(--font-size-xl);
+  font-weight: 500;
+}
+
+.rsection {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.button_primary {
+  background-color: var(--color-pink-400);
+}

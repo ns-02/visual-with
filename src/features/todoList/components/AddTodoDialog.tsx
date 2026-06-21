@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction, useState } from 'react';
-import { Dialog, DialogInput } from '@shared/components';
+import { Dialog } from '@shared/components';
 import { useTodoManager } from '../hooks/useTodoManager';
 
 interface AddTodoDialogProps {
@@ -33,18 +33,24 @@ const AddTodoDialog = ({ open, onOpenChange }: AddTodoDialogProps) => {
     >
       <div className='mb_10'>
         <label>제목</label>
-        <DialogInput
+        <input
+          name='input'
+          autoComplete='off'
+          className='dialog_input'
           placeholder='할 일 제목을 입력하세요'
           value={title}
-          setValue={(e) => setTitle(e.target.value)}
+          onChange={(e) => setTitle(e.target.value)}
         />
       </div>
       <div className='mb_10'>
         <label>내용</label>
-        <DialogInput
+        <input
+          name='input'
+          autoComplete='off'
+          className='dialog_input'
           placeholder='할 일을 입력하세요'
           value={description}
-          setValue={(e) => setDescription(e.target.value)}
+          onChange={(e) => setDescription(e.target.value)}
         />
       </div>
     </Dialog>

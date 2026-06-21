@@ -1,7 +1,6 @@
 import { ChangeEvent, DragEvent, useRef, useState } from 'react';
 import { Upload } from 'lucide-react';
 import styles from './FileSharingUI.module.css';
-import { FileInput } from '@shared/components';
 import FileSelectButton from './FileSelectButton';
 import { useTeamFileManager } from '../hooks/useTeamFileManager';
 
@@ -72,7 +71,13 @@ const DragAndDrop = () => {
       onDragLeave={handleDragLeave}
       onDragOver={handleDragOver}
     >
-      <FileInput ref={inputRef} onChange={handleFileChange} />
+      <input
+        style={{ display: 'none' }}
+        ref={inputRef}
+        type='file'
+        onChange={handleFileChange}
+        autoComplete='off'
+      />
       <Upload size={48} color='#aaa' />
       <p className='text_sec_100'>파일을 여기에 드래그하여 업로드하세요</p>
       <p className='text_sec_200'>또는</p>

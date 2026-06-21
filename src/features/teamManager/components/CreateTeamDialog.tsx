@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction, useState } from 'react';
-import { Dialog, DialogInput } from '@shared/components';
+import { Dialog } from '@shared/components';
 import { useTeamManager } from '../hooks/useTeamManager';
 
 interface CreateTeamDialogProps {
@@ -27,10 +27,13 @@ const CreateTeamDialog = ({ open, onOpenChange }: CreateTeamDialogProps) => {
       onConfirm={handleCreateTeam}
     >
       <p>팀 이름</p>
-      <DialogInput
+      <input
+        name='input'
+        autoComplete='off'
+        className='dialog_input'
         placeholder='팀 이름을 입력하세요'
         value={teamName}
-        setValue={(e) => setTeamName(e.target.value)}
+        onChange={(e) => setTeamName(e.target.value)}
       />
     </Dialog>
   );

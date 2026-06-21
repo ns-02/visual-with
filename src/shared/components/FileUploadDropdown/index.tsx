@@ -1,5 +1,5 @@
 import { DropdownMenu } from 'radix-ui';
-import { FileInput, Item, Dropdown } from '@shared/components';
+import { Item, Dropdown } from '@shared/components';
 import { ChangeEvent, ReactNode, useRef } from 'react';
 
 const FileUploadDropdown = ({
@@ -32,7 +32,14 @@ const FileUploadDropdown = ({
 
   const dropdownContent = (
     <>
-      <FileInput ref={inputRef} onChange={handleFileChange} />
+      <input
+        style={{ display: 'none' }}
+        ref={inputRef}
+        type='file'
+        onChange={handleFileChange}
+        autoComplete='off'
+      />
+
       {Items.map((item) => {
         return (
           <DropdownMenu.Item key={item.id} onSelect={item.handler}>

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { File, LucideProps, Plus, Search, Upload } from 'lucide-react';
-import { HeaderBar } from '@shared/components';
+import { Button, Input } from '@shared/components';
 
 import UploadFileDialog from '../fileSharing/components/UploadFileDialog';
 import AddScheduleDialog from '../schedule/components/AddScheduleDialog';
@@ -72,7 +72,6 @@ function MainHeader() {
   ];
 
   const headerItem = headerItems.filter(({ id }) => id === toolId);
-  const inputIcon = <Search size={16}></Search>;
 
   return (
     <div className={styles.header}>
@@ -80,15 +79,25 @@ function MainHeader() {
         const ButtonIcon = icon;
 
         return (
-          <HeaderBar
-            label={label}
-            button={button}
-            onClick={onClick}
-            key={id}
-            inputIcon={inputIcon}
-          >
-            {ButtonIcon && <ButtonIcon size={16} />}
-          </HeaderBar>
+          <div key={id} className={styles.header_inner}>
+            <div className={styles.label}>
+              <span>{label}</span>
+            </div>
+            <div className={styles.rsection}>
+              <Input value='' placeholder='검색' sizeMode='fixed'>
+                <Search size={16} />
+              </Input>
+              {button && onClick && (
+                <Button
+                  text={button}
+                  className={styles.button_primary}
+                  onClick={onClick}
+                >
+                  {ButtonIcon && <ButtonIcon size={16} />}
+                </Button>
+              )}
+            </div>
+          </div>
         );
       })}
       {isUploadFileDialogOpen && (

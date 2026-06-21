@@ -1,5 +1,5 @@
 import { Search } from 'lucide-react';
-import { Dialog, DialogInput } from '@shared/components';
+import { Dialog } from '@shared/components';
 import { Button } from '@shared/components';
 import { Dispatch, SetStateAction, useState } from 'react';
 import { notFriendDataMocks } from '@mocks/FriendDataMocks';
@@ -56,10 +56,13 @@ const AddFriendDialog = ({
         <p>친구 ID 검색</p>
       </div>
       <div className='d_flex gap_6'>
-        <DialogInput
+        <input
+          name='input'
+          autoComplete='off'
+          className='dialog_input'
           placeholder='친구의 ID를 검색하세요'
           value={friendId}
-          setValue={(e) => {
+          onChange={(e) => {
             setIsFriendPresent(false);
             setFriendId(e.target.value);
           }}

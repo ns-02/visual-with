@@ -5,8 +5,8 @@ import FileUploadCard from '../components/FileUploadCard';
 import { useTeamFileStore } from '../store/useTeamFileStore';
 import { useWorkspaceParams } from '@core/hooks/useWorkspaceParams';
 import FileNavButton from '../components/FileNavButton';
-import { Button, Card, DropdownTrigger, FileIcon } from '@shared/components';
-import { Download } from 'lucide-react';
+import { Button, Card, DropdownTrigger } from '@shared/components';
+import { Download, FileText } from 'lucide-react';
 import FileSharingDropdown from '../components/FileSharingDropdown';
 
 function FileSharingPage() {
@@ -75,7 +75,11 @@ function FileSharingPage() {
                   key={item.id}
                   title={item.fileName}
                   content={`${item.date} · ${item.fileSize} · ${item.authorName}`}
-                  iconElement={<FileIcon />}
+                  iconElement={
+                    <div className='file_icon'>
+                      <FileText size={24} />
+                    </div>
+                  }
                 >
                   <Button variant='content'>
                     <Download size={16} />

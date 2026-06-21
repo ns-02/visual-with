@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction, useState } from 'react';
-import { AlertDialog, DialogInput } from '@shared/components';
+import { AlertDialog } from '@shared/components';
 
 import { useTeamManager } from '../hooks/useTeamManager';
 import { TeamData } from '@shared/models/Workspace';
@@ -44,10 +44,13 @@ const DeleteTeamDialog = ({
       confirmText='삭제'
       onConfirm={handleDeleteTeam}
     >
-      <DialogInput
+      <input
+        name='input'
+        autoComplete='off'
+        className='dialog_input'
         placeholder='삭제를 입력하세요'
         value={confirmText}
-        setValue={(e) => setConFirmText(e.target.value)}
+        onChange={(e) => setConFirmText(e.target.value)}
       />
     </AlertDialog>
   );

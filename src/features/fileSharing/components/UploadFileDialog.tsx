@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction, useState } from 'react';
-import { Dialog, DialogInput } from '@shared/components';
+import { Dialog } from '@shared/components';
 import { useTeamFileManager } from '../hooks/useTeamFileManager';
 
 interface UploadFileDialogProps {
@@ -29,9 +29,14 @@ const UploadFileDialog = ({ open, onOpenChange }: UploadFileDialogProps) => {
       <div className='mb_10'>
         <p>파일 선택</p>
       </div>
-      <DialogInput
+
+      <input
+        name='input'
         type='file'
-        setValue={(e) => e.target.files && setFile(e.target.files[0])}
+        autoComplete='off'
+        className='dialog_input'
+        placeholder='팀원의 ID를 검색하세요'
+        onChange={(e) => e.target.files && setFile(e.target.files[0])}
       />
     </Dialog>
   );

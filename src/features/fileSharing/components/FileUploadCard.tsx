@@ -1,6 +1,7 @@
 import styles from './FileSharingUI.module.css';
 import { useTeamFileStore } from '../store/useTeamFileStore';
-import { FileIcon, Progress } from '@shared/components';
+import { Progress } from '@shared/components';
+import { FileText } from 'lucide-react';
 
 const FileUploadCard = () => {
   const currentFile = useTeamFileStore((state) => state.currentFile);
@@ -10,7 +11,9 @@ const FileUploadCard = () => {
     <div className='common_card flex_col content_nm'>
       <div className={styles.wrapper}>
         <div className='common_card_info'>
-          <FileIcon />
+          <div className='file_icon'>
+            <FileText size={24} />
+          </div>
           <div>
             <p>{currentFile?.fileName}</p>
             <p
