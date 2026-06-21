@@ -1,7 +1,7 @@
 import { useFriendId } from '@core/hooks/useWorkspaceParams';
 import { Dispatch, SetStateAction } from 'react';
 import { AlertDialog } from '@shared/components';
-import { useDirectFileStore } from '../../chat/store/useDirectFileStore';
+import { useDirectFileStore } from '../store/useDirectFileStore';
 
 interface DeleteFileDialogProps {
   fileId?: number;
