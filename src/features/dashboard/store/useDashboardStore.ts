@@ -1,4 +1,3 @@
-import { useTeamFileStore } from '@features/fileSharing/store/useTeamFileStore';
 import { useScheduleStore } from '@features/schedule/store/useScheduleStore';
 import { useTodoStore } from '@features/todoList/store/useTodoStore';
 import { parseDate, formatTimeAgo } from '@shared/utils/formatDate';
@@ -8,6 +7,7 @@ import {
   selectTeamAllChat,
   useTeamChatStore,
 } from '@features/chat/store/useTeamChatStore';
+import { useTeamFileStore } from '@features/file/store/useTeamFileStore';
 
 interface TodoStatusData {
   name: '완료된 할 일' | '남은 할 일';
