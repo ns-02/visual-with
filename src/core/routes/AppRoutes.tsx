@@ -4,6 +4,7 @@ import HomePage from '@pages/HomePage';
 import PrivateRoute from './PrivateRoute';
 import * as Feat from '@features';
 import { ApiTestPage } from '@features/tests/ApiTestPage';
+import TeamAccessRoute from './TeamAccessRoute';
 
 export default function AppRoutes() {
   return (
@@ -39,12 +40,14 @@ export default function AppRoutes() {
             />
           </Route>
 
-          <Route path=':teamId' element={<Feat.TeamLayout />}>
-            <Route index element={<Feat.DashboardPage />} />
-            <Route path='teamchat' element={<Feat.TeamChatPage />} />
-            <Route path='filesharing' element={<Feat.FileSharingPage />} />
-            <Route path='schedule' element={<Feat.SchedulePage />} />
-            <Route path='todolist' element={<Feat.TodoListPage />} />
+          <Route element={<TeamAccessRoute />}>
+            <Route path=':teamId' element={<Feat.TeamLayout />}>
+              <Route index element={<Feat.DashboardPage />} />
+              <Route path='teamchat' element={<Feat.TeamChatPage />} />
+              <Route path='filesharing' element={<Feat.FileSharingPage />} />
+              <Route path='schedule' element={<Feat.SchedulePage />} />
+              <Route path='todolist' element={<Feat.TodoListPage />} />
+            </Route>
           </Route>
         </Route>
       </Route>
