@@ -26,8 +26,8 @@ const PermissionDropdown = (props: PermissionDropdownProps) => {
     deniedText = '권한 부족',
   } = props;
 
-  const dropdownContent = (
-    <>
+  return (
+    <Dropdown trigger={triggerElement}>
       {canEdit ? (
         actions.map((action) => (
           <DropdownMenu.Item key={action.id} onClick={action.onClick}>
@@ -39,10 +39,8 @@ const PermissionDropdown = (props: PermissionDropdownProps) => {
           <ListItem className={itemClassName} text={deniedText} />
         </DropdownMenu.Item>
       )}
-    </>
+    </Dropdown>
   );
-
-  return <Dropdown trigger={triggerElement} items={dropdownContent} />;
 };
 
 export default PermissionDropdown;

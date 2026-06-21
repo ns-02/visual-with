@@ -21,41 +21,35 @@ const UserDropdown = ({ onSettingsClick }: { onSettingsClick: () => void }) => {
     setTriggerText(userName[0]);
   }, [userName]);
 
-  const trigger = (
-    <Button
-      text={triggerText}
-      shape='circle'
-      className={styles.button_primary}
-    />
-  );
-
-  const dropdownItems = (
-    <>
-      <DropdownMenu.Item asChild>
-        <ListItem text={renderUserName()} />
-      </DropdownMenu.Item>
-      <DropdownMenu.Separator className={styles.separator} />
-      <DropdownMenu.Item asChild>
-        <ListItem text='내 프로필' />
-      </DropdownMenu.Item>
-      <DropdownMenu.Item asChild onClick={onSettingsClick}>
-        <ListItem text='설정' />
-      </DropdownMenu.Item>
-      <DropdownMenu.Separator className={styles.separator} />
-      <DropdownMenu.Item onSelect={() => setIsLogoutDialogOpen(true)} asChild>
-        <ListItem text='로그아웃' />
-      </DropdownMenu.Item>
-    </>
-  );
-
   return (
     <>
       <Dropdown
         align='end'
         side='right'
-        trigger={trigger}
-        items={dropdownItems}
-      />
+        trigger={
+          <Button
+            text={triggerText}
+            shape='circle'
+            className={styles.button_primary}
+          />
+        }
+      >
+        <DropdownMenu.Item asChild>
+          <ListItem text={renderUserName()} />
+        </DropdownMenu.Item>
+        <DropdownMenu.Separator className={styles.separator} />
+        <DropdownMenu.Item asChild>
+          <ListItem text='내 프로필' />
+        </DropdownMenu.Item>
+        <DropdownMenu.Item asChild onClick={onSettingsClick}>
+          <ListItem text='설정' />
+        </DropdownMenu.Item>
+        <DropdownMenu.Separator className={styles.separator} />
+        <DropdownMenu.Item onSelect={() => setIsLogoutDialogOpen(true)} asChild>
+          <ListItem text='로그아웃' />
+        </DropdownMenu.Item>
+      </Dropdown>
+
       {isLogoutDialogOpen && (
         <LogoutDialog
           open={isLogoutDialogOpen}

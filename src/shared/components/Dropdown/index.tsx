@@ -9,11 +9,11 @@ interface DropDownProps {
   align?: Align;
   side?: Side;
   trigger?: ReactNode;
-  items?: ReactNode;
+  children?: ReactNode;
 }
 
 const Dropdown = (props: DropDownProps) => {
-  const { align = 'start', side, trigger, items } = props;
+  const { align = 'start', side, trigger, children } = props;
 
   return (
     <DropdownMenu.Root>
@@ -23,7 +23,7 @@ const Dropdown = (props: DropDownProps) => {
         align={align}
         className={styles.container}
       >
-        {items}
+        {children}
       </DropdownMenu.Content>
     </DropdownMenu.Root>
   );

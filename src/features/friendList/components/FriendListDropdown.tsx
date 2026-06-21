@@ -16,21 +16,18 @@ const FriendListDropdown = ({ friendId, triggerElement }: DropdownProps) => {
     { id: '1', text: '삭제', onClick: () => setIsDeleteFriendDialogOpen(true) },
   ];
 
-  const dropdownContent = (
-    <>
-      {Items.map((item) => {
-        return (
-          <DropdownMenu.Item key={item.id} onClick={item.onClick}>
-            <ListItem className='w_100 fs_14' text={item.text} />
-          </DropdownMenu.Item>
-        );
-      })}
-    </>
-  );
-
   return (
     <>
-      <Dropdown trigger={triggerElement} items={dropdownContent} />
+      <Dropdown trigger={triggerElement}>
+        {Items.map((item) => {
+          return (
+            <DropdownMenu.Item key={item.id} onClick={item.onClick}>
+              <ListItem className='w_100 fs_14' text={item.text} />
+            </DropdownMenu.Item>
+          );
+        })}
+      </Dropdown>
+
       {isDeleteFriendDialogOpen && (
         <DeleteFriendDialog
           friendId={friendId}

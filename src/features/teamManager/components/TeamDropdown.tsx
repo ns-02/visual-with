@@ -16,25 +16,22 @@ const TeamDropdown = ({ trigger, onTeamSwitch }: DropdownProps) => {
   const [isDeleteTeamDialogOpen, setIsDeleteTeamDialogOpen] = useState(false);
   const [deleteTeamData, setDeleteTeamData] = useState<TeamData>();
 
-  const dropdownItems = (
-    <>
-      <TeamDropdownItems
-        deleteTeamDialogOpen={setIsDeleteTeamDialogOpen}
-        setDeleteTeamData={setDeleteTeamData}
-        onTeamSwitch={onTeamSwitch}
-      />
-      <DropdownMenu.Item
-        onSelect={() => setIsCreateTeamDialogOpen(true)}
-        asChild
-      >
-        <AddItem text='팀 생성' />
-      </DropdownMenu.Item>
-    </>
-  );
-
   return (
     <>
-      <Dropdown trigger={trigger} items={dropdownItems} />
+      <Dropdown trigger={trigger}>
+        <TeamDropdownItems
+          deleteTeamDialogOpen={setIsDeleteTeamDialogOpen}
+          setDeleteTeamData={setDeleteTeamData}
+          onTeamSwitch={onTeamSwitch}
+        />
+        <DropdownMenu.Item
+          onSelect={() => setIsCreateTeamDialogOpen(true)}
+          asChild
+        >
+          <AddItem text='팀 생성' />
+        </DropdownMenu.Item>
+      </Dropdown>
+
       {isCreateTeamDialogOpen && (
         <CreateTeamDialog
           open={isCreateTeamDialogOpen}

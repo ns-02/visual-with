@@ -30,8 +30,8 @@ const FileUploadDropdown = ({
     }
   };
 
-  const dropdownContent = (
-    <>
+  return (
+    <Dropdown trigger={triggerElement}>
       <input
         style={{ display: 'none' }}
         ref={inputRef}
@@ -47,10 +47,8 @@ const FileUploadDropdown = ({
           </DropdownMenu.Item>
         );
       })}
-    </>
+    </Dropdown>
   );
-
-  return <Dropdown trigger={triggerElement} items={dropdownContent} />;
 };
 
 export default FileUploadDropdown;
