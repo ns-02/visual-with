@@ -24,22 +24,6 @@
   padding: 0 16px 16px;
 }
 
-.nav_button {
-  display: flex;
-  height: 36px;
-  padding: 0 12px;
-  align-items: center;
-  border-radius: 6px;
-  font-size: var(--font-size-sm);
-  border: none;
-  cursor: pointer;
-  background-color: var(--color-blue-100);
-}
-
-.selected {
-  background-color: var(--color-blue-400);
-}
-
 .select_button {
   padding: 4px 12px;
   border-radius: 6px;

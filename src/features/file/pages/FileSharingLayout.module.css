@@ -13,3 +13,19 @@
   width: 100%;
   padding: 0 var(--space-page-x);
 }
+
+.nav_button {
+  display: flex;
+  height: 36px;
+  padding: 0 12px;
+  align-items: center;
+  border-radius: 6px;
+  font-size: var(--font-size-sm);
+  border: none;
+  cursor: pointer;
+  background-color: var(--color-blue-100);
+}
+
+.selected {
+  background-color: var(--color-blue-400);
+}

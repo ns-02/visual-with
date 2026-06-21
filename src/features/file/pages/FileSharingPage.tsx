@@ -4,7 +4,6 @@ import DragAndDrop from '../components/DragAndDrop';
 import FileUploadCard from '../components/FileUploadCard';
 import { useTeamFileStore } from '../store/useTeamFileStore';
 import { useWorkspaceParams } from '@core/hooks/useWorkspaceParams';
-import FileNavButton from '../components/FileNavButton';
 import { Button, InfoCard, DropdownTrigger } from '@shared/components';
 import { Download, FileText } from 'lucide-react';
 import FileSharingDropdown from '../components/FileSharingDropdown';
@@ -46,12 +45,13 @@ function FileSharingPage() {
     <div className={styles.file_sharing_root}>
       <div className={styles.top_files}>
         {fileNavItems.map((item) => (
-          <FileNavButton
+          <button
             key={item.id}
-            text={item.text}
-            selected={item.selected}
+            className={`${styles.nav_button} ${item.selected && styles.selected}`}
             onClick={() => handleButtonClick(item.id)}
-          />
+          >
+            {item.text}
+          </button>
         ))}
       </div>
 

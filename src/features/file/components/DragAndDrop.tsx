@@ -1,7 +1,6 @@
 import { ChangeEvent, DragEvent, useRef, useState } from 'react';
 import { Upload } from 'lucide-react';
 import styles from './FileSharingUI.module.css';
-import FileSelectButton from './FileSelectButton';
 import { useTeamFileManager } from '../hooks/useTeamFileManager';
 
 const DragAndDrop = () => {
@@ -81,7 +80,9 @@ const DragAndDrop = () => {
       <Upload size={48} color='#aaa' />
       <p className='text_sec_100'>파일을 여기에 드래그하여 업로드하세요</p>
       <p className='text_sec_200'>또는</p>
-      <FileSelectButton text='파일 선택' onClick={handleSelectFile} />
+      <button className={styles.select_button} onClick={handleSelectFile}>
+        파일 선택
+      </button>
     </div>
   );
 };
