@@ -3,17 +3,20 @@ import { useFriendStore } from '@features/friendList/store/useFriendStore';
 import SelectFriendCard from '../components/SelectFriendCard';
 import { useEffect, useMemo, useState } from 'react';
 import { FriendData } from '@shared/models/User';
-import { useDirectFileManager } from '../hooks/useDirectFileManager';
 import { useRouteManager } from '@core/routes/useRouteManager';
 import { useFriendId } from '@core/hooks/useWorkspaceParams';
-import { useDirectFileStore } from '../store/useDirectFileStore';
 import { Button, InfoCard, DropdownTrigger } from '@shared/components';
 import { Download, FileText } from 'lucide-react';
-import FileSharingDropdown from '../components/FileSharingDropdown';
 import { useDirectChatStore } from '../store/useDirectChatStore';
 import { useDirectChatThread } from '../hooks/useDirectChatThread';
 import ChatInputArea from '../components/ChatInputArea';
 import MessageList from '../components/MessageList';
+import {
+  FileSharingDropdown,
+  useDirectFileManager,
+  useDirectFileStore,
+} from '@features/file';
+import { useUserStore } from '@core/store/useUserStore';
 
 interface FriendItem extends FriendData {
   chat: string;
@@ -22,10 +25,12 @@ interface FriendItem extends FriendData {
 
 function DirectChatPage() {
   const friendId = useFriendId();
+  const userId = useUserStore((state) => state.user?.id);
   const isAreaOpen = useDirectChatStore((state) => state.isAreaOpen);
   const friendData = useFriendStore((state) => state.friendData);
   const friendIdChatMap = useDirectChatStore((state) => state.friendIdChatMap);
   const fileData = useDirectFileStore((state) => state.fileData);
+  const deleteFile = useDirectFileStore((state) => state.deleteFile);
   const selectFriendFileData = useMemo(
     () => fileData.filter((item) => item.friendId === friendId),
     [fileData, friendId],
@@ -96,27 +101,35 @@ function DirectChatPage() {
                 </div>
 
                 <div className='card_list'>
-                  {selectFriendFileData?.map((item) => (
-                    <InfoCard
-                      key={item.id}
-                      title={item.fileName}
-                      content={`${item.date} · ${item.fileSize} · ${item.authorName}`}
-                      iconElement={
-                        <div className='file_icon'>
-                          <FileText size={24} />
-                        </div>
-                      }
-                    >
-                      <Button variant='content'>
-                        <Download size={16} />
-                      </Button>
-                      <FileSharingDropdown
-                        fileId={item.id}
-                        triggerElement={<DropdownTrigger />}
-                        authorId={item.authorId}
-                      />
-                    </InfoCard>
-                  ))}
+                  {selectFriendFileData?.map((item) => {
+                    const currentFileName = fileData?.find(
+                      (f) => f.id === item.id && f.friendId === friendId,
+                    )?.fileName;
+
+                    return (
+                      <InfoCard
+                        key={item.id}
+                        title={item.fileName}
+                        content={`${item.date} · ${item.fileSize} · ${item.authorName}`}
+                        iconElement={
+                          <div className='file_icon'>
+                            <FileText size={24} />
+                          </div>
+                        }
+                      >
+                        <Button variant='content'>
+                          <Download size={16} />
+                        </Button>
+                        <FileSharingDropdown
+                          fileId={item.id}
+                          triggerElement={<DropdownTrigger />}
+                          canEdit={userId === item.authorId}
+                          deleteFile={deleteFile}
+                          currentFileName={currentFileName}
+                        />
+                      </InfoCard>
+                    );
+                  })}
                 </div>
               </div>
             )}

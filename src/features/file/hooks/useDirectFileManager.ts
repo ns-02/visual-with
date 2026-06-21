@@ -1,6 +1,6 @@
 import { useFriendId } from '@core/hooks/useWorkspaceParams';
-import { useFileManager } from '../../../shared/hooks/useFileManager';
-import { useDirectFileStore } from '../store/useDirectFileStore';
+import { useFileManager } from '@shared/hooks/useFileManager';
+import { useDirectFileStore } from '@features/file';
 
 export const useDirectFileManager = () => {
   const friendId = useFriendId();

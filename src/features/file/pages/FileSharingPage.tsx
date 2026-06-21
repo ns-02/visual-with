@@ -8,12 +8,18 @@ import FileNavButton from '../components/FileNavButton';
 import { Button, InfoCard, DropdownTrigger } from '@shared/components';
 import { Download, FileText } from 'lucide-react';
 import FileSharingDropdown from '../components/FileSharingDropdown';
+import { getIsPermit } from '@shared/utils/permitUtils';
+import { useUserStore } from '@core/store/useUserStore';
+import { useCurrentWorkspace } from '@core/hooks/useCurrentWorkspace';
 
 function FileSharingPage() {
   const [fileTypes, setFileTypes] = useState<string>('all');
   const fileData = useTeamFileStore((state) => state.fileData);
+  const deleteFile = useTeamFileStore((state) => state.deleteFile);
   const isLoading = useTeamFileStore((state) => state.isLoading);
   const { teamId } = useWorkspaceParams();
+  const userId = useUserStore((state) => state.user?.id);
+  const { currentRule } = useCurrentWorkspace();
 
   const fileNavItemsInit = [
     { id: 'all', text: '전체', selected: true },
@@ -70,6 +76,10 @@ function FileSharingPage() {
               return fileTypes === 'all' ? item : item.fileType === fileTypes;
             })
             .map((item) => {
+              const currentFileName = fileData?.find(
+                (f) => f.id === item.id && f.teamId === teamId,
+              )?.fileName;
+
               return (
                 <InfoCard
                   key={item.id}
@@ -87,7 +97,13 @@ function FileSharingPage() {
                   <FileSharingDropdown
                     fileId={item.id}
                     triggerElement={<DropdownTrigger />}
-                    authorId={item.authorId}
+                    canEdit={getIsPermit({
+                      authorId: item.authorId,
+                      userId,
+                      rule: currentRule,
+                    })}
+                    deleteFile={deleteFile}
+                    currentFileName={currentFileName}
                   />
                 </InfoCard>
               );

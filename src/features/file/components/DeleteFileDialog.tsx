@@ -1,28 +1,23 @@
-import { useWorkspaceParams } from '@core/hooks/useWorkspaceParams';
 import { Dispatch, SetStateAction } from 'react';
 import { AlertDialog } from '@shared/components';
-import { useTeamFileStore } from '../store/useTeamFileStore';
 
 interface DeleteFileDialogProps {
   fileId?: number;
   open: boolean;
   onOpenChange: Dispatch<SetStateAction<boolean>>;
+  deleteFile: (fileId: number) => void;
+  currentFileName?: string;
 }
 
 const DeleteFileDialog = ({
   fileId,
   open,
   onOpenChange,
+  deleteFile,
+  currentFileName,
 }: DeleteFileDialogProps) => {
-  const fileData = useTeamFileStore((state) => state.fileData);
-  const deleteFile = useTeamFileStore((state) => state.deleteFile);
-  const { teamId } = useWorkspaceParams();
-  const currentFileName = fileData?.find(
-    (item) => item.id === fileId && item.teamId === teamId,
-  )?.fileName;
-
   const handleDeleteFile = () => {
-    if (!fileData || !fileId) return;
+    if (!fileId) return;
 
     deleteFile(fileId);
     onOpenChange(false);
