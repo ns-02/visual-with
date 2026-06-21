@@ -7,7 +7,7 @@ import { differenceInDays } from 'date-fns';
 import {
   selectTeamAllChat,
   useTeamChatStore,
-} from '@features/teamChat/store/useTeamChatStore';
+} from '@features/chat/store/useTeamChatStore';
 
 interface TodoStatusData {
   name: '완료된 할 일' | '남은 할 일';
@@ -212,9 +212,7 @@ const calculateUploadedFiles = (teamId: string): RecentlyUploadedFiles[] => {
     .fileData.filter((t) => t.teamId === teamId);
 
   return fileData
-    .sort(
-      (a, b) => parseDate(b.date).getTime() - parseDate(a.date).getTime(),
-    )
+    .sort((a, b) => parseDate(b.date).getTime() - parseDate(a.date).getTime())
     .slice(0, DASHBOARD_LIST_LIMIT)
     .map((item) => ({
       fileId: item.id,
@@ -243,9 +241,7 @@ const calculateUploadedTodos = (teamId: string): RecentlyUploadedTodos[] => {
     .todoData.filter((t) => t.teamId === teamId);
 
   return todoData
-    .sort(
-      (a, b) => getTodoCreatedTimestamp(b) - getTodoCreatedTimestamp(a),
-    )
+    .sort((a, b) => getTodoCreatedTimestamp(b) - getTodoCreatedTimestamp(a))
     .slice(0, DASHBOARD_LIST_LIMIT)
     .map((item) => ({
       todoId: item.id,

@@ -1,10 +1,7 @@
 import { useUserStore } from '@core/store/useUserStore';
 import { useWorkspaceParams } from '@core/hooks/useWorkspaceParams';
 import { useEffect, useMemo } from 'react';
-import {
-  selectTeamAllChat,
-  useTeamChatStore,
-} from '../store/useTeamChatStore';
+import { selectTeamAllChat, useTeamChatStore } from '../store/useTeamChatStore';
 
 export const useTeamChatThread = () => {
   const { teamId } = useWorkspaceParams();

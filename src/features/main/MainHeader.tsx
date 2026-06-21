@@ -7,7 +7,7 @@ import AddScheduleDialog from '../schedule/components/AddScheduleDialog';
 import AddTodoDialog from '../todoList/components/AddTodoDialog';
 import AddFriendDialog from '../friendList/components/AddFriendDialog';
 import styles from './Layouts.module.css';
-import { useDirectChatStore } from '@features/directChat/store/useDirectChatStore';
+import { useDirectChatStore } from '@features/chat/store/useDirectChatStore';
 import { useToolId } from '@core/hooks/useWorkspaceParams';
 import { ToolId } from '@shared/models/Workspace';
 

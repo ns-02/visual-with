@@ -1,11 +1,11 @@
-import ChatInputArea from '@shared/components/ChatInputArea';
-import { useTeamChatThread } from '../hooks/useTeamChatThread';
 import styles from './TeamChatLayout.module.css';
-import MessageList from '@shared/components/MessageList';
 import { useTeamFileManager } from '@features/fileSharing/hooks/useTeamFileManager';
-import { useTeamChatStore } from '../store/useTeamChatStore';
 import { useEffect } from 'react';
 import { useTeamId } from '@core/hooks/useWorkspaceParams';
+import { useTeamChatStore } from '../store/useTeamChatStore';
+import { useTeamChatThread } from '../hooks/useTeamChatThread';
+import ChatInputArea from '../components/ChatInputArea';
+import MessageList from '../components/MessageList';
 
 function TeamChatPage() {
   const { allChat, handleTeamChatSend } = useTeamChatThread();

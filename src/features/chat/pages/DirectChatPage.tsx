@@ -1,12 +1,8 @@
-import { useDirectChatThread } from '../hooks/useDirectChatThread';
 import styles from './DirectChatLayout.module.css';
-import MessageList from '@shared/components/MessageList';
 import { useFriendStore } from '@features/friendList/store/useFriendStore';
-import { useDirectChatStore } from '../store/useDirectChatStore';
 import SelectFriendCard from '../components/SelectFriendCard';
 import { useEffect, useMemo, useState } from 'react';
 import { FriendData } from '@shared/models/User';
-import ChatInputArea from '@shared/components/ChatInputArea';
 import { useDirectFileManager } from '../hooks/useDirectFileManager';
 import { useRouteManager } from '@core/routes/useRouteManager';
 import { useFriendId } from '@core/hooks/useWorkspaceParams';
@@ -14,6 +10,10 @@ import { useDirectFileStore } from '../store/useDirectFileStore';
 import { Button, InfoCard, DropdownTrigger } from '@shared/components';
 import { Download, FileText } from 'lucide-react';
 import FileSharingDropdown from '../components/FileSharingDropdown';
+import { useDirectChatStore } from '../store/useDirectChatStore';
+import { useDirectChatThread } from '../hooks/useDirectChatThread';
+import ChatInputArea from '../components/ChatInputArea';
+import MessageList from '../components/MessageList';
 
 interface FriendItem extends FriendData {
   chat: string;
