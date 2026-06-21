@@ -1,0 +1,5 @@
+.separator {
+  height: 0.5px;
+  background-color: var(--surface-hover);
+  margin: 4px 0;
+}
