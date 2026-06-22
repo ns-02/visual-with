@@ -1,8 +1,13 @@
 import { Link } from 'react-router-dom';
 import styles from './HomePage.module.css';
 import { useUserStore } from '@core/store/useUserStore';
+// @ts-expect-error: 임포트 문제 없음
+import DeveloperPanel from '/src/dev/DeveloperPanel';
+import { useUserBootstrap } from '@core/hooks/useUserBootstrap';
 
 function HomePage() {
+  useUserBootstrap();
+
   const userId = useUserStore((state) => state.user?.id);
   const logout = useUserStore((state) => state.logout);
 
@@ -14,6 +19,7 @@ function HomePage() {
           <span>Visual With</span>
         </span>
         <span className={styles['right-container']}>
+          {import.meta.env.DEV && <DeveloperPanel />}
           {userId ? (
             <>
               <label>{`${userId}님`}</label>
