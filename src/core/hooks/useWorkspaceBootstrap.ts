@@ -13,10 +13,14 @@ export const useWorkspaceBootstrap = () => {
   const setWorkspaceBootstrapped = useWorkspaceStore(
     (state) => state.setWorkspaceBootstrapped,
   );
+  const setWorkspaceBootstrapError = useWorkspaceStore(
+    (state) => state.setWorkspaceBootstrapError,
+  );
 
   useEffect(() => {
     if (!userId || !userName || !isUserBootstrapped) {
       setWorkspaceBootstrapped(false);
+      setWorkspaceBootstrapError(false);
       return;
     }
 
@@ -24,6 +28,7 @@ export const useWorkspaceBootstrap = () => {
 
     const loadTeamList = async () => {
       setWorkspaceBootstrapped(false);
+      setWorkspaceBootstrapError(false);
 
       try {
         const res = await selectTeamList({ userId });
@@ -48,6 +53,7 @@ export const useWorkspaceBootstrap = () => {
           setTeamList(userId, teams, memberships);
         }
       } catch (e) {
+        setWorkspaceBootstrapError(true);
         toast.error(`${e}`);
       } finally {
         if (!cancelled) {
@@ -67,5 +73,6 @@ export const useWorkspaceBootstrap = () => {
     isUserBootstrapped,
     setTeamList,
     setWorkspaceBootstrapped,
+    setWorkspaceBootstrapError,
   ]);
 };

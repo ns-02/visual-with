@@ -8,9 +8,11 @@ interface WorkspaceState {
   membershipData: TeamMembershipData[];
   selectTeamId: string | null;
   isWorkspaceBootstrapped: boolean;
+  isWorkspaceBootstrapError: boolean;
 
   setSelectTeam: (teamId: string | null) => void;
   setWorkspaceBootstrapped: (value: boolean) => void;
+  setWorkspaceBootstrapError: (value: boolean) => void;
 
   setTeamList: (
     userId: string,
@@ -35,10 +37,13 @@ export const useWorkspaceStore = create<WorkspaceState>()((set) => ({
   selectTeamId: null,
 
   isWorkspaceBootstrapped: false,
+  isWorkspaceBootstrapError: false,
 
   setSelectTeam: (teamId) => set({ selectTeamId: teamId }),
 
   setWorkspaceBootstrapped: (value) => set({ isWorkspaceBootstrapped: value }),
+  setWorkspaceBootstrapError: (value) =>
+    set({ isWorkspaceBootstrapError: value }),
 
   setTeamList: (userId, teams, memberships) => {
     set((state) => {

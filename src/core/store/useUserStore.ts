@@ -38,5 +38,10 @@ export const useUserStore = create<UserState>((set) => ({
 
   setToolId: (id) => set({ currentToolId: id }),
 
-  logout: () => set({ user: null, isUserBootstrapped: false }),
+  logout: () =>
+    set({
+      user: null,
+      isUserBootstrapped: false,
+      currentToolId: null,
+    }),
 }));

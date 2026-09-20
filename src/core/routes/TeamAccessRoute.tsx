@@ -12,10 +12,13 @@ const TeamAccessRoute = () => {
   const isWorkspaceBootstrapped = useWorkspaceStore(
     (state) => state.isWorkspaceBootstrapped,
   );
+  const isWorkspaceBootstrapError = useWorkspaceStore(
+    (state) => state.isWorkspaceBootstrapError,
+  );
 
   const isReady = isUserBootstrapped && isWorkspaceBootstrapped;
 
-  if (!isReady) {
+  if (!isReady || isWorkspaceBootstrapError) {
     return null;
   }
 

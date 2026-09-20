@@ -25,6 +25,7 @@ function LoginPage() {
       const res = await loginUser({ userId: id, password });
 
       if (res.message !== 'ok') {
+        toast.error(res.message || '로그인에 실패했습니다.');
         return;
       }
 
