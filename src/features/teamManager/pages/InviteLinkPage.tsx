@@ -2,16 +2,14 @@ import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { CircleUser } from 'lucide-react';
 import { useUserStore } from '@core/store/useUserStore';
-import { Button } from '@shared/components';
+import { Button, Skeleton } from '@shared/components';
 import { useTeamManager } from '../hooks/useTeamManager';
-import { useUserBootstrap } from '@core/hooks/useUserBootstrap';
 import { toast } from '@core/store/useToastStore';
 
 const InviteLinkPage = () => {
-  useUserBootstrap();
-
   const navigate = useNavigate();
   const userId = useUserStore((state) => state.user?.id);
+  const isUserBootstrapped = useUserStore((state) => state.isUserBootstrapped);
   const { onAcceptTeamInvitationByURL } = useTeamManager();
   const [isAccepting, setIsAccepting] = useState(false);
   const { teamId, invitationCode } = useParams<{
@@ -21,6 +19,8 @@ const InviteLinkPage = () => {
 
   const handleAcceptInvitation = async () => {
     if (!teamId || !invitationCode) return;
+
+    if (!isUserBootstrapped) return;
 
     if (!userId) {
       toast.error('로그인 후 초대를 수락할 수 있습니다.');
@@ -72,12 +72,22 @@ const InviteLinkPage = () => {
           <p style={{ fontSize: '15px', color: '#555' }}>{`리더: `}</p>
         </div>
       </div>
-      <p style={{ textAlign: 'center' }}>{`접속중인 유저 ID: ${userId}`}</p>
+      <div style={{ textAlign: 'center' }}>
+        {!isUserBootstrapped ? (
+          <Skeleton
+            width={160}
+            height={16}
+            style={{ margin: '0 auto' }}
+          />
+        ) : (
+          `접속중인 유저 ID: ${userId}`
+        )}
+      </div>
       <Button
         style={{ backgroundColor: 'aliceblue' }}
         text={isAccepting ? '수락 중...' : '초대 수락하기'}
         onClick={handleAcceptInvitation}
-        disabled={isAccepting}
+        disabled={isAccepting || !isUserBootstrapped}
       />
     </div>
   );

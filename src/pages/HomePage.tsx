@@ -1,15 +1,14 @@
 import { Link } from 'react-router-dom';
 import styles from './HomePage.module.css';
 import { useUserStore } from '@core/store/useUserStore';
+import { Skeleton } from '@shared/components';
 // @ts-expect-error: 임포트 문제 없음
 import DeveloperPanel from '/src/dev/DeveloperPanel';
-import { useUserBootstrap } from '@core/hooks/useUserBootstrap';
 
 function HomePage() {
-  useUserBootstrap();
-
   const userId = useUserStore((state) => state.user?.id);
   const logout = useUserStore((state) => state.logout);
+  const isUserBootstrapped = useUserStore((state) => state.isUserBootstrapped);
 
   return (
     <div className={styles.home}>
@@ -20,7 +19,12 @@ function HomePage() {
         </span>
         <span className={styles['right-container']}>
           {import.meta.env.DEV && <DeveloperPanel />}
-          {userId ? (
+          {!isUserBootstrapped ? (
+            <>
+              <Skeleton width={64} height={20} />
+              <Skeleton width={64} height={20} />
+            </>
+          ) : userId ? (
             <>
               <label>{`${userId}님`}</label>
               <Link to={'/main'}>시작하기</Link>

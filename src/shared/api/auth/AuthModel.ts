@@ -38,4 +38,5 @@ export interface LoginResponse {
 export interface GetMeResponse {
   userId: string;
   name: string;
+  email: string;
 }

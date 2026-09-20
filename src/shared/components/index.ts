@@ -10,6 +10,8 @@ export { default as Input } from './Input';
 export { default as Dropdown } from './Dropdown';
 export { default as DropdownTrigger } from './DropdownTrigger';
 export { default as Progress } from './Progress';
+export { default as Skeleton } from './Skeleton';
+export { default as Spinner } from './Spinner';
 export { default as Toast } from './Toast';
 export { default as Tooltip } from './Tooltip';
 export { default as AlertDialog } from './AlertDialog';

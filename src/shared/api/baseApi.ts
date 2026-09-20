@@ -19,6 +19,15 @@ import {
   SelectTeamListResponse,
 } from './baseModel';
 
+export class ApiError extends Error {
+  status: number;
+
+  constructor(message: string, status: number) {
+    super(message);
+    this.status = status;
+  }
+}
+
 export const request = async (url: string, options = {}) => {
   const { headers, ...restOptions } = options as {
     headers?: Record<string, string>;
@@ -36,7 +45,7 @@ export const request = async (url: string, options = {}) => {
     const data = text ? JSON.parse(text) : null;
 
     if (!response.ok) {
-      throw new Error(data?.message || 'API 호출 오류');
+      throw new ApiError(data?.message || 'API 호출 오류', response.status);
     }
 
     return data;
