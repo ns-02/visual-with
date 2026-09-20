@@ -1,19 +1,17 @@
 import { Dispatch, SetStateAction } from 'react';
-import { useNavigate } from 'react-router-dom';
 import AlertDialog from '@shared/components/AlertDialog';
-import { useUserStore } from '@core/store/useUserStore';
+import { useLogout } from '@core/hooks/useLogout';
+
 interface Props {
   open: boolean;
   onOpenChange: Dispatch<SetStateAction<boolean>>;
 }
 
 const LogoutDialog = ({ open, onOpenChange }: Props) => {
-  const logout = useUserStore((state) => state.logout);
-  const navigate = useNavigate();
+  const logout = useLogout();
 
   const handleLogout = () => {
     logout();
-    navigate('/');
   };
 
   return (

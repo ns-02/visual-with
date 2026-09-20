@@ -67,6 +67,7 @@ interface DashboardState {
   updateDDaySchedules: (teamId: string) => void;
   updateUploadedFiles: (teamId: string) => void;
   updateUploadedTodos: (teamId: string) => void;
+  reset: () => void;
 }
 
 const calculateTodoStatus = (teamId: string): TodoStatusData[] => {
@@ -346,4 +347,6 @@ export const useDashboardStore = create<DashboardState>((set) => ({
       ),
     }));
   },
+
+  reset: () => set({ dashboardData: [] }),
 }));

@@ -38,6 +38,7 @@ interface ScheduleState {
   updateSchedule: (schedule: UpdateScheduleInput) => void;
   deleteSchedule: (scheduleId: number) => void;
   loadSchedule: (scheduleData: ScheduleData[], teamId: string) => void;
+  reset: () => void;
 }
 
 export const useScheduleStore = create<ScheduleState>((set) => ({
@@ -92,4 +93,6 @@ export const useScheduleStore = create<ScheduleState>((set) => ({
         ...scheduleData,
       ],
     })),
+
+  reset: () => set({ scheduleData: [] }),
 }));

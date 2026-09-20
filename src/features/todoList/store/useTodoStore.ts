@@ -25,6 +25,7 @@ interface TodoState {
   updateTodo: (todo: UpdateTodoInput) => void;
   deleteTodo: (todoId: number) => void;
   loadTodo: (todoData: TodoData[], teamId: string) => void;
+  reset: () => void;
 }
 
 export const useTodoStore = create<TodoState>((set) => ({
@@ -77,4 +78,6 @@ export const useTodoStore = create<TodoState>((set) => ({
         ...todoData,
       ],
     })),
+
+  reset: () => set({ todoData: [] }),
 }));

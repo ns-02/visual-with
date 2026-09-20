@@ -11,6 +11,7 @@ interface DirectChatState {
   friendIdChatMap: FriendIdChatMap;
   toggleAreaOpen: () => void;
   setFriendIdChatMap: (updater: FriendIdChatMapUpdater) => void;
+  reset: () => void;
 }
 
 export const useDirectChatStore = create<DirectChatState>((set) => ({
@@ -27,5 +28,11 @@ export const useDirectChatStore = create<DirectChatState>((set) => ({
           : updater;
 
       return { friendIdChatMap: new Map(nextMap) };
+    }),
+
+  reset: () =>
+    set({
+      isAreaOpen: false,
+      friendIdChatMap: new Map(),
     }),
 }));

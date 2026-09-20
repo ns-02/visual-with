@@ -12,6 +12,7 @@ interface DirectFileState {
   setCurrentFile: (fileData: BaseFileData | null, friendId: string) => void;
   setProgress: (progress: number) => void;
   increaseProgress: () => void;
+  reset: () => void;
 }
 
 export const useDirectFileStore = create<DirectFileState>((set) => ({
@@ -55,4 +56,12 @@ export const useDirectFileStore = create<DirectFileState>((set) => ({
   setProgress: (nextProgress) => set({ progress: nextProgress }),
 
   increaseProgress: () => set((state) => ({ progress: state.progress + 10 })),
+
+  reset: () =>
+    set({
+      fileData: [],
+      isLoading: false,
+      currentFile: null,
+      progress: 0,
+    }),
 }));

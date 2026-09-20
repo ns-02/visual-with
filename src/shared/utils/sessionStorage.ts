@@ -21,3 +21,16 @@ export const getItem = (key: string, defaultValue: string) => {
     return defaultValue;
   }
 };
+
+export const clearByPrefix = (prefix: string) => {
+  try {
+    for (let i = storage.length - 1; i >= 0; i -= 1) {
+      const key = storage.key(i);
+      if (key?.startsWith(prefix)) {
+        storage.removeItem(key);
+      }
+    }
+  } catch (e) {
+    console.log(e);
+  }
+};

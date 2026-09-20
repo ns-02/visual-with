@@ -45,6 +45,7 @@ interface TeamChatState {
   disconnectSocket: () => void;
   subscribeToTeam: (teamId: string) => void;
   unsubscribeFromTeam: () => void;
+  reset: () => void;
 }
 
 export const selectTeamAllChat =
@@ -215,5 +216,16 @@ export const useTeamChatStore = create<TeamChatState>((set, get) => ({
     stompSub.unsubscribe();
 
     set({ stompSub: null });
+  },
+
+  reset: () => {
+    get().unsubscribeFromTeam();
+    get().disconnectSocket();
+    set({
+      stompClient: null,
+      isConnected: false,
+      stompSub: null,
+      threadsByTeamId: new Map(),
+    });
   },
 }));

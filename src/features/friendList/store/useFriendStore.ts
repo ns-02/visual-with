@@ -17,6 +17,7 @@ interface FriendState {
   acceptFriend: (friend: FriendData) => void;
   rejectFriend: (friend: FriendData) => void;
   deleteFriend: (friendId: string) => void;
+  reset: () => void;
 }
 
 export const useFriendStore = create<FriendState>()(
@@ -60,6 +61,13 @@ export const useFriendStore = create<FriendState>()(
         set((state) => ({
           friendData: state.friendData.filter((item) => item.id !== friendId),
         })),
+
+      reset: () =>
+        set({
+          friendData: friendDataMocks,
+          friendRequestData: friendRequestDataMocks,
+          selectFriendId: null,
+        }),
     }),
     {
       name: 'friend-storage',

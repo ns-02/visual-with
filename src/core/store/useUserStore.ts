@@ -41,7 +41,7 @@ export const useUserStore = create<UserState>((set) => ({
   logout: () =>
     set({
       user: null,
-      isUserBootstrapped: false,
+      isUserBootstrapped: true,
       currentToolId: null,
     }),
 }));

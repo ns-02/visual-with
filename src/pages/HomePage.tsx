@@ -1,13 +1,14 @@
 import { Link } from 'react-router-dom';
 import styles from './HomePage.module.css';
 import { useUserStore } from '@core/store/useUserStore';
+import { useLogout } from '@core/hooks/useLogout';
 import { Skeleton } from '@shared/components';
 // @ts-expect-error: 임포트 문제 없음
 import DeveloperPanel from '/src/dev/DeveloperPanel';
 
 function HomePage() {
   const userId = useUserStore((state) => state.user?.id);
-  const logout = useUserStore((state) => state.logout);
+  const logout = useLogout();
   const isUserBootstrapped = useUserStore((state) => state.isUserBootstrapped);
 
   return (

@@ -60,10 +60,15 @@ export const useRouteManager = () => {
     navigate(`/main/settings`);
   };
 
+  const goHome = () => {
+    navigate('/', { replace: true });
+  };
+
   return {
     switchTeamWithTool,
     switchTool,
     switchFriend,
     MapsToSettings,
+    goHome,
   };
 };

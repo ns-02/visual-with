@@ -13,6 +13,7 @@ interface TeamFileState {
   setCurrentFile: (fileData: BaseFileData | null, teamId: string) => void;
   setProgress: (progress: number) => void;
   increaseProgress: () => void;
+  reset: () => void;
 }
 
 export const useTeamFileStore = create<TeamFileState>((set) => ({
@@ -56,4 +57,12 @@ export const useTeamFileStore = create<TeamFileState>((set) => ({
   setProgress: (nextProgress) => set({ progress: nextProgress }),
 
   increaseProgress: () => set((state) => ({ progress: state.progress + 10 })),
+
+  reset: () =>
+    set({
+      fileData: fileDataMocks || [],
+      isLoading: false,
+      currentFile: null,
+      progress: 0,
+    }),
 }));

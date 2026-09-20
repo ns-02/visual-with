@@ -26,6 +26,7 @@ interface WorkspaceState {
   updateTeamRule: (membership: TeamMembershipData) => void;
   deleteTeamRule: (teamId: string) => void;
   setTeamMembers: (teamId: string, memberships: TeamMembershipData[]) => void;
+  reset: () => void;
 }
 
 export const useWorkspaceStore = create<WorkspaceState>()((set) => ({
@@ -103,4 +104,13 @@ export const useWorkspaceStore = create<WorkspaceState>()((set) => ({
       ),
     }));
   },
+
+  reset: () =>
+    set({
+      teamData: [],
+      membershipData: [],
+      selectTeamId: null,
+      isWorkspaceBootstrapped: false,
+      isWorkspaceBootstrapError: false,
+    }),
 }));
