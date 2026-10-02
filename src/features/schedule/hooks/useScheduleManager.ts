@@ -159,7 +159,7 @@ export const useScheduleManager = () => {
   const deleteScheduleInManager = async (scheduleId: number | undefined) => {
     if (!scheduleId || !teamId || !userId) return;
 
-    deleteScheduleFetch({
+    await deleteScheduleFetch({
       id: scheduleId,
       teamId,
       userId,

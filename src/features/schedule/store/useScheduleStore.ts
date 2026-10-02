@@ -50,11 +50,7 @@ export const useScheduleStore = create<ScheduleState>((set) => ({
       scheduleData: [
         ...state.scheduleData,
         {
-          id:
-            state.scheduleData.reduce(
-              (max, item) => Math.max(max, item.id),
-              0,
-            ) + 1,
+          id: schedule.id,
           title: schedule.title,
           authorId: schedule.authorId,
           authorName: schedule.authorName,
