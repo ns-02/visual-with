@@ -35,6 +35,12 @@ export interface LoginResponse {
   message: string;
 }
 
+// 로그아웃 응답 (성공)
+
+export interface LogoutResponse {
+  message: string;
+}
+
 export interface GetMeResponse {
   userId: string;
   name: string;

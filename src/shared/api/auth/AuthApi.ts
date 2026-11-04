@@ -7,6 +7,7 @@ import {
   SignupRequest,
   SignupResponse,
   GetMeResponse,
+  LogoutResponse,
 } from './AuthModel';
 
 export const loginUser = async ({
@@ -16,6 +17,12 @@ export const loginUser = async ({
   return await request('/api/login', {
     method: 'POST',
     body: JSON.stringify({ userId, password }),
+  });
+};
+
+export const logoutUser = async (): Promise<LogoutResponse> => {
+  return await request('/api/logout', {
+    method: 'POST',
   });
 };
 

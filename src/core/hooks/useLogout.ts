@@ -1,4 +1,5 @@
 import { useRouteManager } from '@core/routes/useRouteManager';
+import { toast } from '@core/store/useToastStore';
 import { useUserStore } from '@core/store/useUserStore';
 import { useWorkspaceStore } from '@core/store/useWorkspaceStore';
 import { useTeamChatStore } from '@features/chat/store/useTeamChatStore';
@@ -10,13 +11,21 @@ import { useFriendStore } from '@features/friendList/store/useFriendStore';
 import { useScheduleStore } from '@features/schedule/store/useScheduleStore';
 import { useSettingsStore } from '@features/settings/store/useSettingsStore';
 import { useTodoStore } from '@features/todoList/store/useTodoStore';
+import { logoutUser as logoutUserApi } from '@shared/api/auth/AuthApi';
 import { clearByPrefix } from '@shared/utils/sessionStorage';
 
 export const useLogout = () => {
   const logoutUser = useUserStore((state) => state.logout);
   const { goHome } = useRouteManager();
 
-  return () => {
+  return async () => {
+    try {
+      await logoutUserApi();
+    } catch (e) {
+      toast.error(`${e}`);
+      return;
+    }
+
     useTeamChatStore.getState().reset();
     useWorkspaceStore.getState().reset();
     useFriendStore.getState().reset();
