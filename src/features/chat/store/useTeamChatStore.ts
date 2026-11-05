@@ -1,46 +1,29 @@
-import { teamChatMockFactories } from '@mocks/TeamChatMocks';
-import { ChatData } from '@shared/models/Workspace';
-import { formatDate } from '@shared/utils/formatDate';
-import getMaxId from '@shared/utils/getMaxId';
 import { create } from 'zustand';
 import { Client, StompSubscription } from '@stomp/stompjs';
 import { toast } from '@core/store/useToastStore';
-// import SockJS from 'sockjs-client';
+import { getTeamChat } from '@shared/api/chat/ChatApi';
+import { TeamChatMessage } from '@shared/api/chat/ChatModel';
+import { ChatData } from '@shared/models/Workspace';
 
-interface TeamChatThread {
-  allChat: ChatData[];
-  currentId: number;
+interface ChatEntry {
+  id: number;
+  message: TeamChatMessage;
 }
 
-const EMPTY_TEAM_CHAT: ChatData[] = [];
-
-const getTeamAllChat = (
-  threadsByTeamId: Map<string, TeamChatThread>,
-  teamId: string | null | undefined,
-): ChatData[] => {
-  if (!teamId) return EMPTY_TEAM_CHAT;
-
-  return threadsByTeamId.get(teamId)?.allChat ?? EMPTY_TEAM_CHAT;
-};
+interface TeamChatThread {
+  entries: ChatEntry[];
+  nextId: number;
+  loadToken: object | null;
+  liveDuringLoad: ChatEntry[];
+}
 
 interface TeamChatState {
   stompClient: Client | null;
   isConnected: boolean;
   stompSub: StompSubscription | null;
-
   threadsByTeamId: Map<string, TeamChatThread>;
-  initThread: (
-    teamId: string,
-    userId: string | undefined,
-    userName: string | undefined,
-  ) => void;
-  sendMessage: (
-    teamId: string,
-    chatToSend: string,
-    userId: string,
-    userName: string,
-  ) => void;
-
+  initThread: (teamId: string) => void;
+  sendMessage: (teamId: string, message: string, userId: string) => void;
   connectSocket: () => void;
   disconnectSocket: () => void;
   subscribeToTeam: (teamId: string) => void;
@@ -48,202 +31,212 @@ interface TeamChatState {
   reset: () => void;
 }
 
-export const selectTeamAllChat =
-  (teamId: string | null | undefined) => (state: TeamChatState) =>
-    getTeamAllChat(state.threadsByTeamId, teamId);
+const EMPTY_CHAT: ChatData[] = [];
+const chatCache = new WeakMap<ChatEntry[], ChatData[]>();
+const signature = (message: TeamChatMessage) =>
+  JSON.stringify([
+    message.roomId,
+    message.sender,
+    message.message,
+    message.receivedDate,
+    message.receivedTime,
+  ]);
 
-const withIsMe = (chats: ChatData[], userId: string | undefined) =>
-  chats.map((chat) => ({
-    ...chat,
-    isMe: chat.authorId === userId,
-  }));
+const isTeamChatMessage = (value: unknown): value is TeamChatMessage => {
+  if (!value || typeof value !== 'object') return false;
+  const message = value as Record<string, unknown>;
+  return ['roomId', 'sender', 'message', 'receivedDate', 'receivedTime'].every(
+    (key) => typeof message[key] === 'string',
+  );
+};
+
+export const selectTeamAllChat =
+  (teamId: string | null | undefined) =>
+  (state: TeamChatState): ChatData[] => {
+    const entries = teamId
+      ? state.threadsByTeamId.get(teamId)?.entries
+      : undefined;
+    if (!entries) return EMPTY_CHAT;
+    const cached = chatCache.get(entries);
+    if (cached) return cached;
+    const chats = entries.map(({ id, message }) => ({
+      id,
+      authorId: message.sender,
+      authorName: message.sender,
+      chat: message.message,
+      createdAt: message.receivedDate,
+      time: message.receivedTime.slice(0, 5),
+      isMe: false,
+    }));
+    chatCache.set(entries, chats);
+    return chats;
+  };
 
 export const useTeamChatStore = create<TeamChatState>((set, get) => ({
-  stompClient: null as Client | null,
+  stompClient: null,
   isConnected: false,
-  stompSub: null as StompSubscription | null,
+  stompSub: null,
   threadsByTeamId: new Map(),
 
-  initThread: (teamId, userId, userName) =>
+  initThread: (teamId) => {
+    const token = {};
     set((state) => {
-      const nextMap = new Map(state.threadsByTeamId);
-      const existing = nextMap.get(teamId);
+      const threads = new Map(state.threadsByTeamId);
+      const existing = threads.get(teamId);
+      threads.set(teamId, {
+        entries: existing?.entries ?? [],
+        nextId: existing?.nextId ?? 1,
+        loadToken: token,
+        liveDuringLoad: [],
+      });
+      return { threadsByTeamId: threads };
+    });
 
-      if (existing) {
-        nextMap.set(teamId, {
-          ...existing,
-          allChat: withIsMe(existing.allChat, userId),
+    void getTeamChat({ teamId })
+      .then((messages) => {
+        if (!Array.isArray(messages) || !messages.every(isTeamChatMessage)) {
+          throw new Error('잘못된 채팅 기록 응답입니다.');
+        }
+        set((state) => {
+          const thread = state.threadsByTeamId.get(teamId);
+          if (!thread || thread.loadToken !== token) return state;
+          let nextId = thread.nextId;
+          const entries = messages.map((message) => ({
+            id: nextId++,
+            message,
+          }));
+          // Only compare events received during this request, consuming one match per event.
+          const counts = new Map<string, number>();
+          for (const message of messages) {
+            const key = signature(message);
+            counts.set(key, (counts.get(key) ?? 0) + 1);
+          }
+          for (const entry of thread.liveDuringLoad) {
+            const key = signature(entry.message);
+            const count = counts.get(key) ?? 0;
+            if (count > 0) counts.set(key, count - 1);
+            else entries.push(entry);
+          }
+          const threads = new Map(state.threadsByTeamId);
+          threads.set(teamId, {
+            entries,
+            nextId,
+            loadToken: null,
+            liveDuringLoad: [],
+          });
+          return { threadsByTeamId: threads };
         });
-        return { threadsByTeamId: nextMap };
-      }
-
-      const createMocks = teamChatMockFactories[teamId];
-      const seeded = createMocks ? createMocks({ userId, userName }) : [];
-      const nextAllChat = withIsMe(seeded, userId);
-      const maxId = getMaxId(nextAllChat);
-
-      nextMap.set(teamId, {
-        allChat: nextAllChat,
-        currentId: maxId + 1,
+      })
+      .catch(() => {
+        const thread = get().threadsByTeamId.get(teamId);
+        if (!thread || thread.loadToken !== token) return;
+        set((state) => {
+          const threads = new Map(state.threadsByTeamId);
+          threads.set(teamId, {
+            ...thread,
+            loadToken: null,
+            liveDuringLoad: [],
+          });
+          return { threadsByTeamId: threads };
+        });
+        toast.error('채팅 기록을 불러오지 못했습니다.');
       });
+  },
 
-      return { threadsByTeamId: nextMap };
-    }),
-
-  sendMessage: (teamId, chatToSend, userId, userName) =>
-    set((state) => {
-      const { stompClient } = state;
-      const thread = state.threadsByTeamId.get(teamId);
-      if (!thread) return state;
-
-      const today = new Date();
-      const createdAt = formatDate();
-      const time = today.toLocaleTimeString().slice(0, -3);
-
-      const newMessage: ChatData = {
-        id: thread.currentId,
-        chat: chatToSend,
-        time,
-        authorId: userId,
-        authorName: userName,
-        isMe: true,
-        createdAt,
-      };
-
-      const newTestMsg = {
-        id: thread.currentId,
-        name: userName,
-        message: chatToSend,
-      };
-
-      stompClient?.publish({
-        // destination: `/app/chat/${teamId}`,
-        destination: `/pub/message`,
-        // body: JSON.stringify(newMessage),
-        body: JSON.stringify(newTestMsg),
+  sendMessage: (teamId, message, userId) => {
+    const { stompClient } = get();
+    if (!stompClient?.connected) {
+      toast.error('채팅 서버에 연결되지 않았습니다.');
+      return;
+    }
+    try {
+      stompClient.publish({
+        destination: `/pub/message/${teamId}`,
+        body: JSON.stringify({ id: teamId, name: userId, message }),
       });
-
-      const nextAllChat: ChatData[] = [...thread.allChat, newMessage];
-      const nextMap = new Map(state.threadsByTeamId);
-      nextMap.set(teamId, {
-        allChat: nextAllChat,
-        currentId: thread.currentId + 1,
-      });
-
-      return { threadsByTeamId: nextMap };
-    }),
+    } catch {
+      toast.error('메시지를 전송하지 못했습니다.');
+    }
+  },
 
   connectSocket: () => {
     if (get().stompClient) return;
-
     const client = new Client({
       brokerURL: 'ws://localhost:8080/ws',
-      reconnectDelay: 5000, // 재연결 시도
-
+      reconnectDelay: 5000,
       onConnect: () => {
-        if (get().stompClient === client) {
-          set({ isConnected: true });
-        }
+        if (get().stompClient === client) set({ isConnected: true });
       },
-
       onDisconnect: () => {
-        if (get().stompClient === client) {
-          set({ isConnected: false });
-        }
+        if (get().stompClient === client)
+          set({ isConnected: false, stompSub: null });
       },
-
       onWebSocketClose: () => {
-        if (get().stompClient === client) {
-          set({ isConnected: false });
-        }
+        if (get().stompClient === client)
+          set({ isConnected: false, stompSub: null });
       },
-
       onWebSocketError: () => {
-        if (get().stompClient === client) {
-          set({ isConnected: false });
-        }
+        if (get().stompClient === client) set({ isConnected: false });
       },
-
-      onStompError: (frame) => toast.error(`STOMP 오류: ${frame}`),
+      onStompError: () => toast.error('채팅 서버 연결 오류가 발생했습니다.'),
     });
-
-    client.activate();
     set({ stompClient: client });
+    client.activate();
   },
 
   disconnectSocket: () => {
     const { stompClient } = get();
-
-    stompClient?.deactivate();
-
-    set({ stompClient: null, isConnected: false });
+    set({ stompClient: null, isConnected: false, stompSub: null });
+    void stompClient?.deactivate();
   },
 
   subscribeToTeam: (teamId) => {
-    const { stompClient, stompSub, threadsByTeamId } = get();
-
-    if (!stompClient?.connected) return;
-
-    const thread = threadsByTeamId.get(teamId);
-    if (!thread) return;
-
+    const { stompClient, stompSub } = get();
+    if (!stompClient?.connected || !get().threadsByTeamId.has(teamId)) return;
     stompSub?.unsubscribe();
-
-    const topicDestination = `/sub/chatroom/1`;
-    // const topicDestination = `/topic/chat/${teamId}`;
-
-    const newStompSub = stompClient.subscribe(topicDestination, (message) => {
-      const destination = message.headers.destination;
-      if (destination && destination !== topicDestination) return;
-
-      const body = JSON.parse(message.body) as ChatData;
-
-      console.log('받음', body);
-
+    const destination = `/sub/chatroom/${teamId}`;
+    const subscription = stompClient.subscribe(destination, (frame) => {
+      if (
+        frame.headers.destination &&
+        frame.headers.destination !== destination
+      )
+        return;
+      let message: unknown;
+      try {
+        message = JSON.parse(frame.body);
+      } catch {
+        return;
+      }
+      if (!isTeamChatMessage(message) || message.roomId !== teamId) return;
+      const validMessage = message;
       set((state) => {
-        const currentThreadsByTeamId = state.threadsByTeamId;
-        const currentThread = currentThreadsByTeamId.get(teamId);
-
-        if (!currentThread) return {};
-
-        if (currentThread.allChat.some((chat) => chat.id === body.id)) {
-          return {};
-        }
-
-        const nextAllChat: ChatData[] = [...currentThread.allChat, body];
-
-        const nextMap = new Map(currentThreadsByTeamId);
-
-        nextMap.set(teamId, {
-          allChat: nextAllChat,
-          currentId: currentThread.currentId + 1,
+        const thread = state.threadsByTeamId.get(teamId);
+        if (!thread) return state;
+        const entry = { id: thread.nextId, message: validMessage };
+        const threads = new Map(state.threadsByTeamId);
+        threads.set(teamId, {
+          ...thread,
+          entries: [...thread.entries, entry],
+          nextId: thread.nextId + 1,
+          liveDuringLoad: thread.loadToken
+            ? [...thread.liveDuringLoad, entry]
+            : [],
         });
-
-        return { threadsByTeamId: nextMap };
+        return { threadsByTeamId: threads };
       });
     });
-
-    set({ stompSub: newStompSub });
+    set({ stompSub: subscription });
   },
 
   unsubscribeFromTeam: () => {
-    const { stompSub } = get();
-
-    if (!stompSub) return;
-
-    stompSub.unsubscribe();
-
+    const { stompSub, stompClient } = get();
+    if (stompSub && stompClient?.connected) stompSub.unsubscribe();
     set({ stompSub: null });
   },
 
   reset: () => {
     get().unsubscribeFromTeam();
     get().disconnectSocket();
-    set({
-      stompClient: null,
-      isConnected: false,
-      stompSub: null,
-      threadsByTeamId: new Map(),
-    });
+    set({ threadsByTeamId: new Map() });
   },
 }));
