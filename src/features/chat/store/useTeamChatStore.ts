@@ -134,16 +134,34 @@ export const useTeamChatStore = create<TeamChatState>((set, get) => ({
     }),
 
   connectSocket: () => {
+    if (get().stompClient) return;
+
     const client = new Client({
       brokerURL: 'ws://localhost:8080/ws',
       reconnectDelay: 5000, // 재연결 시도
 
       onConnect: () => {
-        set({ isConnected: true });
+        if (get().stompClient === client) {
+          set({ isConnected: true });
+        }
       },
 
       onDisconnect: () => {
-        set({ isConnected: false });
+        if (get().stompClient === client) {
+          set({ isConnected: false });
+        }
+      },
+
+      onWebSocketClose: () => {
+        if (get().stompClient === client) {
+          set({ isConnected: false });
+        }
+      },
+
+      onWebSocketError: () => {
+        if (get().stompClient === client) {
+          set({ isConnected: false });
+        }
       },
 
       onStompError: (frame) => toast.error(`STOMP 오류: ${frame}`),
