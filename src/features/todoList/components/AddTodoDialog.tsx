@@ -1,4 +1,5 @@
-import { Dispatch, SetStateAction, useState } from 'react';
+import { toast } from '@core/store/useToastStore';
+import { Dispatch, SetStateAction, useRef, useState } from 'react';
 import { Dialog } from '@shared/components';
 import { useTodoManager } from '../hooks/useTodoManager';
 
@@ -9,6 +10,7 @@ interface AddTodoDialogProps {
 
 const AddTodoDialog = ({ open, onOpenChange }: AddTodoDialogProps) => {
   const { addTodoInManager } = useTodoManager();
+  const pending = useRef(false);
 
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -16,11 +18,20 @@ const AddTodoDialog = ({ open, onOpenChange }: AddTodoDialogProps) => {
   const handleAddTodo = async () => {
     if (!title.trim()) return;
 
-    await addTodoInManager(title, description);
+    if (pending.current) return;
+    pending.current = true;
+    try {
+      const success = await addTodoInManager(title, description);
+      if (!success) return;
 
-    setTitle('');
-    setDescription('');
-    onOpenChange(false);
+      setTitle('');
+      setDescription('');
+      onOpenChange(false);
+    } catch {
+      toast.error('할 일을 추가하지 못했습니다.');
+    } finally {
+      pending.current = false;
+    }
   };
 
   return (

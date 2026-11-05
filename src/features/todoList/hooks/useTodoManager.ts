@@ -1,7 +1,8 @@
 import { useCurrentWorkspace } from '@core/hooks/useCurrentWorkspace';
 import { useUserStore } from '@core/store/useUserStore';
 import { useTodoStore } from '../store/useTodoStore';
-import { useEffect, useMemo } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
+import { toast } from '@core/store/useToastStore';
 import { TodoData } from '@shared/models/Workspace';
 import { getIsPermit } from '@shared/utils/permitUtils';
 import {
@@ -14,7 +15,8 @@ import {
 import { formatDate, formatTime } from '@shared/utils/formatDate';
 import { useWorkspaceStore } from '@core/store/useWorkspaceStore';
 
-export const useTodoManager = () => {
+export const useTodoManager = (shouldLoad = false) => {
+  const pendingToggles = useRef(new Set<number>());
   const userId = useUserStore((state) => state.user?.id);
   const userName = useUserStore((state) => state.user?.name);
   const { currentRule, teamId } = useCurrentWorkspace();
@@ -37,37 +39,46 @@ export const useTodoManager = () => {
   const membershipData = useWorkspaceStore((state) => state.membershipData);
 
   useEffect(() => {
+    if (!shouldLoad || !teamId) return;
+    let active = true;
+    const initialData = useTodoStore.getState().todoData;
+
     const loadTodoData = async () => {
-      if (!teamId) return;
+      try {
+        const fetchData = await viewTodo({ teamId });
+        if (!active || useTodoStore.getState().todoData !== initialData) return;
+        if (!Array.isArray(fetchData)) throw new Error('잘못된 응답');
+        const currentMembershipData = membershipData.filter(
+          (m) => m.teamId === teamId,
+        );
 
-      const fetchData = await viewTodo({ teamId });
-      const currentMembershipData = membershipData.filter(
-        (m) => m.teamId === teamId,
-      );
+        const newTodoData: TodoData[] = fetchData.map((item) => ({
+          id: item.id,
+          title: item.title,
+          description: item.content,
+          checked: item.completed,
+          teamId,
+          authorId: item.userId,
+          authorName:
+            currentMembershipData.find((m) => m.userId === item.userId)
+              ?.userName ?? '',
+          createdDate: item.createdDate,
+          createdTime: item.createdTime,
+          completeDate: item.completeDate,
+          completeTime: item.completeTime,
+        }));
 
-      if (!fetchData || fetchData.length === 0) return;
-
-      const newTodoData: TodoData[] = fetchData.map((item) => ({
-        id: item.id,
-        title: item.title,
-        description: item.content,
-        checked: item.completed,
-        teamId,
-        authorId: item.userId,
-        authorName:
-          currentMembershipData.find((m) => m.userId === item.userId)
-            ?.userName ?? '',
-        createdDate: item.createdDate,
-        createdTime: item.createdTime,
-        completeDate: item.completeDate,
-        completeTime: item.completeTime,
-      }));
-
-      loadTodo(newTodoData, teamId);
+        loadTodo(newTodoData, teamId);
+      } catch {
+        if (active) toast.error('할 일 목록을 불러오지 못했습니다.');
+      }
     };
 
-    loadTodoData();
-  }, [teamId, loadTodo, membershipData]);
+    void loadTodoData();
+    return () => {
+      active = false;
+    };
+  }, [teamId, loadTodo, membershipData, shouldLoad]);
 
   const getCanToggle = (authorId: string) =>
     getIsPermit({
@@ -81,19 +92,26 @@ export const useTodoManager = () => {
 
     const canToggle = getCanToggle(item.authorId);
 
-    if (!canToggle) return;
+    if (!canToggle || pendingToggles.current.has(item.id)) return;
+    pendingToggles.current.add(item.id);
 
-    await updateTodoCompleteFetch({
-      id: item.id,
-      teamId,
-      userId: item.authorId,
-      complete: !item.checked,
-      completeDate: formatDate(),
-      completeTime: formatTime(),
-      userTeamRole: currentRule,
-    });
+    try {
+      await updateTodoCompleteFetch({
+        id: item.id,
+        teamId,
+        userId: item.authorId,
+        complete: !item.checked,
+        completeDate: formatDate(),
+        completeTime: formatTime(),
+        userTeamRole: currentRule,
+      });
 
-    toggleTodo(item.id);
+      toggleTodo(item.id);
+    } catch {
+      toast.error('할 일 완료 상태를 변경하지 못했습니다.');
+    } finally {
+      pendingToggles.current.delete(item.id);
+    }
   };
 
   const addTodoInManager = async (title: string, description: string) => {
@@ -121,6 +139,7 @@ export const useTodoManager = () => {
       createdDate,
       createdTime,
     });
+    return true;
   };
 
   const updateTodoInManager = async ({
@@ -136,7 +155,8 @@ export const useTodoManager = () => {
     authorId: string | undefined;
     authorName: string | undefined;
   }) => {
-    if (!title || !todoId || !authorId || !authorName || !teamId) return;
+    if (!title || !todoId || !authorId || authorName === undefined || !teamId)
+      return;
 
     await updateTodoContentFetch({
       id: todoId,
@@ -154,12 +174,13 @@ export const useTodoManager = () => {
       authorId,
       authorName,
     });
+    return true;
   };
 
   const deleteTodoInManager = async (todoId: number | undefined) => {
     if (!todoId || !teamId || !userId) return;
 
-    deleteTodoFetch({
+    await deleteTodoFetch({
       id: todoId,
       teamId,
       userId,
@@ -167,6 +188,7 @@ export const useTodoManager = () => {
     });
 
     deleteTodo(todoId);
+    return true;
   };
 
   return {

@@ -7,7 +7,7 @@ import { InfoCard, DropdownTrigger } from '@shared/components';
 import ScheduleDropdown from '../components/ScheduleDropdown';
 
 function SchedulePage() {
-  const { teamScheduleData } = useScheduleManager();
+  const { teamScheduleData } = useScheduleManager(true);
 
   const [selected, setSelected] = useState<Date>();
   const day = new Date().getDate();

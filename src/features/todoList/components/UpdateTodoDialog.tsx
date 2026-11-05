@@ -1,5 +1,6 @@
+import { toast } from '@core/store/useToastStore';
 import { useWorkspaceParams } from '@core/hooks/useWorkspaceParams';
-import { Dispatch, SetStateAction, useState } from 'react';
+import { Dispatch, SetStateAction, useRef, useState } from 'react';
 import { Dialog } from '@shared/components';
 import { useTodoStore } from '../store/useTodoStore';
 import { useTodoManager } from '../hooks/useTodoManager';
@@ -16,6 +17,7 @@ const UpdateTodoDialog = ({
   onOpenChange,
 }: UpdateTodoDialogProps) => {
   const { updateTodoInManager } = useTodoManager();
+  const pending = useRef(false);
   const todoData = useTodoStore((state) => state.todoData);
   const { teamId } = useWorkspaceParams();
 
@@ -31,17 +33,26 @@ const UpdateTodoDialog = ({
   const handleUpdateTodo = async () => {
     if (!title.trim()) return;
 
-    updateTodoInManager({
-      title,
-      description,
-      todoId,
-      authorId: currentTodoData?.authorId,
-      authorName: currentTodoData?.authorName,
-    });
+    if (pending.current) return;
+    pending.current = true;
+    try {
+      const success = await updateTodoInManager({
+        title,
+        description,
+        todoId,
+        authorId: currentTodoData?.authorId,
+        authorName: currentTodoData?.authorName,
+      });
+      if (!success) return;
 
-    setTitle('');
-    setDescription('');
-    onOpenChange(false);
+      setTitle('');
+      setDescription('');
+      onOpenChange(false);
+    } catch {
+      toast.error('할 일을 수정하지 못했습니다.');
+    } finally {
+      pending.current = false;
+    }
   };
 
   return (

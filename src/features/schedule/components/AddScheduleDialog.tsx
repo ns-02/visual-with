@@ -1,4 +1,5 @@
-import { Dispatch, SetStateAction, useState } from 'react';
+import { toast } from '@core/store/useToastStore';
+import { Dispatch, SetStateAction, useRef, useState } from 'react';
 import { Dialog, Switch } from '@shared/components';
 import { formatDate, formatTime } from '@shared/utils/formatDate';
 import { useScheduleManager } from '../hooks/useScheduleManager';
@@ -10,6 +11,7 @@ export interface AddScheduleDialogProps {
 
 const AddScheduleDialog = ({ open, onOpenChange }: AddScheduleDialogProps) => {
   const { addScheduleInManager } = useScheduleManager();
+  const pending = useRef(false);
 
   const [title, setTitle] = useState('');
   const [startDate, setstartDate] = useState(formatDate());
@@ -22,23 +24,32 @@ const AddScheduleDialog = ({ open, onOpenChange }: AddScheduleDialogProps) => {
   const handleAddSchedule = async () => {
     if (!title.trim()) return;
 
-    await addScheduleInManager({
-      title,
-      description,
-      startDate,
-      startTime,
-      finishDate,
-      finishTime,
-      isAllDay,
-    });
+    if (pending.current) return;
+    pending.current = true;
+    try {
+      const success = await addScheduleInManager({
+        title,
+        description,
+        startDate,
+        startTime,
+        finishDate,
+        finishTime,
+        isAllDay,
+      });
+      if (!success) return;
 
-    setTitle('');
-    setstartDate('');
-    setStartTime('');
-    setFinishDate('');
-    setFinishTime('');
-    setDescription('');
-    onOpenChange(false);
+      setTitle('');
+      setstartDate('');
+      setStartTime('');
+      setFinishDate('');
+      setFinishTime('');
+      setDescription('');
+      onOpenChange(false);
+    } catch {
+      toast.error('일정을 추가하지 못했습니다.');
+    } finally {
+      pending.current = false;
+    }
   };
 
   return (

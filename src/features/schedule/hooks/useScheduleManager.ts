@@ -1,6 +1,7 @@
 import { useCurrentWorkspace } from '@core/hooks/useCurrentWorkspace';
 import { useUserStore } from '@core/store/useUserStore';
 import { useEffect, useMemo } from 'react';
+import { toast } from '@core/store/useToastStore';
 import { formatDate, formatTime } from '@shared/utils/formatDate';
 import { useScheduleStore } from '../store/useScheduleStore';
 import {
@@ -11,7 +12,7 @@ import {
 } from '@shared/api/schedule/ScheduleApi';
 import { ScheduleData } from '@shared/models/Workspace';
 
-export const useScheduleManager = () => {
+export const useScheduleManager = (shouldLoad = false) => {
   const userId = useUserStore((state) => state.user?.id);
   const userName = useUserStore((state) => state.user?.name);
   const { currentRule, teamId } = useCurrentWorkspace();
@@ -30,31 +31,41 @@ export const useScheduleManager = () => {
   // loadSchedule 추가
 
   useEffect(() => {
+    if (!shouldLoad || !teamId) return;
+    let active = true;
+    const initialData = useScheduleStore.getState().scheduleData;
+
     const loadScheduleData = async () => {
-      if (!teamId) return;
+      try {
+        const fetchData = await viewSchedule({ teamId });
+        if (!active || useScheduleStore.getState().scheduleData !== initialData)
+          return;
+        if (!Array.isArray(fetchData)) throw new Error('잘못된 응답');
 
-      const fetchData = await viewSchedule({ teamId });
+        const newScheduleData: ScheduleData[] = fetchData.map((item) => ({
+          id: item.id,
+          title: item.title,
+          description: item.content,
+          startDate: item.startDate,
+          startTime: item.startTime,
+          finishDate: item.completeDate,
+          finishTime: item.completeTime,
+          teamId,
+          authorId: item.userId,
+          authorName: item.userName ?? '아무개',
+        }));
 
-      if (!fetchData || fetchData.length === 0) return;
-
-      const newScheduleData: ScheduleData[] = fetchData.map((item) => ({
-        id: item.id,
-        title: item.title,
-        description: item.content,
-        startDate: item.startDate,
-        startTime: item.startTime,
-        finishDate: item.completeDate,
-        finishTime: item.completeTime,
-        teamId,
-        authorId: item.userId,
-        authorName: item.userName ?? '아무개',
-      }));
-
-      loadSchedule(newScheduleData, teamId);
+        loadSchedule(newScheduleData, teamId);
+      } catch {
+        if (active) toast.error('일정 목록을 불러오지 못했습니다.');
+      }
     };
 
-    loadScheduleData();
-  }, [teamId, loadSchedule]);
+    void loadScheduleData();
+    return () => {
+      active = false;
+    };
+  }, [teamId, loadSchedule, shouldLoad]);
 
   const addScheduleInManager = async ({
     title,
@@ -102,6 +113,7 @@ export const useScheduleManager = () => {
       finishDate: finishDate || undefined,
       finishTime: finishTime || undefined,
     });
+    return true;
   };
 
   const updateScheduleInManager = async ({
@@ -154,6 +166,7 @@ export const useScheduleManager = () => {
       finishDate: finishDate || undefined,
       finishTime: finishTime || undefined,
     });
+    return true;
   };
 
   const deleteScheduleInManager = async (scheduleId: number | undefined) => {
@@ -167,6 +180,7 @@ export const useScheduleManager = () => {
     });
 
     deleteSchedule(scheduleId);
+    return true;
   };
 
   return {

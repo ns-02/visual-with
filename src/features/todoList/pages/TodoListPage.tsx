@@ -7,7 +7,7 @@ import TodoListDropdown from '../components/TodoListDropdown';
 
 function TodoListPage() {
   const { progressData, completedData, updateTodoComplete, getCanToggle } =
-    useTodoManager();
+    useTodoManager(true);
 
   return (
     <div className={styles.todo_list_root}>

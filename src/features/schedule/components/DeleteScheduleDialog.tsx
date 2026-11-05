@@ -1,5 +1,6 @@
+import { toast } from '@core/store/useToastStore';
 import { useWorkspaceParams } from '@core/hooks/useWorkspaceParams';
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch, SetStateAction, useRef } from 'react';
 import { AlertDialog } from '@shared/components';
 import { useScheduleStore } from '../store/useScheduleStore';
 import { useScheduleManager } from '../hooks/useScheduleManager';
@@ -16,6 +17,7 @@ const DeleteScheduleDialog = ({
   onOpenChange,
 }: DeleteScheduleDialogProps) => {
   const { deleteScheduleInManager } = useScheduleManager();
+  const pending = useRef(false);
 
   const scheduleData = useScheduleStore((state) => state.scheduleData);
   const { teamId } = useWorkspaceParams();
@@ -23,9 +25,16 @@ const DeleteScheduleDialog = ({
     (item) => item.id === scheduleId && item.teamId === teamId,
   )?.title;
 
-  const handleDeleteSchedule = () => {
-    deleteScheduleInManager(scheduleId);
-    onOpenChange(false);
+  const handleDeleteSchedule = async () => {
+    if (pending.current) return;
+    pending.current = true;
+    try {
+      if (await deleteScheduleInManager(scheduleId)) onOpenChange(false);
+    } catch {
+      toast.error('일정을 삭제하지 못했습니다.');
+    } finally {
+      pending.current = false;
+    }
   };
 
   return (

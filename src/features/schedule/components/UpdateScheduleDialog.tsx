@@ -1,6 +1,7 @@
+import { toast } from '@core/store/useToastStore';
 import { useWorkspaceParams } from '@core/hooks/useWorkspaceParams';
 import { Dialog, Switch } from '@shared/components';
-import { Dispatch, SetStateAction, useState } from 'react';
+import { Dispatch, SetStateAction, useRef, useState } from 'react';
 import { useScheduleStore } from '../store/useScheduleStore';
 import { useScheduleManager } from '../hooks/useScheduleManager';
 
@@ -16,6 +17,7 @@ const UpdateScheduleDialog = ({
   onOpenChange,
 }: UpdateScheduleDialogProps) => {
   const { updateScheduleInManager } = useScheduleManager();
+  const pending = useRef(false);
   const scheduleData = useScheduleStore((state) => state.scheduleData);
   const { teamId } = useWorkspaceParams();
 
@@ -36,26 +38,35 @@ const UpdateScheduleDialog = ({
   const handleUpdateSchedule = async () => {
     if (!title.trim()) return;
 
-    await updateScheduleInManager({
-      scheduleId,
-      title,
-      description,
-      authorId: currentData?.authorId ?? '',
-      authorName: currentData?.authorName ?? '',
-      startDate,
-      startTime,
-      finishDate,
-      finishTime,
-      isAllDay,
-    });
+    if (pending.current) return;
+    pending.current = true;
+    try {
+      const success = await updateScheduleInManager({
+        scheduleId,
+        title,
+        description,
+        authorId: currentData?.authorId ?? '',
+        authorName: currentData?.authorName ?? '',
+        startDate,
+        startTime,
+        finishDate,
+        finishTime,
+        isAllDay,
+      });
+      if (!success) return;
 
-    setTitle('');
-    setstartDate('');
-    setStartTime('');
-    setFinishDate('');
-    setFinishTime('');
-    setDescription('');
-    onOpenChange(false);
+      setTitle('');
+      setstartDate('');
+      setStartTime('');
+      setFinishDate('');
+      setFinishTime('');
+      setDescription('');
+      onOpenChange(false);
+    } catch {
+      toast.error('일정을 수정하지 못했습니다.');
+    } finally {
+      pending.current = false;
+    }
   };
 
   return (
