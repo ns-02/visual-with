@@ -45,6 +45,7 @@
 .team_aside {
   flex: 0 0 320px;
   background-color: var(--color-blue-300);
+  color: var(--text-main);
   padding: 0 16px;
 }
 
