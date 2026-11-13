@@ -19,7 +19,7 @@ function HomePage() {
           <span>Visual With</span>
         </span>
         <span className={styles['right-container']}>
-          {import.meta.env.DEV && <DeveloperPanel />}
+          {/* {import.meta.env.DEV && <DeveloperPanel />} */}
           {!isUserBootstrapped ? (
             <>
               <Skeleton width={64} height={20} />
@@ -90,8 +90,8 @@ function HomePage() {
             <div className={styles.card_icon}>💬</div>
             <h3>실시간 채팅</h3>
             <p>
-              외부 메신저를 쓰지 않아도 중요 파일과 결정사항이 대화 속에서
-              쉽게 공유됩니다.
+              외부 메신저를 쓰지 않아도 중요 파일과 결정사항이 대화 속에서 쉽게
+              공유됩니다.
             </p>
           </div>
         </div>
@@ -122,8 +122,8 @@ function HomePage() {
           <p>
             누가 어떤 일을 맡았는지 투명하게 확인하세요.
             <br />
-            단순한 리스트가 아닌 담당자, 자세한 정보를 포함하여 한눈에
-            들어오는 보드 형태로 실시간 진행 단계를 추적할 수 있습니다.
+            단순한 리스트가 아닌 담당자, 자세한 정보를 포함하여 한눈에 들어오는
+            보드 형태로 실시간 진행 단계를 추적할 수 있습니다.
           </p>
         </div>
         <div className={styles.detail_img_wrap}>
@@ -146,8 +146,8 @@ function HomePage() {
           <span className={styles.card_tag}>기능 상세 ③ 실시간 채팅</span>
           <h2>프로젝트에 최적화된 협업용 메신저</h2>
           <p>
-            단순히 사담을 나누는 메신저가 아닙니다. 프로젝트 관련 정보와
-            파일을 효율적으로 공유할 수 있습니다.
+            단순히 사담을 나누는 메신저가 아닙니다. 프로젝트 관련 정보와 파일을
+            효율적으로 공유할 수 있습니다.
           </p>
         </div>
       </div>
@@ -166,8 +166,7 @@ function HomePage() {
           <div className={styles.footer_left}>
             <h3 className={styles.footer_logo}>Visual With</h3>
             <p>
-              프로젝트의 모든 순간을 가장 쉽고 스마트하게 연결하는 협업
-              플랫폼
+              프로젝트의 모든 순간을 가장 쉽고 스마트하게 연결하는 협업 플랫폼
             </p>
           </div>
           <div className={styles.footer_nav}>
