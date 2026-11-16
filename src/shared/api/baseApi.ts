@@ -28,27 +28,39 @@ export class ApiError extends Error {
   }
 }
 
-export const request = async (url: string, options = {}) => {
-  const { headers, ...restOptions } = options as {
-    headers?: Record<string, string>;
-  };
+export const request = async (
+  url: string,
+  options: RequestInit & { responseType?: 'json' | 'blob' } = {},
+) => {
+  const { headers, responseType = 'json', ...restOptions } = options;
+  const requestHeaders = new Headers(headers);
+  if (!(restOptions.body instanceof FormData) && !requestHeaders.has('Content-Type')) {
+    requestHeaders.set('Content-Type', 'application/json');
+  }
 
   try {
     const response = await fetch(url, {
       ...restOptions,
-      headers: {
-        'Content-Type': 'application/json',
-        ...headers,
-      },
+      headers: requestHeaders,
     });
-    const text = await response.text();
-    const data = text ? JSON.parse(text) : null;
 
     if (!response.ok) {
-      throw new ApiError(data?.message || 'API 호출 오류', response.status);
+      let message = 'API 호출 오류';
+      try {
+        const data: unknown = await response.json();
+        if (data && typeof data === 'object' && 'message' in data &&
+          typeof data.message === 'string' && data.message) {
+          message = data.message;
+        }
+      } catch {
+        // 오류 본문이 비어 있거나 JSON이 아니면 기본 메시지를 사용한다.
+      }
+      throw new ApiError(message, response.status);
     }
 
-    return data;
+    if (responseType === 'blob') return await response.blob();
+    const text = await response.text();
+    return text ? JSON.parse(text) : null;
   } catch (e: unknown) {
     if (e instanceof TypeError) {
       throw new Error('네트워크 오류가 발생했습니다.');
