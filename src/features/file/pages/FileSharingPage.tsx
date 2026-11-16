@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './FileSharingLayout.module.css';
 import DragAndDrop from '../components/DragAndDrop';
 import FileUploadCard from '../components/FileUploadCard';
@@ -10,15 +10,24 @@ import FileSharingDropdown from '../components/FileSharingDropdown';
 import { getIsPermit } from '@shared/utils/permitUtils';
 import { useUserStore } from '@core/store/useUserStore';
 import { useCurrentWorkspace } from '@core/hooks/useCurrentWorkspace';
+import { useWorkspaceStore } from '@core/store/useWorkspaceStore';
+import { useTeamFileManager } from '../hooks/useTeamFileManager';
 
 function FileSharingPage() {
   const [fileTypes, setFileTypes] = useState<string>('all');
   const fileData = useTeamFileStore((state) => state.fileData);
-  const deleteFile = useTeamFileStore((state) => state.deleteFile);
+  const { refreshFiles, downloadFile, renameFile, deleteFile } =
+    useTeamFileManager();
+  const members = useWorkspaceStore((state) => state.membershipData);
   const isLoading = useTeamFileStore((state) => state.isLoading);
+  const currentFile = useTeamFileStore((state) => state.currentFile);
   const { teamId } = useWorkspaceParams();
   const userId = useUserStore((state) => state.user?.id);
   const { currentRule } = useCurrentWorkspace();
+
+  useEffect(() => {
+    void refreshFiles();
+  }, [refreshFiles]);
 
   const visibleFiles = fileData.filter(
     (item) =>
@@ -64,7 +73,7 @@ function FileSharingPage() {
       <div className={styles.file_view_panel}>
         <DragAndDrop />
 
-        {isLoading && (
+        {isLoading && currentFile?.teamId === teamId && (
           <div>
             <div style={{ marginTop: '24px', marginBottom: '12px' }}>
               업로드 중
@@ -90,16 +99,20 @@ function FileSharingPage() {
 
             return (
               <InfoCard
-                key={item.id}
+                key={`${item.teamId}-${item.id}`}
                 title={item.fileName}
-                content={`${item.date} · ${item.fileSize} · ${item.authorName}`}
+                content={`${item.date} · ${item.fileSize} · ${members.find((member) => member.teamId === teamId && member.userId === item.authorId)?.userName || item.authorName}`}
                 iconElement={
                   <div className='file_icon'>
                     <FileText size={24} />
                   </div>
                 }
               >
-                <Button variant='content'>
+                <Button
+                  variant='content'
+                  aria-label={`${item.fileName} 다운로드`}
+                  onClick={() => void downloadFile(item)}
+                >
                   <Download size={16} />
                 </Button>
                 <FileSharingDropdown
@@ -111,6 +124,7 @@ function FileSharingPage() {
                     rule: currentRule,
                   })}
                   deleteFile={deleteFile}
+                  renameFile={renameFile}
                   currentFileName={currentFileName}
                 />
               </InfoCard>

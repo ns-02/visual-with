@@ -1,11 +1,9 @@
 import styles from './FileSharingUI.module.css';
 import { useTeamFileStore } from '../store/useTeamFileStore';
-import { Progress } from '@shared/components';
 import { FileText } from 'lucide-react';
 
 const FileUploadCard = () => {
   const currentFile = useTeamFileStore((state) => state.currentFile);
-  const progress = useTeamFileStore((state) => state.progress);
 
   return (
     <div className='common_card flex_col content_nm'>
@@ -22,11 +20,8 @@ const FileUploadCard = () => {
           </div>
         </div>
         <div className='common_card_nav px_20'>
-          <p>{`${progress}%`}</p>
+          <p role='status'>업로드 중...</p>
         </div>
-      </div>
-      <div className={styles.progress_area}>
-        <Progress progress={progress} />
       </div>
     </div>
   );

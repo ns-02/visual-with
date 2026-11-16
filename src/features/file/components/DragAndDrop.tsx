@@ -2,11 +2,13 @@ import { ChangeEvent, DragEvent, useRef, useState } from 'react';
 import { Upload } from 'lucide-react';
 import styles from './FileSharingUI.module.css';
 import { useTeamFileManager } from '../hooks/useTeamFileManager';
+import { useTeamFileStore } from '../store/useTeamFileStore';
 
 const DragAndDrop = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   const [dragging, setDragging] = useState(false);
   const { loadAndUploadFile } = useTeamFileManager();
+  const isLoading = useTeamFileStore((state) => state.isLoading);
 
   const containerStyle = `${styles.drop_zone} ${dragging ? styles.dragging : ''}`;
 
@@ -21,7 +23,8 @@ const DragAndDrop = () => {
   const handleFileChange = async (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       const selectedFile = e.target.files[0];
-      loadAndUploadFile(selectedFile);
+      void loadAndUploadFile(selectedFile);
+      e.target.value = '';
     }
   };
 
@@ -58,7 +61,7 @@ const DragAndDrop = () => {
 
     // 실제 파일 처리 로직
     const selectedFile = e.dataTransfer.files[0];
-    loadAndUploadFile(selectedFile);
+    void loadAndUploadFile(selectedFile);
     setDragging(false);
   };
 
@@ -74,13 +77,18 @@ const DragAndDrop = () => {
         style={{ display: 'none' }}
         ref={inputRef}
         type='file'
+        disabled={isLoading}
         onChange={handleFileChange}
         autoComplete='off'
       />
       <Upload size={48} color='#aaa' />
       <p className='text_sec_100'>파일을 여기에 드래그하여 업로드하세요</p>
       <p className='text_sec_200'>또는</p>
-      <button className={styles.select_button} onClick={handleSelectFile}>
+      <button
+        className={styles.select_button}
+        onClick={handleSelectFile}
+        disabled={isLoading}
+      >
         파일 선택
       </button>
     </div>

@@ -5,7 +5,7 @@ interface DeleteFileDialogProps {
   fileId?: number;
   open: boolean;
   onOpenChange: Dispatch<SetStateAction<boolean>>;
-  deleteFile: (fileId: number) => void;
+  deleteFile: (fileId: number) => void | Promise<boolean>;
   currentFileName?: string;
 }
 
@@ -16,11 +16,11 @@ const DeleteFileDialog = ({
   deleteFile,
   currentFileName,
 }: DeleteFileDialogProps) => {
-  const handleDeleteFile = () => {
-    if (!fileId) return;
+  const handleDeleteFile = async () => {
+    if (fileId === undefined) return;
 
-    deleteFile(fileId);
-    onOpenChange(false);
+    const deleted = await deleteFile(fileId);
+    if (deleted !== false) onOpenChange(false);
   };
 
   return (

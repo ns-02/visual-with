@@ -1,6 +1,7 @@
 import { Dispatch, SetStateAction, useState } from 'react';
 import { Dialog } from '@shared/components';
 import { useTeamFileManager } from '../hooks/useTeamFileManager';
+import { useTeamFileStore } from '../store/useTeamFileStore';
 
 interface UploadFileDialogProps {
   open: boolean;
@@ -9,13 +10,15 @@ interface UploadFileDialogProps {
 
 const UploadFileDialog = ({ open, onOpenChange }: UploadFileDialogProps) => {
   const { loadAndUploadFile } = useTeamFileManager();
+  const isLoading = useTeamFileStore((state) => state.isLoading);
   const [file, setFile] = useState<File>();
 
   const handleUploadFile = () => {
-    if (!file) return;
+    if (!file || isLoading) return;
 
     onOpenChange(false);
-    loadAndUploadFile(file);
+    void loadAndUploadFile(file);
+    setFile(undefined);
   };
 
   return (
@@ -23,7 +26,7 @@ const UploadFileDialog = ({ open, onOpenChange }: UploadFileDialogProps) => {
       title='파일 업로드'
       open={open}
       onOpenChange={onOpenChange}
-      confirmText='업로드'
+      confirmText={isLoading ? '업로드 중...' : '업로드'}
       onConfirm={handleUploadFile}
     >
       <div className='mb_10'>
@@ -33,6 +36,7 @@ const UploadFileDialog = ({ open, onOpenChange }: UploadFileDialogProps) => {
       <input
         name='input'
         type='file'
+        disabled={isLoading}
         autoComplete='off'
         className='dialog_input'
         placeholder='팀원의 ID를 검색하세요'
