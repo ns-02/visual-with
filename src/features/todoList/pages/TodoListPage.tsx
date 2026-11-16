@@ -6,8 +6,13 @@ import { InfoCard, CheckBox, DropdownTrigger } from '@shared/components';
 import TodoListDropdown from '../components/TodoListDropdown';
 
 function TodoListPage() {
-  const { progressData, completedData, updateTodoComplete, getCanToggle } =
-    useTodoManager(true);
+  const {
+    progressData,
+    completedData,
+    loadStatus,
+    updateTodoComplete,
+    getCanToggle,
+  } = useTodoManager(true);
 
   return (
     <div className={styles.todo_list_root}>
@@ -17,6 +22,14 @@ function TodoListPage() {
         </TodoListLabel>
 
         <div className='card_list'>
+          {loadStatus === 'success' && progressData.length === 0 && (
+            <p className={styles.empty_state}>진행 중인 할 일이 없습니다.</p>
+          )}
+          {loadStatus === 'error' && progressData.length === 0 && (
+            <p className={styles.empty_state}>
+              할 일 목록을 불러오지 못했습니다.
+            </p>
+          )}
           {progressData.map((item) => (
             <InfoCard
               key={item.id}
@@ -56,6 +69,9 @@ function TodoListPage() {
         </TodoListLabel>
 
         <div className='card_list'>
+          {loadStatus === 'success' && completedData.length === 0 && (
+            <p className={styles.empty_state}>완료된 할 일이 없습니다.</p>
+          )}
           {completedData.map((item) => (
             <InfoCard
               key={item.id}

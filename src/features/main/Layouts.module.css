@@ -122,3 +122,71 @@
 .button_primary {
   background-color: var(--color-pink-400);
 }
+
+.main_page {
+  overflow-y: auto;
+}
+.contents {
+  height: auto;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 56px clamp(24px, 7vw, 120px);
+  align-items: stretch;
+  justify-content: flex-start;
+  color: var(--text-main);
+}
+.contents h1 {
+  margin: 0;
+  font-size: var(--font-size-2xl);
+}
+.main_description {
+  margin: 8px 0 0;
+  color: var(--text-sub-100);
+}
+.teams_heading {
+  margin: 48px 0 16px;
+  font-size: var(--font-size-lg);
+}
+.team_grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 12px;
+}
+.team_card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 80px;
+  padding: 16px;
+  border: 1px solid var(--border-100);
+  border-radius: var(--radius-card);
+  background: var(--bg-sub);
+  color: var(--text-main);
+  text-align: left;
+  cursor: pointer;
+}
+.team_card:hover {
+  border-color: var(--color-blue-500);
+}
+.team_card:focus-visible {
+  outline: 2px solid var(--color-blue-600);
+  outline-offset: 2px;
+}
+.team_icon {
+  display: flex;
+  padding: 10px;
+  border-radius: var(--radius-lg);
+  background: var(--color-blue-300);
+}
+.team_name {
+  flex: 1;
+  overflow-wrap: anywhere;
+  font-weight: 500;
+}
+.main_empty {
+  margin: 0;
+  padding: 28px;
+  border-radius: var(--radius-card);
+  background: var(--bg-sub);
+  color: var(--text-sub-100);
+}

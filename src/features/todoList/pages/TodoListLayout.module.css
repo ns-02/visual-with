@@ -8,3 +8,9 @@
   padding: 0 var(--space-page-x);
   border: 0.5px solid var(--bg-main);
 }
+.empty_state {
+  padding: 24px 16px;
+  color: var(--text-sub-100);
+  font-size: var(--font-size-sm);
+  text-align: center;
+}

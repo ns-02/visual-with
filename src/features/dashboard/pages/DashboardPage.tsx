@@ -108,32 +108,44 @@ function DashboardPage() {
         </div>
         <div className={styles.dashboard_area}>
           <div className='common_card p_8 w_full'>
-            <ResponsiveContainer height={300}>
-              <PieChart>
-                <Pie
-                  // innerRadius={160}
-                  // outerRadius={200}
-                  data={todoStatusData}
-                  dataKey='value'
-                  shape={renderPieShape}
-                />
-                <Tooltip />
-              </PieChart>
-            </ResponsiveContainer>
+            {todoStatusData.some((item) => item.value > 0) ? (
+              <ResponsiveContainer height={300}>
+                <PieChart>
+                  <Pie
+                    // innerRadius={160}
+                    // outerRadius={200}
+                    data={todoStatusData}
+                    dataKey='value'
+                    shape={renderPieShape}
+                  />
+                  <Tooltip />
+                </PieChart>
+              </ResponsiveContainer>
+            ) : (
+              <div className={styles.empty_chart}>
+                표시할 데이터가 없습니다.
+              </div>
+            )}
           </div>
           <div className='common_card p_8 w_full'>
-            <ResponsiveContainer height={300}>
-              <PieChart>
-                <Pie
-                  // innerRadius={160}
-                  // outerRadius={200}
-                  data={fileTypeData}
-                  dataKey='value'
-                  shape={renderPieShape}
-                />
-                <Tooltip />
-              </PieChart>
-            </ResponsiveContainer>
+            {fileTypeData.some((item) => item.value > 0) ? (
+              <ResponsiveContainer height={300}>
+                <PieChart>
+                  <Pie
+                    // innerRadius={160}
+                    // outerRadius={200}
+                    data={fileTypeData}
+                    dataKey='value'
+                    shape={renderPieShape}
+                  />
+                  <Tooltip />
+                </PieChart>
+              </ResponsiveContainer>
+            ) : (
+              <div className={styles.empty_chart}>
+                표시할 데이터가 없습니다.
+              </div>
+            )}
           </div>
         </div>
 
@@ -143,24 +155,36 @@ function DashboardPage() {
         </div>
         <div className={styles.dashboard_area}>
           <div className='common_card p_8 w_full'>
-            <ResponsiveContainer height={300}>
-              <LineChart data={monthlyTodoTrends}>
-                <XAxis dataKey='month' />
-                <YAxis dataKey='todos' />
-                <Tooltip />
-                <Line dataKey='todos' />
-              </LineChart>
-            </ResponsiveContainer>
+            {monthlyTodoTrends.some((item) => item.todos > 0) ? (
+              <ResponsiveContainer height={300}>
+                <LineChart data={monthlyTodoTrends}>
+                  <XAxis dataKey='month' />
+                  <YAxis dataKey='todos' />
+                  <Tooltip />
+                  <Line dataKey='todos' />
+                </LineChart>
+              </ResponsiveContainer>
+            ) : (
+              <div className={styles.empty_chart}>
+                표시할 데이터가 없습니다.
+              </div>
+            )}
           </div>
           <div className='common_card p_8 w_full'>
-            <ResponsiveContainer height={300}>
-              <BarChart data={chatActivityByTime}>
-                <XAxis dataKey='time' />
-                <YAxis dataKey='chats' />
-                <Tooltip />
-                <Bar dataKey='chats' />
-              </BarChart>
-            </ResponsiveContainer>
+            {chatActivityByTime.some((item) => item.chats > 0) ? (
+              <ResponsiveContainer height={300}>
+                <BarChart data={chatActivityByTime}>
+                  <XAxis dataKey='time' />
+                  <YAxis dataKey='chats' />
+                  <Tooltip />
+                  <Bar dataKey='chats' />
+                </BarChart>
+              </ResponsiveContainer>
+            ) : (
+              <div className={styles.empty_chart}>
+                표시할 데이터가 없습니다.
+              </div>
+            )}
           </div>
         </div>
 

@@ -29,3 +29,9 @@
 .selected {
   background-color: var(--color-blue-400);
 }
+.empty_state {
+  padding: 24px 16px;
+  color: var(--text-sub-100);
+  font-size: var(--font-size-sm);
+  text-align: center;
+}

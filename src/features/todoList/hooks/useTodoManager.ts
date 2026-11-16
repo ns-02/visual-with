@@ -1,7 +1,7 @@
 import { useCurrentWorkspace } from '@core/hooks/useCurrentWorkspace';
 import { useUserStore } from '@core/store/useUserStore';
 import { useTodoStore } from '../store/useTodoStore';
-import { useEffect, useMemo, useRef } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { toast } from '@core/store/useToastStore';
 import { TodoData } from '@shared/models/Workspace';
 import { getIsPermit } from '@shared/utils/permitUtils';
@@ -16,6 +16,10 @@ import { formatDate, formatTime } from '@shared/utils/formatDate';
 import { useWorkspaceStore } from '@core/store/useWorkspaceStore';
 
 export const useTodoManager = (shouldLoad = false) => {
+  const [loadStatus, setLoadStatus] = useState<{
+    teamId: string;
+    status: 'loading' | 'success' | 'error';
+  } | null>(null);
   const pendingToggles = useRef(new Set<number>());
   const userId = useUserStore((state) => state.user?.id);
   const userName = useUserStore((state) => state.user?.name);
@@ -41,12 +45,17 @@ export const useTodoManager = (shouldLoad = false) => {
   useEffect(() => {
     if (!shouldLoad || !teamId) return;
     let active = true;
+    setLoadStatus({ teamId, status: 'loading' });
     const initialData = useTodoStore.getState().todoData;
 
     const loadTodoData = async () => {
       try {
         const fetchData = await viewTodo({ teamId });
-        if (!active || useTodoStore.getState().todoData !== initialData) return;
+        if (!active) return;
+        if (useTodoStore.getState().todoData !== initialData) {
+          setLoadStatus({ teamId, status: 'success' });
+          return;
+        }
         if (!Array.isArray(fetchData)) throw new Error('잘못된 응답');
         const currentMembershipData = membershipData.filter(
           (m) => m.teamId === teamId,
@@ -69,8 +78,12 @@ export const useTodoManager = (shouldLoad = false) => {
         }));
 
         loadTodo(newTodoData, teamId);
+        setLoadStatus({ teamId, status: 'success' });
       } catch {
-        if (active) toast.error('할 일 목록을 불러오지 못했습니다.');
+        if (active) {
+          setLoadStatus({ teamId, status: 'error' });
+          toast.error('할 일 목록을 불러오지 못했습니다.');
+        }
       }
     };
 
@@ -194,6 +207,7 @@ export const useTodoManager = (shouldLoad = false) => {
   return {
     progressData,
     completedData,
+    loadStatus: loadStatus?.teamId === teamId ? loadStatus.status : 'loading',
     getCanToggle,
     updateTodoComplete,
     addTodoInManager,

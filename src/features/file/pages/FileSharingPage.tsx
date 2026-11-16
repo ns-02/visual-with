@@ -20,6 +20,12 @@ function FileSharingPage() {
   const userId = useUserStore((state) => state.user?.id);
   const { currentRule } = useCurrentWorkspace();
 
+  const visibleFiles = fileData.filter(
+    (item) =>
+      item.teamId === teamId &&
+      (fileTypes === 'all' || item.fileType === fileTypes),
+  );
+
   const fileNavItemsInit = [
     { id: 'all', text: '전체', selected: true },
     { id: 'images', text: '이미지', selected: false },
@@ -70,44 +76,46 @@ function FileSharingPage() {
 
         <div style={{ marginTop: '24px', marginBottom: '12px' }}>파일 목록</div>
         <div className='card_list'>
-          {fileData
-            .filter((item) => item.teamId === teamId)
-            .filter((item) => {
-              return fileTypes === 'all' ? item : item.fileType === fileTypes;
-            })
-            .map((item) => {
-              const currentFileName = fileData?.find(
-                (f) => f.id === item.id && f.teamId === teamId,
-              )?.fileName;
+          {visibleFiles.length === 0 && (
+            <p className={styles.empty_state}>
+              {fileTypes === 'all'
+                ? '아직 공유된 파일이 없습니다.'
+                : '해당 유형의 파일이 없습니다.'}
+            </p>
+          )}
+          {visibleFiles.map((item) => {
+            const currentFileName = fileData?.find(
+              (f) => f.id === item.id && f.teamId === teamId,
+            )?.fileName;
 
-              return (
-                <InfoCard
-                  key={item.id}
-                  title={item.fileName}
-                  content={`${item.date} · ${item.fileSize} · ${item.authorName}`}
-                  iconElement={
-                    <div className='file_icon'>
-                      <FileText size={24} />
-                    </div>
-                  }
-                >
-                  <Button variant='content'>
-                    <Download size={16} />
-                  </Button>
-                  <FileSharingDropdown
-                    fileId={item.id}
-                    triggerElement={<DropdownTrigger />}
-                    canEdit={getIsPermit({
-                      authorId: item.authorId,
-                      userId,
-                      rule: currentRule,
-                    })}
-                    deleteFile={deleteFile}
-                    currentFileName={currentFileName}
-                  />
-                </InfoCard>
-              );
-            })}
+            return (
+              <InfoCard
+                key={item.id}
+                title={item.fileName}
+                content={`${item.date} · ${item.fileSize} · ${item.authorName}`}
+                iconElement={
+                  <div className='file_icon'>
+                    <FileText size={24} />
+                  </div>
+                }
+              >
+                <Button variant='content'>
+                  <Download size={16} />
+                </Button>
+                <FileSharingDropdown
+                  fileId={item.id}
+                  triggerElement={<DropdownTrigger />}
+                  canEdit={getIsPermit({
+                    authorId: item.authorId,
+                    userId,
+                    rule: currentRule,
+                  })}
+                  deleteFile={deleteFile}
+                  currentFileName={currentFileName}
+                />
+              </InfoCard>
+            );
+          })}
         </div>
       </div>
     </div>
