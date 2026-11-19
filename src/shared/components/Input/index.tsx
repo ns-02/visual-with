@@ -1,4 +1,4 @@
-import { Dispatch, KeyboardEvent, SetStateAction } from 'react';
+import { KeyboardEvent } from 'react';
 import styles from './Input.module.css';
 
 type SizeMode = 'fixed' | 'flexible';
@@ -9,7 +9,7 @@ interface InputProps {
   placeholder?: string;
   sizeMode: SizeMode;
   name?: string;
-  onChange?: Dispatch<SetStateAction<string>>;
+  onChange?: (value: string) => void;
   onKeyDown?: (e: KeyboardEvent<HTMLInputElement>) => void;
   children?: React.ReactNode;
 }

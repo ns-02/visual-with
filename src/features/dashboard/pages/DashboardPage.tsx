@@ -20,6 +20,10 @@ import {
 import { useDashboardStore } from '../store/useDashboardStore';
 import { useEffect } from 'react';
 import { toast } from '@core/store/useToastStore';
+import todoStatusIllustration from '../assets/todo-status.webp';
+import fileTypeIllustration from '../assets/file-types.webp';
+import todoTrendsIllustration from '../assets/todo-trends.webp';
+import chatActivityIllustration from '../assets/chat-activity.webp';
 
 const COLORS = ['#3b82f6', '#10b981', '#f59e0b', '#ef4444'];
 
@@ -31,6 +35,21 @@ const renderPieShape = (props: RenderShapeProps) => {
   const { index } = props;
   return <Sector {...props} fill={COLORS[index % COLORS.length]} />;
 };
+
+function EmptyChart({
+  illustration,
+  message,
+}: {
+  illustration: string;
+  message: string;
+}) {
+  return (
+    <div className={styles.empty_chart}>
+      <img src={illustration} alt='' width={240} height={150} />
+      <p>{message}</p>
+    </div>
+  );
+}
 
 function DashboardPage() {
   const { selectTeamName, currentRule, memberCount, teamId } =
@@ -122,9 +141,10 @@ function DashboardPage() {
                 </PieChart>
               </ResponsiveContainer>
             ) : (
-              <div className={styles.empty_chart}>
-                표시할 데이터가 없습니다.
-              </div>
+              <EmptyChart
+                illustration={todoStatusIllustration}
+                message='할 일을 등록하면 완료 현황을 볼 수 있어요'
+              />
             )}
           </div>
           <div className='common_card p_8 w_full'>
@@ -142,9 +162,10 @@ function DashboardPage() {
                 </PieChart>
               </ResponsiveContainer>
             ) : (
-              <div className={styles.empty_chart}>
-                표시할 데이터가 없습니다.
-              </div>
+              <EmptyChart
+                illustration={fileTypeIllustration}
+                message='아직 업로드된 파일이 없어요'
+              />
             )}
           </div>
         </div>
@@ -165,9 +186,10 @@ function DashboardPage() {
                 </LineChart>
               </ResponsiveContainer>
             ) : (
-              <div className={styles.empty_chart}>
-                표시할 데이터가 없습니다.
-              </div>
+              <EmptyChart
+                illustration={todoTrendsIllustration}
+                message='할 일을 완료하면 월별 추이를 볼 수 있어요'
+              />
             )}
           </div>
           <div className='common_card p_8 w_full'>
@@ -181,9 +203,10 @@ function DashboardPage() {
                 </BarChart>
               </ResponsiveContainer>
             ) : (
-              <div className={styles.empty_chart}>
-                표시할 데이터가 없습니다.
-              </div>
+              <EmptyChart
+                illustration={chatActivityIllustration}
+                message='채팅을 시작하면 시간대별 활동을 볼 수 있어요'
+              />
             )}
           </div>
         </div>
