@@ -162,7 +162,7 @@ export const useTeamChatStore = create<TeamChatState>((set, get) => ({
   connectSocket: () => {
     if (get().stompClient) return;
     const client = new Client({
-      brokerURL: 'ws://localhost:8080/ws',
+      brokerURL: 'wss://visualwith.hopto.org/ws',
       reconnectDelay: 5000,
       onConnect: () => {
         if (get().stompClient === client) set({ isConnected: true });
