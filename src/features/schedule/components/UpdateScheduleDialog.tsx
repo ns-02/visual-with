@@ -33,7 +33,7 @@ const UpdateScheduleDialog = ({
   const [description, setDescription] = useState(
     currentData?.description ?? '',
   );
-  const [isAllDay, setIsAllDay] = useState(false);
+  const [isAllDay, setIsAllDay] = useState(currentData?.isAllDay ?? false);
 
   const handleUpdateSchedule = async () => {
     if (!title.trim()) return;
@@ -109,6 +109,7 @@ const UpdateScheduleDialog = ({
             autoComplete='off'
             className='dialog_input'
             value={startTime}
+            disabled={isAllDay}
             onChange={(e) => setStartTime(e.target.value)}
           />
         </div>
@@ -133,6 +134,7 @@ const UpdateScheduleDialog = ({
             autoComplete='off'
             className='dialog_input'
             value={finishTime}
+            disabled={isAllDay}
             onChange={(e) => setFinishTime(e.target.value)}
           />
         </div>

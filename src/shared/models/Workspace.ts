@@ -95,7 +95,7 @@ export interface ScheduleData {
   finishTime?: string;
   description?: string;
   teamId: string;
-  // isAllDay: boolean;
+  isAllDay: boolean;
 }
 
 export interface TodoData {

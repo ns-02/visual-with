@@ -8,17 +8,22 @@ function ChatInputArea({
   itemClassName,
   onSend,
   onUpload,
+  value,
+  onChange,
 }: {
   itemClassName: string;
   onSend: (chat: string) => void;
   onUpload: (file: File | undefined) => Promise<void>;
+  value?: string;
+  onChange?: (chat: string) => void;
 }) {
-  const [chat, setChat] = useState('');
+  const [localChat, setLocalChat] = useState('');
+  const chat = value ?? localChat;
 
   const handleSend = () => {
     if (!chat) return;
     onSend(chat);
-    setChat('');
+    if (value === undefined) setLocalChat('');
   };
 
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
@@ -39,7 +44,7 @@ function ChatInputArea({
         value={chat}
         placeholder='채팅 입력'
         sizeMode='flexible'
-        onChange={setChat}
+        onChange={onChange ?? setLocalChat}
         onKeyDown={(e) => handleKeyDown(e)}
       />
       <Button

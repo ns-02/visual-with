@@ -17,6 +17,11 @@ function TeamChatPage() {
   );
 
   const teamId = useTeamId();
+  const draft = useTeamChatStore((state) =>
+    teamId ? state.draftsByTeamId.get(teamId) ?? '' : '',
+  );
+  const setDraft = useTeamChatStore((state) => state.setDraft);
+  const clearDraft = useTeamChatStore((state) => state.clearDraft);
 
   useEffect(() => {
     if (!teamId) return;
@@ -38,7 +43,13 @@ function TeamChatPage() {
 
       <ChatInputArea
         itemClassName={styles.bottom}
-        onSend={handleTeamChatSend}
+        value={draft}
+        onChange={(value) => {
+          if (teamId) setDraft(teamId, value);
+        }}
+        onSend={(message) => {
+          if (teamId && handleTeamChatSend(message)) clearDraft(teamId);
+        }}
         onUpload={loadAndUploadFile}
       />
     </div>

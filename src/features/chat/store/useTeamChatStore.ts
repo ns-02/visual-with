@@ -22,8 +22,11 @@ interface TeamChatState {
   isConnected: boolean;
   stompSub: StompSubscription | null;
   threadsByTeamId: Map<string, TeamChatThread>;
+  draftsByTeamId: Map<string, string>;
+  setDraft: (teamId: string, draft: string) => void;
+  clearDraft: (teamId: string) => void;
   initThread: (teamId: string) => void;
-  sendMessage: (teamId: string, message: string, userId: string) => void;
+  sendMessage: (teamId: string, message: string, userId: string) => boolean;
   connectSocket: () => void;
   disconnectSocket: () => void;
   subscribeToTeam: (teamId: string) => void;
@@ -77,6 +80,17 @@ export const useTeamChatStore = create<TeamChatState>((set, get) => ({
   isConnected: false,
   stompSub: null,
   threadsByTeamId: new Map(),
+  draftsByTeamId: new Map(),
+  setDraft: (teamId, draft) =>
+    set((state) => ({
+      draftsByTeamId: new Map(state.draftsByTeamId).set(teamId, draft),
+    })),
+  clearDraft: (teamId) =>
+    set((state) => {
+      const drafts = new Map(state.draftsByTeamId);
+      drafts.delete(teamId);
+      return { draftsByTeamId: drafts };
+    }),
 
   initThread: (teamId) => {
     const token = {};
@@ -147,15 +161,17 @@ export const useTeamChatStore = create<TeamChatState>((set, get) => ({
     const { stompClient } = get();
     if (!stompClient?.connected) {
       toast.error('채팅 서버에 연결되지 않았습니다.');
-      return;
+      return false;
     }
     try {
       stompClient.publish({
         destination: `/pub/message/${teamId}`,
         body: JSON.stringify({ id: teamId, name: userId, message }),
       });
+      return true;
     } catch {
       toast.error('메시지를 전송하지 못했습니다.');
+      return false;
     }
   },
 
@@ -237,6 +253,6 @@ export const useTeamChatStore = create<TeamChatState>((set, get) => ({
   reset: () => {
     get().unsubscribeFromTeam();
     get().disconnectSocket();
-    set({ threadsByTeamId: new Map() });
+    set({ threadsByTeamId: new Map(), draftsByTeamId: new Map() });
   },
 }));

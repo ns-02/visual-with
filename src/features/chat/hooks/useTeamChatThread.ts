@@ -31,7 +31,7 @@ export const useTeamChatThread = () => {
   }, [chats, memberships, teamId, userId]);
 
   const handleTeamChatSend = (chatToSend: string) => {
-    if (teamId && userId) sendMessage(teamId, chatToSend, userId);
+    return !!teamId && !!userId && sendMessage(teamId, chatToSend, userId);
   };
 
   return { allChat, handleTeamChatSend };

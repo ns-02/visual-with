@@ -15,6 +15,7 @@ export type AddScheduleInput = Pick<
   | 'finishTime'
   | 'description'
   | 'teamId'
+  | 'isAllDay'
 >;
 
 export type UpdateScheduleInput = Pick<ScheduleData, 'id'> &
@@ -29,6 +30,7 @@ export type UpdateScheduleInput = Pick<ScheduleData, 'id'> &
       | 'finishDate'
       | 'finishTime'
       | 'description'
+      | 'isAllDay'
     >
   >;
 
@@ -59,6 +61,7 @@ export const useScheduleStore = create<ScheduleState>((set) => ({
           finishDate: schedule.finishDate,
           finishTime: schedule.finishTime,
           description: schedule.description,
+          isAllDay: schedule.isAllDay,
           state: '예정',
           teamId: schedule.teamId,
         },

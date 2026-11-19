@@ -92,6 +92,7 @@ const AddScheduleDialog = ({ open, onOpenChange }: AddScheduleDialogProps) => {
             autoComplete='off'
             className='dialog_input'
             value={startTime}
+            disabled={isAllDay}
             onChange={(e) => setStartTime(e.target.value)}
           />
         </div>
@@ -116,6 +117,7 @@ const AddScheduleDialog = ({ open, onOpenChange }: AddScheduleDialogProps) => {
             autoComplete='off'
             className='dialog_input'
             value={finishTime}
+            disabled={isAllDay}
             onChange={(e) => setFinishTime(e.target.value)}
           />
         </div>

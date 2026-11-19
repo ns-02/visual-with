@@ -14,6 +14,7 @@ export interface ViewScheduleResponse {
   startTime: string;
   completeDate: string;
   completeTime: string;
+  wholeDay: boolean;
 }
 
 export interface AddScheduleRequest {

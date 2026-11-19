@@ -50,6 +50,7 @@ export const useScheduleManager = (shouldLoad = false) => {
           startTime: item.startTime,
           finishDate: item.completeDate,
           finishTime: item.completeTime,
+          isAllDay: item.wholeDay,
           teamId,
           authorId: item.userId,
           authorName: item.userName ?? '아무개',
@@ -112,6 +113,7 @@ export const useScheduleManager = (shouldLoad = false) => {
       startTime,
       finishDate: finishDate || undefined,
       finishTime: finishTime || undefined,
+      isAllDay,
     });
     return true;
   };
@@ -165,6 +167,7 @@ export const useScheduleManager = (shouldLoad = false) => {
       startTime,
       finishDate: finishDate || undefined,
       finishTime: finishTime || undefined,
+      isAllDay,
     });
     return true;
   };
